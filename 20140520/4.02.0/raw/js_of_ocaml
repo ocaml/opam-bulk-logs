@@ -5,10 +5,10 @@ Ubuntu depexts:
 + '[' '' '!=' '' ']'
 ++ opam install js_of_ocaml -e source,linux
 + srcext=
+Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install js_of_ocaml
-Ubuntu srcexts:
 The following actions will be performed:
  - install ocamlfind.1.4.0 [required by js_of_ocaml]
  - install menhir.20130912 [required by js_of_ocaml]
@@ -78,8 +78,8 @@ Configuration has been written to Makefile.config
 You can now do 'make all', and optionally 'make opt', to build ocamlfind.
 for p in findlib; do ( cd src/$p; make all ); done
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
-ocamllex fl_meta.mll
 Makefile:147: depend: No such file or directory
+ocamllex fl_meta.mll
 22 states, 392 transitions, table size 1700 bytes
 ocamldep *.ml *.mli >depend
 make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
@@ -1047,11 +1047,11 @@ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
-+ ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
-File "partialGrammar.ml", line 262, characters 6-18:
-Warning 3: deprecated feature: String.set
 + ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
 File "lexer.mll", line 60, characters 4-26:
+Warning 3: deprecated feature: String.set
++ ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
+File "partialGrammar.ml", line 262, characters 6-18:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
 ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
@@ -2422,9 +2422,6 @@ total size is 2,095,787  speedup is 1.00
 Building js_of_ocaml.2.2:
   make build
   make install-lib BINDIR=/home/opam/.opam/4.02.0+trunk/bin
-File "_none_", line 1:
-Error: I/O error: Broken pipe
-Fatal error: exception Sys_error("Broken pipe")
 make -C compiler
 File "_none_", line 1:
 Error: I/O error: Broken pipe
@@ -2574,9 +2571,6 @@ ocamlfind ocamlopt -package findlib -linkpkg -g -o minify.opt compiler_version.c
 mv -f minify.opt jsoo_minify
 make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.2/compiler'
 make -C compiler lib
-File "_none_", line 1:
-Error: I/O error: Broken pipe
-Fatal error: exception Sys_error("Broken pipe")
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.2/compiler'
 echo "let s = \"2.2\"" > compiler_version.ml.tmp
 echo "let git_version = \"\"" >> compiler_version.ml.tmp
@@ -2746,6 +2740,9 @@ for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js
 	   cat $f >> runtime.js; \
 	done
 make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.2/runtime'
+File "_none_", line 1:
+Error: I/O error: Broken pipe
+Fatal error: exception Sys_error("Broken pipe")
 ocamlfind install -patch-version 2.2 js_of_ocaml lib/META lib/*.cmi lib/graphics/*.cmi ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmi lib/js_of_ocaml.cma lib/syntax/pa_js.cmo lib/dlljs_of_ocaml.so lib/libjs_of_ocaml.a lib/syntax/pa_js.cmx lib/syntax/pa_js.cmxs lib/graphics/graphics.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxa ocamlbuild/_build/ocamlbuild_js_of_ocaml.a ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxs runtime/runtime.js runtime/weak.js runtime/classlist.js runtime/toplevel.js runtime/graphics.js lib/*.mli lib/graphics/*.mli ocamlbuild/_build/ocamlbuild_js_of_ocaml.mli compiler/compiler.cmi compiler/compiler.cma
 Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cma
 Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cmi
