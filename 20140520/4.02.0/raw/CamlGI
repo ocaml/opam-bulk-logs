@@ -218,3 +218,218 @@ Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlopt -I +compiler-libs -c fl_package_base.ml
 ocamlopt -I +compiler-libs -c findlib.ml
 ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing CamlGI.0.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/CamlGI.0.6+opam.tar.gz
+sending incremental file list
+CamlGI.0.6+opam.tar.gz
+
+sent 45,612 bytes  received 35 bytes  91,294.00 bytes/sec
+total size is 45,477  speedup is 1.00
+Building CamlGI.0.6:
+  make
+  make install
+Makefile:134: .depend: No such file or directory
+ocamldep -pp "camlp4o pa_macro.cmo pr_o.cmo" camlGI.ml cgi.ml cgi_common.ml cgi_fast.ml cgi_std.ml cgi_types.ml cookie.ml dbiPool.ml expires.ml sendmail.ml template.ml camlGI.mli cgi_common.mli > .depend
+ocamlc -dtypes -I +threads -c camlGI.mli
+ocamlc -pp "camlp4o pa_macro.cmo pr_o.cmo" -a -o camlGI.cma -dtypes -I +threads camlGI.ml
+File "/tmp/ocamlppe29659", line 383, characters 14-31:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 393, characters 22-39:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 394, characters 39-56:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 397, characters 14-31:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 437, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 449, characters 22-39:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 450, characters 22-39:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 451, characters 22-39:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 455, characters 24-41:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 457, characters 21-38:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 587, characters 14-31:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 599, characters 16-33:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 603, characters 12-29:
+Warning 3: deprecated feature: String.unsafe_set
+File "/tmp/ocamlppe29659", line 957, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 961, characters 14-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 963, characters 20-37:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1104, characters 29-42:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1168, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1170, characters 9-30:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1171, characters 9-20:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1172, characters 9-37:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1173, characters 9-40:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1174, characters 9-38:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1175, characters 9-41:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1176, characters 9-38:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1197, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1199, characters 9-30:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1200, characters 9-34:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1201, characters 9-37:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1202, characters 9-40:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1203, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1204, characters 9-22:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1205, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1206, characters 9-48:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1209, characters 12-51:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1212, characters 15-53:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1213, characters 15-50:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1214, characters 15-259:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1224, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1226, characters 9-30:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1227, characters 9-35:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1228, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1229, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1230, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1231, characters 9-22:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1232, characters 9-24:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1233, characters 9-19:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1237, characters 7-51:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1240, characters 10-54:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1243, characters 13-57:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1244, characters 13-53:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1254, characters 21-34:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1255, characters 17-39:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1255, characters 41-63:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1257, characters 21-34:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1258, characters 17-39:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1262, characters 21-34:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1263, characters 39-61:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1265, characters 21-34:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1272, characters 49-62:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1274, characters 25-38:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1716, characters 19-32:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1723, characters 20-51:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1724, characters 20-59:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1731, characters 20-33:
+Warning 3: deprecated feature: String.create
+File "/tmp/ocamlppe29659", line 1737, characters 21-55:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1740, characters 24-62:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1743, characters 27-65:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1744, characters 27-62:
+Warning 3: deprecated feature: String.set
+File "/tmp/ocamlppe29659", line 1787, characters 39-45:
+Warning 43: the label cookie is not optional.
+File "/tmp/ocamlppe29659", line 1787, characters 47-54:
+Warning 43: the label cookies is not optional.
+File "/tmp/ocamlppe29659", line 1810, characters 36-42:
+Warning 43: the label cookie is not optional.
+File "/tmp/ocamlppe29659", line 1810, characters 44-51:
+Warning 43: the label cookies is not optional.
+File "/tmp/ocamlppe29659", line 2190, characters 37-45:
+Warning 43: the label filename is not optional.
+File "/tmp/ocamlppe29659", line 730, characters 16-24:
+Warning 26: unused variable encoding.
