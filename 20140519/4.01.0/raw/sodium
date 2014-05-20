@@ -1183,3 +1183,46 @@ Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.a
 Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxs
 Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxa
 Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cma
+Installing ctypes.0.2.3.
+
+=-=-= Installing sodium.0.1.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sodium.0.1.0+opam.tar.gz
+sending incremental file list
+sodium.0.1.0+opam.tar.gz
+
+sent 8,731 bytes  received 35 bytes  17,532.00 bytes/sec
+total size is 8,598  speedup is 0.98
+Building sodium.0.1.0:
+  make
+  make PREFIX=/home/opam/.opam/system install
+mkdir -p _build/lib
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmo
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.mli > lib/sodium.mli.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmi lib/sodium.mli
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.ml > lib/sodium.ml.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
+ocamlbuild -use-ocamlfind -lflags -dllib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.cma
+ocamlfind ocamlc -a -dllib -lsodium -package bigarray -package ctypes.foreign lib/sodium.cmo -o lib/sodium.cma
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmx
+ocamlfind ocamlopt -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmx lib/sodium.ml
+ocamlbuild -use-ocamlfind -lflags -cclib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.cmxa
+ocamlfind ocamlopt -a -cclib -lsodium -package bigarray -package ctypes.foreign lib/sodium.cmx -o lib/sodium.cmxa
+ocamlbuild -use-ocamlfind -lflags -cclib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.a
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmo
+ocamlbuild -use-ocamlfind -lflags -dllib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.cma
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmx
+ocamlbuild -use-ocamlfind -lflags -cclib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.cmxa
+ocamlbuild -use-ocamlfind -lflags -cclib,-lsodium -pkgs ctypes.foreign,bigarray lib/sodium.a
+sed s/%%VERSION%%/0.1.0/ < META.in \
+	| sed s/%%PACKAGES%%/ctypes.foreign,bigarray/ > META
+cc -shared -o _build/dllsodium.so -lsodium
+ocamlfind install sodium META _build/lib/sodium.cma _build/lib/sodium.cmxa _build/lib/sodium.a _build/lib/sodium.cmi _build/dllsodium.so
+Installed /home/opam/.opam/system/lib/sodium/sodium.cmi
+Installed /home/opam/.opam/system/lib/sodium/sodium.a
+Installed /home/opam/.opam/system/lib/sodium/sodium.cmxa
+Installed /home/opam/.opam/system/lib/sodium/sodium.cma
+Installed /home/opam/.opam/system/lib/sodium/META
+Installed /home/opam/.opam/system/lib/stublibs/dllsodium.so
+Installed /home/opam/.opam/system/lib/stublibs/dllsodium.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing sodium.0.1.0.
