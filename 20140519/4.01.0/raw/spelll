@@ -140,3 +140,26 @@ Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules spelll.mli > spelll.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o spelll.cmi spelll.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules spelll.ml > spelll.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o spelll.cmo spelll.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a spelll.cmo -o spelll.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -o spelll.cmx spelll.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a spelll.cmx -o spelll.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared spelll.cmxa spelll.cmx -o spelll.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -dump spelll.odoc spelll.mli
+rm -rf spelll.docdir
+mkdir -p spelll.docdir
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -load spelll.odoc -html -d spelll.docdir
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/spelll/spelll.mli
+Installed /home/opam/.opam/system/lib/spelll/spelll.cma
+Installed /home/opam/.opam/system/lib/spelll/spelll.cmxa
+Installed /home/opam/.opam/system/lib/spelll/spelll.a
+Installed /home/opam/.opam/system/lib/spelll/spelll.cmxs
+Installed /home/opam/.opam/system/lib/spelll/spelll.cmi
+Installed /home/opam/.opam/system/lib/spelll/spelll.cmx
+Installed /home/opam/.opam/system/lib/spelll/META
+Installing spelll.0.1.
