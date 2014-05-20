@@ -1122,3 +1122,211 @@ Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlopt -I +compiler-libs -c fl_package_base.ml
 ocamlopt -I +compiler-libs -c findlib.ml
 ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing ctypes.0.2.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ctypes.0.2.3+opam.tar.gz
+sending incremental file list
+ctypes.0.2.3+opam.tar.gz
+
+sent 96,959 bytes  received 35 bytes  193,988.00 bytes/sec
+total size is 96,814  speedup is 1.00
+Building ctypes.0.2.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx     -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o make_primitive_details_stubs.o ../../../src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o
+_build/configure.native > src/ctypes/ctypes_primitives.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/common.cmo -I _build/src/ctypes  src/ctypes/common.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/unsigned.cmi -I _build/src/ctypes  src/ctypes/unsigned.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/unsigned.cmo -I _build/src/ctypes  src/ctypes/unsigned.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/signed.cmi -I _build/src/ctypes  src/ctypes/signed.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/signed.cmo -I _build/src/ctypes  src/ctypes/signed.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/primitives.cmo -I _build/src/ctypes  src/ctypes/primitives.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/ctypes_primitives.cmo -I _build/src/ctypes  src/ctypes/ctypes_primitives.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/ctypes_raw.cmo -I _build/src/ctypes  src/ctypes/ctypes_raw.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/memory_stubs.cmo -I _build/src/ctypes  src/ctypes/memory_stubs.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/std_view_stubs.cmo -I _build/src/ctypes  src/ctypes/std_view_stubs.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/value_printing_stubs.cmo -I _build/src/ctypes  src/ctypes/value_printing_stubs.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/bigarray_stubs.cmo -I _build/src/ctypes  src/ctypes/bigarray_stubs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/ctypes_bigarray.cmi -I _build/src/ctypes  src/ctypes/ctypes_bigarray.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/ctypes_bigarray.cmo -I _build/src/ctypes  src/ctypes/ctypes_bigarray.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/static.cmo -I _build/src/ctypes  src/ctypes/static.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/structs.cmi -I _build/src/ctypes  src/ctypes/structs.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/structs.cmo -I _build/src/ctypes  src/ctypes/structs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/structs_computed.cmi -I _build/src/ctypes  src/ctypes/structs_computed.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/structs_computed.cmo -I _build/src/ctypes  src/ctypes/structs_computed.ml
+File "src/ctypes/structs_computed.ml", line 28, characters 2-591:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Primitive _
+File "src/ctypes/structs_computed.ml", line 44, characters 61-820:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Primitive _
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/type_printing.cmo -I _build/src/ctypes  src/ctypes/type_printing.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/memory.cmo -I _build/src/ctypes  src/ctypes/memory.ml
+File "src/ctypes/memory.ml", line 302, characters 15-72:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{reftype=Primitive _}
+File "src/ctypes/memory.ml", line 303, characters 15-101:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{reftype=Array (Primitive _, _)}
+ocamlfind ocamlc -c -o _build/src/ctypes/coerce.cmi -I _build/src/ctypes  src/ctypes/coerce.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/coerce.cmo -I _build/src/ctypes  src/ctypes/coerce.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/std_views.cmo -I _build/src/ctypes  src/ctypes/std_views.ml
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/value_printing.cmo -I _build/src/ctypes  src/ctypes/value_printing.ml
+File "src/ctypes/value_printing.ml", line 25, characters 12-182:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{structured={reftype=Primitive _}}
+File "src/ctypes/value_printing.ml", line 31, characters 12-184:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{structured={reftype=Primitive _}}
+ocamlfind ocamlc -c -o _build/src/ctypes/ctypes.cmi -I _build/src/ctypes  src/ctypes/ctypes.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/ctypes.cmo -I _build/src/ctypes  src/ctypes/ctypes.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/posixTypes.cmi -I _build/src/ctypes  src/ctypes/posixTypes.mli
+ocamlfind ocamlc -package bigarray    -c -o _build/src/ctypes/posixTypes.cmo -I _build/src/ctypes  src/ctypes/posixTypes.ml
+ocamlfind ocamlc -a  -cclib -lctypes_stubs -dllib -lctypes_stubs -package bigarray   -o _build/ctypes.cma _build/src/ctypes/common.cmo _build/src/ctypes/unsigned.cmo _build/src/ctypes/signed.cmo _build/src/ctypes/primitives.cmo _build/src/ctypes/ctypes_primitives.cmo _build/src/ctypes/ctypes_raw.cmo _build/src/ctypes/memory_stubs.cmo _build/src/ctypes/std_view_stubs.cmo _build/src/ctypes/value_printing_stubs.cmo _build/src/ctypes/bigarray_stubs.cmo _build/src/ctypes/ctypes_bigarray.cmo _build/src/ctypes/static.cmo _build/src/ctypes/structs.cmo _build/src/ctypes/structs_computed.cmo _build/src/ctypes/type_printing.cmo _build/src/ctypes/memory.cmo _build/src/ctypes/coerce.cmo _build/src/ctypes/std_views.cmo _build/src/ctypes/value_printing.cmo _build/src/ctypes/ctypes.cmo _build/src/ctypes/posixTypes.cmo
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o ctypes_bigarray_stubs.o ../../../src/ctypes/ctypes_bigarray_stubs.c
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o managed_buffer_stubs.o ../../../src/ctypes/managed_buffer_stubs.c
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o posix_types_stubs.o ../../../src/ctypes/posix_types_stubs.c
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o raw_pointer_stubs.o ../../../src/ctypes/raw_pointer_stubs.c
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o type_info_stubs.o ../../../src/ctypes/type_info_stubs.c
+../../../src/ctypes/type_info_stubs.c: In function 'ctypes_string_of_prim':
+../../../src/ctypes/type_info_stubs.c:146:3: warning: format '%ld' expects argument of type 'long int', but argument 4 has type 'int64' [-Wformat=]
+   case Int64_t: snprintf(buf, sizeof buf, "%" PRId64, Int64_val(v)); break;
+   ^
+../../../src/ctypes/type_info_stubs.c:146:3: warning: format '%ld' expects argument of type 'long int', but argument 4 has type 'int64' [-Wformat=]
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o unsigned_stubs.o ../../../src/ctypes/unsigned_stubs.c
+ocamlmklib -o _build/ctypes_stubs _build/src/ctypes/ctypes_bigarray_stubs.o _build/src/ctypes/managed_buffer_stubs.o _build/src/ctypes/posix_types_stubs.o _build/src/ctypes/raw_pointer_stubs.o _build/src/ctypes/type_info_stubs.o _build/src/ctypes/unsigned_stubs.o 
+ocamlfind opt -c -o _build/src/ctypes/common.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/common.ml
+ocamlfind opt -c -o _build/src/ctypes/unsigned.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/unsigned.ml
+ocamlfind opt -c -o _build/src/ctypes/signed.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/signed.ml
+ocamlfind opt -c -o _build/src/ctypes/primitives.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/primitives.ml
+ocamlfind opt -c -o _build/src/ctypes/ctypes_primitives.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes_primitives.ml
+ocamlfind opt -c -o _build/src/ctypes/ctypes_raw.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes_raw.ml
+ocamlfind opt -c -o _build/src/ctypes/memory_stubs.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/memory_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes/std_view_stubs.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/std_view_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes/value_printing_stubs.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/value_printing_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes/bigarray_stubs.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/bigarray_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes/ctypes_bigarray.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes_bigarray.ml
+ocamlfind opt -c -o _build/src/ctypes/static.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/static.ml
+ocamlfind opt -c -o _build/src/ctypes/structs.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/structs.ml
+ocamlfind opt -c -o _build/src/ctypes/structs_computed.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/structs_computed.ml
+File "src/ctypes/structs_computed.ml", line 28, characters 2-591:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Primitive _
+File "src/ctypes/structs_computed.ml", line 44, characters 61-820:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Primitive _
+ocamlfind opt -c -o _build/src/ctypes/type_printing.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/type_printing.ml
+ocamlfind opt -c -o _build/src/ctypes/memory.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/memory.ml
+File "src/ctypes/memory.ml", line 302, characters 15-72:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{reftype=Primitive _}
+File "src/ctypes/memory.ml", line 303, characters 15-101:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{reftype=Array (Primitive _, _)}
+ocamlfind opt -c -o _build/src/ctypes/coerce.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/coerce.ml
+ocamlfind opt -c -o _build/src/ctypes/std_views.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/std_views.ml
+ocamlfind opt -c -o _build/src/ctypes/value_printing.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/value_printing.ml
+File "src/ctypes/value_printing.ml", line 25, characters 12-182:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{structured={reftype=Primitive _}}
+File "src/ctypes/value_printing.ml", line 31, characters 12-184:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+{structured={reftype=Primitive _}}
+ocamlfind opt -c -o _build/src/ctypes/ctypes.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes.ml
+ocamlfind opt -c -o _build/src/ctypes/posixTypes.cmx  -package bigarray   -I _build/src/ctypes  src/ctypes/posixTypes.ml
+ocamlfind opt -a -linkall  -package bigarray  -cclib -lctypes_stubs  -o _build/ctypes.cmxa _build/src/ctypes/common.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx
+ocamlfind opt -shared -linkall  -package bigarray   -o _build/ctypes.cmxs _build/src/ctypes/common.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/closure_properties.cmi -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.mli
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/closure_properties.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/dl.cmi -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/dl.mli
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/dl.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/weakRef.cmi -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/weakRef.mli
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/weakRef.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/ffi.cmi -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/ffi.mli
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/ffi.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+File "src/ctypes-foreign-base/ffi.ml", line 135, characters 41-43:
+Warning 10: this expression should have type unit.
+ocamlfind ocamlc     -c -o _build/src/ctypes-foreign-base/foreign_basis.cmo -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind ocamlc -a  -cclib -lctypes-foreign-base_stubs -dllib -lctypes-foreign-base_stubs   -cclib -lffi -o _build/ctypes-foreign-base.cma _build/src/ctypes-foreign-base/closure_properties.cmo _build/src/ctypes-foreign-base/dl.cmo _build/src/ctypes-foreign-base/ffi_stubs.cmo _build/src/ctypes-foreign-base/weakRef.cmo _build/src/ctypes-foreign-base/ffi.cmo _build/src/ctypes-foreign-base/foreign_basis.cmo
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o dl_stubs.o ../../../src/ctypes-foreign-base/dl_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o ffi_call_stubs.o ../../../src/ctypes-foreign-base/ffi_call_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -o ffi_type_stubs.o ../../../src/ctypes-foreign-base/ffi_type_stubs.c
+ocamlmklib -o _build/ctypes-foreign-base_stubs _build/src/ctypes-foreign-base/dl_stubs.o _build/src/ctypes-foreign-base/ffi_call_stubs.o _build/src/ctypes-foreign-base/ffi_type_stubs.o -lffi
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/closure_properties.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/dl.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/weakRef.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+File "src/ctypes-foreign-base/ffi.ml", line 135, characters 41-43:
+Warning 10: this expression should have type unit.
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/foreign_basis.cmx     -I _build/src/ctypes-foreign-base -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind opt -a -linkall    -cclib -lctypes-foreign-base_stubs -cclib -lffi -o _build/ctypes-foreign-base.cmxa _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx
