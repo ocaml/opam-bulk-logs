@@ -5906,3 +5906,50 @@ ocamlfind ocamlc -c -g -annot -w A -w e -w r -I lib -syntax camlp4o -thread -pac
 ocamlfind ocamlopt -c -g -annot -w A -w e -w r -I lib -syntax camlp4o -thread -package threads -package textutils -package str -package sexplib.syntax -package fieldslib.syntax -package core -package async -I lib_test -I lib -o lib_test/util.cmx lib_test/util.ml
 ocamlfind ocamldep -syntax camlp4o -package threads -package textutils -package str -package sexplib.syntax -package fieldslib.syntax -package core -package async -modules lib_test/test_lib.ml > lib_test/test_lib.ml.depends
 ocamlfind ocamlopt -c -g -annot -w A -w e -w r -I lib -syntax camlp4o -thread -package threads -package textutils -package str -package sexplib.syntax -package fieldslib.syntax -package core -package async -I lib_test -I lib -o lib_test/simulation_server.cmx lib_test/simulation_server.ml
++ ocamlfind ocamlopt -c -g -annot -w A -w e -w r -I lib -syntax camlp4o -thread -package threads -package textutils -package str -package sexplib.syntax -package fieldslib.syntax -package core -package async -I lib_test -I lib -o lib_test/simulation_server.cmx lib_test/simulation_server.ml
+File "lib_test/simulation_server.ml", line 23, characters 0-13:
+Warning 44: this open statement shadows the value identifier @ (which is later used)
+File "lib_test/simulation_server.ml", line 559, characters 24-37:
+Error: This expression has type
+         ([> `Allow ] as 'a) Async_kernel.Deferred.t =
+           'a Async_kernel.Ivar.Deferred.t
+       but an expression was expected of type
+         Server.Client_id.t ->
+         [ `Allow | `Deny of string option ] Async_extra.Import.Deferred.t
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' lib/ibx.cma lib/ibx.cmxa lib/ibx.a lib/ibx.cmxs lib_test/test_runner.native -use-ocamlfind -tag debug' terminated with error code 10")
+[ERROR] The compilation of ibx.0.7.2 failed.
+Removing ibx.0.7.2.
+  ocamlfind remove ibx
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ibx
+
+
+===== ERROR while installing ibx.0.7.2 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/ibx.0.7.2
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/ibx.0.7.2/ibx-16418-ebe0e0.env
+# stdout-file          /home/opam/.opam/system/build/ibx.0.7.2/ibx-16418-ebe0e0.out
+# stderr-file          /home/opam/.opam/system/build/ibx.0.7.2/ibx-16418-ebe0e0.err
+### stdout ###
+# ...[truncated]
+# File "lib_test/simulation_server.ml", line 23, characters 0-13:
+# Warning 44: this open statement shadows the value identifier @ (which is later used)
+# File "lib_test/simulation_server.ml", line 559, characters 24-37:
+# Error: This expression has type
+#          ([> `Allow ] as 'a) Async_kernel.Deferred.t =
+#            'a Async_kernel.Ivar.Deferred.t
+#        but an expression was expected of type
+#          Server.Client_id.t ->
+#          [ `Allow | `Deny of string option ] Async_extra.Import.Deferred.t
+# Command exited with code 2.
+### stderr ###
+# W: Cannot find source file matching module 'ibx' in library ibx
+# E: Failure("Command ''/usr/bin/ocamlbuild' lib/ibx.cma lib/ibx.cmxa lib/ibx.a lib/ibx.cmxs lib_test/test_runner.native -use-ocamlfind -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140420002945.export"
+'opam install ibx' failed.
