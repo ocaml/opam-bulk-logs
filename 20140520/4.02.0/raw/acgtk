@@ -882,3 +882,516 @@ Warning 3: deprecated feature: String.set
 ocamlopt -I ../dyplib -c insert_linenum.ml
 ocamlopt -I ../dyplib -c dypgen.ml
 ocamlopt -I ../dyplib -o dypgen.opt dyp.cmxa argument.cmx extract_type.cmx dypgen_parser.cmx dypgen_lexer.cmx insert_linenum.cmx dypgen.cmx
+rm dypgen_lexer.ml extract_type.ml insert_linenum.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/dypgen.20120619-1/dypgen'
+mkdir -p /home/opam/.opam/4.02.0+trunk/bin
+cp dypgen/dypgen.opt /home/opam/.opam/4.02.0+trunk/bin
+install -d /home/opam/.opam/4.02.0+trunk/bin
+install -m 755 dypgen/dypgen /home/opam/.opam/4.02.0+trunk/bin
+install -m 755 dyp2gram.pl /home/opam/.opam/4.02.0+trunk/bin/dyp2gram
+install -d /home/opam/.opam/4.02.0+trunk/man/man1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.02.0+trunk/man/man1/dypgen.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.02.0+trunk/man/man1/dypgen.opt.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.02.0+trunk/man/man1/dyp2gram.1
+cd dyplib; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/dypgen.20120619-1/dyplib'
+ocamlfind remove -destdir /home/opam/.opam/4.02.0+trunk/lib dyp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/dyp
+install -d /home/opam/.opam/4.02.0+trunk/lib
+ocamlfind install -destdir /home/opam/.opam/4.02.0+trunk/lib dyp META dyp.cma dyp.cmxa dyp.a dyp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/dyp/dyp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/dyp/dyp.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/dyp/dyp.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/dyp/dyp.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/dyp/META
+chmod a-x /home/opam/.opam/4.02.0+trunk/lib/dyp/META #why is this needed ?
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/dypgen.20120619-1/dyplib'
+Installing dypgen.20120619-1.
+
+=-=-= Installing bolt.1.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/bolt.1.4+opam.tar.gz
+sending incremental file list
+bolt.1.4+opam.tar.gz
+
+sent 620,145 bytes  received 35 bytes  1,240,360.00 bytes/sec
+total size is 619,876  speedup is 1.00
+Applying opam.patch.
+patching file Makefile
+Applying opam.bolt.META.patch.
+patching file META
+Building bolt.1.4:
+  ./configure -ocaml-prefix /home/opam/.opam/4.02.0+trunk -ocamlfind /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+  make all
+  make install
+Makefile.config successfully created
+echo 'bolt.cma' > bolt.itarget
+(which ocamlopt && echo 'bolt.cmxa' >> bolt.itarget) || true
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt
+(which ocamljava && echo 'bolt.cmjo' >> bolt.itarget) || true
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bolt.cmo
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/library/level.mli > src/library/level.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/level.cmi src/library/level.mli
+ocamlfind ocamldep -modules src/library/level.ml > src/library/level.ml.depends
+ocamlfind ocamldep -modules src/library/output.mli > src/library/output.mli.depends
+ocamlfind ocamldep -modules src/library/layout.mli > src/library/layout.mli.depends
+ocamlfind ocamldep -modules src/library/event.mli > src/library/event.mli.depends
+ocamlfind ocamldep -modules src/library/name.mli > src/library/name.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/name.cmi src/library/name.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/event.cmi src/library/event.mli
+ocamlfind ocamldep -modules src/library/signal.mli > src/library/signal.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/layout.cmi src/library/layout.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/signal.cmi src/library/signal.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/output.cmi src/library/output.mli
+ocamlfind ocamldep -modules src/library/output.ml > src/library/output.ml.depends
+ocamlfind ocamldep -modules src/library/utils.mli > src/library/utils.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/utils.cmi src/library/utils.mli
+ocamlfind ocamldep -modules src/library/signal.ml > src/library/signal.ml.depends
+ocamlfind ocamldep -modules src/library/logger.mli > src/library/logger.mli.depends
+ocamlfind ocamldep -modules src/library/mode.mli > src/library/mode.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/mode.cmi src/library/mode.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/logger.cmi src/library/logger.mli
+ocamlfind ocamldep -modules src/library/logger.ml > src/library/logger.ml.depends
+ocamlfind ocamldep -modules src/library/configuration.mli > src/library/configuration.mli.depends
+ocamlfind ocamldep -modules src/library/configurationNew.mli > src/library/configurationNew.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configuration.cmi src/library/configuration.mli
+ocamlfind ocamldep -modules src/library/configurationOld.mli > src/library/configurationOld.mli.depends
+ocamlfind ocamldep -modules src/library/filter.mli > src/library/filter.mli.depends
+ocamlfind ocamldep -modules src/library/tree.mli > src/library/tree.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/filter.cmi src/library/filter.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationNew.cmi src/library/configurationNew.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationOld.cmi src/library/configurationOld.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/tree.cmi src/library/tree.mli
+ocamlfind ocamldep -modules src/library/configurationNew.ml > src/library/configurationNew.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/library/configLexer.mll
+ocamlfind ocamldep -modules src/library/configLexer.ml > src/library/configLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc src/library/configParser.mly
+ocamlfind ocamldep -modules src/library/configParser.mli > src/library/configParser.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configParser.cmi src/library/configParser.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configLexer.cmo src/library/configLexer.ml
+ocamlfind ocamldep -modules src/library/configurationOld.ml > src/library/configurationOld.ml.depends
+ocamlfind ocamldep -modules src/library/utils.ml > src/library/utils.ml.depends
+cp /tmp/version0f2405.ml src/library/version.ml
+ocamlfind ocamldep -modules src/library/version.mli > src/library/version.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/version.cmi src/library/version.mli
+ocamlfind ocamldep -modules src/library/version.ml > src/library/version.ml.depends
+ocamlfind ocamldep -modules src/library/configuration.ml > src/library/configuration.ml.depends
+ocamlfind ocamldep -modules src/library/mode.ml > src/library/mode.ml.depends
+ocamlfind ocamldep -modules src/library/event.ml > src/library/event.ml.depends
+ocamlfind ocamldep -modules src/library/name.ml > src/library/name.ml.depends
+ocamlfind ocamldep -modules src/library/filter.ml > src/library/filter.ml.depends
+ocamlfind ocamldep -modules src/library/layout.ml > src/library/layout.ml.depends
+ocamlfind ocamldep -modules src/library/configParser.ml > src/library/configParser.ml.depends
+ocamlfind ocamldep -modules src/library/tree.ml > src/library/tree.ml.depends
+ocamlfind ocamldep -modules src/support/log4j.mli > src/support/log4j.mli.depends
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/log4j.cmi src/support/log4j.mli
+ocamlfind ocamldep -modules src/support/log4j.ml > src/support/log4j.ml.depends
+ocamlfind ocamldep -modules src/support/daikon.mli > src/support/daikon.mli.depends
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/daikon.cmi src/support/daikon.mli
+ocamlfind ocamldep -modules src/support/daikon.ml > src/support/daikon.ml.depends
+ocamlfind ocamldep -modules src/support/paje.mli > src/support/paje.mli.depends
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/paje.cmi src/support/paje.mli
+ocamlfind ocamldep -modules src/support/paje.ml > src/support/paje.ml.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/level.cmo src/library/level.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/output.cmo src/library/output.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/signal.cmo src/library/signal.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/logger.cmo src/library/logger.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationNew.cmo src/library/configurationNew.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationOld.cmo src/library/configurationOld.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/utils.cmo src/library/utils.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/version.cmo src/library/version.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configuration.cmo src/library/configuration.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/mode.cmo src/library/mode.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/event.cmo src/library/event.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/name.cmo src/library/name.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/filter.cmo src/library/filter.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/layout.cmo src/library/layout.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configParser.cmo src/library/configParser.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/tree.cmo src/library/tree.ml
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/log4j.cmo src/support/log4j.ml
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/daikon.cmo src/support/daikon.ml
++ ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/daikon.cmo src/support/daikon.ml
+File "src/support/daikon.ml", line 91, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "src/support/daikon.ml", line 141, characters 6-25:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/paje.cmo src/support/paje.ml
+ocamlfind ocamlc -pack src/library/level.cmo src/library/utils.cmo src/library/name.cmo src/library/event.cmo src/library/version.cmo src/library/layout.cmo src/library/signal.cmo src/library/output.cmo src/library/configuration.cmo src/library/configParser.cmo src/library/configLexer.cmo src/library/configurationNew.cmo src/library/configurationOld.cmo src/library/filter.cmo src/library/mode.cmo src/library/tree.cmo src/library/logger.cmo src/support/log4j.cmo src/support/daikon.cmo src/support/paje.cmo -o bolt.cmo
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bolt.cmx
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/version7691af.ml src/library/version.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/level.cmx src/library/level.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/utils.cmx src/library/utils.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/name.cmx src/library/name.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/event.cmx src/library/event.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/version.cmx src/library/version.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/layout.cmx src/library/layout.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/signal.cmx src/library/signal.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configuration.cmx src/library/configuration.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configParser.cmx src/library/configParser.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configLexer.cmx src/library/configLexer.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/output.cmx src/library/output.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/filter.cmx src/library/filter.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/mode.cmx src/library/mode.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationNew.cmx src/library/configurationNew.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/configurationOld.cmx src/library/configurationOld.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/tree.cmx src/library/tree.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/library -I src -I src/support -I src/threads -I src/syntax -o src/library/logger.cmx src/library/logger.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/log4j.cmx src/support/log4j.ml
+ocamlfind ocamlopt -c -for-pack Bolt -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/daikon.cmx src/support/daikon.ml
++ ocamlfind ocamlopt -c -for-pack Bolt -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/daikon.cmx src/support/daikon.ml
+File "src/support/daikon.ml", line 91, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "src/support/daikon.ml", line 141, characters 6-25:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -for-pack Bolt -I src/support -I src -I src/threads -I src/library -I src/syntax -o src/support/paje.cmx src/support/paje.ml
+touch bolt.mli  ; if  ocamlfind ocamlopt -pack -I src/library -I src/support src/library/level.cmx src/library/utils.cmx src/library/name.cmx src/library/event.cmx src/library/version.cmx src/library/layout.cmx src/library/signal.cmx src/library/output.cmx src/library/configuration.cmx src/library/configParser.cmx src/library/configLexer.cmx src/library/configurationNew.cmx src/library/configurationOld.cmx src/library/filter.cmx src/library/mode.cmx src/library/tree.cmx src/library/logger.cmx src/support/log4j.cmx src/support/daikon.cmx src/support/paje.cmx -o bolt.cmx  ; then  rm -f bolt.mli  ; else  rm -f bolt.mli  ; exit 1; fi
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bolt.otarget
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/version8a2e64.ml src/library/version.ml
+ocamlfind ocamlc -a bolt.cmo -o bolt.cma
+ocamlfind ocamlopt -a bolt.cmx -o bolt.cmxa
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bolt_pp.cmo
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -pp /home/opam/.opam/4.02.0+trunk/bin/camlp4of -modules src/syntax/bolt_pp.ml > src/syntax/bolt_pp.ml.depends
+ocamlfind ocamlc -c -I +camlp4 -pp /home/opam/.opam/4.02.0+trunk/bin/camlp4of -I src/syntax -I src -I src/support -I src/threads -I src/library -o src/syntax/bolt_pp.cmo src/syntax/bolt_pp.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links boltThread.cmo
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/threads/boltThread.mli > src/threads/boltThread.mli.depends
+ocamlfind ocamlc -c -I src/threads -I src -I src/support -I src/library -I src/syntax -o src/threads/boltThread.cmi src/threads/boltThread.mli
+ocamlfind ocamldep -modules src/threads/boltThread.ml > src/threads/boltThread.ml.depends
+cp /tmp/versiond91763.ml src/library/version.ml
+ocamlfind ocamlc -c -thread -I src/threads -I src -I src/support -I src/library -I src/syntax -o src/threads/boltThread.cmo src/threads/boltThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links boltThread.cmx
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/versionb27f03.ml src/library/version.ml
+ocamlfind ocamlopt -c -thread -for-pack Bolt -I src/threads -I src -I src/support -I src/library -I src/syntax -o src/threads/boltThread.cmx src/threads/boltThread.ml
+if [ -x "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind query bolt && /home/opam/.opam/4.02.0+trunk/bin/ocamlfind remove bolt || true; \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind install bolt META -optional \
+	    `pwd`/_build/src/syntax/bolt_pp.cmo \
+	    `pwd`/_build/src/threads/boltThread.cm* \
+	    `pwd`/_build/src/threads/boltThread.o \
+	    `pwd`/_build/src/threads/boltThread.jo \
+	    `pwd`/_build/bolt.a \
+	    `pwd`/_build/bolt.cma \
+	    `pwd`/_build/bolt.cmi \
+	    `pwd`/_build/bolt.cmo \
+	    `pwd`/_build/bolt.cmxa \
+	    `pwd`/_build/bolt.cmja \
+	    `pwd`/_build/bolt.ja; \
+	else \
+	  mkdir -p /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt; \
+	  cp `pwd`/_build/src/syntax/bolt_pp.cmo /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/boltThread.$ext && cp `pwd`/_build/src/threads/boltThread.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmxa cmja ja; do \
+	    test -f `pwd`/_build/bolt.$ext && cp `pwd`/_build/bolt.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt || true; \
+	  done \
+	fi
+ocamlfind: Package `bolt' not found
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/META
+Installing bolt.1.4.
+
+=-=-= Installing acgtk.1.0b =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/acgtk.1.0b+opam.tar.gz
+sending incremental file list
+acgtk.1.0b+opam.tar.gz
+
+sent 257,941 bytes  received 35 bytes  515,952.00 bytes/sec
+total size is 257,758  speedup is 1.00
+Building acgtk.1.0b:
+  ./configure --prefix=/home/opam/.opam/4.02.0+trunk
+  make all
+  make install-all
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for camlp4o... camlp4o
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamldep.opt... ocamldep.opt
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc.opt... no
+checking for ocamlyacc... ocamlyacc
+checking for ocamlfind... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+checking for opam... /usr/bin/opam
+checking for dypgen.opt... dypgen.opt
+checking for dypgen.opt version... dypgen.opt (20120619) is ok
+checking for requested library : dypgen... testing with /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+Found with /home/opam/.opam/4.02.0+trunk/bin/ocamlfind => -I /home/opam/.opam/4.02.0+trunk/lib/dyp
+checking for requested library : bolt... testing with /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+Found with /home/opam/.opam/4.02.0+trunk/bin/ocamlfind => -I /home/opam/.opam/4.02.0+trunk/lib/bolt
+bolt_pp.byte preprocessor is /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level $(BOLT_LEVEL)
+Bolt log level is NONE.
+checking for ocamlc.opt version... ocamlc.opt version is 4.02.0+dev7-2014-05-16
+checking for config/ml_check.ml... yes
+ocamlc.opt version  is ok
+Compilation will be done with the -dtypes option
+camlp4o calls will be done with the -loc loc option
+Compilation will be done with the -w yz option
+camlp4o calls will be done with the camlp4lib.cma library
+checking whether make sets $(MAKE)... yes
+configure: creating ./config.status
+config.status: creating ./Makefile
+config.status: creating config/Makefile
+config.status: creating src/Makefile.master
+config.status: creating src/Makefile.common
+config.status: creating src/Makefile
+config.status: creating src/utils/Makefile
+config.status: creating src/logic/Makefile
+config.status: creating src/grammars/Makefile
+config.status: creating src/acg-data/Makefile
+config.status: creating src/scripting/Makefile
+config.status: creating src/datalog.prover/Makefile
+config.status: creating src/reduction/Makefile
+config.status: creating src/datalog.solver/Makefile
+make -C src/scripting acg
+../Makefile.common:180: make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+.targets: No such file or directory
+rm -f .targets
+ocamllex.opt script_lexer.mll
+161 states, 7223 transitions, table size 29858 bytes
+rm -f depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+make -r -S -C ../utils byte; make -r -S -C ../datalog.prover byte; make -r -S -C ../logic byte; make -r -S -C ../grammars byte; make -r -S -C ../acg-data byte;
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+../Makefile.common:180: .targets: No such file or directory
+rm -f .targets
+rm -f depend
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g utils.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g utils.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g table.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g table.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g tries.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g tries.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g version.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g version.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g focused_list.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g focused_list.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g sharedForest.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g sharedForest.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g idGenerator.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g idGenerator.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes -g test_sharedForest.ml
+ocamlc.opt -o test_sharedForest -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cma unix.cma dynlink.cma bolt.cma  str.cma -w yz -warn-error A -dtypes -g utils.cmo table.cmo tries.cmo version.cmo focused_list.cmo sharedForest.cmo idGenerator.cmo test_sharedForest.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+rm -f .targets
+../Makefile.common:180: .targets: No such file or directory
+ocamllex.opt db_lexer.mll
+25 states, 361 transitions, table size 1594 bytes
+rm -f depend
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g persistentArray.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g persistentArray.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g arrayTraversal.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g arrayTraversal.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g unionFind.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g unionFind.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g datalog_AbstractSyntax.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g datalog_AbstractSyntax.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g datalog.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g datalog.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g db_parser.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g db_parser.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g db_lexer.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g test.ml
+ocamlc.opt -o test -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g ../utils/utils.cmo ../utils/table.cmo ../utils/tries.cmo ../utils/version.cmo ../utils/focused_list.cmo ../utils/sharedForest.cmo ../utils/idGenerator.cmo persistentArray.cmo arrayTraversal.cmo unionFind.cmo datalog_AbstractSyntax.cmo datalog.cmo db_parser.cmo db_lexer.cmo test.cmo
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g db_test.ml
+ocamlc.opt -o db_test -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g ../utils/utils.cmo ../utils/table.cmo ../utils/tries.cmo ../utils/version.cmo ../utils/focused_list.cmo ../utils/sharedForest.cmo ../utils/idGenerator.cmo persistentArray.cmo arrayTraversal.cmo unionFind.cmo datalog_AbstractSyntax.cmo datalog.cmo db_parser.cmo db_lexer.cmo db_test.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+rm -f .targets
+../Makefile.common:180: .targets: No such file or directory
+rm -f depend
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g abstract_syntax.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g abstract_syntax.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g lambda.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g lambda.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g type_inference.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g type_inference.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g varUnionFind.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g varUnionFind.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g typeInference.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g typeInference.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes -g typeInference_test.ml
+ocamlc.opt -o typeInference_test -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma  -w yz -warn-error A -dtypes -g ../utils/utils.cmo ../utils/table.cmo ../utils/tries.cmo ../utils/version.cmo ../utils/focused_list.cmo ../utils/sharedForest.cmo ../utils/idGenerator.cmo abstract_syntax.cmo lambda.cmo type_inference.cmo varUnionFind.cmo typeInference.cmo typeInference_test.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+ocamllex.opt data_lexer.mll
+85 states, 4649 transitions, table size 19106 bytes
+rm -f depend
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g error.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g error.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g interface.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g interface.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g environment.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g environment.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g entry.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g entry.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g acg_token.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g acg_token.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g data_lexer.ml
+dypgen.opt --no-pp --no-obj-type --ocamlc "-I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../utils  -I ../logic" --noemit-token-type data_parser.dyp
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g data_parser.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g data_parser.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g interactive.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g interactive.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+../Makefile.common:180: .targets: No such file or directory
+rm -f .targets
+rm -f depend
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g type_system.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes -g type_system.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g signature.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes -g signature.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g reduction.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes -g reduction.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g acg_lexicon.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes -g acg_lexicon.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes -g acgc.ml
+ocamlc.opt -o acgc -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g ../utils/utils.cmo ../utils/table.cmo ../utils/tries.cmo ../utils/version.cmo ../utils/focused_list.cmo ../utils/sharedForest.cmo ../utils/idGenerator.cmo ../logic/abstract_syntax.cmo ../logic/lambda.cmo ../logic/type_inference.cmo ../logic/varUnionFind.cmo ../logic/typeInference.cmo ../grammars/error.cmo ../grammars/interface.cmo ../grammars/environment.cmo ../grammars/entry.cmo ../grammars/acg_token.cmo ../grammars/data_lexer.cmo ../grammars/data_parser.cmo ../grammars/interactive.cmo ../datalog.prover/persistentArray.cmo ../datalog.prover/arrayTraversal.cmo ../datalog.prover/unionFind.cmo ../datalog.prover/datalog_AbstractSyntax.cmo ../datalog.prover/datalog.cmo ../datalog.prover/db_parser.cmo ../datalog.prover/db_lexer.cmo type_system.cmo signature.cmo reduction.cmo acg_lexicon.cmo acgc.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g scripting_errors.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes -g scripting_errors.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g functions.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes -g functions.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes -g script_lexer.ml
+dypgen.opt --no-pp --no-obj-type --ocamlc "-I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data" --noemit-token-type script_parser.dyp
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g script_parser.mli
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes -g script_parser.ml
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes -g acg.ml
+ocamlc.opt -o acg -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g ../utils/utils.cmo ../utils/table.cmo ../utils/tries.cmo ../utils/version.cmo ../utils/focused_list.cmo ../utils/sharedForest.cmo ../utils/idGenerator.cmo ../datalog.prover/persistentArray.cmo ../datalog.prover/arrayTraversal.cmo ../datalog.prover/unionFind.cmo ../datalog.prover/datalog_AbstractSyntax.cmo ../datalog.prover/datalog.cmo ../datalog.prover/db_parser.cmo ../datalog.prover/db_lexer.cmo ../logic/abstract_syntax.cmo ../logic/lambda.cmo ../logic/type_inference.cmo ../logic/varUnionFind.cmo ../logic/typeInference.cmo ../grammars/error.cmo ../grammars/interface.cmo ../grammars/environment.cmo ../grammars/entry.cmo ../grammars/acg_token.cmo ../grammars/data_lexer.cmo ../grammars/data_parser.cmo ../grammars/interactive.cmo ../acg-data/type_system.cmo ../acg-data/signature.cmo ../acg-data/reduction.cmo ../acg-data/acg_lexicon.cmo scripting_errors.cmo functions.cmo script_lexer.cmo script_parser.cmo acg.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+cp src/scripting/acg .
+make -C src/acg-data acgc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+make[1]: `acgc' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+cp src/acg-data/acgc .
+make -C src/scripting acg.opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+make -r -S -C ../utils opt; make -r -S -C ../datalog.prover opt; make -r -S -C ../logic opt; make -r -S -C ../grammars opt; make -r -S -C ../acg-data opt;
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes utils.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes table.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes tries.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes version.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes focused_list.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes sharedForest.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes idGenerator.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   -w yz -warn-error A -dtypes test_sharedForest.ml
+ocamlopt.opt -o test_sharedForest.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt   camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa str.cmxa -w yz -warn-error A -dtypes utils.cmx table.cmx tries.cmx version.cmx focused_list.cmx sharedForest.cmx idGenerator.cmx test_sharedForest.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes persistentArray.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes arrayTraversal.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes unionFind.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes datalog_AbstractSyntax.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes datalog.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes db_parser.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes db_lexer.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes test.ml
+ocamlopt.opt -o test.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa dyp.cmxa str.cmxa -w yz -warn-error A -dtypes ../utils/utils.cmx ../utils/table.cmx ../utils/tries.cmx ../utils/version.cmx ../utils/focused_list.cmx ../utils/sharedForest.cmx ../utils/idGenerator.cmx persistentArray.cmx arrayTraversal.cmx unionFind.cmx datalog_AbstractSyntax.cmx datalog.cmx db_parser.cmx db_lexer.cmx test.cmx
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes db_test.ml
+ocamlopt.opt -o db_test.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa dyp.cmxa str.cmxa -w yz -warn-error A -dtypes ../utils/utils.cmx ../utils/table.cmx ../utils/tries.cmx ../utils/version.cmx ../utils/focused_list.cmx ../utils/sharedForest.cmx ../utils/idGenerator.cmx persistentArray.cmx arrayTraversal.cmx unionFind.cmx datalog_AbstractSyntax.cmx datalog.cmx db_parser.cmx db_lexer.cmx db_test.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes abstract_syntax.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes lambda.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes type_inference.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes varUnionFind.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes typeInference.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils -w yz -warn-error A -dtypes typeInference_test.ml
+ocamlopt.opt -o typeInference_test.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp   -I ../utils camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa dyp.cmxa str.cmxa -w yz -warn-error A -dtypes ../utils/utils.cmx ../utils/table.cmx ../utils/tries.cmx ../utils/version.cmx ../utils/focused_list.cmx ../utils/sharedForest.cmx ../utils/idGenerator.cmx abstract_syntax.cmx lambda.cmx type_inference.cmx varUnionFind.cmx typeInference.cmx typeInference_test.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes error.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes interface.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes environment.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes entry.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes acg_token.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes data_lexer.ml
+dypgen.opt --no-pp --no-obj-type --ocamlc "-I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../utils  -I ../logic" --noemit-token-type data_parser.dyp
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g data_parser.mli
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes data_parser.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes interactive.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes type_system.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes signature.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes reduction.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes acg_lexicon.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover -w yz -warn-error A -dtypes acgc.ml
+ocamlopt.opt -o acgc.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic  -I ../grammars  -I ../datalog.prover camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa dyp.cmxa str.cmxa -w yz -warn-error A -dtypes ../utils/utils.cmx ../utils/table.cmx ../utils/tries.cmx ../utils/version.cmx ../utils/focused_list.cmx ../utils/sharedForest.cmx ../utils/idGenerator.cmx ../logic/abstract_syntax.cmx ../logic/lambda.cmx ../logic/type_inference.cmx ../logic/varUnionFind.cmx ../logic/typeInference.cmx ../grammars/error.cmx ../grammars/interface.cmx ../grammars/environment.cmx ../grammars/entry.cmx ../grammars/acg_token.cmx ../grammars/data_lexer.cmx ../grammars/data_parser.cmx ../grammars/interactive.cmx ../datalog.prover/persistentArray.cmx ../datalog.prover/arrayTraversal.cmx ../datalog.prover/unionFind.cmx ../datalog.prover/datalog_AbstractSyntax.cmx ../datalog.prover/datalog.cmx ../datalog.prover/db_parser.cmx ../datalog.prover/db_lexer.cmx type_system.cmx signature.cmx reduction.cmx acg_lexicon.cmx acgc.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes scripting_errors.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes functions.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes script_lexer.ml
+dypgen.opt --no-pp --no-obj-type --ocamlc "-I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data" --noemit-token-type script_parser.dyp
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cma unix.cma dynlink.cma bolt.cma  dyp.cma str.cma -w yz -warn-error A -dtypes -g script_parser.mli
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes script_parser.ml
+ocamlopt.opt  -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data -w yz -warn-error A -dtypes acg.ml
+ocamlopt.opt -o acg.opt -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../datalog.prover  -I ../logic  -I ../grammars  -I ../acg-data camlp4lib.cmxa unix.cmxa dynlink.cmxa bolt.cmxa dyp.cmxa str.cmxa -w yz -warn-error A -dtypes ../utils/utils.cmx ../utils/table.cmx ../utils/tries.cmx ../utils/version.cmx ../utils/focused_list.cmx ../utils/sharedForest.cmx ../utils/idGenerator.cmx ../datalog.prover/persistentArray.cmx ../datalog.prover/arrayTraversal.cmx ../datalog.prover/unionFind.cmx ../datalog.prover/datalog_AbstractSyntax.cmx ../datalog.prover/datalog.cmx ../datalog.prover/db_parser.cmx ../datalog.prover/db_lexer.cmx ../logic/abstract_syntax.cmx ../logic/lambda.cmx ../logic/type_inference.cmx ../logic/varUnionFind.cmx ../logic/typeInference.cmx ../grammars/error.cmx ../grammars/interface.cmx ../grammars/environment.cmx ../grammars/entry.cmx ../grammars/acg_token.cmx ../grammars/data_lexer.cmx ../grammars/data_parser.cmx ../grammars/interactive.cmx ../acg-data/type_system.cmx ../acg-data/signature.cmx ../acg-data/reduction.cmx ../acg-data/acg_lexicon.cmx scripting_errors.cmx functions.cmx script_lexer.cmx script_parser.cmx acg.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/scripting'
+cp src/scripting/acg.opt .
+make -C src/acg-data acgc.opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+make[1]: `acgc.opt' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/acg-data'
+cp src/acg-data/acgc.opt .
+make -C src test
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src'
+make -r -S -C utils byte; make -r -S -C logic byte; make -r -S -C datalog.prover byte; make -r -S -C grammars byte; make -r -S -C acg-data byte; make -r -S -C scripting byte; make -r -S -C datalog.solver byte;
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+make[2]: Nothing to be done for `byte'.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/utils'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+make[2]: Nothing to be done for `byte'.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/logic'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+make[2]: Nothing to be done for `byte'.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/datalog.prover'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/acgtk.1.0b/src/grammars'
+ocamlc.opt -pp "camlp4o pa_extend.cmo pa_macro.cmo -DDEBUG -loc loc /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo -level NONE" -c -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/bolt -I /home/opam/.opam/4.02.0+trunk/lib/dyp  -I ../utils  -I ../logic -w yz -warn-error A -dtypes -g data_parser.ml
