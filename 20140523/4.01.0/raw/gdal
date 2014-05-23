@@ -1,9 +1,9 @@
 ++ opam install gdal -e ubuntu
 + depext='libffi-dev libgdal-dev'
+Ubuntu depexts: libffi-dev libgdal-dev
 + echo Ubuntu depexts: libffi-dev libgdal-dev
 + '[' 'libffi-dev libgdal-dev' '!=' '' ']'
 + sudo apt-get install -qq -y build-essential m4
-Ubuntu depexts: libffi-dev libgdal-dev
 + sudo apt-get install -qq -y libffi-dev libgdal-dev
 debconf: unable to initialize frontend: Dialog
 debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
@@ -399,9 +399,9 @@ Processing triggers for libc-bin (2.19-0ubuntu6) ...
 ++ opam install gdal -e source,linux
 + srcext=
 + echo Ubuntu srcexts:
+Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install gdal
-Ubuntu srcexts:
 The following actions will be performed:
  - install ctypes.0.3 [required by gdal]
  - install gdal.0.3.0
@@ -579,9 +579,10 @@ ocamlfind opt -a -linkall   -package compiler-libs   -o _build/ctypes-top.cmxa _
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
 ocamlfind opt -shared -linkall   -package compiler-libs  -o _build/ctypes-top.cmxs _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx  
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
-Installed /home/opam/.opam/system/lib/ctypes/META
 ocamlfind install ctypes META
+Installed /home/opam/.opam/system/lib/ctypes/META
 ocamlfind install -add ctypes  _build/ctypes.cma _build/dllctypes_stubs.so _build/ctypes.cmxa _build/ctypes.cmxs _build/libctypes_stubs.a _build/ctypes.a src/ctypes/static.mli src/ctypes/primitives.mli src/ctypes/unsigned.mli src/ctypes/signed.mli src/ctypes/structs.mli src/ctypes/ctypes.mli src/ctypes/posixTypes.mli _build/src/ctypes/static.cmi _build/src/ctypes/primitives.cmi _build/src/ctypes/unsigned.cmi _build/src/ctypes/signed.cmi _build/src/ctypes/structs.cmi _build/src/ctypes/ctypes.cmi _build/src/ctypes/posixTypes.cmi src/ctypes/complex_stubs.h src/ctypes/cstubs_internals.h src/ctypes/managed_buffer_stubs.h src/ctypes/primitives.h src/ctypes/raw_pointer.h src/ctypes/type_info_stubs.h src/ctypes/unsigned_stubs.h _build/src/ctypes/common.cmx _build/src/ctypes/ctypes_path.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx
+ocamlfind install -add ctypes  _build/cstubs.cma  _build/cstubs.cmxa _build/cstubs.cmxs  _build/cstubs.a src/cstubs/cstubs_internals.mli src/cstubs/cstubs.mli src/cstubs/cstubs_inverted.mli _build/src/cstubs/cstubs_internals.cmi _build/src/cstubs/cstubs.cmi _build/src/cstubs/cstubs_inverted.cmi  
 Installed /home/opam/.opam/system/lib/ctypes/posixTypes.cmx
 Installed /home/opam/.opam/system/lib/ctypes/ctypes.cmx
 Installed /home/opam/.opam/system/lib/ctypes/value_printing.cmx
@@ -633,7 +634,6 @@ Installed /home/opam/.opam/system/lib/ctypes/ctypes.cma
 Installed /home/opam/.opam/system/lib/stublibs/dllctypes_stubs.so
 Installed /home/opam/.opam/system/lib/stublibs/dllctypes_stubs.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
-ocamlfind install -add ctypes  _build/cstubs.cma  _build/cstubs.cmxa _build/cstubs.cmxs  _build/cstubs.a src/cstubs/cstubs_internals.mli src/cstubs/cstubs.mli src/cstubs/cstubs_inverted.mli _build/src/cstubs/cstubs_internals.cmi _build/src/cstubs/cstubs.cmi _build/src/cstubs/cstubs_inverted.cmi  
 Installed /home/opam/.opam/system/lib/ctypes/cstubs_inverted.cmi
 Installed /home/opam/.opam/system/lib/ctypes/cstubs.cmi
 Installed /home/opam/.opam/system/lib/ctypes/cstubs_internals.cmi
@@ -848,31 +848,3 @@ touch src/gdal/gdal.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -p
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I src/ogr -package ctypes.foreign -I examples -I src/ogr -o examples/sanity.cmo examples/sanity.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I src/ogr -package ctypes.foreign -I examples -I src/ogr -o examples/sanity.cmx examples/sanity.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package ctypes.foreign src/ogr/ogr.cmxa examples/sanity.cmx -o examples/sanity.native
-Installed /home/opam/.opam/system/lib/ogr/data_source.mli
-Installed /home/opam/.opam/system/lib/ogr/driver.mli
-Installed /home/opam/.opam/system/lib/ogr/feature.mli
-Installed /home/opam/.opam/system/lib/ogr/field.mli
-Installed /home/opam/.opam/system/lib/ogr/geometry.mli
-Installed /home/opam/.opam/system/lib/ogr/layer.mli
-Installed /home/opam/.opam/system/lib/ogr/lib.mli
-Installed /home/opam/.opam/system/lib/ogr/spatial_reference.mli
-Installed /home/opam/.opam/system/lib/ogr/ogr.cmi
-Installed /home/opam/.opam/system/lib/ogr/ogr.cma
-Installed /home/opam/.opam/system/lib/ogr/ogr.cmxa
-Installed /home/opam/.opam/system/lib/ogr/ogr.a
-Installed /home/opam/.opam/system/lib/ogr/ogr.cmxs
-Installed /home/opam/.opam/system/lib/ogr/ogr.cmx
-Installed /home/opam/.opam/system/lib/ogr/META
-Installed /home/opam/.opam/system/lib/gdal/alg.mli
-Installed /home/opam/.opam/system/lib/gdal/band.mli
-Installed /home/opam/.opam/system/lib/gdal/data_set.mli
-Installed /home/opam/.opam/system/lib/gdal/driver.mli
-Installed /home/opam/.opam/system/lib/gdal/lib.mli
-Installed /home/opam/.opam/system/lib/gdal/gdal.cmi
-Installed /home/opam/.opam/system/lib/gdal/gdal.cma
-Installed /home/opam/.opam/system/lib/gdal/gdal.cmxa
-Installed /home/opam/.opam/system/lib/gdal/gdal.a
-Installed /home/opam/.opam/system/lib/gdal/gdal.cmxs
-Installed /home/opam/.opam/system/lib/gdal/gdal.cmx
-Installed /home/opam/.opam/system/lib/gdal/META
-Installing gdal.0.3.0.
