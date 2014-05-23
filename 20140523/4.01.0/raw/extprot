@@ -1044,3 +1044,115 @@ ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quo
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
 ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
 ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
+ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
++ ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a top/sexplib_install_printers.cmx -o top/sexplib_top.cmxa
+ocamlfind ocamlopt -shared -linkall top/sexplib_top.cmxa -o top/sexplib_top.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix_conv.ml
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmi
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cma
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.a
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmx
+Installed /home/opam/.opam/system/lib/sexplib_unix/META
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib_num/std.ml
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmi
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cma
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.a
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmx
+Installed /home/opam/.opam/system/lib/sexplib_num/META
+W: Cannot find source header for module Parser in library sexplib
+W: Cannot find source header for module Parser_with_layout in library sexplib
+Installed /home/opam/.opam/system/lib/sexplib/conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/conv_error.ml
+Installed /home/opam/.opam/system/lib/sexplib/exn_magic.mli
+Installed /home/opam/.opam/system/lib/sexplib/macro.mli
+Installed /home/opam/.opam/system/lib/sexplib/path.mli
+Installed /home/opam/.opam/system/lib/sexplib/pre_sexp.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexp_intf.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp_with_layout.ml
+Installed /home/opam/.opam/system/lib/sexplib/src_pos.mli
+Installed /home/opam/.opam/system/lib/sexplib/std.ml
+Installed /home/opam/.opam/system/lib/sexplib/type.ml
+Installed /home/opam/.opam/system/lib/sexplib/type_with_layout.mli
+Installed /home/opam/.opam/system/lib/sexplib/lexer.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmx
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmx
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cma
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.a
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmi
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmx
+Installed /home/opam/.opam/system/lib/sexplib/META
+Installing sexplib.111.13.00.
+
+=-=-= Installing extprot.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/extprot.1.1.1+opam.tar.gz
+sending incremental file list
+extprot.1.1.1+opam.tar.gz
+
+sent 63,598 bytes  received 35 bytes  127,266.00 bytes/sec
+total size is 63,460  speedup is 1.00
+Building extprot.1.1.1:
+  omake
+  omake install prefix=/home/opam/.opam/system
+*** omake: reading OMakefiles
+File OMakefile: line 32, characters 1-22:
+   Warning: old-style foreach expression.
+   This expression should use a => binding.
+*** omake: finished reading OMakefiles (0.06 sec)
+--- Checking if ocamldep understands -modules... (yes)
+--- Checking for ocamlfind... (found /home/opam/.opam/system/bin/ocamlfind)
+--- Checking for ocamlc.opt... (found /usr/bin/ocamlc.opt)
+--- Checking for ocamlopt.opt... (found /usr/bin/ocamlopt.opt)
+--- Checking whether ocamlc understands the "z" warnings... (yes)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+- build compiler extprotc.opt
++ ocamlfind ocamlopt -package dynlink,camlp4,extlib,camlp4.quotations,sexplib,sexplib.syntax,camlp4.lib -bin-annot -w +a-4-6-9-27..29-32..99 -warn-error +a-4-6-7-9-18-27..29-32..99 -syntax camlp4o -I /usr/lib/ocaml/camlp4/Camlp4Parsers -g -inline 100 -I . -I ../runtime -o extprotc.opt ../runtime/extprot.cmxa /usr/lib/ocaml/camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.cmx /usr/lib/ocaml/camlp4/Camlp4Parsers/Camlp4OCamlParser.cmx protocol_types.cmx ptypes.cmx parser.cmx gencode_types.cmx gencode.cmx gen_OCaml.cmx extprotc.cmx -linkpkg
+/usr/bin/ld: error in /usr/lib/ocaml/camlp4/camlp4lib.a(Camlp4.o)(.eh_frame); no .eh_frame_hdr table will be created.
+*** omake: done (10.76 sec, 21/21 scans, 30/81 rules, 119/312 digests)
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.06 sec)
+- build . <install>
++ ocamlfind install -patch-version git extprot runtime/META runtime/extprot.cma runtime/extprot.cmxa runtime/extprot.cmx runtime/extprot.cmi runtime/extprot.a runtime/*.mli
+Installed /home/opam/.opam/system/lib/extprot/conv.mli
+Installed /home/opam/.opam/system/lib/extprot/limits.mli
+Installed /home/opam/.opam/system/lib/extprot/reader.mli
+Installed /home/opam/.opam/system/lib/extprot/extprot.a
+Installed /home/opam/.opam/system/lib/extprot/extprot.cmi
+Installed /home/opam/.opam/system/lib/extprot/extprot.cmx
+Installed /home/opam/.opam/system/lib/extprot/extprot.cmxa
+Installed /home/opam/.opam/system/lib/extprot/extprot.cma
+Installed /home/opam/.opam/system/lib/extprot/META
+*** omake: done (0.08 sec, 0/0 scans, 1/1 rules, 0/75 digests)
+Installing extprot.1.1.1.
