@@ -1,7 +1,7 @@
 ++ opam install headache -e ubuntu
 + depext=
-Ubuntu depexts:
 + echo Ubuntu depexts:
+Ubuntu depexts:
 + '[' '' '!=' '' ']'
 ++ opam install headache -e source,linux
 + srcext=
@@ -71,5 +71,14 @@ Compilation seems to succeed
 You can install the software. As a superuser, do
 'make install'
 ------------------------------------------------------------
+/usr/bin/ocamlc  -c config_parse.mli
+/usr/bin/ocamlc  -c config_parse.ml
+/usr/bin/ocamlc  -c config_lex.ml
+/usr/bin/ocamlc  -c mkconfig.ml
+ocamlc -o mkconfig unix.cma str.cma model.cmo config.cmo config_parse.cmo config_lex.cmo mkconfig.cmo
+./mkconfig
+/usr/bin/ocamlc  -c config_builtin.ml
+/usr/bin/ocamlc  -c main.ml
+ocamlc -o headache unix.cma str.cma info.cmo model.cmo config.cmo config_parse.cmo config_lex.cmo config_builtin.cmo main.cmo
 cp -f headache /home/opam/.opam/system/bin
 Installing headache.1.03.
