@@ -4115,3 +4115,33 @@ pkg_xenctrl: ......................................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/vchan_stubs.c
+mv vchan_stubs.o lib/vchan_stubs.o
+/usr/bin/ocamlmklib -o lib/vchan_stubs lib/vchan_stubs.o
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -modules lib/vchan.mli > lib/vchan.mli.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -I lib -o lib/vchan.cmi lib/vchan.mli
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/vchan.ml > lib/vchan.ml.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmo lib/vchan.ml
+ocamlfind ocamlc -a -dllib -lvchan_stubs -cclib -lvchan_stubs lib/vchan.cmo -o lib/vchan.cma
+ocamlfind ocamlopt -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmx lib/vchan.ml
+ocamlfind ocamlopt -a -cclib -lvchan_stubs lib/vchan.cmx -o lib/vchan.cmxa
+ocamlfind ocamlopt -shared -I lib lib/vchan.cmx -o lib/vchan.cmxs
+# No parallelism done
+ocamlfind ocamldoc -dump lib/vchan.odoc -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -I lib lib/vchan.mli
+rm -rf doc/api.docdir
+mkdir -p doc/api.docdir
+ocamlfind ocamldoc -load lib/vchan.odoc -html -d doc/api.docdir
+# No parallelism done
+Installed /home/opam/.opam/system/lib/vchan/vchan.mli
+Installed /home/opam/.opam/system/lib/vchan/libvchan_stubs.a
+Installed /home/opam/.opam/system/lib/vchan/vchan.cma
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmxa
+Installed /home/opam/.opam/system/lib/vchan/vchan.a
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmxs
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmi
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmx
+Installed /home/opam/.opam/system/lib/vchan/META
+Installed /home/opam/.opam/system/lib/stublibs/dllvchan_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllvchan_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing vchan.0.9.3.
