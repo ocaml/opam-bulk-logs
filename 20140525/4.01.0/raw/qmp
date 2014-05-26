@@ -4,3 +4,178 @@
 + '[' '' '!=' '' ']'
 Ubuntu depexts:
 ++ opam install qmp -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install qmp
+Ubuntu srcexts:
+The following actions will be performed:
+ - install cmdliner.0.9.4 [required by qmp]
+ - install obuild.0.0.7 [required by qmp]
+ - install cppo.0.9.3 [required by qmp]
+ - install ounit.2.0.0 [required by qmp]
+ - install easy-format.1.0.2 [required by qmp]
+ - install biniou.1.0.9 [required by qmp]
+ - install yojson.1.1.8 [required by qmp]
+ - install qmp.0.9.1
+8 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing cmdliner.0.9.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cmdliner.0.9.4+opam.tar.gz
+sending incremental file list
+cmdliner.0.9.4+opam.tar.gz
+
+sent 61,695 bytes  received 35 bytes  123,460.00 bytes/sec
+total size is 61,556  speedup is 1.00
+Building cmdliner.0.9.4:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.4.
+
+=-=-= Installing cppo.0.9.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cppo.0.9.3+opam.tar.gz
+sending incremental file list
+cppo.0.9.3+opam.tar.gz
+
+sent 20,759 bytes  received 35 bytes  41,588.00 bytes/sec
+total size is 20,628  speedup is 0.99
+Building cppo.0.9.3:
+  make
+echo 'let cppo_version = "0.9.3"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+Installing cppo.0.9.3.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,595 bytes  received 35 bytes  27,260.00 bytes/sec
+total size is 13,457  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/system/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing obuild.0.0.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/obuild.0.0.7+opam.tar.gz
+sending incremental file list
+obuild.0.0.7+opam.tar.gz
+
+sent 72,035 bytes  received 35 bytes  144,140.00 bytes/sec
+total size is 71,890  speedup is 1.00
+Building obuild.0.0.7:
+  ./bootstrap
+  cp dist/build/obuild/obuild dist/build/obuild-simple/obuild-simple /home/opam/.opam/system/bin
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING gconf
+COMPILING types
+COMPILING dag
+COMPILING pp
+COMPILING filetype
+COMPILING expr
+COMPILING utils
+COMPILING modname
+COMPILING taskdep
+COMPILING dist
+COMPILING helper
+COMPILING dagutils
+COMPILING process
+COMPILING findlibConf
+COMPILING scheduler
+COMPILING prog
+COMPILING dependencies
+COMPILING generators
+COMPILING hier
+COMPILING meta
+COMPILING target
+COMPILING project
+COMPILING analyze
+COMPILING configure
+COMPILING prepare
+COMPILING buildprogs
+COMPILING build
+COMPILING exception
+BUILDING library obuild.cmxa
+COMPILING sdist
+COMPILING doc
+COMPILING init
+COMPILING help
+COMPILING install
+COMPILING path_generated
+COMPILING main
+LINKING obuild.bootstrap
+Configuring obuild-0.0.7...
+[ 1 of 54] Compiling Ext.Fugue                     
+[ 2 of 54] Intfing Ext.Filepath                  
+[ 3 of 54] Compiling Ext.Filepath                  
+[ 4 of 54] Intfing Ext.Filesystem                
+[ 5 of 54] Compiling Ext.Filesystem                
+[ 6 of 54] Packing Ext                           
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cmxa
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cmxs
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cma
+[ 8 of 54] Checking dist/build/lib-obuild.ext
+[ 9 of 54] Compiling Obuild.Expr                   
+[10 of 54] Compiling Obuild.Filetype               
+[11 of 54] Compiling Obuild.Pp                     
+[12 of 54] Compiling Obuild.Dag                    
+[13 of 54] Compiling Obuild.Types                  
+[14 of 54] Compiling Obuild.Gconf                  
+[15 of 54] Compiling Obuild.Modname                
+[16 of 54] Compiling Obuild.Taskdep                
+[17 of 54] Compiling Obuild.Utils                  
+[18 of 54] Compiling Obuild.Dagutils               
+[19 of 54] Compiling Obuild.Helper                 
+[20 of 54] Compiling Obuild.Dist                   
+[21 of 54] Compiling Obuild.Process                
+[22 of 54] Compiling Obuild.Scheduler              
+[23 of 54] Compiling Obuild.FindlibConf            
+[24 of 54] Compiling Obuild.Prog                   
+[25 of 54] Compiling Obuild.Generators             
+[26 of 54] Compiling Obuild.Dependencies           
+[27 of 54] Compiling Obuild.Meta                   
+[28 of 54] Compiling Obuild.Hier                   
+[29 of 54] Compiling Obuild.Target                 
+[30 of 54] Compiling Obuild.Project                
+[31 of 54] Compiling Obuild.Analyze                
+[32 of 54] Compiling Obuild.Prepare                
+[33 of 54] Compiling Obuild.Configure              
