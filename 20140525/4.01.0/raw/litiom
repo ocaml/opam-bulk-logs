@@ -2408,3 +2408,80 @@ mv pcre_stubs.o lib/pcre_stubs.o
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pcre/pcre.mli
+Installed /home/opam/.opam/system/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cma
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/system/lib/pcre/pcre.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/system/lib/pcre/META
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.0.4.
+
+=-=-= Installing deriving-ocsigen.0.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/deriving-ocsigen.0.5+opam.tar.gz
+sending incremental file list
+deriving-ocsigen.0.5+opam.tar.gz
+
+sent 64,427 bytes  received 35 bytes  128,924.00 bytes/sec
+total size is 64,282  speedup is 1.00
+Building deriving-ocsigen.0.5:
+  make
+  make install
+sed -e "s%__NAME__%deriving-ocsigen%" \
+            -e "s%__LIBDIR__%%" \
+            -e "s%__SYNTAXDIR__%%" \
+            -e "s%__TCNAME__%%" \
+	  files/META.in > files/META
+sed -e "s%__NAME__%deriving-ocsigen%" \
+            -e "s%__LIBDIR__%directory = \"../lib\"%" \
+            -e "s%__SYNTAXDIR__%directory = \"../syntax\"%" \
+            -e "s%__TCNAME__%%" \
+	  files/META.in > files/META.deriving-ocsigen
+make -C syntax
+make[1]: Entering directory `/home/opam/.opam/system/build/deriving-ocsigen.0.5/syntax'
+ln -s defs.mli defs.ml
+[ ! -f id.ml ] || chmod u+w id.ml
+sed -e s/%%NAME%%/deriving-ocsigen/ -e s/%%VERSION%%/0.5-ocsigen/ id.mlp > id.ml
+chmod -w id.ml
+ocamlfind ocamlc -package camlp4 -c id.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.ml
+ocamlfind ocamlc -package camlp4 -c defs.mli
+ocamlfind ocamlc -package camlp4 -c defs.ml
+ocamlfind ocamlc -package camlp4 -c clusters.mli
+ocamlfind ocamlc -package camlp4 -c clusters.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.ml
+File "base.ml", line 145, characters 10-12:
+Warning 26: unused variable ty.
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.ml
+ocamlfind ocamlc -o pa_deriving_common.cmo -pack id.cmo utils.cmo type.cmo defs.cmo clusters.cmo base.cmo extend.cmo
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c pa_deriving.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/show_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/dump_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/enum_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/bounded_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/eq_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/typeable_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/pickle_class.ml
