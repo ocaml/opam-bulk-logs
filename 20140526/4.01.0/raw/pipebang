@@ -1,45 +1,43 @@
-++ opam install custom_printf -e ubuntu
+++ opam install pipebang -e ubuntu
 + depext=
 Ubuntu depexts:
 + echo Ubuntu depexts:
 + '[' '' '!=' '' ']'
-++ opam install custom_printf -e source,linux
+++ opam install pipebang -e source,linux
 + srcext=
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
-+ opam install custom_printf
++ opam install pipebang
 Ubuntu srcexts:
 The following actions will be performed:
- - install ounit.2.0.0 [required by custom_printf]
- - install camlp4.4.01.0 [required by custom_printf]
- - install type_conv.111.13.00 [required by custom_printf]
- - install sexplib.111.13.00 [required by custom_printf]
- - install pa_ounit.109.53.02 [required by custom_printf]
- - install custom_printf.111.03.00
-6 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+ - install camlp4.4.01.0 [required by pipebang]
+ - install pipebang.110.01.00
+2 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
 
 =-=-= Installing camlp4.4.01.0 =-=-=
 Installing camlp4.4.01.0.
 
-=-=-= Installing ounit.2.0.0 =-=-=
-default    Synchronizing with /home/opam/opam-repository/archives/ounit.2.0.0+opam.tar.gz
+=-=-= Installing pipebang.110.01.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pipebang.110.01.00+opam.tar.gz
 sending incremental file list
-ounit.2.0.0+opam.tar.gz
+pipebang.110.01.00+opam.tar.gz
 
-sent 107,645 bytes  received 35 bytes  215,360.00 bytes/sec
-total size is 107,493  speedup is 1.00
-Building ounit.2.0.0:
-  make build
+sent 47,512 bytes  received 35 bytes  95,094.00 bytes/sec
+total size is 47,369  speedup is 1.00
+Building pipebang.110.01.00:
+  make
   make install
-ocaml setup.ml -configure 
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
 
 Configuration: 
 ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
 ocamlc: .............................................. /usr/bin/ocamlc.opt
 ocamlopt: ............................................ /usr/bin/ocamlopt.opt
 ocamlbuild: .......................................... /usr/bin/ocamlbuild
-Package name: ........................................ ounit
-Package version: ..................................... 2.0.0
+Package name: ........................................ pipebang
+Package version: ..................................... 110.01.00
 os_type: ............................................. Unix
 system: .............................................. linux
 architecture: ........................................ amd64
@@ -87,16 +85,26 @@ Compiler support generation of .cmxs.: ............... true
 OCamlbuild additional flags: ......................... 
 Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
-pkg_unix: ............................................ /usr/lib/ocaml
-pkg_threads: ......................................... /usr/lib/ocaml
-ocamldoc: ............................................ /usr/bin/ocamldoc
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
 
-ocaml setup.ml -build 
-W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
-W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
-/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
-ocamlfind ocamldep -package threads -package unix -modules src/oUnitUtils.ml > src/oUnitUtils.ml.depends
-ocamlfind ocamldep -package threads -package unix -modules src/oUnitPropList.ml > src/oUnitPropList.ml.depends
-ocamlfind ocamldep -package threads -package unix -modules src/oUnitPlugin.ml > src/oUnitPlugin.ml.depends
-ocamlfind ocamldep -package threads -package unix -modules src/oUnitConf.ml > src/oUnitConf.ml.depends
-ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitPropList.cmo src/oUnitPropList.ml
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -modules lib/pa_pipebang.ml > lib/pa_pipebang.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmo lib/pa_pipebang.ml
+ocamlfind ocamlc -a lib/pa_pipebang.cmo -o lib/pa_pipebang.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmx lib/pa_pipebang.ml
+ocamlfind ocamlopt -a lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxa
+ocamlfind ocamlopt -shared lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.ml
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cma
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxa
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.a
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxs
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmi
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmx
+Installed /home/opam/.opam/system/lib/pa_pipebang/META
+Installing pipebang.110.01.00.
