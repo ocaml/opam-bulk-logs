@@ -5830,3 +5830,74 @@ ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js_events.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js_events.ml
 ocamlfind ocamlc -package lwt -I deriving_json -c json.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
+(echo "#include <stdlib.h>"; \
+	 echo "#include <stdio.h>"; \
+	 echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+	 (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml file.ml dom_events.ml firebug.ml lwt_js.ml regexp.ml CSS.ml url.ml form.ml xmlHttpRequest.ml event_arrows.ml lwt_js_events.ml json.ml webGL.ml webSockets.ml keycode.ml | \
+	  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
+ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo regexp.cmo CSS.cmo url.cmo form.cmo xmlHttpRequest.cmo event_arrows.cmo lwt_js_events.cmo json.cmo webGL.cmo webSockets.cmo keycode.cmo stubs.o
+ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+ocamlfind ocamlc -package deriving-ocsigen.syntax,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -package deriving-ocsigen.syntax,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_deriving_Json.cmxs syntax/pa_deriving_Json.cmx
+ocamllex deriving_json/deriving_Json_lexer.mll
+150 states, 772 transitions, table size 3988 bytes
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_lexer.mli
+ocamlfind ocamlc -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+ocamlfind ocamlc -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlopt -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+make[1]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/lib'
+make -C doc
+make[1]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/doc'
+mkdir -p api-html
+ocamlfind ocamldoc -package lwt -intro api-index -html \
+	   -d api-html -I ../lib -I ../lib/deriving_json ../lib/*.mli ../lib/deriving_json/deriving_Json.mli ../lib/deriving_json/deriving_Json_lexer.mli
+Warning: Class or class type event not found
+make[1]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/doc'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/runtime'
+cat mlString.js ieee_754.js int64.js md5.js marshall.js lexing.js parsing.js json.js stdlib.js jslib.js jslib_js_of_ocaml.js > runtime.js
+make[1]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/runtime'
+make -C examples
+make[1]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples'
+make -C boulderdash/
+make[2]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples/boulderdash'
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c boulderdash.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -linkpkg -o boulderdash.byte js_of_ocaml.cma boulderdash.cmo
+../../compiler/js_of_ocaml -noruntime ../../runtime/runtime.js boulderdash.byte 
+Missing primitives:
+  caml_ml_output_char
+  caml_sys_exit
+make[2]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples/boulderdash'
+make -C cubes/
+make[2]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples/cubes'
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c cubes.ml
+File "cubes.ml", line 50, characters 25-26:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -linkpkg -o cubes.byte js_of_ocaml.cma cubes.cmo
+../../compiler/js_of_ocaml -noruntime ../../runtime/runtime.js cubes.byte 
+Missing primitives:
+  caml_ml_output_char
+  caml_sys_exit
+make[2]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples/cubes'
+make -C graph_viewer/
+make[2]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/examples/graph_viewer'
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c scene.mli
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c scene.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_common.mli
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_common.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_js.ml
