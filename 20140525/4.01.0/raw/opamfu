@@ -1581,3 +1581,1590 @@ ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/exn_magic.cmo lib/exn_mag
 ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/macro.cmo lib/macro.ml
 ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/path.cmo lib/path.ml
 ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/sexp.cmo lib/sexp.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/src_pos.cmo lib/src_pos.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/type_with_layout.cmo lib/type_with_layout.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser.cmo lib/parser.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser_with_layout.cmo lib/parser_with_layout.ml
+ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/lexer.cmo lib/lexer.ml
+ocamlfind ocamlc -pack -g lib/type.cmo lib/parser.cmo lib/src_pos.cmo lib/type_with_layout.cmo lib/parser_with_layout.cmo lib/lexer.cmo lib/pre_sexp.cmo lib/sexp_intf.cmo lib/sexp_with_layout.cmo lib/sexp.cmo lib/conv.cmo lib/conv_error.cmo lib/exn_magic.cmo lib/macro.cmo lib/path.cmo lib/std.cmo -o lib/sexplib.cmo
+ocamlfind ocamlc -a lib/sexplib.cmo -o lib/sexplib.cma
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/type.cmx lib/type.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/src_pos.cmx lib/src_pos.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/type_with_layout.cmx lib/type_with_layout.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/parser.cmx lib/parser.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/parser_with_layout.cmx lib/parser_with_layout.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/lexer.cmx lib/lexer.ml
+ocamlfind ocamlopt -c -g -pp 'cpp -undef -traditional -Isyntax -w' -package bigarray -for-pack Sexplib -I lib -o lib/pre_sexp.cmx lib/pre_sexp.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp_with_layout.cmx lib/sexp_with_layout.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp_intf.cmx lib/sexp_intf.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp.cmx lib/sexp.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/conv.cmx lib/conv.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/macro.cmx lib/macro.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/conv_error.cmx lib/conv_error.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/exn_magic.cmx lib/exn_magic.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/path.cmx lib/path.ml
+ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/std.cmx lib/std.ml
+touch lib/sexplib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/type.cmx lib/parser.cmx lib/src_pos.cmx lib/type_with_layout.cmx lib/parser_with_layout.cmx lib/lexer.cmx lib/pre_sexp.cmx lib/sexp_intf.cmx lib/sexp_with_layout.cmx lib/sexp.cmx lib/conv.cmx lib/conv_error.cmx lib/exn_magic.cmx lib/macro.cmx lib/path.cmx lib/std.cmx -o lib/sexplib.cmx  ; then  rm -f lib/sexplib.mli  ; else  rm -f lib/sexplib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/sexplib.cmx -o lib/sexplib.cmxa
+ocamlfind ocamlopt -shared lib/sexplib.cmx -o lib/sexplib.cmxs
+ocamlfind ocamldep -package bigarray -package num -modules num/lib/sexplib_num_conv.mli > num/lib/sexplib_num_conv.mli.depends
+ocamlfind ocamlc -c -g -I lib -package bigarray -package num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmi num/lib/sexplib_num_conv.mli
+ocamlfind ocamldep -package bigarray -package num -modules num/lib/sexplib_num_conv.ml > num/lib/sexplib_num_conv.ml.depends
+ocamlfind ocamldep -package bigarray -package num -modules num/lib/std.ml > num/lib/std.ml.depends
+ocamlfind ocamlc -c -g -I lib -package bigarray -package num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmo num/lib/sexplib_num_conv.ml
+ocamlfind ocamlc -c -g -I lib -package bigarray -package num -I num/lib -I lib -o num/lib/std.cmo num/lib/std.ml
+ocamlfind ocamlc -pack -g num/lib/sexplib_num_conv.cmo num/lib/std.cmo -o num/lib/sexplib_num.cmo
+ocamlfind ocamlc -a num/lib/sexplib_num.cmo -o num/lib/sexplib_num.cma
+ocamlfind ocamlopt -c -g -I lib -package bigarray -package num -for-pack Sexplib_num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmx num/lib/sexplib_num_conv.ml
++ ocamlfind ocamlopt -c -g -I lib -package bigarray -package num -for-pack Sexplib_num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmx num/lib/sexplib_num_conv.ml
+findlib: [WARNING] Interface std.cmi occurs in several directories: num/lib, lib
+ocamlfind ocamlopt -c -g -I lib -package bigarray -package num -for-pack Sexplib_num -I num/lib -I lib -o num/lib/std.cmx num/lib/std.ml
++ ocamlfind ocamlopt -c -g -I lib -package bigarray -package num -for-pack Sexplib_num -I num/lib -I lib -o num/lib/std.cmx num/lib/std.ml
+findlib: [WARNING] Interface std.cmi occurs in several directories: num/lib, lib
+touch num/lib/sexplib_num.mli  ; if  ocamlfind ocamlopt -pack -g -I num/lib num/lib/sexplib_num_conv.cmx num/lib/std.cmx -o num/lib/sexplib_num.cmx  ; then  rm -f num/lib/sexplib_num.mli  ; else  rm -f num/lib/sexplib_num.mli  ; exit 1; fi
+ocamlfind ocamlopt -a num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxa
+ocamlfind ocamlopt -shared num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxs
+ocamlfind ocamldep -package bigarray -package unix -modules unix/lib/sexplib_unix_conv.ml > unix/lib/sexplib_unix_conv.ml.depends
+ocamlfind ocamlc -c -g -I lib -package bigarray -package unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmo unix/lib/sexplib_unix_conv.ml
+ocamlfind ocamlc -pack -g unix/lib/sexplib_unix_conv.cmo -o unix/lib/sexplib_unix.cmo
+ocamlfind ocamlc -a unix/lib/sexplib_unix.cmo -o unix/lib/sexplib_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package bigarray -package unix -for-pack Sexplib_unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmx unix/lib/sexplib_unix_conv.ml
+touch unix/lib/sexplib_unix.mli  ; if  ocamlfind ocamlopt -pack -g -I unix/lib unix/lib/sexplib_unix_conv.cmx -o unix/lib/sexplib_unix.cmx  ; then  rm -f unix/lib/sexplib_unix.mli  ; else  rm -f unix/lib/sexplib_unix.mli  ; exit 1; fi
+ocamlfind ocamlopt -a unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxa
+ocamlfind ocamlopt -shared unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
+ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
++ ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a top/sexplib_install_printers.cmx -o top/sexplib_top.cmxa
+ocamlfind ocamlopt -shared -linkall top/sexplib_top.cmxa -o top/sexplib_top.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix_conv.ml
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmi
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cma
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.a
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmx
+Installed /home/opam/.opam/system/lib/sexplib_unix/META
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib_num/std.ml
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmi
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cma
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.a
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmx
+Installed /home/opam/.opam/system/lib/sexplib_num/META
+W: Cannot find source header for module Parser in library sexplib
+W: Cannot find source header for module Parser_with_layout in library sexplib
+Installed /home/opam/.opam/system/lib/sexplib/conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/conv_error.ml
+Installed /home/opam/.opam/system/lib/sexplib/exn_magic.mli
+Installed /home/opam/.opam/system/lib/sexplib/macro.mli
+Installed /home/opam/.opam/system/lib/sexplib/path.mli
+Installed /home/opam/.opam/system/lib/sexplib/pre_sexp.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexp_intf.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp_with_layout.ml
+Installed /home/opam/.opam/system/lib/sexplib/src_pos.mli
+Installed /home/opam/.opam/system/lib/sexplib/std.ml
+Installed /home/opam/.opam/system/lib/sexplib/type.ml
+Installed /home/opam/.opam/system/lib/sexplib/type_with_layout.mli
+Installed /home/opam/.opam/system/lib/sexplib/lexer.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmx
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmx
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cma
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.a
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmi
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmx
+Installed /home/opam/.opam/system/lib/sexplib/META
+Installing sexplib.111.13.00.
+
+=-=-= Installing dose.3.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/dose.3.1.2+opam.tar.gz
+sending incremental file list
+dose.3.1.2+opam.tar.gz
+
+sent 268,247 bytes  received 35 bytes  536,564.00 bytes/sec
+total size is 268,056  speedup is 1.00
+Applying patches/0001-Added-portable-invocation-of-mktemp-for-Linux-and-BS.patch.
+patching file common/cudfSolver.ml
+Applying patches/0002-Sanitize-the-string-containing-the-criteria-before-p.patch.
+patching file common/cudfSolver.ml
+Applying patches/0003-Modified-pattern-interpolation-to-ensure-only-one-is.patch.
+patching file common/cudfSolver.ml
+Applying patches/0004-All-errors-from-cudfsolver-are-now-exceptions-and-no.patch.
+patching file common/cudfSolver.ml
+Applying patches/0005-Fix-upgrade-bug-in-the-check_request-function.patch.
+patching file algo/depsolver.ml
+Applying patches/0006-Fix-compilation-problems-with-ocaml-4.0.1.patch.
+patching file _tags.in
+patching file doc/manpages/ceve.pod
+Applying patches/0007-Fixed-code-for-computing-upgrade-constraints-handle-.patch.
+patching file algo/depsolver.ml
+Applying patches/0008-Use-re.pcre-instead-of-pcre-ocaml.patch.
+patching file common/cudfAdd.ml
+patching file common/cudfSolver.ml
+patching file common/extBenchmark.ml
+patching file common/tests.ml
+patching file deb/apt.ml
+patching file deb/edsp.ml
+patching file deb/version.ml
+patching file eclipse/version.ml
+patching file opencsw/packages.ml
+patching file opencsw/version.ml
+patching file rpm/packages.ml
+Applying patches/0009-Hardcode-__FILE__-macros.patch.
+patching file algo/defaultgraphs.ml
+patching file algo/depsolver.ml
+patching file algo/depsolver_int.ml
+patching file algo/diagnostic.ml
+patching file algo/dominators.ml
+patching file algo/flatten.ml
+patching file algo/statistics.ml
+patching file algo/strongconflicts.ml
+patching file algo/strongconflicts_int.ml
+patching file algo/strongdeps.ml
+patching file algo/strongdeps_int.ml
+patching file applications/ceve.ml
+patching file applications/challenged.ml
+patching file applications/deb-buildcheck.ml
+patching file applications/distcheck.ml
+patching file applications/dominators-graph.ml
+patching file applications/outdated.ml
+patching file applications/smallworld.ml
+patching file applications/strong-deps.ml
+patching file common/cudfAdd.ml
+Hunk #1 succeeded at 18 (offset -2 lines).
+patching file common/cudfSolver.ml
+Hunk #1 succeeded at 13 with fuzz 1 (offset -2 lines).
+patching file common/edosSolver.ml
+patching file common/input.ml
+patching file common/url.ml
+patching file common/util.ml
+patching file common/util.mli
+patching file deb/apt.ml
+Hunk #1 succeeded at 15 with fuzz 2 (offset -2 lines).
+patching file deb/debcudf.ml
+patching file deb/debutil.ml
+patching file deb/edsp.ml
+Hunk #1 succeeded at 15 (offset -2 lines).
+patching file deb/format822.ml
+patching file deb/packages.ml
+patching file deb/sources.ml
+patching file doseparse/boilerplate.ml
+patching file eclipse/packages.ml
+patching file eclipse/version.ml
+Hunk #1 succeeded at 21 with fuzz 2 (offset -2 lines).
+patching file opencsw/packages.ml
+Hunk #1 succeeded at 15 (offset -2 lines).
+Hunk #2 succeeded at 43 (offset -2 lines).
+patching file opencsw/version.ml
+Hunk #1 succeeded at 21 with fuzz 2 (offset -2 lines).
+patching file rpm/hdlists.ml
+patching file rpm/packages.ml
+Hunk #1 succeeded at 13 (offset -2 lines).
+patching file rpm/rpmcudf.ml
+Applying patches/0010-Hardcode-IFDEF-macros-assuming-false.patch.
+patching file applications/ceve.ml
+patching file applications/challenged.ml
+patching file common/input.ml
+patching file common/input.mli
+patching file db/backend.ml
+patching file doseparse/boilerplate.ml
+Building dose.3.1.2:
+  ocp-build -scan -init dose -v 0
+  mv META.dose3 META
+  ocamlfind install dose3 META
+  mv META.dose META
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 2 package conflicts solved (use -print-conflicts)
+Warning: 7 incomplete packages (will not be built):
+  Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
+..................-- stdout of ocamllex.opt --
+83 states, 1213 transitions, table size 5350 bytes
+5282 additional bytes used for bindings
+....-- stdout of ocamllex.opt --
+20 states, 337 transitions, table size 1468 bytes
+...........................-- stderr of ocamlc.opt --
+File "deb/debcudf.ml", line 197, characters 24-25:
+Warning 28: wildcard pattern given as argument to a constant constructor
+................-- stderr of ocamlopt.opt --
+File "deb/debcudf.ml", line 197, characters 24-25:
+Warning 28: wildcard pattern given as argument to a constant constructor
+....Finished
+Build Successful in 4.23s. 141 jobs (parallelism 4.1x), 234 files generated.
+Installed /home/opam/.opam/system/lib/dose3/META
+Installing dose.3.1.2.
+
+=-=-= Installing uri.1.4.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/uri.1.4.0+opam.tar.gz
+sending incremental file list
+uri.1.4.0+opam.tar.gz
+
+sent 249,769 bytes  received 35 bytes  499,608.00 bytes/sec
+total size is 249,587  speedup is 1.00
+Building uri.1.4.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ uri
+Package version: ..................................... 1.4.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the full services library: ..................... false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_re_posix: ........................................ /home/opam/.opam/system/lib/re
+pkg_re_str: .......................................... /home/opam/.opam/system/lib/re
+pkg_sexplib_syntax: .................................. /home/opam/.opam/system/lib/sexplib
+pkg_sexplib: ......................................... /home/opam/.opam/system/lib/sexplib
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/uri.mli > lib/uri.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmi lib/uri.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/uri.ml > lib/uri.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/uri_re.mli > lib/uri_re.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri_re.cmi lib/uri_re.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/uri_re.ml > lib/uri_re.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_IP.mli > lib/Uri_IP.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmi lib/Uri_IP.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_IP.ml > lib/Uri_IP.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmo lib/uri.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri_re.cmo lib/uri_re.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmo lib/Uri_IP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/uri_re.cmo lib/uri.cmo lib/Uri_IP.cmo -o lib/uri.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri_re.cmx lib/uri_re.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmx lib/uri.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmx lib/Uri_IP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/uri_re.cmx lib/uri.cmx lib/Uri_IP.cmx -o lib/uri.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/uri.cmxa lib/uri_re.cmx lib/uri.cmx lib/Uri_IP.cmx -o lib/uri.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_services.mli > lib/Uri_services.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmi lib/Uri_services.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_services.ml > lib/Uri_services.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmo lib/Uri_services.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/Uri_services.cmo -o lib/services.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmx lib/Uri_services.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/Uri_services.cmx -o lib/services.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall lib/services.cmxa -o lib/services.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules top/uri_top.ml > top/uri_top.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a top/uri_top.cmo -o top/uri_top.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a top/uri_top.cmx -o top/uri_top.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared top/uri_top.cmx -o top/uri_top.cmxs
+Installed /home/opam/.opam/system/lib/uri/uri.mli
+Installed /home/opam/.opam/system/lib/uri/uri_re.mli
+Installed /home/opam/.opam/system/lib/uri/Uri_IP.mli
+Installed /home/opam/.opam/system/lib/uri/uri.cma
+Installed /home/opam/.opam/system/lib/uri/uri.cmxa
+Installed /home/opam/.opam/system/lib/uri/uri.a
+Installed /home/opam/.opam/system/lib/uri/uri.cmxs
+Installed /home/opam/.opam/system/lib/uri/Uri_IP.cmi
+Installed /home/opam/.opam/system/lib/uri/uri_re.cmi
+Installed /home/opam/.opam/system/lib/uri/uri.cmi
+Installed /home/opam/.opam/system/lib/uri/Uri_IP.cmx
+Installed /home/opam/.opam/system/lib/uri/uri_re.cmx
+Installed /home/opam/.opam/system/lib/uri/uri.cmx
+Installed /home/opam/.opam/system/lib/uri/uri_top.ml
+Installed /home/opam/.opam/system/lib/uri/uri_top.cma
+Installed /home/opam/.opam/system/lib/uri/uri_top.cmxa
+Installed /home/opam/.opam/system/lib/uri/uri_top.a
+Installed /home/opam/.opam/system/lib/uri/uri_top.cmxs
+Installed /home/opam/.opam/system/lib/uri/uri_top.cmi
+Installed /home/opam/.opam/system/lib/uri/uri_top.cmx
+Installed /home/opam/.opam/system/lib/uri/Uri_services.mli
+Installed /home/opam/.opam/system/lib/uri/services.cma
+Installed /home/opam/.opam/system/lib/uri/services.cmxa
+Installed /home/opam/.opam/system/lib/uri/services.a
+Installed /home/opam/.opam/system/lib/uri/services.cmxs
+Installed /home/opam/.opam/system/lib/uri/Uri_services.cmi
+Installed /home/opam/.opam/system/lib/uri/Uri_services.cmx
+Installed /home/opam/.opam/system/lib/uri/META
+Installing uri.1.4.0.
+
+=-=-= Installing opam-lib.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/opam-lib.1.1.1+opam.tar.gz
+sending incremental file list
+opam-lib.1.1.1+opam.tar.gz
+
+sent 1,499,677 bytes  received 35 bytes  2,999,424.00 bytes/sec
+total size is 1,499,186  speedup is 1.00
+Building opam-lib.1.1.1:
+  ./configure --prefix=/home/opam/.opam/system --mandir=/home/opam/.opam/system/man
+  make META
+  make with-ocamlbuild
+  make libinstall-with-ocamlbuild
+  rm opam.install
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /usr/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlp4... camlp4
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for gawk... no
+checking for mawk... mawk
+checking for curl... curl
+configure: creating ./config.status
+config.status: creating Makefile.config
+config.status: creating src/core/opamVersion.ml
+config.status: creating doc/man-ext/opam-check.md
+
+Executables will be installed in /home/opam/.opam/system/bin
+Manual pages will be installed in /home/opam/.opam/system/man
+sed 's/@VERSION@/1.1.1/g' < META.in > META
+ocaml shell/get-git-id.ml src/core/opamGitVersion.ml
+ocaml shell/crunch.ml "complete"     < shell/opam_completion.sh > src/core/opamScript.ml
+ocaml shell/crunch.ml "complete_zsh" < shell/opam_completion_zsh.sh >> src/core/opamScript.ml
+ocaml shell/crunch.ml "switch_eval"  < shell/opam_switch_eval.sh >> src/core/opamScript.ml
+Compiling opam-core
+Solver failed:
+  Ocamlbuild knows of no rules that apply to a target named src/client/opam-core.mly. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.
+Backtrace:
+  - Failed to build the target opam-core.cma
+      - Failed to build all of these:
+          - Building src/client/opam-core.cma:
+              - Failed to build all of these:
+                  - Building src/client/opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building src/client/opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building src/client/opam-core.mly
+                                  - Building src/client/opam-core.mll
+                          - Building src/client/opam-core.mli:
+                              - Building src/client/opam-core.mly
+                          - Building src/client/opam-core.mlpack
+                          - Building src/client/opam-core.mli:
+                              - Building src/client/opam-core.mly
+                  - Building src/client/opam-core.mllib
+          - Building src/core/opam-core.cma:
+              - Failed to build all of these:
+                  - Building src/core/opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building src/core/opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building src/core/opam-core.mly
+                                  - Building src/core/opam-core.mll
+                          - Building src/core/opam-core.mli:
+                              - Building src/core/opam-core.mly
+                          - Building src/core/opam-core.mlpack
+                          - Building src/core/opam-core.mli:
+                              - Building src/core/opam-core.mly
+                  - Failed to build all of these:
+                      - Building src/client/PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/PamVariable.mly
+                                      - Building src/client/PamVariable.mll
+                              - Building src/client/PamVariable.mli:
+                                  - Building src/client/PamVariable.mly
+                              - Building src/client/PamVariable.mlpack
+                              - Building src/client/PamVariable.mli:
+                                  - Building src/client/PamVariable.mly
+                      - Building src/client/pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/pamVariable.mly
+                                      - Building src/client/pamVariable.mll
+                              - Building src/client/pamVariable.mli:
+                                  - Building src/client/pamVariable.mly
+                              - Building src/client/pamVariable.mlpack
+                              - Building src/client/pamVariable.mli:
+                                  - Building src/client/pamVariable.mly
+                      - Building src/solver/PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/PamVariable.mly
+                                      - Building src/solver/PamVariable.mll
+                              - Building src/solver/PamVariable.mli:
+                                  - Building src/solver/PamVariable.mly
+                              - Building src/solver/PamVariable.mlpack
+                              - Building src/solver/PamVariable.mli:
+                                  - Building src/solver/PamVariable.mly
+                      - Building src/solver/pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/pamVariable.mly
+                                      - Building src/solver/pamVariable.mll
+                              - Building src/solver/pamVariable.mli:
+                                  - Building src/solver/pamVariable.mly
+                              - Building src/solver/pamVariable.mlpack
+                              - Building src/solver/pamVariable.mli:
+                                  - Building src/solver/pamVariable.mly
+                      - Building src/scripts/PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/PamVariable.mly
+                                      - Building src/scripts/PamVariable.mll
+                              - Building src/scripts/PamVariable.mli:
+                                  - Building src/scripts/PamVariable.mly
+                              - Building src/scripts/PamVariable.mlpack
+                              - Building src/scripts/PamVariable.mli:
+                                  - Building src/scripts/PamVariable.mly
+                      - Building src/scripts/pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/pamVariable.mly
+                                      - Building src/scripts/pamVariable.mll
+                              - Building src/scripts/pamVariable.mli:
+                                  - Building src/scripts/pamVariable.mly
+                              - Building src/scripts/pamVariable.mlpack
+                              - Building src/scripts/pamVariable.mli:
+                                  - Building src/scripts/pamVariable.mly
+                      - Building src/repositories/PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/PamVariable.mly
+                                      - Building src/repositories/PamVariable.mll
+                              - Building src/repositories/PamVariable.mli:
+                                  - Building src/repositories/PamVariable.mly
+                              - Building src/repositories/PamVariable.mlpack
+                              - Building src/repositories/PamVariable.mli:
+                                  - Building src/repositories/PamVariable.mly
+                      - Building src/repositories/pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/pamVariable.mly
+                                      - Building src/repositories/pamVariable.mll
+                              - Building src/repositories/pamVariable.mli:
+                                  - Building src/repositories/pamVariable.mly
+                              - Building src/repositories/pamVariable.mlpack
+                              - Building src/repositories/pamVariable.mli:
+                                  - Building src/repositories/pamVariable.mly
+                      - Building PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building PamVariable.mly
+                                      - Building PamVariable.mll
+                              - Building PamVariable.mli:
+                                  - Building PamVariable.mly
+                              - Building PamVariable.mlpack
+                              - Building PamVariable.mli:
+                                  - Building PamVariable.mly
+                      - Building pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building pamVariable.mly
+                                      - Building pamVariable.mll
+                              - Building pamVariable.mli:
+                                  - Building pamVariable.mly
+                              - Building pamVariable.mlpack
+                              - Building pamVariable.mli:
+                                  - Building pamVariable.mly
+                      - Building src/core/PamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/PamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/PamVariable.mly
+                                      - Building src/core/PamVariable.mll
+                              - Building src/core/PamVariable.mli:
+                                  - Building src/core/PamVariable.mly
+                              - Building src/core/PamVariable.mlpack
+                              - Building src/core/PamVariable.mli:
+                                  - Building src/core/PamVariable.mly
+                      - Building src/core/pamVariable.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/pamVariable.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/pamVariable.mly
+                                      - Building src/core/pamVariable.mll
+                              - Building src/core/pamVariable.mli:
+                                  - Building src/core/pamVariable.mly
+                              - Building src/core/pamVariable.mlpack
+                              - Building src/core/pamVariable.mli:
+                                  - Building src/core/pamVariable.mly
+          - Building src/solver/opam-core.cma:
+              - Failed to build all of these:
+                  - Building src/solver/opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building src/solver/opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building src/solver/opam-core.mly
+                                  - Building src/solver/opam-core.mll
+                          - Building src/solver/opam-core.mli:
+                              - Building src/solver/opam-core.mly
+                          - Building src/solver/opam-core.mlpack
+                          - Building src/solver/opam-core.mli:
+                              - Building src/solver/opam-core.mly
+                  - Building src/solver/opam-core.mllib
+          - Building src/scripts/opam-core.cma:
+              - Failed to build all of these:
+                  - Building src/scripts/opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building src/scripts/opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building src/scripts/opam-core.mly
+                                  - Building src/scripts/opam-core.mll
+                          - Building src/scripts/opam-core.mli:
+                              - Building src/scripts/opam-core.mly
+                          - Building src/scripts/opam-core.mlpack
+                          - Building src/scripts/opam-core.mli:
+                              - Building src/scripts/opam-core.mly
+                  - Building src/scripts/opam-core.mllib
+          - Building src/repositories/opam-core.cma:
+              - Failed to build all of these:
+                  - Building src/repositories/opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building src/repositories/opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building src/repositories/opam-core.mly
+                                  - Building src/repositories/opam-core.mll
+                          - Building src/repositories/opam-core.mli:
+                              - Building src/repositories/opam-core.mly
+                          - Building src/repositories/opam-core.mlpack
+                          - Building src/repositories/opam-core.mli:
+                              - Building src/repositories/opam-core.mly
+                  - Building src/repositories/opam-core.mllib
+          - Building opam-core.cma:
+              - Failed to build all of these:
+                  - Building opam-core.cmo:
+                      - Failed to build all of these:
+                          - Building opam-core.ml:
+                              - Failed to build all of these:
+                                  - Building opam-core.mly
+                                  - Building opam-core.mll
+                          - Building opam-core.mli:
+                              - Building opam-core.mly
+                          - Building opam-core.mlpack
+                          - Building opam-core.mli:
+                              - Building opam-core.mly
+                  - Building opam-core.mllib
+Compiling opam-repositories
+Solver failed:
+  Ocamlbuild knows of no rules that apply to a target named src/client/opam-repositories.mly. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.
+Backtrace:
+  - Failed to build the target opam-repositories.cma
+      - Failed to build all of these:
+          - Building src/client/opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building src/client/opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building src/client/opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building src/client/opam-repositories.mly
+                                  - Building src/client/opam-repositories.mll
+                          - Building src/client/opam-repositories.mli:
+                              - Building src/client/opam-repositories.mly
+                          - Building src/client/opam-repositories.mlpack
+                          - Building src/client/opam-repositories.mli:
+                              - Building src/client/opam-repositories.mly
+                  - Building src/client/opam-repositories.mllib
+          - Building src/core/opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building src/core/opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building src/core/opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building src/core/opam-repositories.mly
+                                  - Building src/core/opam-repositories.mll
+                          - Building src/core/opam-repositories.mli:
+                              - Building src/core/opam-repositories.mly
+                          - Building src/core/opam-repositories.mlpack
+                          - Building src/core/opam-repositories.mli:
+                              - Building src/core/opam-repositories.mly
+                  - Building src/core/opam-repositories.mllib
+          - Building src/solver/opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building src/solver/opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building src/solver/opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building src/solver/opam-repositories.mly
+                                  - Building src/solver/opam-repositories.mll
+                          - Building src/solver/opam-repositories.mli:
+                              - Building src/solver/opam-repositories.mly
+                          - Building src/solver/opam-repositories.mlpack
+                          - Building src/solver/opam-repositories.mli:
+                              - Building src/solver/opam-repositories.mly
+                  - Building src/solver/opam-repositories.mllib
+          - Building src/scripts/opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building src/scripts/opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building src/scripts/opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building src/scripts/opam-repositories.mly
+                                  - Building src/scripts/opam-repositories.mll
+                          - Building src/scripts/opam-repositories.mli:
+                              - Building src/scripts/opam-repositories.mly
+                          - Building src/scripts/opam-repositories.mlpack
+                          - Building src/scripts/opam-repositories.mli:
+                              - Building src/scripts/opam-repositories.mly
+                  - Building src/scripts/opam-repositories.mllib
+          - Building src/repositories/opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building src/repositories/opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building src/repositories/opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building src/repositories/opam-repositories.mly
+                                  - Building src/repositories/opam-repositories.mll
+                          - Building src/repositories/opam-repositories.mli:
+                              - Building src/repositories/opam-repositories.mly
+                          - Building src/repositories/opam-repositories.mlpack
+                          - Building src/repositories/opam-repositories.mli:
+                              - Building src/repositories/opam-repositories.mly
+                  - Failed to build all of these:
+                      - Building src/client/PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/PamHTTP.mly
+                                      - Building src/client/PamHTTP.mll
+                              - Building src/client/PamHTTP.mli:
+                                  - Building src/client/PamHTTP.mly
+                              - Building src/client/PamHTTP.mlpack
+                              - Building src/client/PamHTTP.mli:
+                                  - Building src/client/PamHTTP.mly
+                      - Building src/client/pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/pamHTTP.mly
+                                      - Building src/client/pamHTTP.mll
+                              - Building src/client/pamHTTP.mli:
+                                  - Building src/client/pamHTTP.mly
+                              - Building src/client/pamHTTP.mlpack
+                              - Building src/client/pamHTTP.mli:
+                                  - Building src/client/pamHTTP.mly
+                      - Building src/core/PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/PamHTTP.mly
+                                      - Building src/core/PamHTTP.mll
+                              - Building src/core/PamHTTP.mli:
+                                  - Building src/core/PamHTTP.mly
+                              - Building src/core/PamHTTP.mlpack
+                              - Building src/core/PamHTTP.mli:
+                                  - Building src/core/PamHTTP.mly
+                      - Building src/core/pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/pamHTTP.mly
+                                      - Building src/core/pamHTTP.mll
+                              - Building src/core/pamHTTP.mli:
+                                  - Building src/core/pamHTTP.mly
+                              - Building src/core/pamHTTP.mlpack
+                              - Building src/core/pamHTTP.mli:
+                                  - Building src/core/pamHTTP.mly
+                      - Building src/solver/PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/PamHTTP.mly
+                                      - Building src/solver/PamHTTP.mll
+                              - Building src/solver/PamHTTP.mli:
+                                  - Building src/solver/PamHTTP.mly
+                              - Building src/solver/PamHTTP.mlpack
+                              - Building src/solver/PamHTTP.mli:
+                                  - Building src/solver/PamHTTP.mly
+                      - Building src/solver/pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/pamHTTP.mly
+                                      - Building src/solver/pamHTTP.mll
+                              - Building src/solver/pamHTTP.mli:
+                                  - Building src/solver/pamHTTP.mly
+                              - Building src/solver/pamHTTP.mlpack
+                              - Building src/solver/pamHTTP.mli:
+                                  - Building src/solver/pamHTTP.mly
+                      - Building src/scripts/PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/PamHTTP.mly
+                                      - Building src/scripts/PamHTTP.mll
+                              - Building src/scripts/PamHTTP.mli:
+                                  - Building src/scripts/PamHTTP.mly
+                              - Building src/scripts/PamHTTP.mlpack
+                              - Building src/scripts/PamHTTP.mli:
+                                  - Building src/scripts/PamHTTP.mly
+                      - Building src/scripts/pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/pamHTTP.mly
+                                      - Building src/scripts/pamHTTP.mll
+                              - Building src/scripts/pamHTTP.mli:
+                                  - Building src/scripts/pamHTTP.mly
+                              - Building src/scripts/pamHTTP.mlpack
+                              - Building src/scripts/pamHTTP.mli:
+                                  - Building src/scripts/pamHTTP.mly
+                      - Building PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building PamHTTP.mly
+                                      - Building PamHTTP.mll
+                              - Building PamHTTP.mli:
+                                  - Building PamHTTP.mly
+                              - Building PamHTTP.mlpack
+                              - Building PamHTTP.mli:
+                                  - Building PamHTTP.mly
+                      - Building pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building pamHTTP.mly
+                                      - Building pamHTTP.mll
+                              - Building pamHTTP.mli:
+                                  - Building pamHTTP.mly
+                              - Building pamHTTP.mlpack
+                              - Building pamHTTP.mli:
+                                  - Building pamHTTP.mly
+                      - Building src/repositories/PamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/PamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/PamHTTP.mly
+                                      - Building src/repositories/PamHTTP.mll
+                              - Building src/repositories/PamHTTP.mli:
+                                  - Building src/repositories/PamHTTP.mly
+                              - Building src/repositories/PamHTTP.mlpack
+                              - Building src/repositories/PamHTTP.mli:
+                                  - Building src/repositories/PamHTTP.mly
+                      - Building src/repositories/pamHTTP.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/pamHTTP.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/pamHTTP.mly
+                                      - Building src/repositories/pamHTTP.mll
+                              - Building src/repositories/pamHTTP.mli:
+                                  - Building src/repositories/pamHTTP.mly
+                              - Building src/repositories/pamHTTP.mlpack
+                              - Building src/repositories/pamHTTP.mli:
+                                  - Building src/repositories/pamHTTP.mly
+          - Building opam-repositories.cma:
+              - Failed to build all of these:
+                  - Building opam-repositories.cmo:
+                      - Failed to build all of these:
+                          - Building opam-repositories.ml:
+                              - Failed to build all of these:
+                                  - Building opam-repositories.mly
+                                  - Building opam-repositories.mll
+                          - Building opam-repositories.mli:
+                              - Building opam-repositories.mly
+                          - Building opam-repositories.mlpack
+                          - Building opam-repositories.mli:
+                              - Building opam-repositories.mly
+                  - Building opam-repositories.mllib
+Compiling opam-solver
+Solver failed:
+  Ocamlbuild knows of no rules that apply to a target named src/client/opam-solver.mly. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.
+Backtrace:
+  - Failed to build the target opam-solver.cma
+      - Failed to build all of these:
+          - Building src/client/opam-solver.cma:
+              - Failed to build all of these:
+                  - Building src/client/opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building src/client/opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building src/client/opam-solver.mly
+                                  - Building src/client/opam-solver.mll
+                          - Building src/client/opam-solver.mli:
+                              - Building src/client/opam-solver.mly
+                          - Building src/client/opam-solver.mlpack
+                          - Building src/client/opam-solver.mli:
+                              - Building src/client/opam-solver.mly
+                  - Building src/client/opam-solver.mllib
+          - Building src/core/opam-solver.cma:
+              - Failed to build all of these:
+                  - Building src/core/opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building src/core/opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building src/core/opam-solver.mly
+                                  - Building src/core/opam-solver.mll
+                          - Building src/core/opam-solver.mli:
+                              - Building src/core/opam-solver.mly
+                          - Building src/core/opam-solver.mlpack
+                          - Building src/core/opam-solver.mli:
+                              - Building src/core/opam-solver.mly
+                  - Building src/core/opam-solver.mllib
+          - Building src/solver/opam-solver.cma:
+              - Failed to build all of these:
+                  - Building src/solver/opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building src/solver/opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building src/solver/opam-solver.mly
+                                  - Building src/solver/opam-solver.mll
+                          - Building src/solver/opam-solver.mli:
+                              - Building src/solver/opam-solver.mly
+                          - Building src/solver/opam-solver.mlpack
+                          - Building src/solver/opam-solver.mli:
+                              - Building src/solver/opam-solver.mly
+                  - Failed to build all of these:
+                      - Building src/client/PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/PamSolver.mly
+                                      - Building src/client/PamSolver.mll
+                              - Building src/client/PamSolver.mli:
+                                  - Building src/client/PamSolver.mly
+                              - Building src/client/PamSolver.mlpack
+                              - Building src/client/PamSolver.mli:
+                                  - Building src/client/PamSolver.mly
+                      - Building src/client/pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/pamSolver.mly
+                                      - Building src/client/pamSolver.mll
+                              - Building src/client/pamSolver.mli:
+                                  - Building src/client/pamSolver.mly
+                              - Building src/client/pamSolver.mlpack
+                              - Building src/client/pamSolver.mli:
+                                  - Building src/client/pamSolver.mly
+                      - Building src/core/PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/PamSolver.mly
+                                      - Building src/core/PamSolver.mll
+                              - Building src/core/PamSolver.mli:
+                                  - Building src/core/PamSolver.mly
+                              - Building src/core/PamSolver.mlpack
+                              - Building src/core/PamSolver.mli:
+                                  - Building src/core/PamSolver.mly
+                      - Building src/core/pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/pamSolver.mly
+                                      - Building src/core/pamSolver.mll
+                              - Building src/core/pamSolver.mli:
+                                  - Building src/core/pamSolver.mly
+                              - Building src/core/pamSolver.mlpack
+                              - Building src/core/pamSolver.mli:
+                                  - Building src/core/pamSolver.mly
+                      - Building src/scripts/PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/PamSolver.mly
+                                      - Building src/scripts/PamSolver.mll
+                              - Building src/scripts/PamSolver.mli:
+                                  - Building src/scripts/PamSolver.mly
+                              - Building src/scripts/PamSolver.mlpack
+                              - Building src/scripts/PamSolver.mli:
+                                  - Building src/scripts/PamSolver.mly
+                      - Building src/scripts/pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/pamSolver.mly
+                                      - Building src/scripts/pamSolver.mll
+                              - Building src/scripts/pamSolver.mli:
+                                  - Building src/scripts/pamSolver.mly
+                              - Building src/scripts/pamSolver.mlpack
+                              - Building src/scripts/pamSolver.mli:
+                                  - Building src/scripts/pamSolver.mly
+                      - Building src/repositories/PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/PamSolver.mly
+                                      - Building src/repositories/PamSolver.mll
+                              - Building src/repositories/PamSolver.mli:
+                                  - Building src/repositories/PamSolver.mly
+                              - Building src/repositories/PamSolver.mlpack
+                              - Building src/repositories/PamSolver.mli:
+                                  - Building src/repositories/PamSolver.mly
+                      - Building src/repositories/pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/pamSolver.mly
+                                      - Building src/repositories/pamSolver.mll
+                              - Building src/repositories/pamSolver.mli:
+                                  - Building src/repositories/pamSolver.mly
+                              - Building src/repositories/pamSolver.mlpack
+                              - Building src/repositories/pamSolver.mli:
+                                  - Building src/repositories/pamSolver.mly
+                      - Building PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building PamSolver.mly
+                                      - Building PamSolver.mll
+                              - Building PamSolver.mli:
+                                  - Building PamSolver.mly
+                              - Building PamSolver.mlpack
+                              - Building PamSolver.mli:
+                                  - Building PamSolver.mly
+                      - Building pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building pamSolver.mly
+                                      - Building pamSolver.mll
+                              - Building pamSolver.mli:
+                                  - Building pamSolver.mly
+                              - Building pamSolver.mlpack
+                              - Building pamSolver.mli:
+                                  - Building pamSolver.mly
+                      - Building src/solver/PamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/PamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/PamSolver.mly
+                                      - Building src/solver/PamSolver.mll
+                              - Building src/solver/PamSolver.mli:
+                                  - Building src/solver/PamSolver.mly
+                              - Building src/solver/PamSolver.mlpack
+                              - Building src/solver/PamSolver.mli:
+                                  - Building src/solver/PamSolver.mly
+                      - Building src/solver/pamSolver.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/pamSolver.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/pamSolver.mly
+                                      - Building src/solver/pamSolver.mll
+                              - Building src/solver/pamSolver.mli:
+                                  - Building src/solver/pamSolver.mly
+                              - Building src/solver/pamSolver.mlpack
+                              - Building src/solver/pamSolver.mli:
+                                  - Building src/solver/pamSolver.mly
+          - Building src/scripts/opam-solver.cma:
+              - Failed to build all of these:
+                  - Building src/scripts/opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building src/scripts/opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building src/scripts/opam-solver.mly
+                                  - Building src/scripts/opam-solver.mll
+                          - Building src/scripts/opam-solver.mli:
+                              - Building src/scripts/opam-solver.mly
+                          - Building src/scripts/opam-solver.mlpack
+                          - Building src/scripts/opam-solver.mli:
+                              - Building src/scripts/opam-solver.mly
+                  - Building src/scripts/opam-solver.mllib
+          - Building src/repositories/opam-solver.cma:
+              - Failed to build all of these:
+                  - Building src/repositories/opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building src/repositories/opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building src/repositories/opam-solver.mly
+                                  - Building src/repositories/opam-solver.mll
+                          - Building src/repositories/opam-solver.mli:
+                              - Building src/repositories/opam-solver.mly
+                          - Building src/repositories/opam-solver.mlpack
+                          - Building src/repositories/opam-solver.mli:
+                              - Building src/repositories/opam-solver.mly
+                  - Building src/repositories/opam-solver.mllib
+          - Building opam-solver.cma:
+              - Failed to build all of these:
+                  - Building opam-solver.cmo:
+                      - Failed to build all of these:
+                          - Building opam-solver.ml:
+                              - Failed to build all of these:
+                                  - Building opam-solver.mly
+                                  - Building opam-solver.mll
+                          - Building opam-solver.mli:
+                              - Building opam-solver.mly
+                          - Building opam-solver.mlpack
+                          - Building opam-solver.mli:
+                              - Building opam-solver.mly
+                  - Building opam-solver.mllib
+Compiling opam-client
+Solver failed:
+  Ocamlbuild knows of no rules that apply to a target named src/client/opam-client.mly. This can happen if you ask Ocamlbuild to build a target with the wrong extension (e.g. .opt instead of .native) or if the source files live in directories that have not been specified as include directories.
+Backtrace:
+  - Failed to build the target opam-client.cma
+      - Failed to build all of these:
+          - Building src/client/opam-client.cma:
+              - Failed to build all of these:
+                  - Building src/client/opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building src/client/opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building src/client/opam-client.mly
+                                  - Building src/client/opam-client.mll
+                          - Building src/client/opam-client.mli:
+                              - Building src/client/opam-client.mly
+                          - Building src/client/opam-client.mlpack
+                          - Building src/client/opam-client.mli:
+                              - Building src/client/opam-client.mly
+                  - Failed to build all of these:
+                      - Building src/core/PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/PamRepositoryCommand.mly
+                                      - Building src/core/PamRepositoryCommand.mll
+                              - Building src/core/PamRepositoryCommand.mli:
+                                  - Building src/core/PamRepositoryCommand.mly
+                              - Building src/core/PamRepositoryCommand.mlpack
+                              - Building src/core/PamRepositoryCommand.mli:
+                                  - Building src/core/PamRepositoryCommand.mly
+                      - Building src/core/pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/core/pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/core/pamRepositoryCommand.mly
+                                      - Building src/core/pamRepositoryCommand.mll
+                              - Building src/core/pamRepositoryCommand.mli:
+                                  - Building src/core/pamRepositoryCommand.mly
+                              - Building src/core/pamRepositoryCommand.mlpack
+                              - Building src/core/pamRepositoryCommand.mli:
+                                  - Building src/core/pamRepositoryCommand.mly
+                      - Building src/solver/PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/PamRepositoryCommand.mly
+                                      - Building src/solver/PamRepositoryCommand.mll
+                              - Building src/solver/PamRepositoryCommand.mli:
+                                  - Building src/solver/PamRepositoryCommand.mly
+                              - Building src/solver/PamRepositoryCommand.mlpack
+                              - Building src/solver/PamRepositoryCommand.mli:
+                                  - Building src/solver/PamRepositoryCommand.mly
+                      - Building src/solver/pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/solver/pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/solver/pamRepositoryCommand.mly
+                                      - Building src/solver/pamRepositoryCommand.mll
+                              - Building src/solver/pamRepositoryCommand.mli:
+                                  - Building src/solver/pamRepositoryCommand.mly
+                              - Building src/solver/pamRepositoryCommand.mlpack
+                              - Building src/solver/pamRepositoryCommand.mli:
+                                  - Building src/solver/pamRepositoryCommand.mly
+                      - Building src/scripts/PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/PamRepositoryCommand.mly
+                                      - Building src/scripts/PamRepositoryCommand.mll
+                              - Building src/scripts/PamRepositoryCommand.mli:
+                                  - Building src/scripts/PamRepositoryCommand.mly
+                              - Building src/scripts/PamRepositoryCommand.mlpack
+                              - Building src/scripts/PamRepositoryCommand.mli:
+                                  - Building src/scripts/PamRepositoryCommand.mly
+                      - Building src/scripts/pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/scripts/pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/scripts/pamRepositoryCommand.mly
+                                      - Building src/scripts/pamRepositoryCommand.mll
+                              - Building src/scripts/pamRepositoryCommand.mli:
+                                  - Building src/scripts/pamRepositoryCommand.mly
+                              - Building src/scripts/pamRepositoryCommand.mlpack
+                              - Building src/scripts/pamRepositoryCommand.mli:
+                                  - Building src/scripts/pamRepositoryCommand.mly
+                      - Building src/repositories/PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/PamRepositoryCommand.mly
+                                      - Building src/repositories/PamRepositoryCommand.mll
+                              - Building src/repositories/PamRepositoryCommand.mli:
+                                  - Building src/repositories/PamRepositoryCommand.mly
+                              - Building src/repositories/PamRepositoryCommand.mlpack
+                              - Building src/repositories/PamRepositoryCommand.mli:
+                                  - Building src/repositories/PamRepositoryCommand.mly
+                      - Building src/repositories/pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/repositories/pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/repositories/pamRepositoryCommand.mly
+                                      - Building src/repositories/pamRepositoryCommand.mll
+                              - Building src/repositories/pamRepositoryCommand.mli:
+                                  - Building src/repositories/pamRepositoryCommand.mly
+                              - Building src/repositories/pamRepositoryCommand.mlpack
+                              - Building src/repositories/pamRepositoryCommand.mli:
+                                  - Building src/repositories/pamRepositoryCommand.mly
+                      - Building PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building PamRepositoryCommand.mly
+                                      - Building PamRepositoryCommand.mll
+                              - Building PamRepositoryCommand.mli:
+                                  - Building PamRepositoryCommand.mly
+                              - Building PamRepositoryCommand.mlpack
+                              - Building PamRepositoryCommand.mli:
+                                  - Building PamRepositoryCommand.mly
+                      - Building pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building pamRepositoryCommand.mly
+                                      - Building pamRepositoryCommand.mll
+                              - Building pamRepositoryCommand.mli:
+                                  - Building pamRepositoryCommand.mly
+                              - Building pamRepositoryCommand.mlpack
+                              - Building pamRepositoryCommand.mli:
+                                  - Building pamRepositoryCommand.mly
+                      - Building src/client/PamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/PamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/PamRepositoryCommand.mly
+                                      - Building src/client/PamRepositoryCommand.mll
+                              - Building src/client/PamRepositoryCommand.mli:
+                                  - Building src/client/PamRepositoryCommand.mly
+                              - Building src/client/PamRepositoryCommand.mlpack
+                              - Building src/client/PamRepositoryCommand.mli:
+                                  - Building src/client/PamRepositoryCommand.mly
+                      - Building src/client/pamRepositoryCommand.cmo:
+                          - Failed to build all of these:
+                              - Building src/client/pamRepositoryCommand.ml:
+                                  - Failed to build all of these:
+                                      - Building src/client/pamRepositoryCommand.mly
+                                      - Building src/client/pamRepositoryCommand.mll
+                              - Building src/client/pamRepositoryCommand.mli:
+                                  - Building src/client/pamRepositoryCommand.mly
+                              - Building src/client/pamRepositoryCommand.mlpack
+                              - Building src/client/pamRepositoryCommand.mli:
+                                  - Building src/client/pamRepositoryCommand.mly
+          - Building src/core/opam-client.cma:
+              - Failed to build all of these:
+                  - Building src/core/opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building src/core/opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building src/core/opam-client.mly
+                                  - Building src/core/opam-client.mll
+                          - Building src/core/opam-client.mli:
+                              - Building src/core/opam-client.mly
+                          - Building src/core/opam-client.mlpack
+                          - Building src/core/opam-client.mli:
+                              - Building src/core/opam-client.mly
+                  - Building src/core/opam-client.mllib
+          - Building src/solver/opam-client.cma:
+              - Failed to build all of these:
+                  - Building src/solver/opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building src/solver/opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building src/solver/opam-client.mly
+                                  - Building src/solver/opam-client.mll
+                          - Building src/solver/opam-client.mli:
+                              - Building src/solver/opam-client.mly
+                          - Building src/solver/opam-client.mlpack
+                          - Building src/solver/opam-client.mli:
+                              - Building src/solver/opam-client.mly
+                  - Building src/solver/opam-client.mllib
+          - Building src/scripts/opam-client.cma:
+              - Failed to build all of these:
+                  - Building src/scripts/opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building src/scripts/opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building src/scripts/opam-client.mly
+                                  - Building src/scripts/opam-client.mll
+                          - Building src/scripts/opam-client.mli:
+                              - Building src/scripts/opam-client.mly
+                          - Building src/scripts/opam-client.mlpack
+                          - Building src/scripts/opam-client.mli:
+                              - Building src/scripts/opam-client.mly
+                  - Building src/scripts/opam-client.mllib
+          - Building src/repositories/opam-client.cma:
+              - Failed to build all of these:
+                  - Building src/repositories/opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building src/repositories/opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building src/repositories/opam-client.mly
+                                  - Building src/repositories/opam-client.mll
+                          - Building src/repositories/opam-client.mli:
+                              - Building src/repositories/opam-client.mly
+                          - Building src/repositories/opam-client.mlpack
+                          - Building src/repositories/opam-client.mli:
+                              - Building src/repositories/opam-client.mly
+                  - Building src/repositories/opam-client.mllib
+          - Building opam-client.cma:
+              - Failed to build all of these:
+                  - Building opam-client.cmo:
+                      - Failed to build all of these:
+                          - Building opam-client.ml:
+                              - Failed to build all of these:
+                                  - Building opam-client.mly
+                                  - Building opam-client.mll
+                          - Building opam-client.mli:
+                              - Building opam-client.mly
+                          - Building opam-client.mlpack
+                          - Building opam-client.mli:
+                              - Building opam-client.mly
+                  - Building opam-client.mllib
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamMain.ml > src/client/opamMain.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamArg.mli > src/client/opamArg.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamTypes.mli > src/core/opamTypes.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamCompiler.mli > src/core/opamCompiler.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFilename.mli > src/core/opamFilename.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamMisc.mli > src/core/opamMisc.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamJson.mli > src/core/opamJson.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamJson.cmi src/core/opamJson.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamMisc.cmi src/core/opamMisc.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFormula.mli > src/core/opamFormula.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamPackage.mli > src/core/opamPackage.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFilename.cmi src/core/opamFilename.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamParallel.mli > src/core/opamParallel.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamProcess.mli > src/core/opamProcess.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamGlobals.ml > src/core/opamGlobals.ml.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamGlobals.cmo src/core/opamGlobals.ml
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamProcess.cmi src/core/opamProcess.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamParallel.cmi src/core/opamParallel.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamPackage.cmi src/core/opamPackage.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFormula.cmi src/core/opamFormula.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamRepositoryName.mli > src/core/opamRepositoryName.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamSwitch.mli > src/core/opamSwitch.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamVariable.mli > src/core/opamVariable.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamVersion.mli > src/core/opamVersion.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamCompiler.cmi src/core/opamCompiler.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamRepositoryName.cmi src/core/opamRepositoryName.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamSwitch.cmi src/core/opamSwitch.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamVariable.cmi src/core/opamVariable.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamVersion.cmi src/core/opamVersion.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamTypes.cmi src/core/opamTypes.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFile.mli > src/core/opamFile.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamSystem.mli > src/core/opamSystem.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamArg.cmi src/client/opamArg.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFile.cmi src/core/opamFile.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamSystem.cmi src/core/opamSystem.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamMain.cmo src/client/opamMain.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamArg.ml > src/client/opamArg.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamClient.ml > src/client/opamClient.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamClient.mli > src/client/opamClient.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamState.mli > src/client/opamState.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamPath.mli > src/core/opamPath.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamPath.cmi src/core/opamPath.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamState.cmi src/client/opamState.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamClient.cmi src/client/opamClient.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamAction.ml > src/client/opamAction.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamAction.mli > src/client/opamAction.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamAction.cmi src/client/opamAction.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamCompiler.ml > src/core/opamCompiler.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFilename.ml > src/core/opamFilename.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamMisc.ml > src/core/opamMisc.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamJson.ml > src/core/opamJson.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamJson.cmx src/core/opamJson.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamMisc.cmx src/core/opamMisc.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamSystem.ml > src/core/opamSystem.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamGlobals.cmx src/core/opamGlobals.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamProcess.ml > src/core/opamProcess.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamVersion.ml > src/core/opamVersion.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamGitVersion.ml > src/core/opamGitVersion.ml.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamGitVersion.cmo src/core/opamGitVersion.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamGitVersion.cmx src/core/opamGitVersion.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamVersion.cmx src/core/opamVersion.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamProcess.cmx src/core/opamProcess.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamSystem.cmx src/core/opamSystem.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFormula.ml > src/core/opamFormula.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamPackage.ml > src/core/opamPackage.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFilename.cmx src/core/opamFilename.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamParallel.ml > src/core/opamParallel.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamParallel.cmx src/core/opamParallel.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamPackage.cmx src/core/opamPackage.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFormula.cmx src/core/opamFormula.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFile.ml > src/core/opamFile.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamCompiler.cmx src/core/opamCompiler.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFormat.ml > src/core/opamFormat.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFormat.mli > src/core/opamFormat.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFormat.cmi src/core/opamFormat.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamTypes.ml > src/core/opamTypes.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamRepositoryName.ml > src/core/opamRepositoryName.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamSwitch.ml > src/core/opamSwitch.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamVariable.ml > src/core/opamVariable.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamRepositoryName.cmx src/core/opamRepositoryName.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamSwitch.cmx src/core/opamSwitch.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamVariable.cmx src/core/opamVariable.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamTypes.cmx src/core/opamTypes.ml
+/usr/bin/ocamllex.opt -q src/core/opamLexer.mll
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamLexer.ml > src/core/opamLexer.ml.depends
+/usr/bin/ocamlyacc src/core/opamParser.mly
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamParser.mli > src/core/opamParser.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamParser.cmi src/core/opamParser.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamLexer.cmo src/core/opamLexer.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamParser.ml > src/core/opamParser.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamParser.cmx src/core/opamParser.ml
+/usr/bin/ocamllex.opt -q src/core/opamLineLexer.mll
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamLineLexer.ml > src/core/opamLineLexer.ml.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamLineLexer.cmo src/core/opamLineLexer.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamPath.ml > src/core/opamPath.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFormat.cmx src/core/opamFormat.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamLexer.cmx src/core/opamLexer.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamLineLexer.cmx src/core/opamLineLexer.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamPath.cmx src/core/opamPath.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamState.ml > src/client/opamState.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamDarcs.ml > src/repositories/opamDarcs.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamDarcs.mli > src/repositories/opamDarcs.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamDarcs.cmi src/repositories/opamDarcs.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamRepository.ml > src/core/opamRepository.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamRepository.mli > src/core/opamRepository.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamRepository.cmi src/core/opamRepository.mli
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFile.cmx src/core/opamFile.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamVCS.ml > src/repositories/opamVCS.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamVCS.mli > src/repositories/opamVCS.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamVCS.cmi src/repositories/opamVCS.mli
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamRepository.cmx src/core/opamRepository.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamVCS.cmx src/repositories/opamVCS.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFilter.ml > src/core/opamFilter.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamFilter.mli > src/core/opamFilter.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFilter.cmi src/core/opamFilter.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamGit.ml > src/repositories/opamGit.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamGit.mli > src/repositories/opamGit.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamGit.cmi src/repositories/opamGit.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamHTTP.ml > src/repositories/opamHTTP.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamHTTP.mli > src/repositories/opamHTTP.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamHTTP.cmi src/repositories/opamHTTP.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamHg.ml > src/repositories/opamHg.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamHg.mli > src/repositories/opamHg.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamHg.cmi src/repositories/opamHg.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamLocal.ml > src/repositories/opamLocal.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/repositories/opamLocal.mli > src/repositories/opamLocal.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamLocal.cmi src/repositories/opamLocal.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/core/opamScript.ml > src/core/opamScript.ml.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamScript.cmo src/core/opamScript.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamDarcs.cmx src/repositories/opamDarcs.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamFilter.cmx src/core/opamFilter.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamGit.cmx src/repositories/opamGit.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamHTTP.cmx src/repositories/opamHTTP.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamHg.cmx src/repositories/opamHg.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/repositories -I src/scripts -I src/solver -I src/core -I src/client -o src/repositories/opamLocal.cmx src/repositories/opamLocal.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/core -I src/repositories -I src/scripts -I src/solver -I src/client -o src/core/opamScript.cmx src/core/opamScript.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamState.cmx src/client/opamState.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamConfigCommand.ml > src/client/opamConfigCommand.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamConfigCommand.mli > src/client/opamConfigCommand.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamConfigCommand.cmi src/client/opamConfigCommand.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamSolver.ml > src/solver/opamSolver.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamSolver.mli > src/solver/opamSolver.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamSolver.cmi src/solver/opamSolver.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamCudf.ml > src/solver/opamCudf.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamCudf.mli > src/solver/opamCudf.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamCudf.cmi src/solver/opamCudf.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamHeuristic.ml > src/solver/opamHeuristic.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/solver/opamHeuristic.mli > src/solver/opamHeuristic.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamHeuristic.cmi src/solver/opamHeuristic.mli
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamCudf.cmx src/solver/opamCudf.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamHeuristic.cmx src/solver/opamHeuristic.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/solver -I src/repositories -I src/scripts -I src/core -I src/client -o src/solver/opamSolver.cmx src/solver/opamSolver.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamPinCommand.ml > src/client/opamPinCommand.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamPinCommand.mli > src/client/opamPinCommand.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamPinCommand.cmi src/client/opamPinCommand.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamRepositoryCommand.ml > src/client/opamRepositoryCommand.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamRepositoryCommand.mli > src/client/opamRepositoryCommand.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamRepositoryCommand.cmi src/client/opamRepositoryCommand.mli
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamSolution.ml > src/client/opamSolution.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamSolution.mli > src/client/opamSolution.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamSolution.cmi src/client/opamSolution.mli
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamAction.cmx src/client/opamAction.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamSwitchCommand.ml > src/client/opamSwitchCommand.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/client/opamSwitchCommand.mli > src/client/opamSwitchCommand.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamSwitchCommand.cmi src/client/opamSwitchCommand.mli
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamSolution.cmx src/client/opamSolution.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamConfigCommand.cmx src/client/opamConfigCommand.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamPinCommand.cmx src/client/opamPinCommand.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamRepositoryCommand.cmx src/client/opamRepositoryCommand.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamSwitchCommand.cmx src/client/opamSwitchCommand.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamClient.cmx src/client/opamClient.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamArg.cmx src/client/opamArg.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/client -I src/repositories -I src/scripts -I src/solver -I src/core -o src/client/opamMain.cmx src/client/opamMain.ml
+ocamlfind ocamlopt -linkpkg -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob src/core/opamGitVersion.cmx src/core/opamJson.cmx src/core/opamMisc.cmx src/core/opamGlobals.cmx src/core/opamVersion.cmx src/core/opamProcess.cmx src/core/opamSystem.cmx src/core/opamFilename.cmx src/core/opamParallel.cmx src/core/opamPackage.cmx src/core/opamFormula.cmx src/core/opamCompiler.cmx src/core/opamRepositoryName.cmx src/core/opamSwitch.cmx src/core/opamVariable.cmx src/core/opamTypes.cmx src/core/opamFormat.cmx src/core/opamParser.cmx src/core/opamLexer.cmx src/core/opamLineLexer.cmx src/core/opamPath.cmx src/core/opamFile.cmx src/core/opamFilter.cmx src/core/opamRepository.cmx src/core/opamScript.cmx src/repositories/opamVCS.cmx src/repositories/opamDarcs.cmx src/repositories/opamGit.cmx src/repositories/opamHTTP.cmx src/repositories/opamHg.cmx src/repositories/opamLocal.cmx src/client/opamState.cmx src/client/opamAction.cmx src/solver/opamCudf.cmx src/solver/opamHeuristic.cmx src/solver/opamSolver.cmx src/client/opamConfigCommand.cmx src/client/opamPinCommand.cmx src/client/opamRepositoryCommand.cmx src/client/opamSolution.cmx src/client/opamSwitchCommand.cmx src/client/opamClient.cmx src/client/opamArg.cmx src/client/opamMain.cmx -o src/client/opamMain.native
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_admin.ml > src/scripts/opam_admin.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_depexts_change.ml > src/scripts/opam_depexts_change.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_mk_repo.mli > src/scripts/opam_mk_repo.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_repo_check.mli > src/scripts/opam_repo_check.mli.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_stats.mli > src/scripts/opam_stats.mli.depends
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_depexts_change.cmo src/scripts/opam_depexts_change.ml
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_mk_repo.cmi src/scripts/opam_mk_repo.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_repo_check.cmi src/scripts/opam_repo_check.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_stats.cmi src/scripts/opam_stats.mli
+ocamlfind ocamlc -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_admin.cmo src/scripts/opam_admin.ml
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_mk_repo.ml > src/scripts/opam_mk_repo.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_repo_check.ml > src/scripts/opam_repo_check.ml.depends
+ocamlfind ocamldep -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -modules src/scripts/opam_stats.ml > src/scripts/opam_stats.ml.depends
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_depexts_change.cmx src/scripts/opam_depexts_change.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_mk_repo.cmx src/scripts/opam_mk_repo.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_repo_check.cmx src/scripts/opam_repo_check.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_stats.cmx src/scripts/opam_stats.ml
+ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_admin.cmx src/scripts/opam_admin.ml
+ocamlfind ocamlopt -linkpkg -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob src/core/opamGitVersion.cmx src/core/opamJson.cmx src/core/opamMisc.cmx src/core/opamGlobals.cmx src/core/opamVersion.cmx src/core/opamProcess.cmx src/core/opamSystem.cmx src/core/opamFilename.cmx src/core/opamParallel.cmx src/core/opamPackage.cmx src/core/opamFormula.cmx src/core/opamCompiler.cmx src/core/opamRepositoryName.cmx src/core/opamSwitch.cmx src/core/opamVariable.cmx src/core/opamTypes.cmx src/core/opamFormat.cmx src/core/opamParser.cmx src/core/opamLexer.cmx src/core/opamLineLexer.cmx src/core/opamPath.cmx src/core/opamFile.cmx src/core/opamFilter.cmx src/core/opamRepository.cmx src/core/opamScript.cmx src/repositories/opamVCS.cmx src/repositories/opamDarcs.cmx src/repositories/opamGit.cmx src/repositories/opamHTTP.cmx src/repositories/opamHg.cmx src/repositories/opamLocal.cmx src/client/opamState.cmx src/client/opamAction.cmx src/solver/opamCudf.cmx src/solver/opamHeuristic.cmx src/solver/opamSolver.cmx src/client/opamConfigCommand.cmx src/client/opamPinCommand.cmx src/client/opamRepositoryCommand.cmx src/client/opamSolution.cmx src/client/opamSwitchCommand.cmx src/client/opamClient.cmx src/client/opamArg.cmx src/scripts/opam_depexts_change.cmx src/scripts/opam_mk_repo.cmx src/scripts/opam_repo_check.cmx src/scripts/opam_stats.cmx src/scripts/opam_admin.cmx -o src/scripts/opam_admin.native
+make libuninstall
+make[1]: Entering directory `/home/opam/.opam/system/build/opam-lib.1.1.1'
+ocamlfind remove opam
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/opam
+make[1]: Leaving directory `/home/opam/.opam/system/build/opam-lib.1.1.1'
+ocamlfind install opam META _build/src/core/opam-core.a _build/src/core/opam-core.cma _build/src/core/opam-core.cmxa _build/src/core/opamFormat.cmi _build/src/core/opamVersion.cmi _build/src/core/opamJson.cmi _build/src/core/opamSwitch.cmi _build/src/core/opamFilter.cmi _build/src/core/opamRepository.cmi _build/src/core/opamParallel.cmi _build/src/core/opamSystem.cmi _build/src/core/opamPath.cmi _build/src/core/opamFilename.cmi _build/src/core/opamPackage.cmi _build/src/core/opamFile.cmi _build/src/core/opamRepositoryName.cmi _build/src/core/opamTypes.cmi _build/src/core/opamVariable.cmi _build/src/core/opamMisc.cmi _build/src/core/opamProcess.cmi _build/src/core/opamCompiler.cmi _build/src/core/opamFormula.cmi _build/src/core/opamGlobals.cmi _build/src/core/opamParser.cmi _build/src/core/opamLexer.cmi _build/src/core/opamLineLexer.cmi _build/src/repositories/opam-repositories.a _build/src/repositories/opam-repositories.cma _build/src/repositories/opam-repositories.cmxa _build/src/repositories/opamHg.cmi _build/src/repositories/opamVCS.cmi _build/src/repositories/opamHTTP.cmi _build/src/repositories/opamDarcs.cmi _build/src/repositories/opamLocal.cmi _build/src/repositories/opamGit.cmi _build/src/solver/opam-solver.a _build/src/solver/opam-solver.cma _build/src/solver/opam-solver.cmxa _build/src/solver/opamSolver.cmi _build/src/solver/opamHeuristic.cmi _build/src/solver/opamCudf.cmi _build/src/client/opam-client.a _build/src/client/opam-client.cma _build/src/client/opam-client.cmxa _build/src/client/opamSolution.cmi _build/src/client/opamSwitchCommand.cmi _build/src/client/opamRepositoryCommand.cmi _build/src/client/opamClient.cmi _build/src/client/opamState.cmi _build/src/client/opamPinCommand.cmi _build/src/client/opamAction.cmi _build/src/client/opamArg.cmi _build/src/client/opamConfigCommand.cmi
+Installed /home/opam/.opam/system/lib/opam/opamConfigCommand.cmi
+Installed /home/opam/.opam/system/lib/opam/opamArg.cmi
+Installed /home/opam/.opam/system/lib/opam/opamAction.cmi
+Installed /home/opam/.opam/system/lib/opam/opamPinCommand.cmi
+Installed /home/opam/.opam/system/lib/opam/opamState.cmi
+Installed /home/opam/.opam/system/lib/opam/opamClient.cmi
+Installed /home/opam/.opam/system/lib/opam/opamRepositoryCommand.cmi
+Installed /home/opam/.opam/system/lib/opam/opamSwitchCommand.cmi
+Installed /home/opam/.opam/system/lib/opam/opamSolution.cmi
+ocamlfind: _build/src/client/opam-client.cmxa: No such file or directory
+make: *** [libinstall-with-ocamlbuild] Error 2
+[ERROR] The compilation of opam-lib.1.1.1 failed.
+Removing opam-lib.1.1.1.
+  ocamlfind remove opam
+Removed /home/opam/.opam/system/lib/opam
+
+[ERROR] Due to some errors while processing opam-lib.1.1.1, the following actions will NOT proceed:
+ - install opamfu.0.1.1
+
+===== ERROR while installing opam-lib.1.1.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make libinstall-with-ocamlbuild
+# path                 /home/opam/.opam/system/build/opam-lib.1.1.1
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/opam-lib.1.1.1/opam-lib-4634-2c871f.env
+# stdout-file          /home/opam/.opam/system/build/opam-lib.1.1.1/opam-lib-4634-2c871f.out
+# stderr-file          /home/opam/.opam/system/build/opam-lib.1.1.1/opam-lib-4634-2c871f.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_mk_repo.cmx src/scripts/opam_mk_repo.ml
+# ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_repo_check.cmx src/scripts/opam_repo_check.ml
+# ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_stats.cmx src/scripts/opam_stats.ml
+# ocamlfind ocamlopt -c -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob -I src/scripts -I src/repositories -I src/solver -I src/core -I src/client -o src/scripts/opam_admin.cmx src/scripts/opam_admin.ml
+# ocamlfind ocamlopt -linkpkg -package dose3 -package cudf -package cmdliner -package ocamlgraph -package re.perl -package re.str -package re.pcre -package re.glob src/core/opamGitVersion.cmx src/core/opamJson.cmx src/core/opamMisc.cmx src/core/opamGlobals.cmx src/core/opamVersion.cmx src/core/opamProcess.cmx src/core/opamSystem.cmx src/core/opamFilename.cmx src/core/opamParallel.cmx src/core/opamPackage.cmx src/core/opamFormula.cmx src/core/opamCompiler.cmx src/core/opamRepositoryName.cmx src/core/opamSwitch.cmx src/core/opamVariable.cmx src/core/opamTypes.cmx src/core/opamFormat.cmx src/core/opamParser.cmx src/core/opamLexer.cmx src/core/opamLineLexer.cmx src/core/opamPath.cmx src/core/opamFile.cmx src/core/opamFilter.cmx src/core/opamRepository.cmx src/core/opamScript.cmx src/repositories/opamVCS.cmx src/repositories/opamDarcs.cmx src/repositories/opamGit.cmx src/repositories/opamHTTP.cmx src/repositories/opamHg.cmx src/repositories/opamLocal.cmx src/client/opamState.cmx src/client/opamAction.cmx src/solver/opamCudf.cmx src/solver/opamHeuristic.cmx src/solver/opamSolver.cmx src/client/opamConfigCommand.cmx src/client/opamPinCommand.cmx src/client/opamRepositoryCommand.cmx src/client/opamSolution.cmx src/client/opamSwitchCommand.cmx src/client/opamClient.cmx src/client/opamArg.cmx src/scripts/opam_depexts_change.cmx src/scripts/opam_mk_repo.cmx src/scripts/opam_repo_check.cmx src/scripts/opam_stats.cmx src/scripts/opam_admin.cmx -o src/scripts/opam_admin.native
+# make libuninstall
+# make[1]: Entering directory `/home/opam/.opam/system/build/opam-lib.1.1.1'
+# ocamlfind remove opam
+# make[1]: Leaving directory `/home/opam/.opam/system/build/opam-lib.1.1.1'
+# ocamlfind install opam META _build/src/core/opam-core.a _build/src/core/opam-core.cma _build/src/core/opam-core.cmxa _build/src/core/opamFormat.cmi _build/src/core/opamVersion.cmi _build/src/core/opamJson.cmi _build/src/core/opamSwitch.cmi _build/src/core/opamFilter.cmi _build/src/core/opamRepository.cmi _build/src/core/opamParallel.cmi _build/src/core/opamSystem.cmi _build/src/core/opamPath.cmi _build/src/core/opamFilename.cmi _build/src/core/opamPackage.cmi _build/src/core/opamFile.cmi _build/src/core/opamRepositoryName.cmi _build/src/core/opamTypes.cmi _build/src/core/opamVariable.cmi _build/src/core/opamMisc.cmi _build/src/core/opamProcess.cmi _build/src/core/opamCompiler.cmi _build/src/core/opamFormula.cmi _build/src/core/opamGlobals.cmi _build/src/core/opamParser.cmi _build/src/core/opamLexer.cmi _build/src/core/opamLineLexer.cmi _build/src/repositories/opam-repositories.a _build/src/repositories/opam-repositories.cma _build/src/repositories/opam-repositories.cmxa _build/src/repositories/opamHg.cmi _build/src/repositories/opamVCS.cmi _build/src/repositories/opamHTTP.cmi _build/src/repositories/opamDarcs.cmi _build/src/repositories/opamLocal.cmi _build/src/repositories/opamGit.cmi _build/src/solver/opam-solver.a _build/src/solver/opam-solver.cma _build/src/solver/opam-solver.cmxa _build/src/solver/opamSolver.cmi _build/src/solver/opamHeuristic.cmi _build/src/solver/opamCudf.cmi _build/src/client/opam-client.a _build/src/client/opam-client.cma _build/src/client/opam-client.cmxa _build/src/client/opamSolution.cmi _build/src/client/opamSwitchCommand.cmi _build/src/client/opamRepositoryCommand.cmi _build/src/client/opamClient.cmi _build/src/client/opamState.cmi _build/src/client/opamPinCommand.cmi _build/src/client/opamAction.cmi _build/src/client/opamArg.cmi _build/src/client/opamConfigCommand.cmi
+### stderr ###
+# ...[truncated]
+# Installed /home/opam/.opam/system/lib/opam/opamArg.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamAction.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamPinCommand.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamState.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamClient.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamRepositoryCommand.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamSwitchCommand.cmi
+# Installed /home/opam/.opam/system/lib/opam/opamSolution.cmi
+# ocamlfind: _build/src/client/opam-client.cmxa: No such file or directory
+# make: *** [libinstall-with-ocamlbuild] Error 2
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140426224519.export"
+'opam install opamfu' failed.
