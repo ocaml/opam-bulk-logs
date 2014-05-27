@@ -6655,3 +6655,16 @@ ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
 ocamlfind ocamlopt -c -o cset.cmx cset.ml
 ocamlfind ocamlopt -c -o ulex.cmx ulex.ml
 ocamlfind ocamlopt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+ocamlfind ocamlopt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+ocamlfind ocamlopt -c -o utf8.cmx utf8.ml
++ ocamlfind ocamlopt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlfind ocamlopt -c -o ulexing.cmx ulexing.ml
++ ocamlfind ocamlopt -c -o ulexing.cmx ulexing.ml
+File "ulexing.ml", line 190, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "ulexing.ml", line 191, characters 26-80:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
