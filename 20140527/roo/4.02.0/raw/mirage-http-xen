@@ -3756,3 +3756,64 @@ ocamlfind ocamldep -package fieldslib -syntax camlp4o -package fieldslib.syntax 
 ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmi lwt/cohttp_lwt_body.mli
 ocamlfind ocamldep -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_body.ml > lwt/cohttp_lwt_body.ml.depends
 ocamlfind ocamldep -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -modules lwt/cohttp_lwt.mli > lwt/cohttp_lwt.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmi lwt/cohttp_lwt.mli
+ocamlfind ocamldep -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -modules lwt/cohttp_lwt.ml > lwt/cohttp_lwt.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt_body.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmo lwt/cohttp_lwt.ml
+ocamlfind ocamlc -a lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt.cmo -o lwt/cohttp_lwt.cma
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt_body.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmx lwt/cohttp_lwt.ml
+ocamlfind ocamlopt -a lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt.cmx -o lwt/cohttp_lwt.cmxa
+ocamlfind ocamlopt -shared lwt/cohttp_lwt.cmxa lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt.cmx -o lwt/cohttp_lwt.cmxs
+./setup.bin -test
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+./setup.bin -doc
+File "_tags", line 50, characters 16-27:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 63, characters 18-27:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 77, characters 38-49:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 117, characters 39-50:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 135, characters 46-57:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 152, characters 50-61:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 169, characters 46-57:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 186, characters 49-60:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 203, characters 57-68:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 216, characters 21-32:
+Warning: the tag "pkg_lwt.ssl" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 224, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 238, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 252, characters 51-60:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 266, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 278, characters 21-30:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 292, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 303, characters 16-25:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 316, characters 44-53:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 327, characters 27-36:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldoc -dump cohttp/IO.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/IO.mli
+ocamlfind ocamldoc -dump cohttp/code.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/code.mli
+ocamlfind ocamldoc -dump cohttp/header.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/header.mli
+ocamlfind ocamldoc -dump cohttp/cookie.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/cookie.mli
+ocamlfind ocamldoc -dump cohttp/request.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/request.mli
++ ocamlfind ocamldoc -dump cohttp/request.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/request.mli
+Warning: Element Core.Std.Sexp.t not found
+ocamlfind ocamldoc -dump cohttp/response.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/response.mli
++ ocamlfind ocamldoc -dump cohttp/response.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/response.mli
+Warning: Element Core.Std.Sexp.t not found
+ocamlfind ocamldoc -dump cohttp/transfer.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re -package sexplib -syntax camlp4o -package sexplib.syntax -package uri -package uri.services -I cohttp cohttp/transfer.mli
