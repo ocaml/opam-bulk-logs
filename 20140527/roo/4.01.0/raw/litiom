@@ -5846,3 +5846,24 @@ ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
 ocamlfind ocamlc -package lwt -c stubs.c
 ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo regexp.cmo CSS.cmo url.cmo form.cmo xmlHttpRequest.cmo event_arrows.cmo lwt_js_events.cmo json.cmo webGL.cmo webSockets.cmo keycode.cmo stubs.o
 ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+ocamlfind ocamlc -package deriving-ocsigen.syntax,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -package deriving-ocsigen.syntax,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_deriving_Json.cmxs syntax/pa_deriving_Json.cmx
+ocamllex deriving_json/deriving_Json_lexer.mll
+150 states, 772 transitions, table size 3988 bytes
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_lexer.mli
+ocamlfind ocamlc -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+ocamlfind ocamlc -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlopt -package deriving-ocsigen.syntax -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+make[1]: Leaving directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/lib'
+make -C doc
+make[1]: Entering directory `/home/opam/.opam/system/build/js_of_ocaml.1.4.0/doc'
+mkdir -p api-html
+ocamlfind ocamldoc -package lwt -intro api-index -html \
+	   -d api-html -I ../lib -I ../lib/deriving_json ../lib/*.mli ../lib/deriving_json/deriving_Json.mli ../lib/deriving_json/deriving_Json_lexer.mli
