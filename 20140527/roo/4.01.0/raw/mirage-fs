@@ -4047,3 +4047,14 @@ mirage-fs.0.6.0+opam.tar.gz
 
 sent 3,565 bytes  received 35 bytes  7,200.00 bytes/sec
 total size is 3,429  speedup is 0.95
+Building mirage-fs.0.6.0:
+  make all
+cd crunch && ocamlbuild  crunch.native
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/usr/bin/ocamldep.opt -modules crunch.ml > crunch.ml.depends
+/usr/bin/ocamlc.opt -c -o crunch.cmo crunch.ml
+/usr/bin/ocamlopt.opt -c -o crunch.cmx crunch.ml
+/usr/bin/ocamlc.opt -c custom_unix_stubs.c
+/usr/bin/ocamlmklib -o crunch custom_unix_stubs.o
+/usr/bin/ocamlopt.opt unix.cmxa crunch.cmx libcrunch.a -o crunch.native
+Installing mirage-fs.0.6.0.
