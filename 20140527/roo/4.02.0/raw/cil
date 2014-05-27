@@ -343,4 +343,110 @@ checking for stdbool.h... yes
 checking for an ANSI C-conforming const... yes
 checking for inline... inline
 checking whether time.h and sys/time.h may both be included... yes
-checking for working memcmp... 
+checking for working memcmp... yes
+checking for mkdir... yes
+checking for select... yes
+checking for socket... yes
+checking for __sysv_signal... yes
+checking for real definition of size_t... unsigned long
+checking for real definition of wchar_t... int
+checking whether to use CIL feature blockinggraph... no
+checking whether to use CIL feature zrapp... no
+checking whether to use CIL feature llvm... no
+configure: creating ./config.status
+config.status: creating stamp-h
+config.status: creating Makefile
+config.status: creating config.mk
+config.status: creating lib/App/Cilly/CilConfig.pm
+config.status: creating doc/index.html
+config.status: creating doc/header.html
+config.status: creating src/machdep-ml.c
+config.status: creating config.h
+
+CIL configuration:
+  (optional) cl.exe found:    HAS_MSVC           no
+  gcc to use                  CC                 gcc
+  default compiler            DEFAULT_COMPILER   _GNUCC
+  CIL version                 CIL_VERSION        1.7.3
+  CIL features                CIL_FEATURES       
+  Extra source directories    EXTRASRCDIRS       
+ocamlbuild -build-dir _build -no-links -classic-display src/cil.cma
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules ocamlutil/alpha.mli > ocamlutil/alpha.mli.depends
+ocamlfind ocamldep -modules ocamlutil/pretty.mli > ocamlutil/pretty.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/pretty.cmi ocamlutil/pretty.mli
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/alpha.cmi ocamlutil/alpha.mli
+ocamlfind ocamldep -modules ocamlutil/alpha.ml > ocamlutil/alpha.ml.depends
+ocamlfind ocamldep -modules ocamlutil/errormsg.mli > ocamlutil/errormsg.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/errormsg.cmi ocamlutil/errormsg.mli
+ocamlfind ocamldep -modules src/ext/availexps.ml > src/ext/availexps.ml.depends
+ocamlfind ocamldep -modules src/cil.mli > src/cil.mli.depends
+ocamlfind ocamldep -modules src/cilint.mli > src/cilint.mli.depends
+make -C .. _build/machdep.ml
++ make -C .. _build/machdep.ml
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/cil.1.7.3'
+src/machdep-ml.c: In function 'main':
+src/machdep-ml.c:106:21: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_short = (int)(&((struct shortstruct*)0)->s);
+                     ^
+src/machdep-ml.c:115:19: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_int = (int)(&((struct intstruct*)0)->i);
+                   ^
+src/machdep-ml.c:124:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_bool = (int)(&((struct boolstruct*)0)->b);
+                    ^
+src/machdep-ml.c:133:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_long = (int)(&((struct longstruct*)0)->l);
+                    ^
+src/machdep-ml.c:142:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_longlong = (int)(&((struct longlong*)0)->ll);
+                        ^
+src/machdep-ml.c:151:19: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_ptr = (int)(&((struct ptrstruct*)0)->p);
+                   ^
+src/machdep-ml.c:160:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_enum = (int)(&((struct enumstruct*)0)->e);
+                    ^
+src/machdep-ml.c:169:21: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_float = (int)(&((struct floatstruct*)0)->f);
+                     ^
+src/machdep-ml.c:178:22: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_double = (int)(&((struct s1*)0)->d);
+                      ^
+src/machdep-ml.c:187:26: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_longdouble = (int)(&((struct s1*)0)->ld);
+                          ^
+machdep-ml.exe created succesfully.
+Generating machine dependency information for CIL
+/bin/sh: 1: cl: not found
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/cil.1.7.3'
+ocamlfind ocamldep -modules machdep.ml > machdep.ml.depends
+ocamlfind ocamlc -c -I src -I ocamlutil -I src/ext -I src/frontc -I src/ext/pta -o src/cilint.cmi src/cilint.mli
+ocamlfind ocamlc -c -g -I src -I ocamlutil -I src/ext -I src/frontc -I src/ext/pta -o machdep.cmo machdep.ml
+ocamlfind ocamldep -modules src/ext/dataflow.mli > src/ext/dataflow.mli.depends
+ocamlfind ocamlc -c -I src -I ocamlutil -I src/ext -I src/frontc -I src/ext/pta -o src/cil.cmi src/cil.mli
+ocamlfind ocamldep -modules ocamlutil/inthash.mli > ocamlutil/inthash.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/inthash.cmi ocamlutil/inthash.mli
+ocamlfind ocamldep -modules src/ext/expcompare.ml > src/ext/expcompare.ml.depends
+ocamlfind ocamldep -modules ocamlutil/util.mli > ocamlutil/util.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/util.cmi ocamlutil/util.mli
+ocamlfind ocamldep -modules ocamlutil/stats.mli > ocamlutil/stats.mli.depends
+ocamlfind ocamldep -modules src/ext/usedef.ml > src/ext/usedef.ml.depends
+ocamlfind ocamlc -c -I src/ext -I src -I ocamlutil -I src/frontc -I src/ext/pta -o src/ext/dataflow.cmi src/ext/dataflow.mli
+ocamlfind ocamlc -c -g -I src/ext -I src -I ocamlutil -I src/frontc -I src/ext/pta -o src/ext/expcompare.cmo src/ext/expcompare.ml
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/stats.cmi ocamlutil/stats.mli
+ocamlfind ocamlc -c -g -I src/ext -I src -I ocamlutil -I src/frontc -I src/ext/pta -o src/ext/usedef.cmo src/ext/usedef.ml
+ocamlfind ocamldep -modules src/ext/availexpslv.ml > src/ext/availexpslv.ml.depends
+ocamlfind ocamldep -modules ocamlutil/bitmap.mli > ocamlutil/bitmap.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/bitmap.cmi ocamlutil/bitmap.mli
+ocamlfind ocamldep -modules ocamlutil/bitmap.ml > ocamlutil/bitmap.ml.depends
+ocamlfind ocamldep -modules src/frontc/cabs.ml > src/frontc/cabs.ml.depends
+ocamlfind ocamldep -modules src/frontc/cabs2cil.mli > src/frontc/cabs2cil.mli.depends
+ocamlfind ocamlc -c -g -I src/frontc -I src -I ocamlutil -I src/ext -I src/ext/pta -o src/frontc/cabs.cmo src/frontc/cabs.ml
+ocamlfind ocamlc -c -I src/frontc -I src -I ocamlutil -I src/ext -I src/ext/pta -o src/frontc/cabs2cil.cmi src/frontc/cabs2cil.mli
+ocamlfind ocamldep -modules src/frontc/cabs2cil.ml > src/frontc/cabs2cil.ml.depends
+ocamlfind ocamldep -modules src/frontc/cabshelper.ml > src/frontc/cabshelper.ml.depends
+ocamlfind ocamldep -modules ocamlutil/growArray.mli > ocamlutil/growArray.mli.depends
+ocamlfind ocamlc -c -I ocamlutil -I src -I src/ext -I src/frontc -I src/ext/pta -o ocamlutil/growArray.cmi ocamlutil/growArray.mli
+ocamlfind ocamldep -modules src/frontc/cabsvisit.mli > src/frontc/cabsvisit.mli.depends
+ocamlfind ocamldep -modules src/cilutil.ml > src/cilutil.ml.depends
