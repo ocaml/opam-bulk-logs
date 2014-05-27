@@ -453,3 +453,17 @@ ocamlfind ocamlc -c -g -I src -package unix -package str -package num -I src -o 
 ocamlfind ocamlc -pack -g src/bottomUp.cmo src/topDownAst.cmo src/topDownParser.cmo src/topDownLexer.cmo src/topDown.cmo src/bottomUpAst.cmo src/default.cmo src/bottomUpParser.cmo src/bottomUpLexer.cmo src/version.cmo src/topDownUnix.cmo src/camlInterface.cmo -o src/datalog.cmo
 ocamlfind ocamlc -a src/datalog.cmo -o src/datalog.cma
 ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDownAst.cmx src/topDownAst.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDownParser.cmx src/topDownParser.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDownLexer.cmx src/topDownLexer.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUp.cmx src/bottomUp.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpAst.cmx src/bottomUpAst.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpParser.cmx src/bottomUpParser.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDown.cmx src/topDown.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/default.cmx src/default.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpLexer.cmx src/bottomUpLexer.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/version.cmx src/version.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDownUnix.cmx src/topDownUnix.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/camlInterface.cmx src/camlInterface.ml
+touch src/datalog.mli  ; if  ocamlfind ocamlopt -pack -g -I src src/bottomUp.cmx src/topDownAst.cmx src/topDownParser.cmx src/topDownLexer.cmx src/topDown.cmx src/bottomUpAst.cmx src/default.cmx src/bottomUpParser.cmx src/bottomUpLexer.cmx src/version.cmx src/topDownUnix.cmx src/camlInterface.cmx -o src/datalog.cmx  ; then  rm -f src/datalog.mli  ; else  rm -f src/datalog.mli  ; exit 1; fi
+ocamlfind ocamlopt -a src/datalog.cmx -o src/datalog.cmxa
+ocamlfind ocamlopt -shared src/datalog.cmx -o src/datalog.cmxs
