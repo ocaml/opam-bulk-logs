@@ -1186,3 +1186,24 @@ ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_uni
 /bin/grep -F Logical_Order_Exception unidata/PropList.txt | tools/parse_uniset.opt database Logical_Order_Exception
 /bin/grep -F Math unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Math
 /bin/grep -F Alphabetic unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Alphabetic
+/bin/grep -F Lowercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Lowercase
+/bin/grep -F Uppercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Uppercase
+/bin/grep -F ID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Start
+/bin/grep -F ID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Continue
+/bin/grep -F XID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Start
+/bin/grep -F XID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Continue
+/bin/grep -F Default_Ignorable_Code_Point unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Default_Ignorable_Code_Point
+/bin/grep -F Grapheme_Extend unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Extend
+/bin/grep -F Grapheme_Base unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Base
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/camomilestringprep.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilestringprep.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilestringprep.cmx
+tools/camomilestringprep.opt -in unidata/stringprep -out database
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_casefolding.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_casefolding.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_casefolding.cmx
+tools/parse_casefolding.opt database < unidata/CaseFolding.txt
+tools/parse_uniset.opt database composition_exclusion < unidata/CompositionExclusions.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_age.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_age.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_age.cmx
+tools/parse_age.opt database < unidata/DerivedAge.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_scripts.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_scripts.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_scripts.cmx
