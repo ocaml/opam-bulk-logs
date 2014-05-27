@@ -3979,3 +3979,22 @@ ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.u
 File "test/sendfd_test.ml", line 7, characters 15-28:
 Warning 3: deprecated feature: String.create
 ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/sendfd_test.cmx -o test/sendfd_test.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/nonblock_test.ml > test/nonblock_test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmo test/nonblock_test.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmx test/nonblock_test.ml
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/nonblock_test.cmx -o test/nonblock_test.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/nonblock_read.ml > test/nonblock_read.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_read.cmo test/nonblock_read.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_read.cmx test/nonblock_read.ml
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/nonblock_read.cmx -o test/nonblock_read.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/getifaddrs_test.ml > test/getifaddrs_test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/getifaddrs_test.cmo test/getifaddrs_test.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/getifaddrs_test.cmx test/getifaddrs_test.ml
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr lib/tuntap.cmxa test/getifaddrs_test.cmx -o test/getifaddrs_test.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/set_ipv4_test.ml > test/set_ipv4_test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/set_ipv4_test.cmo test/set_ipv4_test.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/set_ipv4_test.cmx test/set_ipv4_test.ml
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr -package oUnit lib/tuntap.cmxa test/set_ipv4_test.cmx -o test/set_ipv4_test.native
+ocaml setup.ml -install 
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated feature: String.set
