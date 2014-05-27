@@ -490,3 +490,22 @@ ocamlfind ocamlc -c -o inliner.cmi inliner.mli
 ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
 ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/usr/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/usr/bin/ocamlyacc sentenceParser.mly
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli

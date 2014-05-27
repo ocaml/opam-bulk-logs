@@ -989,3 +989,11 @@ cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3
 cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o posix_types_stubs.o  /home/opam/.opam/system/build/ctypes.0.3/src/ctypes/posix_types_stubs.c
 cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o raw_pointer_stubs.o  /home/opam/.opam/system/build/ctypes.0.3/src/ctypes/raw_pointer_stubs.c
 cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o type_info_stubs.o  /home/opam/.opam/system/build/ctypes.0.3/src/ctypes/type_info_stubs.c
+cd _build/src/ctypes && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o unsigned_stubs.o  /home/opam/.opam/system/build/ctypes.0.3/src/ctypes/unsigned_stubs.c
+ocamlmklib -o _build/ctypes_stubs _build/src/ctypes/complex_stubs.o _build/src/ctypes/ctypes_bigarray_stubs.o _build/src/ctypes/managed_buffer_stubs.o _build/src/ctypes/posix_types_stubs.o _build/src/ctypes/raw_pointer_stubs.o _build/src/ctypes/type_info_stubs.o _build/src/ctypes/unsigned_stubs.o 
+ocamlfind opt -c -o _build/src/ctypes/common.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/common.ml
+ocamlfind opt -c -o _build/src/ctypes/ctypes_path.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes_path.ml
+ocamlfind opt -c -o _build/src/ctypes/unsigned.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/unsigned.ml
+ocamlfind opt -c -o _build/src/ctypes/signed.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/signed.ml
+ocamlfind opt -c -o _build/src/ctypes/primitives.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/primitives.ml
+ocamlfind opt -c -o _build/src/ctypes/ctypes_primitives.cmx   -package str -package bigarray   -I _build/src/ctypes  src/ctypes/ctypes_primitives.ml
