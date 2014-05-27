@@ -315,3 +315,118 @@ File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
 ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
 		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing mpi.1.01 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mpi.1.01+opam.tar.gz
+sending incremental file list
+mpi.1.01+opam.tar.gz
+
+sent 60,011 bytes  received 35 bytes  120,092.00 bytes/sec
+total size is 59,878  speedup is 1.00
+Building mpi.1.01:
+  make all
+  make opt
+  make install
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o init.o init.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o comm.o comm.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o msgs.o msgs.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o collcomm.o collcomm.c
+collcomm.c: In function 'caml_mpi_scatter_float':
+collcomm.c:123:12: warning: unused variable 'len' [-Wunused-variable]
+   mlsize_t len = Wosize_val(data) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_scatter_floatarray':
+collcomm.c:145:12: warning: unused variable 'srclen' [-Wunused-variable]
+   mlsize_t srclen = Wosize_val(source) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_gather_float':
+collcomm.c:197:12: warning: unused variable 'reslen' [-Wunused-variable]
+   mlsize_t reslen = Wosize_val(result) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_allgather_float':
+collcomm.c:245:12: warning: unused variable 'reslen' [-Wunused-variable]
+   mlsize_t reslen = Wosize_val(result) / Double_wosize;
+            ^
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o groups.o groups.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o utils.o utils.c
+rm -f libcamlmpi.a
+ar rc libcamlmpi.a init.o comm.o msgs.o collcomm.o groups.o utils.o
+ocamlc -c mpi.mli
+ocamlc -c mpi.ml
+File "mpi.ml", line 200, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 249, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 256, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 265, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 312, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 384, characters 20-33:
+Warning 3: deprecated feature: String.create
+ocamlc -a -o mpi.cma -custom mpi.cmo -cclib -lcamlmpi -ccopt -L/usr/lib/openmpi/lib -cclib -lmpi
+ocamlopt -c mpi.ml
+File "mpi.ml", line 200, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 249, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 256, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 265, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 312, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "mpi.ml", line 384, characters 20-33:
+Warning 3: deprecated feature: String.create
+ocamlopt -a -o mpi.cmxa mpi.cmx -cclib -lcamlmpi -ccopt -L/usr/lib/openmpi/lib -cclib -lmpi
+ocamlfind install mpi META mpi.mli mpi.cmi mpi.cma mpi.cmxa libcamlmpi.a mpi.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/mpi.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/libcamlmpi.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/mpi.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/mpi.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/mpi.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/mpi.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mpi/META
+Installing mpi.1.01.
