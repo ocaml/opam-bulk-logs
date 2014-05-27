@@ -361,3 +361,44 @@ File "protocols/http/uri.ml", line 64, characters 41-53:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/httputils.cmx protocols/http/httputils.ml
 ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/uri.cmx protocols/http/uri.ml
++ ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/uri.cmx protocols/http/uri.ml
+File "protocols/http/uri.ml", line 63, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "protocols/http/uri.ml", line 64, characters 41-53:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/http.cmx protocols/http/http.ml
++ ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/http.cmx protocols/http/http.ml
+File "protocols/http/http.ml", line 28, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "protocols/http/http.ml", line 29, characters 41-53:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/http_client_conn.cmx protocols/http/http_client_conn.ml
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/http_client.cmx protocols/http/http_client.ml
++ ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -o protocols/http/http_client.cmx protocols/http/http_client.ml
+File "protocols/http/http_client.ml", line 290, characters 31-44:
+Warning 3: deprecated feature: String.create
+File "protocols/http/http_client.ml", line 202, characters 45-47:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "protocols/http/http_client.ml", line 202, characters 29-31:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo protocols/http/http_client_conn.cmo protocols/http/http_client.cmo -o protocols/http/httplib.cma
+ocamlfind ocamlopt -a protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/http_client_conn.cmx protocols/http/http_client.cmx -o protocols/http/httplib.cmxa
+ocamlfind ocamldep -modules protocols/http/tests/test_http.ml > protocols/http/tests/test_http.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmo protocols/http/tests/test_http.ml
++ ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmo protocols/http/tests/test_http.ml
+File "protocols/http/tests/test_http.ml", line 51, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmx protocols/http/tests/test_http.ml
++ ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmx protocols/http/tests/test_http.ml
+File "protocols/http/tests/test_http.ml", line 51, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamldep -modules protocols/http/tests/test_uri.ml > protocols/http/tests/test_uri.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_uri.cmo protocols/http/tests/test_uri.ml
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_uri.cmx protocols/http/tests/test_uri.ml
+ocamlfind ocamldep -modules protocols/http/tests/test_http_client.ml > protocols/http/tests/test_http_client.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http_client.cmo protocols/http/tests/test_http_client.ml
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http_client.cmx protocols/http/tests/test_http_client.ml
+ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo protocols/http/tests/test_http.cmo -o protocols/http/tests/test_http.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/tests/test_http.cmx -o protocols/http/tests/test_http.native
+ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/tests/test_uri.cmo -o protocols/http/tests/test_uri.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/tests/test_uri.cmx -o protocols/http/tests/test_uri.native
