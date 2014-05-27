@@ -2425,3 +2425,10 @@ mv checksum_stubs.o lib/checksum_stubs.o
 ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/Packet.mli > lib/Packet.mli.depends
 ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/Packet.cmi lib/Packet.mli
 ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/Packet.ml > lib/Packet.ml.depends
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/checksum.mli > lib/checksum.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/checksum.cmi lib/checksum.mli
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/checksum.ml > lib/checksum.ml.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmo lib/Packet.ml
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmo lib/checksum.ml
+ocamlfind ocamlc -a -dllib -lpacket_stubs -cclib -lpacket_stubs -g lib/checksum.cmo lib/Packet.cmo -o lib/packet.cma
+ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmx lib/checksum.ml
