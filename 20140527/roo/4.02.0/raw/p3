@@ -312,3 +312,46 @@ Here is an example of a value that is not matched:
 File "p3gen.ml", line 185, characters 43-45:
 Warning 3: deprecated feature: operator (or); you should use (||) instead
 ocamlfind ocamlopt -linkpkg p3gen.cmx -o p3gen.native
+ocamlfind ocamldep -modules p3_lib.ml > p3_lib.ml.depends
+ocamlfind ocamlc -c -o p3_lib.cmo p3_lib.ml
++ ocamlfind ocamlc -c -o p3_lib.cmo p3_lib.ml
+File "p3_lib.ml", line 165, characters 27-65:
+Warning 10: this expression should have type unit.
+File "p3_lib.ml", line 1149, characters 9-84:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(TM _, _)
+File "p3_lib.ml", line 1183, characters 9-84:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(TM _, _)
+File "p3_lib.ml", line 185, characters 43-45:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a p3_lib.cmo -o p3.cma
+ocamlfind ocamlopt -c -o p3_lib.cmx p3_lib.ml
++ ocamlfind ocamlopt -c -o p3_lib.cmx p3_lib.ml
+File "p3_lib.ml", line 165, characters 27-65:
+Warning 10: this expression should have type unit.
+File "p3_lib.ml", line 1149, characters 9-84:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(TM _, _)
+File "p3_lib.ml", line 1183, characters 9-84:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(TM _, _)
+File "p3_lib.ml", line 185, characters 43-45:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a p3_lib.cmx -o p3.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/p3.0.0.3/src'
+cd src && make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/p3.0.0.3/src'
+ocamlbuild p3gen.native  p3.cma p3.cmxa
+ocamlfind install p3 META _build/{p3.a,p3.cma,p3.cmxa,p3_lib.cmi}
+Installed /home/opam/.opam/4.02.0+trunk/lib/p3/p3_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/p3/p3.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/p3/p3.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/p3/p3.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/p3/META
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/p3.0.0.3/src'
+Installing p3.0.0.3.
