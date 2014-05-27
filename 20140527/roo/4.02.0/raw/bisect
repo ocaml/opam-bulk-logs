@@ -863,3 +863,87 @@ ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/lib
 ocamlfind ocamldep -modules src/syntax/excludeParser.mli > src/syntax/excludeParser.mli.depends
 ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmi src/syntax/excludeParser.mli
 ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeLexer.cmo src/syntax/excludeLexer.ml
+ocamlfind ocamldep -modules src/syntax/instrumentState.mli > src/syntax/instrumentState.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmi src/syntax/instrumentState.mli
+ocamlfind ocamldep -modules src/syntax/instrumentState.ml > src/syntax/instrumentState.ml.depends
+ocamlfind ocamldep -modules src/syntax/instrumentArgs.mli > src/syntax/instrumentArgs.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmi src/syntax/instrumentArgs.mli
+ocamlfind ocamldep -modules src/syntax/instrumentArgs.ml > src/syntax/instrumentArgs.ml.depends
+ocamlfind ocamldep -modules src/syntax/commentsCamlp4.mli > src/syntax/commentsCamlp4.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmi src/syntax/commentsCamlp4.mli
+ocamlfind ocamldep -modules src/syntax/commentsCamlp4.ml > src/syntax/commentsCamlp4.ml.depends
+ocamlfind ocamldep -pp camlp4of -modules src/syntax/instrumentCamlp4.ml > src/syntax/instrumentCamlp4.ml.depends
+ocamlfind ocamldep -modules src/syntax/exclude.ml > src/syntax/exclude.ml.depends
+ocamlfind ocamldep -modules src/syntax/excludeParser.ml > src/syntax/excludeParser.ml.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclusions.cmo src/syntax/exclusions.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmo src/syntax/instrumentState.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmo src/syntax/instrumentArgs.ml
+ocamlfind ocamlc -c -I +camlp4 -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmo src/syntax/commentsCamlp4.ml
+ocamlfind ocamlc -c -I +camlp4 -pp camlp4of -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentCamlp4.cmo src/syntax/instrumentCamlp4.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclude.cmo src/syntax/exclude.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmo src/syntax/excludeParser.ml
+ocamlfind ocamlc -pack src/library/common.cmo src/syntax/exclude.cmo src/syntax/excludeParser.cmo src/syntax/excludeLexer.cmo src/syntax/exclusions.cmo src/syntax/instrumentState.cmo src/syntax/instrumentArgs.cmo src/syntax/commentsCamlp4.cmo src/syntax/instrumentCamlp4.cmo -o bisect_pp.cmo
+if [ "FALSE" = "TRUE" ]; then \
+	  WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisect_ppx.byte; \
+	fi
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisectThread.cmo
+File "_tags", line 33, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 36, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/threads/bisectThread.mli > src/threads/bisectThread.mli.depends
+ocamlfind ocamlc -c -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmi src/threads/bisectThread.mli
+ocamlfind ocamldep -modules src/threads/bisectThread.ml > src/threads/bisectThread.ml.depends
+ocamlfind ocamlc -c -thread -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmo src/threads/bisectThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisectThread.cmx
+File "_tags", line 33, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 36, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlopt -c -thread -for-pack Bisect -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmx src/threads/bisectThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links report.byte
+File "_tags", line 33, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 36, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/report/report.ml > src/report/report.ml.depends
+ocamlfind ocamldep -modules src/report/combine.mli > src/report/combine.mli.depends
+ocamlfind ocamldep -modules src/report/reportArgs.mli > src/report/reportArgs.mli.depends
+ocamlfind ocamldep -modules src/report/reportCSV.mli > src/report/reportCSV.mli.depends
+ocamlfind ocamldep -modules src/report/reportGeneric.mli > src/report/reportGeneric.mli.depends
+ocamlfind ocamldep -modules src/report/reportStat.mli > src/report/reportStat.mli.depends
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportStat.cmi src/report/reportStat.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportGeneric.cmi src/report/reportGeneric.mli
+ocamlfind ocamldep -modules src/report/reportDump.mli > src/report/reportDump.mli.depends
+ocamlfind ocamldep -modules src/report/reportHTML.mli > src/report/reportHTML.mli.depends
+ocamlfind ocamldep -modules src/report/reportText.mli > src/report/reportText.mli.depends
+ocamlfind ocamldep -modules src/report/reportUtils.mli > src/report/reportUtils.mli.depends
+ocamlfind ocamldep -modules src/report/reportXML.mli > src/report/reportXML.mli.depends
+ocamlfind ocamldep -modules src/report/reportXMLEmma.mli > src/report/reportXMLEmma.mli.depends
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combine.cmi src/report/combine.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportArgs.cmi src/report/reportArgs.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportCSV.cmi src/report/reportCSV.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportDump.cmi src/report/reportDump.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportHTML.cmi src/report/reportHTML.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportText.cmi src/report/reportText.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportUtils.cmi src/report/reportUtils.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXML.cmi src/report/reportXML.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXMLEmma.cmi src/report/reportXMLEmma.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/report.cmo src/report/report.ml
+ocamlfind ocamldep -modules src/report/combine.ml > src/report/combine.ml.depends
+ocamlfind ocamldep -modules src/report/combineAST.mli > src/report/combineAST.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/report/combineLexer.mll
+ocamlfind ocamldep -modules src/report/combineLexer.ml > src/report/combineLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc src/report/combineParser.mly
+ocamlfind ocamldep -modules src/report/combineParser.mli > src/report/combineParser.mli.depends
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineAST.cmi src/report/combineAST.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineParser.cmi src/report/combineParser.mli
+ocamlfind ocamlc -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineLexer.cmo src/report/combineLexer.ml
+ocamlfind ocamldep -modules src/report/reportArgs.ml > src/report/reportArgs.ml.depends
+cp /tmp/version6d8575.ml src/library/version.ml
+ocamlfind ocamldep -modules src/library/version.mli > src/library/version.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/version.cmi src/library/version.mli
+ocamlfind ocamldep -modules src/report/reportCSV.ml > src/report/reportCSV.ml.depends
+ocamlfind ocamldep -modules src/report/reportDump.ml > src/report/reportDump.ml.depends
+ocamlfind ocamldep -modules src/report/reportGeneric.ml > src/report/reportGeneric.ml.depends
+ocamlfind ocamldep -modules src/report/reportHTML.ml > src/report/reportHTML.ml.depends
