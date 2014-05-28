@@ -1730,3 +1730,10 @@ ocamlfind ocamlopt -shared src/extra/lwt-extra.cmxa src/extra/lwt_lib.cmx -o src
 ocamlfind ocamlc -a syntax/pa_lwt.cmo -o syntax/lwt-syntax.cma
 ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_options.cmx syntax/pa_lwt_options.ml
 ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt.cmx syntax/pa_lwt.ml
+ocamlfind ocamlopt -a syntax/pa_lwt.cmx -o syntax/lwt-syntax.cmxa
+ocamlfind ocamlopt -shared syntax/lwt-syntax.cmxa syntax/pa_lwt.cmx -o syntax/lwt-syntax.cmxs
+ocamlfind ocamlc -a syntax/pa_lwt_options.cmo -o syntax/lwt-syntax-options.cma
+ocamlfind ocamlopt -a syntax/pa_lwt_options.cmx -o syntax/lwt-syntax-options.cmxa
+ocamlfind ocamlopt -shared syntax/lwt-syntax-options.cmxa syntax/pa_lwt_options.cmx -o syntax/lwt-syntax-options.cmxs
+ocamlfind ocamlc -a syntax/pa_lwt_log.cmo -o syntax/lwt-syntax-log.cma
+ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_log.cmx syntax/pa_lwt_log.ml
