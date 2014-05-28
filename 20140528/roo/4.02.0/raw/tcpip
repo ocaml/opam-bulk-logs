@@ -3146,3 +3146,16 @@ pkg_io_page_unix: .................................... /home/opam/.opam/4.02.0+t
 pkg_ounit: ........................................... /home/opam/.opam/4.02.0+trunk/lib/oUnit
 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package tuntap -syntax camlp4o -modules lib/netif.mli > lib/netif.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package tuntap -syntax camlp4o -I lib -o lib/netif.cmi lib/netif.mli
+ocamlfind ocamldep -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package tuntap -syntax camlp4o -modules lib/netif.ml > lib/netif.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package tuntap -syntax camlp4o -I lib -o lib/netif.cmo lib/netif.ml
+ocamlfind ocamlc -a -package lwt.syntax lib/netif.cmo -o lib/mirage-net-unix.cma
+ocamlfind ocamlopt -c -g -annot -bin-annot -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package tuntap -syntax camlp4o -I lib -o lib/netif.cmx lib/netif.ml
+ocamlfind ocamlopt -a -package lwt.syntax lib/netif.cmx -o lib/mirage-net-unix.cmxa
+ocamlfind ocamlopt -shared -linkall -package lwt.syntax lib/mirage-net-unix.cmxa -o lib/mirage-net-unix.cmxs
+ocamlfind ocamldep -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package oUnit -package tuntap -syntax camlp4o -modules lib_test/test.ml > lib_test/test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package oUnit -package tuntap -syntax camlp4o -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package cstruct -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -package oUnit -package tuntap -syntax camlp4o -I lib_test -I lib -o lib_test/test.cmx lib_test/test.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.syntax -package lwt.unix -package mirage-types -package oUnit -package tuntap lib/mirage-net-unix.cmxa lib_test/test.cmx -o lib_test/test.native
+# No parallelism done
