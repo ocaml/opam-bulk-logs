@@ -816,3 +816,49 @@ sed -e s/@@VERSION@@/"4.02.0+dev10-2014-05-20"/g camlp4/META.in > camlp4/META
 mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 Installing camlp4.4.02.0.
+
+=-=-= Installing kaputt.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/kaputt.1.2+opam.tar.gz
+sending incremental file list
+kaputt.1.2+opam.tar.gz
+
+sent 301,226 bytes  received 35 bytes  602,522.00 bytes/sec
+total size is 301,027  speedup is 1.00
+Building kaputt.1.2:
+  sh configure
+  make all
+  make install
+Makefile.config successfully created
+echo 'kaputt.cma' > kaputt.itarget
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamlopt && echo 'kaputt.cmxa' >> kaputt.itarget) || true
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamljava && echo 'kaputt.cmja' >> kaputt.itarget) || true
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputt.otarget
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/library/reducer.mli > src/library/reducer.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/reducer.cmi src/library/reducer.mli
+ocamlfind ocamldep -modules src/library/reducer.ml > src/library/reducer.ml.depends
+ocamlfind ocamldep -modules src/library/assertion.mli > src/library/assertion.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/assertion.cmi src/library/assertion.mli
+ocamlfind ocamldep -modules src/library/assertion.ml > src/library/assertion.ml.depends
+ocamlfind ocamldep -modules src/library/utils.mli > src/library/utils.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/utils.cmi src/library/utils.mli
+ocamlfind ocamldep -modules src/library/abbreviations.mli > src/library/abbreviations.mli.depends
+ocamlfind ocamldep -modules src/library/enumerator.mli > src/library/enumerator.mli.depends
+ocamlfind ocamldep -modules src/library/generator.mli > src/library/generator.mli.depends
+ocamlfind ocamldep -modules src/library/mock.mli > src/library/mock.mli.depends
+ocamlfind ocamldep -modules src/library/shell.mli > src/library/shell.mli.depends
+ocamlfind ocamldep -modules src/library/specification.mli > src/library/specification.mli.depends
+ocamlfind ocamldep -modules src/library/test.mli > src/library/test.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmi src/library/enumerator.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmi src/library/generator.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/shell.cmi src/library/shell.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/specification.cmi src/library/specification.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/mock.cmi src/library/mock.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/test.cmi src/library/test.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/abbreviations.cmi src/library/abbreviations.mli
+ocamlfind ocamldep -modules src/library/abbreviations.ml > src/library/abbreviations.ml.depends
+ocamlfind ocamldep -modules src/library/generator.ml > src/library/generator.ml.depends
