@@ -3274,3 +3274,147 @@ ocamlfind ocamlopt -a -bin-annot lib/gnt.cmx -o lib/xen_gnt.cmxa
 ocamlfind ocamlopt -shared -linkall lib/xen_gnt.cmxa -o lib/xen_gnt.cmxs
 ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
 ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gnttab_stubs.c
+mv gntshr_stubs.o lib/gntshr_stubs.o
+mv gnttab_stubs.o lib/gnttab_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/xen_gnt_unix_stubs -L/usr/lib/xen-4.2/lib -lxenctrl lib/gntshr_stubs.o lib/gnttab_stubs.o
+ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib/gnt_dummy.ml > lib/gnt_dummy.ml.depends
+ocamlfind ocamlc -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmo lib/gnt_dummy.ml
+ocamlfind ocamlc -a -dllib -lxen_gnt_unix_stubs -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmo -o lib/xen_gnt_unix.cma
+ocamlfind ocamlopt -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmx lib/gnt_dummy.ml
+ocamlfind ocamlopt -a -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmx -o lib/xen_gnt_unix.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/xen_gnt_unix.cmxa -o lib/xen_gnt_unix.cmxs
+ocamlfind ocamldep -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules test/test_gntshr.ml > test/test_gntshr.ml.depends
+ocamlfind ocamlc -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmo test/test_gntshr.ml
++ ocamlfind ocamlc -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmo test/test_gntshr.ml
+File "test/test_gntshr.ml", line 13, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "test/test_gntshr.ml", line 33, characters 22-35:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmx test/test_gntshr.ml
++ ocamlfind ocamlopt -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmx test/test_gntshr.ml
+File "test/test_gntshr.ml", line 13, characters 22-35:
+Warning 3: deprecated feature: String.create
+File "test/test_gntshr.ml", line 33, characters 22-35:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -linkpkg -g -I lib -bin-annot -linkpkg -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix lib/xen_gnt_unix.cmxa lib/xen_gnt.cmxa test/test_gntshr.cmx -o test/test_gntshr.native
+# Parallel statistics: { count(total): 1(21), max: 2, min: 2, average(total): 2.000(1.048) }
+ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt_dummy.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/libxen_gnt_unix_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt_unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt_unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt_unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/xen_gnt_unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt_dummy.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/gnt_dummy.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xen-gnt/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllxen_gnt_unix_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllxen_gnt_unix_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing xen-gnt.1.0.0.
+
+=-=-= Installing mirage-clock-xen.1.0.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-clock-xen.1.0.0+opam.tar.gz
+sending incremental file list
+mirage-clock-xen.1.0.0+opam.tar.gz
+
+sent 3,071 bytes  received 35 bytes  6,212.00 bytes/sec
+total size is 2,928  speedup is 0.94
+Building mirage-clock-xen.1.0.0:
+  make xen-build
+  make xen-install
+OS=xen ./build
+ocamlfind ocamldep -modules xen/clock.mli > xen/clock.mli.depends
+ocamlfind ocamlc -c -I xen -o xen/clock.cmi xen/clock.mli
+ocamlfind ocamldep -modules xen/clock.ml > xen/clock.ml.depends
+ocamlfind ocamlc -c -I xen -o xen/clock.cmo xen/clock.ml
+ocamlfind ocamlc -a xen/clock.cmo -o xen/mirage-clock.cma
+ocamlfind ocamlopt -c -I xen -o xen/clock.cmx xen/clock.ml
+ocamlfind ocamlopt -a xen/clock.cmx -o xen/mirage-clock.cmxa
+ocamlfind ocamlopt -shared -linkall xen/mirage-clock.cmxa -o xen/mirage-clock.cmxs
+OS=xen ./build true
+ocamlfind ocamlopt -shared -linkall xen/mirage-clock.cmxa -o xen/mirage-clock.cmxs
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/mirage-clock.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/mirage-clock.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/clock.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/mirage-clock.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/mirage-clock.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/clock.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/clock.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-clock-xen/META
+Installing mirage-clock-xen.1.0.0.
+
+=-=-= Installing mirage-xen.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-xen.1.1.1+opam.tar.gz
+sending incremental file list
+mirage-xen.1.1.1+opam.tar.gz
+
+sent 1,005,424 bytes  received 35 bytes  670,306.00 bytes/sec
+total size is 1,005,051  speedup is 1.00
+Building mirage-xen.1.1.1:
+  make xen-build
+  make xen-install PREFIX=/home/opam/.opam/4.02.0+trunk
+make OS=xen PREFIX=/usr/local build
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+cd xen && make all MIRAGE_OS=xen
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+./cmd configure xen
+Unknown OCaml version 4.02.0+dev10-2014-05-20
+make[2]: *** [_config] Error 1make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+
+make[1]: *** [build] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+make: *** [xen-build] Error 2
+[ERROR] The compilation of mirage-xen.1.1.1 failed.
+Removing mirage-xen.1.1.1.
+  make xen-uninstall PREFIX=/home/opam/.opam/4.02.0+trunk
+make OS=xen PREFIX=/home/opam/.opam/4.02.0+trunk uninstall
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+cd xen && make uninstall MIRAGE_OS=xen
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+./cmd uninstall
+Unknown OCaml version 4.02.0+dev10-2014-05-20
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+make[2]: *** [uninstall] Error 1
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+make[1]: *** [uninstall] Error 2
+make: *** [xen-uninstall] Error 2
+
+
+===== ERROR while installing mirage-xen.1.1.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make xen-build
+# path                 /home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/mirage-xen-8031-335865.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/mirage-xen-8031-335865.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/mirage-xen-8031-335865.err
+### stdout ###
+# make OS=xen PREFIX=/usr/local build
+# make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+# cd xen && make all MIRAGE_OS=xen
+# make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+# ./cmd configure xen
+# Unknown OCaml version 4.02.0+dev10-2014-05-20
+# make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1/xen'
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mirage-xen.1.1.1'
+### stderr ###
+# make[2]: *** [_config] Error 1
+# make[1]: *** [build] Error 2
+# make: *** [xen-build] Error 2
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428192243.export"
+'opam install mirage-xen' failed.
