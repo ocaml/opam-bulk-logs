@@ -2283,3 +2283,199 @@ ocamlfind ocamldep -package bigarray -package camlp4 -package camlp4.extend -pac
 ocamlfind ocamlc -c -g -annot -package bigarray -package camlp4 -package camlp4.extend -package camlp4.lib -package camlp4.quotations.r -syntax camlp4o -I syntax -I lwt -I unix -I async -I lib -o syntax/pa_cstruct.cmo syntax/pa_cstruct.ml
 ocamlfind ocamlc -a syntax/pa_cstruct.cmo -o syntax/cstruct-syntax.cma
 ocamlfind ocamlopt -c -g -annot -package bigarray -package camlp4 -package camlp4.extend -package camlp4.lib -package camlp4.quotations.r -syntax camlp4o -inline 10 -I syntax -I lwt -I unix -I async -I lib -o syntax/pa_cstruct.cmx syntax/pa_cstruct.ml
+ocamlfind ocamlopt -a syntax/pa_cstruct.cmx -o syntax/cstruct-syntax.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/cstruct-syntax.cmxa -o syntax/cstruct-syntax.cmxs
+ocamlfind ocamldep -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix -modules lib_test/bounds.ml > lib_test/bounds.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix -I lib_test -I lib -I lwt -I unix -I async -o lib_test/bounds.cmo lib_test/bounds.ml
+ocamlfind ocamlc -linkpkg -g -I lib/ -linkpkg -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix lib/cstruct.cma lib_test/bounds.cmo -o lib_test/bounds.byte
+# No parallelism done
+ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/libcstruct_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcstruct_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcstruct_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing cstruct.1.1.0.
+
+=-=-= Installing mirage-types.1.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-types.1.1.2+opam.tar.gz
+sending incremental file list
+mirage-types.1.1.2+opam.tar.gz
+
+sent 81,625 bytes  received 35 bytes  163,320.00 bytes/sec
+total size is 81,474  speedup is 1.00
+Building mirage-types.1.1.2:
+  make install-types
+./build true
++ ocamlfind query lwt cstruct ipaddr
++ echo 
++ WITH_LWT=
++ ocamlbuild -tag bin_annot types/V1.cmi
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 19, characters 26-38:
+Warning: the tag "pkg_cmdliner" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 21, characters 26-36:
+Warning: the tag "pkg_ipaddr" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 23, characters 26-42:
+Warning: the tag "pkg_mirage-types" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 24, characters 26-46:
+Warning: the tag "pkg_mirage-types.lwt" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 27, characters 16-28:
+Warning: the tag "pkg_cmdliner" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 29, characters 16-26:
+Warning: the tag "pkg_ipaddr" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 31, characters 16-32:
+Warning: the tag "pkg_mirage-types" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 32, characters 16-36:
+Warning: the tag "pkg_mirage-types.lwt" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules types/V1.mli > types/V1.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -I types -o types/V1.cmi types/V1.mli
+W: Cannot get variable ext_obj
+W: Cannot get variable ext_lib
+W: Cannot get variable ext_dll
+W: Cannot get variable ocamlfind
+W: Cannot get variable ocamlfind
+W: Cannot get variable ocamlfind
+W: Cannot get variable ocamlfind
+W: Cannot get variable ocamlfind
+W: Cannot get variable ocamlfind
++ FILES=types/META _build/types/V1.mli _build/types/V1.cmi -optional _build/types/V1.cmti
++ [  !=  ]
++ [ true = true ]
++ ocamlfind remove mirage-types
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/mirage-types
++ ocamlfind install mirage-types types/META _build/types/V1.mli _build/types/V1.cmi -optional _build/types/V1.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-types/V1.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-types/V1.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-types/V1.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-types/META
+Installing mirage-types.1.1.2.
+
+=-=-= Installing mirage-fs-unix.1.0.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-fs-unix.1.0.0+opam.tar.gz
+sending incremental file list
+mirage-fs-unix.1.0.0+opam.tar.gz
+
+sent 42,641 bytes  received 35 bytes  85,352.00 bytes/sec
+total size is 42,496  speedup is 1.00
+Building mirage-fs-unix.1.0.0:
+  make
+  make install
+ocaml setup.ml -configure 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ mirage-fs-unix
+Package version: ..................................... 1.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt: ............................................. /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_syntax: ...................................... /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_mirage_types: .................................... /home/opam/.opam/4.02.0+trunk/lib/mirage-types
+pkg_cstruct_lwt: ..................................... /home/opam/.opam/4.02.0+trunk/lib/cstruct
+
+ocaml setup.ml -build 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/kvro_fs_unix.mli > lib/kvro_fs_unix.mli.depends
+ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmi lib/kvro_fs_unix.mli
+ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/kvro_fs_unix.ml > lib/kvro_fs_unix.ml.depends
+ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmo lib/kvro_fs_unix.ml
+ocamlfind ocamlc -a lib/kvro_fs_unix.cmo -o lib/mirage_fs_unix.cma
+ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmx lib/kvro_fs_unix.ml
+ocamlfind ocamlopt -a lib/kvro_fs_unix.cmx -o lib/mirage_fs_unix.cmxa
+ocamlfind ocamlopt -shared -linkall lib/mirage_fs_unix.cmxa -o lib/mirage_fs_unix.cmxs
+ocaml setup.ml -install 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/kvro_fs_unix.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/mirage_fs_unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/mirage_fs_unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/mirage_fs_unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/mirage_fs_unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/kvro_fs_unix.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/kvro_fs_unix.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-fs-unix/META
+Installing mirage-fs-unix.1.0.0.
