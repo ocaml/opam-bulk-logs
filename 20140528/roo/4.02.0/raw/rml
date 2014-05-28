@@ -575,3 +575,137 @@ ocamlc  -a -o lk/rmllib.cma sig_env.cmo lk_implem.cmo rml_machine.cmo implem_lk_
 ocamlopt  -c  lk_implem.ml
 ocamlopt  -c  implem_lk_record.ml
 ocamlopt  -c  -I lk -o lk/rml_list.cmx lk/rml_list.ml
+ocamlopt -thread -c  -I lk -o lk/async_body.cmx lk/async_body.ml
+ocamlopt  -c  -I lk -o lk/async.cmx lk/async.ml
+ocamlopt  -a -o lk/rmllib.cmxa sig_env.cmx lk_implem.cmx rml_machine.cmx implem_lk_record.cmx lk/rml_list.cmx lk/async_body.cmx lk/async.cmx
+rm lk/async.ml lk/async_body.ml lk/rml_list.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/interpreter'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/interpreter'
+(cd toplevel; make all)
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/toplevel'
+ocamllex rmltop_lexer.mll
+87 states, 656 transitions, table size 3146 bytes
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_lexer.ml
+ocamlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_global.mli
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_global.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_directives.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop.ml
+ocamlc -o rmltop -I +threads -I ../stdlib -I ../interpreter -I ../interpreter/lco unix.cma str.cma \
+		threads.cma \
+		lco/rmllib.cma \
+		rmltop_lexer.cmo \
+		rmltop_global.cmo \
+		rmltop_directives.cmo \
+		rmltop.cmo
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco -runtime Lco_ctrl_tree rmltop_machine_body.rml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_machine_body.ml
+../compiler/rmlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_global.rmli
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_reactive_machine.rmli
+ocamlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_reactive_machine.mli
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco -runtime Rmltop rmltop_controller.rml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_implem.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_controller.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_reactive_machine.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_main.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/toplevel'
+(cd tools; make opt)
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/tools'
+(for d in rmldep rmlbuild; \
+	 do (cd $d ; make opt) ; \
+	 done)
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/tools/rmldep'
+ocamlopt  -c -I ../../compiler/global -I ../../compiler/parsing depend.ml
+ocamlopt  -c -I ../../compiler/global -I ../../compiler/parsing rmldep.ml
+File "rmldep.ml", line 65, characters 27-39:
+Warning 3: deprecated feature: String.set
+File "rmldep.ml", line 139, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "rmldep.ml", line 143, characters 8-26:
+Warning 3: deprecated feature: String.set
+File "rmldep.ml", line 144, characters 8-27:
+Warning 3: deprecated feature: String.set
+File "rmldep.ml", line 147, characters 8-27:
+Warning 3: deprecated feature: String.set
+ocamlopt  -I ../../compiler/global -I ../../compiler/parsing ../../compiler/global/version.cmx ../../compiler/global/misc.cmx ../../compiler/global/warnings.cmx ../../compiler/global/ident.cmx ../../compiler/parsing/linenum.cmx ../../compiler/parsing/parse_ident.cmx ../../compiler/parsing/parse_ast.cmx ../../compiler/parsing/location.cmx ../../compiler/parsing/syntaxerr.cmx ../../compiler/parsing/lexer.cmx ../../compiler/parsing/parser.cmx ../../compiler/parsing/parse.cmx depend.cmx rmldep.cmx -o rmldep.opt
+ln -sf rmldep.opt rmldep
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/tools/rmldep'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/tools/rmlbuild'
+cd rmlbuild; make
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/rml.1.09.02/tools/rmlbuild/rmlbuild'
+INSTALL_LIB=/home/opam/.opam/4.02.0+trunk/lib/rml/rmlbuild INSTALL_BIN=/home/opam/.opam/4.02.0+trunk/bin ocamlbuild -classic-display -build-dir "_build" -no-links  ocamlbuildlib.cma ocamlbuild.byte
+ocamlfind ocamldep -modules log.mli > log.mli.depends
+ocamlfind ocamldep -modules signatures.mli > signatures.mli.depends
+ocamlfind ocamldep -modules std_signatures.mli > std_signatures.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o std_signatures.cmi std_signatures.mli
+ocamlfind ocamldep -modules tags.mli > tags.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o signatures.cmi signatures.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o tags.cmi tags.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o log.cmi log.mli
+ocamlfind ocamldep -modules log.ml > log.ml.depends
+ocamlfind ocamldep -modules display.mli > display.mli.depends
+ocamlfind ocamldep -modules my_std.mli > my_std.mli.depends
+ocamlfind ocamldep -modules my_unix.mli > my_unix.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o display.cmi display.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o my_std.cmi my_std.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o my_unix.cmi my_unix.mli
+ocamlfind ocamldep -modules my_unix.ml > my_unix.ml.depends
+ocamlfind ocamldep -modules my_std.ml > my_std.ml.depends
+ocamlfind ocamldep -modules shell.mli > shell.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o shell.cmi shell.mli
+ocamlfind ocamldep -modules shell.ml > shell.ml.depends
+ocamlfind ocamldep -modules display.ml > display.ml.depends
+ocamlfind ocamldep -modules discard_printf.mli > discard_printf.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o discard_printf.cmi discard_printf.mli
+ocamlfind ocamldep -modules command.mli > command.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o command.cmi command.mli
+ocamlfind ocamldep -modules command.ml > command.ml.depends
+ocamlfind ocamldep -modules lexers.mli > lexers.mli.depends
+ocamlfind ocamldep -modules glob.mli > glob.mli.depends
+ocamlfind ocamldep -modules bool.mli > bool.mli.depends
+ocamlfind ocamldep -modules glob_ast.mli > glob_ast.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o bool.cmi bool.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o glob_ast.cmi glob_ast.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o glob.cmi glob.mli
+ocamlfind ocamldep -modules param_tags.mli > param_tags.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o lexers.cmi lexers.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o param_tags.cmi param_tags.mli
+ocamlfind ocamldep -modules configuration.mli > configuration.mli.depends
+ocamlfind ocamldep -modules pathname.mli > pathname.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o pathname.cmi pathname.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o configuration.cmi configuration.mli
+ocamlfind ocamldep -modules configuration.ml > configuration.ml.depends
+ocamlfind ocamldep -modules discard_printf.ml > discard_printf.ml.depends
+ocamlfind ocamldep -modules flags.mli > flags.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o flags.cmi flags.mli
+ocamlfind ocamldep -modules flags.ml > flags.ml.depends
+ocamlfind ocamldep -modules hygiene.mli > hygiene.mli.depends
+ocamlfind ocamldep -modules slurp.mli > slurp.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o slurp.cmi slurp.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o hygiene.cmi hygiene.mli
+ocamlfind ocamldep -modules hygiene.ml > hygiene.ml.depends
+ocamlfind ocamldep -modules options.mli > options.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o options.cmi options.mli
+ocamlfind ocamldep -modules options.ml > options.ml.depends
+ocamlfind ocamldep -modules ocamlbuild_Myocamlbuild_config.ml > ocamlbuild_Myocamlbuild_config.ml.depends
+ocamlfind ocamldep -modules ocamlbuild_where.mli > ocamlbuild_where.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o ocamlbuild_Myocamlbuild_config.cmo ocamlbuild_Myocamlbuild_config.ml
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o ocamlbuild_where.cmi ocamlbuild_where.mli
+ocamlfind ocamldep -modules pathname.ml > pathname.ml.depends
+ocamlfind ocamldep -modules report.mli > report.mli.depends
+ocamlfind ocamldep -modules solver.mli > solver.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o solver.cmi solver.mli
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o report.cmi report.mli
+ocamlfind ocamldep -modules report.ml > report.ml.depends
+ocamlfind ocamldep -modules resource.mli > resource.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o resource.cmi resource.mli
+ocamlfind ocamldep -modules resource.ml > resource.ml.depends
+ocamlfind ocamldep -modules digest_cache.mli > digest_cache.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o digest_cache.cmi digest_cache.mli
+ocamlfind ocamldep -modules rule.mli > rule.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o rule.cmi rule.mli
+ocamlfind ocamldep -modules rule.ml > rule.ml.depends
+ocamlfind ocamldep -modules slurp.ml > slurp.ml.depends
+ocamlfind ocamldep -modules solver.ml > solver.ml.depends
+ocamlfind ocamldep -modules tags.ml > tags.ml.depends
+ocamlfind ocamldep -modules tools.mli > tools.mli.depends
+ocamlfind ocamlc -c -g -annot -w L -w R -w Z -o tools.cmi tools.mli
