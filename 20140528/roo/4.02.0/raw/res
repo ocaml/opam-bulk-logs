@@ -225,3 +225,171 @@ File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
 File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing res.4.0.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/res.4.0.4+opam.tar.gz
+sending incremental file list
+res.4.0.4+opam.tar.gz
+
+sent 72,870 bytes  received 35 bytes  145,810.00 bytes/sec
+total size is 72,728  speedup is 1.00
+Building res.4.0.4:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ res
+Package version: ..................................... 4.0.4
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocaml setup.ml -build 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/nopres_impl.ml > lib/nopres_impl.ml.depends
+ocamlfind ocamldep -modules lib/strat.ml > lib/strat.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/strat.cmo lib/strat.ml
+ocamlfind ocamldep -modules lib/nopres_intf.ml > lib/nopres_intf.ml.depends
+ocamlfind ocamldep -modules lib/pres_impl.ml > lib/pres_impl.ml.depends
+ocamlfind ocamldep -modules lib/pres_intf.ml > lib/pres_intf.ml.depends
+ocamlfind ocamldep -modules lib/res.mli > lib/res.mli.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_intf.cmo lib/nopres_intf.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_intf.cmo lib/pres_intf.ml
+ocamlfind ocamldep -modules lib/weak_intf.ml > lib/weak_intf.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_intf.cmo lib/weak_intf.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmi lib/res.mli
+ocamlfind ocamldep -modules lib/res.ml > lib/res.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_impl.cmo lib/nopres_impl.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_impl.cmo lib/pres_impl.ml
+ocamlfind ocamldep -modules lib/weak_impl.ml > lib/weak_impl.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_impl.cmo lib/weak_impl.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmo lib/res.ml
++ ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmo lib/res.ml
+File "lib/res.ml", line 200, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "lib/res.ml", line 205, characters 19-29:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -a lib/strat.cmo lib/nopres_impl.cmo lib/nopres_intf.cmo lib/pres_impl.cmo lib/pres_intf.cmo lib/weak_impl.cmo lib/weak_intf.cmo lib/res.cmo -o lib/res.cma
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/strat.cmx lib/strat.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_impl.cmx lib/nopres_impl.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_impl.cmx lib/pres_impl.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_intf.cmx lib/nopres_intf.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_intf.cmx lib/pres_intf.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_impl.cmx lib/weak_impl.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_intf.cmx lib/weak_intf.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmx lib/res.ml
++ ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmx lib/res.ml
+File "lib/res.ml", line 200, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "lib/res.ml", line 205, characters 19-29:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -a lib/strat.cmx lib/nopres_impl.cmx lib/nopres_intf.cmx lib/pres_impl.cmx lib/pres_intf.cmx lib/weak_impl.cmx lib/weak_intf.cmx lib/res.cmx -o lib/res.cmxa
+ocamlfind ocamlopt -shared lib/res.cmx -o lib/res.cmxs
+ocamlfind ocamldep -modules examples/buffer_ex.ml > examples/buffer_ex.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/buffer_ex.cmo examples/buffer_ex.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/buffer_ex.cmx examples/buffer_ex.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg lib/res.cmxa examples/buffer_ex.cmx -o examples/buffer_ex.native
+ocamlfind ocamldep -modules examples/defstrat.ml > examples/defstrat.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/defstrat.cmo examples/defstrat.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/defstrat.cmx examples/defstrat.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg lib/res.cmxa examples/defstrat.cmx -o examples/defstrat.native
+ocamlfind ocamldep -modules examples/stupid_ga.ml > examples/stupid_ga.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/stupid_ga.cmo examples/stupid_ga.ml
