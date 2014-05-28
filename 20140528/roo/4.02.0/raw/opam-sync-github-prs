@@ -2432,3 +2432,37 @@ Building react.1.1.0:
   ocaml pkg/build.ml native=true native-dynlink=true
 File "pkg/topkg-ext.ml", line 42, characters 12-25:
 Warning 3: deprecated feature: String.create
+ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
+ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+Installing react.1.1.0.
+
+=-=-= Installing ssl.0.4.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ssl.0.4.7+opam.tar.gz
+sending incremental file list
+ssl.0.4.7+opam.tar.gz
+
+sent 122,179 bytes  received 35 bytes  244,428.00 bytes/sec
+total size is 122,029  speedup is 1.00
+Building ssl.0.4.7:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+configuring ocaml-ssl 0.4.7
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for pthread_create in -lpthread... yes
+checking for ocamlc... /home/opam/.opam/4.02.0+trunk/bin/ocamlc
+ocaml version is 4.02.0+dev10-2014-05-20
