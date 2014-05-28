@@ -258,3 +258,26 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 pkg_optcomp: ......................................... /home/opam/.opam/system/lib/optcomp
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.mli > src/quickCheck.mli.depends
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.mli > src/quickCheck_gen.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmi src/quickCheck_gen.mli
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmi src/quickCheck.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.ml > src/quickCheck.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.mli > src/quickCheck_util.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmi src/quickCheck_util.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.ml > src/quickCheck_gen.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.ml > src/quickCheck_util.ml.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmo src/quickCheck.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmo src/quickCheck_gen.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmo src/quickCheck_util.ml
+ocamlfind ocamlc -a -w @a -g src/quickCheck_util.cmo src/quickCheck_gen.cmo src/quickCheck.cmo -o src/quickcheck.cma
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmx src/quickCheck_util.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmx src/quickCheck_gen.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmx src/quickCheck.ml
+ocamlfind ocamlopt -a -w @a -g src/quickCheck_util.cmx src/quickCheck_gen.cmx src/quickCheck.cmx -o src/quickcheck.cmxa
+ocamlfind ocamlopt -shared -linkall src/quickcheck.cmxa -o src/quickcheck.cmxs
+ocamlfind ocamldep -package optcomp -modules tests/test.ml > tests/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package optcomp -I tests -I src -o tests/test.cmo tests/test.ml
+ocamlfind ocamlopt -c -g -I src -package optcomp -I tests -I src -o tests/test.cmx tests/test.ml
+ocamlfind ocamlopt -g -linkpkg -package optcomp src/quickcheck.cmxa tests/test.cmx -o tests/test.native
