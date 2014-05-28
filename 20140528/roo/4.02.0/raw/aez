@@ -217,3 +217,146 @@ File "fl_topo.ml", line 219, characters 36-37:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlopt -I +compiler-libs -c fl_package_base.ml
 ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing aez.0.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/aez.0.3+opam.tar.gz
+sending incremental file list
+aez.0.3+opam.tar.gz
+
+sent 114,136 bytes  received 35 bytes  228,342.00 bytes/sec
+total size is 113,988  speedup is 1.00
+Applying add-meta.patch.
+patching file META
+Building aez.0.3:
+  ./configure
+  make
+  ocamlfind install aez aez.a aez.cmi aez.cma aez.cmxa META
+checking for ocp-ocamlc.opt... no
+checking for ocamlc.opt... ocamlc.opt
+ocaml version is 4.02.0+dev10-2014-05-20
+ocaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocp-ocamlopt.opt... no
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking platform... Unix platform
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
+Compiling common/timer.cmi
+Compiling common/timer.cmo
+Compiling common/hashcons.cmi
+Compiling common/hashcons.cmo
+Compiling common/hstring.cmi
+Compiling common/hstring.cmo
+Compiling common/vec.cmi
+Compiling common/vec.cmo
+Compiling common/heap.cmi
+Compiling common/heap.cmo
+Compiling common/iheap.cmi
+Compiling common/iheap.cmo
+Compiling smt/ty.cmi
+Compiling smt/symbols.cmi
+Compiling smt/term.cmi
+Compiling smt/literal.cmi
+Compiling smt/solver_types.cmi
+Compiling smt/explanation.cmi
+Compiling smt/exception.cmi
+Compiling smt/exception.cmo
+Compiling smt/symbols.cmo
+Compiling smt/ty.cmo
+Compiling smt/term.cmo
+Compiling smt/literal.cmo
+Compiling smt/solver_types.cmo
+Compiling smt/explanation.cmo
+Compiling smt/polynome.cmi
+Compiling smt/polynome.cmo
+Compiling smt/sig.cmi
+Compiling smt/uf.cmi
+Compiling smt/uf.cmo
+Compiling smt/use.cmi
+Compiling smt/use.cmo
+Compiling smt/intervals.cmi
+Compiling smt/intervals.cmo
+File "smt/intervals.ml", line 542, characters 18-20:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+Compiling smt/fm.cmi
+Compiling smt/fm.cmo
+File "smt/fm.ml", line 263, characters 51-53:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+Compiling smt/arith.cmi
+Compiling smt/arith.cmo
+Compiling smt/sum.cmi
+Compiling smt/sum.cmo
+Compiling smt/combine.cmi
+Compiling smt/combine.cmo
+Compiling smt/cc.cmi
+Compiling smt/cc.cmo
+Compiling smt/solver.cmi
+Compiling smt/solver.cmo
+Compiling smt/smt.cmi
+Compiling smt/smt.cmo
+ocamlc.opt -dtypes -g -I common/ -I smt/ -annot -pack -o aez.cmo common/timer.cmo common/hashcons.cmo common/hstring.cmo common/vec.cmo common/heap.cmo common/iheap.cmo smt/exception.cmo smt/symbols.cmo smt/ty.cmo smt/term.cmo smt/literal.cmo smt/solver_types.cmo smt/explanation.cmo smt/polynome.cmo smt/uf.cmo smt/use.cmo smt/intervals.cmo smt/fm.cmo smt/arith.cmo smt/sum.cmo smt/combine.cmo smt/cc.cmo smt/solver.cmo smt/smt.cmo
+ocamlc.opt -a -dtypes -g -I common/ -I smt/ -annot -o aez.cma aez.cmo
+Compiling common/timer.cmx
+Compiling common/hashcons.cmx
+Compiling common/hstring.cmx
+Compiling common/vec.cmx
+Compiling common/heap.cmx
+Compiling common/iheap.cmx
+Compiling smt/ty.cmx
+Compiling smt/symbols.cmx
+Compiling smt/term.cmx
+Compiling smt/literal.cmx
