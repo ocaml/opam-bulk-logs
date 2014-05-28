@@ -4288,3 +4288,97 @@ Building lz4.109.38.alpha1:
 ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
 rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
 ./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ lz4
+Package version: ..................................... 109.38.alpha1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_core: ............................................ /home/opam/.opam/system/lib/core
+pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
+pkg_pa_ounit_syntax: ................................. /home/opam/.opam/system/lib/pa_ounit
+pkg_threads: ......................................... /usr/lib/ocaml
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+./setup.exe -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4.c
+mv lz4.o lib/lz4.o
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4hc.c
+mv lz4hc.o lib/lz4hc.o
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4_stubs.c
+mv lz4_stubs.o lib/lz4_stubs.o
+/usr/bin/ocamlmklib -o lib/lz4lib_stubs lib/lz4.o lib/lz4hc.o lib/lz4_stubs.o
+ocamlfind ocamldep -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -modules lib/lz4_ffi.mli > lib/lz4_ffi.mli.depends
+ocamlfind ocamlc -c -g -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -thread -I lib -o lib/lz4_ffi.cmi lib/lz4_ffi.mli
+ocamlfind ocamldep -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -modules lib/lz4_ffi.ml > lib/lz4_ffi.ml.depends
+ocamlfind ocamlc -c -g -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -thread -I lib -o lib/lz4_ffi.cmo lib/lz4_ffi.ml
+ocamlfind ocamlc -pack -g lib/lz4_ffi.cmo -o lib/lz4lib.cmo
+ocamlfind ocamlc -a -dllib -llz4lib_stubs -cclib -llz4lib_stubs lib/lz4lib.cmo -o lib/lz4lib.cma
+ocamlfind ocamlopt -c -g -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -thread -for-pack Lz4lib -I lib -o lib/lz4_ffi.cmx lib/lz4_ffi.ml
+touch lib/lz4lib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/lz4_ffi.cmx -o lib/lz4lib.cmx  ; then  rm -f lib/lz4lib.mli  ; else  rm -f lib/lz4lib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -llz4lib_stubs lib/lz4lib.cmx -o lib/lz4lib.cmxa
+ocamlfind ocamlopt -shared -I lib lib/lz4lib.cmx -o lib/lz4lib.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/lz4lib/lz4_ffi.mli
+Installed /home/opam/.opam/system/lib/lz4lib/liblz4lib_stubs.a
+Installed /home/opam/.opam/system/lib/lz4lib/lz4lib.cmi
+Installed /home/opam/.opam/system/lib/lz4lib/lz4lib.cma
+Installed /home/opam/.opam/system/lib/lz4lib/lz4lib.cmxa
+Installed /home/opam/.opam/system/lib/lz4lib/lz4lib.a
+Installed /home/opam/.opam/system/lib/lz4lib/lz4lib.cmxs
+Installed /home/opam/.opam/system/lib/lz4lib/META
+Installed /home/opam/.opam/system/lib/stublibs/dlllz4lib_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlllz4lib_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing lz4.109.38.alpha1.
