@@ -425,3 +425,100 @@ File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
 File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing ocamlfuse.2.7.1-cvs2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocamlfuse.2.7.1-cvs2+opam.tar.gz
+sending incremental file list
+ocamlfuse.2.7.1-cvs2+opam.tar.gz
+
+sent 67,437 bytes  received 35 bytes  134,944.00 bytes/sec
+total size is 67,284  speedup is 1.00
+Building ocamlfuse.2.7.1-cvs2:
+  make -C lib INCDIRS=/home/opam/.opam/4.02.0+trunk/lib/camlidl
+  make -C lib install
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+camlidl -header  \
+				 Fuse_bindings.idl
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+making ._ncdi/Fuse_bindings.di from Fuse_bindings.mli
+making ._d/Fuse_bindings.d from Fuse_bindings.ml
+making ._d/Fuse.d from Fuse.ml
+making ._d/Fuse_lib.d from Fuse_lib.ml
+making ._d/Unix_util.d from Unix_util.ml
+making ._d/Result.d from Result.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Fuse_bindings_stubs.o " Fuse_bindings_stubs.c 
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Unix_util_stubs.o " Unix_util_stubs.c 
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Fuse_util.o " Fuse_util.c 
+In file included from Fuse_util.c:30:0:
+Fuse_util.c: In function 'gm281_ops_init':
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/memory.h:226:28: warning: initialization makes pointer from integer without a cast [enabled by default]
+   type caml__temp_result = (result); \
+                            ^
+Fuse_util.c:614:3: note: in expansion of macro 'CAMLreturnT'
+   CAMLreturnT(OPNAME##_RTYPE, res); \
+   ^
+Fuse_util.c:296:5: note: in expansion of macro 'CALLBACK'
+     MACRO(init) \
+     ^
+Fuse_util.c:625:1: note: in expansion of macro 'FOR_ALL_OPS'
+ FOR_ALL_OPS(CALLBACK)
+ ^
+ar rcs libFuse_stubs.a Fuse_bindings_stubs.o Unix_util_stubs.o Fuse_util.o
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Result.ml
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Unix_util.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_bindings.mli
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_bindings.ml
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_lib.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse.mli
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse.ml
