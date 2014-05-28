@@ -3014,3 +3014,105 @@ ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
 ocamllex read.mll
 433 states, 2020 transitions, table size 10678 bytes
 cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/system/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/system/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/system/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/system/lib/yojson/yojson.o
+Installed /home/opam/.opam/system/lib/yojson/yojson.mli
+Installed /home/opam/.opam/system/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/system/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/system/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/system/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/system/lib/yojson/META
+Installing yojson.1.1.8.
+
+=-=-= Installing bitcoin.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/bitcoin.1.1.1+opam.tar.gz
+sending incremental file list
+bitcoin.1.1.1+opam.tar.gz
+
+sent 60,931 bytes  received 35 bytes  121,932.00 bytes/sec
+total size is 60,793  speedup is 1.00
+Building bitcoin.1.1.1:
+  ./configure --prefix /home/opam/.opam/system --docdir /home/opam/.opam/system/doc/bitcoin --disable-ocsigen --enable-ocamlnet
+  make
+  make doc
+  make install
+
+Configuration: 
+ocamlfind: ......................................................................................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: ............................................................................................................ /usr/bin/ocamlc.opt
+ocamlopt: .......................................................................................................... /usr/bin/ocamlopt.opt
+ocamlbuild: ........................................................................................................ /usr/bin/ocamlbuild
+Package name: ...................................................................................................... OCaml-bitcoin
+Package version: ................................................................................................... 1.1.1
+os_type: ........................................................................................................... Unix
+system: ............................................................................................................ linux
+architecture: ...................................................................................................... amd64
+ccomp_type: ........................................................................................................ cc
+ocaml_version: ..................................................................................................... 4.01.0
+standard_library_default: .......................................................................................... /usr/lib/ocaml
+standard_library: .................................................................................................. /usr/lib/ocaml
+standard_runtime: .................................................................................................. /usr/bin/ocamlrun
+bytecomp_c_compiler: ............................................................................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................................................................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................................................................................. default
+ext_obj: ........................................................................................................... .o
+ext_asm: ........................................................................................................... .s
+ext_lib: ........................................................................................................... .a
+ext_dll: ........................................................................................................... .so
+default_executable_name: ........................................................................................... a.out
+systhread_supported: ............................................................................................... true
+Install architecture-independent files dir: ........................................................................ /home/opam/.opam/system
+Install architecture-dependent files in dir: ....................................................................... $prefix
+User executables: .................................................................................................. $exec_prefix/bin
+System admin executables: .......................................................................................... $exec_prefix/sbin
+Program executables: ............................................................................................... $exec_prefix/libexec
+Read-only single-machine data: ..................................................................................... $prefix/etc
+Modifiable architecture-independent data: .......................................................................... $prefix/com
+Modifiable single-machine data: .................................................................................... $prefix/var
+Object code libraries: ............................................................................................. $exec_prefix/lib
+Read-only arch-independent data root: .............................................................................. $prefix/share
+Read-only architecture-independent data: ........................................................................... $datarootdir
+Info documentation: ................................................................................................ $datarootdir/info
+Locale-dependent data: ............................................................................................. $datarootdir/locale
+Man documentation: ................................................................................................. $datarootdir/man
+Documentation root: ................................................................................................ /home/opam/.opam/system/doc/bitcoin
+HTML documentation: ................................................................................................ $docdir
+DVI documentation: ................................................................................................. $docdir
+PDF documentation: ................................................................................................. $docdir
+PS documentation: .................................................................................................. $docdir
+findlib_version: ................................................................................................... 1.4
+is_native: ......................................................................................................... true
+suffix_program: .................................................................................................... 
+Remove a file.: .................................................................................................... rm -f
+Remove a directory.: ............................................................................................... rm -rf
+Turn ocaml debug flag on: .......................................................................................... true
+Turn ocaml profile flag on: ........................................................................................ false
+Compiler support generation of .cmxs.: ............................................................................. true
+OCamlbuild additional flags: ....................................................................................... 
+Build auxiliary library "bitcoin_ocsigen" (implements an HTTP client using Ocsigenserver's Ocsigen_http_client): ... false
+Build auxiliary library "bitcoin_ocamlnet" (implements an HTTP client using Ocamlnet's Netclient): ................. true
+Create documentations: ............................................................................................. true
+Compile tests executable and library and run them: ................................................................. false
+ocamldoc: .......................................................................................................... /usr/bin/ocamldoc
+pkg_netstring: ..................................................................................................... /home/opam/.opam/system/lib/netstring
+pkg_yojson: ........................................................................................................ /home/opam/.opam/system/lib/yojson
+pkg_netclient: ..................................................................................................... /home/opam/.opam/system/lib/netclient
+
