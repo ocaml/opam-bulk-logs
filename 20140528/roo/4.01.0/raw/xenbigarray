@@ -81,3 +81,30 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 
 ocaml setup.ml -build -j 4
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/bigarray.mli > lib/bigarray.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -o lib/bigarray.cmi lib/bigarray.mli
+ocamlfind ocamldep -modules lib/bigarray.ml > lib/bigarray.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -o lib/bigarray.cmo lib/bigarray.ml
++ ocamlfind ocamlc -c -g -annot -I lib -o lib/bigarray.cmo lib/bigarray.ml
+findlib: [WARNING] Interface bigarray.cmi occurs in several directories: /usr/lib/ocaml, lib
+ocamlfind ocamlc -a lib/bigarray.cmo -o lib/xenbigarray.cma
+ocamlfind ocamlopt -c -g -annot -I lib -o lib/bigarray.cmx lib/bigarray.ml
++ ocamlfind ocamlopt -c -g -annot -I lib -o lib/bigarray.cmx lib/bigarray.ml
+findlib: [WARNING] Interface bigarray.cmi occurs in several directories: /usr/lib/ocaml, lib
+ocamlfind ocamlopt -a lib/bigarray.cmx -o lib/xenbigarray.cmxa
+ocamlfind ocamlopt -shared -linkall lib/xenbigarray.cmxa -o lib/xenbigarray.cmxs
+# No parallelism done
+ocamlfind remove bigarray || true
+ocamlfind: [WARNING] You are removing the package from /home/opam/.opam/system/lib/bigarray but the currently visible package is at /usr/lib/ocaml; you may want to specify the -destdir option
+Removed /home/opam/.opam/system/lib/bigarray
+ocaml setup.ml -install
+Installed /home/opam/.opam/system/lib/bigarray/bigarray.mli
+Installed /home/opam/.opam/system/lib/bigarray/xenbigarray.cma
+Installed /home/opam/.opam/system/lib/bigarray/xenbigarray.cmxa
+Installed /home/opam/.opam/system/lib/bigarray/xenbigarray.a
+Installed /home/opam/.opam/system/lib/bigarray/xenbigarray.cmxs
+Installed /home/opam/.opam/system/lib/bigarray/bigarray.cmi
+Installed /home/opam/.opam/system/lib/bigarray/bigarray.cmx
+Installed /home/opam/.opam/system/lib/bigarray/META
+Installing xenbigarray.1.0.0.
