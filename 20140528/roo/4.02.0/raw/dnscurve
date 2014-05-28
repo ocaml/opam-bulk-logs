@@ -3728,3 +3728,44 @@ Installed /home/opam/.opam/4.02.0+trunk/lib/optcomp/optcomp.cmxs
 Installed /home/opam/.opam/4.02.0+trunk/lib/optcomp/pa_optcomp.cmi
 Installed /home/opam/.opam/4.02.0+trunk/lib/optcomp/pa_optcomp.cmx
 Installed /home/opam/.opam/4.02.0+trunk/lib/optcomp/META
+Installing optcomp.1.6.
+
+=-=-= Installing sodium.0.1.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sodium.0.1.0+opam.tar.gz
+sending incremental file list
+sodium.0.1.0+opam.tar.gz
+
+sent 8,763 bytes  received 35 bytes  5,865.33 bytes/sec
+total size is 8,630  speedup is 0.98
+Building sodium.0.1.0:
+  make
+  make PREFIX=/home/opam/.opam/4.02.0+trunk install
+mkdir -p _build/lib
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmo
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.mli > lib/sodium.mli.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmi lib/sodium.mli
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.ml > lib/sodium.ml.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
++ ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
+File "lib/sodium.ml", line 31, characters 14-27:
+Error: Unbound type constructor Array.t
+Command exited with code 2.
+make: *** [lib/sodium.cmo] Error 10
+[ERROR] The compilation of sodium.0.1.0 failed.
+Removing sodium.0.1.0.
+  ocamlfind remove sodium
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/sodium
+
+=-=-= Installing ocplib-endian.0.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocplib-endian.0.7+opam.tar.gz
+sending incremental file list
+ocplib-endian.0.7+opam.tar.gz
+
+sent 56,384 bytes  received 35 bytes  112,838.00 bytes/sec
+total size is 56,242  speedup is 1.00
+Building ocplib-endian.0.7:
+  ocaml setup.ml -configure --disable-debug --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
