@@ -167,3 +167,8 @@ mv gammu_stubs.o src/gammu_stubs.o
 /usr/bin/ocamlmklib -o src/gammu_stubs -lGammu -lm src/gammu_stubs.o
 ocamlfind ocamldep -modules src/gammu.mli > src/gammu.mli.depends
 ocamlfind ocamlc -c -g -I src -o src/gammu.cmi src/gammu.mli
+ocamlfind ocamldep -modules src/gammu.ml > src/gammu.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -o src/gammu.cmo src/gammu.ml
+ocamlfind ocamlc -a -dllib -lgammu_stubs -cclib -lgammu_stubs -cclib -lGammu -cclib -lm src/gammu.cmo -o src/gammu.cma
+ocamlfind ocamlopt -c -g -annot -I src -o src/gammu.cmx src/gammu.ml
+ocamlfind ocamlopt -a -cclib -lgammu_stubs -cclib -lGammu -cclib -lm src/gammu.cmx -o src/gammu.cmxa
