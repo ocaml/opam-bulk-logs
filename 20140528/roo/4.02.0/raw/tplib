@@ -387,3 +387,63 @@ ocamlfind ocamldep -package findlib -package dynlink -package num -package unix 
 ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/numeric.cmx src/numeric.ml
 ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/semiring.cmx src/semiring.ml
 ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/tplib_abstract.ml > src/tplib_abstract.ml.depends
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/halfspace.ml > src/halfspace.ml.depends
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/vector.ml > src/vector.ml.depends
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/vector.cmx src/vector.ml
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/tplib_core.ml > src/tplib_core.ml.depends
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/halfspace.cmx src/halfspace.ml
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/hypergraph.ml > src/hypergraph.ml.depends
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/union_find.ml > src/union_find.ml.depends
+ocamlfind ocamldep -modules src/union_find.mli > src/union_find.mli.depends
+ocamlfind ocamlc -c -I src -o src/union_find.cmi src/union_find.mli
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/union_find.cmx src/union_find.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/hypergraph.cmx src/hypergraph.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/tplib_core.cmx src/tplib_core.ml
++ ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/tplib_core.cmx src/tplib_core.ml
+File "src/tplib_core.ml", line 568, characters 12-25:
+Warning 26: unused variable sectors_list'.
+ocamlfind ocamldep -modules src/bindings/vector_array.ml > src/bindings/vector_array.ml.depends
+ocamlfind ocamldep -modules src/bindings/vector_array.mli > src/bindings/vector_array.mli.depends
+ocamlfind ocamlc -c -I src/bindings -I src -o src/bindings/vector_array.cmi src/bindings/vector_array.mli
+ocamlfind ocamlopt -c -I src/bindings -I src -o src/bindings/semiring_double.cmx src/bindings/semiring_double.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/tplib_abstract.cmx src/tplib_abstract.ml
++ ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/tplib_abstract.cmx src/tplib_abstract.ml
+File "src/tplib_abstract.ml", line 140, characters 7-10:
+Warning 26: unused variable dim.
+ocamlfind ocamlopt -c -I src/bindings -I src -o src/bindings/vector_array.cmx src/bindings/vector_array.ml
+ocamlfind ocamlopt -c -I src/bindings -I src -o src/bindings/tplib_double_callback.cmx src/bindings/tplib_double_callback.ml
+ocamlfind ocamlopt -a src/config.cmx src/random_generator.cmx src/numeric_plugin.cmx src/numeric.cmx src/semiring.cmx src/vector.cmx src/halfspace.cmx src/union_find.cmx src/hypergraph.cmx src/tplib_core.cmx src/tplib_abstract.cmx -o src/tplib.cmxa
+ocamlfind ocamlopt -linkpkg -output-obj -package findlib -package dynlink -package num src/tplib.cmxa src/bindings/semiring_double.cmx src/bindings/vector_array.cmx src/bindings/tplib_double_callback.cmx -o src/bindings/tplib_double_callback.obj.o
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_ext_rays.ml > src/compute_ext_rays.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays.cmo src/compute_ext_rays.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays.cmx src/compute_ext_rays.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_ext_rays.cmx -o src/compute_ext_rays.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_ext_rays_polar.ml > src/compute_ext_rays_polar.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays_polar.cmo src/compute_ext_rays_polar.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays_polar.cmx src/compute_ext_rays_polar.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_ext_rays_polar.cmx -o src/compute_ext_rays_polar.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_halfspaces.ml > src/compute_halfspaces.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_halfspaces.cmo src/compute_halfspaces.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_halfspaces.cmx src/compute_halfspaces.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_halfspaces.cmx -o src/compute_halfspaces.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_tangent_hypergraph.ml > src/compute_tangent_hypergraph.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tangent_hypergraph.cmo src/compute_tangent_hypergraph.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tangent_hypergraph.cmx src/compute_tangent_hypergraph.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_tangent_hypergraph.cmx -o src/compute_tangent_hypergraph.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_minimal_external_representations.ml > src/compute_minimal_external_representations.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_minimal_external_representations.cmo src/compute_minimal_external_representations.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_minimal_external_representations.cmx src/compute_minimal_external_representations.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_minimal_external_representations.cmx -o src/compute_minimal_external_representations.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_tropical_complex.ml > src/compute_tropical_complex.ml.depends
+ocamlfind ocamldep -modules src/cell_decomposition.mli > src/cell_decomposition.mli.depends
+ocamlfind ocamldep -modules src/polytrope.mli > src/polytrope.mli.depends
+ocamlfind ocamlc -c -I src -o src/polytrope.cmi src/polytrope.mli
+ocamlfind ocamlc -c -I src -o src/cell_decomposition.cmi src/cell_decomposition.mli
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tropical_complex.cmo src/compute_tropical_complex.ml
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/cell_decomposition.ml > src/cell_decomposition.ml.depends
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/germ.ml > src/germ.ml.depends
+ocamlfind ocamldep -modules src/germ.mli > src/germ.mli.depends
+ocamlfind ocamlc -c -I src -o src/germ.cmi src/germ.mli
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/polytrope.ml > src/polytrope.ml.depends
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/germ.cmx src/germ.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/polytrope.cmx src/polytrope.ml
