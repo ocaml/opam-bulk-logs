@@ -6491,3 +6491,64 @@ ocamlfind c -c -g \
 		Ipython_json_t.mli Ipython_json_j.mli base64.mli \
 		Ipython_json_t.ml  Ipython_json_j.ml  base64.ml  
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlmklib -o iocaml_lib \
+		-l zmq \
+		-package ctypes.foreign,lwt.unix,yojson \
+		iocaml_zmq_stubs.o \
+		log.cmo Ipython_json_t.cmo Ipython_json_j.cmo iocaml_zmq.cmo base64.cmo 
+ocamlfind c -c -g -thread \
+		-package threads,uuidm,yojson,atdgen,ocp-index.lib,compiler-libs \
+		message.mli sockets.mli completion.mli exec.mli iocaml.mli \
+		message.ml  sockets.ml  completion.ml  exec.ml  iocaml.ml 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlmktop -g -thread -linkpkg \
+		-o iocaml.top \
+		-package threads,uuidm,lwt.unix,ctypes.foreign,yojson,atdgen,ocp-indent.lib,compiler-libs \
+		-I `ocamlfind query ocp-index.lib -predicates byte -format "%d"` \
+		`ocamlfind query ocp-index.lib -predicates byte -format "%d"`/`ocamlfind query ocp-index.lib -predicates byte -format "%a"` \
+		iocaml_lib.cma message.cmo sockets.cmo completion.cmo exec.cmo iocaml.cmo iocaml_main.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind install iocaml META *.cmi *.cmo *.cma *.so *.a *.o
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_zmq_stubs.o
+Installed /home/opam/.opam/system/lib/iocaml/libiocaml_lib.a
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_lib.cma
+Installed /home/opam/.opam/system/lib/iocaml/sockets.cmo
+Installed /home/opam/.opam/system/lib/iocaml/message.cmo
+Installed /home/opam/.opam/system/lib/iocaml/log.cmo
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_zmq.cmo
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_main.cmo
+Installed /home/opam/.opam/system/lib/iocaml/iocaml.cmo
+Installed /home/opam/.opam/system/lib/iocaml/exec.cmo
+Installed /home/opam/.opam/system/lib/iocaml/completion.cmo
+Installed /home/opam/.opam/system/lib/iocaml/base64.cmo
+Installed /home/opam/.opam/system/lib/iocaml/Ipython_json_t.cmo
+Installed /home/opam/.opam/system/lib/iocaml/Ipython_json_j.cmo
+Installed /home/opam/.opam/system/lib/iocaml/sockets.cmi
+Installed /home/opam/.opam/system/lib/iocaml/message.cmi
+Installed /home/opam/.opam/system/lib/iocaml/log.cmi
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_zmq.cmi
+Installed /home/opam/.opam/system/lib/iocaml/iocaml_main.cmi
+Installed /home/opam/.opam/system/lib/iocaml/iocaml.cmi
+Installed /home/opam/.opam/system/lib/iocaml/exec.cmi
+Installed /home/opam/.opam/system/lib/iocaml/completion.cmi
+Installed /home/opam/.opam/system/lib/iocaml/base64.cmi
+Installed /home/opam/.opam/system/lib/iocaml/Ipython_json_t.cmi
+Installed /home/opam/.opam/system/lib/iocaml/Ipython_json_j.cmi
+Installed /home/opam/.opam/system/lib/iocaml/META
+Installed /home/opam/.opam/system/lib/stublibs/dlliocaml_lib.so
+Installed /home/opam/.opam/system/lib/stublibs/dlliocaml_lib.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+cp iocaml.top `opam config var bin`/iocaml.top
+Installing iocaml-kernel.0.4.3.
+
+=-=-= Installing websocket.0.8.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/websocket.0.8.1+opam.tar.gz
+sending incremental file list
+websocket.0.8.1+opam.tar.gz
+
+sent 49,258 bytes  received 35 bytes  98,586.00 bytes/sec
+total size is 49,118  speedup is 1.00
+Building websocket.0.8.1:
+  make
+  make install
+ocaml setup.ml -configure 
