@@ -8885,3 +8885,18 @@ File "ocsigen_lib.ml", line 146, characters 6-11:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
 ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+File "ocsigen_stream.ml", line 233, characters 12-25:
+Warning 3: deprecated feature: Ocsigen_lib.String.create
+ocamlfind ocamlopt   -thread -a -o baselib.cmxa ocsigen_lib_base.cmx ocsigen_lib.cmx ocsigen_cache.cmx ocsigen_config.cmx ocsigen_commandline.cmx ocsigen_messages.cmx dynlink_wrapper.cmx ocsigen_loader.cmx ocsigen_stream.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o parsecommandline.cmxa commandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o donotparsecommandline.cmxa nocommandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -shared -linkall -o parsecommandline.cmxs parsecommandline.cmxa
+ocamlfind ocamlopt   -thread -shared -linkall -o donotparsecommandline.cmxs donotparsecommandline.cmxa
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
