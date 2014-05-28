@@ -2409,3 +2409,70 @@ File OMyMakefile: line 669, characters 2-21:
 *** omake: finished reading OMakefiles (0.51 sec)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build lib gen_phantom.cmx
++ ocamlfind ocamlc -annot -bin-annot -for-pack Spotlib -package unix,str,oUnit,pa_ounit -g -w A-4-9 -warn-error a -g -syntax camlp4o -package pa_ounit.syntax -ppopt -pa-ounit-lib -ppopt Spotlib File "gen_phantom.ml", line 6, characters 14-35:
+Error: This expression has type string but an expression was expected of type
+         ('a -> 'b -> 'c -> 'd -> 'e -> 'f, Format.formatter, unit) format =
+           ('a -> 'b -> 'c -> 'd -> 'e -> 'f, Format.formatter, unit, 
+            unit, unit, unit)
+           CamlinternalFormatBasics.format6
+-I . -c gen_phantom.ml
+*** omake: 51/350 targets are up to date
+*** omake: failed (11.47 sec, 10/10 scans, 13/17 rules, 39/200 digests)
+*** omake: targets were not rebuilt because of errors:
+   lib/gen_phantom.cmi
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.cmo
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.cmx
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.o
+      depends on: lib/gen_phantom.ml
+E: Failure("Command 'cp OMakeroot.in OMakeroot; PREFIX=/home/opam/.opam/4.02.0+trunk omake' terminated with error code 2")
+[ERROR] The compilation of spotlib.2.4.0 failed.
+Removing spotlib.2.4.0.
+  ocamlfind remove spotlib
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/spotlib
+
+[ERROR] Due to some errors while processing spotlib.2.4.0, the following actions will NOT proceed:
+ - install spotinstall.1.2.0
+ - install orakuda.1.2.0
+
+===== ERROR while installing spotlib.2.4.0 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.02.0+trunk/build/spotlib.2.4.0
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/spotlib.2.4.0/spotlib-6268-d0f245.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/spotlib.2.4.0/spotlib-6268-d0f245.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/spotlib.2.4.0/spotlib-6268-d0f245.err
+### stdout ###
+# ...[truncated]
+# --- Checking for ocamlfind... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlfind)
+# --- Checking for ocamlc.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt)
+# --- Checking for ocamlopt.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt)
+# --- Checking whether ocamlc understands the "z" warnings... (yes)
+# --- Checking if ocamldep understands -modules... (yes)
+# *** omake: finished reading OMakefiles (0.51 sec)
+# - build lib gen_phantom.cmx
+# + ocamlfind ocamlc -annot -bin-annot -for-pack Spotlib -package unix,str,oUnit,pa_ounit -g -w A-4-9 -warn-error a -g -syntax camlp4o -package pa_ounit.syntax -ppopt -pa-ounit-lib -ppopt Spotlib -I . -c gen_phantom.ml
+# *** omake: 51/350 targets are up to date
+# *** omake: failed (11.47 sec, 10/10 scans, 13/17 rules, 39/200 digests)
+### stderr ###
+# ...[truncated]
+# *** omake: targets were not rebuilt because of errors:
+#    lib/gen_phantom.cmi
+#       depends on: lib/gen_phantom.ml
+#    lib/gen_phantom.cmo
+#       depends on: lib/gen_phantom.ml
+#    lib/gen_phantom.cmx
+#       depends on: lib/gen_phantom.ml
+#    lib/gen_phantom.o
+#       depends on: lib/gen_phantom.ml
+# E: Failure("Command 'cp OMakeroot.in OMakeroot; PREFIX=/home/opam/.opam/4.02.0+trunk omake' terminated with error code 2")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428195836.export"
+'opam install spotinstall' failed.
