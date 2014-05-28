@@ -210,3 +210,129 @@ Warning 3: deprecated feature: String.set
 File "fl_meta.mll", line 62, characters 11-22:
 Warning 3: deprecated feature: String.set
 ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+File "fl_topo.ml", line 283, characters 10-22:
+Warning 26: unused variable in_direction.
+File "fl_topo.ml", line 219, characters 36-37:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing schoca.0.2.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/schoca.0.2.3+opam.tar.gz
+sending incremental file list
+schoca.0.2.3+opam.tar.gz
+
+sent 40,497 bytes  received 35 bytes  81,064.00 bytes/sec
+total size is 40,360  speedup is 1.00
+Building schoca.0.2.3:
+  make
+  make install DESTPREF=/home/opam/.opam/4.02.0+trunk
+for dir in lib shell examples ;\
+	do \
+	  make -C ${dir} ; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/lib'
+ocamlfind ocamldep   -package camlp4  -syntax camlp4o \
+	   scmConfig.ml scmUtil.ml scmUtil.mli scmDynnum.ml scmDynnum.mli scmTypes.ml scmTypes.mli scmParser.mli scmParser.ml scmLexer.ml scmEval.ml scmSchoca.ml > .depend
+make[1]: *** No rule to make target `.depend', needed by `depend'.  Stop.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/shell'
+ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+	   scmMain.ml > .depend
+make[1]: *** No rule to make target `.depend', needed by `depend'.  Stop.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/shell'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/examples'
+ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+	   read_ini_file.ml > .depend
+make[1]: *** No rule to make target `.depend', needed by `depend'make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/examples'
+.  Stop.
+make: *** [subdirs] Error 2
+[ERROR] The compilation of schoca.0.2.3 failed.
+Removing schoca.0.2.3.
+  ocamlfind remove schoca
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/schoca
+
+
+===== ERROR while installing schoca.0.2.3 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/schoca-359-d2c37b.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/schoca-359-d2c37b.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/schoca-359-d2c37b.err
+### stdout ###
+# ...[truncated]
+# 	   scmConfig.ml scmUtil.ml scmUtil.mli scmDynnum.ml scmDynnum.mli scmTypes.ml scmTypes.mli scmParser.mli scmParser.ml scmLexer.ml scmEval.ml scmSchoca.ml > .depend
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/lib'
+# make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/shell'
+# ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+# 	   scmMain.ml > .depend
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/shell'
+# make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/examples'
+# ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+# 	   read_ini_file.ml > .depend
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/schoca.0.2.3/examples'
+### stderr ###
+# make[1]: *** No rule to make target `.depend', needed by `depend'.  Stop.
+# make[1]: *** No rule to make target `.depend', needed by `depend'.  Stop.
+# make[1]: *** No rule to make target `.depend', needed by `depend'.  Stop.
+# make: *** [subdirs] Error 2
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428195426.export"
+'opam install schoca' failed.
