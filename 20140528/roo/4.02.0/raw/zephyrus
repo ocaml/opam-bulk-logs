@@ -2303,3 +2303,28 @@ File "src/input/settings.ml", line 483, characters 87-88:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/output -I src -I src/input -I src/datatypes -I src/engine -I src/atd -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/output/zephyrus_log.cmx src/output/zephyrus_log.ml
 ocamlfind ocamldep -package atdgen -package unix -modules src/input/input_helper.ml > src/input/input_helper.ml.depends
+ocamlfind ocamldep -package atdgen -package unix -modules src/output/json_of.ml > src/output/json_of.ml.depends
+ocamlfind ocamldep -package atdgen -package unix -modules src/atd/json_j.ml > src/atd/json_j.ml.depends
+ocamlfind ocamldep -package atdgen -package unix -modules src/atd/json_j.mli > src/atd/json_j.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/atd -I src -I src/input -I src/datatypes -I src/engine -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/atd/json_j.cmi src/atd/json_j.mli
+ocamlfind ocamldep -package atdgen -package unix -modules src/atd/json_t.ml > src/atd/json_t.ml.depends
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/atd -I src -I src/input -I src/datatypes -I src/engine -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/atd/json_t.cmx src/atd/json_t.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/atd -I src -I src/input -I src/datatypes -I src/engine -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/atd/json_j.cmx src/atd/json_j.ml
+ocamlfind ocamldep -package atdgen -package unix -modules src/input/load_model.ml > src/input/load_model.ml.depends
+ocamlfind ocamldep -package atdgen -package unix -modules src/input/specification_parser.ml > src/input/specification_parser.ml.depends
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/specification_parser.cmx src/input/specification_parser.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/specification_lexer.cmx src/input/specification_lexer.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/input_helper.cmx src/input/input_helper.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/benchmarks.cmx src/input/benchmarks.ml
+ocamlfind ocamldep -package atdgen -package unix -modules src/input/load_settings.ml > src/input/load_settings.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/input/settings_lexer.mll
+ocamlfind ocamldep -package atdgen -package unix -modules src/input/settings_lexer.ml > src/input/settings_lexer.ml.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/input/settings_parser.mly > src/input/settings_parser.mly.depends
++ menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/input/settings_parser.mly > src/input/settings_parser.mly.depends
+Note: the nonterminal symbol list (from src/input/settings_parser.mly) is renamed src_input_settings_parser_list.
+menhir --ocamlc 'ocamlfind ocamlc -w -24 -ccopt -O9 -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc' --infer src/input/settings_parser.mly
++ menhir --ocamlc 'ocamlfind ocamlc -w -24 -ccopt -O9 -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc' --infer src/input/settings_parser.mly
+Note: the nonterminal symbol list (from src/input/settings_parser.mly) is renamed src_input_settings_parser_list.
+ocamlfind ocamldep -package atdgen -package unix -modules src/input/settings_parser.mli > src/input/settings_parser.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/settings_parser.cmi src/input/settings_parser.mli
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package atdgen -package unix -I src/input -I src -I src/datatypes -I src/engine -I src/atd -I src/output -I src/engine/preprocess -I src/engine/solvers -I src/engine/translation -I src/engine/solvers/minizinc -o src/input/settings_lexer.cmo src/input/settings_lexer.ml
