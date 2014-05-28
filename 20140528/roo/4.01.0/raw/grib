@@ -1043,3 +1043,96 @@ Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so
 Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
 Installing pcre-ocaml.7.0.4.
+
+=-=-= Installing grib.0.9.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/grib.0.9.7+opam.tar.gz
+sending incremental file list
+grib.0.9.7+opam.tar.gz
+
+sent 153,312 bytes  received 35 bytes  306,694.00 bytes/sec
+total size is 153,153  speedup is 1.00
+Building grib.0.9.7:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ ocaml-grib
+Package version: ..................................... 0.9.7
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Link with a JPEG2000 library: ........................ true
+Use jasper for JPEG2000 support: ..................... true
+Use libjpeg for JPEG2000 support: .................... true
+Use openjpeg for JPEG2000 support: ................... true
+Link with libpng: .................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_batteries: ....................................... /home/opam/.opam/system/lib/batteries
+pkg_pcre: ............................................ /home/opam/.opam/system/lib/pcre
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O2 -ccopt -DUSE_JPEG2000 -ccopt -DUSE_PNG -c src/grib_stubs.c
+mv grib_stubs.o src/grib_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O2 -ccopt -DUSE_JPEG2000 -ccopt -DUSE_PNG -c src/g2clib_stubs.c
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O2 -ccopt -DUSE_JPEG2000 -ccopt -DUSE_PNG -c src/g2clib_stubs.c
+src/g2clib_stubs.c: In function 'ml_g2_getfld_handle':
+src/g2clib_stubs.c:99:5: warning: passing argument 2 of 'grib_get_message' from incompatible pointer type [enabled by default]
+     GRIB_CHECK( grib_get_message( Handle_val( handle ), &message, &size ), 0 );
+     ^
+In file included from src/g2clib_stubs.c:18:0:
+/usr/include/grib_api.h:554:5: note: expected 'const void **' but argument is of type 'const char **'
+ int grib_get_message(grib_handle* h ,const void** message, size_t *message_length  );
+     ^
+mv g2clib_stubs.o src/g2clib_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O2 -ccopt -DUSE_JPEG2000 -ccopt -DUSE_PNG -c src/g2clib-src/cmplxpack.c
+mv cmplxpack.o src/g2clib-src/cmplxpack.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O2 -ccopt -DUSE_JPEG2000 -ccopt -DUSE_PNG -c src/g2clib-src/compack.c
+mv compack.o src/g2clib-src/compack.o
