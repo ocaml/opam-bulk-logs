@@ -98,3 +98,32 @@ Compiler support generation of .cmxs.: ......... true
 OCamlbuild additional flags: ................... 
 ocamldoc: ...................................... /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -x -ccopt c++ -c src/snappy_stubs.c
+mv snappy_stubs.o src/snappy_stubs.o
+/usr/bin/ocamlmklib -o src/snappy_stubs -lstdc++ -lsnappy src/snappy_stubs.o
+ocamlfind ocamldep -modules src/snappy.mli > src/snappy.mli.depends
+ocamlfind ocamlc -c -g -ccopt -x -ccopt c++ -I src -o src/snappy.cmi src/snappy.mli
+ocamlfind ocamldep -modules src/snappy.ml > src/snappy.ml.depends
+ocamlfind ocamlc -c -g -ccopt -x -ccopt c++ -I src -o src/snappy.cmo src/snappy.ml
+ocamlfind ocamlc -a -dllib -lsnappy_stubs -cclib -lsnappy_stubs -cclib -lstdc++ -cclib -lsnappy src/snappy.cmo -o src/snappy.cma
+ocamlfind ocamlopt -c -g -ccopt -x -ccopt c++ -I src -o src/snappy.cmx src/snappy.ml
+ocamlfind ocamlopt -a -cclib -lsnappy_stubs -cclib -lstdc++ -cclib -lsnappy src/snappy.cmx -o src/snappy.cmxa
+ocamlfind ocamlopt -shared -I src src/snappy.cmx -o src/snappy.cmxs
+ocamlfind ocamldep -modules test.ml > test.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -o test.cmo test.ml
+ocamlfind ocamlopt -c -g -I src -I src -o test.cmx test.ml
+ocamlfind ocamlopt -g -I src -linkpkg src/snappy.cmxa test.cmx -o test.native
+Installed /home/opam/.opam/system/lib/snappy/snappy.mli
+Installed /home/opam/.opam/system/lib/snappy/libsnappy_stubs.a
+Installed /home/opam/.opam/system/lib/snappy/snappy.cma
+Installed /home/opam/.opam/system/lib/snappy/snappy.cmxa
+Installed /home/opam/.opam/system/lib/snappy/snappy.a
+Installed /home/opam/.opam/system/lib/snappy/snappy.cmxs
+Installed /home/opam/.opam/system/lib/snappy/snappy.cmi
+Installed /home/opam/.opam/system/lib/snappy/snappy.cmx
+Installed /home/opam/.opam/system/lib/snappy/META
+Installed /home/opam/.opam/system/lib/stublibs/dllsnappy_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllsnappy_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing snappy.0.1.0.
