@@ -7081,3 +7081,14 @@ ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package lwt -package lwt.react -
 ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package str -package zed -syntax camlp4o -modules examples/editor.ml > examples/editor.ml.depends
 ocamlfind ocamlc -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package str -package zed -syntax camlp4o -I examples -I src -o examples/editor.cmo examples/editor.ml
 ocamlfind ocamlopt -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package str -package zed -syntax camlp4o -I examples -I src -o examples/editor.cmx examples/editor.ml
+ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package lwt -package lwt.react -package lwt.syntax -package lwt.unix -package zed src/lambda-term.cmxa examples/editor.cmx -o examples/editor.native
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules tools/lambda_term_actions.ml > tools/lambda_term_actions.ml.depends
+ocamlfind ocamlc -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -I tools -I src -o tools/lambda_term_actions.cmo tools/lambda_term_actions.ml
+ocamlfind ocamlopt -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -I tools -I src -o tools/lambda_term_actions.cmx tools/lambda_term_actions.ml
+ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package lwt -package lwt.react -package lwt.syntax -package lwt.unix -package zed src/lambda-term.cmxa tools/lambda_term_actions.cmx -o tools/lambda_term_actions.native
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules tests/history_stress_test.ml > tests/history_stress_test.ml.depends
+ocamlfind ocamlc -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -I tests -I src -o tests/history_stress_test.cmo tests/history_stress_test.ml
+ocamlfind ocamlopt -c -g -I src -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -I tests -I src -o tests/history_stress_test.cmx tests/history_stress_test.ml
+ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package lwt -package lwt.react -package lwt.syntax -package lwt.unix -package zed src/lambda-term.cmxa tests/history_stress_test.cmx -o tests/history_stress_test.native
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated feature: String.set
