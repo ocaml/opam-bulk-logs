@@ -2420,3 +2420,17 @@ Warning: the tag "pkg_pa_ounit.syntax" is not used in any flag declaration, so i
 File "_tags", line 52, characters 17-31:
 Warning: the tag "pkg_quickcheck" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
 ocamlfind ocamlc -ccopt -g -c lib/checksum_stubs.c
+mv checksum_stubs.o lib/checksum_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/packet_stubs lib/checksum_stubs.o
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/Packet.mli > lib/Packet.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/Packet.cmi lib/Packet.mli
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/Packet.ml > lib/Packet.ml.depends
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/checksum.mli > lib/checksum.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/checksum.cmi lib/checksum.mli
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/checksum.ml > lib/checksum.ml.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmo lib/Packet.ml
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmo lib/checksum.ml
+ocamlfind ocamlc -a -dllib -lpacket_stubs -cclib -lpacket_stubs -g lib/checksum.cmo lib/Packet.cmo -o lib/packet.cma
+ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmx lib/checksum.ml
+ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmx lib/Packet.ml
+ocamlfind ocamlopt -a -cclib -lpacket_stubs lib/checksum.cmx lib/Packet.cmx -o lib/packet.cmxa
