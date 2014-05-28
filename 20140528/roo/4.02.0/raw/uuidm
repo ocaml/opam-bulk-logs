@@ -225,3 +225,317 @@ File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
 File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing uuidm.0.9.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/uuidm.0.9.5+opam.tar.gz
+sending incremental file list
+uuidm.0.9.5+opam.tar.gz
+
+sent 50,859 bytes  received 35 bytes  101,788.00 bytes/sec
+total size is 50,723  speedup is 1.00
+Building uuidm.0.9.5:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ uuidm
+Package version: ..................................... 0.9.5
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules src/uuidm.mli > src/uuidm.mli.depends
+ocamlfind ocamlc -c -g -I src -o src/uuidm.cmi src/uuidm.mli
+ocamlfind ocamldep -modules src/uuidm.ml > src/uuidm.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/uuidm.cmo src/uuidm.ml
++ ocamlfind ocamlc -c -g -I src -o src/uuidm.cmo src/uuidm.ml
+File "src/uuidm.ml", line 29, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "src/uuidm.ml", line 31, characters 4-15:
+Warning 3: deprecated feature: String.fill
+File "src/uuidm.ml", line 32, characters 4-21:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 34, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 35, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 36, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 37, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 39, characters 4-59:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 40, characters 4-59:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 41, characters 4-58:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 42, characters 4-52:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 112, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "src/uuidm.ml", line 114, characters 4-64:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 115, characters 4-68:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 116, characters 4-67:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 117, characters 4-60:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 128, characters 2-77:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 129, characters 2-79:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 142, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 143, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 144, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 145, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 146, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 147, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 148, characters 2-73:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 149, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 150, characters 2-73:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 151, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 152, characters 2-49:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 153, characters 2-42:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 154, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 155, characters 2-49:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 156, characters 2-42:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 157, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 203, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 205, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 207, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 209, characters 25-44:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 211, characters 25-44:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 222, characters 4-32:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 223, characters 4-40:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -a src/uuidm.cmo -o src/uuidm.cma
+ocamlfind ocamlopt -c -g -I src -o src/uuidm.cmx src/uuidm.ml
++ ocamlfind ocamlopt -c -g -I src -o src/uuidm.cmx src/uuidm.ml
+File "src/uuidm.ml", line 29, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "src/uuidm.ml", line 31, characters 4-15:
+Warning 3: deprecated feature: String.fill
+File "src/uuidm.ml", line 32, characters 4-21:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 34, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 35, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 36, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 37, characters 6-61:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 39, characters 4-59:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 40, characters 4-59:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 41, characters 4-58:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 42, characters 4-52:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 112, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "src/uuidm.ml", line 114, characters 4-64:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 115, characters 4-68:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 116, characters 4-67:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 117, characters 4-60:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 128, characters 2-77:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 129, characters 2-79:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 142, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 143, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 144, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 145, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 146, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 147, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 148, characters 2-73:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 149, characters 2-41:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 150, characters 2-73:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 151, characters 2-47:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 152, characters 2-49:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 153, characters 2-42:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 154, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 155, characters 2-49:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 156, characters 2-42:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 157, characters 2-48:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 203, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 205, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 207, characters 24-43:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 209, characters 25-44:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 211, characters 25-44:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 222, characters 4-32:
+Warning 3: deprecated feature: String.set
+File "src/uuidm.ml", line 223, characters 4-40:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -a src/uuidm.cmx -o src/uuidm.cmxa
+ocamlfind ocamlopt -shared src/uuidm.cmx -o src/uuidm.cmxs
+ocamlfind ocamldep -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/test.cmx -o test/test.native
+ocamlfind ocamldep -modules test/perf.ml > test/perf.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/perf.cmo test/perf.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/perf.cmx test/perf.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/perf.cmx -o test/perf.native
+ocamlfind ocamldep -modules test/uuidtrip.ml > test/uuidtrip.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/uuidtrip.cmo test/uuidtrip.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/uuidtrip.cmx test/uuidtrip.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/uuidtrip.cmx -o test/uuidtrip.native
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/uuidm.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uuidm/META
+Installing uuidm.0.9.5.
