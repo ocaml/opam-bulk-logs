@@ -203,3 +203,307 @@ Warning 3: deprecated feature: String.create
 File "fl_split.ml", line 140, characters 1-19:
 Warning 3: deprecated feature: String.set
 ocamlopt -I +compiler-libs -c fl_metatoken.ml
+ocamlopt -I +compiler-libs -c fl_meta.ml
+File "fl_meta.mll", line 57, characters 13-26:
+Warning 3: deprecated feature: String.create
+File "fl_meta.mll", line 61, characters 11-29:
+Warning 3: deprecated feature: String.set
+File "fl_meta.mll", line 62, characters 11-22:
+Warning 3: deprecated feature: String.set
+ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+File "fl_topo.ml", line 283, characters 10-22:
+Warning 26: unused variable in_direction.
+File "fl_topo.ml", line 219, characters 36-37:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing bson.0.89.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/bson.0.89.3+opam.tar.gz
+sending incremental file list
+bson.0.89.3+opam.tar.gz
+
+sent 67,885 bytes  received 35 bytes  135,840.00 bytes/sec
+total size is 67,741  speedup is 1.00
+Building bson.0.89.3:
+  ocaml setup.ml -configure --disable-syntax --disable-client --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ bson.ml
+Package version: ..................................... 0.89.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the bson syntax extension: ..................... false
+build the client-side library: ....................... false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 23, characters 19-31:
+Warning: the tag "pkg_deriving" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 24, characters 19-38:
+Warning: the tag "pkg_deriving.syntax" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 27, characters 23-38:
+Warning: the tag "pkg_js_of_ocaml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 23-45:
+Warning: the tag "pkg_js_of_ocaml.syntax" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 34, characters 26-38:
+Warning: the tag "pkg_deriving" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 35, characters 26-45:
+Warning: the tag "pkg_deriving.syntax" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 36, characters 26-41:
+Warning: the tag "pkg_js_of_ocaml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/bson.mli > src/bson.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src -o src/bson.cmi src/bson.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/bson.ml > src/bson.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/bson_ext.ml > src/bson_ext.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src -o src/bson.cmo src/bson.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src -o src/bson_ext.cmo src/bson_ext.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a src/bson.cmo src/bson_ext.cmo -o src/bson.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src -o src/bson.cmx src/bson.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src -o src/bson_ext.cmx src/bson_ext.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a src/bson.cmx src/bson_ext.cmx -o src/bson.cmxa
+ocamlfind ocamlopt -shared -linkall src/bson.cmxa -o src/bson.cmxs
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson_ext.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson_ext.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson_ext.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/bson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/bson/META
+Installing bson.0.89.3.
+
+=-=-= Installing mongo.0.67.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mongo.0.67.2+opam.tar.gz
+sending incremental file list
+mongo.0.67.2+opam.tar.gz
+
+sent 86,801 bytes  received 35 bytes  173,672.00 bytes/sec
+total size is 86,656  speedup is 1.00
+Building mongo.0.67.2:
+  ocaml setup.ml -configure --disable-lwt --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ mongo.ml
+Package version: ..................................... 0.67.2
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the Lwt library: ............................... false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_bson: ............................................ /home/opam/.opam/4.02.0+trunk/lib/bson
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+pkg_unix: ............................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 23, characters 16-23:
+Warning: the tag "pkg_lwt" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 24, characters 16-30:
+Warning: the tag "pkg_lwt.syntax" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -package bson -modules src/mongo.mli > src/mongo.mli.depends
+ocamlfind ocamldep -package bson -modules src/mongoReply.mli > src/mongoReply.mli.depends
+ocamlfind ocamldep -package bson -modules src/mongoHeader.mli > src/mongoHeader.mli.depends
+ocamlfind ocamldep -package bson -modules src/mongoOperation.mli > src/mongoOperation.mli.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoOperation.cmi src/mongoOperation.mli
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoHeader.cmi src/mongoHeader.mli
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoReply.cmi src/mongoReply.mli
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongo.cmi src/mongo.mli
+ocamlfind ocamldep -package bson -modules src/mongo.ml > src/mongo.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoRequest.mli > src/mongoRequest.mli.depends
+ocamlfind ocamldep -package bson -modules src/mongoSend.mli > src/mongoSend.mli.depends
+ocamlfind ocamldep -package bson -modules src/mongoUtils.mli > src/mongoUtils.mli.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoRequest.cmi src/mongoRequest.mli
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoSend.cmi src/mongoSend.mli
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoUtils.cmi src/mongoUtils.mli
+ocamlfind ocamldep -package bson -modules src/mongoAdmin.mli > src/mongoAdmin.mli.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoAdmin.cmi src/mongoAdmin.mli
+ocamlfind ocamldep -package bson -modules src/mongoAdmin.ml > src/mongoAdmin.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoHeader.ml > src/mongoHeader.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoOperation.ml > src/mongoOperation.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoReply.ml > src/mongoReply.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoRequest.ml > src/mongoRequest.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoSend.ml > src/mongoSend.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoUtils.ml > src/mongoUtils.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoMetaOp.mli > src/mongoMetaOp.mli.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoMetaOp.cmi src/mongoMetaOp.mli
+ocamlfind ocamldep -package bson -modules src/mongoMetaOp.ml > src/mongoMetaOp.ml.depends
+ocamlfind ocamldep -package bson -modules src/mongoQueryOp.mli > src/mongoQueryOp.mli.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoQueryOp.cmi src/mongoQueryOp.mli
+ocamlfind ocamldep -package bson -modules src/mongoQueryOp.ml > src/mongoQueryOp.ml.depends
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongo.cmo src/mongo.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoAdmin.cmo src/mongoAdmin.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoHeader.cmo src/mongoHeader.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoOperation.cmo src/mongoOperation.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoReply.cmo src/mongoReply.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoRequest.cmo src/mongoRequest.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoSend.cmo src/mongoSend.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoUtils.cmo src/mongoUtils.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoMetaOp.cmo src/mongoMetaOp.ml
+ocamlfind ocamlc -c -g -package bson -I src -o src/mongoQueryOp.cmo src/mongoQueryOp.ml
+ocamlfind ocamlc -a src/mongoOperation.cmo src/mongoUtils.cmo src/mongoHeader.cmo src/mongoReply.cmo src/mongoRequest.cmo src/mongoSend.cmo src/mongo.cmo src/mongoAdmin.cmo src/mongoMetaOp.cmo src/mongoQueryOp.cmo -o src/mongo.cma
+ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoOperation.cmx src/mongoOperation.ml
+ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoUtils.cmx src/mongoUtils.ml
