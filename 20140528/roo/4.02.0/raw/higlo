@@ -121,3 +121,26 @@ File "fl_meta.mll", line 61, characters 11-29:
 Warning 3: deprecated feature: String.set
 File "fl_meta.mll", line 62, characters 11-22:
 Warning 3: deprecated feature: String.set
+ocamlc -I +compiler-libs -c fl_metascanner.mli
+ocamlc -I +compiler-libs -g -c fl_metascanner.ml
+ocamlc -I +compiler-libs -c fl_topo.mli
+ocamlc -I +compiler-libs -g -c fl_topo.ml
+File "fl_topo.ml", line 283, characters 10-22:
+Warning 26: unused variable in_direction.
+File "fl_topo.ml", line 219, characters 36-37:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlc -I +compiler-libs -c fl_package_base.mli
+ocamlc -I +compiler-libs -g -c fl_package_base.ml
+ocamlc -I +compiler-libs -c findlib.mli
+ocamlc -I +compiler-libs -g -c findlib.ml
+ocamlc -I +compiler-libs -g -c fl_args.ml
+ocamlc -I +compiler-libs -a -o findlib.cma findlib_config.cmo fl_split.cmo fl_metatoken.cmo fl_meta.cmo fl_metascanner.cmo fl_topo.cmo fl_package_base.cmo findlib.cmo fl_args.cmo
+ocamlc -I +compiler-libs -g -c ocaml_args.ml
+ocamlc -I +compiler-libs -g -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlc -I +compiler-libs -custom -o ocamlfind -g findlib.cma unix.cma \
+	           ocaml_args.cmo frontend.cmo
+ocamlc -I +compiler-libs -c topfind.mli
