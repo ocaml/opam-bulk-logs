@@ -220,3 +220,130 @@ ocamlopt -I +compiler-libs -c findlib.ml
 ocamlopt -I +compiler-libs -c fl_args.ml
 ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
 ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing ocamlify.0.0.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocamlify.0.0.1+opam.tar.gz
+sending incremental file list
+ocamlify.0.0.1+opam.tar.gz
+
+sent 46,438 bytes  received 35 bytes  92,946.00 bytes/sec
+total size is 46,299  speedup is 1.00
+Building ocamlify.0.0.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+I: Running command '/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -config > /tmp/oasis-c10905.txt'
+I: Running command '/home/opam/.opam/4.02.0+trunk/bin/ocamlfind query -format %v findlib > /tmp/oasis-815378.txt'
+
+Configuration: 
+
+OCamlbuild additional flags: ................... 
+Compile with ocaml profile flag on.: ........... false
+Compile with ocaml debug flag on.: ............. true
+Remove a directory.: ........................... rm -rf
+Remove a file.: ................................ rm -f
+suffix_program: ................................ 
+is_native: ..................................... true
+findlib_version: ............................... 1.4
+PS documentation: .............................. $docdir
+PDF documentation: ............................. $docdir
+DVI documentation: ............................. $docdir
+HTML documentation: ............................ $docdir
+Documentation root: ............................ $datarootdir/doc/$pkg_name
+Man documentation: ............................. $datarootdir/man
+Locale-dependent data: ......................... $datarootdir/locale
+Info documentation: ............................ $datarootdir/info
+Read-only architecture-independent data: ....... $datarootdir
+Read-only arch-independent data root: .......... $prefix/share
+Object code libraries: ......................... $exec_prefix/lib
+Modifiable single-machine data: ................ $prefix/var
+Modifiable architecture-independent data: ...... $prefix/com
+Read-only single-machine data: ................. $prefix/etc
+Program executables: ........................... $exec_prefix/libexec
+System admin executables: ...................... $exec_prefix/sbin
+User executables: .............................. $exec_prefix/bin
+Install architecture-dependent files in dir: ... $prefix
+Install architecture-independent files dir: .... /home/opam/.opam/4.02.0+trunk
+systhread_supported: ........................... true
+default_executable_name: ....................... a.out
+ext_dll: ....................................... .so
+ext_lib: ....................................... .a
+ext_asm: ....................................... .s
+ext_obj: ....................................... .o
+model: ......................................... default
+native_c_compiler: ............................. gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+bytecomp_c_compiler: ........................... gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+standard_runtime: .............................. /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+standard_library: .............................. /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library_default: ...................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocaml_version: ................................. 4.02.0+dev10-2014-05-20
+ccomp_type: .................................... cc
+architecture: .................................. amd64
+system: ........................................ linux
+os_type: ....................................... Unix
+Package version: ............................... 0.0.1
+Package name: .................................. ocamlify
+ocamlbuild: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+ocamlopt: ...................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlc: ........................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlfind: ..................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+
+I: Running command '/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild src/ocamlify.byte -tag debug'
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules src/ocamlify.ml > src/ocamlify.ml.depends
+ocamlfind ocamldep -modules src/OCamlifyConfig.ml > src/OCamlifyConfig.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/OCamlifyConfig.cmo src/OCamlifyConfig.ml
+ocamlfind ocamlc -c -g -I src -o src/ocamlify.cmo src/ocamlify.ml
+ocamlfind ocamlc -linkpkg -g -linkpkg src/OCamlifyConfig.cmo src/ocamlify.cmo -o src/ocamlify.byte
+I: Running command 'cp '_build/src/ocamlify.byte' '_build/src/ocamlify''
+I: Copying file '/home/opam/.opam/4.02.0+trunk/build/ocamlify.0.0.1/_build/src/ocamlify' to '/home/opam/.opam/4.02.0+trunk/bin/ocamlify'
+I: Running command 'cp '/home/opam/.opam/4.02.0+trunk/build/ocamlify.0.0.1/_build/src/ocamlify' '/home/opam/.opam/4.02.0+trunk/bin/ocamlify''
+Installing ocamlify.0.0.1.
