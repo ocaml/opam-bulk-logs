@@ -179,3 +179,21 @@ ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbu
 ocamlfind ocamlc -ccopt -I/home/opam/.opam/system/build/yajl.0.7.3/upstream/local/include -c yajl_stubs.c
 /usr/bin/ocamlmklib -o yajl_stubs -L/home/opam/.opam/system/build/yajl.0.7.3/upstream/local/lib -lyajl_s -custom yajl_stubs.o
 ocamlfind ocamldep -pp ocaml+twt -modules YAJL.ml > YAJL.ml.depends
+ocamlfind ocamldep -pp ocaml+twt -modules YAJL.mli > YAJL.mli.depends
+ocamlfind ocamlc -c -g -pp ocaml+twt -o YAJL.cmi YAJL.mli
+ocamlfind ocamlopt -c -g -pp ocaml+twt -o YAJL.cmx YAJL.ml
+ocamlfind ocamlopt -a -cclib -lyajl_stubs -cclib -lyajl_s YAJL.cmx -o yajl.cmxa
+ocamlfind ocamlc -c -g -pp ocaml+twt -o YAJL.cmo YAJL.ml
+ocamlfind ocamlc -a -custom -cclib -lyajl_stubs -cclib -lyajl_s YAJL.cmo -o yajl.cma
+ocamlfind remove yajl || true
+cd src/_build && ocamlfind install yajl /home/opam/.opam/system/build/yajl.0.7.3/upstream/local/lib/libyajl_s.a libyajl_stubs.a yajl.a YAJL.cmi yajl.cma yajl.cmxa YAJL.mli ../META
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/yajl
+Installed /home/opam/.opam/system/lib/yajl/YAJL.mli
+Installed /home/opam/.opam/system/lib/yajl/yajl.cmxa
+Installed /home/opam/.opam/system/lib/yajl/yajl.cma
+Installed /home/opam/.opam/system/lib/yajl/YAJL.cmi
+Installed /home/opam/.opam/system/lib/yajl/yajl.a
+Installed /home/opam/.opam/system/lib/yajl/libyajl_stubs.a
+Installed /home/opam/.opam/system/lib/yajl/libyajl_s.a
+Installed /home/opam/.opam/system/lib/yajl/META
+Installing yajl.0.7.3.
