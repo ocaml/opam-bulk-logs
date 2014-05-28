@@ -1617,3 +1617,51 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbui
 File "_tags", line 28, characters 6-16:
 Warning: the tag "use_menhir" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
 ocamlfind ocamldep -modules lib/bnf_spec.mli > lib/bnf_spec.mli.depends
+ocamlfind ocamldep -modules lib/cfg_intf.ml > lib/cfg_intf.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_intf.cmo lib/cfg_intf.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_spec.cmi lib/bnf_spec.mli
+ocamlfind ocamldep -modules lib/bnf_spec.ml > lib/bnf_spec.ml.depends
+ocamlfind ocamldep -modules lib/cfg_impl.mli > lib/cfg_impl.mli.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_impl.cmi lib/cfg_impl.mli
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' lib/bnf_parser.mly > lib/bnf_parser.mly.depends
+menhir --ocamlc 'ocamlfind ocamlc -g -I lib' --infer lib/bnf_parser.mly
+ocamlfind ocamldep -modules lib/bnf_parser.mli > lib/bnf_parser.mli.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_parser.cmi lib/bnf_parser.mli
+ocamlfind ocamldep -modules lib/bnf_parser.ml > lib/bnf_parser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lib/bnf_lexer.mll
+ocamlfind ocamldep -modules lib/bnf_lexer.ml > lib/bnf_lexer.ml.depends
+ocamlfind ocamldep -modules lib/bnf_pp.mli > lib/bnf_pp.mli.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_pp.cmi lib/bnf_pp.mli
+ocamlfind ocamldep -modules lib/bnf_pp.ml > lib/bnf_pp.ml.depends
+ocamlfind ocamldep -modules lib/cfg_impl.ml > lib/cfg_impl.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_spec.cmo lib/bnf_spec.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_parser.cmo lib/bnf_parser.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_lexer.cmo lib/bnf_lexer.ml
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_pp.cmo lib/bnf_pp.ml
++ ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_pp.cmo lib/bnf_pp.ml
+File "lib/bnf_pp.ml", line 27, characters 2-16:
+Warning 3: deprecated feature: String.set
+File "lib/bnf_pp.ml", line 28, characters 2-22:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_impl.cmo lib/cfg_impl.ml
+ocamlfind ocamlc -a lib/cfg_intf.cmo lib/cfg_impl.cmo lib/bnf_spec.cmo lib/bnf_parser.cmo lib/bnf_lexer.cmo lib/bnf_pp.cmo -o lib/cfg.cma
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_intf.cmx lib/cfg_intf.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_impl.cmx lib/cfg_impl.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_spec.cmx lib/bnf_spec.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_parser.cmx lib/bnf_parser.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_lexer.cmx lib/bnf_lexer.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_pp.cmx lib/bnf_pp.ml
++ ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_pp.cmx lib/bnf_pp.ml
+File "lib/bnf_pp.ml", line 27, characters 2-16:
+Warning 3: deprecated feature: String.set
+File "lib/bnf_pp.ml", line 28, characters 2-22:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -a lib/cfg_intf.cmx lib/cfg_impl.cmx lib/bnf_spec.cmx lib/bnf_parser.cmx lib/bnf_lexer.cmx lib/bnf_pp.cmx -o lib/cfg.cmxa
+ocamlfind ocamlopt -shared -linkall lib/cfg.cmxa -o lib/cfg.cmxs
+ocamlfind ocamldep -modules examples/bnf/bnf.ml > examples/bnf/bnf.ml.depends
+ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/bnf -I lib -o examples/bnf/bnf.cmo examples/bnf/bnf.ml
+ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/bnf -I lib -o examples/bnf/bnf.cmx examples/bnf/bnf.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg lib/cfg.cmxa examples/bnf/bnf.cmx -o examples/bnf/bnf.native
+ocaml setup.ml -install 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
