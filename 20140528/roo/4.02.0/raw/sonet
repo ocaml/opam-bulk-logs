@@ -400,3 +400,60 @@ ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/test
 ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http_client.cmx protocols/http/tests/test_http_client.ml
 ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo protocols/http/tests/test_http.cmo -o protocols/http/tests/test_http.byte
 ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/tests/test_http.cmx -o protocols/http/tests/test_http.native
+ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/tests/test_uri.cmo -o protocols/http/tests/test_uri.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/tests/test_uri.cmx -o protocols/http/tests/test_uri.native
+ocamlfind ocamlc -linkpkg unix.cma str.cma -custom -I eventloop protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo eventloop/eventloop.cma protocols/http/http_client_conn.cmo protocols/http/http_client.cmo protocols/http/tests/test_http_client.cmo -o protocols/http/tests/test_http_client.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa -I eventloop eventloop/eventloop.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/http_client_conn.cmx protocols/http/http_client.cmx protocols/http/tests/test_http_client.cmx -o protocols/http/tests/test_http_client.native
+ocamlfind ocamldep -modules protocols/jsonrpc/json.mli > protocols/jsonrpc/json.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmi protocols/jsonrpc/json.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json.ml > protocols/jsonrpc/json.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/json_conv.mli > protocols/jsonrpc/json_conv.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_conv.cmi protocols/jsonrpc/json_conv.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json_conv.ml > protocols/jsonrpc/json_conv.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/json_parse.mli > protocols/jsonrpc/json_parse.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmi protocols/jsonrpc/json_parse.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json_parse.ml > protocols/jsonrpc/json_parse.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/jsonrpc.mli > protocols/jsonrpc/jsonrpc.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/jsonrpc.cmi protocols/jsonrpc/jsonrpc.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/jsonrpc.ml > protocols/jsonrpc/jsonrpc.ml.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmo protocols/jsonrpc/json.ml
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_conv.cmo protocols/jsonrpc/json_conv.ml
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmo protocols/jsonrpc/json_parse.ml
++ ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmo protocols/jsonrpc/json_parse.ml
+File "protocols/jsonrpc/json_parse.ml", line 115, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "protocols/jsonrpc/json_parse.ml", line 118, characters 8-18:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/jsonrpc.cmo protocols/jsonrpc/jsonrpc.ml
+ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmx protocols/jsonrpc/json.ml
+ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_conv.cmx protocols/jsonrpc/json_conv.ml
+ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmx protocols/jsonrpc/json_parse.ml
++ ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmx protocols/jsonrpc/json_parse.ml
+File "protocols/jsonrpc/json_parse.ml", line 115, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "protocols/jsonrpc/json_parse.ml", line 118, characters 8-18:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/jsonrpc.cmx protocols/jsonrpc/jsonrpc.ml
+ocamlfind ocamlc -a protocols/jsonrpc/json.cmo protocols/jsonrpc/json_conv.cmo protocols/jsonrpc/json_parse.cmo protocols/jsonrpc/jsonrpc.cmo -o protocols/jsonrpc/jsonlib.cma
+ocamlfind ocamlopt -a protocols/jsonrpc/json.cmx protocols/jsonrpc/json_conv.cmx protocols/jsonrpc/json_parse.cmx protocols/jsonrpc/jsonrpc.cmx -o protocols/jsonrpc/jsonlib.cmxa
+ocamlfind ocamlc -c protocols/dbus/platform_stubs.c
+mv platform_stubs.o protocols/dbus/platform_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o protocols/dbus/odbus protocols/dbus/platform_stubs.o
+ocamlfind ocamldep -modules protocols/dbus/dbus_auth.mli > protocols/dbus/dbus_auth.mli.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_auth.cmi protocols/dbus/dbus_auth.mli
+ocamlfind ocamldep -modules protocols/dbus/dbus_auth.ml > protocols/dbus/dbus_auth.ml.depends
+ocamlfind ocamldep -modules protocols/dbus/utils.ml > protocols/dbus/utils.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/utils.cmo protocols/dbus/utils.ml
+ocamlfind ocamldep -modules protocols/dbus/dbus_connection.mli > protocols/dbus/dbus_connection.mli.depends
+ocamlfind ocamldep -modules protocols/dbus/dbus_message.mli > protocols/dbus/dbus_message.mli.depends
+ocamlfind ocamldep -modules protocols/dbus/dbus_type.mli > protocols/dbus/dbus_type.mli.depends
+ocamlfind ocamldep -modules protocols/dbus/dbus_value.mli > protocols/dbus/dbus_value.mli.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_type.cmi protocols/dbus/dbus_type.mli
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_value.cmi protocols/dbus/dbus_value.mli
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_message.cmi protocols/dbus/dbus_message.mli
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_connection.cmi protocols/dbus/dbus_connection.mli
+ocamlfind ocamldep -modules protocols/dbus/dbus_connection.ml > protocols/dbus/dbus_connection.ml.depends
+ocamlfind ocamldep -modules protocols/dbus/dbus_message_marshal.mli > protocols/dbus/dbus_message_marshal.mli.depends
+ocamlfind ocamldep -modules protocols/dbus/dbus_message_parse.mli > protocols/dbus/dbus_message_parse.mli.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_message_marshal.cmi protocols/dbus/dbus_message_marshal.mli
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/dbus -o protocols/dbus/dbus_message_parse.cmi protocols/dbus/dbus_message_parse.mli
