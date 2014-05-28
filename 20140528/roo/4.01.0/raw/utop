@@ -856,3 +856,25 @@ tools/camomilelocaledef.opt --file locales/vi.txt locales
 Warning : normalization option is not supported
 tools/camomilelocaledef.opt --file locales/vi_VN.txt locales 
 tools/camomilelocaledef.opt --file locales/zh.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_CN.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_HK.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_MO.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_SG.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_TW.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_TW_STROKE.txt locales 
+tools/camomilelocaledef.opt --file locales/zh__PINYIN.txt locales 
+rm toolslib/colLexer.ml internal/uReStrLexer.ml toolslib/colParser.mli toolslib/colParser.ml
+files= &&\
+	if [ -f camomileLibrary.cmx ]; then files=camomileLibrary.cmx; fi && \
+	if [ -f camomileLibrary.cma ]; then files="camomileLibrary.cma $files"; fi && \
+	if [ -f camomileLibrary.cmxa ]; then files="camomileLibrary.cmxa $files"; fi && \
+	if [ -f camomileLibraryDefault.cmx ]; then files="camomileLibraryDefault.cmx $files"; fi && \
+	if [ -f camomileLibraryDyn.cmx ]; then files="camomileLibraryDyn.cmx $files"; fi && \
+	if [ -f camomile.cma ]; then files="camomile.cma $files"; fi&& \
+	if [ -f camomile.cmxa ]; then files="camomile.cmxa $files"; fi&& \
+	if [ -f camomile.a ]; then files="camomile.a $files"; fi && \
+	ocamlfind install camomile $files META camomileLibrary.mli camomileLibraryDefault.mli camomileLibraryDyn.mli camomileLibrary.cmi camomileLibraryDefault.cmi camomileLibraryDyn.cmi
+Installed /home/opam/.opam/system/lib/camomile/camomileLibraryDyn.cmi
+Installed /home/opam/.opam/system/lib/camomile/camomileLibraryDefault.cmi
+Installed /home/opam/.opam/system/lib/camomile/camomileLibrary.cmi
+Installed /home/opam/.opam/system/lib/camomile/camomileLibraryDyn.mli
