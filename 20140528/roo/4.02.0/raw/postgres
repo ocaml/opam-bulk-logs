@@ -264,3 +264,22 @@ File "fl_meta.mll", line 61, characters 11-29:
 Warning 3: deprecated feature: String.set
 File "fl_meta.mll", line 62, characters 11-22:
 Warning 3: deprecated feature: String.set
+ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+File "fl_topo.ml", line 283, characters 10-22:
+Warning 26: unused variable in_direction.
+File "fl_topo.ml", line 219, characters 36-37:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
