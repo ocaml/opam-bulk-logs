@@ -999,3 +999,226 @@ pkg_unix: ............................................ /home/opam/.opam/4.02.0+t
 File "setup.ml", line 234, characters 8-26:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -modules lib/log.mli > lib/log.mli.depends
+ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmi lib/log.mli
+ocamlfind ocamldep -package unix -modules lib/log.ml > lib/log.ml.depends
+ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmo lib/log.ml
+ocamlfind ocamlc -a lib/log.cmo -o lib/dolog.cma
+ocamlfind ocamlopt -c -g -package unix -I lib -o lib/log.cmx lib/log.ml
+ocamlfind ocamlopt -a lib/log.cmx -o lib/dolog.cmxa
+ocamlfind ocamlopt -shared -linkall lib/dolog.cmxa -o lib/dolog.cmxs
+ocamlfind ocamldep -package unix -modules lib_test/example.ml > lib_test/example.ml.depends
+ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/example.cmo lib_test/example.ml
+ocamlfind ocamlc -linkpkg -g -linkpkg -package unix lib/dolog.cma lib_test/example.cmo -o lib_test/example.byte
+ocamlfind ocamldep -package unix -modules lib_test/test.ml > lib_test/test.ml.depends
+ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+ocamlfind ocamlc -linkpkg -g -linkpkg -package unix lib/dolog.cma lib_test/test.cmo -o lib_test/test.byte
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/log.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/dolog.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/dolog.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/dolog.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/dolog.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/log.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/log.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/dolog/META
+Installing dolog.0.5.
+
+=-=-= Installing parmap.1.0-rc4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/parmap.1.0-rc4+opam.tar.gz
+sending incremental file list
+parmap.1.0-rc4+opam.tar.gz
+
+sent 94,141 bytes  received 35 bytes  188,352.00 bytes/sec
+total size is 93,994  speedup is 1.00
+Building parmap.1.0-rc4:
+  aclocal -I m4
+  autoconf
+  autoheader
+  ./configure
+  make DESTDIR=/home/opam/.opam/4.02.0+trunk OCAMLLIBDIR=lib
+  make install DESTDIR=/home/opam/.opam/4.02.0+trunk OCAMLLIBDIR=lib
+checking for ocamlc... ocamlc
+OCaml version is 4.02.0+dev10-2014-05-20
+OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for ocamlfind... ocamlfind
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sched.h usability... yes
+checking sched.h presence... yes
+checking for sched.h... yes
+checking whether sched_setaffinity is declared... yes
+checking mach/thread_policy.h usability... no
+checking mach/thread_policy.h presence... no
+checking for mach/thread_policy.h... no
+checking whether thread_policy_set is declared... no
+ocaml version 4.02.0+dev10-2014-05-20. Use standard Makefile
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+ocamlbuild -j 10 -use-ocamlfind  parmap.cma  parmap.cmxa  parmap.cmxs parmap.a
+ocamlfind ocamlc -ccopt -D_GNU_SOURCE -ccopt -fPIC -c bytearray_stubs.c
+ocamlfind ocamlc -ccopt -D_GNU_SOURCE -ccopt -fPIC -c setcore_stubs.c
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o parmap_stubs bytearray_stubs.o setcore_stubs.o
+ocamlfind ocamldep -package unix -package bigarray -modules parmap.mli > parmap.mli.depends
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o parmap.cmi parmap.mli
+ocamlfind ocamldep -package unix -package bigarray -modules parmap.ml > parmap.ml.depends
+ocamlfind ocamldep -package unix -package bigarray -modules bytearray.mli > bytearray.mli.depends
+ocamlfind ocamldep -package unix -package bigarray -modules parmap_utils.mli > parmap_utils.mli.depends
+ocamlfind ocamldep -package unix -package bigarray -modules setcore.mli > setcore.mli.depends
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o bytearray.cmi bytearray.mli
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o parmap_utils.cmi parmap_utils.mli
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o setcore.cmi setcore.mli
+ocamlfind ocamldep -package unix -package bigarray -modules bytearray.ml > bytearray.ml.depends
+ocamlfind ocamldep -package unix -package bigarray -modules parmap_utils.ml > parmap_utils.ml.depends
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o parmap.cmo parmap.ml
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o bytearray.cmo bytearray.ml
+ocamlfind ocamlc -c -annot -package unix -package bigarray -o parmap_utils.cmo parmap_utils.ml
++ ocamlfind ocamlc -c -annot -package unix -package bigarray -o bytearray.cmo bytearray.ml
+File "bytearray.ml", line 47, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "bytearray.ml", line 69, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -a -dllib -lparmap_stubs bytearray.cmo parmap_utils.cmo parmap.cmo -o parmap.cma
+ocamlfind ocamlopt -c -annot -package unix -package bigarray -o bytearray.cmx bytearray.ml
+ocamlfind ocamlopt -c -annot -package unix -package bigarray -o parmap_utils.cmx parmap_utils.ml
++ ocamlfind ocamlopt -c -annot -package unix -package bigarray -o bytearray.cmx bytearray.ml
+File "bytearray.ml", line 47, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "bytearray.ml", line 69, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -annot -package unix -package bigarray -o parmap.cmx parmap.ml
+ocamlfind ocamlopt -a -cclib -lparmap_stubs bytearray.cmx parmap_utils.cmx parmap.cmx -o parmap.cmxa
+ocamlfind ocamlopt -shared libparmap_stubs.a bytearray.cmx parmap_utils.cmx parmap.cmx -o parmap.cmxs
+# Parallel statistics: { count(total): 4(18), max: 3, min: 2, average(total): 2.500(1.333) }
+test -d /home/opam/.opam/4.02.0+trunk/lib || mkdir -p /home/opam/.opam/4.02.0+trunk/lib
+test -d /home/opam/.opam/4.02.0+trunk/lib/stublibs || mkdir -p /home/opam/.opam/4.02.0+trunk/lib/stublibs
+ocamlfind install -destdir /home/opam/.opam/4.02.0+trunk/lib -patch-version 1.0-rc4 parmap META  _build/parmap.cma _build/parmap.cmxa _build/parmap.cmxs _build/bytearray.mli _build/parmap.mli _build/parmap_utils.mli _build/setcore.mli _build/bytearray.cmi _build/parmap.cmi _build/parmap_utils.cmi _build/setcore.cmi _build/dllparmap_stubs.so _build/libparmap_stubs.a _build/parmap.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/libparmap_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/setcore.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap_utils.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/bytearray.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/setcore.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap_utils.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/bytearray.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/parmap.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/parmap/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllparmap_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllparmap_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+(cd _build; ocamldoc -man -man-mini parmap.ml parmap.mli)
+test -d /home/opam/.opam/4.02.0+trunk/man/man3 || mkdir -p /home/opam/.opam/4.02.0+trunk/man/man3
+cp -a _build/Parmap.3o /home/opam/.opam/4.02.0+trunk/man/man3
+Installing parmap.1.0-rc4.
+
+=-=-= Installing vector3.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/vector3.0.2+opam.tar.gz
+sending incremental file list
+vector3.0.2+opam.tar.gz
+
+sent 39,480 bytes  received 35 bytes  79,030.00 bytes/sec
+total size is 39,344  speedup is 1.00
+Building vector3.0.2:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ vector3
+Package version: ..................................... 0.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules vector3.mli > vector3.mli.depends
+ocamlfind ocamlc -c -g -o vector3.cmi vector3.mli
+ocamlfind ocamldep -modules vector3.ml > vector3.ml.depends
+ocamlfind ocamlc -c -g -o vector3.cmo vector3.ml
