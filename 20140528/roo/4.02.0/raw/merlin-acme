@@ -795,3 +795,96 @@ Building easy-format.1.0.2:
   make install
 ocamlc -c easy_format.mli
 ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing ocaml9p.0.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocaml9p.0.4+opam.tar.gz
+sending incremental file list
+ocaml9p.0.4+opam.tar.gz
+
+sent 9,681 bytes  received 35 bytes  19,432.00 bytes/sec
+total size is 9,549  speedup is 0.98
+Building ocaml9p.0.4:
+  make
+  make install
+ocamlfind ocamlc -c -I lib -package "unix str" lib/fcall.mli
+ocamlfind ocamlc -c -I lib -package "unix str" lib/o9pc.mli
+ocamlfind ocamlc -c -I lib -package "unix str" lib/fcall.ml
+File "lib/fcall.ml", line 97, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 99, characters 8-57:
+Warning 3: deprecated feature: String.set
+File "lib/fcall.ml", line 108, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 111, characters 8-50:
+Warning 3: deprecated feature: String.set
+File "lib/fcall.ml", line 117, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 120, characters 8-50:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -I lib -package "unix str" lib/o9pc.ml
+File "lib/o9pc.ml", line 99, characters 19-32:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -a -o o9p.cma -package "unix str" lib/fcall.cmo lib/o9pc.cmo
+ocamlfind ocamlopt -c -I lib -package "unix str" lib/fcall.ml
+File "lib/fcall.ml", line 97, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 99, characters 8-57:
+Warning 3: deprecated feature: String.set
+File "lib/fcall.ml", line 108, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 111, characters 8-50:
+Warning 3: deprecated feature: String.set
+File "lib/fcall.ml", line 117, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "lib/fcall.ml", line 120, characters 8-50:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -I lib -package "unix str" lib/o9pc.ml
+File "lib/o9pc.ml", line 99, characters 19-32:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -a -o o9p.cmxa -package "unix str" lib/fcall.cmx lib/o9pc.cmx
+ocamlfind install o9p o9p.cma lib/fcall.cmi lib/o9pc.cmi o9p.a o9p.cmxa META
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/o9p.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/o9p.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/o9pc.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/fcall.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/o9p.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/o9p/META
+Installing ocaml9p.0.4.
+
+=-=-= Installing acme.0.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/acme.0.1+opam.tar.gz
+sending incremental file list
+acme.0.1+opam.tar.gz
+
+sent 3,534 bytes  received 35 bytes  7,138.00 bytes/sec
+total size is 3,405  speedup is 0.95
+Building acme.0.1:
+  make
+  make install
+ocamlfind ocamlc -c  -package "o9p" Acme.mli
+ocamlfind ocamlc -c  -package "o9p" Acme.ml
+ocamlfind ocamlc -a -o Acme.cma -package "o9p" Acme.cmo
+ocamlfind ocamlopt -c  -package "o9p" Acme.ml
+ocamlfind ocamlopt -a -o Acme.cmxa -package "o9p" Acme.cmx
