@@ -267,3 +267,210 @@ File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
 ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
 		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing camlzip.1.05 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+sending incremental file list
+camlzip.1.05+opam.tar.gz
+
+sent 26,592 bytes  received 35 bytes  53,254.00 bytes/sec
+total size is 26,459  speedup is 0.99
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+File "zlib.ml", line 49, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 50, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 72, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 91, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 92, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+File "zip.ml", line 31, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 120, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 272, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 319, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 510, characters 18-31:
+Warning 3: deprecated feature: String.create
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+File "gzip.ml", line 68, characters 16-29:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 149, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 185, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 218, characters 2-22:
+Warning 3: deprecated feature: String.set
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+File "zlib.ml", line 49, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 50, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 72, characters 15-28:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 91, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zlib.ml", line 92, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlopt -c zip.ml
+File "zip.ml", line 31, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 120, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 272, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 319, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "zip.ml", line 510, characters 18-31:
+Warning 3: deprecated feature: String.create
+ocamlopt -c gzip.ml
+File "gzip.ml", line 68, characters 16-29:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 149, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 185, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 218, characters 2-22:
+Warning 3: deprecated feature: String.set
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
+ocamlfind install zip META *.mli *.a *.cmi *.cma gzip.cmx zip.cmx zlib.cmx zip.cmxa zip.cmxs dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/libcamlzip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+echo 'directory="../zip"' >> META && ocamlfind install camlzip META
+Installed /home/opam/.opam/4.02.0+trunk/lib/camlzip/META
+Installing camlzip.1.05.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing menhir.20130912 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
+sending incremental file list
+menhir.20130912+opam.tar.gz
+
+sent 547,372 bytes  received 35 bytes  1,094,814.00 bytes/sec
+total size is 547,112  speedup is 1.00
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk docdir=/home/opam/.opam/4.02.0+trunk/doc/menhir libdir=/home/opam/.opam/4.02.0+trunk/lib/menhir mandir=/home/opam/.opam/4.02.0+trunk/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.02.0+trunk/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
