@@ -301,3 +301,20 @@ Installing xmlm.1.2.0.
 =-=-= Installing uucd.1.0.0 =-=-=
 default    Synchronizing with /home/opam/opam-repository/archives/uucd.1.0.0+opam.tar.gz
 sending incremental file list
+uucd.1.0.0+opam.tar.gz
+
+sent 50,144 bytes  received 35 bytes  100,358.00 bytes/sec
+total size is 50,009  speedup is 1.00
+Building uucd.1.0.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -package xmlm -modules src/uucd.mli > src/uucd.mli.depends
+ocamlfind ocamlc -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmi src/uucd.mli
+ocamlfind ocamldep -package xmlm -modules src/uucd.ml > src/uucd.ml.depends
+ocamlfind ocamlopt -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmx src/uucd.ml
+ocamlfind ocamlc -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmo src/uucd.ml
+ocamlfind ocamlc -a src/uucd.cmo -o src/uucd.cma
+ocamlfind ocamlopt -a src/uucd.cmx -o src/uucd.cmxa
+ocamlfind ocamlopt -shared src/uucd.cmx -o src/uucd.cmxs
+Installing uucd.1.0.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/uucd.1.0.0/uucd.install: is your OPAM up-to-date ?
