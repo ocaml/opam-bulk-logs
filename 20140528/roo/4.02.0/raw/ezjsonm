@@ -222,3 +222,136 @@ ocamlopt -I +compiler-libs -c findlib.ml
 ocamlopt -I +compiler-libs -c fl_args.ml
 ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
 ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing uutf.0.9.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/uutf.0.9.3+opam.tar.gz
+sending incremental file list
+uutf.0.9.3+opam.tar.gz
+
+sent 39,196 bytes  received 35 bytes  78,462.00 bytes/sec
+total size is 39,061  speedup is 1.00
+Building uutf.0.9.3:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/uutf.mli > src/uutf.mli.depends
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmi src/uutf.mli
+ocamlfind ocamldep -modules src/uutf.ml > src/uutf.ml.depends
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
++ ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
+File "src/uutf.ml", line 22, characters 31-48:
+Warning 3: deprecated feature: String.unsafe_set
+File "src/uutf.ml", line 68, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 483, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 487, characters 25-38:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 665, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 668, characters 8-21:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
++ ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
+File "src/uutf.ml", line 22, characters 31-48:
+Warning 3: deprecated feature: String.unsafe_set
+File "src/uutf.ml", line 68, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 483, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 487, characters 25-38:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 665, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "src/uutf.ml", line 668, characters 8-21:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -a src/uutf.cmo -o src/uutf.cma
+ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
+ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
+ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
++ ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+File "test/utftrip.ml", line 36, characters 50-63:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 37, characters 19-32:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 90, characters 11-24:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 124, characters 11-24:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 149, characters 44-57:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 199, characters 54-67:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 201, characters 42-55:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 213, characters 32-45:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
++ ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+File "test/utftrip.ml", line 36, characters 50-63:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 37, characters 19-32:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 90, characters 11-24:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 124, characters 11-24:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 149, characters 44-57:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 199, characters 54-67:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 201, characters 42-55:
+Warning 3: deprecated feature: String.create
+File "test/utftrip.ml", line 213, characters 32-45:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/uutf.0.9.3/uutf.install: is your OPAM up-to-date ?
+Installing uutf.0.9.3.
