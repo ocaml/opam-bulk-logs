@@ -4015,3 +4015,184 @@ ocamlfind ocamldep -package bigarray -package camlp4 -package camlp4.extend -pac
 ocamlfind ocamlc -c -g -annot -package bigarray -package camlp4 -package camlp4.extend -package camlp4.lib -package camlp4.quotations.r -syntax camlp4o -I syntax -I lwt -I unix -I async -I lib -o syntax/pa_cstruct.cmo syntax/pa_cstruct.ml
 ocamlfind ocamlc -a syntax/pa_cstruct.cmo -o syntax/cstruct-syntax.cma
 ocamlfind ocamlopt -c -g -annot -package bigarray -package camlp4 -package camlp4.extend -package camlp4.lib -package camlp4.quotations.r -syntax camlp4o -inline 10 -I syntax -I lwt -I unix -I async -I lib -o syntax/pa_cstruct.cmx syntax/pa_cstruct.ml
+ocamlfind ocamlopt -a syntax/pa_cstruct.cmx -o syntax/cstruct-syntax.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/cstruct-syntax.cmxa -o syntax/cstruct-syntax.cmxs
+ocamlfind ocamldep -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix -modules lib_test/bounds.ml > lib_test/bounds.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix -I lib_test -I lib -I lwt -I unix -I async -o lib_test/bounds.cmo lib_test/bounds.ml
+ocamlfind ocamlc -linkpkg -g -I lib/ -linkpkg -package bigarray -package oUnit -package ocplib-endian -package ocplib-endian.bigstring -package unix lib/cstruct.cma lib_test/bounds.cmo -o lib_test/bounds.byte
+# No parallelism done
+ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/libcstruct_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/unix_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/cstruct-syntax.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/pa_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/lwt_cstruct.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cstruct/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcstruct_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcstruct_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing cstruct.1.1.0.
+
+=-=-= Installing dns.0.8.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/dns.0.8.1+opam.tar.gz
+sending incremental file list
+dns.0.8.1+opam.tar.gz
+
+sent 102,592 bytes  received 35 bytes  205,254.00 bytes/sec
+total size is 102,442  speedup is 1.00
+Building dns.0.8.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk --enable-lwt
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ dns
+Package version: ..................................... 0.8.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the Lwt library: ............................... true
+run the internet-using tests: ........................ false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_cstruct: ......................................... /home/opam/.opam/4.02.0+trunk/lib/cstruct
+pkg_cstruct_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/cstruct
+pkg_re: .............................................. /home/opam/.opam/4.02.0+trunk/lib/re
+pkg_re_str: .......................................... /home/opam/.opam/4.02.0+trunk/lib/re
+pkg_ipaddr: .......................................... /home/opam/.opam/4.02.0+trunk/lib/ipaddr
+pkg_lwt: ............................................. /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_syntax: ...................................... /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_cstruct_lwt: ..................................... /home/opam/.opam/4.02.0+trunk/lib/cstruct
+pkg_ipaddr_unix: ..................................... /home/opam/.opam/4.02.0+trunk/lib/ipaddr
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+W: Cannot find source file matching module 'dns' in library dns
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/base64.mli > lib/base64.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/base64.cmi lib/base64.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/base64.ml > lib/base64.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/hashcons.mli > lib/hashcons.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/hashcons.cmi lib/hashcons.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/hashcons.ml > lib/hashcons.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/loader.mli > lib/loader.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/name.mli > lib/name.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/RR.mli > lib/RR.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/name.cmi lib/name.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/packet.mli > lib/packet.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/buf.mli > lib/buf.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/buf.cmi lib/buf.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/packet.cmi lib/packet.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/trie.mli > lib/trie.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/RR.cmi lib/RR.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/trie.cmi lib/trie.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/loader.cmi lib/loader.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/loader.ml > lib/loader.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/operators.ml > lib/operators.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/operators.cmo lib/operators.ml
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/name.ml > lib/name.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/packet.ml > lib/packet.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/query.mli > lib/query.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/query.cmi lib/query.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/query.ml > lib/query.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/RR.ml > lib/RR.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/trie.ml > lib/trie.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/zone.mli > lib/zone.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/zone.cmi lib/zone.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/zone.ml > lib/zone.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lib/zone_lexer.mll
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/zone_lexer.ml > lib/zone_lexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc lib/zone_parser.mly
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/zone_parser.mli > lib/zone_parser.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/zone_parser.cmi lib/zone_parser.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/zone_lexer.cmo lib/zone_lexer.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/zone_lexer.cmo lib/zone_lexer.ml
+File "lib/zone_lexer.mll", line 36, characters 6-16:
+Warning 3: deprecated feature: String.set
+File "lib/zone_lexer.mll", line 39, characters 6-16:
+Warning 3: deprecated feature: String.set
+File "lib/zone_lexer.mll", line 42, characters 6-16:
+Warning 3: deprecated feature: String.set
+File "lib/zone_lexer.mll", line 46, characters 13-26:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/zone_parser.ml > lib/zone_parser.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/resolvconf.mli > lib/resolvconf.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -I lib -o lib/resolvconf.cmi lib/resolvconf.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/resolvconf.ml > lib/resolvconf.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -syntax camlp4o -package cstruct.syntax -package cstruct -package ipaddr -package re.str -package re -modules lib/buf.ml > lib/buf.ml.depends
