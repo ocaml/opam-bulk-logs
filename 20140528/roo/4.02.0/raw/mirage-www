@@ -5023,3 +5023,9 @@ ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -mod
 ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmi lib/ring.mli
 ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/ring.ml > lib/ring.ml.depends
 ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmo lib/ring.ml
+ocamlfind ocamlc -a -dllib -lshared_memory_ring_stubs -cclib -lshared_memory_ring_stubs lib/ring.cmo -o lib/shared_memory_ring.cma
+ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmx lib/ring.ml
+ocamlfind ocamlopt -a -cclib -lshared_memory_ring_stubs lib/ring.cmx -o lib/shared_memory_ring.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/shared_memory_ring.cmxa -o lib/shared_memory_ring.cmxs
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules xen/console_ring.mli > xen/console_ring.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmi xen/console_ring.mli
