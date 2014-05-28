@@ -7074,3 +7074,42 @@ Here is an example of a value that is not matched:
 (T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
 ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
 	 	-c xmlRPCDtd.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCNet.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCClient.ml
+File "xmlRPCClient.ml", line 61, characters 17-66:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCServer.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.ml
+File "cgiSource.ml", line 49, characters 4-14:
+Warning 21: this statement never returns (or has an unsound type.)
+ocamlfind ocamlopt -a -o xmlrpc.cmxa \
+		-predicates "" xmlRPCTypes.cmx xmlRPCDtd.cmx xmlRPCNet.cmx xmlRPCClient.cmx xmlRPCServer.cmx cgiSource.cmx  
+ocamlfind ocamlopt -o oxridl.opt -package "pcre annexlib" -linkpkg oxridl.ml
+{ test ! -f xmlrpc.cmxa || extra="xmlrpc.cmxa "`basename xmlrpc.cmxa .cmxa`.a; }; \
+	ocamlfind install xmlrpc xmlRPCTypes.mli xmlRPCDtd.mli xmlRPCNet.mli xmlRPCClient.mli xmlRPCServer.mli cgiSource.mli xmlRPCTypes.cmi xmlRPCDtd.cmi xmlRPCNet.cmi xmlRPCClient.cmi xmlRPCServer.cmi cgiSource.cmi \
+	xmlrpc.cma META  $extra ;\
+	if [ -f oxridl.opt ]; then idlc="oxridl.opt"; else idlc="oxridl"; fi ;\
+	cp -f $idlc /home/opam/.opam/4.02.0+trunk/bin/oxridl
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlrpc.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlrpc.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlrpc.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/cgiSource.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCServer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCClient.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCNet.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCDtd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCTypes.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/cgiSource.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCServer.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCClient.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCNet.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCDtd.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/xmlRPCTypes.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xmlrpc/META
+Installing ocaml-xml-rpc.0.2.3.
