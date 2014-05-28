@@ -6929,3 +6929,42 @@ gzip: ................................................ /bin/gzip
 File "setup.ml", line 254, characters 8-26:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 3, characters 9-18:
+Warning: the tag "use_iconv" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlc -package lwt -c src/lTerm_term_stubs.c
+mv lTerm_term_stubs.o src/lTerm_term_stubs.o
+ocamlfind ocamlc -package lwt -c src/lTerm_unix_stubs.c
+mv lTerm_unix_stubs.o src/lTerm_unix_stubs.o
+ocamlfind ocamlc -package lwt -c src/lTerm_windows_stubs.c
+mv lTerm_windows_stubs.o src/lTerm_windows_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o src/lambda-term_stubs src/lTerm_term_stubs.o src/lTerm_unix_stubs.o src/lTerm_windows_stubs.o
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm.mli > src/lTerm.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_draw.mli > src/lTerm_draw.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_geom.mli > src/lTerm_geom.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_style.mli > src/lTerm_style.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_text.mli > src/lTerm_text.mli.depends
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_style.cmi src/lTerm_style.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_geom.cmi src/lTerm_geom.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_text.cmi src/lTerm_text.mli
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_event.mli > src/lTerm_event.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_key.mli > src/lTerm_key.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_mouse.mli > src/lTerm_mouse.mli.depends
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_key.cmi src/lTerm_key.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_mouse.cmi src/lTerm_mouse.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_draw.cmi src/lTerm_draw.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_event.cmi src/lTerm_event.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm.cmi src/lTerm.mli
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm.ml > src/lTerm.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_color_mappings.ml > src/lTerm_color_mappings.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_unix.mli > src/lTerm_unix.mli.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm_windows.mli > src/lTerm_windows.mli.depends
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -I src -o src/lTerm_color_mappings.cmo src/lTerm_color_mappings.ml
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_unix.cmi src/lTerm_unix.mli
+ocamlfind ocamlc -c -g -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -I src -o src/lTerm_windows.cmi src/lTerm_windows.mli
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_key.ml > src/lTerm_key.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_event.ml > src/lTerm_event.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_unix.ml > src/lTerm_unix.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_windows.ml > src/lTerm_windows.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_style.ml > src/lTerm_style.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_geom.ml > src/lTerm_geom.ml.depends
+ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -syntax camlp4o -modules src/lTerm_draw.ml > src/lTerm_draw.ml.depends
