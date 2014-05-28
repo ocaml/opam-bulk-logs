@@ -2083,3 +2083,40 @@ Building conduit.0.5.0:
 Async SSL requires a stub-generation version due to
 a linking order bug. This release has it temporarily disabled.
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.ml > lib/conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.mli > lib/conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmi lib/conduit.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmx lib/conduit.ml
+ocamlfind ocamlopt -shared -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmo lib/conduit.ml
+ocamlfind ocamlc -a -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmo -o lib/conduit.cma
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxa
+# No parallelism done
+Async SSL requires a stub-generation version due to
+a linking order bug. This release has it temporarily disabled.
+# No parallelism done
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/conduit
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/META
+Installing conduit.0.5.0.
+
+=-=-= Installing uri.1.6.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/uri.1.6.0+opam.tar.gz
+sending incremental file list
+uri.1.6.0+opam.tar.gz
+
+sent 249,664 bytes  received 35 bytes  499,398.00 bytes/sec
+total size is 249,482  speedup is 1.00
+Building uri.1.6.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated feature: String.set
