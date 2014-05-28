@@ -2752,3 +2752,25 @@ pkg_bigarray: ........................................ /home/opam/.opam/4.02.0+t
 pkg_lwt_unix: ........................................ /home/opam/.opam/4.02.0+trunk/lib/lwt
 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package bigarray -package lwt -package lwt.unix -package unix -modules lib/eventchn.mli > lib/eventchn.mli.depends
+ocamlfind ocamlc -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/eventchn.cmi lib/eventchn.mli
+ocamlfind ocamldep -package bigarray -package lwt -package lwt.unix -package unix -modules lib/eventchn.ml > lib/eventchn.ml.depends
+ocamlfind ocamldep -package bigarray -package lwt -package lwt.unix -package unix -modules lib/generation.ml > lib/generation.ml.depends
+ocamlfind ocamlc -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/generation.cmo lib/generation.ml
+ocamlfind ocamlc -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/eventchn.cmo lib/eventchn.ml
+ocamlfind ocamlc -a lib/generation.cmo lib/eventchn.cmo -o lib/xen_evtchn.cma
+ocamlfind ocamlopt -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/generation.cmx lib/generation.ml
+ocamlfind ocamlopt -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/eventchn.cmx lib/eventchn.ml
+ocamlfind ocamlopt -a lib/generation.cmx lib/eventchn.cmx -o lib/xen_evtchn.cmxa
+ocamlfind ocamlopt -shared -linkall lib/xen_evtchn.cmxa -o lib/xen_evtchn.cmxs
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/eventchn_stubs.c
+mv eventchn_stubs.o lib/eventchn_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/xen_evtchn_unix_stubs -L/usr/lib/xen-4.2/lib -lxenctrl lib/eventchn_stubs.o
+ocamlfind ocamldep -package bigarray -package lwt -package lwt.unix -package unix -modules lib/eventchn_dummy.ml > lib/eventchn_dummy.ml.depends
+ocamlfind ocamlc -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/eventchn_dummy.cmo lib/eventchn_dummy.ml
+ocamlfind ocamlc -a -dllib -lxen_evtchn_unix_stubs -cclib -lxen_evtchn_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/eventchn_dummy.cmo -o lib/xen_evtchn_unix.cma
+ocamlfind ocamlopt -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package lwt.unix -package unix -I lib -o lib/eventchn_dummy.cmx lib/eventchn_dummy.ml
+ocamlfind ocamlopt -a -cclib -lxen_evtchn_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/eventchn_dummy.cmx -o lib/xen_evtchn_unix.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/xen_evtchn_unix.cmxa -o lib/xen_evtchn_unix.cmxs
+ocamlfind ocamldep -package bigarray -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package unix -syntax camlp4o -modules lib/unix_activations.ml > lib/unix_activations.ml.depends
+ocamlfind ocamlc -c -g -I lib -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package unix -syntax camlp4o -I lib -o lib/unix_activations.cmo lib/unix_activations.ml
