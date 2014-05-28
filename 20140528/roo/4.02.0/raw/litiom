@@ -8771,3 +8771,33 @@ patching file lib/xml.ml
 Building tyxml.2.2.0:
   make
   make install
+sed -e s%_LIBNAME_%tyxml%g \
+	    -e s%_PACKAGENAME_%tyxml%g \
+            -e s%_LIBDIR_%% \
+            -e s%_SYNTAXDIR_%% \
+	   files/META.in > files/META
+sed -e s%_LIBNAME_%tyxml%g \
+	    -e s%_PACKAGENAME_%tyxml%g \
+            -e s%_LIBDIR_%directory\ =\ \"..\/lib\"% \
+            -e s%_SYNTAXDIR_%directory\ =\ \"..\/syntax\"% \
+	  files/META.in > files/META.tyxml
+make -C syntax byte opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/tyxml.2.2.0/syntax'
+ocamlfind ocamlc  -package camlp4 -pp "camlp4of -loc loc" -c pa_tyxml.mli
+ocamllex xmllexer.mll
+93 states, 803 transitions, table size 3770 bytes
+ocamlfind ocamlc  -package camlp4 -pp "camlp4of -loc loc" -c xmllexer.ml
+File "xmllexer.mll", line 371, characters 40-48:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc  -package camlp4 -pp "camlp4rf -loc loc" -c basic_types.ml
+ocamllex camllexer.mll
+18 states, 260 transitions, table size 1148 bytes
+ocamlfind ocamlc  -package camlp4 -pp "camlp4of -loc loc" -c camllexer.ml
+ocamlfind ocamlc  -package camlp4 -pp "camlp4rf -loc loc" -c xhtmlparser.ml
+ocamlfind ocamlc  -package camlp4 -pp "camlp4rf -loc loc" -c xhtmlsyntax.ml
+ocamlfind ocamlc  -package camlp4 -pack -o pa_tyxml.cmo xmllexer.cmo basic_types.cmo camllexer.cmo xhtmlparser.cmo xhtmlsyntax.cmo
+ocamlfind ocamlc  -package camlp4 -pp "camlp4of -loc loc" -c simplexmlparser.mli
+ocamlfind ocamlc  -package camlp4 -pp "camlp4rf -loc loc" -c simplexmlparser.ml
+ocamlfind ocamlopt  -package camlp4 -pp "camlp4of -loc loc" -c xmllexer.ml
+File "xmllexer.mll", line 371, characters 40-48:
+Warning 3: deprecated feature: String.set
