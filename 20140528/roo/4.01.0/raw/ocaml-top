@@ -533,3 +533,19 @@ Building cmdliner.0.9.4:
   ./pkg/pkg-git
   ./pkg/build true
 ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.4.
+
+=-=-= Installing conf-gtksourceview.2 =-=-=
+Building conf-gtksourceview.2:
+  pkg-config gtksourceview-2.0
+Installing conf-gtksourceview.2.
+
+=-=-= Installing re.1.2.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/re.1.2.2+opam.tar.gz
