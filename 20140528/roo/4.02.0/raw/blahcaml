@@ -6493,3 +6493,19 @@ ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -o mathml2dtd.cmi -c mathml2d
 ocamlfind ocamlc -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmo -c mathml2dtd.ml
 ocamlfind ocamlc -o mathml2dtd.cma -a mathml2dtd.cmo
 ocamlfind ocamlopt -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmx -c mathml2dtd.ml
+ocamlfind ocamlopt -o mathml2dtd.cmxa -a mathml2dtd.cmx
+ocamlopt -shared -linkall -I . -o mathml2dtd.cmxs mathml2dtd.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/blahcaml.2.1/src/mathml2dtd'
+make lib -C src/blahcaml
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/blahcaml.2.1/src/blahcaml'
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmi -c blahcaml.mli
+g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I ../blahtexcore -I ../unicodeconverter -I ../messages -o blahtex_stubs.o -c blahtex_stubs.cpp
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmo -c blahcaml.ml
+ocamlfind ocamlopt -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmx -c blahcaml.ml
+ocamlmklib -verbose -lstdc++ -o blahcaml -oc blahcaml ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o blahcaml.cmo blahcaml.cmx
++ gcc -shared -o ./dllblahcaml.so ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o    -lstdc++
++ ar rc ./libblahcaml.a  ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o; ranlib ./libblahcaml.a
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc -a  -o blahcaml.cma  blahcaml.cmo -dllib -lblahcaml -cclib -lblahcaml   -cclib -lstdc++ 
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt -a -o blahcaml.cmxa  blahcaml.cmx -cclib -lblahcaml   -cclib -lstdc++ 
+ocamlopt -shared -linkall -I `pwd` -o blahcaml.cmxs blahcaml.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/blahcaml.2.1/src/blahcaml'
