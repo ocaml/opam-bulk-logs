@@ -1024,3 +1024,70 @@ For more informations rerun with --help.
 Now, type 'make' to compile then 'make install'.
 ocamlbuild -Is src,src/config,src/utils,src/ocaml,src/ocaml/utils,src/ocaml/typing,src/ocaml/parsing   -use-ocamlfind ocamlmerlin.native
 ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocamlmerlin.ml > src/ocamlmerlin.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/command.mli > src/command.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/IO.mli > src/IO.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/location.mli > src/ocaml/parsing/location.mli.depends
+ocamlfind ocamldep -modules src/ocaml/utils/warnings.mli > src/ocaml/utils/warnings.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/utils -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -o src/ocaml/utils/warnings.cmi src/ocaml/utils/warnings.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/protocol.mli > src/protocol.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/location.cmi src/ocaml/parsing/location.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/std.ml > src/std.ml.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/std.cmo src/std.ml
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/protocol.cmi src/protocol.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/state.mli > src/state.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/asttypes.mli > src/ocaml/parsing/asttypes.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/browse.mli > src/browse.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/env.mli > src/ocaml/typing/env.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/asttypes.cmi src/ocaml/parsing/asttypes.mli
+ocamlfind ocamldep -modules src/utils/consistbl.mli > src/utils/consistbl.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/ident.mli > src/ocaml/typing/ident.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/longident.mli > src/ocaml/parsing/longident.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/path.mli > src/ocaml/typing/path.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/ident.cmi src/ocaml/typing/ident.mli
+ocamlfind ocamldep -modules src/ocaml/typing/subst.mli > src/ocaml/typing/subst.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/path.cmi src/ocaml/typing/path.mli
+ocamlfind ocamldep -modules src/ocaml/typing/types.mli > src/ocaml/typing/types.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/longident.cmi src/ocaml/parsing/longident.mli
+ocamlfind ocamldep -modules src/ocaml/typing/primitive.mli > src/ocaml/typing/primitive.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/primitive.cmi src/ocaml/typing/primitive.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/types.cmi src/ocaml/typing/types.mli
+ocamlfind ocamlc -c -I src/utils -I src -I src/ocaml -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/utils/consistbl.cmi src/utils/consistbl.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/subst.cmi src/ocaml/typing/subst.mli
+ocamlfind ocamldep -modules src/ocaml/typing/typedtree.mli > src/ocaml/typing/typedtree.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/env.cmi src/ocaml/typing/env.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typedtree.cmi src/ocaml/typing/typedtree.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/chunk.mli > src/chunk.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline.mli > src/outline.mli.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/chunk_parser.mly > src/ocaml/chunk_parser.mly.depends
++ menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/chunk_parser.mly > src/ocaml/chunk_parser.mly.depends
+File "src/ocaml/chunk_parser.mly", line 448, characters 29-36:
+Warning: the token COMMENT is unused.
+File "src/ocaml/chunk_parser.mly", line 375, characters 7-22:
+Warning: the token GREATERRBRACKET is unused.
+ocamlfind ocamldep -modules src/utils/clflags.mli > src/utils/clflags.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/fake.mli > src/fake.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/parsetree.mli > src/ocaml/parsing/parsetree.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/parsetree.cmi src/ocaml/parsing/parsetree.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/logger.mli > src/logger.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/merlin_parsing.mli > src/merlin_parsing.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline_utils.mli > src/outline_utils.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/syntaxerr.mli > src/ocaml/parsing/syntaxerr.mli.depends
+ocamlfind ocamlc -c -I src/utils -I src -I src/ocaml -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/utils/clflags.cmi src/utils/clflags.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/fake.cmi src/fake.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/logger.cmi src/logger.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/merlin_parsing.cmi src/merlin_parsing.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/outline_utils.cmi src/outline_utils.mli
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/syntaxerr.cmi src/ocaml/parsing/syntaxerr.mli
+menhir --ocamlc 'ocamlfind ocamlc -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils' --table --infer src/ocaml/chunk_parser.mly
++ menhir --ocamlc 'ocamlfind ocamlc -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils' --table --infer src/ocaml/chunk_parser.mly
+File "src/ocaml/chunk_parser.mly", line 448, characters 29-36:
+Warning: the token COMMENT is unused.
+File "src/ocaml/chunk_parser.mly", line 375, characters 7-22:
+Warning: the token GREATERRBRACKET is unused.
+File "src/ocaml/chunk_parser.mly", line 489, characters 0-9:
+Warning: the precedence level assigned to IN is never useful.
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/chunk_parser.mli > src/ocaml/chunk_parser.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/fake_lexer.ml > src/fake_lexer.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/spine.mli > src/spine.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/chunk_parser.cmi src/ocaml/chunk_parser.mli
