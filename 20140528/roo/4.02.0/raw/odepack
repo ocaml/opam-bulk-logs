@@ -253,3 +253,126 @@ File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
 File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing odepack.0.6.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/odepack.0.6.6+opam.tar.gz
+sending incremental file list
+odepack.0.6.6+opam.tar.gz
+
+sent 368,031 bytes  received 35 bytes  736,132.00 bytes/sec
+total size is 367,813  speedup is 1.00
+Building odepack.0.6.6:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 245, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ odepack
+Package version: ..................................... 0.6.6
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+fortran_library: ..................................... gfortran
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+fortran: ............................................. /usr/bin/gfortran
+pkg_bigarray: ........................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+File "setup.ml", line 245, characters 8-26:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/usr/bin/gfortran -c -o src/fortran/opkdmain.o -fPIC -O3 '-std=legacy' src/fortran/opkdmain.f
+/usr/bin/gfortran -c -o src/fortran/opkda2.o -fPIC -O3 '-std=legacy' src/fortran/opkda2.f
+/usr/bin/gfortran -c -o src/fortran/opkda1.o -fPIC -O3 '-std=legacy' src/fortran/opkda1.f
