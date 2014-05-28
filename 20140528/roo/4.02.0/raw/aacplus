@@ -279,3 +279,191 @@ make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
 for p in findlib; do ( cd src/$p; make opt ); done
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
 ocamldep *.ml *.mli >depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+ocamlopt -I +compiler-libs -c findlib_config.ml
+ocamlopt -I +compiler-libs -c fl_split.ml
+File "fl_split.ml", line 118, characters 43-62:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 119, characters 37-56:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 123, characters 34-47:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 124, characters 34-47:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 126, characters 26-39:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 127, characters 45-64:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 128, characters 38-57:
+Warning 3: deprecated feature: String.set
+File "fl_split.ml", line 136, characters 13-26:
+Warning 3: deprecated feature: String.create
+File "fl_split.ml", line 140, characters 1-19:
+Warning 3: deprecated feature: String.set
+ocamlopt -I +compiler-libs -c fl_metatoken.ml
+ocamlopt -I +compiler-libs -c fl_meta.ml
+File "fl_meta.mll", line 57, characters 13-26:
+Warning 3: deprecated feature: String.create
+File "fl_meta.mll", line 61, characters 11-29:
+Warning 3: deprecated feature: String.set
+File "fl_meta.mll", line 62, characters 11-22:
+Warning 3: deprecated feature: String.set
+ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+File "fl_topo.ml", line 283, characters 10-22:
+Warning 26: unused variable in_direction.
+File "fl_topo.ml", line 219, characters 36-37:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing aacplus.0.2.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/aacplus.0.2.1+opam.tar.gz
+sending incremental file list
+aacplus.0.2.1+opam.tar.gz
+
+sent 95,508 bytes  received 35 bytes  191,086.00 bytes/sec
+total size is 95,362  speedup is 1.00
+Building aacplus.0.2.1:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+configuring ocaml-aacplus 0.2.1
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking that calling user is not root... ok
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for ar... ar
+checking for ocamlc... ocamlc
+OCaml version is 4.02.0+dev10-2014-05-20
+checking if ocaml compiler supports first-class modules... yes
+OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlidl... no
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for camlp4... camlp4
+versions differs from ocamlc
+checking for camlp4boot... no
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for ocamlfind... ocamlfind
+checking for caml/threads.h... yes
+checking for gcc option to produce PIC... -fPIC
+checking whether to build shared modules... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking whether pkg-config knows about aacplus >= 2.0.1... configure: error: aacplus.pc not found.. Do you need to set PKG_CONFIG_PATH?
+[ERROR] The compilation of aacplus.0.2.1 failed.
+Removing aacplus.0.2.1.
+  ocamlfind remove aacplus
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/aacplus
+
+
+===== ERROR while installing aacplus.0.2.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.02.0+trunk
+# path                 /home/opam/.opam/4.02.0+trunk/build/aacplus.0.2.1
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/aacplus.0.2.1/aacplus-434-d2c37b.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/aacplus.0.2.1/aacplus-434-d2c37b.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/aacplus.0.2.1/aacplus-434-d2c37b.err
+### stdout ###
+# ...[truncated]
+# checking for camlp4prof... camlp4prof
+# checking for camlp4r... camlp4r
+# checking for camlp4rf... camlp4rf
+# checking for ocamlfind... ocamlfind
+# checking for caml/threads.h... yes
+# checking for gcc option to produce PIC... -fPIC
+# checking whether to build shared modules... yes
+# checking for pkg-config... /usr/bin/pkg-config
+# checking pkg-config is at least version 0.9.0... yes
+# checking whether pkg-config knows about aacplus >= 2.0.1... 
+### stderr ###
+# configure: error: aacplus.pc not found.. Do you need to set PKG_CONFIG_PATH?
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428221353.export"
+'opam install aacplus' failed.
