@@ -272,3 +272,76 @@ Installing ocamlfind.1.4.0.
 =-=-= Installing procord.0.1.0 =-=-=
 default    Synchronizing with /home/opam/opam-repository/archives/procord.0.1.0+opam.tar.gz
 sending incremental file list
+procord.0.1.0+opam.tar.gz
+
+sent 32,326 bytes  received 35 bytes  64,722.00 bytes/sec
+total size is 32,192  speedup is 0.99
+Building procord.0.1.0:
+  make
+  make install
+ocamlbuild -no-links -I source -tag annot source/procord.cma source/procord.cmxa
+ocamlfind ocamldep -modules source/procord_connection.mli > source/procord_connection.mli.depends
+ocamlfind ocamlc -c -annot -I source -o source/procord_connection.cmi source/procord_connection.mli
+ocamlfind ocamldep -modules source/procord_connection.ml > source/procord_connection.ml.depends
+ocamlfind ocamldep -modules source/procord_rope.mli > source/procord_rope.mli.depends
+ocamlfind ocamlc -c -annot -I source -o source/procord_rope.cmi source/procord_rope.mli
+ocamlfind ocamldep -modules source/procord_process.mli > source/procord_process.mli.depends
+ocamlfind ocamldep -modules source/procord_task.mli > source/procord_task.mli.depends
+ocamlfind ocamlc -c -annot -I source -o source/procord_task.cmi source/procord_task.mli
+ocamlfind ocamlc -c -annot -I source -o source/procord_process.cmi source/procord_process.mli
+ocamlfind ocamldep -modules source/procord_process.ml > source/procord_process.ml.depends
+ocamlfind ocamldep -modules source/procord_protocol.mli > source/procord_protocol.mli.depends
+ocamlfind ocamldep -modules source/procord_worker.mli > source/procord_worker.mli.depends
+ocamlfind ocamlc -c -annot -I source -o source/procord_protocol.cmi source/procord_protocol.mli
+ocamlfind ocamlc -c -annot -I source -o source/procord_worker.cmi source/procord_worker.mli
+ocamlfind ocamldep -modules source/procord_protocol.ml > source/procord_protocol.ml.depends
+ocamlfind ocamldep -modules source/procord_rope.ml > source/procord_rope.ml.depends
+ocamlfind ocamldep -modules source/procord_task.ml > source/procord_task.ml.depends
+ocamlfind ocamldep -modules source/procord_worker.ml > source/procord_worker.ml.depends
+ocamlfind ocamlc -c -annot -I source -o source/procord_connection.cmo source/procord_connection.ml
++ ocamlfind ocamlc -c -annot -I source -o source/procord_connection.cmo source/procord_connection.ml
+File "source/procord_connection.ml", line 530, characters 25-38:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -c -annot -I source -o source/procord_process.cmo source/procord_process.ml
+ocamlfind ocamlc -c -annot -I source -o source/procord_protocol.cmo source/procord_protocol.ml
+ocamlfind ocamlc -c -annot -I source -o source/procord_rope.cmo source/procord_rope.ml
++ ocamlfind ocamlc -c -annot -I source -o source/procord_rope.cmo source/procord_rope.ml
+File "source/procord_rope.ml", line 43, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -c -annot -I source -o source/procord_task.cmo source/procord_task.ml
+ocamlfind ocamlc -c -annot -I source -o source/procord_worker.cmo source/procord_worker.ml
+ocamlfind ocamlc -a source/procord_rope.cmo source/procord_connection.cmo source/procord_protocol.cmo source/procord_task.cmo source/procord_worker.cmo source/procord_process.cmo -o source/procord.cma
+ocamlfind ocamlopt -c -annot -I source -o source/procord_rope.cmx source/procord_rope.ml
++ ocamlfind ocamlopt -c -annot -I source -o source/procord_rope.cmx source/procord_rope.ml
+File "source/procord_rope.ml", line 43, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -annot -I source -o source/procord_connection.cmx source/procord_connection.ml
++ ocamlfind ocamlopt -c -annot -I source -o source/procord_connection.cmx source/procord_connection.ml
+File "source/procord_connection.ml", line 530, characters 25-38:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -annot -I source -o source/procord_protocol.cmx source/procord_protocol.ml
+ocamlfind ocamlopt -c -annot -I source -o source/procord_task.cmx source/procord_task.ml
+ocamlfind ocamlopt -c -annot -I source -o source/procord_worker.cmx source/procord_worker.ml
+ocamlfind ocamlopt -c -annot -I source -o source/procord_process.cmx source/procord_process.ml
+ocamlfind ocamlopt -a source/procord_rope.cmx source/procord_connection.cmx source/procord_protocol.cmx source/procord_task.cmx source/procord_worker.cmx source/procord_process.cmx -o source/procord.cmxa
+ocamlfind install procord META \
+	  _build/source/procord.a \
+	  _build/source/procord.cma \
+	  _build/source/procord.cmxa \
+	  _build/source/procord_connection.cmi \
+	  _build/source/procord_process.cmi \
+	  _build/source/procord_protocol.cmi \
+	  _build/source/procord_rope.cmi \
+	  _build/source/procord_task.cmi \
+	  _build/source/procord_worker.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_worker.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_task.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_rope.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_protocol.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_process.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord_connection.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/procord.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/procord/META
+Installing procord.0.1.0.
