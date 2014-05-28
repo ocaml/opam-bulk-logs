@@ -942,3 +942,67 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 pkg_unix: ............................................ /usr/lib/ocaml
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package unix -modules lib/log.mli > lib/log.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmi lib/log.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package unix -modules lib/log.ml > lib/log.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmo lib/log.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/log.cmo -o lib/dolog.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package unix -I lib -o lib/log.cmx lib/log.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/log.cmx -o lib/dolog.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall lib/dolog.cmxa -o lib/dolog.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package unix -modules lib_test/example.ml > lib_test/example.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/example.cmo lib_test/example.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -g -linkpkg -package unix lib/dolog.cma lib_test/example.cmo -o lib_test/example.byte
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package unix -modules lib_test/test.ml > lib_test/test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -g -linkpkg -package unix lib/dolog.cma lib_test/test.cmo -o lib_test/test.byte
+Installed /home/opam/.opam/system/lib/dolog/log.mli
+Installed /home/opam/.opam/system/lib/dolog/dolog.cma
+Installed /home/opam/.opam/system/lib/dolog/dolog.cmxa
+Installed /home/opam/.opam/system/lib/dolog/dolog.a
+Installed /home/opam/.opam/system/lib/dolog/dolog.cmxs
+Installed /home/opam/.opam/system/lib/dolog/log.cmi
+Installed /home/opam/.opam/system/lib/dolog/log.cmx
+Installed /home/opam/.opam/system/lib/dolog/META
+Installing dolog.0.5.
+
+=-=-= Installing obuild.0.0.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/obuild.0.0.7+opam.tar.gz
+sending incremental file list
+obuild.0.0.7+opam.tar.gz
+
+sent 71,806 bytes  received 35 bytes  47,894.00 bytes/sec
+total size is 71,661  speedup is 1.00
+Building obuild.0.0.7:
+  ./bootstrap
+  cp dist/build/obuild/obuild dist/build/obuild-simple/obuild-simple /home/opam/.opam/system/bin
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING gconf
+COMPILING types
+COMPILING dag
+COMPILING pp
+COMPILING filetype
+COMPILING expr
+COMPILING utils
+COMPILING modname
+COMPILING taskdep
+COMPILING dist
+COMPILING helper
+COMPILING dagutils
+COMPILING process
+COMPILING findlibConf
+COMPILING scheduler
+COMPILING prog
+COMPILING dependencies
+COMPILING generators
+COMPILING hier
+COMPILING meta
+COMPILING target
+COMPILING project
+COMPILING analyze
+COMPILING configure
+COMPILING prepare
