@@ -111,3 +111,21 @@ Compile tests executable and library and run them: ... false
 pkg_xmlm: ............................................ /home/opam/.opam/system/lib/xmlm
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package xmlm -modules lib/ezxmlm.mli > lib/ezxmlm.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -short-paths -principal -package xmlm -I lib -o lib/ezxmlm.cmi lib/ezxmlm.mli
+ocamlfind ocamldep -package xmlm -modules lib/ezxmlm.ml > lib/ezxmlm.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -short-paths -principal -package xmlm -I lib -o lib/ezxmlm.cmo lib/ezxmlm.ml
+ocamlfind ocamlc -a lib/ezxmlm.cmo -o lib/ezxmlm.cma
+ocamlfind ocamlopt -c -g -annot -bin-annot -short-paths -principal -package xmlm -I lib -o lib/ezxmlm.cmx lib/ezxmlm.ml
+ocamlfind ocamlopt -a lib/ezxmlm.cmx -o lib/ezxmlm.cmxa
+ocamlfind ocamlopt -shared lib/ezxmlm.cmx -o lib/ezxmlm.cmxs
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.mli
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.cma
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.cmxa
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.a
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.cmxs
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.cmi
+Installed /home/opam/.opam/system/lib/ezxmlm/ezxmlm.cmx
+Installed /home/opam/.opam/system/lib/ezxmlm/META
+Installing ezxmlm.1.0.0.
