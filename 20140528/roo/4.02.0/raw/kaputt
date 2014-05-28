@@ -223,3 +223,130 @@ ocamlopt -I +compiler-libs -c ocaml_args.ml
 ocamlopt -I +compiler-libs -c frontend.ml
 File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing kaputt.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/kaputt.1.2+opam.tar.gz
+sending incremental file list
+kaputt.1.2+opam.tar.gz
+
+sent 301,226 bytes  received 35 bytes  602,522.00 bytes/sec
+total size is 301,027  speedup is 1.00
+Building kaputt.1.2:
+  sh configure
+  make all
+  make install
+Makefile.config successfully created
+echo 'kaputt.cma' > kaputt.itarget
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamlopt && echo 'kaputt.cmxa' >> kaputt.itarget) || true
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamljava && echo 'kaputt.cmja' >> kaputt.itarget) || true
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputt.otarget
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/library/reducer.mli > src/library/reducer.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/reducer.cmi src/library/reducer.mli
+ocamlfind ocamldep -modules src/library/reducer.ml > src/library/reducer.ml.depends
+ocamlfind ocamldep -modules src/library/assertion.mli > src/library/assertion.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/assertion.cmi src/library/assertion.mli
+ocamlfind ocamldep -modules src/library/assertion.ml > src/library/assertion.ml.depends
+ocamlfind ocamldep -modules src/library/utils.mli > src/library/utils.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/utils.cmi src/library/utils.mli
+ocamlfind ocamldep -modules src/library/abbreviations.mli > src/library/abbreviations.mli.depends
+ocamlfind ocamldep -modules src/library/enumerator.mli > src/library/enumerator.mli.depends
+ocamlfind ocamldep -modules src/library/generator.mli > src/library/generator.mli.depends
+ocamlfind ocamldep -modules src/library/mock.mli > src/library/mock.mli.depends
+ocamlfind ocamldep -modules src/library/shell.mli > src/library/shell.mli.depends
+ocamlfind ocamldep -modules src/library/specification.mli > src/library/specification.mli.depends
+ocamlfind ocamldep -modules src/library/test.mli > src/library/test.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmi src/library/enumerator.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmi src/library/generator.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/shell.cmi src/library/shell.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/specification.cmi src/library/specification.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/mock.cmi src/library/mock.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/test.cmi src/library/test.mli
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/abbreviations.cmi src/library/abbreviations.mli
+ocamlfind ocamldep -modules src/library/abbreviations.ml > src/library/abbreviations.ml.depends
+ocamlfind ocamldep -modules src/library/generator.ml > src/library/generator.ml.depends
+cp /tmp/versiondb0d4b.ml src/library/version.ml
+ocamlfind ocamldep -modules src/library/version.mli > src/library/version.mli.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/version.cmi src/library/version.mli
+ocamlfind ocamldep -modules src/library/version.ml > src/library/version.ml.depends
+ocamlfind ocamldep -modules src/library/test.ml > src/library/test.ml.depends
+ocamlfind ocamldep -modules src/library/specification.ml > src/library/specification.ml.depends
+ocamlfind ocamldep -modules src/library/utils.ml > src/library/utils.ml.depends
+ocamlfind ocamldep -modules src/library/shell.ml > src/library/shell.ml.depends
+ocamlfind ocamldep -modules src/library/mock.ml > src/library/mock.ml.depends
+ocamlfind ocamldep -modules src/library/enumerator.ml > src/library/enumerator.ml.depends
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/reducer.cmo src/library/reducer.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/assertion.cmo src/library/assertion.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/abbreviations.cmo src/library/abbreviations.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmo src/library/generator.ml
++ ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmo src/library/generator.ml
+File "src/library/generator.ml", line 174, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "src/library/generator.ml", line 176, characters 6-24:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/version.cmo src/library/version.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/test.cmo src/library/test.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/specification.cmo src/library/specification.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/utils.cmo src/library/utils.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/shell.cmo src/library/shell.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/mock.cmo src/library/mock.ml
+ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmo src/library/enumerator.ml
++ ocamlfind ocamlc -c -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmo src/library/enumerator.ml
+File "src/library/enumerator.ml", line 138, characters 16-29:
+Warning 3: deprecated feature: String.create
+File "src/library/enumerator.ml", line 140, characters 8-85:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -pack src/library/reducer.cmo src/library/utils.cmo src/library/assertion.cmo src/library/enumerator.cmo src/library/generator.cmo src/library/mock.cmo src/library/shell.cmo src/library/specification.cmo src/library/version.cmo src/library/test.cmo src/library/abbreviations.cmo -o kaputt.cmo
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/utils.cmx src/library/utils.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/assertion.cmx src/library/assertion.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/reducer.cmx src/library/reducer.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmx src/library/enumerator.ml
