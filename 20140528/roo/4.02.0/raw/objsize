@@ -344,3 +344,59 @@ ocaml setup.ml -build
 File "setup.ml", line 247, characters 8-26:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -c c_objsize.c
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o objsize_stubs c_objsize.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules objsize.mli > objsize.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmi objsize.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules objsize.ml > objsize.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmo objsize.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -lobjsize_stubs -cclib -lobjsize_stubs objsize.cmo -o objsize.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmx objsize.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -lobjsize_stubs objsize.cmx -o objsize.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -I . objsize.cmxa objsize.cmx -o objsize.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -pp camlp4r -modules tests.ml > tests.ml.depends
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -pp camlp4r -modules tests.ml > tests.ml.depends
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' libobjsize_stubs.a dllobjsize_stubs.so objsize.cma objsize.cmxa objsize.a objsize.cmxs tests.native -tag debug' terminated with error code 10")
+make: *** [build] Error 1
+[ERROR] The compilation of objsize.0.17 failed.
+Removing objsize.0.17.
+  ocamlfind remove objsize
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/objsize
+
+
+===== ERROR while installing objsize.0.17 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/objsize.0.17
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/objsize.0.17/objsize-360-d2c37b.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/objsize.0.17/objsize-360-d2c37b.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/objsize.0.17/objsize-360-d2c37b.err
+### stdout ###
+# ...[truncated]
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmi objsize.mli
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules objsize.ml > objsize.ml.depends
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmo objsize.ml
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -lobjsize_stubs -cclib -lobjsize_stubs objsize.cmo -o objsize.cma
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -ccopt -W -ccopt -Wall -ccopt -Wextra -ccopt -g -o objsize.cmx objsize.ml
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -lobjsize_stubs objsize.cmx -o objsize.cmxa
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -I . objsize.cmxa objsize.cmx -o objsize.cmxs
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -pp camlp4r -modules tests.ml > tests.ml.depends
+# + /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -pp camlp4r -modules tests.ml > tests.ml.depends
+# Command exited with code 2.
+### stderr ###
+# make: oasis: Command not found
+# make: oasis: Command not found
+# File "setup.ml", line 247, characters 8-26:
+# Warning 3: deprecated feature: String.set
+# File "setup.ml", line 247, characters 8-26:
+# Warning 3: deprecated feature: String.set
+# E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' libobjsize_stubs.a dllobjsize_stubs.so objsize.cma objsize.cmxa objsize.a objsize.cmxs tests.native -tag debug' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428233213.export"
+'opam install objsize' failed.
