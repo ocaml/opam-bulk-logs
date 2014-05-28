@@ -4658,3 +4658,18 @@ yojson.1.1.8+opam.tar.gz
 
 sent 24,881 bytes  received 35 bytes  49,832.00 bytes/sec
 total size is 24,748  speedup is 0.99
+Building yojson.1.1.8:
+  make
+  make install
+sed -e 's:@@VERSION@@:1.1.8:' META.in > META
+cppo -n yojson.mli.cppo -o yojson.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
+ocamllex read.mll
+433 states, 2020 transitions, table size 10678 bytes
+cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
