@@ -3965,3 +3965,20 @@ ocamlfind ocamlc -a -dllib -ltuntap_stubs -cclib -ltuntap_stubs -bin-annot lib/t
 ocamlfind ocamlopt -c -g -annot -bin-annot -ccopt -O3 -bin-annot -package ipaddr -I lib -o lib/tuntap.cmx lib/tuntap.ml
 ocamlfind ocamlopt -a -cclib -ltuntap_stubs -bin-annot lib/tuntap.cmx -o lib/tuntap.cmxa
 ocamlfind ocamlopt -shared -I lib lib/tuntap.cmxa lib/tuntap.cmx -o lib/tuntap.cmxs
+ocamlfind ocamldep -package cmdliner -package ipaddr -modules bin/otunctl.ml > bin/otunctl.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmo bin/otunctl.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmx bin/otunctl.ml
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package cmdliner -package ipaddr lib/tuntap.cmxa bin/otunctl.cmx -o bin/otunctl.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/sendfd_test.ml > test/sendfd_test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmo test/sendfd_test.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmo test/sendfd_test.ml
+File "test/sendfd_test.ml", line 7, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmx test/sendfd_test.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmx test/sendfd_test.ml
+File "test/sendfd_test.ml", line 7, characters 15-28:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -linkpkg -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/sendfd_test.cmx -o test/sendfd_test.native
+ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/nonblock_test.ml > test/nonblock_test.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmo test/nonblock_test.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmx test/nonblock_test.ml
