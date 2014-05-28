@@ -1369,3 +1369,36 @@ Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
 ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/system/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/system/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/system/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/system/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/system/bin"
+make[1]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+
+=-=-= Installing cairo2.0.4.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cairo2.0.4.6+opam.tar.gz
+sending incremental file list
+cairo2.0.4.6+opam.tar.gz
+
+sent 129,693 bytes  received 35 bytes  259,456.00 bytes/sec
+total size is 129,540  speedup is 1.00
+Building cairo2.0.4.6:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system --enable-lablgtk2
+  ocaml setup.ml -build
+  ocaml setup.ml -install
