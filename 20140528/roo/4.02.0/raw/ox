@@ -2856,3 +2856,51 @@ ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -packag
 ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -I lib -o lib/OxStart.cmi lib/OxStart.mli
 ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxStart.ml > lib/OxStart.ml.depends
 ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxShared.ml > lib/OxShared.ml.depends
+ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxShared.cmo lib/OxShared.ml
+ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -modules lib/OxPlatform.mli > lib/OxPlatform.mli.depends
+ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -I lib -o lib/OxPlatform.cmi lib/OxPlatform.mli
+ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxPlatform.ml > lib/OxPlatform.ml.depends
+ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
++ ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+File "lib/OxStart.ml", line 51, characters 8-35:
+Error: Unbound constructor Platform.SwitchDisconnected
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' lib/ox.cma lib/ox.cmxa lib/ox.a lib/ox.cmxs -tag debug' terminated with error code 10")
+[ERROR] The compilation of ox.1.0.1 failed.
+Removing ox.1.0.1.
+  ocamlfind remove ox
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/ox
+
+
+===== ERROR while installing ox.1.0.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.02.0+trunk/build/ox.1.0.1
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/ox.1.0.1/ox-6440-d0f245.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/ox.1.0.1/ox-6440-d0f245.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/ox.1.0.1/ox-6440-d0f245.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxShared.ml > lib/OxShared.ml.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxShared.cmo lib/OxShared.ml
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -modules lib/OxPlatform.mli > lib/OxPlatform.mli.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -I lib -o lib/OxPlatform.cmi lib/OxPlatform.mli
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxPlatform.ml > lib/OxPlatform.ml.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+# + ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+# File "lib/OxStart.ml", line 51, characters 8-35:
+# Error: Unbound constructor Platform.SwitchDisconnected
+# Command exited with code 2.
+### stderr ###
+# File "setup.ml", line 213, characters 8-26:
+# Warning 3: deprecated feature: String.set
+# File "setup.ml", line 213, characters 8-26:
+# Warning 3: deprecated feature: String.set
+# E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' lib/ox.cma lib/ox.cmxa lib/ox.a lib/ox.cmxs -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428194148.export"
+'opam install ox' failed.
