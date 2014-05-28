@@ -2167,3 +2167,35 @@ ocamlfind ocamlopt -a src/Markdown.cmx -o src/markdown.cmxa
 ocamlfind ocamlopt -shared -linkall src/markdown.cmxa -o src/markdown.cmxs
 ocamlfind ocamldep -package tyxml -package str -package sexplib -package extlib -modules src/MarkdownHTML.ml > src/MarkdownHTML.ml.depends
 ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
+ocamlfind ocamlc -a src/MarkdownHTML.cmo -o src/html.cma
+ocamlfind ocamlopt -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmx src/MarkdownHTML.ml
+ocamlfind ocamlopt -a src/MarkdownHTML.cmx -o src/html.cmxa
+ocamlfind ocamlopt -shared -linkall src/html.cmxa -o src/html.cmxs
+ocamlfind ocamldep -package str -package sexplib -package oUnit -package extlib -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamldep -package str -package sexplib -package oUnit -package extlib -modules test/TestMarkdown.ml > test/TestMarkdown.ml.depends
+ocamlfind ocamlc -c -g -I src -package str -package sexplib -package oUnit -package extlib -I test -I src -o test/TestMarkdown.cmo test/TestMarkdown.ml
+ocamlfind ocamlc -c -g -I src -package str -package sexplib -package oUnit -package extlib -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -linkpkg -g -linkpkg -package str -package sexplib -package oUnit -package extlib src/markdown.cma test/TestMarkdown.cmo test/test.cmo -o test/test.byte
+ocaml setup.ml -test 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+ocaml setup.ml -install 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/Markdown.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/markdown.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/markdown.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/markdown.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/markdown.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/Markdown.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/Markdown.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/MarkdownHTML.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/html.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/html.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/html.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/html.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/MarkdownHTML.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/MarkdownHTML.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/markdown/META
+Installing ocaml-markdown.0.1.1.
