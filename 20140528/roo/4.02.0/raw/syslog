@@ -225,3 +225,91 @@ File "frontend.ml", line 30, characters 24-36:
 Warning 3: deprecated feature: String.set
 File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing syslog.1.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/syslog.1.4+opam.tar.gz
+sending incremental file list
+syslog.1.4+opam.tar.gz
+
+sent 33,567 bytes  received 35 bytes  67,204.00 bytes/sec
+total size is 33,432  speedup is 0.99
+Building syslog.1.4:
+  make reallyall
+  make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+making ._bcdi/syslog.di from syslog.mli
+making ._d/syslog.d from syslog.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+ocamlfind ocamlc -package unix -c syslog.mli
+ocamlfind ocamlc -package unix -c syslog.ml
+ocamlfind ocamlc -a             \
+				  -o syslog.cma  syslog.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+making ._ncdi/syslog.di from syslog.mli
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+ocamlfind ocamlopt -package unix -c syslog.ml
+ocamlfind ocamlopt -a               \
+				 -o syslog.cmxa syslog.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+make[1]: `syslog.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/syslog.1.4'
+
+Installing library with ocamlfind
+ocamlfind install syslog META syslog.mli syslog.cmi syslog.cma syslog.cmx syslog.cmxa syslog.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/syslog.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/syslog/META
+
+Installation successful.
+Installing syslog.1.4.
