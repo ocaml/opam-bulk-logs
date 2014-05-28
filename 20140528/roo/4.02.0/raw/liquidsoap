@@ -1324,3 +1324,176 @@ checking if ocaml compiler supports first-class modules... yes
 OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
 checking for ocamlopt... ocamlopt
 checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlidl... no
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for ocamlfind... ocamlfind
+checking for caml/threads.h... yes
+checking for gcc option to produce PIC... -fPIC
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/META
+make -C src
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+making ._bcdi/mad.di from mad.mli
+making ._d/mad.d from mad.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.02.0+trunk/include   -Wall -DCAML_NAME_SPACE \
+				-DPIC -fPIC -I/home/opam/.opam/4.02.0+trunk/include  \
+				    -o mad_stubs.o " mad_stubs.c 
+mad_stubs.c: In function 'ocaml_mad_openfile':
+mad_stubs.c:175:8: warning: ignoring return value of 'fread', declared with attribute warn_unused_result [-Wunused-result]
+   fread(&id3_header,sizeof(char),3,fd);
+        ^
+mad_stubs.c:181:10: warning: ignoring return value of 'fread', declared with attribute warn_unused_result [-Wunused-result]
+     fread(&id3_header,sizeof(char),3,fd);
+          ^
+mad_stubs.c:187:10: warning: ignoring return value of 'fread', declared with attribute warn_unused_result [-Wunused-result]
+     fread(&id3_len,sizeof(char),4,fd);
+          ^
+ar rcs libmad_stubs.a  mad_stubs.o
+ocamlc.opt -c mad.mli
+ocamlc.opt -c mad.ml
+ocamlmklib      -L/home/opam/.opam/4.02.0+trunk/lib    \
+				-o mad_stubs  mad_stubs.o -lmad \
+				
+ocamlc.opt -a -dllib dllmad_stubs.so       -ccopt -L/home/opam/.opam/4.02.0+trunk/lib  -ccopt -L/home/opam/.opam/4.02.0+trunk/lib     \
+				-cclib -lmad_stubs -cclib -lmad  -o mad.cma  mad.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+making ._ncdi/mad.di from mad.mli
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: `libmad_stubs.a' is up to date.
+ocamlopt.opt -c mad.ml
+ocamlopt.opt -a        -ccopt -L/home/opam/.opam/4.02.0+trunk/lib  -ccopt -L/home/opam/.opam/4.02.0+trunk/lib    -cclib -lmad_stubs -cclib -lmad  \
+				 -o mad.cmxa mad.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: `libmad_stubs.a' is up to date.
+make[2]: `mad.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+make[2]: `libmad_stubs.a' is up to date.
+make[2]: `mad.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+
+Installing library with ocamlfind
+ocamlfind install  mad META mad.mli mad.cmi mad.cma mad.cmxa mad.cmx libmad_stubs.a mad.a dllmad_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/libmad_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/mad.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mad/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllmad_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllmad_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocaml-mad.0.4.4/src'
+Installing ocaml-mad.0.4.4.
+
+=-=-= Installing pcre-ocaml.7.0.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.0.4+opam.tar.gz
+sending incremental file list
+pcre-ocaml.7.0.4+opam.tar.gz
+
+sent 86,294 bytes  received 35 bytes  172,658.00 bytes/sec
+total size is 86,145  speedup is 1.00
+Building pcre-ocaml.7.0.4:
+  make
+  make install
+ocaml setup.ml -configure 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.0.4
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.0
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocaml setup.ml -build 
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
