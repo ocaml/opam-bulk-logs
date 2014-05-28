@@ -5185,3 +5185,76 @@ pkg_cstruct_syntax: .................................. /home/opam/.opam/4.02.0+t
 File "setup.ml", line 234, characters 8-26:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 33, characters 23-37:
+Warning: the tag "pkg_quickcheck" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 43, characters 18-32:
+Warning: the tag "pkg_quickcheck" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 52, characters 17-31:
+Warning: the tag "pkg_quickcheck" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlc -ccopt -g -c lib/checksum_stubs.c
+mv checksum_stubs.o lib/checksum_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/packet_stubs lib/checksum_stubs.o
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/Packet.mli > lib/Packet.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/Packet.cmi lib/Packet.mli
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/Packet.ml > lib/Packet.ml.depends
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -modules lib/checksum.mli > lib/checksum.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -I lib -o lib/checksum.cmi lib/checksum.mli
+ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/checksum.ml > lib/checksum.ml.depends
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmo lib/Packet.ml
+ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmo lib/checksum.ml
+ocamlfind ocamlc -a -dllib -lpacket_stubs -cclib -lpacket_stubs -g lib/checksum.cmo lib/Packet.cmo -o lib/packet.cma
+ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmx lib/checksum.ml
+ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmx lib/Packet.ml
+ocamlfind ocamlopt -a -cclib -lpacket_stubs lib/checksum.cmx lib/Packet.cmx -o lib/packet.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/packet.cmxa -o lib/packet.cmxs
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/Packet.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/checksum.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/libpacket_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/packet.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/packet.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/packet.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/packet.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/checksum.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/Packet.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/checksum.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/Packet.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/packet/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllpacket_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllpacket_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing packet.0.2.1.
+
+[ERROR] Due to some errors while processing custom_printf.111.03.00, the following actions will NOT proceed:
+ - install openflow.0.3.0
+ - install core.111.13.00
+
+===== ERROR while installing custom_printf.111.03.00 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/custom_printf.111.03.00
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/custom_printf.111.03.00/custom_printf-6340-2dea01.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/custom_printf.111.03.00/custom_printf-6340-2dea01.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/custom_printf.111.03.00/custom_printf-6340-2dea01.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlopt -a lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxa
+# ocamlfind ocamlopt -shared -linkall lib/custom_printf.cmxa -o lib/custom_printf.cmxs
+# ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_custom_printf.mli > syntax/pa_custom_printf.mli.depends
+# ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmi syntax/pa_custom_printf.mli
+# ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_custom_printf.ml > syntax/pa_custom_printf.ml.depends
+# ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
+# + ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
+# File "syntax/pa_custom_printf.ml", line 104, characters 17-38:
+# Error: Unbound module Printf.CamlinternalPr
+# Command exited with code 2.
+### stderr ###
+# File "setup.ml", line 232, characters 8-26:
+# Warning 3: deprecated feature: String.set
+# E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' lib/custom_printf.cma lib/custom_printf.cmxa lib/custom_printf.a lib/custom_printf.cmxs syntax/pa_custom_printf.cma syntax/pa_custom_printf.cmxa syntax/pa_custom_printf.a syntax/pa_custom_printf.cmxs sample/test.byte -use-ocamlfind -tag debug' terminated with error code 10")
+# make: *** [build] Error 1
+
