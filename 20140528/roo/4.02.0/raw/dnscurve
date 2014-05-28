@@ -1762,3 +1762,27 @@ Building cmdliner.0.9.4:
   ./pkg/pkg-git
   ./pkg/build true
 ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.4.
+
+=-=-= Installing ctypes.0.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3+opam.tar.gz
+sending incremental file list
+ctypes.0.3+opam.tar.gz
+
+sent 131,383 bytes  received 35 bytes  262,836.00 bytes/sec
+total size is 131,224  speedup is 1.00
+Building ctypes.0.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed:
