@@ -962,3 +962,19 @@ ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -I syntax 
 ocamlfind ocamldep -package camlp4 -package camlp4.lib -pp camlp4rf -modules syntax/xhtmlsyntax.ml > syntax/xhtmlsyntax.ml.depends
 ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/xhtmlparser.cmo syntax/xhtmlparser.ml
 ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/basic_types.cmo syntax/basic_types.ml
+ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/xhtmlsyntax.cmo syntax/xhtmlsyntax.ml
+ocamlfind ocamlc -pack -g syntax/xmllexer.cmo syntax/basic_types.cmo syntax/camllexer.cmo syntax/xhtmlparser.cmo syntax/xhtmlsyntax.cmo -o syntax/pa_tyxml.cmo
+ocamlfind ocamlc -a syntax/pa_tyxml.cmo -o syntax/pa_tyxml.cma
+ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -I syntax -o syntax/xmllexer.cmx syntax/xmllexer.ml
++ ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -I syntax -o syntax/xmllexer.cmx syntax/xmllexer.ml
+File "syntax/xmllexer.mll", line 385, characters 40-53:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -I syntax -o syntax/camllexer.cmx syntax/camllexer.ml
+ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -pp camlp4rf -I syntax -o syntax/xhtmlparser.cmx syntax/xhtmlparser.ml
+ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -pp camlp4rf -I syntax -o syntax/basic_types.cmx syntax/basic_types.ml
+ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -pp camlp4rf -I syntax -o syntax/xhtmlsyntax.cmx syntax/xhtmlsyntax.ml
+ocamlfind ocamlopt -pack -g -I syntax syntax/xmllexer.cmx syntax/basic_types.cmx syntax/camllexer.cmx syntax/xhtmlparser.cmx syntax/xhtmlsyntax.cmx -o syntax/pa_tyxml.cmx
+ocamlfind ocamlopt -a syntax/pa_tyxml.cmx -o syntax/pa_tyxml.cmxa
+ocamlfind ocamlopt -shared syntax/pa_tyxml.cmxa syntax/pa_tyxml.cmx -o syntax/pa_tyxml.cmxs
+ocamlfind ocamldep -package camlp4 -package camlp4.lib -modules syntax/simplexmlparser.mli > syntax/simplexmlparser.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -I syntax -o syntax/simplexmlparser.cmi syntax/simplexmlparser.mli
