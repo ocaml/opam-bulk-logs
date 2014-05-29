@@ -260,3 +260,134 @@ File "frontend.ml", line 1553, characters 16-29:
 Warning 3: deprecated feature: String.create
 ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
 		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing pprint.20140424 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pprint.20140424+opam.tar.gz
+sending incremental file list
+pprint.20140424+opam.tar.gz
+
+sent 23,315 bytes  received 35 bytes  46,700.00 bytes/sec
+total size is 23,179  speedup is 0.99
+Building pprint.20140424:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind ocamldep -modules PPrint.ml > PPrint.ml.depends
+ocamlfind ocamldep -modules PPrintCombinators.mli > PPrintCombinators.mli.depends
+ocamlfind ocamldep -modules PPrintEngine.mli > PPrintEngine.mli.depends
+ocamlfind ocamldep -modules PPrintRenderer.ml > PPrintRenderer.ml.depends
+ocamlfind ocamlc -c -g -o PPrintRenderer.cmo PPrintRenderer.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmi PPrintEngine.mli
+ocamlfind ocamldep -modules PPrintOCaml.mli > PPrintOCaml.mli.depends
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmi PPrintCombinators.mli
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmi PPrintOCaml.mli
+ocamlfind ocamldep -modules PPrintCombinators.ml > PPrintCombinators.ml.depends
+ocamlfind ocamldep -modules PPrintEngine.ml > PPrintEngine.ml.depends
+ocamlfind ocamldep -modules PPrintOCaml.ml > PPrintOCaml.ml.depends
+ocamlfind ocamlc -c -g -o PPrint.cmo PPrint.ml
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmo PPrintCombinators.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmo PPrintEngine.ml
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmo PPrintOCaml.ml
+ocamlfind ocamlc -a -g PPrintRenderer.cmo PPrintEngine.cmo PPrintCombinators.cmo PPrintOCaml.cmo PPrint.cmo -o PPrintLib.cma
+ocamlfind ocamlopt -c -g -o PPrintRenderer.cmx PPrintRenderer.ml
+ocamlfind ocamlopt -c -g -o PPrintEngine.cmx PPrintEngine.ml
+ocamlfind ocamlopt -c -g -o PPrintCombinators.cmx PPrintCombinators.ml
+ocamlfind ocamlopt -c -g -o PPrintOCaml.cmx PPrintOCaml.ml
+ocamlfind ocamlopt -c -g -o PPrint.cmx PPrint.ml
+ocamlfind ocamlopt -a -g PPrintRenderer.cmx PPrintEngine.cmx PPrintCombinators.cmx PPrintOCaml.cmx PPrint.cmx -o PPrintLib.cmxa
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind install pprint META \
+		_build/PPrintLib.cma _build/PPrintLib.cmxa \
+		_build/PPrintLib.a _build/*.cmx _build/*.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/META
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+Installing pprint.20140424.
+
+=-=-= Installing zarith.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/zarith.1.2+opam.tar.gz
+sending incremental file list
+zarith.1.2+opam.tar.gz
+
+sent 71,535 bytes  received 35 bytes  143,140.00 bytes/sec
+total size is 71,392  speedup is 1.00
+Applying install_fix.patch.
+patching file Changes
+patching file META
+patching file configure
+patching file project.mak
+Building zarith.1.2:
+  ./configure
+  make
+  make install
+binary ocaml: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamlc: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamldep: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamlmklib: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamldoc: found in /home/opam/.opam/4.02.0+trunk/bin
+binary gcc: found in /usr/bin
+binary ar: found in /usr/bin
+binary perl: found in /usr/bin
+binary ocamlopt: found in /home/opam/.opam/4.02.0+trunk/bin
+checking compilation with gcc -O3 -Wall -Wextra : working
+include caml/mlvalues.h: found
+library dynlink.cmxa: found
+binary ocamlfind: found in /home/opam/.opam/4.02.0+trunk/bin
+OCaml's word size is 64
+binary uname: found in /bin
