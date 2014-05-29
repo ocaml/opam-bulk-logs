@@ -2255,3 +2255,85 @@ ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package 
 ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/uri_re.ml > lib/uri_re.ml.depends
 ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_IP.mli > lib/Uri_IP.mli.depends
 ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmi lib/Uri_IP.mli
+ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_IP.ml > lib/Uri_IP.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmo lib/uri.ml
++ ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmo lib/uri.ml
+File "lib/uri.ml", line 398, characters 28-33:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri_re.cmo lib/uri_re.ml
+ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmo lib/Uri_IP.ml
+ocamlfind ocamlc -a lib/uri_re.cmo lib/uri.cmo lib/Uri_IP.cmo -o lib/uri.cma
+ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri_re.cmx lib/uri_re.ml
+ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmx lib/uri.ml
++ ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/uri.cmx lib/uri.ml
+File "lib/uri.ml", line 398, characters 28-33:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_IP.cmx lib/Uri_IP.ml
+ocamlfind ocamlopt -a lib/uri_re.cmx lib/uri.cmx lib/Uri_IP.cmx -o lib/uri.cmxa
+ocamlfind ocamlopt -shared lib/uri.cmxa lib/uri_re.cmx lib/uri.cmx lib/Uri_IP.cmx -o lib/uri.cmxs
+ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_services.mli > lib/Uri_services.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmi lib/Uri_services.mli
+ocamlfind ocamldep -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/Uri_services.ml > lib/Uri_services.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmo lib/Uri_services.ml
+ocamlfind ocamlc -a lib/Uri_services.cmo -o lib/services.cma
+ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/Uri_services.cmx lib/Uri_services.ml
+ocamlfind ocamlopt -a lib/Uri_services.cmx -o lib/services.cmxa
+ocamlfind ocamlopt -shared -linkall lib/services.cmxa -o lib/services.cmxs
+ocamlfind ocamldep -modules top/uri_top.ml > top/uri_top.ml.depends
+ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
++ ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a top/uri_top.cmo -o top/uri_top.cma
+ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
++ ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a top/uri_top.cmx -o top/uri_top.cmxa
+ocamlfind ocamlopt -shared top/uri_top.cmx -o top/uri_top.cmxs
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated feature: String.set
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_re.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_IP.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_IP.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_re.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_IP.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_re.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/uri_top.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_services.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/services.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/services.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/services.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/services.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_services.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/Uri_services.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uri/META
+Installing uri.1.4.0.
+
+=-=-= Installing cow.0.9.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cow.0.9.1+opam.tar.gz
+sending incremental file list
+cow.0.9.1+opam.tar.gz
+
+sent 37,723 bytes  received 35 bytes  75,516.00 bytes/sec
+total size is 37,589  speedup is 1.00
+Building cow.0.9.1:
+  make all
+  make install
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/type_conv -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ulex -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/uri -I /home/opam/.opam/4.02.0+trunk/lib/xmlm -I /home/opam/.opam/4.02.0+trunk/lib/omd -pp 'camlp4of -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4' -modules syntax/css/options.ml > syntax/css/options.ml.depends
+ocamlfind ocamldep -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/type_conv -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ulex -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/uri -I /home/opam/.opam/4.02.0+trunk/lib/xmlm -I /home/opam/.opam/4.02.0+trunk/lib/omd -pp 'camlp4of -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4' -modules syntax/css/qast.mli > syntax/css/qast.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -short-paths -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/type_conv -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ulex -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/uri -I /home/opam/.opam/4.02.0+trunk/lib/xmlm -I /home/opam/.opam/4.02.0+trunk/lib/omd -pp 'camlp4of -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4' -I syntax/css -I syntax -o syntax/css/qast.cmi syntax/css/qast.mli
+ocamlfind ocamldep -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/type_conv -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ulex -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/uri -I /home/opam/.opam/4.02.0+trunk/lib/xmlm -I /home/opam/.opam/4.02.0+trunk/lib/omd -pp 'camlp4of -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4' -modules syntax/css/qast.ml > syntax/css/qast.ml.depends
+ocamlfind ocamldep -I +camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/type_conv -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/dyntype -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ulex -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/re -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/sexplib -I /home/opam/.opam/4.02.0+trunk/lib/uri -I /home/opam/.opam/4.02.0+trunk/lib/xmlm -I /home/opam/.opam/4.02.0+trunk/lib/omd -pp 'camlp4of -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4' -modules syntax/css/location.ml > syntax/css/location.ml.depends
