@@ -9802,3 +9802,21 @@ ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -pac
 ocamlfind ocamlc -a unix/github_cookie_jar.cmo -o unix/github_unix.cma
 ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package uri -package yojson -I unix -I lib -o unix/github_cookie_jar.cmx unix/github_cookie_jar.ml
 ocamlfind ocamlopt -a unix/github_cookie_jar.cmx -o unix/github_unix.cmxa
+ocamlfind ocamlopt -shared unix/github_unix.cmxa unix/github_cookie_jar.cmx -o unix/github_unix.cmxs
+ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib_test/rwo.ml > lib_test/rwo.ml.depends
+ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib_test/config.ml > lib_test/config.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/config.cmo lib_test/config.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/rwo.cmo lib_test/rwo.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/rwo.cmo lib_test/rwo.ml
+File "lib_test/rwo.ml", line 89, characters 6-13:
+Warning 26: unused variable timeout.
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/config.cmx lib_test/config.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/rwo.cmx lib_test/rwo.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I lib -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib_test -I lib -o lib_test/rwo.cmx lib_test/rwo.ml
+File "lib_test/rwo.ml", line 89, characters 6-13:
+Warning 26: unused variable timeout.
+ocamlfind ocamlopt -linkpkg -g -linkpkg -package atdgen -package cohttp -package cohttp.lwt -package lwt.syntax -package re -package uri -package yojson lib/github.cmxa lib_test/config.cmx lib_test/rwo.cmx -o lib_test/rwo.native
+ocamlfind ocamldep -package atdgen -package cmdliner -package cohttp -package cohttp.lwt -package lambda-term -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package uri -package yojson -modules jar/jar.ml > jar/jar.ml.depends
+ocamlfind ocamldep -package atdgen -package cmdliner -package cohttp -package cohttp.lwt -package lambda-term -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package uri -package yojson -modules jar/passwd.ml > jar/passwd.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -I unix -package atdgen -package cmdliner -package cohttp -package cohttp.lwt -package lambda-term -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package uri -package yojson -I jar -I unix -o jar/passwd.cmo jar/passwd.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -I unix -package atdgen -package cmdliner -package cohttp -package cohttp.lwt -package lambda-term -syntax camlp4o -package lwt.syntax -package lwt.unix -package re -package uri -package yojson -I jar -I unix -o jar/jar.cmo jar/jar.ml
