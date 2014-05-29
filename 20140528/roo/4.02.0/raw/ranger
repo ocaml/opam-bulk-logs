@@ -881,3 +881,46 @@ Warning 3: deprecated feature: String.create
 File "src/library/enumerator.ml", line 140, characters 8-85:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlc -pack src/library/reducer.cmo src/library/utils.cmo src/library/assertion.cmo src/library/enumerator.cmo src/library/generator.cmo src/library/mock.cmo src/library/shell.cmo src/library/specification.cmo src/library/version.cmo src/library/test.cmo src/library/abbreviations.cmo -o kaputt.cmo
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/utils.cmx src/library/utils.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/assertion.cmx src/library/assertion.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/reducer.cmx src/library/reducer.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmx src/library/enumerator.ml
++ ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/enumerator.cmx src/library/enumerator.ml
+File "src/library/enumerator.ml", line 138, characters 16-29:
+Warning 3: deprecated feature: String.create
+File "src/library/enumerator.ml", line 140, characters 8-85:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmx src/library/generator.ml
++ ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/generator.cmx src/library/generator.ml
+File "src/library/generator.ml", line 174, characters 14-27:
+Warning 3: deprecated feature: String.create
+File "src/library/generator.ml", line 176, characters 6-24:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/shell.cmx src/library/shell.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/specification.cmx src/library/specification.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/version.cmx src/library/version.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/mock.cmx src/library/mock.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/test.cmx src/library/test.ml
+ocamlfind ocamlopt -c -for-pack Kaputt -I src/library -I src -I src/extensions -I src/syntax -o src/library/abbreviations.cmx src/library/abbreviations.ml
+touch kaputt.mli  ; if  ocamlfind ocamlopt -pack -I src/library src/library/reducer.cmx src/library/utils.cmx src/library/assertion.cmx src/library/enumerator.cmx src/library/generator.cmx src/library/mock.cmx src/library/shell.cmx src/library/specification.cmx src/library/version.cmx src/library/test.cmx src/library/abbreviations.cmx -o kaputt.cmx  ; then  rm -f kaputt.mli  ; else  rm -f kaputt.mli  ; exit 1; fi
+ocamlfind ocamlc -a kaputt.cmo -o kaputt.cma
+ocamlfind ocamlopt -a kaputt.cmx -o kaputt.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputt_pp.byte
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/syntax/kaputt_pp.ml > src/syntax/kaputt_pp.ml.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/extensions -I src/library -o src/syntax/kaputt_pp.cmo src/syntax/kaputt_pp.ml
+ocamlfind ocamlc -linkpkg src/syntax/kaputt_pp.cmo -o src/syntax/kaputt_pp.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputtBigarray.cmo
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/extensions/kaputtBigarray.mli > src/extensions/kaputtBigarray.mli.depends
+cp /tmp/versionbf2459.ml src/library/version.ml
+ocamlfind ocamlc -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmi src/extensions/kaputtBigarray.mli
+ocamlfind ocamldep -modules src/extensions/kaputtBigarray.ml > src/extensions/kaputtBigarray.ml.depends
+ocamlfind ocamlc -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmo src/extensions/kaputtBigarray.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputtNums.cmo
