@@ -389,3 +389,40 @@ ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/test
 File "protocols/http/tests/test_http.ml", line 51, characters 12-25:
 Warning 3: deprecated feature: String.create
 ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmx protocols/http/tests/test_http.ml
++ ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http.cmx protocols/http/tests/test_http.ml
+File "protocols/http/tests/test_http.ml", line 51, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamldep -modules protocols/http/tests/test_uri.ml > protocols/http/tests/test_uri.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_uri.cmo protocols/http/tests/test_uri.ml
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_uri.cmx protocols/http/tests/test_uri.ml
+ocamlfind ocamldep -modules protocols/http/tests/test_http_client.ml > protocols/http/tests/test_http_client.ml.depends
+ocamlfind ocamlc -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http_client.cmo protocols/http/tests/test_http_client.ml
+ocamlfind ocamlopt -c -annot -I eventloop -I protocols/http -I protocols/http/tests -o protocols/http/tests/test_http_client.cmx protocols/http/tests/test_http_client.ml
+ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo protocols/http/tests/test_http.cmo -o protocols/http/tests/test_http.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/tests/test_http.cmx -o protocols/http/tests/test_http.native
+ocamlfind ocamlc -linkpkg unix.cma str.cma protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/tests/test_uri.cmo -o protocols/http/tests/test_uri.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/tests/test_uri.cmx -o protocols/http/tests/test_uri.native
+ocamlfind ocamlc -linkpkg unix.cma str.cma -custom -I eventloop protocols/http/httputils.cmo protocols/http/uri.cmo protocols/http/http.cmo eventloop/eventloop.cma protocols/http/http_client_conn.cmo protocols/http/http_client.cmo protocols/http/tests/test_http_client.cmo -o protocols/http/tests/test_http_client.byte
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa -I eventloop eventloop/eventloop.cmxa protocols/http/httputils.cmx protocols/http/uri.cmx protocols/http/http.cmx protocols/http/http_client_conn.cmx protocols/http/http_client.cmx protocols/http/tests/test_http_client.cmx -o protocols/http/tests/test_http_client.native
+ocamlfind ocamldep -modules protocols/jsonrpc/json.mli > protocols/jsonrpc/json.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmi protocols/jsonrpc/json.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json.ml > protocols/jsonrpc/json.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/json_conv.mli > protocols/jsonrpc/json_conv.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_conv.cmi protocols/jsonrpc/json_conv.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json_conv.ml > protocols/jsonrpc/json_conv.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/json_parse.mli > protocols/jsonrpc/json_parse.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmi protocols/jsonrpc/json_parse.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/json_parse.ml > protocols/jsonrpc/json_parse.ml.depends
+ocamlfind ocamldep -modules protocols/jsonrpc/jsonrpc.mli > protocols/jsonrpc/jsonrpc.mli.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/jsonrpc.cmi protocols/jsonrpc/jsonrpc.mli
+ocamlfind ocamldep -modules protocols/jsonrpc/jsonrpc.ml > protocols/jsonrpc/jsonrpc.ml.depends
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmo protocols/jsonrpc/json.ml
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_conv.cmo protocols/jsonrpc/json_conv.ml
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmo protocols/jsonrpc/json_parse.ml
++ ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json_parse.cmo protocols/jsonrpc/json_parse.ml
+File "protocols/jsonrpc/json_parse.ml", line 115, characters 10-23:
+Warning 3: deprecated feature: String.create
+File "protocols/jsonrpc/json_parse.ml", line 118, characters 8-18:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/jsonrpc.cmo protocols/jsonrpc/jsonrpc.ml
+ocamlfind ocamlopt -c -annot -I protocols/jsonrpc -o protocols/jsonrpc/json.cmx protocols/jsonrpc/json.ml
