@@ -220,3 +220,103 @@ ocamlopt -I +compiler-libs -c findlib.ml
 ocamlopt -I +compiler-libs -c fl_args.ml
 ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
 ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 30, characters 24-36:
+Warning 3: deprecated feature: String.set
+File "frontend.ml", line 1553, characters 16-29:
+Warning 3: deprecated feature: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0/src/findlib'
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.4.0'
+Installing ocamlfind.1.4.0.
+
+=-=-= Installing sha.1.9 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sha.1.9+opam.tar.gz
+sending incremental file list
+sha.1.9+opam.tar.gz
+
+sent 13,883 bytes  received 35 bytes  27,836.00 bytes/sec
+total size is 13,755  speedup is 0.99
+Building sha.1.9:
+  make
+  make install
+ocamlc -c -o sha1.cmi sha1.mli
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha1.o sha1.c
+mv sha1.o sha1.lib.o
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha1_stubs.o sha1_stubs.c
+sha1_stubs.c: In function 'stub_sha1_file':
+sha1_stubs.c:118:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+sha1_stubs.c:110:20: warning: incompatible implicit declaration of built-in function 'strcpy' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                    ^
+sha1_stubs.c:118:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha1_stubs.c:118:2: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+In file included from /usr/include/stdlib.h:492:0,
+                 from /home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/misc.h:27,
+                 from /home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/mlvalues.h:21,
+                 from sha1_stubs.c:42:
+sha1_stubs.c:110:34: warning: incompatible implicit declaration of built-in function 'strlen' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                                  ^
+sha1_stubs.c:118:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha1_stubs.c:128:2: warning: implicit declaration of function 'memcpy' [-Wimplicit-function-declaration]
+  memcpy((sha1_digest *)result, &digest, sizeof(sha1_digest));
+  ^
+sha1_stubs.c:128:2: warning: incompatible implicit declaration of built-in function 'memcpy' [enabled by default]
+ocamlc -c -o sha1.cmo sha1.ml
+File "sha1.ml", line 61, characters 11-24:
+Warning 3: deprecated feature: String.create
+ocamlmklib -o sha1 sha1.lib.o sha1_stubs.o sha1.cmo
+ocamlopt  -c -o sha1.cmx sha1.ml
+File "sha1.ml", line 61, characters 11-24:
+Warning 3: deprecated feature: String.create
+ocamlmklib -o sha1 sha1.lib.o sha1_stubs.o sha1.cmx
+ocamlc -c -o sha256.cmi sha256.mli
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha256.o sha256.c
