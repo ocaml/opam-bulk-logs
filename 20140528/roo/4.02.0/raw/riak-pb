@@ -965,3 +965,89 @@ Installing ulex.1.1.
 default    Synchronizing with /home/opam/opam-repository/archives/piqi.0.6.5+opam.tar.gz
 sending incremental file list
 piqi.0.6.5+opam.tar.gz
+
+sent 361,652 bytes  received 35 bytes  723,374.00 bytes/sec
+total size is 361,437  speedup is 1.00
+Building piqi.0.6.5:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make ocaml
+  make install
+  make ocaml-install
+checking whether necessary dependencies are already installed...
+xmlm is installed in /home/opam/.opam/4.02.0+trunk/lib/xmlm
+ulex is installed in /home/opam/.opam/4.02.0+trunk/lib/ulex
+easy-format is installed in /home/opam/.opam/4.02.0+trunk/lib/easy-format
+mkdir -p /home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/build/lib/ocaml
+set -e; \
+	for dir in piqi-camlp4 piqirun-ocaml piqicc piqic piqilib piqi-tools ; do \
+		make -C $dir ; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+Building CamlP4 extensions for OCaml 4.02
+There is no library for OCaml 4.02, trying 4.00 ...
+make OCAML_VERSION=4.00 all
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+ln -s 4.00/pa_labelscope.ml pa_labelscope.ml
+ln -s 4.00/pa_openin.ml pa_openin.ml
+ocamlc -c -pp "camlp4orf " -I +camlp4 pa_labelscope.ml
+File "pa_labelscope.ml", line 29, characters 17-22:
+While expanding quotation "expr" in a position of "expr":
+  Parse error: illegal begin of quotation of expression
+
+File "pa_labelscope.ml", line 1:
+Error: Error while running external preprocessor
+Command line: camlp4orf  'pa_labelscope.ml' > /tmp/ocamlpp7083a9
+
+make[2]: *** [pa_labelscope.cmo] Error 2
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+make[1]: *** [4.02] Error 2
+make: *** [dirs] Error 2
+[ERROR] The compilation of piqi.0.6.5 failed.
+Removing piqi.0.6.5.
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/piqi /home/opam/.opam/4.02.0+trunk/bin/piqic
+  ocamlfind remove piqi
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/piqi
+
+[ERROR] Due to some errors while processing piqi.0.6.5, the following actions will NOT proceed:
+ - install riak-pb.1.0.0
+
+===== ERROR while installing piqi.0.6.5 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-2828-d2d111.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-2828-d2d111.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-2828-d2d111.err
+### stdout ###
+# ...[truncated]
+# make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+# Building CamlP4 extensions for OCaml 4.02
+# There is no library for OCaml 4.02, trying 4.00 ...
+# make OCAML_VERSION=4.00 all
+# make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+# ln -s 4.00/pa_labelscope.ml pa_labelscope.ml
+# ln -s 4.00/pa_openin.ml pa_openin.ml
+# ocamlc -c -pp "camlp4orf " -I +camlp4 pa_labelscope.ml
+# make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/piqi.0.6.5/piqi-camlp4'
+### stderr ###
+# ...[truncated]
+# While expanding quotation "expr" in a position of "expr":
+#   Parse error: illegal begin of quotation of expression
+# 
+# File "pa_labelscope.ml", line 1:
+# Error: Error while running external preprocessor
+# Command line: camlp4orf  'pa_labelscope.ml' > /tmp/ocamlpp7083a9
+# 
+# make[2]: *** [pa_labelscope.cmo] Error 2
+# make[1]: *** [4.02] Error 2
+# make: *** [dirs] Error 2
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140428235823.export"
+'opam install riak-pb' failed.
