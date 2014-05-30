@@ -1381,3 +1381,16 @@ ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_822_parser.cmx cudf_82
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_conf.cmx cudf_conf.ml
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_types_pp.cmx cudf_types_pp.ml
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf.cmx cudf.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_822_lexer.cmx cudf_822_lexer.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_parser.cmx cudf_parser.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_checker.cmx cudf_checker.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_printer.cmx cudf_printer.ml
+ocamlfind ocamlopt -a -linkpkg cudf_types.cmx cudf_conf.cmx cudf_822_parser.cmx cudf_type_parser.cmx cudf_type_lexer.cmx cudf_types_pp.cmx cudf_822_lexer.cmx cudf.cmx cudf_parser.cmx cudf_checker.cmx cudf_printer.cmx -o cudf.cmxa
+ocamlbuild  main_cudf_check.native
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o main_cudf_check.cmx main_cudf_check.ml
+ocamlfind ocamlopt -linkpkg -package extlib cudf_types.cmx cudf_conf.cmx cudf_type_parser.cmx cudf_type_lexer.cmx cudf_types_pp.cmx cudf.cmx cudf_822_parser.cmx cudf_822_lexer.cmx cudf_checker.cmx cudf_parser.cmx cudf_printer.cmx main_cudf_check.cmx -o main_cudf_check.native
+ocamlbuild  main_cudf_parse_822.native
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o main_cudf_parse_822.cmx main_cudf_parse_822.ml
+ocamlfind ocamlopt -linkpkg -package extlib cudf_types.cmx cudf_822_parser.cmx cudf_822_lexer.cmx main_cudf_parse_822.cmx -o main_cudf_parse_822.native
+ocamlbuild  cudf_c.cmx
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_c.cmx cudf_c.ml
