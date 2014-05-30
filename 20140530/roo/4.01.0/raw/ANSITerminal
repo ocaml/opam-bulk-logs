@@ -82,3 +82,39 @@ Compile tests executable and library and run them: ... false
 pkg_unix: ............................................ /usr/lib/ocaml
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c src/ANSITerminal_stubs.c
+mv ANSITerminal_stubs.o src/ANSITerminal_stubs.o
+/usr/bin/ocamlmklib -o src/ANSITerminal_stubs src/ANSITerminal_stubs.o
+ocamlfind ocamldep -package unix -modules src/ANSITerminal.mli > src/ANSITerminal.mli.depends
+ocamlfind ocamlc -c -g -package unix -I src -o src/ANSITerminal.cmi src/ANSITerminal.mli
+ocamlfind ocamldep -package unix -modules src/ANSITerminal.ml > src/ANSITerminal.ml.depends
+ocamlfind ocamldep -package unix -modules src/ANSITerminal_common.ml > src/ANSITerminal_common.ml.depends
+ocamlfind ocamlc -c -g -package unix -I src -o src/ANSITerminal_common.cmo src/ANSITerminal_common.ml
+ocamlfind ocamlc -c -g -package unix -I src -o src/ANSITerminal.cmo src/ANSITerminal.ml
+ocamlfind ocamlc -a -dllib -lANSITerminal_stubs -cclib -lANSITerminal_stubs src/ANSITerminal_common.cmo src/ANSITerminal.cmo -o src/ANSITerminal.cma
+ocamlfind ocamlopt -c -g -package unix -I src -o src/ANSITerminal_common.cmx src/ANSITerminal_common.ml
+ocamlfind ocamlopt -c -g -package unix -I src -o src/ANSITerminal.cmx src/ANSITerminal.ml
+ocamlfind ocamlopt -a -cclib -lANSITerminal_stubs src/ANSITerminal_common.cmx src/ANSITerminal.cmx -o src/ANSITerminal.cmxa
+ocamlfind ocamlopt -shared -I src/ src/ANSITerminal.cmx -o src/ANSITerminal.cmxs
+ocamlfind ocamldep -package unix -modules showcolors.ml > showcolors.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I src -o showcolors.cmo showcolors.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I src -o showcolors.cmx showcolors.ml
+ocamlfind ocamlopt -g -I src/ -linkpkg -package unix src/ANSITerminal.cmxa showcolors.cmx -o showcolors.native
+ocamlfind ocamldep -package unix -modules test.ml > test.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I src -o test.cmo test.ml
+ocamlfind ocamlc -g -I src/ -linkpkg -package unix src/ANSITerminal.cma test.cmo -o test.byte
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.mli
+Installed /home/opam/.opam/system/lib/ANSITerminal/libANSITerminal_stubs.a
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.cma
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.cmxa
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.a
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.cmxs
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.cmi
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal.cmx
+Installed /home/opam/.opam/system/lib/ANSITerminal/ANSITerminal_common.cmx
+Installed /home/opam/.opam/system/lib/ANSITerminal/META
+Installed /home/opam/.opam/system/lib/stublibs/dllANSITerminal_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllANSITerminal_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing ANSITerminal.0.6.5.
