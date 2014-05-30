@@ -140,3 +140,23 @@ Create documentations: ............................... false
 Compile tests executable and library and run them: ... false
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules gen.mli > gen.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o gen.cmi gen.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules gen.ml > gen.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o gen.cmo gen.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a gen.cmo -o gen.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -o gen.cmx gen.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a gen.cmx -o gen.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared gen.cmx -o gen.cmxs
+W: Docs are turned off, consider enabling with 'ocaml setup.ml -configure --enable-docs'
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/gen/gen.mli
+Installed /home/opam/.opam/system/lib/gen/gen.cma
+Installed /home/opam/.opam/system/lib/gen/gen.cmxa
+Installed /home/opam/.opam/system/lib/gen/gen.a
+Installed /home/opam/.opam/system/lib/gen/gen.cmxs
+Installed /home/opam/.opam/system/lib/gen/gen.cmi
+Installed /home/opam/.opam/system/lib/gen/gen.cmx
+Installed /home/opam/.opam/system/lib/gen/META
+Installing gen.0.2.1.
