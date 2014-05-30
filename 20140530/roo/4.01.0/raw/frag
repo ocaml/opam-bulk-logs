@@ -4907,3 +4907,9 @@ pkg_str: ............................................. /usr/lib/ocaml
 pkg_re: .............................................. /home/opam/.opam/system/lib/re
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package threads -package str -package re -package mpp -package core -modules src/fragment_main.ml > src/fragment_main.ml.depends
+ocamlfind ocamldep -package threads -package str -package re -package mpp -package core -modules src/fragment.ml > src/fragment.ml.depends
+ocamlfind ocamlc -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment.cmo src/fragment.ml
+ocamlfind ocamlc -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment_main.cmo src/fragment_main.ml
+ocamlfind ocamlopt -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment.cmx src/fragment.ml
+ocamlfind ocamlopt -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment_main.cmx src/fragment_main.ml
