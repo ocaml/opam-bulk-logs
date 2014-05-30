@@ -706,3 +706,11 @@ ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx
 ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableFormat.cmx tableFormat.ml
 ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableInterpreter.cmx tableInterpreter.ml
 ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o convert.cmx convert.ml
+touch menhirLib.mli  ; if  ocamlfind ocamlopt -pack -g infiniteArray.cmx packedIntArray.cmx rowDisplacement.cmx engineTypes.cmx engine.cmx tableFormat.cmx tableInterpreter.cmx convert.cmx -o menhirLib.cmx  ; then  rm -f menhirLib.mli  ; else  rm -f menhirLib.mli  ; exit 1; fi
+ocamlfind ocamldep -modules lr1.ml > lr1.ml.depends
+ocamlfind ocamldep -modules breadth.ml > breadth.ml.depends
+ocamlfind ocamldep -modules breadth.mli > breadth.mli.depends
+ocamlfind ocamlc -c -o breadth.cmi breadth.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr0.cmx lr0.ml
+ocamlfind ocamldep -modules slr.ml > slr.ml.depends
+ocamlfind ocamldep -modules slr.mli > slr.mli.depends
