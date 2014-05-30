@@ -1844,3 +1844,46 @@ ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -pa
 ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxStart.ml > lib/OxStart.ml.depends
 ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxShared.ml > lib/OxShared.ml.depends
 ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxShared.cmo lib/OxShared.ml
+ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -modules lib/OxPlatform.mli > lib/OxPlatform.mli.depends
+ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -I lib -o lib/OxPlatform.cmi lib/OxPlatform.mli
+ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxPlatform.ml > lib/OxPlatform.ml.depends
+ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
++ ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+File "lib/OxStart.ml", line 51, characters 8-35:
+Error: Unbound constructor Platform.SwitchDisconnected
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' lib/ox.cma lib/ox.cmxa lib/ox.a lib/ox.cmxs -tag debug' terminated with error code 10")
+[ERROR] The compilation of ox.1.0.1 failed.
+Removing ox.1.0.1.
+  ocamlfind remove ox
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ox
+
+
+===== ERROR while installing ox.1.0.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/ox.1.0.1
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/ox.1.0.1/ox-4190-6cc03f.env
+# stdout-file          /home/opam/.opam/system/build/ox.1.0.1/ox-4190-6cc03f.out
+# stderr-file          /home/opam/.opam/system/build/ox.1.0.1/ox-4190-6cc03f.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxShared.ml > lib/OxShared.ml.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxShared.cmo lib/OxShared.ml
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -modules lib/OxPlatform.mli > lib/OxPlatform.mli.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -I lib -o lib/OxPlatform.cmi lib/OxPlatform.mli
+# ocamlfind ocamldep -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -modules lib/OxPlatform.ml > lib/OxPlatform.ml.depends
+# ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+# + ocamlfind ocamlc -c -g -package packet -package openflow -package lwt.syntax -package lwt -package cstruct -syntax camlp4o -I lib -o lib/OxStart.cmo lib/OxStart.ml
+# File "lib/OxStart.ml", line 51, characters 8-35:
+# Error: Unbound constructor Platform.SwitchDisconnected
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' lib/ox.cma lib/ox.cmxa lib/ox.a lib/ox.cmxs -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140430130852.export"
+'opam install ox' failed.
