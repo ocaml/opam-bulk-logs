@@ -6031,3 +6031,33 @@ Warning 3: deprecated feature: String.create
 File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/META
+Installing yojson.1.1.8.
+
+=-=-= Installing bitcoin.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/bitcoin.1.1.1+opam.tar.gz
+sending incremental file list
+bitcoin.1.1.1+opam.tar.gz
+
+sent 60,931 bytes  received 35 bytes  121,932.00 bytes/sec
+total size is 60,793  speedup is 1.00
