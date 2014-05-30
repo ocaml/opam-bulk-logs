@@ -8166,3 +8166,17 @@ pkg_eliom_server: .................................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package eliom.server -package threads -modules src/litiom_type.mli > src/litiom_type.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package eliom.server -package threads -thread -I src -o src/litiom_type.cmi src/litiom_type.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package eliom.server -package threads -modules src/litiom_type.ml > src/litiom_type.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package eliom.server -package threads -modules src/litiom_choice.mli > src/litiom_choice.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package eliom.server -package threads -thread -I src -o src/litiom_choice.cmi src/litiom_choice.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package eliom.server -package threads -modules src/litiom_choice.ml > src/litiom_choice.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package eliom.server -package threads -thread -I src -o src/litiom_type.cmo src/litiom_type.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package eliom.server -package threads -thread -I src -o src/litiom_choice.cmo src/litiom_choice.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/litiom_type.cmo src/litiom_choice.cmo -o src/litiom.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package eliom.server -package threads -thread -I src -o src/litiom_type.cmx src/litiom_type.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package eliom.server -package threads -thread -I src -o src/litiom_choice.cmx src/litiom_choice.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/litiom_type.cmx src/litiom_choice.cmx -o src/litiom.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/litiom.cmxa src/litiom_type.cmx src/litiom_choice.cmx -o src/litiom.cmxs
