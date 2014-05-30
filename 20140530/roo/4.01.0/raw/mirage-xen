@@ -79,3 +79,38 @@ checking for ocamldoc... ocamldoc
 checking for ocamlbuild... ocamlbuild
 checking for /usr/lib/ocaml/bytes.cmi... no
 configure: creating ./config.status
+config.status: creating Makefile
+ocamlc.opt -c bytes.mli
+ocamlc.opt -c bytes.ml
+ocamlc.opt -a bytes.cmo -o bytes.cma
+ocamlopt.opt -c bytes.ml
+ocamlopt.opt -a bytes.cmx -o bytes.cmxa
+ocamlopt.opt -shared bytes.cmx -o bytes.cmxs
+mkdir -p "/home/opam/.opam/system/lib/bytes"
+cp -f META.no "/home/opam/.opam/system/lib/bytes"/META
+cp -f bytes.cmi bytes.cmo bytes.cma "/home/opam/.opam/system/lib/bytes"
+cp -f bytes.a bytes.cmx bytes.cmxa bytes.cmxs "/home/opam/.opam/system/lib/bytes"
+Installing bytes.1.1.
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing cmdliner.0.9.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cmdliner.0.9.4+opam.tar.gz
+sending incremental file list
+cmdliner.0.9.4+opam.tar.gz
+
+sent 59,210 bytes  received 35 bytes  118,490.00 bytes/sec
+total size is 59,071  speedup is 1.00
+Building cmdliner.0.9.4:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.4.
