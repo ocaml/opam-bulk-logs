@@ -224,3 +224,11 @@ ocamlbuild -ocamlc ocp-ocamlc.opt -ocamlopt ocp-ocamlopt.opt -classic-display -n
 		 \
 		src/bindings/tplib_double_callback.obj.o \
 		src/compute_ext_rays.native src/compute_ext_rays_polar.native src/compute_halfspaces.native src/compute_tangent_hypergraph.native src/compute_minimal_external_representations.native src/compute_tropical_complex.native	
+cat /usr/lib/ocaml/libasmrun.a > _build/src/bindings/libtplib_double.a
+ar rcs _build/src/bindings/libtplib_double.a _build/src/bindings/tplib_double_callback.obj.o _build/src/bindings/tplib_double.o
+ranlib _build/src/bindings/libtplib_double.a
+mkdir -p /home/opam/.opam/system/include
+/usr/bin/install -c -m 644 src/bindings/tplib_double.h /home/opam/.opam/system/include
+mkdir -p /home/opam/.opam/system/lib
+/usr/bin/install -c -m 644 _build/src/bindings/libtplib_double.a /home/opam/.opam/system/lib
+Installing tplib.1.3.
