@@ -1068,3 +1068,21 @@ pkg_ounit: ........................................... /home/opam/.opam/system/l
 
 ocaml setup.ml -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package tyxml -package str -package sexplib.syntax -package sexplib -package extlib -syntax camlp4o -modules src/Markdown.ml > src/Markdown.ml.depends
+ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib.syntax -package sexplib -package extlib -syntax camlp4o -I src -o src/Markdown.cmo src/Markdown.ml
+ocamlfind ocamlc -a src/Markdown.cmo -o src/markdown.cma
+ocamlfind ocamlopt -c -g -I src -package tyxml -package str -package sexplib.syntax -package sexplib -package extlib -syntax camlp4o -I src -o src/Markdown.cmx src/Markdown.ml
+ocamlfind ocamlopt -a src/Markdown.cmx -o src/markdown.cmxa
+ocamlfind ocamlopt -shared -linkall src/markdown.cmxa -o src/markdown.cmxs
+ocamlfind ocamldep -package tyxml -package str -package sexplib -package extlib -modules src/MarkdownHTML.ml > src/MarkdownHTML.ml.depends
+ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
+ocamlfind ocamlc -a src/MarkdownHTML.cmo -o src/html.cma
+ocamlfind ocamlopt -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmx src/MarkdownHTML.ml
+ocamlfind ocamlopt -a src/MarkdownHTML.cmx -o src/html.cmxa
+ocamlfind ocamlopt -shared -linkall src/html.cmxa -o src/html.cmxs
+ocamlfind ocamldep -package str -package sexplib -package oUnit -package extlib -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamldep -package str -package sexplib -package oUnit -package extlib -modules test/TestMarkdown.ml > test/TestMarkdown.ml.depends
+ocamlfind ocamlc -c -g -I src -package str -package sexplib -package oUnit -package extlib -I test -I src -o test/TestMarkdown.cmo test/TestMarkdown.ml
+ocamlfind ocamlc -c -g -I src -package str -package sexplib -package oUnit -package extlib -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -linkpkg -package str -package sexplib -package oUnit -package extlib src/markdown.cma test/TestMarkdown.cmo test/test.cmo -o test/test.byte
+ocaml setup.ml -test 
