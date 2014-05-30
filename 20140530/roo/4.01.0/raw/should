@@ -81,3 +81,19 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 pkg_str: ............................................. /usr/lib/ocaml
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package str -modules should.ml > should.ml.depends
+ocamlfind ocamlc -c -g -package str -o should.cmo should.ml
+ocamlfind ocamlc -a should.cmo -o should.cma
+ocamlfind ocamlopt -c -g -package str -o should.cmx should.ml
+ocamlfind ocamlopt -a should.cmx -o should.cmxa
+ocamlfind ocamlopt -shared should.cmx -o should.cmxs
+Installed /home/opam/.opam/system/lib/should/should.ml
+Installed /home/opam/.opam/system/lib/should/should.cma
+Installed /home/opam/.opam/system/lib/should/should.cmxa
+Installed /home/opam/.opam/system/lib/should/should.a
+Installed /home/opam/.opam/system/lib/should/should.cmxs
+Installed /home/opam/.opam/system/lib/should/should.cmi
+Installed /home/opam/.opam/system/lib/should/should.cmx
+Installed /home/opam/.opam/system/lib/should/META
+Installing should.0.1.0.
