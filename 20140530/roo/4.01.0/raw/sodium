@@ -1209,3 +1209,59 @@ Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxs
 Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxa
 Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cma
 Installing ctypes.0.3.
+
+=-=-= Installing sodium.0.1.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sodium.0.1.0+opam.tar.gz
+sending incremental file list
+sodium.0.1.0+opam.tar.gz
+
+sent 8,763 bytes  received 35 bytes  17,596.00 bytes/sec
+total size is 8,630  speedup is 0.98
+Building sodium.0.1.0:
+  make
+  make PREFIX=/home/opam/.opam/system install
+mkdir -p _build/lib
+ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmo
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.mli > lib/sodium.mli.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmi lib/sodium.mli
+ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.ml > lib/sodium.ml.depends
+ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
++ ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
+File "lib/sodium.ml", line 31, characters 14-27:
+Error: Unbound type constructor Array.t
+Command exited with code 2.
+make: *** [lib/sodium.cmo] Error 10
+[ERROR] The compilation of sodium.0.1.0 failed.
+Removing sodium.0.1.0.
+  ocamlfind remove sodium
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/sodium
+
+
+===== ERROR while installing sodium.0.1.0 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/sodium.0.1.0
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/sodium.0.1.0/sodium-10784-e7966f.env
+# stdout-file          /home/opam/.opam/system/build/sodium.0.1.0/sodium-10784-e7966f.out
+# stderr-file          /home/opam/.opam/system/build/sodium.0.1.0/sodium-10784-e7966f.err
+### stdout ###
+# ...[truncated]
+# mkdir -p _build/lib
+# ocamlbuild -use-ocamlfind -pkgs ctypes.foreign,bigarray lib/sodium.cmo
+# ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.mli > lib/sodium.mli.depends
+# ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmi lib/sodium.mli
+# ocamlfind ocamldep -package bigarray -package ctypes.foreign -modules lib/sodium.ml > lib/sodium.ml.depends
+# ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
+# + ocamlfind ocamlc -c -package bigarray -package ctypes.foreign -I lib -o lib/sodium.cmo lib/sodium.ml
+# File "lib/sodium.ml", line 31, characters 14-27:
+# Error: Unbound type constructor Array.t
+# Command exited with code 2.
+### stderr ###
+# make: *** [lib/sodium.cmo] Error 10
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140430132209.export"
+'opam install sodium' failed.
