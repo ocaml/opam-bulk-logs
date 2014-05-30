@@ -424,3 +424,28 @@ Congrats, you're all set. Installation will be done in:
 	/home/opam/.opam/system
 
 Ocamlbuild generation
+perl -n -e 'if (/^ *(#include) +"(\.\.\/)*([^"]+)".*/) { print "$3\n"; }' ocamllib/libbase/cmap.c > ocamllib/libbase/cmap.c.depends
+perl -n -e 'if (/^ *(#include) +"(\.\.\/)*([^"]+)".*/) { print "$3\n"; }' ocamllib/libbase/memory.c > ocamllib/libbase/memory.c.depends
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/build/opa-base.1.1.0+4263/_build -c ocamllib/libbase/cmap.c
+mv cmap.o ocamllib/libbase/cmap.o
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/build/opa-base.1.1.0+4263/_build -c ocamllib/libbase/memory.c
+mv memory.o ocamllib/libbase/memory.o
+/usr/bin/ocamlmklib -o ocamllib/libbase/stubs ocamllib/libbase/cmap.o ocamllib/libbase/memory.o
+/usr/bin/ocamldep.opt -modules tools/build/config.mli > tools/build/config.mli.depends
+/usr/bin/ocamlc.opt -c -I tools/build -I tools -I ocamllib -I lib -I compiler -o tools/build/config.cmi tools/build/config.mli
+/usr/bin/ocamldep.opt -modules tools/build/config.ml > tools/build/config.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/mlstate_platform.ml > ocamllib/libbase/mlstate_platform.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/pathTransform.ml > ocamllib/libbase/pathTransform.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/option.mli > ocamllib/libbase/option.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/option.cmi ocamllib/libbase/option.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/option.ml > ocamllib/libbase/option.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleParser.mli > ocamllib/libbase/consoleParser.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/consoleParser.cmi ocamllib/libbase/consoleParser.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleParser.ml > ocamllib/libbase/consoleParser.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/base.mli > ocamllib/libbase/base.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArg.mli > ocamllib/libbase/baseArg.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArray.mli > ocamllib/libbase/baseArray.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseChar.mli > ocamllib/libbase/baseChar.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseFilename.ml > ocamllib/libbase/baseFilename.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseFormat.mli > ocamllib/libbase/baseFormat.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseHashtbl.mli > ocamllib/libbase/baseHashtbl.mli.depends
