@@ -375,3 +375,7 @@ pkg_num: ............................................. /home/opam/.opam/system/l
 pkg_graphics: ........................................ /usr/lib/ocaml
 
 ocaml setup.ml -build
+ocamlfind ocamlc -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/ray_tracer/pa_ray.cmo -I examples/ray_tracer -o examples/ray_tracer/ray.cmo examples/ray_tracer/ray.ml
+ocamlfind ocamlopt -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/ray_tracer/pa_ray.cmo -I examples/ray_tracer -o examples/ray_tracer/ray.cmx examples/ray_tracer/ray.ml
+ocamlfind ocamlopt -g -rectypes -linkpkg examples/ray_tracer/ray.cmx -o examples/ray_tracer/ray.native
+ocaml setup.ml -install
