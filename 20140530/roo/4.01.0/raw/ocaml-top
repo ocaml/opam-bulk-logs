@@ -785,3 +785,14 @@ configure: creating ./config.status
 config.status: creating Makefile.config
 config.status: creating typerex.ocp
 config.status: WARNING:  'typerex.ocp.in' seems to ignore the --datarootdir setting
+config.status: creating packages/opam/ocp-build.opam
+Creating file ocp-build.root
+
+Executables will be installed in /home/opam/.opam/system/bin
+Libraries will be installed in /home/opam/.opam/system/lib/ocaml/typerex
+Data files will be installed in /home/opam/.opam/system/share/typerex
+Manual pages will be installed in /home/opam/.opam/system/share/man
+make -C ocp-build
+make[1]: Entering directory `/home/opam/.opam/system/build/typerex.1.99.6-beta/ocp-build'
+awk '{ print "external "$1": unit -> unit = \"" $1 "\"" }' primitives > primitives.ml
+ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma  -cclib -lunix
