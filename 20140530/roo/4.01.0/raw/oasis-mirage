@@ -1245,3 +1245,11 @@ ocamlfind ocamlopt -c -g -annot -I src/oasis -package odn -package unix -warn-er
 ocamlfind ocamlopt -c -g -annot -I src/oasis -package odn -package unix -warn-error +8 -I src/base -I src/oasis -o src/base/BaseTest.cmx src/base/BaseTest.ml
 ocamlfind ocamlopt -c -g -annot -I src/oasis -package odn -package unix -warn-error +8 -I src/base -I src/oasis -o src/base/BaseSetup.cmx src/base/BaseSetup.ml
 ocamlfind ocamlopt -c -g -annot -I src/oasis -package odn -package unix -warn-error +8 -I src/base -I src/oasis -o src/base/BaseArgExt.cmx src/base/BaseArgExt.ml
+ocamlfind ocamlopt -c -g -annot -I src/oasis -package odn -package unix -warn-error +8 -I src/base -I src/oasis -o src/base/BaseGenerate.cmx src/base/BaseGenerate.ml
+ocamlfind ocamlopt -a src/base/BaseArgExt.cmx src/base/BaseContext.cmx src/base/BaseEnvLight.cmx src/base/BaseEnv.cmx src/base/BaseMessage.cmx src/base/BaseCheck.cmx src/base/BaseLog.cmx src/base/BaseOCamlcConfig.cmx src/base/BaseStandardVar.cmx src/base/BaseBuilt.cmx src/base/BaseCustom.cmx src/base/BaseData.cmx src/base/BaseDoc.cmx src/base/BaseFileAB.cmx src/base/BaseDynVar.cmx src/base/BaseTest.cmx src/base/BaseSetup.cmx src/base/BaseGenerate.cmx -o src/base/base.cmxa
+ocamlfind ocamlopt -shared -linkall src/base/base.cmxa -o src/base/base.cmxs
+ocamlfind ocamldep -package odn -package unix -modules src/OASISBuiltinPlugins.ml > src/OASISBuiltinPlugins.ml.depends
+ocamlfind ocamldep -package odn -package odn.with.syntax -package unix -syntax camlp4o -modules src/plugins/custom/CustomPlugin.ml > src/plugins/custom/CustomPlugin.ml.depends
+ocamlify --depends --output src/plugins/custom/CustomData.mlify.depends src/plugins/custom/CustomData.mlify
+ocamlmod src/plugins/custom/CustomSys.mod
+ocamlify --output src/plugins/custom/CustomData.ml src/plugins/custom/CustomData.mlify
