@@ -1539,3 +1539,101 @@ Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
 ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablglade2.a "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtksourceview2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/system/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/system/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma lablglade.cma lablgtksourceview2.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/system/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/system/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/system/bin"
+make[1]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+
+=-=-= Installing pcre-ocaml.7.0.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.0.4+opam.tar.gz
+sending incremental file list
+pcre-ocaml.7.0.4+opam.tar.gz
+
+sent 86,296 bytes  received 35 bytes  172,662.00 bytes/sec
+total size is 86,147  speedup is 1.00
+Building pcre-ocaml.7.0.4:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.0.4
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
