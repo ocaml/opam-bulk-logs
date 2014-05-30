@@ -330,3 +330,23 @@ ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src
 ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/graph.cmx src/graph.ml
 ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/subordination.cmx src/subordination.ml
 ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/debug.cmx src/debug.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/unify.cmx src/unify.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/context.cmx src/context.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/metaterm.cmx src/metaterm.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/typing.cmx src/typing.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/abella_types.cmx src/abella_types.ml
+ocamlfind ocamldep -modules src/parser.ml > src/parser.ml.depends
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/parser.cmx src/parser.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/lexer.cmx src/lexer.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/tactics.cmx src/tactics.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/prover.cmx src/prover.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/accumulate.cmx src/accumulate.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/depend.cmx src/depend.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/version.cmx src/version.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/abella.cmx src/abella.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa -g src/debug.cmx src/extensions.cmx src/graph.cmx src/term.cmx src/subordination.cmx src/unify.cmx src/context.cmx src/metaterm.cmx src/typing.cmx src/abella_types.cmx src/parser.cmx src/lexer.cmx src/tactics.cmx src/prover.cmx src/accumulate.cmx src/depend.cmx src/version.cmx src/abella.cmx -o src/abella.native
+ocamlbuild -classic-display -no-links src/copy_exe.native
+ocamlfind ocamldep -modules src/copy_exe.ml > src/copy_exe.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -I src -o src/copy_exe.cmo src/copy_exe.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/copy_exe.cmx src/copy_exe.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa str.cmxa -g src/copy_exe.cmx -o src/copy_exe.native
