@@ -6020,3 +6020,18 @@ pkg_sexplib_syntax: .................................. /home/opam/.opam/system/l
 W: Cannot find source file matching module 'patdiff_lib' in library patdiff_lib
 W: Cannot find source file matching module 'ansi_terminal' in library ansi_terminal
 ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package threads -modules ansi_terminal/ANSITerminal.mli > ansi_terminal/ANSITerminal.mli.depends
+ocamlfind ocamlc -c -g -thread -package threads -I ansi_terminal -o ansi_terminal/ANSITerminal.cmi ansi_terminal/ANSITerminal.mli
+ocamlfind ocamldep -package threads -modules ansi_terminal/ANSITerminal.ml > ansi_terminal/ANSITerminal.ml.depends
+ocamlfind ocamlc -c -g -thread -package threads -I ansi_terminal -o ansi_terminal/ANSITerminal.cmo ansi_terminal/ANSITerminal.ml
+ocamlfind ocamlc -pack -g ansi_terminal/ANSITerminal.cmo -o ansi_terminal/ansi_terminal.cmo
+ocamlfind ocamlc -a ansi_terminal/ansi_terminal.cmo -o ansi_terminal/ansi_terminal.cma
+ocamlfind ocamlopt -c -g -thread -package threads -for-pack Ansi_terminal -I ansi_terminal -o ansi_terminal/ANSITerminal.cmx ansi_terminal/ANSITerminal.ml
+touch ansi_terminal/ansi_terminal.mli  ; if  ocamlfind ocamlopt -pack -g -I ansi_terminal ansi_terminal/ANSITerminal.cmx -o ansi_terminal/ansi_terminal.cmx  ; then  rm -f ansi_terminal/ansi_terminal.mli  ; else  rm -f ansi_terminal/ansi_terminal.mli  ; exit 1; fi
+ocamlfind ocamlopt -a ansi_terminal/ansi_terminal.cmx -o ansi_terminal/ansi_terminal.cmxa
+ocamlfind ocamlopt -shared ansi_terminal/ansi_terminal.cmx -o ansi_terminal/ansi_terminal.cmxs
+ocamlfind ocamldep -syntax camlp4o -package pcre -package patience_diff -package core_extended -package threads -package sexplib.syntax -modules lib/compare_core.mli > lib/compare_core.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package pcre -package patience_diff -package core_extended -package threads -package sexplib.syntax -modules lib/configuration.mli > lib/configuration.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package pcre -package patience_diff -package core_extended -package threads -package sexplib.syntax -modules lib/patdiff_core.mli > lib/patdiff_core.mli.depends
+ocamlfind ocamlc -c -g -I ansi_terminal -syntax camlp4o -thread -package pcre -package patience_diff -package core_extended -package threads -package sexplib.syntax -I lib -I ansi_terminal -o lib/patdiff_core.cmi lib/patdiff_core.mli
+ocamlfind ocamlc -c -g -I ansi_terminal -syntax camlp4o -thread -package pcre -package patience_diff -package core_extended -package threads -package sexplib.syntax -I lib -I ansi_terminal -o lib/configuration.cmi lib/configuration.mli
