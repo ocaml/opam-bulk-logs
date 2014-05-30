@@ -35,3 +35,63 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install async_ssl
+The following actions will be performed:
+ - install ounit.2.0.0 [required by async_ssl]
+ - install camlp4.4.01.0 [required by async_ssl]
+ - install ctypes.0.3 [required by async_ssl]
+ - install type_conv.111.13.00 [required by async_ssl]
+ - install pipebang.110.01.00 [required by async_ssl]
+ - install herelib.109.35.02 [required by async_ssl]
+ - install variantslib.109.15.03 [required by async_ssl]
+ - install sexplib.111.13.00 [required by async_ssl]
+ - install pa_ounit.109.53.02 [required by async_ssl]
+ - install fieldslib.109.20.03 [required by async_ssl]
+ - install enumerate.111.08.00 [required by async_ssl]
+ - install comparelib.109.60.00 [required by async_ssl]
+ - install bin_prot.111.03.00 [required by async_ssl]
+ - install pa_bench.109.55.02 [required by async_ssl]
+ - install custom_printf.111.03.00 [required by async_ssl]
+ - install pa_test.111.08.00 [required by async_ssl]
+ - install typerep.111.06.00 [required by async_ssl]
+ - install core_kernel.111.13.00 [required by async_ssl]
+ - install core.111.13.00 [required by async_ssl]
+ - install async_kernel.111.11.00 [required by async_ssl]
+ - install async_unix.111.13.00 [required by async_ssl]
+ - install async_extra.111.13.00 [required by async_ssl]
+ - install async.111.13.00 [required by async_ssl]
+ - install async_ssl.111.08.00
+24 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing ctypes.0.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3+opam.tar.gz
+sending incremental file list
+ctypes.0.3+opam.tar.gz
+
+sent 131,383 bytes  received 35 bytes  87,612.00 bytes/sec
+total size is 131,224  speedup is 1.00
+Building ctypes.0.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed: ...................... available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx      -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o make_primitive_details_stubs.o  /home/opam/.opam/system/build/ctypes.0.3/src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o  
+ocamlfind opt -c -o _build/src/libffi-abigen/libffi_abigen.cmx   -package unix   -I _build/src/libffi-abigen  src/libffi-abigen/libffi_abigen.ml
+ocamlfind opt -I _build -linkpkg   -package unix   -o _build/libffi-abigen.native _build/src/libffi-abigen/libffi_abigen.cmx  
+_build/configure.native > src/ctypes/ctypes_primitives.ml
+_build/libffi-abigen.native > src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind ocamlc -package str -package bigarray     -c -o _build/src/ctypes/common.cmo -I _build/src/ctypes  src/ctypes/common.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/ctypes_path.cmi  -I _build/src/ctypes  src/ctypes/ctypes_path.mli
+ocamlfind ocamlc -package str -package bigarray     -c -o _build/src/ctypes/ctypes_path.cmo -I _build/src/ctypes  src/ctypes/ctypes_path.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/unsigned.cmi  -I _build/src/ctypes  src/ctypes/unsigned.mli
+ocamlfind ocamlc -package str -package bigarray     -c -o _build/src/ctypes/unsigned.cmo -I _build/src/ctypes  src/ctypes/unsigned.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/signed.cmi  -I _build/src/ctypes  src/ctypes/signed.mli
+ocamlfind ocamlc -package str -package bigarray     -c -o _build/src/ctypes/signed.cmo -I _build/src/ctypes  src/ctypes/signed.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/primitives.cmi  -I _build/src/ctypes  src/ctypes/primitives.mli
