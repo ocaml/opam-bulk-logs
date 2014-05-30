@@ -533,3 +533,54 @@ Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will hav
 File "_tags", line 2, characters 31-40:
 Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
 ocamlfind ocamldep -package extlib -pp camlp4o -modules cudf_types.mli > cudf_types.mli.depends
++ ocamlfind ocamldep -package extlib -pp camlp4o -modules cudf_types.mli > cudf_types.mli.depends
+Command exited with code 2.
+make: *** [_build/cudf.cma] Error 10
+[ERROR] The compilation of cudf.0.7 failed.
+Removing cudf.0.7.
+  make uninstall DESTDIR=/home/opam/.opam/4.02.0+trunk OCAMLLIBDIR=lib BINDIR=bin LIBDIR=lib INCDIR=include
+ocamlfind remove -destdir /home/opam/.opam/4.02.0+trunk/lib cudf
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/cudf
+for p in main_cudf_check main_cudf_parse_822 ; do \
+		tgt=`echo $p | sed -e 's/^main.//' -e 's/_/-/g'` ; \
+		if [ -f /home/opam/.opam/4.02.0+trunk/bin/$tgt ] ; then \
+			rm /home/opam/.opam/4.02.0+trunk/bin/$tgt ; \
+		fi ; \
+		echo "Removed /home/opam/.opam/4.02.0+trunk/bin/$tgt" ; \
+	done
+Removed /home/opam/.opam/4.02.0+trunk/bin/cudf-check
+Removed /home/opam/.opam/4.02.0+trunk/bin/cudf-parse-822
+rmdir -p /home/opam/.opam/4.02.0+trunk/lib /home/opam/.opam/4.02.0+trunk/bin
+rmdir: failed to remove '/home/opam/.opam/4.02.0+trunk/lib': Directory not empty
+rmdir: failed to remove '/home/opam/.opam/4.02.0+trunk/bin': Directory not empty
+make: [uninstall] Error 1 (ignored)
+
+
+===== ERROR while installing cudf.0.7 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make all opt
+# path                 /home/opam/.opam/4.02.0+trunk/build/cudf.0.7
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/cudf.0.7/cudf-493-6d07ae.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/cudf.0.7/cudf-493-6d07ae.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/cudf.0.7/cudf-493-6d07ae.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# File "examples/_tags", line 1, characters 25-33:
+# Warning: the tag "pkg_cudf" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+# File "_tags", line 1, characters 26-35:
+# Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+# File "_tags", line 2, characters 31-40:
+# Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+# ocamlfind ocamldep -package extlib -pp camlp4o -modules cudf_types.mli > cudf_types.mli.depends
+# + ocamlfind ocamldep -package extlib -pp camlp4o -modules cudf_types.mli > cudf_types.mli.depends
+# Command exited with code 2.
+### stderr ###
+# make: *** [_build/cudf.cma] Error 10
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140430211144.export"
+'opam install cudf' failed.
