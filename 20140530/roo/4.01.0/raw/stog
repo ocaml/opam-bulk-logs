@@ -589,3 +589,63 @@ ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str biga
 ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  nethttp.ml
 ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netpagebuffer.mli
 ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netpagebuffer.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netfs.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netfs.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netglob_lex.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netglob.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netglob.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netauth.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netauth.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netnumber.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netnumber.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  rtypes.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  rtypes.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  xdr_mstring.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  xdr_mstring.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  xdr.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  xdr.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -a -o netstring.cma  netconst.cmo netstring_str.cmo netbuffer.cmo netunichar.cmo netaux.cmo netchannels.cmo netsockaddr.cmo netdb.cmo netmappings.cmo netconversion.cmo netulex.cmo netencoding.cmo netstream.cmo netdate.cmo mimestring.cmo nethtml_scanner.cmo nethtml.cmo neturl.cmo netaddress.cmo netcompression.cmo netmime.cmo netsendmail.cmo nethttp.cmo netpagebuffer.cmo netfs.cmo netglob_lex.cmo netglob.cmo netauth.cmo netnumber.cmo rtypes.cmo xdr_mstring.cmo xdr.cmo ; \
+	else \
+		../../tools/mkstublib -o netstring netconst.cmo netstring_str.cmo netbuffer.cmo netunichar.cmo netaux.cmo netchannels.cmo netsockaddr.cmo netdb.cmo netmappings.cmo netconversion.cmo netulex.cmo netencoding.cmo netstream.cmo netdate.cmo mimestring.cmo nethtml_scanner.cmo nethtml.cmo neturl.cmo netaddress.cmo netcompression.cmo netmime.cmo netsendmail.cmo nethttp.cmo netpagebuffer.cmo netfs.cmo netglob_lex.cmo netglob.cmo netauth.cmo netnumber.cmo rtypes.cmo xdr_mstring.cmo xdr.cmo   ; \
+	fi
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_iso.pmap -pmap mappings/iso*.unimap
+tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_iso.ml netmappings_iso.pmap
+Reading netmappings_iso.pmap
+Processing iso88599
+   (Heavy conflicts: 0 of 256)
+Processing iso88598
+   (Heavy conflicts: 0 of 256)
+Processing iso88597
+   (Heavy conflicts: 0 of 256)
+Processing iso88596
+   (Heavy conflicts: 0 of 256)
+Processing iso88595
+   (Heavy conflicts: 1 of 256)
+Processing iso88594
+   (Heavy conflicts: 0 of 256)
+Processing iso88593
+   (Heavy conflicts: 0 of 256)
+Processing iso88592
+   (Heavy conflicts: 0 of 256)
+Processing iso88591
+   (Heavy conflicts: 0 of 256)
+Processing iso885916
+   (Heavy conflicts: 2 of 256)
+Processing iso885915
+   (Heavy conflicts: 0 of 256)
+Processing iso885914
+   (Heavy conflicts: 2 of 256)
+Processing iso885913
+   (Heavy conflicts: 1 of 256)
+Processing iso885911
+   (Heavy conflicts: 0 of 256)
+Processing iso885910
+   (Heavy conflicts: 0 of 256)
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netmappings_iso.ml
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_other.pmap -pmap mappings/cp*.unimap mappings/adobe*.unimap mappings/koi*.unimap mappings/mac*.unimap mappings/windows*.unimap
+tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_other.ml netmappings_other.pmap
