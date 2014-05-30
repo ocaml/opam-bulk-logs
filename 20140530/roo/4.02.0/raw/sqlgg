@@ -1238,3 +1238,9 @@ ocamlfind ocamldep -modules stringMap.ml > stringMap.ml.depends
 ocamlfind ocamlopt -c -g -inline 1000 -o stringMap.cmx stringMap.ml
 ocamlfind ocamldep -modules preFront.ml > preFront.ml.depends
 ocamlfind ocamldep -modules preFront.mli > preFront.mli.depends
+ocamlfind ocamlc -c -o preFront.cmi preFront.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lexer.mll
+ocamlfind ocamldep -modules lexer.ml > lexer.ml.depends
+cp yacc-parser.mly parser.mly
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc parser.mly
