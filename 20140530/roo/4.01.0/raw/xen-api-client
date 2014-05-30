@@ -2112,3 +2112,18 @@ ocamlfind ocamlopt -shared unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cm
 ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
 ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
+ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
++ ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a top/sexplib_install_printers.cmx -o top/sexplib_top.cmxa
+ocamlfind ocamlopt -shared -linkall top/sexplib_top.cmxa -o top/sexplib_top.cmxs
