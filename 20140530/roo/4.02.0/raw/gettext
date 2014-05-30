@@ -2327,3 +2327,58 @@ ocamlfind ocamlopt  -package "fileutils"   -c gettextFormat_lexer.ml
 ocamlfind ocamlopt  -package "fileutils"   -c gettextFormat.ml
 ocamlfind ocamlopt  -package "fileutils"   -c gettextMo_int32.ml
 ocamlfind ocamlopt  -package "fileutils"   -c gettextMo_parser.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextMo_lexer.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextMo.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextDummy.ml
+ocamlfind ocamlopt -a -o gettextBase.cmxa gettextConfig.cmx gettextCategory.cmx gettextTypes.cmx gettextUtils.cmx gettextModules.cmx gettextCompat.cmx gettext.cmx gettextFormat_parser.cmx gettextFormat_lexer.cmx gettextFormat.cmx gettextMo_int32.cmx gettextMo_parser.cmx gettextMo_lexer.cmx gettextMo.cmx gettextDummy.cmx 
+ocamlfind ocamlc   -package "fileutils"   -c gettextLocale_types.ml
+ocamlyacc -v gettextLocale_parser.mly
+ocamlfind ocamlc   -package "fileutils"   -c gettextLocale_parser.mli
+ocamlyacc -v gettextLocale_parser.mly
+ocamlfind ocamlc   -package "fileutils"   -c gettextLocale_parser.ml
+ocamllex.opt gettextLocale_lexer.mll
+6 states, 258 transitions, table size 1068 bytes
+ocamlfind ocamlc   -package "fileutils"   -c gettextLocale_lexer.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextLocale.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextDomain.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextCharset.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextTranslate.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextRealize.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextPo_utils.ml
+ocamlyacc -v gettextPoComment_parser.mly
+ocamlfind ocamlc   -package "fileutils"   -c gettextPoComment_parser.mli
+ocamlyacc -v gettextPoComment_parser.mly
+ocamlfind ocamlc   -package "fileutils"   -c gettextPoComment_parser.ml
+ocamlyacc -v gettextPo_parser.mly
+12 shift/reduce conflicts.
+ocamlfind ocamlc   -package "fileutils"   -c gettextPo_parser.mli
+ocamllex.opt gettextPo_lexer.mll
+70 states, 524 transitions, table size 2516 bytes
+ocamlfind ocamlc   -package "fileutils"   -c gettextPo_lexer.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextPo_parser.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextPo.ml
+ocamlfind ocamlc   -package "fileutils"   -c gettextCompile.ml
+ocamlfind ocamlc   -a -o gettextExtension.cma gettextLocale_types.cmo gettextLocale_parser.cmo gettextLocale_lexer.cmo gettextLocale.cmo gettextDomain.cmo gettextCharset.cmo gettextTranslate.cmo gettextRealize.cmo gettextPo_utils.cmo gettextPoComment_parser.cmo gettextPo_lexer.cmo gettextPo_parser.cmo gettextPo.cmo gettextCompile.cmo 
+ocamlfind ocamlopt  -package "fileutils"   -c gettextLocale_types.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextLocale_parser.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextLocale_lexer.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextLocale.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextDomain.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextCharset.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextTranslate.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextRealize.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextPo_utils.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextPoComment_parser.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextPo_lexer.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextPo_parser.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextPo.ml
+ocamlfind ocamlopt  -package "fileutils"   -c gettextCompile.ml
+ocamlfind ocamlopt -a -o gettextExtension.cmxa gettextLocale_types.cmx gettextLocale_parser.cmx gettextLocale_lexer.cmx gettextLocale.cmx gettextDomain.cmx gettextCharset.cmx gettextTranslate.cmx gettextRealize.cmx gettextPo_utils.cmx gettextPoComment_parser.cmx gettextPo_lexer.cmx gettextPo_parser.cmx gettextPo.cmx gettextCompile.cmx 
+ocamlc \
+	  -I +camlp4 \
+	  -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Parsers \
+	  -pp camlp4of \
+	  camlp4lib.cma \
+	  gettextBase.cma \
+	  gettextExtension.cma \
+	  -c pr_gettext.ml -o pr_gettext.cmo
