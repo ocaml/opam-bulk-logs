@@ -4055,3 +4055,60 @@ ocaml-xml-rpc.0.2.3+opam.tar.gz
 
 sent 47,341 bytes  received 35 bytes  94,752.00 bytes/sec
 total size is 47,197  speedup is 1.00
+Building ocaml-xml-rpc.0.2.3:
+  make
+  make opt
+  make install BIN_DIR=/home/opam/.opam/system/bin
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCTypes.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCTypes.ml
+File "xmlRPCTypes.ml", line 165, characters 17-64:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCDtd.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCDtd.ml
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCNet.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCNet.ml
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCClient.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCClient.ml
+File "xmlRPCClient.ml", line 61, characters 17-66:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCServer.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCServer.ml
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.ml
+File "cgiSource.ml", line 49, characters 4-14:
+Warning 21: this statement never returns (or has an unsound type.)
+ocamlfind ocamlc  -a -o xmlrpc.cma \
+		-predicates "" xmlRPCTypes.cmo xmlRPCDtd.cmo xmlRPCNet.cmo xmlRPCClient.cmo xmlRPCServer.cmo cgiSource.cmo 
+ocamlfind ocamlc  -o oxridl -package "pcre annexlib" -linkpkg oxridl.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCTypes.ml
+File "xmlRPCTypes.ml", line 165, characters 17-64:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCDtd.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCNet.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCClient.ml
+File "xmlRPCClient.ml", line 61, characters 17-66:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
