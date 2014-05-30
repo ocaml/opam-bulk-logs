@@ -572,3 +572,11 @@ ocamlfind ocamlopt -a -package bigarray,num,str src/batConcurrent.cmx src/batInn
 ocamlfind ocamlopt -shared -linkall -package bigarray,num,str -o src/batteries.cmxs src/batteries.cmxa
 ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batMutex.cmx src/batMutex.ml
 ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batRMutex.cmx src/batRMutex.ml
+ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batteriesThread.cmx src/batteriesThread.ml
+ocamlfind ocamlopt -a -package bigarray,num,str -thread src/batMutex.cmx src/batRMutex.cmx src/batteriesThread.cmx -o src/batteriesThread.cmxa
+ocamlfind ocamlopt -shared -linkall -package bigarray,num,str -thread -o src/batteriesThread.cmxs src/batteriesThread.cmxa
+Build mode: shared
+ocamlbuild -no-links src/batteries.cma src/batteriesHelp.cmo src/batteriesThread.cma META src/batteries.cmxs src/batteriesThread.cmxs
+ocamlfind: Package `bisect' not found
+Warning: tag "package" does not expect a parameter, but is used with parameter "oUnit"
+Warning: tag "package" does not expect a parameter, but is used with parameter "QTest2Lib"
