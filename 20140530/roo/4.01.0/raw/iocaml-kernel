@@ -3959,3 +3959,92 @@ Warning: 1 needed packages are missing !
 [ 97%] indexOptions.cmx                                      OK
 [ 98%] indexMain.cmx                                         OK
 [100%] ocp-grep.asm                                          OK
+[100%] ocp-index.asm                                         OK
+Build Successful in 7.02s. 55 jobs (parallelism 2.9x), 73 files generated.
+ocp-build ocp-index-lib -install-lib /home/opam/.opam/system/lib/ocp-index
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 8 incomplete packages (will not be built):
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+  Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
+Warning: 1 needed packages are missing !
+   ABSENT package "curses" missed by 1 packages
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+Build Successful in 0.16s. 0 jobs (parallelism 0.0x), 0 files generated.
+ocp-build ocp-index -install-lib /home/opam/.opam/system/lib/ocp-index
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 8 incomplete packages (will not be built):
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+  Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
+Warning: 1 needed packages are missing !
+   ABSENT package "curses" missed by 1 packages
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+Build Successful in 0.19s. 0 jobs (parallelism 0.0x), 0 files generated.
+ocp-build ocp-grep -install-lib /home/opam/.opam/system/lib/ocp-index
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 8 incomplete packages (will not be built):
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+  Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
+Warning: 1 needed packages are missing !
+   ABSENT package "curses" missed by 1 packages
+   ocp-browser (program,ocp)
+     in /home/opam/.opam/system/build/ocp-index.1.0.2/src
+Build Successful in 0.20s. 0 jobs (parallelism 0.0x), 0 files generated.
+mkdir -p man/man1
+./ocp-index --help=groff >man/man1/ocp-index.1
+mkdir -p man/man1
+./ocp-grep --help=groff >man/man1/ocp-grep.1
+Installing ocp-index.1.0.2.
+
+=-=-= Installing iocaml-kernel.0.4.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/iocaml-kernel.0.4.4+opam.tar.gz
+sending incremental file list
+iocaml-kernel.0.4.4+opam.tar.gz
+
+sent 131,676 bytes  received 35 bytes  263,422.00 bytes/sec
+total size is 131,508  speedup is 1.00
+Building iocaml-kernel.0.4.4:
+  make all
+  make install
+atdgen -t Ipython_json.atd
+atdgen -j Ipython_json.atd
+ocamlfind c iocaml_zmq_stubs.c
+# compile log (first so we can use it in the zmq code)
+ocamlfind c -c -g log.mli log.ml
+# iocaml_zmq (which requires preprocessing)
+ocamlfind c -c -g \
+		-syntax camlp4o -package lwt.unix,lwt.syntax,ctypes.foreign \
+		iocaml_zmq.mli iocaml_zmq.ml  
+# rest of the library
+ocamlfind c -c -g \
+		-package yojson,atdgen,compiler-libs \
+		Ipython_json_t.mli Ipython_json_j.mli base64.mli \
+		Ipython_json_t.ml  Ipython_json_j.ml  base64.ml  
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlmklib -o iocaml_lib \
+		-l zmq \
+		-package ctypes.foreign,lwt.unix,yojson \
+		iocaml_zmq_stubs.o \
+		log.cmo Ipython_json_t.cmo Ipython_json_j.cmo iocaml_zmq.cmo base64.cmo 
+ocamlfind c -c -g -thread \
+		-package threads,uuidm,yojson,atdgen,ocp-index.lib,compiler-libs \
+		message.mli sockets.mli completion.mli exec.mli iocaml.mli \
+		message.ml  sockets.ml  completion.ml  exec.ml  iocaml.ml 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlmktop -g -thread -linkpkg \
+		-o iocaml.top \
+		-package threads,uuidm,lwt.unix,ctypes.foreign,yojson,atdgen,ocp-indent.lib,compiler-libs \
+		-I `ocamlfind query ocp-index.lib -predicates byte -format "%d"` \
+		`ocamlfind query ocp-index.lib -predicates byte -format "%d"`/`ocamlfind query ocp-index.lib -predicates byte -format "%a"` \
+		iocaml_lib.cma message.cmo sockets.cmo completion.cmo exec.cmo iocaml.cmo iocaml_main.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
