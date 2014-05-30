@@ -351,3 +351,11 @@ File "tarjan.ml", line 168, characters 29-30:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlfind ocamldep -modules partialGrammar.ml > partialGrammar.ml.depends
 ocamlfind ocamldep -modules partialGrammar.mli > partialGrammar.mli.depends
+ocamlfind ocamlc -c -o partialGrammar.cmi partialGrammar.mli
+ocamlfind ocamldep -modules time.ml > time.ml.depends
+ocamlfind ocamldep -modules time.mli > time.mli.depends
+ocamlfind ocamlc -c -o time.cmi time.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
