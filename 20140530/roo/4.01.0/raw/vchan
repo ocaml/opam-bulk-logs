@@ -4404,3 +4404,81 @@ total size is 48,132  speedup is 1.00
 Building vchan.0.9.3:
   make
   make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ vchan
+Package version: ..................................... 0.9.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.4
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the UNIX cli: .................................. false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt: ............................................. /home/opam/.opam/system/lib/lwt
+pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
+pkg_cstruct_syntax: .................................. /home/opam/.opam/system/lib/cstruct
+pkg_mirage: .......................................... /home/opam/.opam/system/lib/mirage
+pkg_xenstore_client: ................................. /home/opam/.opam/system/lib/xenstore
+pkg_xenctrl: ......................................... /home/opam/.opam/system/lib/xenctrl
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/vchan_stubs.c
+mv vchan_stubs.o lib/vchan_stubs.o
+/usr/bin/ocamlmklib -o lib/vchan_stubs lib/vchan_stubs.o
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -modules lib/vchan.mli > lib/vchan.mli.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -I lib -o lib/vchan.cmi lib/vchan.mli
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/vchan.ml > lib/vchan.ml.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmo lib/vchan.ml
+ocamlfind ocamlc -a -dllib -lvchan_stubs -cclib -lvchan_stubs lib/vchan.cmo -o lib/vchan.cma
+ocamlfind ocamlopt -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmx lib/vchan.ml
+ocamlfind ocamlopt -a -cclib -lvchan_stubs lib/vchan.cmx -o lib/vchan.cmxa
+ocamlfind ocamlopt -shared -I lib lib/vchan.cmx -o lib/vchan.cmxs
+# No parallelism done
+ocamlfind ocamldoc -dump lib/vchan.odoc -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -I lib lib/vchan.mli
