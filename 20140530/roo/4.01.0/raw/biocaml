@@ -2297,3 +2297,31 @@ pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
 
 ./setup.exe -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4o -modules lib/pa_pipebang.ml > lib/pa_pipebang.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4o -I lib -o lib/pa_pipebang.cmo lib/pa_pipebang.ml
+ocamlfind ocamlc -a lib/pa_pipebang.cmo -o lib/pa_pipebang.cma
+ocamlfind ocamlopt -c -g -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4o -I lib -o lib/pa_pipebang.cmx lib/pa_pipebang.ml
+ocamlfind ocamlopt -a lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxa
+ocamlfind ocamlopt -shared lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.ml
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cma
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxa
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.a
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxs
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmi
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmx
+Installed /home/opam/.opam/system/lib/pa_pipebang/META
+Installing pipebang.109.28.00.
+
+=-=-= Installing type_conv.109.47.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/type_conv.109.47.00+opam.tar.gz
+sending incremental file list
+type_conv.109.47.00+opam.tar.gz
+
+sent 59,097 bytes  received 35 bytes  118,264.00 bytes/sec
+total size is 58,953  speedup is 1.00
+Building type_conv.109.47.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
