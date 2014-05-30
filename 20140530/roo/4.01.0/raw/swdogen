@@ -1750,3 +1750,19 @@ ocamlfind ocamldep -package unix -package atdgen -modules swdogen/config_j.ml > 
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/codegen.cmo swdogen/codegen.ml
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/parser.cmo swdogen/parser.ml
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/semantic.cmo swdogen/semantic.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/ast.cmo swdogen/ast.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config.cmo swdogen/config.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/msgpool.cmo swdogen/msgpool.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/deployer.cmo swdogen/deployer.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/discover.cmo swdogen/discover.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/som.cmo swdogen/som.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/swgparser.cmo swdogen/swgparser.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config_t.cmo swdogen/config_t.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config_j.cmo swdogen/config_j.ml
+ocamlfind ocamlc -pack -g swdogen/ast.cmo swdogen/deployer.cmo swdogen/msgpool.cmo swdogen/som.cmo swdogen/semantic.cmo swdogen/codegen.cmo swdogen/swgparser.cmo swdogen/swglexer.cmo swdogen/parser.cmo swdogen/config_t.cmo swdogen/config_j.cmo swdogen/config.cmo swdogen/discover.cmo -o swdogen/swdogen.cmo
+ocamlfind ocamlc -a swdogen/swdogen.cmo -o swdogen/swdogen.cma
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/ast.cmx swdogen/ast.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/msgpool.cmx swdogen/msgpool.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/som.cmx swdogen/som.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/deployer.cmx swdogen/deployer.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/semantic.cmx swdogen/semantic.ml
