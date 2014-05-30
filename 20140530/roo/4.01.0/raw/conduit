@@ -382,3 +382,26 @@ Building conduit.0.5.0:
 Async SSL requires a stub-generation version due to
 a linking order bug. This release has it temporarily disabled.
 ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.ml > lib/conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.mli > lib/conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmi lib/conduit.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmx lib/conduit.ml
+ocamlfind ocamlopt -shared -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmo lib/conduit.ml
+ocamlfind ocamlc -a -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmo -o lib/conduit.cma
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxa
+# No parallelism done
+Async SSL requires a stub-generation version due to
+a linking order bug. This release has it temporarily disabled.
+# No parallelism done
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/conduit
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmxs
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmxa
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmx
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmti
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmt
+Installed /home/opam/.opam/system/lib/conduit/conduit.cmi
+Installed /home/opam/.opam/system/lib/conduit/conduit.cma
+Installed /home/opam/.opam/system/lib/conduit/conduit.a
+Installed /home/opam/.opam/system/lib/conduit/META
+Installing conduit.0.5.0.
