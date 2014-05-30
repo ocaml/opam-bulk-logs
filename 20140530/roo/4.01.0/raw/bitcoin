@@ -3117,3 +3117,18 @@ pkg_yojson: ....................................................................
 pkg_netclient: ..................................................................................................... /home/opam/.opam/system/lib/netclient
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package yojson -package threads -package netstring -package netclient -modules src/bitcoin.mli > src/bitcoin.mli.depends
+ocamlfind ocamlc -c -g -I src -package yojson -package threads -package netstring -package netclient -thread -I src -o src/bitcoin.cmi src/bitcoin.mli
+ocamlfind ocamldep -package yojson -package threads -package netstring -package netclient -modules src/bitcoin.ml > src/bitcoin.ml.depends
+ocamlfind ocamlc -c -g -I src -package yojson -package threads -package netstring -package netclient -thread -I src -o src/bitcoin.cmo src/bitcoin.ml
+ocamlfind ocamlc -a src/bitcoin.cmo -o src/bitcoin.cma
+ocamlfind ocamlopt -c -g -I src -package yojson -package threads -package netstring -package netclient -thread -I src -o src/bitcoin.cmx src/bitcoin.ml
+ocamlfind ocamlopt -a src/bitcoin.cmx -o src/bitcoin.cmxa
+ocamlfind ocamlopt -shared src/bitcoin.cmx -o src/bitcoin.cmxs
+ocamlfind ocamldep -package yojson -package threads -package netstring -package netclient -modules src/bitcoin_ocamlnet.ml > src/bitcoin_ocamlnet.ml.depends
+ocamlfind ocamlc -c -g -I src -package yojson -package threads -package netstring -package netclient -thread -I src -o src/bitcoin_ocamlnet.cmo src/bitcoin_ocamlnet.ml
+ocamlfind ocamlc -a src/bitcoin_ocamlnet.cmo -o src/bitcoin_ocamlnet.cma
+ocamlfind ocamlopt -c -g -I src -package yojson -package threads -package netstring -package netclient -thread -I src -o src/bitcoin_ocamlnet.cmx src/bitcoin_ocamlnet.ml
+ocamlfind ocamlopt -a src/bitcoin_ocamlnet.cmx -o src/bitcoin_ocamlnet.cmxa
+ocamlfind ocamlopt -shared src/bitcoin_ocamlnet.cmx -o src/bitcoin_ocamlnet.cmxs
