@@ -2244,3 +2244,7 @@ ocamlfind ocamlopt -c -g -for-pack Variantslib -I lib -o lib/variant.cmx lib/var
 touch lib/variantslib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/variant.cmx -o lib/variantslib.cmx  ; then  rm -f lib/variantslib.mli  ; else  rm -f lib/variantslib.mli  ; exit 1; fi
 ocamlfind ocamlopt -a lib/variantslib.cmx -o lib/variantslib.cmxa
 ocamlfind ocamlopt -shared lib/variantslib.cmx -o lib/variantslib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.mli > syntax/pa_variants_conv.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmi syntax/pa_variants_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.ml > syntax/pa_variants_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmo syntax/pa_variants_conv.ml

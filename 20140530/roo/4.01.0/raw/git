@@ -82,3 +82,43 @@ checking for ocamlbuild... ocamlbuild
 checking for /usr/lib/ocaml/bytes.cmi... no
 configure: creating ./config.status
 config.status: creating Makefile
+ocamlc.opt -c bytes.mli
+ocamlc.opt -c bytes.ml
+ocamlc.opt -a bytes.cmo -o bytes.cma
+ocamlopt.opt -c bytes.ml
+ocamlopt.opt -a bytes.cmx -o bytes.cmxa
+ocamlopt.opt -shared bytes.cmx -o bytes.cmxs
+mkdir -p "/home/opam/.opam/system/lib/bytes"
+cp -f META.no "/home/opam/.opam/system/lib/bytes"/META
+cp -f bytes.cmi bytes.cmo bytes.cma "/home/opam/.opam/system/lib/bytes"
+cp -f bytes.a bytes.cmx bytes.cmxa bytes.cmxs "/home/opam/.opam/system/lib/bytes"
+Installing bytes.1.1.
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing camlzip.1.05 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+sending incremental file list
+camlzip.1.05+opam.tar.gz
+
+sent 26,590 bytes  received 35 bytes  53,250.00 bytes/sec
+total size is 26,457  speedup is 0.99
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
