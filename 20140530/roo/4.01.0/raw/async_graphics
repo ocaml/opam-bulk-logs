@@ -1427,3 +1427,15 @@ ocamlfind ocamlopt -a num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxa
 ocamlfind ocamlopt -shared num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxs
 ocamlfind ocamldep -package bigarray -package unix -modules unix/lib/sexplib_unix_conv.ml > unix/lib/sexplib_unix_conv.ml.depends
 ocamlfind ocamlc -c -g -I lib -package bigarray -package unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmo unix/lib/sexplib_unix_conv.ml
+ocamlfind ocamlc -pack -g unix/lib/sexplib_unix_conv.cmo -o unix/lib/sexplib_unix.cmo
+ocamlfind ocamlc -a unix/lib/sexplib_unix.cmo -o unix/lib/sexplib_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package bigarray -package unix -for-pack Sexplib_unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmx unix/lib/sexplib_unix_conv.ml
+touch unix/lib/sexplib_unix.mli  ; if  ocamlfind ocamlopt -pack -g -I unix/lib unix/lib/sexplib_unix_conv.cmx -o unix/lib/sexplib_unix.cmx  ; then  rm -f unix/lib/sexplib_unix.mli  ; else  rm -f unix/lib/sexplib_unix.mli  ; exit 1; fi
+ocamlfind ocamlopt -a unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxa
+ocamlfind ocamlopt -shared unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
