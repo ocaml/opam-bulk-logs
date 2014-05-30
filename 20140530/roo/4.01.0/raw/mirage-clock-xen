@@ -56,3 +56,30 @@ Installing mirage-types.1.1.2.
 default    Synchronizing with /home/opam/opam-repository/archives/mirage-clock-xen.1.0.0+opam.tar.gz
 sending incremental file list
 mirage-clock-xen.1.0.0+opam.tar.gz
+
+sent 3,071 bytes  received 35 bytes  6,212.00 bytes/sec
+total size is 2,928  speedup is 0.94
+Building mirage-clock-xen.1.0.0:
+  make xen-build
+  make xen-install
+OS=xen ./build
+ocamlfind ocamldep -modules xen/clock.mli > xen/clock.mli.depends
+ocamlfind ocamlc -c -I xen -o xen/clock.cmi xen/clock.mli
+ocamlfind ocamldep -modules xen/clock.ml > xen/clock.ml.depends
+ocamlfind ocamlc -c -I xen -o xen/clock.cmo xen/clock.ml
+ocamlfind ocamlc -a xen/clock.cmo -o xen/mirage-clock.cma
+ocamlfind ocamlopt -c -I xen -o xen/clock.cmx xen/clock.ml
+ocamlfind ocamlopt -a xen/clock.cmx -o xen/mirage-clock.cmxa
+ocamlfind ocamlopt -shared -linkall xen/mirage-clock.cmxa -o xen/mirage-clock.cmxs
+OS=xen ./build true
+ocamlfind ocamlopt -shared -linkall xen/mirage-clock.cmxa -o xen/mirage-clock.cmxs
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/mirage-clock-xen
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/mirage-clock.cmxs
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/mirage-clock.cmxa
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/clock.cmx
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/mirage-clock.a
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/mirage-clock.cma
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/clock.cmi
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/clock.cmo
+Installed /home/opam/.opam/system/lib/mirage-clock-xen/META
+Installing mirage-clock-xen.1.0.0.
