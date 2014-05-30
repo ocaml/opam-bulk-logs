@@ -2243,3 +2243,45 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ocaml setup.ml -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -O3 -c lib/tuntap_stubs.c
+mv tuntap_stubs.o lib/tuntap_stubs.o
+/usr/bin/ocamlmklib -o lib/tuntap_stubs lib/tuntap_stubs.o
+ocamlfind ocamldep -package ipaddr -modules lib/tuntap.mli > lib/tuntap.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmi lib/tuntap.mli
+ocamlfind ocamldep -package ipaddr -modules lib/tuntap.ml > lib/tuntap.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmo lib/tuntap.ml
+ocamlfind ocamlc -a -dllib -ltuntap_stubs -cclib -ltuntap_stubs lib/tuntap.cmo -o lib/tuntap.cma
+ocamlfind ocamlopt -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmx lib/tuntap.ml
+ocamlfind ocamlopt -a -cclib -ltuntap_stubs lib/tuntap.cmx -o lib/tuntap.cmxa
+ocamlfind ocamlopt -shared -I lib lib/tuntap.cmx -o lib/tuntap.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.mli
+Installed /home/opam/.opam/system/lib/tuntap/libtuntap_stubs.a
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cma
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmxa
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.a
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmxs
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmi
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmx
+Installed /home/opam/.opam/system/lib/tuntap/META
+Installed /home/opam/.opam/system/lib/stublibs/dlltuntap_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlltuntap_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing tuntap.0.7.0.
+
+=-=-= Installing mirage-types.1.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-types.1.1.2+opam.tar.gz
+sending incremental file list
+mirage-types.1.1.2+opam.tar.gz
+
+sent 81,625 bytes  received 35 bytes  163,320.00 bytes/sec
+total size is 81,474  speedup is 1.00
+Building mirage-types.1.1.2:
+  make install-types
+./build true
++ ocamlfind query lwt cstruct ipaddr
++ WITH_LWT=/home/opam/.opam/system/lib/lwt
+/home/opam/.opam/system/lib/cstruct
+/home/opam/.opam/system/lib/ipaddr
++ ocamlbuild -tag bin_annot types/V1.cmi
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
