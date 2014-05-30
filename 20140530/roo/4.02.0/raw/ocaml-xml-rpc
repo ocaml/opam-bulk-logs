@@ -7056,3 +7056,36 @@ ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predi
 	 	-c xmlRPCServer.mli
 ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
 	 	-c xmlRPCServer.ml
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.mli
+ocamlfind ocamlc  -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.ml
+File "cgiSource.ml", line 49, characters 4-14:
+Warning 21: this statement never returns (or has an unsound type.)
+ocamlfind ocamlc  -a -o xmlrpc.cma \
+		-predicates "" xmlRPCTypes.cmo xmlRPCDtd.cmo xmlRPCNet.cmo xmlRPCClient.cmo xmlRPCServer.cmo cgiSource.cmo 
+ocamlfind ocamlc  -o oxridl -package "pcre annexlib" -linkpkg oxridl.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCTypes.ml
+File "xmlRPCTypes.ml", line 165, characters 17-64:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCDtd.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCNet.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCClient.ml
+File "xmlRPCClient.ml", line 61, characters 17-66:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(T_data|T_super_root|T_pinstr _|T_comment|T_none|T_attribute _|T_namespace _)
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c xmlRPCServer.ml
+ocamlfind ocamlopt -package "netclient netstring equeue pxp pcre annexlib" -predicates "" \
+	 	-c cgiSource.ml
+File "cgiSource.ml", line 49, characters 4-14:
+Warning 21: this statement never returns (or has an unsound type.)
+ocamlfind ocamlopt -a -o xmlrpc.cmxa \
+		-predicates "" xmlRPCTypes.cmx xmlRPCDtd.cmx xmlRPCNet.cmx xmlRPCClient.cmx xmlRPCServer.cmx cgiSource.cmx  
