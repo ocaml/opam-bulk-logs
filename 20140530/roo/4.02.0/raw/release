@@ -1736,3 +1736,19 @@ ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax ca
 ocamlfind ocamlc -c -g -annot -warn-error A -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/buffer -o lib/buffer/release_buffer.cmo lib/buffer/release_buffer.ml
 ocamlfind ocamlc -a lib/buffer/release_buffer.cmo -o lib/buffer/release-buffer.cma
 ocamlfind ocamlopt -c -g -annot -warn-error A -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/buffer -o lib/buffer/release_buffer.cmx lib/buffer/release_buffer.ml
+ocamlfind ocamlopt -a lib/buffer/release_buffer.cmx -o lib/buffer/release-buffer.cmxa
+ocamlfind ocamlopt -shared -linkall lib/buffer/release-buffer.cmxa -o lib/buffer/release-buffer.cmxs
+ocamlfind ocamldep -package uint.uint64 -package uint.uint32 -package uint.uint128 -package lwt.unix -package lwt.syntax -package lwt -modules lib/bytes/release_bytes.mli > lib/bytes/release_bytes.mli.depends
+ocamlfind ocamlc -c -g -I lib/buffer -package uint.uint64 -package uint.uint32 -package uint.uint128 -package lwt.unix -package lwt.syntax -package lwt -I lib/bytes -I lib/buffer -o lib/bytes/release_bytes.cmi lib/bytes/release_bytes.mli
+ocamlfind ocamldep -package uint.uint64 -package uint.uint32 -package uint.uint128 -package lwt.unix -package lwt.syntax -package lwt -modules lib/bytes/release_bytes.ml > lib/bytes/release_bytes.ml.depends
+ocamlfind ocamlc -c -g -I lib/buffer -package uint.uint64 -package uint.uint32 -package uint.uint128 -package lwt.unix -package lwt.syntax -package lwt -I lib/bytes -I lib/buffer -o lib/bytes/release_bytes.cmo lib/bytes/release_bytes.ml
+ocamlfind ocamlc -a lib/bytes/release_bytes.cmo -o lib/bytes/release-bytes.cma
+ocamlfind ocamlopt -c -g -I lib/buffer -package uint.uint64 -package uint.uint32 -package uint.uint128 -package lwt.unix -package lwt.syntax -package lwt -I lib/bytes -I lib/buffer -o lib/bytes/release_bytes.cmx lib/bytes/release_bytes.ml
+ocamlfind ocamlopt -a lib/bytes/release_bytes.cmx -o lib/bytes/release-bytes.cmxa
+ocamlfind ocamlopt -shared -linkall lib/bytes/release-bytes.cmxa -o lib/bytes/release-bytes.cmxs
+ocamlfind ocamldep -modules lib/util/release_util.ml > lib/util/release_util.ml.depends
+ocamlfind ocamlc -c -g -I lib/util -o lib/util/release_util.cmo lib/util/release_util.ml
+ocamlfind ocamlc -a lib/util/release_util.cmo -o lib/util/release-util.cma
+ocamlfind ocamlopt -c -g -I lib/util -o lib/util/release_util.cmx lib/util/release_util.ml
+ocamlfind ocamlopt -a lib/util/release_util.cmx -o lib/util/release-util.cmxa
+ocamlfind ocamlopt -shared -linkall lib/util/release-util.cmxa -o lib/util/release-util.cmxs
