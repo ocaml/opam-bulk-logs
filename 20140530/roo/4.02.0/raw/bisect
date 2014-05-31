@@ -852,3 +852,47 @@ File "_tags", line 33, characters 19-27:
 Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
 File "_tags", line 36, characters 27-49:
 Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/syntax/exclusions.mli > src/syntax/exclusions.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclusions.cmi src/syntax/exclusions.mli
+ocamlfind ocamldep -modules src/syntax/exclusions.ml > src/syntax/exclusions.ml.depends
+ocamlfind ocamldep -modules src/syntax/exclude.mli > src/syntax/exclude.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/syntax/excludeLexer.mll
+ocamlfind ocamldep -modules src/syntax/excludeLexer.ml > src/syntax/excludeLexer.ml.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclude.cmi src/syntax/exclude.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc src/syntax/excludeParser.mly
+ocamlfind ocamldep -modules src/syntax/excludeParser.mli > src/syntax/excludeParser.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmi src/syntax/excludeParser.mli
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeLexer.cmo src/syntax/excludeLexer.ml
+ocamlfind ocamldep -modules src/syntax/instrumentState.mli > src/syntax/instrumentState.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmi src/syntax/instrumentState.mli
+ocamlfind ocamldep -modules src/syntax/instrumentState.ml > src/syntax/instrumentState.ml.depends
+ocamlfind ocamldep -modules src/syntax/instrumentArgs.mli > src/syntax/instrumentArgs.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmi src/syntax/instrumentArgs.mli
+ocamlfind ocamldep -modules src/syntax/instrumentArgs.ml > src/syntax/instrumentArgs.ml.depends
+ocamlfind ocamldep -modules src/syntax/commentsCamlp4.mli > src/syntax/commentsCamlp4.mli.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmi src/syntax/commentsCamlp4.mli
+ocamlfind ocamldep -modules src/syntax/commentsCamlp4.ml > src/syntax/commentsCamlp4.ml.depends
+ocamlfind ocamldep -pp camlp4of -modules src/syntax/instrumentCamlp4.ml > src/syntax/instrumentCamlp4.ml.depends
+ocamlfind ocamldep -modules src/syntax/exclude.ml > src/syntax/exclude.ml.depends
+ocamlfind ocamldep -modules src/syntax/excludeParser.ml > src/syntax/excludeParser.ml.depends
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclusions.cmo src/syntax/exclusions.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmo src/syntax/instrumentState.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmo src/syntax/instrumentArgs.ml
+ocamlfind ocamlc -c -I +camlp4 -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmo src/syntax/commentsCamlp4.ml
+ocamlfind ocamlc -c -I +camlp4 -pp camlp4of -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentCamlp4.cmo src/syntax/instrumentCamlp4.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclude.cmo src/syntax/exclude.ml
+ocamlfind ocamlc -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmo src/syntax/excludeParser.ml
+ocamlfind ocamlc -pack src/library/common.cmo src/syntax/exclude.cmo src/syntax/excludeParser.cmo src/syntax/excludeLexer.cmo src/syntax/exclusions.cmo src/syntax/instrumentState.cmo src/syntax/instrumentArgs.cmo src/syntax/commentsCamlp4.cmo src/syntax/instrumentCamlp4.cmo -o bisect_pp.cmo
+if [ "FALSE" = "TRUE" ]; then \
+	  WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisect_ppx.byte; \
+	fi
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisectThread.cmo
+File "_tags", line 33, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 36, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules src/threads/bisectThread.mli > src/threads/bisectThread.mli.depends
+ocamlfind ocamlc -c -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmi src/threads/bisectThread.mli
+ocamlfind ocamldep -modules src/threads/bisectThread.ml > src/threads/bisectThread.ml.depends
+ocamlfind ocamlc -c -thread -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmo src/threads/bisectThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links bisectThread.cmx
