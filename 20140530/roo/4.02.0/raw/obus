@@ -1364,3 +1364,21 @@ findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/op
 File "src/simple_top/lwt_simple_top.ml", line 36, characters 12-22:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -a src/simple_top/lwt_simple_top.cmx -o src/simple_top/lwt-simple-top.cmxa
+ocamlfind ocamlopt -shared src/simple_top/lwt-simple-top.cmxa src/simple_top/lwt_simple_top.cmx -o src/simple_top/lwt-simple-top.cmxs
+ocamlfind ocamldep -package react -modules src/react/lwt_event.mli > src/react/lwt_event.mli.depends
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_event.cmi src/react/lwt_event.mli
+ocamlfind ocamldep -package react -modules src/react/lwt_event.ml > src/react/lwt_event.ml.depends
+ocamlfind ocamldep -package react -modules src/react/lwt_react.mli > src/react/lwt_react.mli.depends
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_react.cmi src/react/lwt_react.mli
+ocamlfind ocamldep -package react -modules src/react/lwt_signal.mli > src/react/lwt_signal.mli.depends
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_signal.cmi src/react/lwt_signal.mli
+ocamlfind ocamldep -package react -modules src/react/lwt_signal.ml > src/react/lwt_signal.ml.depends
+ocamlfind ocamldep -package react -modules src/react/lwt_react.ml > src/react/lwt_react.ml.depends
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_event.cmo src/react/lwt_event.ml
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_signal.cmo src/react/lwt_signal.ml
+ocamlfind ocamlc -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_react.cmo src/react/lwt_react.ml
+ocamlfind ocamlc -a src/react/lwt_react.cmo src/react/lwt_event.cmo src/react/lwt_signal.cmo -o src/react/lwt-react.cma
+ocamlfind ocamlopt -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_react.cmx src/react/lwt_react.ml
+ocamlfind ocamlopt -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_event.cmx src/react/lwt_event.ml
+ocamlfind ocamlopt -c -g -I src/core -package react -I src/react -I src/core -o src/react/lwt_signal.cmx src/react/lwt_signal.ml
+ocamlfind ocamlopt -a src/react/lwt_react.cmx src/react/lwt_event.cmx src/react/lwt_signal.cmx -o src/react/lwt-react.cmxa
