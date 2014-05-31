@@ -675,3 +675,30 @@ ocamlfind ocamlc -linkpkg protocols/bencode/bencode.cmo protocols/bencode/tests/
 ocamlfind ocamlopt -linkpkg protocols/bencode/bencode.cmx protocols/bencode/tests/test_bencode.cmx -o protocols/bencode/tests/test_bencode.native
 ocamlfind ocamldep -modules codegen/json_convert/gen_json_conv.ml > codegen/json_convert/gen_json_conv.ml.depends
 ocamlfind ocamldep -modules codegen/json_convert/codegen.ml > codegen/json_convert/codegen.ml.depends
+ocamlfind ocamldep -modules codegen/json_convert/syntax.ml > codegen/json_convert/syntax.ml.depends
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/syntax.cmo codegen/json_convert/syntax.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q codegen/json_convert/lexer.mll
+ocamlfind ocamldep -modules codegen/json_convert/lexer.ml > codegen/json_convert/lexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc codegen/json_convert/parser.mly
+ocamlfind ocamldep -modules codegen/json_convert/parser.mli > codegen/json_convert/parser.mli.depends
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/parser.cmi codegen/json_convert/parser.mli
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/codegen.cmo codegen/json_convert/codegen.ml
++ ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/codegen.cmo codegen/json_convert/codegen.ml
+File "codegen/json_convert/codegen.ml", line 174, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "codegen/json_convert/codegen.ml", line 175, characters 43-55:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/lexer.cmo codegen/json_convert/lexer.ml
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/gen_json_conv.cmo codegen/json_convert/gen_json_conv.ml
+ocamlfind ocamldep -modules codegen/json_convert/parser.ml > codegen/json_convert/parser.ml.depends
+ocamlfind ocamlc -c -annot -I codegen/json_convert -o codegen/json_convert/parser.cmo codegen/json_convert/parser.ml
+ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/syntax.cmx codegen/json_convert/syntax.ml
+ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/parser.cmx codegen/json_convert/parser.ml
+ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/codegen.cmx codegen/json_convert/codegen.ml
++ ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/codegen.cmx codegen/json_convert/codegen.ml
+File "codegen/json_convert/codegen.ml", line 174, characters 12-25:
+Warning 3: deprecated feature: String.create
+File "codegen/json_convert/codegen.ml", line 175, characters 43-55:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/lexer.cmx codegen/json_convert/lexer.ml
+ocamlfind ocamlopt -c -annot -I codegen/json_convert -o codegen/json_convert/gen_json_conv.cmx codegen/json_convert/gen_json_conv.ml
