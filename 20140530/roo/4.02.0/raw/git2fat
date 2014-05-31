@@ -7966,3 +7966,42 @@ ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -syntax c
 ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/sectorMap.cmx lib/sectorMap.ml
 ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/update.cmx lib/update.ml
 ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package mirage-types -package re -package re.str -syntax camlp4o -for-pack Fat -I lib -o lib/entry.cmx lib/entry.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package mirage-types -package re -package re.str -syntax camlp4o -for-pack Fat -I lib -o lib/name.cmx lib/name.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package mirage-types -package re -package re.str -syntax camlp4o -for-pack Fat -I lib -o lib/name.cmx lib/name.ml
+File "lib/name.ml", line 152, characters 4-17:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 153, characters 4-19:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 155, characters 2-15:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 156, characters 2-17:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 163, characters 4-14:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 349, characters 6-18:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 392, characters 4-16:
+Warning 3: deprecated feature: String.set
+File "lib/name.ml", line 393, characters 22-34:
+Warning 3: deprecated feature: String.set
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/path.cmx lib/path.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/s.cmx lib/s.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/fs.cmx lib/fs.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/memoryIO.cmx lib/memoryIO.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/KV_RO.cmx lib/KV_RO.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -package lwt -package mirage-types -package re -package re.str -for-pack Fat -I lib -o lib/fs.cmx lib/fs.ml
+File "lib/fs.ml", line 162, characters 8-17:
+Warning 26: unused variable to_string.
+touch lib/fat.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/fat_format.cmx lib/result.cmx lib/boot_sector.cmx lib/entry.cmx lib/sectorMap.cmx lib/update.cmx lib/name.cmx lib/path.cmx lib/s.cmx lib/fs.cmx lib/memoryIO.cmx lib/KV_RO.cmx -o lib/fat.cmx  ; then  rm -f lib/fat.mli  ; else  rm -f lib/fat.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/fat.cmx -o lib/fat.cmxa
+ocamlfind ocamlopt -shared lib/fat.cmx -o lib/fat.cmxs
+ocamlfind ocamldep -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -modules fat/main.ml > fat/main.ml.depends
+ocamlfind ocamldep -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -modules fat/common.ml > fat/common.ml.depends
+ocamlfind ocamldep -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -modules fat/impl.ml > fat/impl.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/common.cmo fat/common.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/impl.cmo fat/impl.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/main.cmo fat/main.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/common.cmx fat/common.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/impl.cmx fat/impl.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str -I fat -I lib -o fat/main.cmx fat/main.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg -package cmdliner -package cstruct -package io-page -package io-page.unix -package lwt -package mirage-block-unix -package mirage-types -package re -package re.str fat/common.cmx lib/fat.cmxa fat/impl.cmx fat/main.cmx -o fat/main.native
