@@ -932,3 +932,56 @@ File "zip.ml", line 319, characters 18-31:
 Warning 3: deprecated feature: String.create
 File "zip.ml", line 510, characters 18-31:
 Warning 3: deprecated feature: String.create
+ocamlopt -c gzip.ml
+File "gzip.ml", line 68, characters 16-29:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 149, characters 18-31:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 185, characters 17-30:
+Warning 3: deprecated feature: String.create
+File "gzip.ml", line 218, characters 2-22:
+Warning 3: deprecated feature: String.set
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
+ocamlfind install zip META *.mli *.a *.cmi *.cma gzip.cmx zip.cmx zlib.cmx zip.cmxa zip.cmxs dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/libcamlzip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+echo 'directory="../zip"' >> META && ocamlfind install camlzip META
+Installed /home/opam/.opam/4.02.0+trunk/lib/camlzip/META
+Installing camlzip.1.05.
+
+=-=-= Installing omake.0.9.8.6-0.rc1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/omake.0.9.8.6-0.rc1+opam.tar.gz
+sending incremental file list
+omake.0.9.8.6-0.rc1+opam.tar.gz
+
+sent 3,246,808 bytes  received 35 bytes  6,493,686.00 bytes/sec
+total size is 3,245,880  speedup is 1.00
+Applying opam.patch.
+patching file OMakefile
+Applying fam.patch.
+patching file lib/configure/Configure.om
+Applying readline.patch.
+patching file lib/configure/readline.om
+Building omake.0.9.8.6-0.rc1:
+  make bootstrap PREFIX=/home/opam/.opam/4.02.0+trunk
+  make all PREFIX=/home/opam/.opam/4.02.0+trunk
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk
+mkdir -p boot
