@@ -1559,3 +1559,60 @@ File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
 ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/META
+Installing yojson.1.1.8.
+
+=-=-= Installing merlin.1.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/merlin.1.6+opam.tar.gz
+sending incremental file list
+merlin.1.6+opam.tar.gz
+
+sent 907,193 bytes  received 35 bytes  604,818.67 bytes/sec
+total size is 906,850  speedup is 1.00
+Building merlin.1.6:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+tput: No value for $TERM and no -T specified
+Merlin configuration
+--------------------
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Found findlib	GOOD
+Found yojson	GOOD
+Found menhirLib	GOOD
+
+System config:
+  OCaml standard library: /home/opam/.opam/4.02.0+trunk/lib/ocaml
+  Ocaml ABI version: Unknown, defaulting to 4.00.1
+
+Will install:
+  ocamlmerlin binary in: /home/opam/.opam/4.02.0+trunk/bin
+  vim mode in: /home/opam/.opam/4.02.0+trunk/share/ocamlmerlin/vim
+  
+To customize directories, use:
+  ./configure [--prefix <dir>] [--bindir <dir>] [--sharedir <dir>] [--stdlib <stdlibdir>] [--vimdir <vimdir>] [--with-vimbufsync | --without-vimbufsync]
+
+For more informations rerun with --help.
+Now, type 'make' to compile then 'make install'.
+ocamlbuild -Is src,src/config,src/utils,src/ocaml,src/ocaml/utils,src/ocaml/typing,src/ocaml/parsing   -use-ocamlfind ocamlmerlin.native
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
