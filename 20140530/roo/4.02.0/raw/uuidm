@@ -516,3 +516,17 @@ File "src/uuidm.ml", line 223, characters 4-40:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -a src/uuidm.cmx -o src/uuidm.cmxa
 ocamlfind ocamlopt -shared src/uuidm.cmx -o src/uuidm.cmxs
+ocamlfind ocamldep -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/test.cmx -o test/test.native
+ocamlfind ocamldep -modules test/perf.ml > test/perf.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/perf.cmo test/perf.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/perf.cmx test/perf.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/perf.cmx -o test/perf.native
+ocamlfind ocamldep -modules test/uuidtrip.ml > test/uuidtrip.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/uuidtrip.cmo test/uuidtrip.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/uuidtrip.cmx test/uuidtrip.ml
+ocamlfind ocamlopt -linkpkg -g -linkpkg src/uuidm.cmxa test/uuidtrip.cmx -o test/uuidtrip.native
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated feature: String.set
