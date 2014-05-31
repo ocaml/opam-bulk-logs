@@ -438,3 +438,20 @@ Warning 3: deprecated feature: String.create
 File "generator/generator.ml", line 79, characters 26-43:
 Warning 3: deprecated feature: String.set
 ocamlfind ocamlopt -a qCheck.cmx generator/generator.cmx -o qcheck.cmxa
+ocamlfind ocamlopt -shared -linkall qcheck.cmxa -o qcheck.cmxs
+ocamlfind ocamldoc -dump qCheck.odoc -package unix -I generator qCheck.mli
++ ocamlfind ocamldoc -dump qCheck.odoc -package unix -I generator qCheck.mli
+Warning: Element Generator not found
+ocamlfind ocamldoc -dump generator/generator.odoc -package unix -I generator generator/generator.mli
+rm -rf qcheck.docdir
+mkdir -p qcheck.docdir
+ocamlfind ocamldoc -load qCheck.odoc -load generator/generator.odoc -html -d qcheck.docdir
++ ocamlfind ocamldoc -load qCheck.odoc -load generator/generator.odoc -html -d qcheck.docdir
+Warning: Tag @out not handled by this generator
+Warning: Tag @n not handled by this generator
+Warning: Tag @rand not handled by this generator
+Warning: Tag @size not handled by this generator
+Warning: Tag @limit not handled by this generator
+ocaml setup.ml -build 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated feature: String.set
