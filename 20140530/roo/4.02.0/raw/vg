@@ -286,3 +286,9 @@ ocamlfind ocamldep -modules src/gg.mli > src/gg.mli.depends
 ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/gg.cmi src/gg.mli
 ocamlfind ocamldep -modules src/gg.ml > src/gg.ml.depends
 ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/gg.cmx src/gg.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/gg.cmo src/gg.ml
+ocamlfind ocamlc -a src/gg.cmo -o src/gg.cma
+ocamlfind ocamlopt -a src/gg.cmx -o src/gg.cmxa
+ocamlfind ocamlopt -shared src/gg.cmx -o src/gg.cmxs
+ocamlfind ocamldep -package compiler-libs.toplevel -modules src/gg_top.ml > src/gg_top.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/gg_top.cmo src/gg_top.ml
