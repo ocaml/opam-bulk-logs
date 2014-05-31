@@ -3038,3 +3038,18 @@ pkg_bin_prot_syntax: ................................. /home/opam/.opam/4.02.0+t
 W: Cannot find source file matching module 'typerep_generics_sexprep' in library typerep_generics_sexprep
 W: Cannot find source file matching module 'typerep_extended' in library typerep_extended
 W: Cannot find source file matching module 'typerep_lib' in library typerep_lib
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/make_typename.mli > lib/make_typename.mli.depends
+ocamlfind ocamldep -modules lib/named_intf.ml > lib/named_intf.ml.depends
+ocamlfind ocamldep -modules lib/std_internal.mli > lib/std_internal.mli.depends
+ocamlfind ocamldep -modules lib/type_equal.mli > lib/type_equal.mli.depends
+ocamlfind ocamldep -modules lib/typename.mli > lib/typename.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/named_intf.cmo lib/named_intf.ml
+ocamlfind ocamlc -c -g -I lib -o lib/type_equal.cmi lib/type_equal.mli
+ocamlfind ocamldep -modules lib/variant_and_record_intf.ml > lib/variant_and_record_intf.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/typename.cmi lib/typename.mli
+ocamlfind ocamlc -c -g -I lib -o lib/variant_and_record_intf.cmo lib/variant_and_record_intf.ml
+ocamlfind ocamlc -c -g -I lib -o lib/std_internal.cmi lib/std_internal.mli
+ocamlfind ocamlc -c -g -I lib -o lib/make_typename.cmi lib/make_typename.mli
+ocamlfind ocamldep -modules lib/make_typename.ml > lib/make_typename.ml.depends
+ocamlfind ocamldep -modules lib/std.ml > lib/std.ml.depends
