@@ -3924,3 +3924,11 @@ ocamlfind ocamldep -modules lib/comparelib_dummy.ml > lib/comparelib_dummy.ml.de
 ocamlfind ocamlc -c -g -I lib -o lib/comparelib_dummy.cmo lib/comparelib_dummy.ml
 ocamlfind ocamlc -a lib/comparelib_dummy.cmo -o lib/comparelib.cma
 ocamlfind ocamlopt -c -g -I lib -o lib/comparelib_dummy.cmx lib/comparelib_dummy.ml
+ocamlfind ocamlopt -a lib/comparelib_dummy.cmx -o lib/comparelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/comparelib.cmxa -o lib/comparelib.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -modules syntax/pa_compare.ml > syntax/pa_compare.ml.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_compare.cmo syntax/pa_compare.ml
+ocamlfind ocamlc -a syntax/pa_compare.cmo -o syntax/pa_compare.cma
+ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_compare.cmx syntax/pa_compare.ml
+ocamlfind ocamlopt -a syntax/pa_compare.cmx -o syntax/pa_compare.cmxa
+ocamlfind ocamlopt -shared syntax/pa_compare.cmx -o syntax/pa_compare.cmxs
