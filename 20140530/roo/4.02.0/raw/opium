@@ -5698,3 +5698,11 @@ mv caml_modify_stub.o check_caml_modify/caml_modify_stub.o
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o check_caml_modify/check_caml_modify_stubs check_caml_modify/caml_modify_stub.o
 ocamlfind ocamldep -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -ppopt -pa-ounit-lib -ppopt core_kernel.check_caml_modify -modules check_caml_modify/caml_modify.mli > check_caml_modify/caml_modify.mli.depends
 ocamlfind ocamlc -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -ppopt -pa-ounit-lib -ppopt core_kernel.check_caml_modify -I check_caml_modify -o check_caml_modify/caml_modify.cmi check_caml_modify/caml_modify.mli
+ocamlfind ocamldep -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -ppopt -pa-ounit-lib -ppopt core_kernel.check_caml_modify -modules check_caml_modify/caml_modify.ml > check_caml_modify/caml_modify.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -ppopt -pa-ounit-lib -ppopt core_kernel.check_caml_modify -I check_caml_modify -o check_caml_modify/caml_modify.cmo check_caml_modify/caml_modify.ml
+ocamlfind ocamlc -pack -g check_caml_modify/caml_modify.cmo -o check_caml_modify/check_caml_modify.cmo
+ocamlfind ocamlc -a -dllib -lcheck_caml_modify_stubs -cclib -lcheck_caml_modify_stubs check_caml_modify/check_caml_modify.cmo -o check_caml_modify/check_caml_modify.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -for-pack Check_caml_modify -ppopt -pa-ounit-lib -ppopt core_kernel.check_caml_modify -I check_caml_modify -o check_caml_modify/caml_modify.cmx check_caml_modify/caml_modify.ml
+touch check_caml_modify/check_caml_modify.mli  ; if  ocamlfind ocamlopt -pack -g -I check_caml_modify check_caml_modify/caml_modify.cmx -o check_caml_modify/check_caml_modify.cmx  ; then  rm -f check_caml_modify/check_caml_modify.mli  ; else  rm -f check_caml_modify/check_caml_modify.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -Xlinker -cclib --wrap -cclib -Xlinker -cclib caml_modify -cclib -lcheck_caml_modify_stubs check_caml_modify/check_caml_modify.cmx -o check_caml_modify/check_caml_modify.cmxa
+ocamlfind ocamlopt -shared -cclib -Xlinker -cclib --wrap -cclib -Xlinker -cclib caml_modify -I check_caml_modify check_caml_modify/check_caml_modify.cmx -o check_caml_modify/check_caml_modify.cmxs
