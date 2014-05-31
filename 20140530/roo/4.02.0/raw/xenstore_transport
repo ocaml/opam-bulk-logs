@@ -2407,3 +2407,30 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbui
 ocamlfind ocamldep -package cstruct.syntax -package cstruct -modules core/xs_protocol.mli > core/xs_protocol.mli.depends
 ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmi core/xs_protocol.mli
 ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules core/xs_protocol.ml > core/xs_protocol.ml.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -modules core/xs_handle.mli > core/xs_handle.mli.depends
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmi core/xs_handle.mli
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules core/xs_handle.ml > core/xs_handle.ml.depends
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmo core/xs_protocol.ml
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmo core/xs_handle.ml
++ ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmo core/xs_protocol.ml
+File "core/xs_protocol.ml", line 595, characters 21-692:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+File "core/xs_protocol.ml", line 621, characters 23-873:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+ocamlfind ocamlc -a core/xs_protocol.cmo core/xs_handle.cmo -o core/xenstore.cma
+ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
+ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmx core/xs_handle.ml
++ ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
+File "core/xs_protocol.ml", line 595, characters 21-692:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+File "core/xs_protocol.ml", line 621, characters 23-873:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+ocamlfind ocamlopt -a core/xs_protocol.cmx core/xs_handle.cmx -o core/xenstore.cmxa
