@@ -5250,3 +5250,30 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbui
 ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -modules lib/HTTP.mli > lib/HTTP.mli.depends
 ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -modules lib/HTTP_IO.mli > lib/HTTP_IO.mli.depends
 ocamlfind ocamlc -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP_IO.cmi lib/HTTP_IO.mli
+ocamlfind ocamlc -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP.cmi lib/HTTP.mli
+ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -modules lib/HTTP.ml > lib/HTTP.ml.depends
+ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -modules lib/HTTP_IO.ml > lib/HTTP_IO.ml.depends
+ocamlfind ocamlc -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP.cmo lib/HTTP.ml
+ocamlfind ocamlc -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
++ ocamlfind ocamlc -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
+File "lib/HTTP_IO.ml", line 59, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlc -a lib/HTTP_IO.cmo lib/HTTP.cmo -o lib/mirage_http_unix.cma
+ocamlfind ocamlopt -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
++ ocamlfind ocamlopt -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
+File "lib/HTTP_IO.ml", line 59, characters 12-25:
+Warning 3: deprecated feature: String.create
+ocamlfind ocamlopt -c -g -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package mirage-tcpip-unix -I lib -o lib/HTTP.cmx lib/HTTP.ml
+ocamlfind ocamlopt -a lib/HTTP_IO.cmx lib/HTTP.cmx -o lib/mirage_http_unix.cmxa
+ocamlfind ocamlopt -shared -linkall lib/mirage_http_unix.cmxa -o lib/mirage_http_unix.cmxs
+# Parallel statistics: { count(total): 1(13), max: 2, min: 2, average(total): 2.000(1.077) }
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/HTTP.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/mirage_http_unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/mirage_http_unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/mirage_http_unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/mirage_http_unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/HTTP.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/HTTP_IO.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/HTTP.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http-unix/META
+Installing mirage-http-unix.1.0.0.
