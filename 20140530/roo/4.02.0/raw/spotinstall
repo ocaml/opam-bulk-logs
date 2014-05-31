@@ -2411,3 +2411,22 @@ File OMyMakefile: line 669, characters 2-21:
 *** omake: finished reading OMakefiles (1.29 sec)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build lib gen_phantom.cmx
++ ocamlfind ocamlc -annot -bin-annot -for-pack Spotlib -package unix,str,oUnit,pa_ounit -g -w A-4-9 -warn-error a -g -syntax camlp4o -package pa_ounit.syntax -ppopt -pa-ounit-lib -ppopt Spotlib -I . -c gen_phantom.ml
+File "gen_phantom.ml", line 6, characters 14-35:
+Error: This expression has type string but an expression was expected of type
+         ('a -> 'b -> 'c -> 'd -> 'e -> 'f, Format.formatter, unit) format =
+           ('a -> 'b -> 'c -> 'd -> 'e -> 'f, Format.formatter, unit, 
+            unit, unit, unit)
+           CamlinternalFormatBasics.format6
+*** omake: 51/350 targets are up to date
+*** omake: failed (15.90 sec, 10/10 scans, 13/17 rules, 39/201 digests)
+*** omake: targets were not rebuilt because of errors:
+   lib/gen_phantom.cmi
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.cmo
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.cmx
+      depends on: lib/gen_phantom.ml
+   lib/gen_phantom.o
+      depends on: lib/gen_phantom.ml
