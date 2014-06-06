@@ -576,3 +576,8 @@ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
+ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
+ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
+ocamlfind ocamlc -c -o tokenType.cmi tokenType.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o preFront.cmx preFront.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tokenType.cmx tokenType.ml
