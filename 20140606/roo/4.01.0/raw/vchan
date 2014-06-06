@@ -4469,3 +4469,15 @@ pkg_xenctrl: ......................................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/vchan_stubs.c
+mv vchan_stubs.o lib/vchan_stubs.o
+/usr/bin/ocamlmklib -o lib/vchan_stubs lib/vchan_stubs.o
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -modules lib/vchan.mli > lib/vchan.mli.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -I lib -o lib/vchan.cmi lib/vchan.mli
+ocamlfind ocamldep -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/vchan.ml > lib/vchan.ml.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmo lib/vchan.ml
+ocamlfind ocamlc -a -dllib -lvchan_stubs -cclib -lvchan_stubs lib/vchan.cmo -o lib/vchan.cma
+ocamlfind ocamlopt -c -g -annot -package xenstore.client -package xenctrl -package mirage -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmx lib/vchan.ml
+ocamlfind ocamlopt -a -cclib -lvchan_stubs lib/vchan.cmx -o lib/vchan.cmxa
+ocamlfind ocamlopt -shared -I lib lib/vchan.cmx -o lib/vchan.cmxs
+# No parallelism done
