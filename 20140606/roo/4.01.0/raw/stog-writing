@@ -735,3 +735,8 @@ ocamlfind ocamldep -modules inliner.ml > inliner.ml.depends
 ocamlfind ocamldep -modules inliner.mli > inliner.mli.depends
 ocamlfind ocamlc -c -o inliner.cmi inliner.mli
 ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
+ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
