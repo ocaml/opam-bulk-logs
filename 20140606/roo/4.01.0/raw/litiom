@@ -7517,3 +7517,14 @@ Finally, if you want system-wide install, (become root if needed and) do
    make install
    make install.doc
 
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/system/build/eliom.4.0.0/src'
+sed -e s/%%NAME%%/eliom/g -e s/%%DEPS%%/ocsigenserver,ocsigenserver.ext,deriving.runtime,js_of_ocaml.deriving,react,calendar,tyxml,lwt.react,cryptokit/g -e s/%%CDEPS%%/ocsigenserver.cookies,ocsigenserver.polytables,ocsigenserver.baselib.base,deriving.runtime,js_of_ocaml,js_of_ocaml.deriving,lwt.react,tyxml.functor/g -e s/%%SDEPS%%/js_of_ocaml.syntax,js_of_ocaml.deriving.syntax,lwt.syntax,tyxml.syntax/g  files/META.in > files/META
+echo "directory = \"../../local/lib\"" > files/META.eliom
+sed -e s/%%NAME%%/eliom/g -e s/%%DEPS%%/ocsigenserver,ocsigenserver.ext,deriving.runtime,js_of_ocaml.deriving,react,calendar,tyxml,lwt.react,cryptokit/g -e s/%%CDEPS%%/ocsigenserver.cookies,ocsigenserver.polytables,ocsigenserver.baselib.base,deriving.runtime,js_of_ocaml,js_of_ocaml.deriving,lwt.react,tyxml.functor/g -e s/%%SDEPS%%/js_of_ocaml.syntax,js_of_ocaml.deriving.syntax,lwt.syntax,tyxml.syntax/g  files/META.in >> files/META.eliom
+mkdir -p ../local/etc
+cat files/eliom.conf.in | sed -e s%_LOGDIR_%/home/opam/.opam/system/build/eliom.4.0.0/local/var/log%g -e s%_DATADIR_%/home/opam/.opam/system/build/eliom.4.0.0/local/var/lib%g -e s%\<user\>_OCSIGENUSER_\</user\>%%g -e s%\<group\>_OCSIGENGROUP_\</group\>%\<debugmode/\>%g -e s%_COMMANDPIPE_%/home/opam/.opam/system/build/eliom.4.0.0/local/var/run/eliom_command%g -e s%_MIMEFILE_%/home/opam/.opam/system/build/eliom.4.0.0/src/files/mime.types%g -e "s%_METADIR_%/home/opam/.opam/system/lib\"/\>\<findlib path=\"/home/opam/.opam/system/build/eliom.4.0.0/src/files/%g" -e s%path=\"\ %path=\"%g -e s%_OCSDIR_%/home/opam/.opam/system/lib/ocsigenserver%g -e s%_OCSEXTDIR_%/home/opam/.opam/system/lib/ocsigenserver/extensions%g -e s%_PROJECTNAME_%eliom%g -e s%_CONFIGDIR_%/home/opam/.opam/system/build/eliom.4.0.0/local/etc%g -e s%_STATICPAGESDIR_%/home/opam/.opam/system/build/eliom.4.0.0/local/var/www%g -e s%_LOCALDIR_%/home/opam/.opam/system/build/eliom.4.0.0/local%g -e s%store\ dir=\"/home/opam/.opam/system/build/eliom.4.0.0/var/lib\"%store\ dir=\"/home/opam/.opam/system/build/eliom.4.0.0/local/var/lib/ocsipersist\"%g  > ../local/etc/eliom.conf
+make -C syntax all
+make[2]: Entering directory `/home/opam/.opam/system/build/eliom.4.0.0/src/syntax'
+ocamlfind ocamldep -syntax camlp4o -package camlp4.quotations.o,camlp4.extend pa_eliom_seed.ml pa_eliom_type_filter.ml pa_eliom_client_client.ml pa_eliom_client_server.ml pa_include.ml > .depend
+Makefile:53: .depend: No such file or directory
