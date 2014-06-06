@@ -860,3 +860,18 @@ ocamlfind ocamlopt -shared -linkall lib/util/release-util.cmxa -o lib/util/relea
 ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -modules lib/config/release_config.mli > lib/config/release_config.mli.depends
 ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -modules lib/config/release_config_values.mli > lib/config/release_config_values.mli.depends
 ocamlfind ocamlc -c -g -I lib/util -package unix -package str -package lwt.syntax -package lwt -I lib/config -I lib/util -o lib/config/release_config_values.cmi lib/config/release_config_values.mli
+ocamlfind ocamlc -c -g -I lib/util -package unix -package str -package lwt.syntax -package lwt -I lib/config -I lib/util -o lib/config/release_config.cmi lib/config/release_config.mli
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config.ml > lib/config/release_config.ml.depends
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config_global.ml > lib/config/release_config_global.ml.depends
+/usr/bin/ocamllex.opt -q lib/config/release_config_lexer.mll
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config_lexer.ml > lib/config/release_config_lexer.ml.depends
+/usr/bin/ocamlyacc lib/config/release_config_parser.mly
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -modules lib/config/release_config_parser.mli > lib/config/release_config_parser.mli.depends
+ocamlfind ocamlc -c -g -I lib/util -package unix -package str -package lwt.syntax -package lwt -I lib/config -I lib/util -o lib/config/release_config_parser.cmi lib/config/release_config_parser.mli
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/util -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -I lib/config -I lib/util -o lib/config/release_config_global.cmo lib/config/release_config_global.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/util -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -I lib/config -I lib/util -o lib/config/release_config_lexer.cmo lib/config/release_config_lexer.ml
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config_parser.ml > lib/config/release_config_parser.ml.depends
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config_values.ml > lib/config/release_config_values.ml.depends
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -modules lib/config/release_config_validations.mli > lib/config/release_config_validations.mli.depends
+ocamlfind ocamlc -c -g -I lib/util -package unix -package str -package lwt.syntax -package lwt -I lib/config -I lib/util -o lib/config/release_config_validations.cmi lib/config/release_config_validations.mli
+ocamlfind ocamldep -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -modules lib/config/release_config_validations.ml > lib/config/release_config_validations.ml.depends
