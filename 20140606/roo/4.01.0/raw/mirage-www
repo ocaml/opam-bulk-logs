@@ -4934,3 +4934,7 @@ pkg_mirage_types_lwt: ................................ /home/opam/.opam/system/l
 ocaml setup.ml -build 
 W: Cannot find source file matching module 'tcpv4' in library tcpv4
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package io-page -package ipaddr -package lwt -syntax camlp4o -package lwt.syntax -package mirage-types -modules lib/wire_structs.ml > lib/wire_structs.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I lib -I lib -I lib -I lib -I tcp -I dhcp -package cstruct -syntax camlp4o -package cstruct.syntax -package io-page -package ipaddr -package lwt -syntax camlp4o -package lwt.syntax -package mirage-types -I lib -I dhcp -I tcp -o lib/wire_structs.cmo lib/wire_structs.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/wire_structs.cmo -o lib/tcpip.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I lib -I lib -I lib -I lib -I tcp -I dhcp -package cstruct -syntax camlp4o -package cstruct.syntax -package io-page -package ipaddr -package lwt -syntax camlp4o -package lwt.syntax -package mirage-types -I lib -I dhcp -I tcp -o lib/wire_structs.cmx lib/wire_structs.ml
