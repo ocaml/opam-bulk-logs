@@ -166,3 +166,19 @@ ocamlopt.opt -c -pp camlp4o -g -I ./curses interface.ml
 ocamlopt.opt -c -pp camlp4o -g -I ./curses cal.ml
 ocamlopt.opt -c -pp camlp4o -g -I ./curses remind.ml
 ocamlopt.opt -c -pp camlp4o -g -I ./curses interface_draw.ml
+ocamlopt.opt -c -pp camlp4o -g -I ./curses interface_main.ml
+ocamlc.opt -c -pp camlp4o -g -I ./curses locale.mli
+ocamlopt.opt -c -pp camlp4o -g -I ./curses locale.ml
+ocamlopt.opt -c -pp camlp4o -g -I ./curses main.ml
+ocamlopt.opt -pp camlp4o -g -I ./curses -o wyrd.opt curses/curses.cmxa locale_wrap.o str.cmxa unix.cmxa install.cmx version.cmx utility.cmx rcfile.cmx time_lang.cmx interface.cmx cal.cmx remind.cmx interface_draw.cmx interface_main.cmx locale.cmx main.cmx
+rm -f wyrd && ln -s wyrd.opt wyrd
+mkdir -p //home/opam/.opam/system/bin
+mkdir -p //home/opam/.opam/system/lib/wyrd/etc
+mkdir -p //home/opam/.opam/system/lib/wyrd/share/man/man1
+mkdir -p //home/opam/.opam/system/lib/wyrd/share/man/man5
+/usr/bin/install -c -m 644 wyrdrc //home/opam/.opam/system/lib/wyrd/etc
+/usr/bin/install -c -m 644 doc/wyrd.1 //home/opam/.opam/system/lib/wyrd/share/man/man1/wyrd.1
+/usr/bin/install -c -m 644 doc/wyrdrc.5 //home/opam/.opam/system/lib/wyrd/share/man/man5/wyrdrc.5
+/usr/bin/install -c -m 755 wyrd.opt //home/opam/.opam/system/bin
+mv //home/opam/.opam/system/bin/wyrd.opt //home/opam/.opam/system/bin/wyrd
+Installing wyrd.1.4.6.
