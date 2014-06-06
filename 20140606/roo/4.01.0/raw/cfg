@@ -888,3 +888,12 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 menhir: .............................................. /home/opam/.opam/system/bin/menhir
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/bnf_spec.mli > lib/bnf_spec.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/cfg_intf.ml > lib/cfg_intf.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_intf.cmo lib/cfg_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/bnf_spec.cmi lib/bnf_spec.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/bnf_spec.ml > lib/bnf_spec.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/cfg_impl.mli > lib/cfg_impl.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/cfg_impl.cmi lib/cfg_impl.mli
+menhir --raw-depend --ocamldep '/home/opam/.opam/system/bin/ocamlfind ocamldep -modules' lib/bnf_parser.mly > lib/bnf_parser.mly.depends
