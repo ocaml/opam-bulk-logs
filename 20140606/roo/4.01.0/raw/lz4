@@ -4352,3 +4352,14 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ./setup.exe -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4.c
+mv lz4.o lib/lz4.o
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4hc.c
+mv lz4hc.o lib/lz4hc.o
+ocamlfind ocamlc -ccopt -Ilib/ -c lib/lz4_stubs.c
+mv lz4_stubs.o lib/lz4_stubs.o
+/usr/bin/ocamlmklib -o lib/lz4lib_stubs lib/lz4.o lib/lz4hc.o lib/lz4_stubs.o
+ocamlfind ocamldep -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -modules lib/lz4_ffi.mli > lib/lz4_ffi.mli.depends
+ocamlfind ocamlc -c -g -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -thread -I lib -o lib/lz4_ffi.cmi lib/lz4_ffi.mli
+ocamlfind ocamldep -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -modules lib/lz4_ffi.ml > lib/lz4_ffi.ml.depends
+ocamlfind ocamlc -c -g -package threads -package pa_ounit.syntax -package oUnit -package core -syntax camlp4o -thread -I lib -o lib/lz4_ffi.cmo lib/lz4_ffi.ml
