@@ -4005,3 +4005,39 @@ mkdir -p man/man1
 mkdir -p man/man1
 ./ocp-grep --help=groff >man/man1/ocp-grep.1
 Installing ocp-index.1.0.2.
+
+=-=-= Installing iocaml-kernel.0.4.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/iocaml-kernel.0.4.4+opam.tar.gz
+sending incremental file list
+iocaml-kernel.0.4.4+opam.tar.gz
+
+sent 131,676 bytes  received 35 bytes  263,422.00 bytes/sec
+total size is 131,508  speedup is 1.00
+Building iocaml-kernel.0.4.4:
+  make all
+  make install
+atdgen -t Ipython_json.atd
+atdgen -j Ipython_json.atd
+ocamlfind c iocaml_zmq_stubs.c
+# compile log (first so we can use it in the zmq code)
+ocamlfind c -c -g log.mli log.ml
+# iocaml_zmq (which requires preprocessing)
+ocamlfind c -c -g \
+		-syntax camlp4o -package lwt.unix,lwt.syntax,ctypes.foreign \
+		iocaml_zmq.mli iocaml_zmq.ml  
+# rest of the library
+ocamlfind c -c -g \
+		-package yojson,atdgen,compiler-libs \
+		Ipython_json_t.mli Ipython_json_j.mli base64.mli \
+		Ipython_json_t.ml  Ipython_json_j.ml  base64.ml  
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlmklib -o iocaml_lib \
+		-l zmq \
+		-package ctypes.foreign,lwt.unix,yojson \
+		iocaml_zmq_stubs.o \
+		log.cmo Ipython_json_t.cmo Ipython_json_j.cmo iocaml_zmq.cmo base64.cmo 
+ocamlfind c -c -g -thread \
+		-package threads,uuidm,yojson,atdgen,ocp-index.lib,compiler-libs \
+		message.mli sockets.mli completion.mli exec.mli iocaml.mli \
+		message.ml  sockets.ml  completion.ml  exec.ml  iocaml.ml 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
