@@ -81,3 +81,21 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules BitMaskSet.mli > BitMaskSet.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o BitMaskSet.cmi BitMaskSet.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules BitMaskSet.ml > BitMaskSet.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -o BitMaskSet.cmo BitMaskSet.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a BitMaskSet.cmo -o bitmasks.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -o BitMaskSet.cmx BitMaskSet.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a BitMaskSet.cmx -o bitmasks.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared bitmasks.cmxa BitMaskSet.cmx -o bitmasks.cmxs
+Installed /home/opam/.opam/system/lib/bitmasks/BitMaskSet.mli
+Installed /home/opam/.opam/system/lib/bitmasks/bitmasks.cma
+Installed /home/opam/.opam/system/lib/bitmasks/bitmasks.cmxa
+Installed /home/opam/.opam/system/lib/bitmasks/bitmasks.a
+Installed /home/opam/.opam/system/lib/bitmasks/bitmasks.cmxs
+Installed /home/opam/.opam/system/lib/bitmasks/BitMaskSet.cmi
+Installed /home/opam/.opam/system/lib/bitmasks/BitMaskSet.cmx
+Installed /home/opam/.opam/system/lib/bitmasks/META
+Installing bitmasks.1.0.0.
