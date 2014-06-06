@@ -939,3 +939,11 @@ ocaml setup.ml -build
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_impl.cmx lib/nopres_impl.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_impl.cmx lib/pres_impl.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/nopres_intf.cmx lib/nopres_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pres_intf.cmx lib/pres_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_impl.cmx lib/weak_impl.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/weak_intf.cmx lib/weak_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/res.cmx lib/res.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/strat.cmx lib/nopres_impl.cmx lib/nopres_intf.cmx lib/pres_impl.cmx lib/pres_intf.cmx lib/weak_impl.cmx lib/weak_intf.cmx lib/res.cmx -o lib/res.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/res.cmx -o lib/res.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/buffer_ex.ml > examples/buffer_ex.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples -I lib -o examples/buffer_ex.cmo examples/buffer_ex.ml
