@@ -1466,3 +1466,18 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 pkg_graphics: ........................................ /usr/lib/ocaml
 gtk_cflags: .......................................... -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -c src/cairo_stubs.c
+mv cairo_stubs.o src/cairo_stubs.o
+/usr/bin/ocamlmklib -o src/cairo2_stubs -lcairo src/cairo_stubs.o
+ocamlfind ocamldep -package lablgtk2 -package bigarray -modules src/cairo.mli > src/cairo.mli.depends
+ocamlfind ocamlc -c -g -I src -package lablgtk2 -package bigarray -I src -o src/cairo.cmi src/cairo.mli
+ocamlfind ocamldep -package lablgtk2 -package bigarray -modules src/cairo.ml > src/cairo.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package lablgtk2 -package bigarray -I src -o src/cairo.cmo src/cairo.ml
+ocamlfind ocamlc -a -dllib -lcairo2_stubs -cclib -lcairo2_stubs -cclib -lcairo src/cairo.cmo -o src/cairo2.cma
+ocamlfind ocamlopt -c -g -annot -I src -package lablgtk2 -package bigarray -I src -o src/cairo.cmx src/cairo.ml
+ocamlfind ocamlopt -a -cclib -lcairo2_stubs -cclib -lcairo src/cairo.cmx -o src/cairo2.cmxa
+ocamlfind ocamlopt -shared -linkall -I src -cclib -Lsrc/ -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -cclib -lcairo src/cairo2.cmxa -o src/cairo2.cmxs
+ocamlfind ocamlc -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -ccopt '-I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  ' -ccopt -I/home/opam/.opam/system/lib/lablgtk2 -c src/cairo_gtk_stubs.c
+mv cairo_gtk_stubs.o src/cairo_gtk_stubs.o
+/usr/bin/ocamlmklib -o src/cairo_gtk_stubs -lcairo src/cairo_gtk_stubs.o
