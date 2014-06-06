@@ -320,3 +320,25 @@ rm lk/async.ml lk/async_body.ml lk/rml_list.ml
 make[2]: Leaving directory `/home/opam/.opam/system/build/rml.1.09.02/interpreter'
 make[1]: Leaving directory `/home/opam/.opam/system/build/rml.1.09.02/interpreter'
 (cd toplevel; make all)
+make[1]: Entering directory `/home/opam/.opam/system/build/rml.1.09.02/toplevel'
+ocamllex rmltop_lexer.mll
+87 states, 656 transitions, table size 3146 bytes
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_lexer.ml
+ocamlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_global.mli
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_global.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_directives.ml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop.ml
+ocamlc -o rmltop -I +threads -I ../stdlib -I ../interpreter -I ../interpreter/lco unix.cma str.cma \
+		threads.cma \
+		lco/rmllib.cma \
+		rmltop_lexer.cmo \
+		rmltop_global.cmo \
+		rmltop_directives.cmo \
+		rmltop.cmo
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco -runtime Lco_ctrl_tree rmltop_machine_body.rml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_machine_body.ml
+../compiler/rmlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_global.rmli
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_reactive_machine.rmli
+ocamlc -I ../stdlib -I ../interpreter -I ../interpreter/lco rmltop_reactive_machine.mli
+../compiler/rmlc -I ../stdlib -I ../interpreter -I ../interpreter/lco -runtime Rmltop rmltop_controller.rml
+ocamlc -c -I ../stdlib -I ../interpreter -I ../interpreter/lco -thread rmltop_implem.ml
