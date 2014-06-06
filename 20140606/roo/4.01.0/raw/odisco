@@ -1819,3 +1819,18 @@ ocamlfind ocamlc -c -g -annot -w A -w e -w l -w r -package zip -package sonet.ht
 ocamlfind ocamlc -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/worker.cmo lib/worker.ml
 ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/errors.cmx lib/errors.ml
 ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/utils.cmx lib/utils.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/pipeline.cmx lib/pipeline.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/protocol.cmx lib/protocol.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/env.cmx lib/env.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/cfg.cmx lib/cfg.ml
+ocamlfind ocamldep -package zip -package sonet.httplib -package sonet.jsonlib -modules lib/rest_api.ml > lib/rest_api.ml.depends
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/rest_api.cmx lib/rest_api.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/pipeline_utils.cmx lib/pipeline_utils.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/task.cmx lib/task.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/ddfs.cmx lib/ddfs.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/jobpack.cmx lib/jobpack.ml
+ocamlfind ocamlopt -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/worker.cmx lib/worker.ml
+ocamlfind ocamldep -package sonet.httplib -modules tests/test_ddfs.ml > tests/test_ddfs.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w l -w r -package sonet.httplib -I tests -I lib -o tests/test_ddfs.cmo tests/test_ddfs.ml
+ocamlfind ocamlc -c -g -annot -w A -w e -w l -w r -package zip -package sonet.httplib -package sonet.jsonlib -I lib -o lib/rest_api.cmo lib/rest_api.ml
+ocamlfind ocamlopt -c -annot -w A -w e -w l -w r -package sonet.httplib -I tests -I lib -o tests/test_ddfs.cmx tests/test_ddfs.ml
