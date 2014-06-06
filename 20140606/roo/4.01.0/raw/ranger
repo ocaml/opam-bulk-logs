@@ -102,3 +102,19 @@ touch kaputt.mli  ; if  /usr/bin/ocamlopt.opt -pack -I src/library src/library/r
 /usr/bin/ocamlopt.opt -a kaputt.cmx -o kaputt.cmxa
 /usr/bin/ocamlbuild -classic-display -no-links kaputt_pp.byte
 /usr/bin/ocamldep.opt -modules src/syntax/kaputt_pp.ml > src/syntax/kaputt_pp.ml.depends
+/usr/bin/ocamlc.opt -c -I src/syntax -I src -I src/extensions -I src/library -o src/syntax/kaputt_pp.cmo src/syntax/kaputt_pp.ml
+/usr/bin/ocamlc.opt src/syntax/kaputt_pp.cmo -o src/syntax/kaputt_pp.byte
+/usr/bin/ocamlbuild -classic-display -no-links kaputtBigarray.cmo
+/usr/bin/ocamldep.opt -modules src/extensions/kaputtBigarray.mli > src/extensions/kaputtBigarray.mli.depends
+cp /tmp/versionc1e056.ml src/library/version.ml
+/usr/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmi src/extensions/kaputtBigarray.mli
+/usr/bin/ocamldep.opt -modules src/extensions/kaputtBigarray.ml > src/extensions/kaputtBigarray.ml.depends
+/usr/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmo src/extensions/kaputtBigarray.ml
+/usr/bin/ocamlbuild -classic-display -no-links kaputtNums.cmo
+/usr/bin/ocamldep.opt -modules src/extensions/kaputtNums.mli > src/extensions/kaputtNums.mli.depends
+cp /tmp/version1a5d1a.ml src/library/version.ml
+/usr/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtNums.cmi src/extensions/kaputtNums.mli
+/usr/bin/ocamldep.opt -modules src/extensions/kaputtNums.ml > src/extensions/kaputtNums.ml.depends
+/usr/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtNums.cmo src/extensions/kaputtNums.ml
+/usr/bin/ocamlbuild -classic-display -no-links kaputtBigarray.cmx
+cp /tmp/version34f548.ml src/library/version.ml
