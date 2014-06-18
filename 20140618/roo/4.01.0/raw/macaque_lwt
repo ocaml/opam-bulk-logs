@@ -1907,3 +1907,63 @@ pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ocaml setup.ml -build 
+make[1]: Entering directory `/home/opam/.opam/system/build/pgocaml.1.7.1'
+echo "let default_unix_domain_socket_dir = \""/tmp"\"" > src/PGOCaml_config.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/pgocaml.1.7.1'
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml.mli > src/PGOCaml.mli.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml_generic.mli > src/PGOCaml_generic.mli.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_generic.cmi src/PGOCaml_generic.mli
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmi src/PGOCaml.mli
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml.ml > src/PGOCaml.ml.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -modules src/PGOCaml_generic.ml > src/PGOCaml_generic.ml.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml_config.ml > src/PGOCaml_config.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_config.cmo src/PGOCaml_config.ml
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmo src/PGOCaml.ml
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/PGOCaml_generic.cmo src/PGOCaml_generic.ml
+ocamlfind ocamlc -a -ppopt -DUSE_BATTERIES src/PGOCaml_config.cmo src/PGOCaml_generic.cmo src/PGOCaml.cmo -o src/pgocaml.cma
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_config.cmx src/PGOCaml_config.ml
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/PGOCaml_generic.cmx src/PGOCaml_generic.ml
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmx src/PGOCaml.ml
+ocamlfind ocamlopt -a -ppopt -DUSE_BATTERIES src/PGOCaml_config.cmx src/PGOCaml_generic.cmx src/PGOCaml.cmx -o src/pgocaml.cmxa
+ocamlfind ocamlopt -shared -linkall src/pgocaml.cmxa -o src/pgocaml.cmxs
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -modules src/pa_pgsql.ml > src/pa_pgsql.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/pa_pgsql.cmo src/pa_pgsql.ml
+ocamlfind ocamlc -a -ppopt -DUSE_BATTERIES src/pa_pgsql.cmo -o src/pa_pgsql.cma
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries -syntax camlp4o -modules utils/pgocaml_prof.ml > utils/pgocaml_prof.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries -syntax camlp4o -I utils -I src -o utils/pgocaml_prof.cmo utils/pgocaml_prof.ml
+ocamlfind ocamlc -g -ppopt -DUSE_BATTERIES -linkpkg -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries src/pgocaml.cma utils/pgocaml_prof.cmo -o utils/pgocaml_prof.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml.mli
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_generic.mli
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_config.ml
+Installed /home/opam/.opam/system/lib/pgocaml/pgocaml.cma
+Installed /home/opam/.opam/system/lib/pgocaml/pgocaml.cmxa
+Installed /home/opam/.opam/system/lib/pgocaml/pgocaml.a
+Installed /home/opam/.opam/system/lib/pgocaml/pgocaml.cmxs
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml.cmi
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_generic.cmi
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_config.cmi
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml.cmx
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_generic.cmx
+Installed /home/opam/.opam/system/lib/pgocaml/PGOCaml_config.cmx
+Installed /home/opam/.opam/system/lib/pgocaml/pa_pgsql.ml
+Installed /home/opam/.opam/system/lib/pgocaml/pa_pgsql.cma
+Installed /home/opam/.opam/system/lib/pgocaml/pa_pgsql.cmi
+Installed /home/opam/.opam/system/lib/pgocaml/META
+Installing pgocaml.1.7.1.
+
+=-=-= Installing macaque.0.6.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/macaque.0.6.1+opam.tar.gz
+sending incremental file list
+macaque.0.6.1+opam.tar.gz
+
+sent 61,563 bytes  received 35 bytes  123,196.00 bytes/sec
+total size is 61,425  speedup is 1.00
+Building macaque.0.6.1:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/system/build/macaque.0.6.1/src'
+ocamlbuild -tag annot pa_macaque.cmo
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4 -package pgocaml -pp camlp4orf -modules pa_macaque.ml > pa_macaque.ml.depends
