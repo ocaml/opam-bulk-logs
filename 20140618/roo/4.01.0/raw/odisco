@@ -51,3 +51,20 @@ Building camlzip.1.05:
   make allopt
   make install-findlib
 ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+ocamlopt -c zip.ml
+ocamlopt -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
+ocamlfind install zip META *.mli *.a *.cmi *.cma gzip.cmx zip.cmx zlib.cmx zip.cmxa zip.cmxs dllcamlzip.so
