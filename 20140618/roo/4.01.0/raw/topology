@@ -320,3 +320,21 @@ Compile tests executable and library and run them: ... false
 pkg_ocamlgraph: ...................................... /home/opam/.opam/system/lib/ocamlgraph
 pkg_threads: ......................................... /usr/lib/ocaml
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package ocamlgraph -package threads -modules lib/Network.mli > lib/Network.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package ocamlgraph -package threads -thread -I lib -o lib/Network.cmi lib/Network.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package ocamlgraph -package threads -modules lib/Network.ml > lib/Network.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package ocamlgraph -package threads -thread -I lib -o lib/Network.cmo lib/Network.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/Network.cmo -o lib/topology.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package ocamlgraph -package threads -thread -I lib -o lib/Network.cmx lib/Network.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/Network.cmx -o lib/topology.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall lib/topology.cmxa -o lib/topology.cmxs
+Installed /home/opam/.opam/system/lib/topology/Network.mli
+Installed /home/opam/.opam/system/lib/topology/topology.cma
+Installed /home/opam/.opam/system/lib/topology/topology.cmxa
+Installed /home/opam/.opam/system/lib/topology/topology.a
+Installed /home/opam/.opam/system/lib/topology/topology.cmxs
+Installed /home/opam/.opam/system/lib/topology/Network.cmi
+Installed /home/opam/.opam/system/lib/topology/Network.cmx
+Installed /home/opam/.opam/system/lib/topology/META
+Installing topology.0.1.0.
