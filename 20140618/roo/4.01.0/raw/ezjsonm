@@ -220,3 +220,20 @@ pkg_jsonm: ........................................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package jsonm -modules lib/ezjsonm.mli > lib/ezjsonm.mli.depends
+ocamlfind ocamlc -c -g -I lib -package jsonm -I lib -o lib/ezjsonm.cmi lib/ezjsonm.mli
+ocamlfind ocamldep -package jsonm -modules lib/ezjsonm.ml > lib/ezjsonm.ml.depends
+ocamlfind ocamlc -c -g -I lib -package jsonm -I lib -o lib/ezjsonm.cmo lib/ezjsonm.ml
+ocamlfind ocamlc -a lib/ezjsonm.cmo -o lib/ezjsonm.cma
+ocamlfind ocamlopt -c -g -I lib -package jsonm -I lib -o lib/ezjsonm.cmx lib/ezjsonm.ml
+ocamlfind ocamlopt -a lib/ezjsonm.cmx -o lib/ezjsonm.cmxa
+ocamlfind ocamlopt -shared lib/ezjsonm.cmx -o lib/ezjsonm.cmxs
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.mli
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.cma
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.cmxa
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.a
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.cmxs
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.cmi
+Installed /home/opam/.opam/system/lib/ezjsonm/ezjsonm.cmx
+Installed /home/opam/.opam/system/lib/ezjsonm/META
+Installing ezjsonm.0.2.0.
