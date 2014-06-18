@@ -24,3 +24,24 @@ total size is 92,907  speedup is 1.00
 Building react.1.1.0:
   ocaml pkg/git.ml
   ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
+ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+Installing react.1.1.0.
+
+=-=-= Installing rtime.0.9.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/rtime.0.9.3+opam.tar.gz
+sending incremental file list
+rtime.0.9.3+opam.tar.gz
+
+sent 56,986 bytes  received 35 bytes  114,042.00 bytes/sec
+total size is 56,850  speedup is 1.00
+Building rtime.0.9.3:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
