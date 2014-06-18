@@ -1591,3 +1591,99 @@ ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compil
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
 ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/cmd_format.cmx src/opam-doc-index/cmd_format.ml
 ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/generate.cmx src/opam-doc-index/generate.ml
++ ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/cmd_format.cmx src/opam-doc-index/cmd_format.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
++ ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/generate.cmx src/opam-doc-index/generate.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/driver.cmx src/opam-doc-index/driver.ml
++ ocamlfind ocamlopt -c -g -bin-annot -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax -I src/opam-doc-index -o src/opam-doc-index/driver.cmx src/opam-doc-index/driver.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlopt -linkpkg -g -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax src/opam-doc-index/info.cmx src/opam-doc-index/doctree.cmx src/opam-doc-index/cmd_format.cmx src/opam-doc-index/html.cmx src/opam-doc-index/opam_doc_config.cmx src/opam-doc-index/uris.cmx src/opam-doc-index/index.cmx src/opam-doc-index/gentyp.cmx src/opam-doc-index/html_utils.cmx src/opam-doc-index/generate.cmx src/opam-doc-index/driver.cmx -o src/opam-doc-index/driver.native
++ ocamlfind ocamlopt -linkpkg -g -syntax camlp4o -package cow -package compiler-libs.common -package unix -package cow.syntax src/opam-doc-index/info.cmx src/opam-doc-index/doctree.cmx src/opam-doc-index/cmd_format.cmx src/opam-doc-index/html.cmx src/opam-doc-index/opam_doc_config.cmx src/opam-doc-index/uris.cmx src/opam-doc-index/index.cmx src/opam-doc-index/gentyp.cmx src/opam-doc-index/html_utils.cmx src/opam-doc-index/generate.cmx src/opam-doc-index/driver.cmx -o src/opam-doc-index/driver.native
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+# Parallel statistics: { count(total): 4(40), max: 3, min: 2, average(total): 2.250(1.125) }
+mv driver.native opam-doc-index
+ocamlbuild -j 4 -use-ocamlfind src/bin-doc/driver.native
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/driver.ml > src/bin-doc/driver.ml.depends
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/bindoc_errors.mli > src/bin-doc/bindoc_errors.mli.depends
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/doctree.mli > src/bin-doc/doctree.mli.depends
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/info.mli > src/bin-doc/info.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info.cmi src/bin-doc/info.mli
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info.cmi src/bin-doc/info.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/inlinedoc.mli > src/bin-doc/inlinedoc.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/doctree.cmi src/bin-doc/doctree.mli
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/doctree.cmi src/bin-doc/doctree.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/bindoc_errors.cmi src/bin-doc/bindoc_errors.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/inlinedoc.cmi src/bin-doc/inlinedoc.mli
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/bindoc_errors.cmi src/bin-doc/bindoc_errors.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/inlinedoc.cmi src/bin-doc/inlinedoc.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/driver.cmo src/bin-doc/driver.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/driver.cmo src/bin-doc/driver.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/bindoc_errors.ml > src/bin-doc/bindoc_errors.ml.depends
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/doctree.ml > src/bin-doc/doctree.ml.depends
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/info.ml > src/bin-doc/info.ml.depends
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info.cmx src/bin-doc/info.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info.cmx src/bin-doc/info.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/inlinedoc.ml > src/bin-doc/inlinedoc.ml.depends
+/usr/bin/ocamllex.opt -q src/bin-doc/comments.mll
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/comments.ml > src/bin-doc/comments.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/comments.cmo src/bin-doc/comments.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/comments.cmo src/bin-doc/comments.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/bindoc_errors.cmx src/bin-doc/bindoc_errors.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/bindoc_errors.cmx src/bin-doc/bindoc_errors.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/doctree.cmx src/bin-doc/doctree.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/doctree.cmx src/bin-doc/doctree.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/usr/bin/ocamllex.opt -q src/bin-doc/info_lexer.mll
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/info_lexer.ml > src/bin-doc/info_lexer.ml.depends
+/usr/bin/ocamlyacc src/bin-doc/info_parser.mly
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/info_parser.mli > src/bin-doc/info_parser.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_parser.cmi src/bin-doc/info_parser.mli
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_parser.cmi src/bin-doc/info_parser.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_lexer.cmo src/bin-doc/info_lexer.ml
++ ocamlfind ocamlc -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_lexer.cmo src/bin-doc/info_lexer.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamldep -package compiler-libs.bytecomp -modules src/bin-doc/info_parser.ml > src/bin-doc/info_parser.ml.depends
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_parser.cmx src/bin-doc/info_parser.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_parser.cmx src/bin-doc/info_parser.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/comments.cmx src/bin-doc/comments.ml
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_lexer.cmx src/bin-doc/info_lexer.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/comments.cmx src/bin-doc/comments.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/info_lexer.cmx src/bin-doc/info_lexer.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/inlinedoc.cmx src/bin-doc/inlinedoc.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/inlinedoc.cmx src/bin-doc/inlinedoc.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/driver.cmx src/bin-doc/driver.ml
++ ocamlfind ocamlopt -c -g -annot -bin-annot -package compiler-libs.bytecomp -I src/bin-doc -o src/bin-doc/driver.cmx src/bin-doc/driver.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g -package compiler-libs.bytecomp src/bin-doc/bindoc_errors.cmx src/bin-doc/comments.cmx src/bin-doc/info.cmx src/bin-doc/doctree.cmx src/bin-doc/info_parser.cmx src/bin-doc/info_lexer.cmx src/bin-doc/inlinedoc.cmx src/bin-doc/driver.cmx -o src/bin-doc/driver.native
++ ocamlfind ocamlopt -linkpkg -g -package compiler-libs.bytecomp src/bin-doc/bindoc_errors.cmx src/bin-doc/comments.cmx src/bin-doc/info.cmx src/bin-doc/doctree.cmx src/bin-doc/info_parser.cmx src/bin-doc/info_lexer.cmx src/bin-doc/inlinedoc.cmx src/bin-doc/driver.cmx -o src/bin-doc/driver.native
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+# Parallel statistics: { count(total): 2(32), max: 2, min: 2, average(total): 2.000(1.062) }
+mv driver.native bin-doc
+sed -e "s+__OCAMLC__+/usr/bin/ocamlc+" < scripts/ocamlc > /home/opam/.opam/system/bin/opam-doc-ocamlc
+sed -e "s+__OCAMLC__+/usr/bin/ocamlc+" < scripts/ocamlc.opt > /home/opam/.opam/system/bin/opam-doc-ocamlc.opt
+chmod +x /home/opam/.opam/system/bin/opam-doc-ocamlc
+chmod +x /home/opam/.opam/system/bin/opam-doc-ocamlc.opt
+cp bin-doc /home/opam/.opam/system/bin
+cp scripts/opam-doc-collect.sh /home/opam/.opam/system/bin/opam-doc-collect
+cp scripts/opam-doc-create.sh /home/opam/.opam/system/bin/opam-doc-create
+cp opam-doc-index /home/opam/.opam/system/bin/opam-doc-index
+cp scripts/opam-doc-serve.sh /home/opam/.opam/system/bin/opam-doc-serve
+cp scripts/opam-doc.sh /home/opam/.opam/system/bin/opam-doc
+rm -rf /home/opam/.opam/doc-static
+mkdir -p /home/opam/.opam/doc-static
+cp -r static/* /home/opam/.opam/doc-static/
+Installing opam-doc.0.9.3.
