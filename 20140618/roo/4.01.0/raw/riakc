@@ -5619,3 +5619,122 @@ ocamlfind ocamlc -c -g -thread -package threads -package async_extra -package as
 ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
 ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
 ocamlfind ocamlopt -c -g -thread -package threads -package async_extra -package async_unix -package async_core -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+ocamlfind ocamlopt -shared lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/async/std.ml
+Installed /home/opam/.opam/system/lib/async/async.cmi
+Installed /home/opam/.opam/system/lib/async/async.cma
+Installed /home/opam/.opam/system/lib/async/async.cmxa
+Installed /home/opam/.opam/system/lib/async/async.a
+Installed /home/opam/.opam/system/lib/async/async.cmxs
+Installed /home/opam/.opam/system/lib/async/async.cmx
+Installed /home/opam/.opam/system/lib/async/META
+Installing async.109.53.02.
+
+=-=-= Installing riakc.2.0.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/riakc.2.0.0+opam.tar.gz
+sending incremental file list
+riakc.2.0.0+opam.tar.gz
+
+sent 12,226 bytes  received 35 bytes  24,522.00 bytes/sec
+total size is 12,094  speedup is 0.99
+Building riakc.2.0.0:
+  make
+  make install
+make -C lib
+make[1]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/lib'
+make -C riakc .d
+make[2]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+ocamlfind ocamldep -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  pb_robj.ml pb_response.ml robj.ml request.ml response.ml opts.ml conn.ml  pb_robj.mli pb_response.mli robj.mli request.mli response.mli opts.mli conn.mli > .d
+make[2]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+make[2]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+make[2]: `.d' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+make -C riakc native-code
+make[2]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c pb_robj.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c pb_response.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c robj.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c response.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c opts.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c request.mli
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -c conn.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	pb_robj.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	pb_response.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	robj.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	response.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	opts.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	request.ml
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	conn.ml
+ocamlfind ocamlopt -pack -o riakc.cmx pb_robj.cmx pb_response.cmx robj.cmx request.cmx response.cmx opts.cmx conn.cmx
+ocamlfind ocamlopt -for-pack Riakc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -a -thread -I +camlp4 -o riakc.cmxa riakc.cmx
+make[2]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+make -C riakc byte-code
+make[2]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	pb_robj.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	pb_response.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	robj.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	request.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	response.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	opts.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	conn.ml
+ocamlfind ocamlc -pack -o riakc.cmo pb_robj.cmo pb_response.cmo robj.cmo request.cmo response.cmo opts.cmo conn.cmo
+ocamlfind ocamlc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -custom -a -thread -I +camlp4 -o riakc.cma riakc.cmo
+make[2]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/lib/riakc'
+make[1]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/lib'
+make -C examples
+../lib/Ocamlrules.mk.in:76: warning: overriding commands for target `clean'make[1]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/examples'
+
+Makefile:62: warning: ignoring old commands for target `clean'
+ocamlfind ocamldep -package riakc   ping.ml client_id.ml server_info.ml list_buckets.ml list_keys.ml bucket_props.ml get.ml put.ml delete.ml  > .d
+make[1]: Leaving directory `/home/opam/.opam/system/build/riakc.2.0.0/examples'
+make[1]: Entering directory `/home/opam/.opam/system/build/riakc.2.0.0/examples'
+../lib/Ocamlrules.mk.in:76: warning: overriding commands for target `clean'
+Makefile:62: warning: ignoring old commands for target `clean'
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	ping.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o ping.native ping.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	client_id.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o client_id.native client_id.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	server_info.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o server_info.native server_info.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	list_buckets.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o list_buckets.native list_buckets.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	list_keys.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o list_keys.native list_keys.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	bucket_props.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o bucket_props.native bucket_props.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	get.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o get.native get.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	put.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o put.native put.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	delete.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o delete.native delete.cmx
+ocamlfind ocamlc -thread -I +camlp4 -package riakc  -c \
+	ping.ml
+ocamlfind ocamlc -package riakc -thread -custom -linkpkg -o ping.byte ping.cmo
