@@ -1364,3 +1364,37 @@ emacs --batch --no-init-file -f batch-byte-compile emacs/merlin.el
 make: emacs: Command not found
 make: [emacs/merlin.elc] Error 127 (ignored)
 ocamlbuild -Is src,src/config,src/utils,src/ocaml,src/ocaml/utils,src/ocaml/typing,src/ocaml/parsing   -use-ocamlfind ocamlmerlin.native
+install -d /home/opam/.opam/system/bin
+install ocamlmerlin.native /home/opam/.opam/system/bin/ocamlmerlin
+install omake-merlin /home/opam/.opam/system/bin/omake-merlin
+install jenga-merlin /home/opam/.opam/system/bin/jenga-merlin
+emacs --batch --no-init-file -f batch-byte-compile emacs/merlin.el
+make: emacs: Command not found
+make: [emacs/merlin.elc] Error 127 (ignored)
+install -d /home/opam/.opam/system/share
+install -d /home/opam/.opam/system/share/emacs/site-lisp
+install -m 644 emacs/merlin.el /home/opam/.opam/system/share/emacs/site-lisp/merlin.el
+install -m 644 emacs/merlin.elc /home/opam/.opam/system/share/emacs/site-lisp/merlin.elc
+install: cannot stat 'emacs/merlin.elc': No such file or directory
+make: [install-share] Error 1 (ignored)
+install -d /home/opam/.opam/system/share/ocamlmerlin/vim
+if [ ! -z "1" ]; then \
+		cp -R vim/vimbufsync/* /home/opam/.opam/system/share/ocamlmerlin/vim/; \
+	fi
+cp -R vim/merlin/* /home/opam/.opam/system/share/ocamlmerlin/vim
+
+Quick setup for VIM
+-------------------
+Add /home/opam/.opam/system/share/ocamlmerlin/vim to your runtime path, e.g.:
+  :set rtp+=/home/opam/.opam/system/share/ocamlmerlin/vim
+
+Quick setup for EMACS
+-------------------
+Add /home/opam/.opam/system/share/emacs/site-lisp to your runtime path, e.g.:
+  (add-to-list 'load-path "/home/opam/.opam/system/share/emacs/site-lisp")
+  (require 'merlin)
+Then issue M-x merlin-mode in a ML buffer.
+
+Take a look at https://github.com/def-lkb/merlin for more information.
+
+Installing merlin.1.6.
