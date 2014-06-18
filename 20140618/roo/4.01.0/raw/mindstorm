@@ -115,3 +115,37 @@ mv mindstorm_stubs.o src/mindstorm_stubs.o
 /home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lmindstorm_stubs -cclib -lmindstorm_stubs -cclib -lbluetooth src/mindstorm.cmo -o src/mindstorm.cma
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -pp 'camlp4o pa_macro.cmo -DUNIX -DAMD64' -inline 10 -ccopt -DUNIX -package unix -I src -o src/mindstorm.cmx src/mindstorm.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lmindstorm_stubs -cclib -lbluetooth src/mindstorm.cmx -o src/mindstorm.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I src src/mindstorm.cmxa src/mindstorm.cmx -o src/mindstorm.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package unix -modules examples/roam.ml > examples/roam.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -package threads -package unix -thread -I examples -I src -o examples/roam.cmo examples/roam.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -inline 10 -I src -package threads -package unix -thread -I examples -I src -o examples/roam.cmx examples/roam.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I src -linkpkg -package unix src/mindstorm.cmxa examples/roam.cmx -o examples/roam.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package unix -modules examples/run_push.ml > examples/run_push.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -package threads -package unix -thread -I examples -I src -o examples/run_push.cmo examples/run_push.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -inline 10 -I src -package threads -package unix -thread -I examples -I src -o examples/run_push.cmx examples/run_push.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I src -linkpkg -package unix src/mindstorm.cmxa examples/run_push.cmx -o examples/run_push.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package unix -modules examples/test_speed.ml > examples/test_speed.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -package threads -package unix -thread -I examples -I src -o examples/test_speed.cmo examples/test_speed.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -inline 10 -I src -package threads -package unix -thread -I examples -I src -o examples/test_speed.cmx examples/test_speed.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I src -linkpkg -package unix src/mindstorm.cmxa examples/test_speed.cmx -o examples/test_speed.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package unix -modules examples/test_threads.ml > examples/test_threads.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -package threads -package unix -thread -I examples -I src -o examples/test_threads.cmo examples/test_threads.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -inline 10 -I src -package threads -package unix -thread -I examples -I src -o examples/test_threads.cmx examples/test_threads.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I src -linkpkg -package threads -package unix -thread src/mindstorm.cmxa examples/test_threads.cmx -o examples/test_threads.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package unix -modules examples/wander.ml > examples/wander.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -package threads -package unix -thread -I examples -I src -o examples/wander.cmo examples/wander.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -inline 10 -I src -package threads -package unix -thread -I examples -I src -o examples/wander.cmx examples/wander.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I src -linkpkg -package unix src/mindstorm.cmxa examples/wander.cmx -o examples/wander.native
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.mli
+Installed /home/opam/.opam/system/lib/mindstorm/libmindstorm_stubs.a
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.cma
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.cmxa
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.a
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.cmxs
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.cmi
+Installed /home/opam/.opam/system/lib/mindstorm/mindstorm.cmx
+Installed /home/opam/.opam/system/lib/mindstorm/META
+Installed /home/opam/.opam/system/lib/stublibs/dllmindstorm_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllmindstorm_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing mindstorm.0.5.3.
