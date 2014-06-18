@@ -2341,3 +2341,15 @@ pkg_ounit: ........................................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ocaml setup.ml -build -j 4
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -O3 -ccopt -Wall -c lib/cstruct_stubs.c
+mv cstruct_stubs.o lib/cstruct_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/cstruct_stubs lib/cstruct_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -modules lib/cstruct.mli > lib/cstruct.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -I lib -I lwt -I unix -I async -o lib/cstruct.cmi lib/cstruct.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -modules lib/cstruct.ml > lib/cstruct.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -I lib -I lwt -I unix -I async -o lib/cstruct.cmo lib/cstruct.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lcstruct_stubs -cclib -lcstruct_stubs lib/cstruct.cmo -o lib/cstruct.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -inline 10 -I lib -I lwt -I unix -I async -o lib/cstruct.cmx lib/cstruct.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lcstruct_stubs lib/cstruct.cmx -o lib/cstruct.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I lib/ lib/cstruct.cmxa lib/cstruct.cmx -o lib/cstruct.cmxs
