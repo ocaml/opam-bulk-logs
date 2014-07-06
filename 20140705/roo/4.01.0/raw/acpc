@@ -1037,3 +1037,36 @@ OCamlbuild additional flags: .........................
 Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/interval_tree.mli > lib/interval_tree.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -o lib/interval_tree.cmi lib/interval_tree.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/interval_tree.ml > lib/interval_tree.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -o lib/interval_tree.cmo lib/interval_tree.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/interval_tree.cmo -o lib/itv-tree.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -o lib/interval_tree.cmx lib/interval_tree.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/interval_tree.cmx -o lib/itv-tree.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/itv-tree.cmxa lib/interval_tree.cmx -o lib/itv-tree.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib_test/test.ml > lib_test/test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -g -linkpkg lib/itv-tree.cma lib_test/test.cmo -o lib_test/test.byte
+Installed /home/opam/.opam/system/lib/itv-tree/interval_tree.mli
+Installed /home/opam/.opam/system/lib/itv-tree/itv-tree.cma
+Installed /home/opam/.opam/system/lib/itv-tree/itv-tree.cmxa
+Installed /home/opam/.opam/system/lib/itv-tree/itv-tree.a
+Installed /home/opam/.opam/system/lib/itv-tree/itv-tree.cmxs
+Installed /home/opam/.opam/system/lib/itv-tree/interval_tree.cmi
+Installed /home/opam/.opam/system/lib/itv-tree/interval_tree.cmx
+Installed /home/opam/.opam/system/lib/itv-tree/META
+Installing itv-tree.2.0.
+
+=-=-= Installing lacc.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lacc.0.2+opam.tar.gz
+sending incremental file list
+lacc.0.2+opam.tar.gz
+
+sent 50,800 bytes  received 35 bytes  101,670.00 bytes/sec
+total size is 50,667  speedup is 1.00
+Building lacc.0.2:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
