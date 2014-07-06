@@ -5969,3 +5969,731 @@ ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -pac
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c redirectmod.ml
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c revproxy.ml
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extensiontemplate.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c accesscontrol.ml
+File "accesscontrol.ml", line 326, characters 14-16:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c userconf.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c outputfilter.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c authbasic.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c rewritemod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extendconfiguration.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c ocsigen_comet.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cors.ml
+ocamlfind ocamlopt  -shared -linkall -o staticmod.cmxs staticmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o cgimod.cmxs cgimod.cmx
+ocamlfind ocamlopt  -shared -linkall -o redirectmod.cmxs redirectmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o revproxy.cmxs revproxy.cmx
+ocamlfind ocamlopt  -shared -linkall -o extensiontemplate.cmxs extensiontemplate.cmx
+ocamlfind ocamlopt  -shared -linkall -o accesscontrol.cmxs accesscontrol.cmx
+ocamlfind ocamlopt  -shared -linkall -o userconf.cmxs userconf.cmx
+ocamlfind ocamlopt  -shared -linkall -o outputfilter.cmxs outputfilter.cmx
+ocamlfind ocamlopt  -shared -linkall -o authbasic.cmxs authbasic.cmx
+ocamlfind ocamlopt  -shared -linkall -o rewritemod.cmxs rewritemod.cmx
+ocamlfind ocamlopt  -shared -linkall -o extendconfiguration.cmxs extendconfiguration.cmx
+ocamlfind ocamlopt  -shared -linkall -o ocsigen_comet.cmxs ocsigen_comet.cmx
+ocamlfind ocamlopt  -shared -linkall -o cors.cmxs cors.cmx
+make -C ocsipersist-sqlite opt
+make[3]: Entering directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-sqlite'
+ocamlfind ocamlopt   -thread -I ../../baselib -I ../../http -I ../../server -package lwt.preemptive -package tyxml.parser -package sqlite3 -c ocsipersist.ml
+ocamlfind ocamlopt   -thread -a -o ocsipersist-sqlite.cmxa ocsipersist.cmx
+cp ocsipersist.cmi ..
+cp ocsipersist-sqlite.cmxa ocsipersist-sqlite.a ..
+ocamlfind ocamlopt   -thread -shared -linkall -o ocsipersist-sqlite.cmxs ocsipersist-sqlite.cmxa
+cp ocsipersist-sqlite.cmxs ..
+make[3]: Leaving directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-sqlite'
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src/extensions'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src'
+# Server binaries
+install -m 755 -d /home/opam/.opam/system/bin
+install -m 755 server/ocsigenserver server/ocsigenserver.opt /home/opam/.opam/system/bin/
+# Server libraries
+install -m 755 -d /home/opam/.opam/system/lib
+ocamlfind install ocsigenserver \
+	   -destdir /home/opam/.opam/system/lib \
+	   -patch-version 2.4.0 \
+	   baselib/ocsigen_cache.cmi baselib/ocsigen_lib_base.cmi baselib/ocsigen_lib.cmi baselib/ocsigen_config.cmi baselib/ocsigen_getcommandline.cmi baselib/ocsigen_messages.cmi baselib/ocsigen_stream.cmi baselib/ocsigen_loader.cmi baselib/polytables.cmi http/http_headers.cmi http/ocsigen_http_frame.cmi http/ocsigen_headers.cmi http/framepp.cmi http/ocsigen_http_com.cmi http/ocsigen_charset_mime.cmi http/ocsigen_senders.cmi http/ocsigen_cookies.cmi server/ocsigen_extensions.cmi server/ocsigen_parseconfig.cmi server/ocsigen_http_client.cmi server/ocsigen_local_files.cmi server/ocsigen_server.cmi  baselib/ocsigen_lib_base.cmo baselib/baselib.cma baselib/parsecommandline.cma baselib/donotparsecommandline.cma baselib/polytables.cmo http/ocsigen_cookies.cmo http/http.cma server/ocsigenserver.cma server/server_main.cmo  baselib/ocsigen_lib_base.cmx baselib/polytables.cmx http/ocsigen_cookies.cmx server/server_main.cmx baselib/ocsigen_lib_base.o   baselib/polytables.o   http/ocsigen_cookies.o   server/server_main.o   baselib/baselib.cmxa baselib/parsecommandline.cmxa baselib/donotparsecommandline.cmxa http/http.cmxa server/ocsigenserver.cmxa baselib/baselib.a baselib/parsecommandline.a baselib/donotparsecommandline.a http/http.a server/ocsigenserver.a  baselib/parsecommandline.cmxs baselib/donotparsecommandline.cmxs baselib/polytables.cmxs baselib/ocsigen_cache.mli baselib/ocsigen_lib_base.mli baselib/ocsigen_lib.mli baselib/ocsigen_config.mli baselib/ocsigen_getcommandline.mli baselib/ocsigen_messages.mli baselib/ocsigen_stream.mli baselib/ocsigen_loader.mli baselib/polytables.mli http/http_headers.mli http/ocsigen_http_frame.mli http/ocsigen_headers.mli http/framepp.mli http/ocsigen_http_com.mli http/ocsigen_charset_mime.mli http/ocsigen_senders.mli http/ocsigen_cookies.mli server/ocsigen_extensions.mli server/ocsigen_parseconfig.mli server/ocsigen_http_client.mli server/ocsigen_local_files.mli server/ocsigen_server.mli files/META
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_server.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_local_files.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_client.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_parseconfig.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_extensions.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cookies.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_senders.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_charset_mime.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_com.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/framepp.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_headers.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_frame.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/http_headers.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_loader.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_stream.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_messages.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_getcommandline.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_config.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib_base.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cache.mli
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.cmxs
+Installed /home/opam/.opam/system/lib/ocsigenserver/donotparsecommandline.cmxs
+Installed /home/opam/.opam/system/lib/ocsigenserver/parsecommandline.cmxs
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigenserver.a
+Installed /home/opam/.opam/system/lib/ocsigenserver/http.a
+Installed /home/opam/.opam/system/lib/ocsigenserver/donotparsecommandline.a
+Installed /home/opam/.opam/system/lib/ocsigenserver/parsecommandline.a
+Installed /home/opam/.opam/system/lib/ocsigenserver/baselib.a
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigenserver.cmxa
+Installed /home/opam/.opam/system/lib/ocsigenserver/http.cmxa
+Installed /home/opam/.opam/system/lib/ocsigenserver/donotparsecommandline.cmxa
+Installed /home/opam/.opam/system/lib/ocsigenserver/parsecommandline.cmxa
+Installed /home/opam/.opam/system/lib/ocsigenserver/baselib.cmxa
+Installed /home/opam/.opam/system/lib/ocsigenserver/server_main.o
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cookies.o
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.o
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib_base.o
+Installed /home/opam/.opam/system/lib/ocsigenserver/server_main.cmx
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cookies.cmx
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.cmx
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib_base.cmx
+Installed /home/opam/.opam/system/lib/ocsigenserver/server_main.cmo
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigenserver.cma
+Installed /home/opam/.opam/system/lib/ocsigenserver/http.cma
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cookies.cmo
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.cmo
+Installed /home/opam/.opam/system/lib/ocsigenserver/donotparsecommandline.cma
+Installed /home/opam/.opam/system/lib/ocsigenserver/parsecommandline.cma
+Installed /home/opam/.opam/system/lib/ocsigenserver/baselib.cma
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib_base.cmo
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_server.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_local_files.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_client.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_parseconfig.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_extensions.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cookies.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_senders.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_charset_mime.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_com.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/framepp.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_headers.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_http_frame.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/http_headers.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/polytables.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_loader.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_stream.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_messages.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_getcommandline.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_config.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_lib_base.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/ocsigen_cache.cmi
+Installed /home/opam/.opam/system/lib/ocsigenserver/META
+# Extensions
+install -m 755 -d /home/opam/.opam/system/lib/ocsigenserver/extensions/
+install -m 644 \
+	  extensions/ocsigen_comet.cmi extensions/accesscontrol.cmi extensions/authbasic.cmi extensions/ocsipersist.cmi  extensions/staticmod.cmo extensions/cgimod.cmo extensions/redirectmod.cmo extensions/revproxy.cmo extensions/extensiontemplate.cmo extensions/accesscontrol.cmo extensions/userconf.cmo extensions/outputfilter.cmo extensions/authbasic.cmo extensions/rewritemod.cmo extensions/extendconfiguration.cmo extensions/ocsigen_comet.cmo extensions/cors.cmo  extensions/ocsipersist-sqlite.cma extensions/staticmod.cmx extensions/cgimod.cmx extensions/redirectmod.cmx extensions/revproxy.cmx extensions/extensiontemplate.cmx extensions/accesscontrol.cmx extensions/userconf.cmx extensions/outputfilter.cmx extensions/authbasic.cmx extensions/rewritemod.cmx extensions/extendconfiguration.cmx extensions/ocsigen_comet.cmx extensions/cors.cmx extensions/staticmod.o   extensions/cgimod.o   extensions/redirectmod.o   extensions/revproxy.o   extensions/extensiontemplate.o   extensions/accesscontrol.o   extensions/userconf.o   extensions/outputfilter.o   extensions/authbasic.o   extensions/rewritemod.o   extensions/extendconfiguration.o   extensions/ocsigen_comet.o   extensions/cors.o   extensions/ocsipersist-sqlite.cmxa extensions/ocsipersist-sqlite.a  extensions/staticmod.cmxs extensions/cgimod.cmxs extensions/redirectmod.cmxs extensions/revproxy.cmxs extensions/extensiontemplate.cmxs extensions/accesscontrol.cmxs extensions/userconf.cmxs extensions/outputfilter.cmxs extensions/authbasic.cmxs extensions/rewritemod.cmxs extensions/extendconfiguration.cmxs extensions/ocsigen_comet.cmxs extensions/cors.cmxs extensions/ocsipersist-sqlite.cmxs extensions/ocsigen_comet.mli extensions/accesscontrol.mli extensions/authbasic.mli extensions/ocsipersist.mli \
+	  /home/opam/.opam/system/lib/ocsigenserver/extensions/
+[ -z "" ] || \
+	  install -m 755   \
+	  /home/opam/.opam/system/lib/ocsigenserver/extensions/
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocsigenserver.2.4.0/src'
+INSTALL_CAN_PUT_PERMISSIONS: no
+## Command pipe
+install -m 777 -d /home/opam/.opam/system/lib/ocsigenserver/var/run/
+[ -p /home/opam/.opam/system/lib/ocsigenserver/var/run/ocsigenserver_command ] || \
+	 { mkfifo -m 666 /home/opam/.opam/system/lib/ocsigenserver/var/run/ocsigenserver_command; \
+	   if [ "no" = yes ]; \
+	     then chown -R opam:opam /home/opam/.opam/system/lib/ocsigenserver/var/run/ocsigenserver_command; \
+	   fi; }
+## Configuration files
+install -m 777 -d /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/conf.d
+install -m 666 ocsigenserver.conf.sample /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/
+[ -f /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/ocsigenserver.conf ] || \
+	  { install -m 666 ocsigenserver.conf.sample \
+                /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/ocsigenserver.conf;  }
+mv /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/mime.types /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/mime.types.old
+mv: cannot stat '/home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver/mime.types': No such file or directory
+make: [install.files] Error 1 (ignored)
+## Log directory
+install -m 666 src/files/mime.types /home/opam/.opam/system/lib/ocsigenserver/etc/ocsigenserver
+install -d -m 777  /home/opam/.opam/system/lib/ocsigenserver/var/log/ocsigenserver
+## Static files
+install -d -m 777  /home/opam/.opam/system/lib/ocsigenserver/var/www
+install -d -m 777  /home/opam/.opam/system/lib/ocsigenserver/var/lib/ocsigenserver
+install -m 666  \
+	  local/var/www/*.html /home/opam/.opam/system/lib/ocsigenserver/var/www
+install -d -m 777  \
+	  /home/opam/.opam/system/lib/ocsigenserver/var/www/ocsigenstuff
+install -m 666  \
+	  local/var/www/ocsigenstuff/*.png local/var/www/ocsigenstuff/*.css \
+	  /home/opam/.opam/system/lib/ocsigenserver/var/www/ocsigenstuff
+install -d -m 777 /home/opam/.opam/system/man/man1
+install -m 666 src/files/ocsigenserver.1 /home/opam/.opam/system/man/man1
+
+## Run "make doc" and "make install.doc" to build and install the ocamldoc.
+Installing ocsigenserver.2.4.0.
+
+=-=-= Installing libres3.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/libres3.0.2+opam.tar.gz
+sending incremental file list
+libres3.0.2+opam.tar.gz
+
+sent 6,465,002 bytes  received 35 bytes  4,310,024.67 bytes/sec
+total size is 6,463,298  speedup is 1.00
+Building libres3.0.2:
+  sh -c cd libres3 && ocaml setup.ml -distclean
+  sh -c cd libres3 && ocaml setup.ml -configure --prefix /home/opam/.opam/system --enable-tests --disable-docs
+  sh -c cd libres3 && ocaml setup.ml -build
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ libres3
+Package version: ..................................... 0.2
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.1
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build ocsigen-based standalone server: ............... true
+build fcgi-based server (for development only): ...... false
+build internal docs: ................................. false
+Create documentations: ............................... false
+Compile tests executable and library and run them: ... true
+pkg_netclient: ....................................... /home/opam/.opam/system/lib/netclient
+pkg_netstring: ....................................... /home/opam/.opam/system/lib/netstring
+pkg_threads: ......................................... /usr/lib/ocaml
+pkg_jsonm: ........................................... /home/opam/.opam/system/lib/jsonm
+pkg_cryptokit: ....................................... /home/opam/.opam/system/lib/cryptokit
+pkg_ssl: ............................................. /home/opam/.opam/system/lib/ssl
+pkg_equeue_ssl: ...................................... /home/opam/.opam/system/lib/equeue-ssl
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+pkg_xmlm: ............................................ /home/opam/.opam/system/lib/xmlm
+pkg_netsys: .......................................... /home/opam/.opam/system/lib/netsys
+pkg_str: ............................................. /usr/lib/ocaml
+pkg_ocsigenserver: ................................... /home/opam/.opam/system/lib/ocsigenserver
+pkg_netcgi2: ......................................... /home/opam/.opam/system/lib/netcgi2
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
+
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sigs.ml > src/sxclient/sigs.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/eventIO.ml > src/sxclient/eventIO.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sigs.cmo src/sxclient/sigs.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sXIO.mli > src/sxclient/sXIO.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXIO.cmi src/sxclient/sXIO.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sXIO.ml > src/sxclient/sXIO.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sXFile.ml > src/sxclient/sXFile.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/config.ml > src/sxclient/config.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/eventIO.cmo src/sxclient/eventIO.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/eventIO.cmo src/sxclient/eventIO.ml
+File "src/sxclient/eventIO.ml", line 75, characters 2-9:
+Warning 44: this open statement shadows the type identifier t (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier try_catch (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/config.cmo src/sxclient/config.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sXC.ml > src/sxclient/sXC.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/cache.ml > src/sxclient/cache.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/lru.mli > src/sxclient/lru.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sharedData.mli > src/sxclient/sharedData.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/lru.cmi src/sxclient/lru.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sharedData.cmi src/sxclient/sharedData.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/http.ml > src/sxclient/http.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/cache.cmo src/sxclient/cache.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/http.cmo src/sxclient/http.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/http.cmo src/sxclient/http.ml
+File "src/sxclient/http.ml", line 111, characters 6-163:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unixqueue_util.event.
+File "src/sxclient/http.ml", line 111, characters 6-163:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unixqueue_util.event.
+File "src/sxclient/http.ml", line 233, characters 6-10:
+Warning 32: unused value noop.
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sXDefaultIO.ml > src/sxclient/sXDefaultIO.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXC.cmo src/sxclient/sXC.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXC.cmo src/sxclient/sXC.ml
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+File "src/sxclient/sXC.ml", line 271, characters 12-27:
+Warning 39: unused rec flag.
+File "src/sxclient/sXC.ml", line 279, characters 4-18:
+Warning 6: labels were omitted in the application of this function.
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier try_catch (which is later used)
+File "src/sxclient/sXC.ml", line 738, characters 8-138:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 738, characters 8-138:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 963, characters 6-124:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 963, characters 6-124:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1195, characters 8-308:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type estate.
+File "src/sxclient/sXC.ml", line 1195, characters 8-308:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type estate.
+File "src/sxclient/sXC.ml", line 1220, characters 10-55:
+Warning 5: this function application is partial,
+maybe some arguments are missing.
+File "src/sxclient/sXC.ml", line 1348, characters 6-1360:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1489, characters 11-937:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1526, characters 10-19:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1624, characters 8-142:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1624, characters 8-142:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1630, characters 25-96:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1653, characters 6-137:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1653, characters 6-137:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 107, characters 4-42:
+Warning 38: unused exception constructor Error.
+File "src/sxclient/sXC.ml", line 255, characters 19-24:
+Warning 27: unused variable state.
+File "src/sxclient/sXC.ml", line 293, characters 6-19:
+Warning 32: unused value base64_encode.
+File "src/sxclient/sXC.ml", line 335, characters 8-14:
+Warning 32: unused value finish.
+File "src/sxclient/sXC.ml", line 342, characters 8-35:
+Warning 34: unused type source.
+File "src/sxclient/sXC.ml", line 343, characters 9-50:
+Warning 34: unused type reader.
+File "src/sxclient/sXC.ml", line 353, characters 8-18:
+Warning 32: unused value file_empty.
+File "src/sxclient/sXC.ml", line 363, characters 8-19:
+Warning 32: unused value check_reply.
+File "src/sxclient/sXC.ml", line 371, characters 28-29:
+Warning 27: unused variable s.
+File "src/sxclient/sXC.ml", line 373, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 373, characters 27-35:
+Warning 27: unused variable children.
+File "src/sxclient/sXC.ml", line 379, characters 8-18:
+Warning 32: unused value empty_list.
+File "src/sxclient/sXC.ml", line 380, characters 8-21:
+Warning 32: unused value get_blocksize.
+File "src/sxclient/sXC.ml", line 458, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 464, characters 27-35:
+Warning 27: unused variable children.
+File "src/sxclient/sXC.ml", line 486, characters 8-24:
+Warning 32: unused value file_meta_mapper.
+File "src/sxclient/sXC.ml", line 493, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 498, characters 12-24:
+Warning 32: unused value parse_hashes.
+File "src/sxclient/sXC.ml", line 717, characters 8-9:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 782, characters 24-28:
+Warning 27: unused variable path.
+File "src/sxclient/sXC.ml", line 870, characters 10-11:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 903, characters 9-13:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 918, characters 9-13:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 1066, characters 9-143:
+Warning 34: unused type json.
+File "src/sxclient/sXC.ml", line 1068, characters 8-32:
+Warning 34: unused type json_mem.
+File "src/sxclient/sXC.ml", line 1086, characters 9-37:
+Warning 34: unused type err.
+File "src/sxclient/sXC.ml", line 1119, characters 8-18:
+Warning 32: unused value parse_json.
+File "src/sxclient/sXC.ml", line 1309, characters 12-19:
+Warning 32: unused value pp_json.
+File "src/sxclient/sXC.ml", line 1347, characters 10-11:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 1455, characters 12-21:
+Warning 26: unused variable chunksize.
+File "src/sxclient/sXC.ml", line 1485, characters 10-14:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 1490, characters 14-20:
+Warning 27: unused variable volume.
+File "src/sxclient/sXC.ml", line 1490, characters 24-28:
+Warning 27: unused variable path.
+File "src/sxclient/sXC.ml", line 1493, characters 12-15:
+Warning 26: unused variable dst.
+File "src/sxclient/sXC.ml", line 1559, characters 16-19:
+Warning 27: unused variable src.
+File "src/sxclient/sXC.ml", line 1559, characters 20-23:
+Warning 27: unused variable dst.
+File "src/sxclient/sXC.ml", line 1570, characters 14-20:
+Warning 27: unused variable volume.
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXFile.cmo src/sxclient/sXFile.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXFile.cmo src/sxclient/sXFile.ml
+File "src/sxclient/sXFile.ml", line 114, characters 6-604:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.file_kind.
+File "src/sxclient/sXFile.ml", line 114, characters 6-604:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.file_kind.
+File "src/sxclient/sXFile.ml", line 194, characters 8-241:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 194, characters 8-241:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 207, characters 6-157:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 207, characters 6-157:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 179, characters 14-20:
+Warning 27: unused variable metafn.
+File "src/sxclient/sXFile.ml", line 179, characters 22-29:
+Warning 27: unused variable replica.
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/dLinkedList.mli > src/sxclient/dLinkedList.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/dLinkedList.cmi src/sxclient/dLinkedList.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/dLinkedList.ml > src/sxclient/dLinkedList.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/lru.ml > src/sxclient/lru.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/weakBuffer.mli > src/sxclient/weakBuffer.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/weakBuffer.cmi src/sxclient/weakBuffer.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/sharedData.ml > src/sxclient/sharedData.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/weakBuffer.ml > src/sxclient/weakBuffer.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXIO.cmo src/sxclient/sXIO.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXIO.cmo src/sxclient/sXIO.ml
+File "src/sxclient/sXIO.ml", line 69, characters 2-8:
+Warning 44: this open statement shadows the type identifier t (which is later used)
+File "src/sxclient/sXIO.ml", line 193, characters 20-22:
+Warning 27: unused variable tl.
+File "src/sxclient/sXIO.ml", line 218, characters 6-15:
+Warning 32: unused value is_prefix.
+File "src/sxclient/sXIO.ml", line 237, characters 6-22:
+Warning 32: unused value fold_list_filter.
+File "src/sxclient/sXIO.ml", line 363, characters 39-44:
+Warning 27: unused variable entry.
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXDefaultIO.cmo src/sxclient/sXDefaultIO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/dLinkedList.cmo src/sxclient/dLinkedList.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/lru.cmo src/sxclient/lru.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sharedData.cmo src/sxclient/sharedData.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/weakBuffer.cmo src/sxclient/weakBuffer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/sxclient/sigs.cmo src/sxclient/eventIO.cmo src/sxclient/sXIO.cmo src/sxclient/config.cmo src/sxclient/sXFile.cmo src/sxclient/dLinkedList.cmo src/sxclient/weakBuffer.cmo src/sxclient/lru.cmo src/sxclient/sharedData.cmo src/sxclient/cache.cmo src/sxclient/http.cmo src/sxclient/sXC.cmo src/sxclient/sXDefaultIO.cmo -o src/sxclient/sxclient.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sigs.cmx src/sxclient/sigs.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/eventIO.cmx src/sxclient/eventIO.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/eventIO.cmx src/sxclient/eventIO.ml
+File "src/sxclient/eventIO.ml", line 75, characters 2-9:
+Warning 44: this open statement shadows the type identifier t (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier try_catch (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/eventIO.ml", line 80, characters 2-8:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXIO.cmx src/sxclient/sXIO.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXIO.cmx src/sxclient/sXIO.ml
+File "src/sxclient/sXIO.ml", line 69, characters 2-8:
+Warning 44: this open statement shadows the type identifier t (which is later used)
+File "src/sxclient/sXIO.ml", line 193, characters 20-22:
+Warning 27: unused variable tl.
+File "src/sxclient/sXIO.ml", line 218, characters 6-15:
+Warning 32: unused value is_prefix.
+File "src/sxclient/sXIO.ml", line 237, characters 6-22:
+Warning 32: unused value fold_list_filter.
+File "src/sxclient/sXIO.ml", line 363, characters 39-44:
+Warning 27: unused variable entry.
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/config.cmx src/sxclient/config.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/dLinkedList.cmx src/sxclient/dLinkedList.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/weakBuffer.cmx src/sxclient/weakBuffer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/lru.cmx src/sxclient/lru.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sharedData.cmx src/sxclient/sharedData.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/cache.cmx src/sxclient/cache.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/http.cmx src/sxclient/http.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/http.cmx src/sxclient/http.ml
+File "src/sxclient/http.ml", line 111, characters 6-163:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unixqueue_util.event.
+File "src/sxclient/http.ml", line 111, characters 6-163:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unixqueue_util.event.
+File "src/sxclient/http.ml", line 233, characters 6-10:
+Warning 32: unused value noop.
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXC.cmx src/sxclient/sXC.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXC.cmx src/sxclient/sXC.ml
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/sXC.ml", line 117, characters 4-10:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+File "src/sxclient/sXC.ml", line 271, characters 12-27:
+Warning 39: unused rec flag.
+File "src/sxclient/sXC.ml", line 279, characters 4-18:
+Warning 6: labels were omitted in the application of this function.
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier fail (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier return (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier >>= (which is later used)
+File "src/sxclient/sXC.ml", line 331, characters 4-14:
+Warning 44: this open statement shadows the value identifier try_catch (which is later used)
+File "src/sxclient/sXC.ml", line 738, characters 8-138:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 738, characters 8-138:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 963, characters 6-124:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 963, characters 6-124:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1195, characters 8-308:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type estate.
+File "src/sxclient/sXC.ml", line 1195, characters 8-308:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type estate.
+File "src/sxclient/sXC.ml", line 1220, characters 10-55:
+Warning 5: this function application is partial,
+maybe some arguments are missing.
+File "src/sxclient/sXC.ml", line 1348, characters 6-1360:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1489, characters 11-937:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1526, characters 10-19:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1624, characters 8-142:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1624, characters 8-142:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1630, characters 25-96:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+[]
+File "src/sxclient/sXC.ml", line 1653, characters 6-137:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 1653, characters 6-137:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXC.ml", line 107, characters 4-42:
+Warning 38: unused exception constructor Error.
+File "src/sxclient/sXC.ml", line 255, characters 19-24:
+Warning 27: unused variable state.
+File "src/sxclient/sXC.ml", line 293, characters 6-19:
+Warning 32: unused value base64_encode.
+File "src/sxclient/sXC.ml", line 335, characters 8-14:
+Warning 32: unused value finish.
+File "src/sxclient/sXC.ml", line 342, characters 8-35:
+Warning 34: unused type source.
+File "src/sxclient/sXC.ml", line 343, characters 9-50:
+Warning 34: unused type reader.
+File "src/sxclient/sXC.ml", line 353, characters 8-18:
+Warning 32: unused value file_empty.
+File "src/sxclient/sXC.ml", line 363, characters 8-19:
+Warning 32: unused value check_reply.
+File "src/sxclient/sXC.ml", line 371, characters 28-29:
+Warning 27: unused variable s.
+File "src/sxclient/sXC.ml", line 373, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 373, characters 27-35:
+Warning 27: unused variable children.
+File "src/sxclient/sXC.ml", line 379, characters 8-18:
+Warning 32: unused value empty_list.
+File "src/sxclient/sXC.ml", line 380, characters 8-21:
+Warning 32: unused value get_blocksize.
+File "src/sxclient/sXC.ml", line 458, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 464, characters 27-35:
+Warning 27: unused variable children.
+File "src/sxclient/sXC.ml", line 486, characters 8-24:
+Warning 32: unused value file_meta_mapper.
+File "src/sxclient/sXC.ml", line 493, characters 19-25:
+Warning 27: unused variable parent.
+File "src/sxclient/sXC.ml", line 498, characters 12-24:
+Warning 32: unused value parse_hashes.
+File "src/sxclient/sXC.ml", line 717, characters 8-9:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 782, characters 24-28:
+Warning 27: unused variable path.
+File "src/sxclient/sXC.ml", line 870, characters 10-11:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 903, characters 9-13:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 918, characters 9-13:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 1066, characters 9-143:
+Warning 34: unused type json.
+File "src/sxclient/sXC.ml", line 1068, characters 8-32:
+Warning 34: unused type json_mem.
+File "src/sxclient/sXC.ml", line 1086, characters 9-37:
+Warning 34: unused type err.
+File "src/sxclient/sXC.ml", line 1119, characters 8-18:
+Warning 32: unused value parse_json.
+File "src/sxclient/sXC.ml", line 1309, characters 12-19:
+Warning 32: unused value pp_json.
+File "src/sxclient/sXC.ml", line 1347, characters 10-11:
+Warning 26: unused variable p.
+File "src/sxclient/sXC.ml", line 1455, characters 12-21:
+Warning 26: unused variable chunksize.
+File "src/sxclient/sXC.ml", line 1485, characters 10-14:
+Warning 26: unused variable port.
+File "src/sxclient/sXC.ml", line 1490, characters 14-20:
+Warning 27: unused variable volume.
+File "src/sxclient/sXC.ml", line 1490, characters 24-28:
+Warning 27: unused variable path.
+File "src/sxclient/sXC.ml", line 1493, characters 12-15:
+Warning 26: unused variable dst.
+File "src/sxclient/sXC.ml", line 1559, characters 16-19:
+Warning 27: unused variable src.
+File "src/sxclient/sXC.ml", line 1559, characters 20-23:
+Warning 27: unused variable dst.
+File "src/sxclient/sXC.ml", line 1570, characters 14-20:
+Warning 27: unused variable volume.
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXFile.cmx src/sxclient/sXFile.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXFile.cmx src/sxclient/sXFile.ml
+File "src/sxclient/sXFile.ml", line 114, characters 6-604:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.file_kind.
+File "src/sxclient/sXFile.ml", line 114, characters 6-604:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.file_kind.
+File "src/sxclient/sXFile.ml", line 194, characters 8-241:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 194, characters 8-241:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 207, characters 6-157:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 207, characters 6-157:
+Warning 4: this pattern-matching is fragile.
+It will remain exhaustive when constructors are added to type Unix.error.
+File "src/sxclient/sXFile.ml", line 179, characters 14-20:
+Warning 27: unused variable metafn.
+File "src/sxclient/sXFile.ml", line 179, characters 22-29:
+Warning 27: unused variable replica.
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient -o src/sxclient/sXDefaultIO.cmx src/sxclient/sXDefaultIO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/sxclient/sigs.cmx src/sxclient/eventIO.cmx src/sxclient/sXIO.cmx src/sxclient/config.cmx src/sxclient/sXFile.cmx src/sxclient/dLinkedList.cmx src/sxclient/weakBuffer.cmx src/sxclient/lru.cmx src/sxclient/sharedData.cmx src/sxclient/cache.cmx src/sxclient/http.cmx src/sxclient/sXC.cmx src/sxclient/sXDefaultIO.cmx -o src/sxclient/sxclient.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/sxclient/sxclient.cmxa src/sxclient/sigs.cmx src/sxclient/eventIO.cmx src/sxclient/sXIO.cmx src/sxclient/config.cmx src/sxclient/sXFile.cmx src/sxclient/dLinkedList.cmx src/sxclient/weakBuffer.cmx src/sxclient/lru.cmx src/sxclient/sharedData.cmx src/sxclient/cache.cmx src/sxclient/http.cmx src/sxclient/sXC.cmx src/sxclient/sXDefaultIO.cmx -o src/sxclient/sxclient.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -modules src/sxclient/lwt/sXLwt.ml > src/sxclient/lwt/sXLwt.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -I src/sxclient/lwt -I src/sxclient -o src/sxclient/lwt/sXLwt.cmo src/sxclient/lwt/sXLwt.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/sxclient/lwt/sXLwt.cmo -o src/sxclient/lwt/sxclient.lwt.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -I src/sxclient/lwt -I src/sxclient -o src/sxclient/lwt/sXLwt.cmx src/sxclient/lwt/sXLwt.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/sxclient/lwt/sXLwt.cmx -o src/sxclient/lwt/sxclient.lwt.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/sxclient/lwt/sxclient.lwt.cmxa src/sxclient/lwt/sXLwt.cmx -o src/sxclient/lwt/sxclient.lwt.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/sxclient/thread/sXThread.ml > src/sxclient/thread/sXThread.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient/thread -I src/sxclient -o src/sxclient/thread/sXThread.cmo src/sxclient/thread/sXThread.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/sxclient/thread/sXThread.cmo -o src/sxclient/thread/sxclient.thread.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/sxclient/thread -I src/sxclient -o src/sxclient/thread/sXThread.cmx src/sxclient/thread/sXThread.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/sxclient/thread/sXThread.cmx -o src/sxclient/thread/sxclient.thread.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/sxclient/thread/sxclient.thread.cmxa src/sxclient/thread/sXThread.cmx -o src/sxclient/thread/sxclient.thread.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -modules test/sxuls.ml > test/sxuls.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -I src/sxclient/lwt -I src/sxclient/thread -I src/server -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -I test -I src/server -I src/sxclient/lwt -I src/sxclient/thread -o test/sxuls.cmo test/sxuls.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -I src/sxclient/lwt -I src/sxclient/thread -I src/server -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -I test -I src/server -I src/sxclient/lwt -I src/sxclient/thread -o test/sxuls.cmx test/sxuls.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -linkpkg -g -linkpkg -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit src/sxclient/sxclient.cmxa src/sxclient/thread/sxclient.thread.cmxa test/sxuls.cmx -o test/sxuls.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -modules test/sxucp.ml > test/sxucp.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -I src/sxclient/lwt -I src/sxclient/thread -I src/server -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -I test -I src/server -I src/sxclient/lwt -I src/sxclient/thread -o test/sxucp.cmo test/sxucp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -I src/sxclient/lwt -I src/sxclient/thread -I src/server -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package oUnit -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -package lwt.unix -package netcgi2 -I test -I src/server -I src/sxclient/lwt -I src/sxclient/thread -o test/sxucp.cmx test/sxucp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -linkpkg -g -linkpkg -thread -package threads -package ssl -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit src/sxclient/sxclient.cmxa src/sxclient/thread/sxclient.thread.cmxa test/sxucp.cmx -o test/sxucp.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/paths.mli > src/server/paths.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/server -I src/sxclient -o src/server/paths.cmi src/server/paths.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/paths.ml > src/server/paths.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/configure.ml > src/server/configure.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/server -I src/sxclient -o src/server/configure.cmo src/server/configure.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/cmdline.mli > src/server/cmdline.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/server -I src/sxclient -o src/server/cmdline.cmi src/server/cmdline.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/cmdline.ml > src/server/cmdline.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/pid.mli > src/server/pid.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules version.ml > version.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -I src/sxclient -thread -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -I src/server -I src/sxclient -o src/server/pid.cmi src/server/pid.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -w A -warn-error S -warn-error U -o version.cmo version.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package xmlm -package threads -package str -package ssl -package ocsigenserver -package netsys -package netstring -package netclient -package jsonm -package equeue-ssl -package cryptokit -modules src/server/dispatch.ml > src/server/dispatch.ml.depends
