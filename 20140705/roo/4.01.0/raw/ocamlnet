@@ -206,3 +206,40 @@ ocamlfind ocamlc -g   -package "unix unix"  -o netsys_oothr.cma -a netsys_oothr.
 + gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c  -O  -I'/usr/lib/ocaml' 'netsys_c_outofheap.c'
 ocamlfind ocamlc -g   -package "unix unix" -c -thread netsys_oothr_mt.mli
 ocamlfind ocamlc -g   -package "unix unix"  -c -thread netsys_oothr_mt.ml
+ocamlfind ocamlc -g   -package "unix unix"  -o netsys_oothr_mt.cma -a \
+		netsys_oothr.cmo netsys_oothr_mt.cmo
+ocamlfind ocamlc -g   -package "unix unix" -c -thread netsys_oothr_mt_init.mli
+ocamlfind ocamlc -g   -package "unix unix"  -c -thread netsys_oothr_mt_init.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+ocamlfind ocamldep   *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_data.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_data.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_hashtbl.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_hashtbl.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_array.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_array.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -a -o netshm.cma  netshm.cmo netshm_data.cmo netshm_hashtbl.cmo netshm_array.cmo; \
+	else \
+		../../tools/mkstublib -o netshm netshm.cmo netshm_data.cmo netshm_hashtbl.cmo netshm_array.cmo  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring'
+camlp4 pa_o.cmo pa_op.cmo pr_o.cmo -impl netdate.mlp > netdate.ml
