@@ -5937,3 +5937,29 @@ ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -pac
 ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -modules lib/version.ml > lib/version.ml.depends
 ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -I lib -o lib/ffi.cmo lib/ffi.ml
 ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -I lib -o lib/ssl.cmo lib/ssl.ml
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -I lib -o lib/version.cmo lib/version.ml
+ocamlfind ocamlc -pack -g lib/import.cmo lib/version.cmo lib/ffi.cmo lib/ssl.cmo lib/std.cmo -o lib/async_ssl.cmo
+ocamlfind ocamlc -a -cclib -lssl -cclib -lcrypto lib/async_ssl.cmo -o lib/async_ssl.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -for-pack Async_ssl -I lib -o lib/import.cmx lib/import.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -for-pack Async_ssl -I lib -o lib/version.cmx lib/version.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -for-pack Async_ssl -I lib -o lib/ffi.cmx lib/ffi.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -for-pack Async_ssl -I lib -o lib/ssl.cmx lib/ssl.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package pa_bench.syntax -package pa_bench -package herelib.syntax -package herelib -package ctypes.foreign -package ctypes -package async -package core -for-pack Async_ssl -I lib -o lib/std.cmx lib/std.ml
+touch lib/async_ssl.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/import.cmx lib/version.cmx lib/ffi.cmx lib/ssl.cmx lib/std.cmx -o lib/async_ssl.cmx  ; then  rm -f lib/async_ssl.mli  ; else  rm -f lib/async_ssl.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lssl -cclib -lcrypto lib/async_ssl.cmx -o lib/async_ssl.cmxa
+ocamlfind ocamlopt -shared lib/async_ssl.cmx -o lib/async_ssl.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/async_ssl/ffi.mli
+Installed /home/opam/.opam/system/lib/async_ssl/import.ml
+Installed /home/opam/.opam/system/lib/async_ssl/ssl.mli
+Installed /home/opam/.opam/system/lib/async_ssl/std.ml
+Installed /home/opam/.opam/system/lib/async_ssl/version.mli
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.cmi
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.cma
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.cmxa
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.a
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.cmxs
+Installed /home/opam/.opam/system/lib/async_ssl/async_ssl.cmx
+Installed /home/opam/.opam/system/lib/async_ssl/META
+Installing async_ssl.111.08.00.
