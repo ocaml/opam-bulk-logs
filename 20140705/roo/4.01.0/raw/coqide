@@ -6287,3 +6287,18 @@ Identifier 'IF' now a keyword
 Identifier 'exists2' now a keyword
 Identifier 'rew' now a keyword
 OCAMLC    plugins/syntax/nat_syntax.ml
+OCAMLC    plugins/syntax/nat_syntax_plugin_mod.ml
+OCAMLC -a -o plugins/syntax/nat_syntax_plugin.cma
+OCAMLOPT  plugins/syntax/nat_syntax.ml
+OCAMLOPT  plugins/syntax/nat_syntax_plugin_mod.ml
+OCAMLOPT -a -o plugins/syntax/nat_syntax_plugin.cmxa
+OCAMLOPT -shared -o plugins/syntax/nat_syntax_plugin.cmxs
+COQC -nois theories/Init/Datatypes.v
+COQC -nois theories/Init/Logic_Type.v
+COQC -nois theories/Init/Peano.v
+COQC -nois theories/Init/Specif.v
+COQC -nois theories/Init/Wf.v
+COQC -nois theories/Init/Tactics.v
+OCAMLC    plugins/extraction/miniml.mli
+OCAMLC    plugins/extraction/table.mli
+OCAMLC    plugins/extraction/table.ml
