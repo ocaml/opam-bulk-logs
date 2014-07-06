@@ -1656,3 +1656,27 @@ pkg_ounit: ..................................... /home/opam/.opam/system/lib/oUn
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package oUnit -package str -modules runner.ml > runner.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmo quickcheck.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o runner.cmo runner.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a quickcheck.cmo runner.cmo -o QTest2Lib.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o quickcheck.cmx quickcheck.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o runner.cmx runner.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a quickcheck.cmx runner.cmx -o QTest2Lib.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared QTest2Lib.cmxa quickcheck.cmx runner.cmx -o QTest2Lib.cmxs
+
+#### ocamlfind remove QTest2Lib ####
+
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/QTest2Lib
+
+#### ocaml setup.ml -install ####
+
+Installed /home/opam/.opam/system/lib/QTest2Lib/quickcheck.mli
+Installed /home/opam/.opam/system/lib/QTest2Lib/runner.ml
+Installed /home/opam/.opam/system/lib/QTest2Lib/QTest2Lib.cma
+Installed /home/opam/.opam/system/lib/QTest2Lib/QTest2Lib.cmxa
+Installed /home/opam/.opam/system/lib/QTest2Lib/QTest2Lib.a
+Installed /home/opam/.opam/system/lib/QTest2Lib/QTest2Lib.cmxs
+Installed /home/opam/.opam/system/lib/QTest2Lib/runner.cmi
+Installed /home/opam/.opam/system/lib/QTest2Lib/quickcheck.cmi
+Installed /home/opam/.opam/system/lib/QTest2Lib/runner.cmx
+Installed /home/opam/.opam/system/lib/QTest2Lib/quickcheck.cmx
+Installed /home/opam/.opam/system/lib/QTest2Lib/META
+Installing qtest.2.0.1.
