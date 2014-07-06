@@ -1818,3 +1818,43 @@ Missing primitives:
   caml_terminfo_backup
   caml_terminfo_resume
   caml_terminfo_standout
+cat kernel.js iocaml.js > static/services/kernels/js/kernel.min.js
+make[1]: Leaving directory `/home/opam/.opam/system/build/iocamljs-kernel.0.4.4'
+rm -f *.cm[io] iocaml_full.byte iocaml.byte iocaml.js 
+rm -fr *~
+make all \
+		OPT=1 EXT=".full" \
+		CAMLP4=1 LWT=1 JSOO=1 \
+		SYNTAX="js_of_ocaml.syntax lwt.syntax.options lwt.syntax" 
+make[1]: Entering directory `/home/opam/.opam/system/build/iocamljs-kernel.0.4.4'
+ocamlfind ocamlc -c exec.mli
+ocamlfind ocamlc -c \
+		-syntax camlp4o -package js_of_ocaml.syntax \
+		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler \
+		-I /usr/lib/ocaml/compiler-libs \
+		exec.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlc -c iocaml.mli
+ocamlfind ocamlc -c \
+		-syntax camlp4o -package js_of_ocaml.syntax \
+		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler \
+		-I /usr/lib/ocaml/compiler-libs \
+		iocaml.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ocamlfind ocamlc -c iocaml_main.ml
+ocamlfind ocamlc -linkall -linkpkg -o iocaml_full.byte \
+		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler \
+		 \
+		-I /usr/lib/ocaml/compiler-libs ocamlcommon.cma ocamlbytecomp.cma ocamltoplevel.cma \
+		-I /usr/lib/ocaml/camlp4 camlp4o.cma  \
+		`ocamlfind query -predicates syntax,toploop,preprocessor -a-format js_of_ocaml.syntax` `ocamlfind query -predicates syntax,toploop,preprocessor -a-format lwt.syntax.options` `ocamlfind query -predicates syntax,toploop,preprocessor -a-format lwt.syntax` \
+		exec.cmo iocaml.cmo iocaml_main.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+`ocamlc -where`/expunge iocaml_full.byte iocaml.byte \
+		Arg Array ArrayLabels Buffer Callback CamlinternalLazy CamlinternalMod CamlinternalOO Char Complex Digest Dynlink Filename Format Genlex Gc Hashtbl Int32 Int64 Lazy Lexing List ListLabels Map Marshal MoreLabels Nativeint Obj Oo Parsing Pervasives Printexc Printf Queue Random Scanf Set Sort Stack StdLabels Stream String StringLabels Sys Weak Iocaml Camlp4 Camlp4_config Camlp4_import Camlp4Top Lwt Lwt_condition Lwt_list Lwt_mutex Lwt_mvar Lwt_pool Lwt_pqueue Lwt_sequence Lwt_stream Lwt_switch CSS Dom Dom_events Dom_html Event_arrows File Firebug Form Js Json Lwt_js Lwt_js_events Regexp Sys_js Typed_array Url WebGL WebSockets XmlHttpRequest  Outcometree Topdirs Toploop  
+js_of_ocaml -toplevel -noruntime -opt 2 -noinline -linkall \
+		 \
+		`ocamlfind query -i-format js_of_ocaml.syntax` `ocamlfind query -i-format lwt.syntax.options` `ocamlfind query -i-format lwt.syntax` -I /usr/lib/ocaml/camlp4 \
+		-I . -I /usr/lib/ocaml/compiler-libs /home/opam/.opam/system/lib/js_of_ocaml/runtime.js /home/opam/.opam/system/lib/js_of_ocaml/weak.js /home/opam/.opam/system/lib/js_of_ocaml/toplevel.js  \
+		`ocamlfind query -i-format js_of_ocaml` `ocamlfind query -i-format lwt` \
+		iocaml.byte
