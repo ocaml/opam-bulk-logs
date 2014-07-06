@@ -6884,3 +6884,20 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 
 ./setup.exe -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/comm.mli > lib/comm.mli.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/comm.cmi lib/comm.mli
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/comm.ml > lib/comm.ml.depends
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/lexer.mli > lib/lexer.mli.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/lexer.cmi lib/lexer.mli
+/usr/bin/ocamllex.opt -q lib/lexer.mll
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/lexer.ml > lib/lexer.ml.depends
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/send_mail.mli > lib/send_mail.mli.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/send_mail.cmi lib/send_mail.mli
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/send_mail.ml > lib/send_mail.ml.depends
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/smtp.mli > lib/smtp.mli.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/smtp.cmi lib/smtp.mli
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/smtp.ml > lib/smtp.ml.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/comm.cmo lib/comm.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/lexer.cmo lib/lexer.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/send_mail.cmo lib/send_mail.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/smtp.cmo lib/smtp.ml
