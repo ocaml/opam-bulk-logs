@@ -119,3 +119,58 @@ Warning 3: deprecated feature: operator (&); you should use (&&) instead
 /usr/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
 ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
 /usr/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/usr/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/usr/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/usr/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/usr/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/system/lib/ulex/ulexing.a
+Installed /home/opam/.opam/system/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/system/lib/ulex/utf8.mli
+Installed /home/opam/.opam/system/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/system/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+Installing ulex.1.1.
+
+=-=-= Installing piqilib.0.6.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/piqilib.0.6.6+opam.tar.gz
+sending incremental file list
+piqilib.0.6.6+opam.tar.gz
+
+sent 352,757 bytes  received 35 bytes  705,584.00 bytes/sec
+total size is 352,547  speedup is 1.00
+Building piqilib.0.6.6:
+  ./configure --prefix /home/opam/.opam/system
+  make
+  make ocaml
+  make install
+  make ocaml-install
+found ocamlfind: /home/opam/.opam/system/bin/ocamlfind
+detected linux OCaml toolchain
+checking whether necessary dependencies are already installed...
+xmlm is installed in /home/opam/.opam/system/lib/xmlm
+ulex is installed in /home/opam/.opam/system/lib/ulex
+easy-format is installed in /home/opam/.opam/system/lib/easy-format
+set -e; \
+	for dir in piqilib src; do \
+		make -C $dir ; \
+	done
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+echo "let version = \"`head -1 ../VERSION`\"" >piqi_version.ml
+echo "version = \"`head -1 ../VERSION`\"" >META
+cat META.in >>META
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -pp "camlp4orf " -I +camlp4 pa_labelscope.ml
