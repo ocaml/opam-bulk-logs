@@ -49,3 +49,65 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install biocaml
+The following actions will be performed:
+ - install omake.0.9.8.6-0.rc1 [required by biocaml]
+ - install conf-libpcre.1 [required by biocaml]
+ - install ounit.2.0.0 [required by biocaml]
+ - install xmlm.1.2.0 [required by biocaml]
+ - install camlzip.1.05 [required by biocaml]
+ - install ssl.0.4.7 [required by biocaml]
+ - install camlp4.4.01.0 [required by biocaml]
+ - install res.4.0.4 [required by biocaml]
+ - install pcre-ocaml.7.1.0 [required by biocaml]
+ - install type_conv.109.47.00 [required by biocaml]
+ - install pipebang.109.28.00 [required by biocaml]
+ - install lwt.2.4.5 [required by biocaml]
+ - install herelib.109.35.00 [required by biocaml]
+ - install variantslib.109.15.00 [required by biocaml]
+ - install sexplib.109.47.00 [required by biocaml]
+ - install pa_ounit.109.36.00 [required by biocaml]
+ - install fieldslib.109.20.00 [required by biocaml]
+ - install comparelib.109.27.00 [required by biocaml]
+ - install bin_prot.109.47.00 [required by biocaml]
+ - install custom_printf.109.27.00 [required by biocaml]
+ - install core_kernel.109.47.00 [required by biocaml]
+ - install core.109.47.00 [required by biocaml]
+ - install cfstream.1.1.2 [required by biocaml]
+ - install flow.0.3 [required by biocaml]
+ - install biocaml.0.3.1
+25 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing camlzip.1.05 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+sending incremental file list
+camlzip.1.05+opam.tar.gz
+
+sent 26,592 bytes  received 35 bytes  53,254.00 bytes/sec
+total size is 26,459  speedup is 0.99
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+ocamlopt -c zip.ml
+ocamlopt -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
