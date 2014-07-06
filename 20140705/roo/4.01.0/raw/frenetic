@@ -5522,3 +5522,16 @@ pkg_core: ............................................ /home/opam/.opam/system/l
 pkg_sexplib_syntax: .................................. /home/opam/.opam/system/lib/sexplib
 pkg_threads: ......................................... /usr/lib/ocaml
 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/VInt.mli > lib/VInt.mli.depends
+ocamlfind ocamlc -c -g -thread -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -I lib -o lib/VInt.cmi lib/VInt.mli
+ocamlfind ocamldep -syntax camlp4o -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/VInt.ml > lib/VInt.ml.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/OpenFlow_Header.mli > lib/OpenFlow_Header.mli.depends
+ocamlfind ocamlc -c -g -thread -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -I lib -o lib/OpenFlow_Header.cmi lib/OpenFlow_Header.mli
+ocamlfind ocamldep -syntax camlp4o -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/OpenFlow_Header.ml > lib/OpenFlow_Header.ml.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/OpenFlow0x01.mli > lib/OpenFlow0x01.mli.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/OpenFlow0x01_Core.mli > lib/OpenFlow0x01_Core.mli.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -modules lib/OpenFlow0x01_Stats.mli > lib/OpenFlow0x01_Stats.mli.depends
+ocamlfind ocamlc -c -g -thread -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -I lib -o lib/OpenFlow0x01_Core.cmi lib/OpenFlow0x01_Core.mli
+ocamlfind ocamlc -c -g -thread -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -I lib -o lib/OpenFlow0x01_Stats.cmi lib/OpenFlow0x01_Stats.mli
+ocamlfind ocamlc -c -g -thread -package cstruct.syntax -package cstruct -package str -package sexplib.syntax -package packet -package core -package threads -I lib -o lib/OpenFlow0x01.cmi lib/OpenFlow0x01.mli
