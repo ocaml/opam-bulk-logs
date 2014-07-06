@@ -4031,3 +4031,8 @@ mv checksum_stubs.o lib/checksum_stubs.o
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -modules lib/checksum.ml > lib/checksum.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmo lib/Packet.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -ccopt -g -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmo lib/checksum.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lpacket_stubs -cclib -lpacket_stubs -g lib/checksum.cmo lib/Packet.cmo -o lib/packet.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/checksum.cmx lib/checksum.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -ccopt -g -package cstruct -syntax camlp4o -package cstruct.syntax -package str -syntax camlp4o -I lib -o lib/Packet.cmx lib/Packet.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lpacket_stubs lib/checksum.cmx lib/Packet.cmx -o lib/packet.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall -I lib lib/packet.cmxa -o lib/packet.cmxs
