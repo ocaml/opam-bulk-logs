@@ -3843,3 +3843,7 @@ mv tuntap_stubs.o lib/tuntap_stubs.o
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmo bin/otunctl.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmx bin/otunctl.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cmdliner -package ipaddr lib/tuntap.cmxa bin/otunctl.cmx -o bin/otunctl.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/sendfd_test.ml > test/sendfd_test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmo test/sendfd_test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmx test/sendfd_test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/sendfd_test.cmx -o test/sendfd_test.native
