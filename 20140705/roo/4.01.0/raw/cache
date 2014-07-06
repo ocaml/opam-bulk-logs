@@ -732,3 +732,21 @@ for the native-code compiler (if supported on your architecture).
 Finally, a
    make install
 will install the package(s).
+for pkg in netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make all ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+ocamlfind ocamldep -package "camlp4.macro" -syntax camlp4o  *.ml *.mli >depend || { rm -f depend; exit 1; }
