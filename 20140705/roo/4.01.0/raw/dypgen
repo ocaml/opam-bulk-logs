@@ -71,3 +71,28 @@ ocamlopt -I ../dyplib -c dypgen_lexer.ml
 ocamlopt -I ../dyplib -c insert_linenum.ml
 ocamlopt -I ../dyplib -c dypgen.ml
 ocamlopt -I ../dyplib -o dypgen.opt dyp.cmxa argument.cmx extract_type.cmx dypgen_parser.cmx dypgen_lexer.cmx insert_linenum.cmx dypgen.cmx
+rm dypgen_lexer.ml extract_type.ml insert_linenum.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/dypgen.20120619-1/dypgen'
+mkdir -p /home/opam/.opam/system/bin
+cp dypgen/dypgen.opt /home/opam/.opam/system/bin
+install -d /home/opam/.opam/system/bin
+install -m 755 dypgen/dypgen /home/opam/.opam/system/bin
+install -m 755 dyp2gram.pl /home/opam/.opam/system/bin/dyp2gram
+install -d /home/opam/.opam/system/man/man1
+install -m 644 doc/dypgen.1 /home/opam/.opam/system/man/man1/dypgen.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/system/man/man1/dypgen.opt.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/system/man/man1/dyp2gram.1
+cd dyplib; make install
+make[1]: Entering directory `/home/opam/.opam/system/build/dypgen.20120619-1/dyplib'
+ocamlfind remove -destdir /home/opam/.opam/system/lib dyp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/dyp
+install -d /home/opam/.opam/system/lib
+ocamlfind install -destdir /home/opam/.opam/system/lib dyp META dyp.cma dyp.cmxa dyp.a dyp.cmi
+Installed /home/opam/.opam/system/lib/dyp/dyp.cmi
+Installed /home/opam/.opam/system/lib/dyp/dyp.a
+Installed /home/opam/.opam/system/lib/dyp/dyp.cmxa
+Installed /home/opam/.opam/system/lib/dyp/dyp.cma
+Installed /home/opam/.opam/system/lib/dyp/META
+chmod a-x /home/opam/.opam/system/lib/dyp/META #why is this needed ?
+make[1]: Leaving directory `/home/opam/.opam/system/build/dypgen.20120619-1/dyplib'
+Installing dypgen.20120619-1.
