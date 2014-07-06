@@ -84,3 +84,20 @@ pkg_unix: ............................................ /usr/lib/ocaml
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -modules benchmark.mli > benchmark.mli.depends
+ocamlfind ocamlc -c -g -package unix -o benchmark.cmi benchmark.mli
+ocamlfind ocamldep -package unix -modules benchmark.ml > benchmark.ml.depends
+ocamlfind ocamlc -c -g -package unix -o benchmark.cmo benchmark.ml
+ocamlfind ocamlc -a benchmark.cmo -o benchmark.cma
+ocamlfind ocamlopt -c -g -package unix -o benchmark.cmx benchmark.ml
+ocamlfind ocamlopt -a benchmark.cmx -o benchmark.cmxa
+ocamlfind ocamlopt -shared benchmark.cmx -o benchmark.cmxs
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.mli
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.cma
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.cmxa
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.a
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.cmxs
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.cmi
+Installed /home/opam/.opam/system/lib/benchmark/benchmark.cmx
+Installed /home/opam/.opam/system/lib/benchmark/META
+Installing benchmark.1.3.
