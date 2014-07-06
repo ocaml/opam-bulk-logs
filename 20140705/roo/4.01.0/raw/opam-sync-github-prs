@@ -5323,3 +5323,12 @@ pkg_str: ............................................. /usr/lib/ocaml
 ocamldoc: ............................................ /usr/bin/ocamldoc
 gzip: ................................................ /bin/gzip
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package lwt -c src/lTerm_term_stubs.c
+mv lTerm_term_stubs.o src/lTerm_term_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package lwt -c src/lTerm_unix_stubs.c
+mv lTerm_unix_stubs.o src/lTerm_unix_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package lwt -c src/lTerm_windows_stubs.c
+mv lTerm_windows_stubs.o src/lTerm_windows_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o src/lambda-term_stubs src/lTerm_term_stubs.o src/lTerm_unix_stubs.o src/lTerm_windows_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package lwt -package lwt.react -syntax camlp4o -package lwt.syntax -package lwt.unix -package zed -modules src/lTerm.mli > src/lTerm.mli.depends

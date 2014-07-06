@@ -195,3 +195,5 @@ ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.qu
 ocamlfind ocamlc -c -g -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -I tests -I src -o tests/test.cmi tests/test.mli
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/op_basic.cmo tests/op_basic.ml
 ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test.ml > tests/test.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test.cmo tests/test.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/op_basic.cmo -o tests/op_basic.byte
