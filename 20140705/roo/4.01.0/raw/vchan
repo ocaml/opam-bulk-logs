@@ -2876,3 +2876,43 @@ pkg_xenstore_transport_lwt: .......................... /home/opam/.opam/system/l
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/vchan_stubs.c
+mv vchan_stubs.o lib/vchan_stubs.o
+/usr/bin/ocamlmklib -o lib/vchan_stubs lib/vchan_stubs.o
+ocamlfind ocamldep -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/vchan.mli > lib/vchan.mli.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmi lib/vchan.mli
+ocamlfind ocamldep -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/vchan.ml > lib/vchan.ml.depends
+ocamlfind ocamlc -c -g -annot -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmo lib/vchan.ml
+ocamlfind ocamlc -a -dllib -lvchan_stubs -cclib -lvchan_stubs lib/vchan.cmo -o lib/vchan.cma
+ocamlfind ocamlopt -c -g -annot -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/vchan.cmx lib/vchan.ml
+ocamlfind ocamlopt -a -cclib -lvchan_stubs lib/vchan.cmx -o lib/vchan.cmxa
+ocamlfind ocamlopt -shared -I lib lib/vchan.cmxa lib/vchan.cmx -o lib/vchan.cmxs
+ocamlfind ocamldep -package xenstore_transport.lwt -package xenstore_transport -package xenstore.client -package xenstore -package xen-gnt.unix -package xen-gnt -package xen-evtchn.unix.activations -package xen-evtchn.unix -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package io-page.unix -package io-page -package cstruct.syntax -package cstruct -package cmdliner -syntax camlp4o -modules cli/node_cli.ml > cli/node_cli.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package xenstore_transport.lwt -package xenstore_transport -package xenstore.client -package xenstore -package xen-gnt.unix -package xen-gnt -package xen-evtchn.unix.activations -package xen-evtchn.unix -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package io-page.unix -package io-page -package cstruct.syntax -package cstruct -package cmdliner -syntax camlp4o -I cli -I lib -o cli/node_cli.cmo cli/node_cli.ml
+ocamlfind ocamlopt -c -g -annot -I lib -package xenstore_transport.lwt -package xenstore_transport -package xenstore.client -package xenstore -package xen-gnt.unix -package xen-gnt -package xen-evtchn.unix.activations -package xen-evtchn.unix -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package io-page.unix -package io-page -package cstruct.syntax -package cstruct -package cmdliner -syntax camlp4o -I cli -I lib -o cli/node_cli.cmx cli/node_cli.ml
+ocamlfind ocamlopt -g -I lib -linkpkg -package xenstore_transport.lwt -package xenstore_transport -package xenstore.client -package xenstore -package xen-gnt.unix -package xen-gnt -package xen-evtchn.unix.activations -package xen-evtchn.unix -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package io-page.unix -package io-page -package cstruct.syntax -package cstruct -package cmdliner lib/vchan.cmxa cli/node_cli.cmx -o cli/node_cli.native
+# No parallelism done
+ocamlfind ocamldoc -dump lib/vchan.odoc -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib lib/vchan.mli
++ ocamlfind ocamldoc -dump lib/vchan.odoc -package xenstore.client -package xen-gnt -package xen-evtchn -package sexplib.syntax -package sexplib -package mirage-types.lwt -package mirage-types -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib lib/vchan.mli
+Warning: Module or module type V1_LWT.FLOW not found
+Warning: Module or module type V1_LWT.FLOW not found
+rm -rf doc/api.docdir
+mkdir -p doc/api.docdir
+ocamlfind ocamldoc -load lib/vchan.odoc -html -d doc/api.docdir
++ ocamlfind ocamldoc -load lib/vchan.odoc -html -d doc/api.docdir
+Warning: Module or module type V1_LWT.FLOW not found
+Warning: Module or module type V1_LWT.FLOW not found
+# No parallelism done
+Installed /home/opam/.opam/system/lib/vchan/vchan.mli
+Installed /home/opam/.opam/system/lib/vchan/libvchan_stubs.a
+Installed /home/opam/.opam/system/lib/vchan/vchan.cma
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmxa
+Installed /home/opam/.opam/system/lib/vchan/vchan.a
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmxs
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmi
+Installed /home/opam/.opam/system/lib/vchan/vchan.cmx
+Installed /home/opam/.opam/system/lib/vchan/META
+Installed /home/opam/.opam/system/lib/stublibs/dllvchan_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllvchan_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing vchan.0.9.7.
