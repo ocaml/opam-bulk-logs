@@ -2014,3 +2014,25 @@ ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -mod
 ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmo lib/ring.ml
 ocamlfind ocamlc -a -dllib -lshared_memory_ring_stubs -cclib -lshared_memory_ring_stubs lib/ring.cmo -o lib/shared_memory_ring.cma
 ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmx lib/ring.ml
+ocamlfind ocamlopt -a -cclib -lshared_memory_ring_stubs lib/ring.cmx -o lib/shared_memory_ring.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/shared_memory_ring.cmxa -o lib/shared_memory_ring.cmxs
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules xen/console_ring.mli > xen/console_ring.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmi xen/console_ring.mli
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules xen/console_ring.ml > xen/console_ring.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmo xen/console_ring.ml
+ocamlfind ocamlc -a xen/console_ring.cmo -o xen/console_ring.cma
+ocamlfind ocamlopt -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmx xen/console_ring.ml
+ocamlfind ocamlopt -a xen/console_ring.cmx -o xen/console_ring.cmxa
+ocamlfind ocamlopt -shared xen/console_ring.cmx -o xen/console_ring.cmxs
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules xen/xenstore_ring.mli > xen/xenstore_ring.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmi xen/xenstore_ring.mli
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules xen/xenstore_ring.ml > xen/xenstore_ring.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmo xen/xenstore_ring.ml
+ocamlfind ocamlc -a xen/xenstore_ring.cmo -o xen/xenstore_ring.cma
+ocamlfind ocamlopt -c -g -annot -I lib -package cstruct.syntax -package cstruct -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmx xen/xenstore_ring.ml
+ocamlfind ocamlopt -a xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxa
+ocamlfind ocamlopt -shared xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxs
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lwt/lwt_ring.mli > lwt/lwt_ring.mli.depends
+ocamlfind ocamlc -c -g -annot -I lib -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmi lwt/lwt_ring.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lwt/lwt_ring.ml > lwt/lwt_ring.ml.depends
+ocamlfind ocamlc -c -g -annot -I lib -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmo lwt/lwt_ring.ml
