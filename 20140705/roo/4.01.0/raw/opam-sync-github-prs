@@ -8881,3 +8881,13 @@ W: Cannot find source file matching module 'Github_t' in library github
 W: Cannot find source file matching module 'Github_j' in library github
 W: Cannot find source file matching module 'Github_t' in library github
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib/github.mli > lib/github.mli.depends
+cd lib && atdgen -j-std -t github.atd
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib/github_t.mli > lib/github_t.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib -o lib/github_t.cmi lib/github_t.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib -o lib/github.cmi lib/github.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib/github.ml > lib/github.ml.depends
+cd lib && atdgen -j -j-std github.atd
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib/github_j.mli > lib/github_j.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -I lib -o lib/github_j.cmi lib/github_j.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package atdgen -package cohttp -package cohttp.lwt -syntax camlp4o -package lwt.syntax -package re -package uri -package yojson -modules lib/github_j.ml > lib/github_j.ml.depends
