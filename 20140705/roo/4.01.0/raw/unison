@@ -1355,3 +1355,93 @@ Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
 ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/system/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/system/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/system/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/system/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/system/bin"
+make[1]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+
+=-=-= Installing unison.2.40.102 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/unison.2.40.102+opam.tar.gz
+sending incremental file list
+unison.2.40.102+opam.tar.gz
+
+sent 2,710,510 bytes  received 35 bytes  5,421,090.00 bytes/sec
+total size is 2,709,722  speedup is 1.00
+Applying opam.patch.
+patching file Makefile.OCaml
+Building unison.2.40.102:
+  make install OCAMLLIBDIR=/home/opam/.opam/system/lib HOME=/home/opam/.opam/system
+ocamlc -o mkProjectInfo unix.cma str.cma mkProjectInfo.ml
+./mkProjectInfo > Makefile.ProjectInfo
+ocamlopt: ubase/rx.mli ---> ubase/rx.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/rx.mli
+ocamlopt: ubase/rx.ml ---> ubase/rx.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/rx.ml
+ocamlopt: unicode_tables.ml ---> unicode_tables.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/unicode_tables.ml
+ocamlopt: unicode.mli ---> unicode.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/unicode.mli
+ocamlopt: unicode.ml ---> unicode.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/unicode.ml
+ocamlopt: bytearray.mli ---> bytearray.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/bytearray.mli
+ocamlopt: bytearray.ml ---> bytearray.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/bytearray.ml
+ocamlopt: system/system_generic.ml ---> system/system_generic.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/system/system_generic.ml
+ocamlopt: system/generic/system_impl.ml ---> system/generic/system_impl.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/system/generic/system_impl.ml
+ocamlc: system/system_intf.ml ---> system/system_intf.cmo
+ocamlc -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/system/system_intf.ml
+ocamlopt: system.mli ---> system.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/system.mli
+ocamlopt: system.ml ---> system.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/system.ml
+echo 'let myName = "'unison'";;' > ubase/projectInfo.ml
+echo 'let myVersion = "'2.40.102'";;' >> ubase/projectInfo.ml
+echo 'let myMajorVersion = "'2.40'";;' >> ubase/projectInfo.ml
+ocamlopt: ubase/projectInfo.ml ---> ubase/projectInfo.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/projectInfo.ml
+ocamlopt: ubase/myMap.mli ---> ubase/myMap.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/myMap.mli
+ocamlopt: ubase/myMap.ml ---> ubase/myMap.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/myMap.ml
+ocamlopt: ubase/safelist.mli ---> ubase/safelist.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/safelist.mli
+ocamlopt: ubase/safelist.ml ---> ubase/safelist.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/safelist.ml
+ocamlopt: ubase/uprintf.mli ---> ubase/uprintf.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/uprintf.mli
+ocamlopt: ubase/uprintf.ml ---> ubase/uprintf.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/uprintf.ml
+ocamlopt: ubase/util.mli ---> ubase/util.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/util.mli
+ocamlopt: ubase/util.ml ---> ubase/util.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/util.ml
+ocamlopt: ubase/uarg.mli ---> ubase/uarg.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/uarg.mli
+ocamlopt: ubase/uarg.ml ---> ubase/uarg.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/uarg.ml
+File "/home/opam/.opam/system/build/unison.2.40.102/ubase/uarg.ml", line 71, characters 29-30:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt: ubase/prefs.mli ---> ubase/prefs.cmi
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/prefs.mli
+ocamlopt: ubase/prefs.ml ---> ubase/prefs.cmx
+ocamlopt -I lwt -I ubase -I system -I system/generic -I lwt/generic -I /home/opam/.opam/system/lib/lablgtk2 -c /home/opam/.opam/system/build/unison.2.40.102/ubase/prefs.ml
