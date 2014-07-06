@@ -811,3 +811,21 @@ ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbu
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package lwt.unix -package lwt -package bencode -for-pack Bencode_rpc -I src -o src/RPCClient.cmx src/RPCClient.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package lwt.unix -package lwt -package bencode -for-pack Bencode_rpc -I src -o src/RPCServer.cmx src/RPCServer.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package lwt.unix -package lwt -package bencode -for-pack Bencode_rpc -I src -o src/broadcast.cmx src/broadcast.ml
+touch src/bencode_rpc.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I src src/lwt_queue.cmx src/signal.cmx src/netTcp.cmx src/RPCServer.cmx src/RPCClient.cmx src/broadcast.cmx -o src/bencode_rpc.cmx  ; then  rm -f src/bencode_rpc.mli  ; else  rm -f src/bencode_rpc.mli  ; exit 1; fi
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/bencode_rpc.cmx -o src/bencode_rpc.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/bencode_rpc.cmxa src/bencode_rpc.cmx -o src/bencode_rpc.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/bencode_rpc/RPCServer.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/RPCClient.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/netTcp.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/lwt_queue.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/signal.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/broadcast.mli
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.cmi
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.cma
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.cmxa
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.a
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.cmxs
+Installed /home/opam/.opam/system/lib/bencode_rpc/bencode_rpc.cmx
+Installed /home/opam/.opam/system/lib/bencode_rpc/META
+Installing bencode_rpc.0.2.1.
