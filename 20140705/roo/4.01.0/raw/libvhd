@@ -131,3 +131,23 @@ ocamlfind ocamlc -c -g -I lib -o lib/vhd.cmi lib/vhd.mli
 ocamlfind ocamldep -modules lib/vhd.ml > lib/vhd.ml.depends
 ocamlfind ocamlc -c -g -I lib -o lib/vhd.cmo lib/vhd.ml
 ocamlfind ocamlc -a -dllib -llibvhd_stubs -cclib -llibvhd_stubs -cclib -lvhd -cclib -luuid lib/vhd.cmo -o lib/libvhd.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/vhd.cmx lib/vhd.ml
+ocamlfind ocamlopt -a -cclib -llibvhd_stubs -cclib -lvhd -cclib -luuid lib/vhd.cmx -o lib/libvhd.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/libvhd.cmxa -o lib/libvhd.cmxs
+ocamlfind ocamldep -modules lib_test/open.ml > lib_test/open.ml.depends
+ocamlfind ocamlc -c -g -I lib -I lib_test -I lib -o lib_test/open.cmo lib_test/open.ml
+ocamlfind ocamlc -g -I lib -linkpkg lib/libvhd.cma lib_test/open.cmo -o lib_test/open.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/libvhd/vhd.mli
+Installed /home/opam/.opam/system/lib/libvhd/liblibvhd_stubs.a
+Installed /home/opam/.opam/system/lib/libvhd/libvhd.cma
+Installed /home/opam/.opam/system/lib/libvhd/libvhd.cmxa
+Installed /home/opam/.opam/system/lib/libvhd/libvhd.a
+Installed /home/opam/.opam/system/lib/libvhd/libvhd.cmxs
+Installed /home/opam/.opam/system/lib/libvhd/vhd.cmi
+Installed /home/opam/.opam/system/lib/libvhd/vhd.cmx
+Installed /home/opam/.opam/system/lib/libvhd/META
+Installed /home/opam/.opam/system/lib/stublibs/dlllibvhd_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlllibvhd_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing libvhd.0.9.0.
