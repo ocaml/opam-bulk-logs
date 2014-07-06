@@ -73,3 +73,32 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install postgres
+The following actions will be performed:
+ - install postgres.20040120
+1 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing postgres.20040120 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/postgres.20040120+opam.tar.gz
+sending incremental file list
+postgres.20040120+opam.tar.gz
+
+sent 22,969 bytes  received 35 bytes  46,008.00 bytes/sec
+total size is 22,831  speedup is 0.99
+Applying opam.patch.
+patching file libpq_stub.c
+Building postgres.20040120:
+  make all POSTGRES_INCLUDE=-I /usr/include/postgresql
+  make install
+rm -f META
+echo 'name="postgres"' >> META
+echo 'version="20040120"' >> META
+echo 'description="Bindings for PostgreSQL"' >> META
+echo 'archive(byte)="postgres.cma"' >> META
+echo 'archive(native)="postgres.cmxa"' >> META
+ocamlc -c postgres.mli
+ocamlc -c postgres.ml
+ocamlopt -c postgres.ml
+ocamlc -c -I /usr/include/postgresql libpq_stub.c
+rm -f libpostgres.a
+ocamlmklib -lpq -verbose -o postgres postgres.cmo postgres.cmx libpq_stub.o
++ gcc -shared -o ./dllpostgres.so libpq_stub.o    -lpq
