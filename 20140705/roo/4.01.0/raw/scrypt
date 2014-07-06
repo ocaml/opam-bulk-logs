@@ -173,3 +173,17 @@ ocamlfind ocamlopt -c scrypt.ml
 #	-lcrypto is OpenSSL (scrypt dependency) and must be present on on the system, it will also link the resulting dllscrypt.so with libcrypto.so.
 ocamlfind ocamlmklib -v -o scrypt scrypt.cmo scrypt.cmx scrypt_stubs.o libscrypt/*.o -lcrypto -cclib -lscrypt -cclib -lcrypto
 + gcc -shared -o ./dllscrypt.so scrypt_stubs.o libscrypt/crypto_aesctr.o libscrypt/crypto_scrypt-nosse.o libscrypt/memlimit.o libscrypt/scryptenc.o libscrypt/scryptenc_cpuperf.o libscrypt/sha256.o libscrypt/warn.o    -lcrypto
++ ar rc ./libscrypt.a  scrypt_stubs.o libscrypt/crypto_aesctr.o libscrypt/crypto_scrypt-nosse.o libscrypt/memlimit.o libscrypt/scryptenc.o libscrypt/scryptenc_cpuperf.o libscrypt/sha256.o libscrypt/warn.o; ranlib ./libscrypt.a
++ ocamlc.opt -a  -o scrypt.cma  scrypt.cmo -dllib -lscrypt -cclib -lscrypt   -cclib -lcrypto -cclib -lscrypt -cclib -lcrypto
++ ocamlopt.opt -a -o scrypt.cmxa  scrypt.cmx -cclib -lscrypt   -cclib -lcrypto -cclib -lscrypt -cclib -lcrypto
+ocamlfind install scrypt META *.cmi *.cmxa *.cma *.a *.so
+Installed /home/opam/.opam/system/lib/scrypt/scrypt.a
+Installed /home/opam/.opam/system/lib/scrypt/libscrypt.a
+Installed /home/opam/.opam/system/lib/scrypt/scrypt.cma
+Installed /home/opam/.opam/system/lib/scrypt/scrypt.cmxa
+Installed /home/opam/.opam/system/lib/scrypt/scrypt.cmi
+Installed /home/opam/.opam/system/lib/scrypt/META
+Installed /home/opam/.opam/system/lib/stublibs/dllscrypt.so
+Installed /home/opam/.opam/system/lib/stublibs/dllscrypt.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing scrypt.0.2.1.
