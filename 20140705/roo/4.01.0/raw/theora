@@ -249,3 +249,52 @@ ocamlc.opt -c -I /home/opam/.opam/system/lib/ogg theora.mli
 ocamlc.opt -c -I /home/opam/.opam/system/lib/ogg theora.ml
 ocamlc.opt -c -I /home/opam/.opam/system/lib/ogg ogg_demuxer_theora_decoder.mli
 ocamlc.opt -c -I /home/opam/.opam/system/lib/ogg ogg_demuxer_theora_decoder.ml
+ocamlmklib    -I /home/opam/.opam/system/lib/ogg  -L/home/opam/.opam/system/lib    \
+				-o theora_stubs  theora_stubs.o -ltheoradec -logg -ltheoraenc -ltheoradec -logg \
+				
+ocamlc.opt -a -dllib dlltheora_stubs.so    -I /home/opam/.opam/system/lib/ogg   -ccopt -L/home/opam/.opam/system/lib  -ccopt -L/home/opam/.opam/system/lib     \
+				-cclib -ltheora_stubs -cclib -ltheoradec -cclib -logg -cclib -ltheoraenc -cclib -ltheoradec -cclib -logg  -o theora.cma  theora.cmo ogg_demuxer_theora_decoder.cmo
+make[2]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+ocamldep -native ogg_demuxer_theora_decoder.mli > ._ncdi/ogg_demuxer_theora_decoder.di
+ocamldep -native theora.mli > ._ncdi/theora.di
+make[2]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: `libtheora_stubs.a' is up to date.
+ocamlopt.opt -c -I /home/opam/.opam/system/lib/ogg theora.ml
+ocamlopt.opt -c -I /home/opam/.opam/system/lib/ogg ogg_demuxer_theora_decoder.ml
+ocamlopt.opt -a     -I /home/opam/.opam/system/lib/ogg   -ccopt -L/home/opam/.opam/system/lib  -ccopt -L/home/opam/.opam/system/lib    -cclib -ltheora_stubs -cclib -ltheoradec -cclib -logg -cclib -ltheoraenc -cclib -ltheoradec -cclib -logg  \
+				 -o theora.cmxa theora.cmx ogg_demuxer_theora_decoder.cmx
+make[2]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[1]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: `libtheora_stubs.a' is up to date.
+make[2]: `theora.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+make[2]: `libtheora_stubs.a' is up to date.
+make[2]: `theora.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  theora META ogg_demuxer_theora_decoder.mli theora.mli ogg_demuxer_theora_decoder.cmi theora.cmi theora.cma theora.cmxa ogg_demuxer_theora_decoder.cmx theora.cmx libtheora_stubs.a theora.a dlltheora_stubs.so
+Installed /home/opam/.opam/system/lib/theora/theora.a
+Installed /home/opam/.opam/system/lib/theora/libtheora_stubs.a
+Installed /home/opam/.opam/system/lib/theora/theora.cmx
+Installed /home/opam/.opam/system/lib/theora/ogg_demuxer_theora_decoder.cmx
+Installed /home/opam/.opam/system/lib/theora/theora.cmxa
+Installed /home/opam/.opam/system/lib/theora/theora.cma
+Installed /home/opam/.opam/system/lib/theora/theora.cmi
+Installed /home/opam/.opam/system/lib/theora/ogg_demuxer_theora_decoder.cmi
+Installed /home/opam/.opam/system/lib/theora/theora.mli
+Installed /home/opam/.opam/system/lib/theora/ogg_demuxer_theora_decoder.mli
+Installed /home/opam/.opam/system/lib/theora/META
+Installed /home/opam/.opam/system/lib/stublibs/dlltheora_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlltheora_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/system/build/theora.0.3.0/src'
+Installing theora.0.3.0.
