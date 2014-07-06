@@ -2578,3 +2578,56 @@ ocamlfind ocamlc -g   -package "unix unix"  -c  netsys_oothr.ml
 ocamlfind ocamlc -g   -package "unix unix"  -o netsys_oothr.cma -a netsys_oothr.cmo
 ../../tools/stubcc -ocamlc ocamlc -ccopt -O   netsys_c_outofheap.c
 + gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c  -O  -I'/usr/lib/ocaml' 'netsys_c_outofheap.c'
+ocamlfind ocamlc -g   -package "unix unix" -c -thread netsys_oothr_mt.mli
+ocamlfind ocamlc -g   -package "unix unix"  -c -thread netsys_oothr_mt.ml
+ocamlfind ocamlc -g   -package "unix unix"  -o netsys_oothr_mt.cma -a \
+		netsys_oothr.cmo netsys_oothr_mt.cmo
+ocamlfind ocamlc -g   -package "unix unix" -c -thread netsys_oothr_mt_init.mli
+ocamlfind ocamlc -g   -package "unix unix"  -c -thread netsys_oothr_mt_init.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+ocamlfind ocamldep   *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_data.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_data.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_hashtbl.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_hashtbl.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix" -c  netshm_array.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -c  netshm_array.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/netsys -package "unix"  -a -o netshm.cma  netshm.cmo netshm_data.cmo netshm_hashtbl.cmo netshm_array.cmo; \
+	else \
+		../../tools/mkstublib -o netshm netshm.cmo netshm_data.cmo netshm_hashtbl.cmo netshm_array.cmo  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring'
+camlp4 pa_o.cmo pa_op.cmo pr_o.cmo -impl netdate.mlp > netdate.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netdb.mli
+sed -e 's|@NET_DB_DIR@|/home/opam/.opam/system/lib/netstring|' netdb.mlp >netdb.ml
+sed -e 's/@VERSION@/3.7.4/' netconst.mlp >netconst.ml
+ocamllex netglob_lex.mll
+69 states, 297 transitions, table size 1602 bytes
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -DWORDSIZE_64 -DHOST_IS_LITTLE_ENDIAN -DUSE_NETSYS_XDR \
+	    -impl netnumber.mlp > netnumber.ml || rm -f netnumber.ml
+ocaml ../../tools/unicode_charinfo.ml unicode_charinfo.txt \
+		> netunichar.ml
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -D ENABLE_STR_EXTERNALS -D HAVE_PCRE \
+	    -impl netstring_str.mlp > netstring_str.ml || \
+	      rm -f netstring_str.ml
