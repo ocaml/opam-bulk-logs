@@ -1504,3 +1504,461 @@ ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
 ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
 ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
 ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx rowDisplacement.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableFormat.cmx tableFormat.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableInterpreter.cmx tableInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o convert.cmx convert.ml
+touch menhirLib.mli  ; if  ocamlfind ocamlopt -pack -g infiniteArray.cmx packedIntArray.cmx rowDisplacement.cmx engineTypes.cmx engine.cmx tableFormat.cmx tableInterpreter.cmx convert.cmx -o menhirLib.cmx  ; then  rm -f menhirLib.mli  ; else  rm -f menhirLib.mli  ; exit 1; fi
+ocamlfind ocamldep -modules lr1.ml > lr1.ml.depends
+ocamlfind ocamldep -modules breadth.ml > breadth.ml.depends
+ocamlfind ocamldep -modules breadth.mli > breadth.mli.depends
+ocamlfind ocamlc -c -o breadth.cmi breadth.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr0.cmx lr0.ml
+ocamlfind ocamldep -modules slr.ml > slr.ml.depends
+ocamlfind ocamldep -modules slr.mli > slr.mli.depends
+ocamlfind ocamlc -c -o slr.cmi slr.mli
+ocamlfind ocamldep -modules Fix.ml > Fix.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o breadth.cmx breadth.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o slr.cmx slr.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o Fix.cmx Fix.ml
+ocamlfind ocamldep -modules lr1partial.ml > lr1partial.ml.depends
+ocamlfind ocamldep -modules lr1partial.mli > lr1partial.mli.depends
+ocamlfind ocamlc -c -o lr1partial.cmi lr1partial.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1.cmx lr1.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o derivation.cmx derivation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1partial.cmx lr1partial.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o conflict.cmx conflict.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o codePieces.cmx codePieces.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o invariant.cmx invariant.ml
+ocamlfind ocamldep -modules coqBackend.ml > coqBackend.ml.depends
+ocamlfind ocamldep -modules coqBackend.mli > coqBackend.mli.depends
+ocamlfind ocamlc -c -o coqBackend.cmi coqBackend.mli
+ocamlfind ocamldep -modules inliner.ml > inliner.ml.depends
+ocamlfind ocamldep -modules inliner.mli > inliner.mli.depends
+ocamlfind ocamlc -c -o inliner.cmi inliner.mli
+ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
+ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/usr/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/system/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sentenceParser.mly > sentenceParser.mly.depends
+/home/opam/.opam/system/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
++ /home/opam/.opam/system/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
+Grammar has 2 nonterminal symbols, among which 1 start symbols.
+Grammar has 5 terminal symbols.
+Grammar has 5 productions.
+Built an LR(0) automaton with 11 states.
+The grammar is SLR(1).
+Built an LR(1) automaton with 11 states.
+3 out of 11 states are represented.
+0 out of 10 symbols keep track of their start position.
+0 out of 10 symbols keep track of their end position.
+5 out of 11 states have a default reduction.
+4 out of 6 productions exploit shiftreduce optimization.
+0 out of 11 states can peek at an error.
+0 out of 11 states can do error recovery.
+42 functions before inlining, 7 functions after inlining.
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
+ocamlfind ocamldep -modules tableBackend.ml > tableBackend.ml.depends
+ocamlfind ocamldep -modules tableBackend.mli > tableBackend.mli.depends
+ocamlfind ocamlc -c -o tableBackend.cmi tableBackend.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBackend.cmx codeBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o back.cmx back.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o menhir.cmx menhir.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa -g Fix.cmx IO.cmx installation.cmx keyword.cmx lineCount.cmx positions.cmx stringSet.cmx version.cmx settings.cmx printer.cmx action.cmx mark.cmx stringMap.cmx misc.cmx breadth.cmx codeBits.cmx gSet.cmx compressedBitSet.cmx option.cmx dot.cmx error.cmx parameters.cmx parserAux.cmx parser.cmx lexer.cmx tarjan.cmx unionFind.cmx parameterizedGrammar.cmx partialGrammar.cmx time.cmx preFront.cmx tokenType.cmx interface.cmx lexdep.cmx lexmli.cmx infer.cmx listMonad.cmx nonTerminalDefinitionInlining.cmx reachability.cmx unparameterizedPrinter.cmx front.cmx gMap.cmx patricia.cmx grammar.cmx codePieces.cmx item.cmx derivation.cmx menhirLib.cmx lr0.cmx slr.cmx lr1.cmx lr1partial.cmx conflict.cmx invariant.cmx codeBackend.cmx coqBackend.cmx pprint.cmx cst.cmx traverse.cmx inliner.cmx referenceInterpreter.cmx sentenceParser.cmx sentenceLexer.cmx interpret.cmx tableBackend.cmx back.cmx menhir.cmx -o menhir.native
+# Parallel statistics: { count(total): 19(281), max: 6, min: 2, average(total): 2.895(1.128) }
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+cp fancy-parser.mly parser.mly
+/home/opam/.opam/system/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamldep -modules error.mli > error.mli.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamldep -modules stringMap.mli > stringMap.mli.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamlc -c -o stringMap.cmi stringMap.mli
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o error.cmi error.mli
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+/home/opam/.opam/system/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
++ /home/opam/.opam/system/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
+Grammar has 31 nonterminal symbols, among which 1 start symbols.
+Grammar has 26 terminal symbols.
+Grammar has 83 productions.
+Built an LR(0) automaton with 115 states.
+The grammar is not SLR(1) -- 5 states have a conflict.
+Built an LR(1) automaton with 129 states.
+5 shift/reduce conflicts were silently solved.
+38 out of 129 states are represented.
+25 out of 60 symbols keep track of their start position.
+20 out of 60 symbols keep track of their end position.
+56 out of 129 states have a default reduction.
+33 out of 84 productions exploit shiftreduce optimization.
+20 out of 129 states can peek at an error.
+13 out of 129 states can do error recovery.
+452 functions before inlining, 116 functions after inlining.
+# Parallel statistics: { count(total): 2(28), max: 4, min: 2, average(total): 3.000(1.143) }
+Bootstrap successful.
+make[1]: Leaving directory `/home/opam/.opam/system/build/menhir.20130912/src'
+mkdir -p /home/opam/.opam/system/bin
+mkdir -p /home/opam/.opam/system/lib/menhir
+mkdir -p /home/opam/.opam/system/doc/menhir
+mkdir -p /home/opam/.opam/system/man/man1
+install src/_stage2/menhir.native /home/opam/.opam/system/bin/menhir
+install -m 644 src/standard.mly /home/opam/.opam/system/lib/menhir
+cp -r manual.pdf demos /home/opam/.opam/system/doc/menhir
+cp -r menhir.1 /home/opam/.opam/system/man/man1
+Installing MenhirLib via ocamlfind.
+Installed /home/opam/.opam/system/lib/menhirLib/menhirLib.o
+Installed /home/opam/.opam/system/lib/menhirLib/menhirLib.cmx
+Installed /home/opam/.opam/system/lib/menhirLib/menhirLib.cmo
+Installed /home/opam/.opam/system/lib/menhirLib/menhirLib.cmi
+Installed /home/opam/.opam/system/lib/menhirLib/META
+Installing menhir.20130912.
+
+=-=-= Installing pcre-ocaml.7.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.1.1+opam.tar.gz
+sending incremental file list
+pcre-ocaml.7.1.1+opam.tar.gz
+
+sent 86,695 bytes  received 35 bytes  173,460.00 bytes/sec
+total size is 86,546  speedup is 1.00
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+lib/pcre_stubs.c: In function 'pcre_exec_stub':
+lib/pcre_stubs.c:556:9: warning: initializer element is not computable at load time [enabled by default]
+         { subj_start, (value *) NULL, (value *) NULL, (value) NULL };
+         ^
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.mli > lib/pcre.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmi lib/pcre.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.ml > lib/pcre.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lpcre_stubs -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmo -o lib/pcre.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmx -o lib/pcre.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -cclib -lpcre_stubs -I lib -cclib -lpcre lib/pcre.cmxa lib/pcre.cmx -o lib/pcre.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/cloc/cloc.ml > examples/cloc/cloc.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pcre/pcre.mli
+Installed /home/opam/.opam/system/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cma
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/system/lib/pcre/pcre.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/system/lib/pcre/META
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+
+=-=-= Installing ulex.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ulex.1.1+opam.tar.gz
+sending incremental file list
+ulex.1.1+opam.tar.gz
+
+sent 20,477 bytes  received 35 bytes  41,024.00 bytes/sec
+total size is 20,348  speedup is 0.99
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/usr/bin/ocamlc.opt unix.cma -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/usr/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/usr/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/usr/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/usr/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/usr/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/usr/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/usr/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/usr/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/usr/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/usr/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/usr/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/usr/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/usr/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/usr/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/usr/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/usr/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/usr/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/usr/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/usr/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/usr/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/system/lib/ulex/ulexing.a
+Installed /home/opam/.opam/system/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/system/lib/ulex/utf8.mli
+Installed /home/opam/.opam/system/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/system/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+Installing ulex.1.1.
+
+=-=-= Installing ccss.1.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ccss.1.5+opam.tar.gz
+sending incremental file list
+ccss.1.5+opam.tar.gz
+
+sent 59,800 bytes  received 35 bytes  119,670.00 bytes/sec
+total size is 59,667  speedup is 1.00
+Building ccss.1.5:
+  ./configure --prefix /home/opam/.opam/system
+  make
+  make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ CCSS
+Package version: ..................................... 1.5
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+menhir: .............................................. /home/opam/.opam/system/bin/menhir
+pkg_batteries: ....................................... /home/opam/.opam/system/lib/batteries
+pkg_ulex: ............................................ /home/opam/.opam/system/lib/ulex
+pkg_pcre: ............................................ /home/opam/.opam/system/lib/pcre
+pkg_menhirlib: ....................................... /home/opam/.opam/system/lib/menhirLib
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/ccss.ml > src/ccss.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/options.ml > src/options.ml.depends
+menhir --raw-depend --ocamldep '/home/opam/.opam/system/bin/ocamlfind ocamldep -modules' src/parser.mly > src/parser.mly.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/ast.ml > src/ast.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/ast.cmo src/ast.ml
+menhir --ocamlc '/home/opam/.opam/system/bin/ocamlfind ocamlc -g -I src' --infer src/parser.mly
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/parser.mli > src/parser.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/printer.ml > src/printer.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -syntax camlp4o -modules src/scanner.ml > src/scanner.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/parser.cmi src/parser.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/options.cmo src/options.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/printer.cmo src/printer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -syntax camlp4o -I src -o src/scanner.cmo src/scanner.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/ccss.cmo src/ccss.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package menhirLib -package pcre -package ulex -modules src/parser.ml > src/parser.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/ast.cmx src/ast.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/parser.cmx src/parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/options.cmx src/options.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/printer.cmx src/printer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -syntax camlp4o -I src -o src/scanner.cmx src/scanner.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package batteries -package menhirLib -package pcre -package ulex -I src -o src/ccss.cmx src/ccss.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package batteries -package menhirLib -package pcre -package ulex src/ast.cmx src/options.cmx src/parser.cmx src/printer.cmx src/scanner.cmx src/ccss.cmx -o src/ccss.native
+ocaml setup.ml -install 
