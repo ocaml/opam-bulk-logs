@@ -104,3 +104,39 @@ Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -c lib/sqlite3_stubs.c
+mv sqlite3_stubs.o lib/sqlite3_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/sqlite3_stubs -lsqlite3 -lsqlite3 lib/sqlite3_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/sqlite3.mli > lib/sqlite3.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmi lib/sqlite3.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/sqlite3.ml > lib/sqlite3.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmo lib/sqlite3.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lsqlite3_stubs -cclib -lsqlite3_stubs -cclib -lsqlite3 -cclib -lsqlite3 -cclib -lsqlite3 lib/sqlite3.cmo -o lib/sqlite3.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmx lib/sqlite3.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lsqlite3_stubs -cclib -lsqlite3 -cclib -lsqlite3 -cclib -lsqlite3 lib/sqlite3.cmx -o lib/sqlite3.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -cclib -lsqlite3_stubs -I lib -cclib -lsqlite3 lib/sqlite3.cmxa lib/sqlite3.cmx -o lib/sqlite3.cmxs
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.mli
+Installed /home/opam/.opam/system/lib/sqlite3/libsqlite3_stubs.a
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cma
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmxa
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.a
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmxs
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmi
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmx
+Installed /home/opam/.opam/system/lib/sqlite3/META
+Installed /home/opam/.opam/system/lib/stublibs/dllsqlite3_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllsqlite3_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing sqlite3-ocaml.2.0.6.
+
+=-=-= Installing type_conv.111.13.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/type_conv.111.13.00+opam.tar.gz
+sending incremental file list
+type_conv.111.13.00+opam.tar.gz
+
+sent 61,887 bytes  received 35 bytes  123,844.00 bytes/sec
+total size is 61,743  speedup is 1.00
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
