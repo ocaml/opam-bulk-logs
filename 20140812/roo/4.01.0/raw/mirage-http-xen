@@ -2399,3 +2399,34 @@ pkg_sexplib_syntax: .................................. /home/opam/.opam/system/l
 pkg_sexplib: ......................................... /home/opam/.opam/system/lib/sexplib
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/uri.mli > lib/uri.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri.cmi lib/uri.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/uri.ml > lib/uri.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/uri_re.mli > lib/uri_re.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri_re.cmi lib/uri_re.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/uri_re.ml > lib/uri_re.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri.cmo lib/uri.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri_re.cmo lib/uri_re.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/uri_re.cmo lib/uri.cmo -o lib/uri.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri_re.cmx lib/uri_re.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/uri.cmx lib/uri.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/uri_re.cmx lib/uri.cmx -o lib/uri.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/uri.cmxa lib/uri_re.cmx lib/uri.cmx -o lib/uri.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/Uri_services.mli > lib/Uri_services.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/Uri_services.cmi lib/Uri_services.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -modules lib/Uri_services.ml > lib/Uri_services.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/Uri_services.cmo lib/Uri_services.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/Uri_services.cmo -o lib/services.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package re.posix -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -I lib -o lib/Uri_services.cmx lib/Uri_services.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/Uri_services.cmx -o lib/services.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/services.cmxa lib/Uri_services.cmx -o lib/services.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules top/uri_top.ml > top/uri_top.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmo top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a top/uri_top.cmo -o top/uri_top.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I +compiler-libs -I top -o top/uri_top.cmx top/uri_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a top/uri_top.cmx -o top/uri_top.cmxa
