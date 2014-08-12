@@ -232,3 +232,192 @@ mv stubs-sha3.o src/stubs-sha3.o
 ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
 ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
 ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/system/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/system/lib/cryptokit/META
+Installed /home/opam/.opam/system/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/system/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing react.1.1.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/react.1.1.0+opam.tar.gz
+sending incremental file list
+react.1.1.0+opam.tar.gz
+
+sent 93,055 bytes  received 35 bytes  186,180.00 bytes/sec
+total size is 92,911  speedup is 1.00
+Building react.1.1.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
+ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+Installing react.1.1.0.
+
+=-=-= Installing sqlite3-ocaml.2.0.6 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sqlite3-ocaml.2.0.6+opam.tar.gz
+sending incremental file list
+sqlite3-ocaml.2.0.6+opam.tar.gz
+
+sent 66,750 bytes  received 35 bytes  133,570.00 bytes/sec
+total size is 66,598  speedup is 1.00
+Building sqlite3-ocaml.2.0.6:
+  ocaml setup.ml -configure
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ sqlite3-ocaml
+Package version: ..................................... 2.0.6
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Strict compile-time checks: .......................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -c lib/sqlite3_stubs.c
+mv sqlite3_stubs.o lib/sqlite3_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/sqlite3_stubs -lsqlite3 -lsqlite3 lib/sqlite3_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/sqlite3.mli > lib/sqlite3.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmi lib/sqlite3.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/sqlite3.ml > lib/sqlite3.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmo lib/sqlite3.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lsqlite3_stubs -cclib -lsqlite3_stubs -cclib -lsqlite3 -cclib -lsqlite3 -cclib -lsqlite3 lib/sqlite3.cmo -o lib/sqlite3.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/sqlite3.cmx lib/sqlite3.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lsqlite3_stubs -cclib -lsqlite3 -cclib -lsqlite3 -cclib -lsqlite3 lib/sqlite3.cmx -o lib/sqlite3.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -cclib -lsqlite3_stubs -I lib -cclib -lsqlite3 lib/sqlite3.cmxa lib/sqlite3.cmx -o lib/sqlite3.cmxs
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.mli
+Installed /home/opam/.opam/system/lib/sqlite3/libsqlite3_stubs.a
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cma
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmxa
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.a
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmxs
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmi
+Installed /home/opam/.opam/system/lib/sqlite3/sqlite3.cmx
+Installed /home/opam/.opam/system/lib/sqlite3/META
+Installed /home/opam/.opam/system/lib/stublibs/dllsqlite3_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllsqlite3_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing sqlite3-ocaml.2.0.6.
+
+=-=-= Installing ssl.0.4.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ssl.0.4.7+opam.tar.gz
+sending incremental file list
+ssl.0.4.7+opam.tar.gz
+
+sent 122,173 bytes  received 35 bytes  244,416.00 bytes/sec
+total size is 122,023  speedup is 1.00
+Building ssl.0.4.7:
+  ./configure --prefix /home/opam/.opam/system
+  make
+  make install
+configuring ocaml-ssl 0.4.7
+checking for gcc... gcc
