@@ -98,3 +98,61 @@ Need to get 1653 kB of archives.
 After this operation, 6892 kB of additional disk space will be used.
 Do you want to continue? [Y/n] Abort.
 + opam install ivy
+The following actions will be performed:
+ - install ivy.1.2.2
+1 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing ivy.1.2.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ivy.1.2.2+opam.tar.gz
+sending incremental file list
+ivy.1.2.2+opam.tar.gz
+
+sent 8,940 bytes  received 35 bytes  5,983.33 bytes/sec
+total size is 8,810  speedup is 0.98
+Building ivy.1.2.2:
+  make
+  make install COMPAT_SYMLINK_CREATE=no
+ocamldep  *.mli *.ml > .depend
+ocamlc  -c ivy.mli
+ocamlc   -c ivy.ml
+ocamlc  -c ivyLoop.mli
+ocamlc   -c ivyLoop.ml
+cc -Wall -c -fPIC -I /opt/local/include/  -I `ocamlc -where` `pkg-config --cflags glib-2.0` civy.c
+civy.c:5:21: fatal error: Ivy/ivy.h: No such file or directory
+ #include <Ivy/ivy.h>
+                     ^
+compilation terminated.
+make: *** [civy.o] Error 1
+[ERROR] The compilation of ivy.1.2.2 failed.
+Removing ivy.1.2.2.
+  ocamlfind remove ivy
+  ocamlfind remove glibivy
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ivy
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/glibivy
+
+
+===== ERROR while installing ivy.1.2.2 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/ivy.1.2.2
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/ivy.1.2.2/ivy-284-6d07ae.env
+# stdout-file          /home/opam/.opam/system/build/ivy.1.2.2/ivy-284-6d07ae.out
+# stderr-file          /home/opam/.opam/system/build/ivy.1.2.2/ivy-284-6d07ae.err
+### stdout ###
+# ocamldep  *.mli *.ml > .depend
+# ocamlc  -c ivy.mli
+# ocamlc   -c ivy.ml
+# ocamlc  -c ivyLoop.mli
+# ocamlc   -c ivyLoop.ml
+# cc -Wall -c -fPIC -I /opt/local/include/  -I `ocamlc -where` `pkg-config --cflags glib-2.0` civy.c
+### stderr ###
+# civy.c:5:21: fatal error: Ivy/ivy.h: No such file or directory
+#  #include <Ivy/ivy.h>
+#                      ^
+# compilation terminated.
+# make: *** [civy.o] Error 1
+
+'opam install ivy' failed.
