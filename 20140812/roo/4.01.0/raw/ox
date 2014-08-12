@@ -6382,3 +6382,9 @@ pkg_openflow: ........................................ /home/opam/.opam/system/l
 pkg_openflow_async: .................................. /home/opam/.opam/system/lib/openflow
 pkg_threads: ......................................... /usr/lib/ocaml
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxStart.mli > lib/OxStart.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxStart.cmi lib/OxStart.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxStart.ml > lib/OxStart.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxShared.ml > lib/OxShared.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxShared.cmo lib/OxShared.ml
