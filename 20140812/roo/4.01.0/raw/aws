@@ -325,3 +325,152 @@ mv sha1.o src/sha1.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
 mv stubs-sha1.o src/stubs-sha1.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/usr/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/system/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/system/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/system/lib/cryptokit/META
+Installed /home/opam/.opam/system/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/system/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing ocamlify.0.0.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocamlify.0.0.1+opam.tar.gz
+sending incremental file list
+ocamlify.0.0.1+opam.tar.gz
+
+sent 46,440 bytes  received 35 bytes  92,950.00 bytes/sec
+total size is 46,301  speedup is 1.00
+Building ocamlify.0.0.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+I: Running command '/usr/bin/ocamlc.opt -config > /tmp/oasis-938e8f.txt'
+I: Running command '/home/opam/.opam/system/bin/ocamlfind query -format %v findlib > /tmp/oasis-de51a2.txt'
+
+Configuration: 
+
+OCamlbuild additional flags: ................... 
+Compile with ocaml profile flag on.: ........... false
+Compile with ocaml debug flag on.: ............. true
+Remove a directory.: ........................... rm -rf
+Remove a file.: ................................ rm -f
+suffix_program: ................................ 
+is_native: ..................................... true
+findlib_version: ............................... 1.5.2
+PS documentation: .............................. $docdir
+PDF documentation: ............................. $docdir
+DVI documentation: ............................. $docdir
+HTML documentation: ............................ $docdir
+Documentation root: ............................ $datarootdir/doc/$pkg_name
+Man documentation: ............................. $datarootdir/man
+Locale-dependent data: ......................... $datarootdir/locale
+Info documentation: ............................ $datarootdir/info
+Read-only architecture-independent data: ....... $datarootdir
+Read-only arch-independent data root: .......... $prefix/share
+Object code libraries: ......................... $exec_prefix/lib
+Modifiable single-machine data: ................ $prefix/var
+Modifiable architecture-independent data: ...... $prefix/com
+Read-only single-machine data: ................. $prefix/etc
+Program executables: ........................... $exec_prefix/libexec
+System admin executables: ...................... $exec_prefix/sbin
+User executables: .............................. $exec_prefix/bin
+Install architecture-dependent files in dir: ... $prefix
+Install architecture-independent files dir: .... /home/opam/.opam/system
+systhread_supported: ........................... true
+default_executable_name: ....................... a.out
+ext_dll: ....................................... .so
+ext_lib: ....................................... .a
+ext_asm: ....................................... .s
+ext_obj: ....................................... .o
+model: ......................................... default
+native_c_compiler: ............................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+bytecomp_c_compiler: ........................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+standard_runtime: .............................. /usr/bin/ocamlrun
+standard_library: .............................. /usr/lib/ocaml
+standard_library_default: ...................... /usr/lib/ocaml
+ocaml_version: ................................. 4.01.0
+ccomp_type: .................................... cc
+architecture: .................................. amd64
+system: ........................................ linux
+os_type: ....................................... Unix
+Package version: ............................... 0.0.1
+Package name: .................................. ocamlify
+ocamlbuild: .................................... /usr/bin/ocamlbuild
+ocamlopt: ...................................... /usr/bin/ocamlopt.opt
+ocamlc: ........................................ /usr/bin/ocamlc.opt
+ocamlfind: ..................................... /home/opam/.opam/system/bin/ocamlfind
+
