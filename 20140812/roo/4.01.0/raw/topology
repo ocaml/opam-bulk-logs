@@ -1572,3 +1572,20 @@ pkg_threads: ......................................... /usr/lib/ocaml
 /home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/Network.cmo lib/Network_Common.cmo -o lib/topology.cma
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package ocamlgraph -package packet -package threads -thread -I lib -o lib/Network.cmx lib/Network.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package ocamlgraph -package packet -package threads -thread -I lib -o lib/Network_Common.cmx lib/Network_Common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/Network.cmx lib/Network_Common.cmx -o lib/topology.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/topology.cmxa lib/Network.cmx lib/Network_Common.cmx -o lib/topology.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package ocamlgraph -package packet -package threads -modules exe/topology.ml > exe/topology.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package ocamlgraph -package packet -package threads -thread -I exe -I lib -o exe/topology.cmo exe/topology.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -g -linkpkg -package ocamlgraph -package packet -package threads -thread lib/topology.cma exe/topology.cmo -o exe/topology.byte
+Installed /home/opam/.opam/system/lib/topology/Network.mli
+Installed /home/opam/.opam/system/lib/topology/Network_Common.mli
+Installed /home/opam/.opam/system/lib/topology/topology.cma
+Installed /home/opam/.opam/system/lib/topology/topology.cmxa
+Installed /home/opam/.opam/system/lib/topology/topology.a
+Installed /home/opam/.opam/system/lib/topology/topology.cmxs
+Installed /home/opam/.opam/system/lib/topology/Network_Common.cmi
+Installed /home/opam/.opam/system/lib/topology/Network.cmi
+Installed /home/opam/.opam/system/lib/topology/Network_Common.cmx
+Installed /home/opam/.opam/system/lib/topology/Network.cmx
+Installed /home/opam/.opam/system/lib/topology/META
+Installing topology.0.2.0.
