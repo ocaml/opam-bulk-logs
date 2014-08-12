@@ -1099,3 +1099,18 @@ h4cc: ................................................ /usr/bin/h4cc
 pkg_batteries: ....................................... /home/opam/.opam/system/lib/batteries
 pkg_pcre: ............................................ /home/opam/.opam/system/lib/pcre
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -ccopt -fPIC -c src/idlalloc.c
+mv idlalloc.o src/idlalloc.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -ccopt -fPIC -c src/hdf_impl.c
+mv hdf_impl.o src/hdf_impl.o
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -ccopt -fPIC -c src/hdf_wrapper_stubs.c
+mv hdf_wrapper_stubs.o src/hdf_wrapper_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o src/hdf_stubs -L/usr/lib /usr/lib/libmfhdf.a /usr/lib/libdf.a -ljpeg -lz src/idlalloc.o src/hdf_impl.o src/hdf_wrapper_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf.mli > src/hdf.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf_wrapper.mli > src/hdf_wrapper.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf_wrapper.cmi src/hdf_wrapper.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf.cmi src/hdf.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf.ml > src/hdf.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/extGenarray.ml > src/extGenarray.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/extGenarray.cmo src/extGenarray.ml
