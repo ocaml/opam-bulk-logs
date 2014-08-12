@@ -1265,3 +1265,28 @@ mv zbar_stubs.o classic/zbar_stubs.o
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package lwt.unix -I classic -o classic/zbar.cmx classic/zbar.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lzbar_stubs -cclib -lzbar classic/zbar.cmx -o classic/zbar.cmxa
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I classic classic/zbar.cmxa classic/zbar.cmx -o classic/zbar.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package lwt.unix -modules test/test.ml > test/test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I classic -package lwt.unix -I test -I classic -o test/test.cmo test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I classic -package lwt.unix -I test -I classic -o test/test.cmx test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I classic -linkpkg -package lwt.unix classic/zbar.cmxa test/test.cmx -o test/test.native
+./setup.bin -test
+./setup.bin -doc
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -dump classic/zbar.odoc -package lwt.unix -I classic classic/zbar.mli
+rm -rf classic/zbar.docdir
+mkdir -p classic/zbar.docdir
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -load classic/zbar.odoc -html -d classic/zbar.docdir
+./setup.bin -install
+W: Nothing to install for findlib library 'zbar_ctypes'
+Installed /home/opam/.opam/system/lib/zbar/zbar.mli
+Installed /home/opam/.opam/system/lib/zbar/libzbar_stubs.a
+Installed /home/opam/.opam/system/lib/zbar/zbar.cma
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmxa
+Installed /home/opam/.opam/system/lib/zbar/zbar.a
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmxs
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmi
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmx
+Installed /home/opam/.opam/system/lib/zbar/META
+Installed /home/opam/.opam/system/lib/stublibs/dllzbar_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllzbar_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing zbar.0.9.
