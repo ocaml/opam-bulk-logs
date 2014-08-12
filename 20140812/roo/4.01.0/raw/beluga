@@ -1194,3 +1194,27 @@ Warning 3: deprecated feature: operator (&); you should use (&&) instead
 File "unify.ml", line 1392, characters 34-35:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 *** omake: saved .omakedb
+- build .build/core coverage.cmo
++ ocamlfind ocamlc -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -g -I . -c coverage.ml
+File "coverage.ml", line 99, characters 5-180:
+Warning 37: constructor CovCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 112, characters 5-68:
+Warning 37: constructor EqnCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 133, characters 5-207:
+Warning 37: unused constructor PatCandidate.
+File "coverage.ml", line 138, characters 5-189:
+Warning 37: unused constructor SomePatCands.
+- build .build/core coverage.cmx
++ ocamlfind ocamlopt -syntaxFile "coverage.ml", line 99, characters 5-180:
+Warning 37: constructor CovCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 112, characters 5-68:
+Warning 37: constructor EqnCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 133, characters 5-207:
+Warning 37: unused constructor PatCandidate.
+File "coverage.ml", line 138, characters 5-189:
+Warning 37: unused constructor SomePatCands.
+ camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -noassert -inline 100 -I . -c coverage.ml
