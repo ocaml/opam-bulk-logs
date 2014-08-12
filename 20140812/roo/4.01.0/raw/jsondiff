@@ -207,3 +207,27 @@ Installing yojson.1.1.8.
 default    Synchronizing with /home/opam/opam-repository/archives/jsondiff.0.0.1+opam.tar.gz
 sending incremental file list
 jsondiff.0.0.1+opam.tar.gz
+
+sent 6,172 bytes  received 35 bytes  12,414.00 bytes/sec
+total size is 6,037  speedup is 0.97
+Building jsondiff.0.0.1:
+  make
+  make install PREFIX=/home/opam/.opam/system
+sed -e 's:@@VERSION@@:0.0.0:' META.in > META
+ocamlfind ocamlc -c -g -package biniou,yojson,unix jsondiff.ml
+ocamlfind ocamlc -o jsondiff.byte -package biniou,yojson,unix -linkpkg \
+	       	jsondiff.cmo 
+ocamlfind ocamlopt -c -g -package biniou,yojson,unix jsondiff.ml
+ocamlfind ocamlopt -o jsondiff -package biniou,yojson,unix -linkpkg \
+		jsondiff.cmx 
+test ! -f jsondiff || cp jsondiff /home/opam/.opam/system/bin/
+test ! -f jsondiff.exe || cp jsondiff.exe /home/opam/.opam/system/bin/
+ocamlfind install jsondiff META \
+          $(ls jsondiff.mli jsondiff.cmi jsondiff.cmo jsondiff.cmx jsondiff.o)
+ls: cannot access jsondiff.mli: No such file or directory
+Installed /home/opam/.opam/system/lib/jsondiff/jsondiff.o
+Installed /home/opam/.opam/system/lib/jsondiff/jsondiff.cmx
+Installed /home/opam/.opam/system/lib/jsondiff/jsondiff.cmo
+Installed /home/opam/.opam/system/lib/jsondiff/jsondiff.cmi
+Installed /home/opam/.opam/system/lib/jsondiff/META
+Installing jsondiff.0.0.1.
