@@ -4499,3 +4499,79 @@ Building mirage-fs-unix.1.1.1:
   make
   make install
 ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ mirage-fs-unix
+Package version: ..................................... 1.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt: ............................................. /home/opam/.opam/system/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+pkg_lwt_syntax: ...................................... /home/opam/.opam/system/lib/lwt
+pkg_mirage_types: .................................... /home/opam/.opam/system/lib/mirage-types
+pkg_cstruct_lwt: ..................................... /home/opam/.opam/system/lib/cstruct
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/kvro_fs_unix.mli > lib/kvro_fs_unix.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmi lib/kvro_fs_unix.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/kvro_fs_unix.ml > lib/kvro_fs_unix.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/fs_common.ml > lib/fs_common.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/fs_common.cmo lib/fs_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.mli > lib/FS_unix.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmi lib/FS_unix.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.ml > lib/FS_unix.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmo lib/kvro_fs_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmo lib/FS_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/fs_common.cmo lib/kvro_fs_unix.cmo lib/FS_unix.cmo -o lib/mirage_fs_unix.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/fs_common.cmx lib/fs_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmx lib/kvro_fs_unix.ml
