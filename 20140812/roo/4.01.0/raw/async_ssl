@@ -433,3 +433,990 @@ ocamlfind opt -c -o _build/src/ctypes/ctypes.cmx -package str -package bigarray 
 ocamlfind opt -c -o _build/src/ctypes/posixTypes.cmx -package str -package bigarray -package bytes    -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/posixTypes.ml
 ocamlfind opt -a -linkall   -package str -package bigarray -package bytes  -cclib -lctypes_stubs -o _build/ctypes.cmxa _build/src/ctypes/common.cmx _build/src/ctypes/ctypes_path.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx 
 ocamlfind opt -shared -linkall   -package str -package bigarray -package bytes  -o _build/ctypes.cmxs _build/src/ctypes/common.cmx _build/src/ctypes/ctypes_path.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx _build/src/ctypes/complex_stubs.o _build/src/ctypes/ctypes_bigarray_stubs.o _build/src/ctypes/managed_buffer_stubs.o _build/src/ctypes/posix_types_stubs.o _build/src/ctypes/raw_pointer_stubs.o _build/src/ctypes/type_info_stubs.o _build/src/ctypes/unsigned_stubs.o 
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_analysis.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_analysis.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_analysis.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_analysis.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_errors.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_errors.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_generate_c.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_generate_c.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_internals.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_internals.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_public_name.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_public_name.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_generate_ml.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_generate_ml.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_inverted.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_inverted.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.ml
+ocamlfind ocamlc -a    -package str -package bytes  -o _build/cstubs.cma _build/src/cstubs/cstubs_analysis.cmo _build/src/cstubs/cstubs_errors.cmo _build/src/cstubs/cstubs_generate_c.cmo _build/src/cstubs/cstubs_internals.cmo _build/src/cstubs/cstubs_public_name.cmo _build/src/cstubs/cstubs_generate_ml.cmo _build/src/cstubs/cstubs.cmo _build/src/cstubs/cstubs_inverted.cmo 
+ocamlfind opt -c -o _build/src/cstubs/cstubs_analysis.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_analysis.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_errors.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_c.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_internals.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_public_name.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_ml.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_inverted.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.ml
+ocamlfind opt -a -linkall   -package str -package bytes   -o _build/cstubs.cmxa _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx 
+ocamlfind opt -shared -linkall   -package str -package bytes  -o _build/cstubs.cmxs _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx  
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/closure_properties.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/closure_properties.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/dl.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/dl.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/libffi_abi.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/libffi_abi.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/weakRef.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/weakRef.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/ffi.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/ffi.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/foreign_basis.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind ocamlc -a   -cclib -lctypes-foreign-base_stubs -dllib -lctypes-foreign-base_stubs   -o _build/ctypes-foreign-base.cma _build/src/ctypes-foreign-base/closure_properties.cmo _build/src/ctypes-foreign-base/dl.cmo _build/src/ctypes-foreign-base/ffi_stubs.cmo _build/src/ctypes-foreign-base/libffi_abi.cmo _build/src/ctypes-foreign-base/weakRef.cmo _build/src/ctypes-foreign-base/ffi.cmo _build/src/ctypes-foreign-base/foreign_basis.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o dl_stubs.o  /home/opam/.opam/system/build/ctypes.0.3.3/src/ctypes-foreign-base/dl_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o ffi_call_stubs.o  /home/opam/.opam/system/build/ctypes.0.3.3/src/ctypes-foreign-base/ffi_call_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o ffi_type_stubs.o  /home/opam/.opam/system/build/ctypes.0.3.3/src/ctypes-foreign-base/ffi_type_stubs.c
+ocamlmklib -o _build/ctypes-foreign-base_stubs _build/src/ctypes-foreign-base/dl_stubs.o _build/src/ctypes-foreign-base/ffi_call_stubs.o _build/src/ctypes-foreign-base/ffi_type_stubs.o -Wl,--no-as-needed -lffi
+Unknown option -Wl,--no-as-needed
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/closure_properties.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/dl.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/libffi_abi.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/weakRef.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/foreign_basis.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind opt -a -linkall     -cclib -lctypes-foreign-base_stubs -o _build/ctypes-foreign-base.cmxa _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall     -o _build/ctypes-foreign-base.cmxs _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx _build/src/ctypes-foreign-base/dl_stubs.o _build/src/ctypes-foreign-base/ffi_call_stubs.o _build/src/ctypes-foreign-base/ffi_type_stubs.o -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-threaded/foreign.cmi  -thread -package threads  -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.mli
+ocamlfind ocamlc  -thread -package threads  -thread  -c -o _build/src/ctypes-foreign-threaded/foreign.cmo -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.ml
+ocamlfind ocamlc -a  -thread   -thread -package threads -o _build/ctypes-foreign-threaded.cma _build/src/ctypes-foreign-threaded/foreign.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -c -o _build/src/ctypes-foreign-threaded/foreign.cmx  -thread -package threads  -thread  -thread -package threads  -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.ml
+ocamlfind opt -a -linkall  -thread  -thread -package threads  -o _build/ctypes-foreign-threaded.cmxa _build/src/ctypes-foreign-threaded/foreign.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall  -thread  -thread -package threads -o _build/ctypes-foreign-threaded.cmxs _build/src/ctypes-foreign-threaded/foreign.cmx  -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-unthreaded/gc_mutex.cmo -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/gc_mutex.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmi    -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmo -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.ml
+ocamlfind ocamlc -a      -o _build/ctypes-foreign-unthreaded.cma _build/src/ctypes-foreign-unthreaded/gc_mutex.cmo _build/src/ctypes-foreign-unthreaded/foreign.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -c -o _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx        -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/gc_mutex.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmx        -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.ml
+ocamlfind opt -a -linkall      -o _build/ctypes-foreign-unthreaded.cmxa _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx _build/src/ctypes-foreign-unthreaded/foreign.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall     -o _build/ctypes-foreign-unthreaded.cmxs _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx _build/src/ctypes-foreign-unthreaded/foreign.cmx  -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc -c -o _build/src/ctypes-top/ctypes_printers.cmi -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -package compiler-libs     -c -o _build/src/ctypes-top/ctypes_printers.cmo -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -package compiler-libs     -c -o _build/src/ctypes-top/install_printers.cmo -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a    -package compiler-libs  -o _build/ctypes-top.cma _build/src/ctypes-top/ctypes_printers.cmo _build/src/ctypes-top/install_printers.cmo 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind opt -c -o _build/src/ctypes-top/ctypes_printers.cmx -package compiler-libs    -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind opt -c -o _build/src/ctypes-top/install_printers.cmx -package compiler-libs    -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind opt -a -linkall   -package compiler-libs   -o _build/ctypes-top.cmxa _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind opt -shared -linkall   -package compiler-libs  -o _build/ctypes-top.cmxs _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx  
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+ocamlfind install ctypes META
+Installed /home/opam/.opam/system/lib/ctypes/META
+ocamlfind install -add ctypes  _build/ctypes.cma _build/dllctypes_stubs.so _build/ctypes.cmxa _build/ctypes.cmxs _build/libctypes_stubs.a _build/ctypes.a src/ctypes/static.mli src/ctypes/primitives.mli src/ctypes/unsigned.mli src/ctypes/signed.mli src/ctypes/structs.mli src/ctypes/ctypes.mli src/ctypes/posixTypes.mli _build/src/ctypes/static.cmi _build/src/ctypes/primitives.cmi _build/src/ctypes/unsigned.cmi _build/src/ctypes/signed.cmi _build/src/ctypes/structs.cmi _build/src/ctypes/ctypes.cmi _build/src/ctypes/posixTypes.cmi src/ctypes/complex_stubs.h src/ctypes/cstubs_internals.h src/ctypes/managed_buffer_stubs.h src/ctypes/primitives.h src/ctypes/raw_pointer.h src/ctypes/type_info_stubs.h src/ctypes/unsigned_stubs.h _build/src/ctypes/common.cmx _build/src/ctypes/ctypes_path.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx
+Installed /home/opam/.opam/system/lib/ctypes/posixTypes.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.cmx
+Installed /home/opam/.opam/system/lib/ctypes/value_printing.cmx
+Installed /home/opam/.opam/system/lib/ctypes/std_views.cmx
+Installed /home/opam/.opam/system/lib/ctypes/coerce.cmx
+Installed /home/opam/.opam/system/lib/ctypes/memory.cmx
+Installed /home/opam/.opam/system/lib/ctypes/type_printing.cmx
+Installed /home/opam/.opam/system/lib/ctypes/structs_computed.cmx
+Installed /home/opam/.opam/system/lib/ctypes/structs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/static.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_bigarray.cmx
+Installed /home/opam/.opam/system/lib/ctypes/bigarray_stubs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/value_printing_stubs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/std_view_stubs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/memory_stubs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_raw.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_primitives.cmx
+Installed /home/opam/.opam/system/lib/ctypes/primitives.cmx
+Installed /home/opam/.opam/system/lib/ctypes/signed.cmx
+Installed /home/opam/.opam/system/lib/ctypes/unsigned.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_path.cmx
+Installed /home/opam/.opam/system/lib/ctypes/common.cmx
+Installed /home/opam/.opam/system/lib/ctypes/unsigned_stubs.h
+Installed /home/opam/.opam/system/lib/ctypes/type_info_stubs.h
+Installed /home/opam/.opam/system/lib/ctypes/raw_pointer.h
+Installed /home/opam/.opam/system/lib/ctypes/primitives.h
+Installed /home/opam/.opam/system/lib/ctypes/managed_buffer_stubs.h
+Installed /home/opam/.opam/system/lib/ctypes/cstubs_internals.h
+Installed /home/opam/.opam/system/lib/ctypes/complex_stubs.h
+Installed /home/opam/.opam/system/lib/ctypes/posixTypes.cmi
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.cmi
+Installed /home/opam/.opam/system/lib/ctypes/structs.cmi
+Installed /home/opam/.opam/system/lib/ctypes/signed.cmi
+Installed /home/opam/.opam/system/lib/ctypes/unsigned.cmi
+Installed /home/opam/.opam/system/lib/ctypes/primitives.cmi
+Installed /home/opam/.opam/system/lib/ctypes/static.cmi
+Installed /home/opam/.opam/system/lib/ctypes/posixTypes.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.mli
+Installed /home/opam/.opam/system/lib/ctypes/structs.mli
+Installed /home/opam/.opam/system/lib/ctypes/signed.mli
+Installed /home/opam/.opam/system/lib/ctypes/unsigned.mli
+Installed /home/opam/.opam/system/lib/ctypes/primitives.mli
+Installed /home/opam/.opam/system/lib/ctypes/static.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.a
+Installed /home/opam/.opam/system/lib/ctypes/libctypes_stubs.a
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/ctypes.cma
+Installed /home/opam/.opam/system/lib/stublibs/dllctypes_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllctypes_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+ocamlfind install -add ctypes  _build/cstubs.cma  _build/cstubs.cmxa _build/cstubs.cmxs  _build/cstubs.a src/cstubs/cstubs_internals.mli src/cstubs/cstubs.mli src/cstubs/cstubs_inverted.mli _build/src/cstubs/cstubs_internals.cmi _build/src/cstubs/cstubs.cmi _build/src/cstubs/cstubs_inverted.cmi  
+Installed /home/opam/.opam/system/lib/ctypes/cstubs_inverted.cmi
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.cmi
+Installed /home/opam/.opam/system/lib/ctypes/cstubs_internals.cmi
+Installed /home/opam/.opam/system/lib/ctypes/cstubs_inverted.mli
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.mli
+Installed /home/opam/.opam/system/lib/ctypes/cstubs_internals.mli
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.a
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/cstubs.cma
+ocamlfind install -add ctypes  _build/ctypes-foreign-base.cma _build/dllctypes-foreign-base_stubs.so _build/ctypes-foreign-base.cmxa _build/ctypes-foreign-base.cmxs _build/libctypes-foreign-base_stubs.a _build/ctypes-foreign-base.a src/ctypes-foreign-base/dl.mli src/ctypes-foreign-base/libffi_abi.mli _build/src/ctypes-foreign-base/dl.cmi _build/src/ctypes-foreign-base/libffi_abi.cmi  _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx
+Installed /home/opam/.opam/system/lib/ctypes/foreign_basis.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ffi.cmx
+Installed /home/opam/.opam/system/lib/ctypes/weakRef.cmx
+Installed /home/opam/.opam/system/lib/ctypes/libffi_abi.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ffi_stubs.cmx
+Installed /home/opam/.opam/system/lib/ctypes/dl.cmx
+Installed /home/opam/.opam/system/lib/ctypes/closure_properties.cmx
+Installed /home/opam/.opam/system/lib/ctypes/libffi_abi.cmi
+Installed /home/opam/.opam/system/lib/ctypes/dl.cmi
+Installed /home/opam/.opam/system/lib/ctypes/libffi_abi.mli
+Installed /home/opam/.opam/system/lib/ctypes/dl.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-base.a
+Installed /home/opam/.opam/system/lib/ctypes/libctypes-foreign-base_stubs.a
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-base.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-base.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-base.cma
+Installed /home/opam/.opam/system/lib/stublibs/dllctypes-foreign-base_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllctypes-foreign-base_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+ocamlfind install -add ctypes  _build/ctypes-foreign-threaded.cma  _build/ctypes-foreign-threaded.cmxa _build/ctypes-foreign-threaded.cmxs  _build/ctypes-foreign-threaded.a src/ctypes-foreign-threaded/foreign.mli _build/src/ctypes-foreign-threaded/foreign.cmi  
+Installed /home/opam/.opam/system/lib/ctypes/foreign.cmi
+Installed /home/opam/.opam/system/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-threaded.a
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-threaded.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-threaded.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-threaded.cma
+ocamlfind install -add ctypes  _build/ctypes-foreign-unthreaded.cma  _build/ctypes-foreign-unthreaded.cmxa _build/ctypes-foreign-unthreaded.cmxs  _build/ctypes-foreign-unthreaded.a src/ctypes-foreign-unthreaded/foreign.mli _build/src/ctypes-foreign-unthreaded/foreign.cmi  
+ocamlfind: [WARNING] Overwriting file /home/opam/.opam/system/lib/ctypes/foreign.cmi
+Installed /home/opam/.opam/system/lib/ctypes/foreign.cmi
+ocamlfind: [WARNING] Overwriting file /home/opam/.opam/system/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/system/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-unthreaded.a
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-unthreaded.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-unthreaded.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-foreign-unthreaded.cma
+ocamlfind install -add ctypes  _build/ctypes-top.cma  _build/ctypes-top.cmxa _build/ctypes-top.cmxs  _build/ctypes-top.a src/ctypes-top/ctypes_printers.mli _build/src/ctypes-top/ctypes_printers.cmi  _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx
+Installed /home/opam/.opam/system/lib/ctypes/install_printers.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_printers.cmx
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_printers.cmi
+Installed /home/opam/.opam/system/lib/ctypes/ctypes_printers.mli
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.a
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxs
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cmxa
+Installed /home/opam/.opam/system/lib/ctypes/ctypes-top.cma
+Installing ctypes.0.3.3.
+
+=-=-= Installing herelib.109.35.02 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/herelib.109.35.02+opam.tar.gz
+sending incremental file list
+herelib.109.35.02+opam.tar.gz
+
+sent 47,808 bytes  received 35 bytes  95,686.00 bytes/sec
+total size is 47,666  speedup is 1.00
+Building herelib.109.35.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ herelib
+Package version: ..................................... 109.35.02
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/here.ml > lib/here.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/here.cmo lib/here.ml
+ocamlfind ocamlc -a lib/here.cmo -o lib/herelib.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/here.cmx lib/here.ml
+ocamlfind ocamlopt -a lib/here.cmx -o lib/herelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/herelib.cmxa -o lib/herelib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/pa_here.mli > lib/pa_here.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmi lib/pa_here.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/pa_here.ml > lib/pa_here.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmo lib/pa_here.ml
+ocamlfind ocamlc -a lib/pa_here.cmo -o lib/pa_herelib.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmx lib/pa_here.ml
+ocamlfind ocamlopt -a lib/pa_here.cmx -o lib/pa_herelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/pa_herelib.cmxa -o lib/pa_herelib.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/herelib/here.ml
+Installed /home/opam/.opam/system/lib/herelib/herelib.cma
+Installed /home/opam/.opam/system/lib/herelib/herelib.cmxa
+Installed /home/opam/.opam/system/lib/herelib/herelib.a
+Installed /home/opam/.opam/system/lib/herelib/herelib.cmxs
+Installed /home/opam/.opam/system/lib/herelib/here.cmi
+Installed /home/opam/.opam/system/lib/herelib/here.cmx
+Installed /home/opam/.opam/system/lib/herelib/pa_here.mli
+Installed /home/opam/.opam/system/lib/herelib/pa_herelib.cma
+Installed /home/opam/.opam/system/lib/herelib/pa_herelib.cmxa
+Installed /home/opam/.opam/system/lib/herelib/pa_herelib.a
+Installed /home/opam/.opam/system/lib/herelib/pa_herelib.cmxs
+Installed /home/opam/.opam/system/lib/herelib/pa_here.cmi
+Installed /home/opam/.opam/system/lib/herelib/pa_here.cmx
+Installed /home/opam/.opam/system/lib/herelib/META
+Installing herelib.109.35.02.
+
+=-=-= Installing pipebang.110.01.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pipebang.110.01.00+opam.tar.gz
+sending incremental file list
+pipebang.110.01.00+opam.tar.gz
+
+sent 47,223 bytes  received 35 bytes  94,516.00 bytes/sec
+total size is 47,080  speedup is 1.00
+Building pipebang.110.01.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pipebang
+Package version: ..................................... 110.01.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -modules lib/pa_pipebang.ml > lib/pa_pipebang.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmo lib/pa_pipebang.ml
+ocamlfind ocamlc -a lib/pa_pipebang.cmo -o lib/pa_pipebang.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmx lib/pa_pipebang.ml
+ocamlfind ocamlopt -a lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxa
+ocamlfind ocamlopt -shared lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.ml
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cma
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxa
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.a
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmxs
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmi
+Installed /home/opam/.opam/system/lib/pa_pipebang/pa_pipebang.cmx
+Installed /home/opam/.opam/system/lib/pa_pipebang/META
+Installing pipebang.110.01.00.
+
+=-=-= Installing type_conv.111.13.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/type_conv.111.13.00+opam.tar.gz
+sending incremental file list
+type_conv.111.13.00+opam.tar.gz
+
+sent 61,887 bytes  received 35 bytes  123,844.00 bytes/sec
+total size is 61,743  speedup is 1.00
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ type_conv
+Package version: ..................................... 111.13.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/system/lib/type_conv/META
+Installing type_conv.111.13.00.
+
+=-=-= Installing bin_prot.111.03.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/bin_prot.111.03.00+opam.tar.gz
+sending incremental file list
+bin_prot.111.03.00+opam.tar.gz
+
+sent 90,550 bytes  received 35 bytes  181,170.00 bytes/sec
+total size is 90,399  speedup is 1.00
+Building bin_prot.111.03.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ bin_prot
+Package version: ..................................... 111.03.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_bigarray: ........................................ /usr/lib/ocaml
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'bin_prot' in library bin_prot
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/blit_stubs.c
+mv blit_stubs.o lib/blit_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/bin_prot_stubs lib/blit_stubs.o
+ocamlfind ocamldep -package bigarray -package unix -modules lib/binable.ml > lib/binable.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/read.mli > lib/read.mli.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/common.mli > lib/common.mli.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/nat0.mli > lib/nat0.mli.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/common.cmi lib/common.mli
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/nat0.cmi lib/nat0.mli
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/size.mli > lib/size.mli.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/type_class.mli > lib/type_class.mli.depends
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/read.cmi lib/read.mli
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/size.cmi lib/size.mli
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/write.mli > lib/write.mli.depends
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/write.cmi lib/write.mli
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/type_class.cmi lib/type_class.mli
+ocamlfind ocamldep -package bigarray -package unix -modules lib/nat0.ml > lib/nat0.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/common.ml > lib/common.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/size.ml > lib/size.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/write.ml > lib/write.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/read.ml > lib/read.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/std.ml > lib/std.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/type_class.ml > lib/type_class.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/utils.mli > lib/utils.mli.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/binable.cmo lib/binable.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/utils.cmi lib/utils.mli
+ocamlfind ocamldep -package bigarray -package unix -modules lib/utils.ml > lib/utils.ml.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/nat0.cmo lib/nat0.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/common.cmo lib/common.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/size.cmo lib/size.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/write.cmo lib/write.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/read.cmo lib/read.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/type_class.cmo lib/type_class.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/utils.cmo lib/utils.ml
+ocamlfind ocamlc -pack -g lib/common.cmo lib/nat0.cmo lib/read.cmo lib/size.cmo lib/write.cmo lib/type_class.cmo lib/binable.cmo lib/std.cmo lib/utils.cmo -o lib/bin_prot.cmo
+ocamlfind ocamlc -a -dllib -lbin_prot_stubs -cclib -lbin_prot_stubs lib/bin_prot.cmo -o lib/bin_prot.cma
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/common.cmx lib/common.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/nat0.cmx lib/nat0.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/read.cmx lib/read.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/size.cmx lib/size.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/write.cmx lib/write.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/type_class.cmx lib/type_class.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/binable.cmx lib/binable.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/std.cmx lib/std.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/utils.cmx lib/utils.ml
+touch lib/bin_prot.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/common.cmx lib/nat0.cmx lib/read.cmx lib/size.cmx lib/write.cmx lib/type_class.cmx lib/binable.cmx lib/std.cmx lib/utils.cmx -o lib/bin_prot.cmx  ; then  rm -f lib/bin_prot.mli  ; else  rm -f lib/bin_prot.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lbin_prot_stubs lib/bin_prot.cmx -o lib/bin_prot.cmxa
+ocamlfind ocamlopt -shared -I lib lib/bin_prot.cmx -o lib/bin_prot.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.mli > syntax/pa_bin_prot.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmi syntax/pa_bin_prot.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.ml > syntax/pa_bin_prot.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmo syntax/pa_bin_prot.ml
+ocamlfind ocamlc -a syntax/pa_bin_prot.cmo -o syntax/pa_bin_prot.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmx syntax/pa_bin_prot.ml
+ocamlfind ocamlopt -a syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxa
+ocamlfind ocamlopt -shared syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/bin_prot/binable.ml
+Installed /home/opam/.opam/system/lib/bin_prot/nat0.mli
+Installed /home/opam/.opam/system/lib/bin_prot/common.mli
+Installed /home/opam/.opam/system/lib/bin_prot/size.mli
+Installed /home/opam/.opam/system/lib/bin_prot/write.mli
+Installed /home/opam/.opam/system/lib/bin_prot/read.mli
+Installed /home/opam/.opam/system/lib/bin_prot/std.ml
+Installed /home/opam/.opam/system/lib/bin_prot/type_class.mli
+Installed /home/opam/.opam/system/lib/bin_prot/utils.mli
+Installed /home/opam/.opam/system/lib/bin_prot/libbin_prot_stubs.a
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.cmi
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.cma
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.cmxa
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.a
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.cmxs
+Installed /home/opam/.opam/system/lib/bin_prot/bin_prot.cmx
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.mli
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.cma
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.cmxa
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.a
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.cmxs
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.cmi
+Installed /home/opam/.opam/system/lib/bin_prot/pa_bin_prot.cmx
+Installed /home/opam/.opam/system/lib/bin_prot/META
+Installed /home/opam/.opam/system/lib/stublibs/dllbin_prot_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllbin_prot_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing bin_prot.111.03.00.
+
+=-=-= Installing comparelib.109.60.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/comparelib.109.60.00+opam.tar.gz
+sending incremental file list
+comparelib.109.60.00+opam.tar.gz
+
+sent 56,760 bytes  received 35 bytes  113,590.00 bytes/sec
+total size is 56,615  speedup is 1.00
+Building comparelib.109.60.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ comparelib
+Package version: ..................................... 109.60.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/comparelib_dummy.ml > lib/comparelib_dummy.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/comparelib_dummy.cmo lib/comparelib_dummy.ml
+ocamlfind ocamlc -a lib/comparelib_dummy.cmo -o lib/comparelib.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/comparelib_dummy.cmx lib/comparelib_dummy.ml
+ocamlfind ocamlopt -a lib/comparelib_dummy.cmx -o lib/comparelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/comparelib.cmxa -o lib/comparelib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_compare.ml > syntax/pa_compare.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_compare.cmo syntax/pa_compare.ml
+ocamlfind ocamlc -a syntax/pa_compare.cmo -o syntax/pa_compare.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_compare.cmx syntax/pa_compare.ml
+ocamlfind ocamlopt -a syntax/pa_compare.cmx -o syntax/pa_compare.cmxa
+ocamlfind ocamlopt -shared syntax/pa_compare.cmx -o syntax/pa_compare.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/comparelib/comparelib_dummy.ml
+Installed /home/opam/.opam/system/lib/comparelib/comparelib.cma
+Installed /home/opam/.opam/system/lib/comparelib/comparelib.cmxa
+Installed /home/opam/.opam/system/lib/comparelib/comparelib.a
+Installed /home/opam/.opam/system/lib/comparelib/comparelib.cmxs
+Installed /home/opam/.opam/system/lib/comparelib/comparelib_dummy.cmi
+Installed /home/opam/.opam/system/lib/comparelib/comparelib_dummy.cmx
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.ml
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.cma
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.cmxa
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.a
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.cmxs
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.cmi
+Installed /home/opam/.opam/system/lib/comparelib/pa_compare.cmx
+Installed /home/opam/.opam/system/lib/comparelib/META
+Installing comparelib.109.60.00.
+
+=-=-= Installing enumerate.111.08.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/enumerate.111.08.00+opam.tar.gz
+sending incremental file list
+enumerate.111.08.00+opam.tar.gz
+
+sent 52,714 bytes  received 35 bytes  105,498.00 bytes/sec
+total size is 52,570  speedup is 1.00
+Building enumerate.111.08.00:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  make
+  make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ enumerate
+Package version: ..................................... 111.08.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ enumerate
+Package version: ..................................... 111.08.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -modules syntax/pa_enumerate.mli > syntax/pa_enumerate.mli.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmi syntax/pa_enumerate.mli
+ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -modules syntax/pa_enumerate.ml > syntax/pa_enumerate.ml.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmo syntax/pa_enumerate.ml
+ocamlfind ocamlc -a syntax/pa_enumerate.cmo -o syntax/enumerate.cma
+ocamlfind ocamlopt -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmx syntax/pa_enumerate.ml
+ocamlfind ocamlopt -a syntax/pa_enumerate.cmx -o syntax/enumerate.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/enumerate.cmxa -o syntax/enumerate.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/enumerate/pa_enumerate.mli
+Installed /home/opam/.opam/system/lib/enumerate/enumerate.cma
+Installed /home/opam/.opam/system/lib/enumerate/enumerate.cmxa
+Installed /home/opam/.opam/system/lib/enumerate/enumerate.a
+Installed /home/opam/.opam/system/lib/enumerate/enumerate.cmxs
+Installed /home/opam/.opam/system/lib/enumerate/pa_enumerate.cmi
+Installed /home/opam/.opam/system/lib/enumerate/pa_enumerate.cmx
+Installed /home/opam/.opam/system/lib/enumerate/META
+Installing enumerate.111.08.00.
+
+=-=-= Installing fieldslib.109.20.03 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/fieldslib.109.20.03+opam.tar.gz
+sending incremental file list
+fieldslib.109.20.03+opam.tar.gz
+
+sent 55,974 bytes  received 35 bytes  112,018.00 bytes/sec
+total size is 55,830  speedup is 1.00
+Building fieldslib.109.20.03:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ fieldslib
+Package version: ..................................... 109.20.03
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'fieldslib' in library fieldslib
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
