@@ -120,3 +120,37 @@ Warning 26: unused variable v.
 File "src/meshF.ml", line 1028, characters 6-7:
 Warning 26: unused variable v.
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh.cmx src/mesh.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshC.cmx src/easymeshC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshF.cmx src/easymeshF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymesh.cmx src/easymesh.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/mesh_utils.cmx src/mesh_common.cmx src/meshC.cmx src/meshF.cmx src/mesh.cmx src/easymeshC.cmx src/easymeshF.cmx src/easymesh.cmx -o src/mesh.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/mesh.cmxa src/mesh_utils.cmx src/mesh_common.cmx src/meshC.cmx src/meshF.cmx src/mesh.cmx src/easymeshC.cmx src/easymeshF.cmx src/easymesh.cmx -o src/mesh.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_display.ml > src/mesh_display.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_displayC.ml > src/mesh_displayC.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_displayF.ml > src/mesh_displayF.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayC.cmo src/mesh_displayC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayF.cmo src/mesh_displayF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmo src/mesh_display.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/mesh_displayC.cmo src/mesh_displayF.cmo src/mesh_display.cmo -o src/mesh_display.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayC.cmx src/mesh_displayC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayF.cmx src/mesh_displayF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmx src/mesh_display.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/mesh_display.cmxa src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -c src/triangle_stubs.c
+mv triangle_stubs.o src/triangle_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o src/mesh_triangle_stubs src/triangle_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangle.ml > src/mesh_triangle.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangleC.ml > src/mesh_triangleC.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangle_common.ml > src/mesh_triangle_common.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle_common.cmo src/mesh_triangle_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangleF.ml > src/mesh_triangleF.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleC.cmo src/mesh_triangleC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleF.cmo src/mesh_triangleF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle.cmo src/mesh_triangle.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lmesh_triangle_stubs -cclib -lmesh_triangle_stubs src/mesh_triangle_common.cmo src/mesh_triangleC.cmo src/mesh_triangleF.cmo src/mesh_triangle.cmo -o src/mesh_triangle.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle_common.cmx src/mesh_triangle_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleC.cmx src/mesh_triangleC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleF.cmx src/mesh_triangleF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle.cmx src/mesh_triangle.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lmesh_triangle_stubs src/mesh_triangle_common.cmx src/mesh_triangleC.cmx src/mesh_triangleF.cmx src/mesh_triangle.cmx -o src/mesh_triangle.cmxa
