@@ -1356,3 +1356,22 @@ ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
 ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
 ocamlfind ocamlc -a src/uutf.cmo -o src/uutf.cma
 ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
+ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
+ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+Installing uutf.0.9.3.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/system/build/uutf.0.9.3/uutf.install: is your OPAM up-to-date ?
+
+=-=-= Installing crunch.1.3.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/crunch.1.3.0+opam.tar.gz
+sending incremental file list
+crunch.1.3.0+opam.tar.gz
+
+sent 45,180 bytes  received 35 bytes  90,430.00 bytes/sec
+total size is 45,043  speedup is 1.00
+Building crunch.1.3.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
