@@ -3501,3 +3501,179 @@ File "json_conv.ml", line 204, characters 2-94:
 Warning 44: this open statement shadows the value identifier min_int (which is later used)
 File "json_conv.ml", line 204, characters 2-94:
 Warning 44: this open statement shadows the value identifier max_int (which is later used)
+- build ocaml ocaml.cmi
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmi
++ ocamlfind ocamlc -annot -bin-annot findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+-package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml_conv.mli
+- build ocaml/tests test.out.auto.mli
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common,compiler-libs.common -g -w A-4-9-44-24 -warn-error a -g -I . -I ../lib -c -i -I .. -I ../../lib test.out.ml > ocaml/tests/test.out.auto.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../../lib, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmo
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml_conv.ml
+- build ocaml ocaml.cmx
++ ocamlfind ocamlopt -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -I . -I ../lib -c ocaml.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmx
++ ocamlfind ocamlopt -annot findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+-bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -I . -I ../lib -c ocaml_conv.ml
+- build ocaml ocaml.cmo
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cma
++ ocamlfind ocamlc -package compiler-libs.common -g -g -a -o ocaml_conv.cma ocaml.cmo ocaml_conv.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml/tests test.out
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common,compiler-libs.common -g -w A-4-9-44-24 -warn-error a -g -I . -I ../lib -I .. -I ../../lib ../../lib/meta_conv.cmo ocamlcommon.cma ../ocaml_conv.cma test.out.ml -o test.out
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmxs
++ ocamlfind ocamlopt -package compiler-libs.common -g -shared -o ocaml_conv.cmxs ocaml.cmx ocaml_conv.cmx
+- build ocaml ocaml_conv.cmxa
++ ocamlfind ocamlopt -package compiler-libs.common -g -a -o ocaml_conv.cmxa ocaml.cmx ocaml_conv.cmx
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+*** omake: done (12.55 sec, 20/20 scans, 52/77 rules, 125/335 digests)
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.32 sec)
+- build lib <install>
++ ocamlfind remove meta_conv
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/meta_conv
+- build lib <install>
++ ocamlfind install meta_conv META error.mli coder.mli result.mli internal.mli template.mli meta_conv.cmi meta_conv.cmo meta_conv.cmx meta_conv.cma meta_conv.cmxa meta_conv.cmxs meta_conv.o meta_conv.a ../pa/pa_meta_conv.cma ../pa/pa_meta_conv.cmxs ../pa/pa_meta_conv.cmi meta_conv.cmt
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmt
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cmi
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cmxs
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cma
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.a
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.o
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmxs
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmxa
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cma
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmx
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmo
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmi
+Installed /home/opam/.opam/system/lib/meta_conv/template.mli
+Installed /home/opam/.opam/system/lib/meta_conv/internal.mli
+Installed /home/opam/.opam/system/lib/meta_conv/result.mli
+Installed /home/opam/.opam/system/lib/meta_conv/coder.mli
+Installed /home/opam/.opam/system/lib/meta_conv/error.mli
+Installed /home/opam/.opam/system/lib/meta_conv/META
+- build ocaml <install>
++ ocamlfind remove ocaml_conv
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ocaml_conv
+- build ocaml <install>
++ ocamlfind install ocaml_conv ocaml_conv.cmxa ocaml_conv.a ocaml_conv.cmxs ocaml_conv.cma ocaml.cmi ocaml_conv.cmi ocaml.mli ocaml_conv.mli META ocaml.cmt ocaml_conv.cmt ocaml.cmti ocaml_conv.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmt
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmt
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.mli
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.mli
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmi
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmi
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cma
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmxs
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.a
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmxa
+Installed /home/opam/.opam/system/lib/ocaml_conv/META
+*** omake: done (0.88 sec, 0/17 scans, 6/57 rules, 13/223 digests)
+Installing meta_conv.1.1.3.
+
+=-=-= Installing ocaml-data-notation.0.0.11 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocaml-data-notation.0.0.11+opam.tar.gz
+sending incremental file list
+ocaml-data-notation.0.0.11+opam.tar.gz
+
+sent 63,807 bytes  received 35 bytes  127,684.00 bytes/sec
+total size is 63,656  speedup is 1.00
+Building ocaml-data-notation.0.0.11:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ ocaml-data-notation
+Package version: ..................................... 0.0.11
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+pkg_camlp4_lib: ...................................... /usr/lib/ocaml/camlp4
+pkg_camlp4_quotations_o: ............................. /usr/lib/ocaml/camlp4
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -modules src/ODN.ml > src/ODN.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -I src -o src/ODN.cmo src/ODN.ml
+ocamlfind ocamlc -a src/ODN.cmo -o src/odn.cma
+ocamlfind ocamlopt -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -I src -o src/ODN.cmx src/ODN.ml
+ocamlfind ocamlopt -a src/ODN.cmx -o src/odn.cmxa
+ocamlfind ocamlopt -shared -linkall src/odn.cmxa -o src/odn.cmxs
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_odn.ml > src/pa_odn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_odn.cmo src/pa_odn.ml
+ocamlfind ocamlc -a src/pa_odn.cmo -o src/pa_odn.cma
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_noodn.ml > src/pa_noodn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_noodn.cmo src/pa_noodn.ml
+ocamlfind ocamlc -a src/pa_noodn.cmo -o src/pa_noodn.cma
+Skipping precommit checks.
+ocaml setup.ml -test 
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+ocaml setup.ml -install 
