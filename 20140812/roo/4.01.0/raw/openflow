@@ -1402,3 +1402,42 @@ ocamlfind ocamlopt -a src/endianString.cmx src/endianBytes.cmx -o src/ocplib_end
 ocamlfind ocamlopt -shared -linkall src/ocplib_endian.cmxa -o src/ocplib_endian.cmxs
 ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.mli > src/endianBigstring.mli.depends
 ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmi src/endianBigstring.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.ml > src/endianBigstring.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmo src/endianBigstring.ml
+ocamlfind ocamlc -a src/endianBigstring.cmo -o src/bigstring.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBigstring.cmx src/endianBigstring.ml
+ocamlfind ocamlopt -a src/endianBigstring.cmx -o src/bigstring.cmxa
+ocamlfind ocamlopt -shared -linkall src/bigstring.cmxa -o src/bigstring.cmxs
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianString.mli
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBytes.mli
+Installed /home/opam/.opam/system/lib/ocplib-endian/ocplib_endian.cma
+Installed /home/opam/.opam/system/lib/ocplib-endian/ocplib_endian.cmxs
+Installed /home/opam/.opam/system/lib/ocplib-endian/ocplib_endian.cmxa
+Installed /home/opam/.opam/system/lib/ocplib-endian/ocplib_endian.a
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianString.cmi
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBytes.cmi
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianString.cmx
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBytes.cmx
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBigstring.mli
+Installed /home/opam/.opam/system/lib/ocplib-endian/bigstring.cma
+Installed /home/opam/.opam/system/lib/ocplib-endian/bigstring.cmxs
+Installed /home/opam/.opam/system/lib/ocplib-endian/bigstring.cmxa
+Installed /home/opam/.opam/system/lib/ocplib-endian/bigstring.a
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBigstring.cmi
+Installed /home/opam/.opam/system/lib/ocplib-endian/endianBigstring.cmx
+Installed /home/opam/.opam/system/lib/ocplib-endian/META
+Installing ocplib-endian.0.7.
+
+=-=-= Installing pa_ounit.109.53.02 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pa_ounit.109.53.02+opam.tar.gz
+sending incremental file list
+pa_ounit.109.53.02+opam.tar.gz
+
+sent 54,760 bytes  received 35 bytes  109,590.00 bytes/sec
+total size is 54,617  speedup is 1.00
+Building pa_ounit.109.53.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
