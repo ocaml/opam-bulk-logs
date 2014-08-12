@@ -1734,3 +1734,57 @@ File "pa_bind_inline.ml", line 11, characters 0-12:
 Warning 44: this open statement shadows the module identifier Id (which is later used)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build lib elem.cmo
++ ocamlfind ocamlc -annot -bin-annot -for-pack Planck -package sexplib,spotlib -g -w A-4-9 -warn-error a -g -syntax camlp4o -package sexplib.syntax -ppopt ../pa_bind_inline/pa_bind_inline.cmo -I . -c elem.ml
+File "elem.ml", line 15, characters 10-32:
+Error: Unbound module Mtypes.Make_comparable
+*** omake: 130/288 targets are up to date
+*** omake: failed (13.55 sec, 42/42 scans, 15/22 rules, 76/253 digests)
+*** omake: targets were not rebuilt because of errors:
+   lib/elem.cmo
+      depends on: lib/elem.ml
+E: Failure("Command 'cp OMakeroot.in OMakeroot; PREFIX=/home/opam/.opam/system omake' terminated with error code 2")
+[ERROR] The compilation of planck.2.1.1 failed.
+Removing planck.2.1.1.
+  ocamlfind remove planck
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/planck
+
+
+===== ERROR while installing planck.2.1.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/planck.2.1.1
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/planck.2.1.1/planck-4849-e4db2f.env
+# stdout-file          /home/opam/.opam/system/build/planck.2.1.1/planck-4849-e4db2f.out
+# stderr-file          /home/opam/.opam/system/build/planck.2.1.1/planck-4849-e4db2f.err
+### stdout ###
+# ...[truncated]
+# *** omake: finished reading OMakefiles (0.17 sec)
+# --- Checking if ocamldep understands -modules... (yes)
+# - build pa_bind_inline pa_bind_inline.o
+# + ocamlfind ocamlc -annot -bin-annot -package camlp4 -g -w A-4-9 -warn-error a -g -pp camlp4of -I . -c pa_bind_inline.ml
+# - build pa_bind_inline pa_bind_inline.o
+# + ocamlfind ocamlopt -annot -bin-annot -package camlp4 -g -w A-4-9 -warn-error a -pp camlp4of -I . -c pa_bind_inline.ml
+# - build lib elem.cmo
+# + ocamlfind ocamlc -annot -bin-annot -for-pack Planck -package sexplib,spotlib -g -w A-4-9 -warn-error a -g -syntax camlp4o -package sexplib.syntax -ppopt ../pa_bind_inline/pa_bind_inline.cmo -I . -c elem.ml
+# *** omake: 130/288 targets are up to date
+# *** omake: failed (13.55 sec, 42/42 scans, 15/22 rules, 76/253 digests)
+### stderr ###
+# ...[truncated]
+# File "pa_bind_inline.ml", line 11, characters 0-12:
+# Warning 44: this open statement shadows the module identifier Id (which is later used)
+# *** omake: warning: stdout is not a tty, disabling the progress bar
+#    (use --progress to override).
+# File "elem.ml", line 15, characters 10-32:
+# Error: Unbound module Mtypes.Make_comparable
+# *** omake: targets were not rebuilt because of errors:
+#    lib/elem.cmo
+#       depends on: lib/elem.ml
+# E: Failure("Command 'cp OMakeroot.in OMakeroot; PREFIX=/home/opam/.opam/system omake' terminated with error code 2")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712142426.export"
+'opam install planck' failed.
