@@ -2432,3 +2432,48 @@ pkg_unix: ............................................ /usr/lib/ocaml
 pkg_uint_uint64: ..................................... /home/opam/.opam/system/lib/uint
 pkg_str: ............................................. /usr/lib/ocaml
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+src/caml_zmq_stubs.c:30:17: fatal error: zmq.h: No such file or directory
+ #include <zmq.h>
+                 ^
+compilation terminated.
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' src/libZMQ_stubs.a src/dllZMQ_stubs.so src/ZMQ.cma src/ZMQ.cmxa src/ZMQ.a src/ZMQ.cmxs examples/hwserver.native examples/hwclient.native examples/wuserver.native examples/wuclient.native examples/wuproxy.native examples/taskvent.native examples/taskwork.native examples/tasksink.native -tag debug' terminated with error code 10")
+Removing zmq.4.0-3.
+[ERROR] The compilation of zmq.4.0-3 failed.
+  ocamlfind remove ZMQ
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ZMQ
+
+[ERROR] Due to some errors while processing zmq.4.0-3, the following actions will NOT proceed:
+ - install lwt-zmq.2.0.0
+
+===== ERROR while installing zmq.4.0-3 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/zmq.4.0-3
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/zmq.4.0-3/zmq-5053-2dea01.env
+# stdout-file          /home/opam/.opam/system/build/zmq.4.0-3/zmq-5053-2dea01.out
+# stderr-file          /home/opam/.opam/system/build/zmq.4.0-3/zmq-5053-2dea01.err
+### stdout ###
+# ...[truncated]
+# pkg_str: ............................................. /usr/lib/ocaml
+# 
+# /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+# + /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+# src/caml_zmq_stubs.c:30:17: fatal error: zmq.h: No such file or directory
+#  #include <zmq.h>
+#                  ^
+# compilation terminated.
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' src/libZMQ_stubs.a src/dllZMQ_stubs.so src/ZMQ.cma src/ZMQ.cmxa src/ZMQ.a src/ZMQ.cmxs examples/hwserver.native examples/hwclient.native examples/wuserver.native examples/wuclient.native examples/wuproxy.native examples/taskvent.native examples/taskwork.native examples/tasksink.native -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712135318.export"
+'opam install lwt-zmq' failed.
