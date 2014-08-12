@@ -4834,3 +4834,25 @@ Installed /home/opam/.opam/system/lib/textutils/textutils.cmxs
 Installed /home/opam/.opam/system/lib/textutils/textutils.cmx
 Installed /home/opam/.opam/system/lib/textutils/META
 Installing textutils.111.25.00.
+
+=-=-= Installing ackdo-reloaded.0.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ackdo-reloaded.0.4+opam.tar.gz
+sending incremental file list
+ackdo-reloaded.0.4+opam.tar.gz
+
+sent 4,236 bytes  received 35 bytes  8,542.00 bytes/sec
+total size is 4,097  speedup is 0.96
+Building ackdo-reloaded.0.4:
+  make build
+  make opaminstall BINDIR=/home/opam/.opam/system/bin
+ocamlbuild -use-ocamlfind src/ackdo.native
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -modules src/ackdo.ml > src/ackdo.ml.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -modules src/ackdo_lib.mli > src/ackdo_lib.mli.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -I src -o src/ackdo_lib.cmi src/ackdo_lib.mli
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -I src -o src/ackdo.cmo src/ackdo.ml
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -modules src/ackdo_lib.ml > src/ackdo_lib.ml.depends
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -I src -o src/ackdo_lib.cmx src/ackdo_lib.ml
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o -I src -o src/ackdo.cmx src/ackdo.ml
+ocamlfind ocamlopt -linkpkg -g -thread -package core,sexplib,sexplib.syntax,str,kaputt,textutils -syntax camlp4o src/ackdo_lib.cmx src/ackdo.cmx -o src/ackdo.native
+cp ackdo.native /home/opam/.opam/system/bin/ackdo
+Installing ackdo-reloaded.0.4.
