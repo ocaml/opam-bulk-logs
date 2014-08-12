@@ -9,3 +9,77 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install piqi
+The following actions will be performed:
+ - install xmlm.1.2.0 [required by piqi]
+ - install camlp4.4.01.0 [required by piqi]
+ - install easy-format.1.0.2 [required by piqi]
+ - install ulex.1.1 [required by piqi]
+ - install piqilib.0.6.6 [required by piqi]
+ - install piqi.0.7.1
+6 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/system/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing xmlm.1.2.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+
+sent 51,862 bytes  received 35 bytes  103,794.00 bytes/sec
+total size is 51,727  speedup is 1.00
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/system/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
