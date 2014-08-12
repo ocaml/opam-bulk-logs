@@ -7904,3 +7904,42 @@ Building cohttp.0.10.1:
   make PREFIX=/home/opam/.opam/system
   make PREFIX=/home/opam/.opam/system install
 ocamlopt.opt -o setup.bin setup.ml || ocamlopt -o setup.bin setup.ml || ocamlc -o setup.bin setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.cmo
+./setup.bin -configure  --enable-async    --prefix /home/opam/.opam/system
+ocamlfind: Package `async_ssl' not found
+W: Field 'pkg_async_ssl' is not set: Command ''/home/opam/.opam/system/bin/ocamlfind' query -format %d async_ssl > '/tmp/oasis-937210.txt'' terminated with error code 2
+E: Cannot find findlib package async_ssl
+E: Failure("1 configuration error")
+make: *** [setup.data] Error 1
+[ERROR] The compilation of cohttp.0.10.1 failed.
+Removing cohttp.0.10.1.
+  ocamlfind remove cohttp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/cohttp
+
+[ERROR] Due to some errors while processing cohttp.0.10.1, the following actions will NOT proceed:
+ - install opium.0.9.1
+
+===== ERROR while installing cohttp.0.10.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make PREFIX=/home/opam/.opam/system
+# path                 /home/opam/.opam/system/build/cohttp.0.10.1
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/cohttp.0.10.1/cohttp-21792-062a54.env
+# stdout-file          /home/opam/.opam/system/build/cohttp.0.10.1/cohttp-21792-062a54.out
+# stderr-file          /home/opam/.opam/system/build/cohttp.0.10.1/cohttp-21792-062a54.err
+### stdout ###
+# ocamlopt.opt -o setup.bin setup.ml || ocamlopt -o setup.bin setup.ml || ocamlc -o setup.bin setup.ml
+# rm -f setup.cmx setup.cmi setup.o setup.cmo
+# ./setup.bin -configure  --enable-async    --prefix /home/opam/.opam/system
+### stderr ###
+# ocamlfind: Package `async_ssl' not found
+# W: Field 'pkg_async_ssl' is not set: Command ''/home/opam/.opam/system/bin/ocamlfind' query -format %d async_ssl > '/tmp/oasis-937210.txt'' terminated with error code 2
+# E: Cannot find findlib package async_ssl
+# E: Failure("1 configuration error")
+# make: *** [setup.data] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712163611.export"
+'opam install opium' failed.
