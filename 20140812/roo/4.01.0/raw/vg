@@ -73,3 +73,14 @@ ocamlfind ocamlc -c -annot -bin-annot -package gg -I src -I test -I db -o src/vg
 ocamlfind ocamlc -a src/vg.cmo -o src/vg.cma
 ocamlfind ocamlopt -a src/vg.cmx -o src/vg.cmxa
 ocamlfind ocamlopt -shared src/vg.cmx -o src/vg.cmxs
+ocamlfind ocamldep -package gg -modules src/vgr_svg.mli > src/vgr_svg.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -package gg -I src -I test -I db -o src/vgr_svg.cmi src/vgr_svg.mli
+ocamlfind ocamldep -package gg -modules src/vgr_svg.ml > src/vgr_svg.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -package gg -I src -I test -I db -o src/vgr_svg.cmx src/vgr_svg.ml
+ocamlfind ocamlc -c -annot -bin-annot -package gg -I src -I test -I db -o src/vgr_svg.cmo src/vgr_svg.ml
+ocamlfind ocamlc -a src/vg.cmo src/vgr_svg.cmo -o src/vgr_svg.cma
+ocamlfind ocamlopt -a src/vg.cmx src/vgr_svg.cmx -o src/vgr_svg.cmxa
+ocamlfind ocamlopt -shared src/vgr_svg.cmx -o src/vgr_svg.cmxs
+ln: './test': cannot overwrite directory
+Installing vg.0.8.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/system/build/vg.0.8.0/vg.install: is your OPAM up-to-date ?
