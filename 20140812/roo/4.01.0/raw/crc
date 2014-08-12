@@ -1214,3 +1214,32 @@ pkg_ounit: ........................................... /home/opam/.opam/system/l
 
 ocaml setup.ml -build -j 4
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/crc_stubs.c
+mv crc_stubs.o lib/crc_stubs.o
+/usr/bin/ocamlmklib -o lib/crc_stubs lib/crc_stubs.o
+ocamlfind ocamldep -package cstruct -modules lib/crc.mli > lib/crc.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -package cstruct -I lib -o lib/crc.cmi lib/crc.mli
+ocamlfind ocamldep -package cstruct -modules lib/crc.ml > lib/crc.ml.depends
+ocamlfind ocamlc -c -g -bin-annot -package cstruct -I lib -o lib/crc.cmo lib/crc.ml
+ocamlfind ocamlc -a -dllib -lcrc_stubs -cclib -lcrc_stubs -bin-annot lib/crc.cmo -o lib/crc.cma
+ocamlfind ocamlopt -c -g -bin-annot -package cstruct -I lib -o lib/crc.cmx lib/crc.ml
+ocamlfind ocamlopt -a -cclib -lcrc_stubs -bin-annot lib/crc.cmx -o lib/crc.cmxa
+ocamlfind ocamlopt -shared -I lib lib/crc.cmx -o lib/crc.cmxs
+ocamlfind ocamldep -package oUnit -package cstruct -modules test/crc_test.ml > test/crc_test.ml.depends
+ocamlfind ocamlc -c -g -I lib -bin-annot -package oUnit -package cstruct -I test -I lib -o test/crc_test.cmo test/crc_test.ml
+ocamlfind ocamlc -g -I lib -bin-annot -linkpkg -package oUnit -package cstruct lib/crc.cma test/crc_test.cmo -o test/crc_test.byte
+# No parallelism done
+ocaml setup.ml -install
+Installed /home/opam/.opam/system/lib/crc/crc.mli
+Installed /home/opam/.opam/system/lib/crc/libcrc_stubs.a
+Installed /home/opam/.opam/system/lib/crc/crc.cma
+Installed /home/opam/.opam/system/lib/crc/crc.cmxa
+Installed /home/opam/.opam/system/lib/crc/crc.a
+Installed /home/opam/.opam/system/lib/crc/crc.cmxs
+Installed /home/opam/.opam/system/lib/crc/crc.cmi
+Installed /home/opam/.opam/system/lib/crc/crc.cmx
+Installed /home/opam/.opam/system/lib/crc/META
+Installed /home/opam/.opam/system/lib/stublibs/dllcrc_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllcrc_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing crc.0.9.0.
