@@ -2976,3 +2976,32 @@ json-static.0.9.8+opam.tar.gz
 
 sent 32,294 bytes  received 35 bytes  64,658.00 bytes/sec
 total size is 32,156  speedup is 0.99
+Building json-static.0.9.8:
+  make
+  make install PREFIX=/home/opam/.opam/system
+echo $CAMLP4_VERSION
+310
+echo $CAMLP4ORF
+camlp4orf
+echo $CAMLP4RF
+camlp4rf
+echo $PR_O
+-printer o
+echo $PR_R
+-printer r
+echo $PARSER
+-parser
+echo $PRINTER
+-printer
+echo '# 1 "pa_json_static.ml.310"' > pa_json_static.ml
+cat pa_json_static.ml.310 >> pa_json_static.ml
+ln -sf pa_json_static.ml.annot pa_json_static.annot
+ocamlc -c -dtypes \
+		-pp 'camlp4orf -loc _loc' \
+		-I +camlp4 pa_json_static.ml
+ocamlfind install json-static META \
+		pa_json_static.cmi pa_json_static.cmo
+Installed /home/opam/.opam/system/lib/json-static/pa_json_static.cmo
+Installed /home/opam/.opam/system/lib/json-static/pa_json_static.cmi
+Installed /home/opam/.opam/system/lib/json-static/META
+Installing json-static.0.9.8.
