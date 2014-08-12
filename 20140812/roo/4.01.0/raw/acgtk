@@ -229,3 +229,109 @@ cp /tmp/version5c3e8b.ml src/library/version.ml
 /usr/bin/ocamlopt.opt -c -for-pack Bolt -I src/support -I src -I src/syntax -I src/threads -I src/library -o src/support/daikon.cmx src/support/daikon.ml
 /usr/bin/ocamlopt.opt -c -for-pack Bolt -I src/support -I src -I src/syntax -I src/threads -I src/library -o src/support/log4j.cmx src/support/log4j.ml
 /usr/bin/ocamlopt.opt -c -for-pack Bolt -I src/support -I src -I src/syntax -I src/threads -I src/library -o src/support/paje.cmx src/support/paje.ml
+touch bolt.mli  ; if  /usr/bin/ocamlopt.opt -pack -I src/library -I src/support src/library/utils.cmx src/library/name.cmx src/library/configuration.cmx src/library/configParser.cmx src/library/configLexer.cmx src/library/configurationNew.cmx src/library/configurationOld.cmx src/library/level.cmx src/library/event.cmx src/library/filter.cmx src/library/version.cmx src/library/layout.cmx src/library/signal.cmx src/library/output.cmx src/library/mode.cmx src/library/tree.cmx src/library/logger.cmx src/support/daikon.cmx src/support/log4j.cmx src/support/paje.cmx -o bolt.cmx  ; then  rm -f bolt.mli  ; else  rm -f bolt.mli  ; exit 1; fi
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links bolt.otarget
+cp /tmp/version3d238b.ml src/library/version.ml
+/usr/bin/ocamlc.opt -a bolt.cmo -o bolt.cma
+/usr/bin/ocamlopt.opt -a bolt.cmx -o bolt.cmxa
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links bolt_pp.cmo
+/usr/bin/ocamldep.opt -pp /usr/bin/camlp4of -modules src/syntax/bolt_pp.ml > src/syntax/bolt_pp.ml.depends
+/usr/bin/ocamlc.opt -c -I +camlp4 -pp /usr/bin/camlp4of -I src/syntax -I src -I src/support -I src/threads -I src/library -o src/syntax/bolt_pp.cmo src/syntax/bolt_pp.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links boltThread.cmo
+/usr/bin/ocamldep.opt -modules src/threads/boltThread.mli > src/threads/boltThread.mli.depends
+/usr/bin/ocamlc.opt -c -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmi src/threads/boltThread.mli
+/usr/bin/ocamldep.opt -modules src/threads/boltThread.ml > src/threads/boltThread.ml.depends
+cp /tmp/version13e91e.ml src/library/version.ml
+/usr/bin/ocamlc.opt -c -thread -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmo src/threads/boltThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links boltThread.cmx
+cp /tmp/versiondd911d.ml src/library/version.ml
+/usr/bin/ocamlopt.opt -c -thread -for-pack Bolt -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmx src/threads/boltThread.ml
+if [ -x "/home/opam/.opam/system/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/system/bin/ocamlfind query bolt && /home/opam/.opam/system/bin/ocamlfind remove bolt || true; \
+	  /home/opam/.opam/system/bin/ocamlfind install bolt META -optional \
+	    `pwd`/_build/src/syntax/bolt_pp.cmo \
+	    `pwd`/_build/src/threads/boltThread.cm* \
+	    `pwd`/_build/src/threads/boltThread.o \
+	    `pwd`/_build/src/threads/boltThread.jo \
+	    `pwd`/_build/bolt.a \
+	    `pwd`/_build/bolt.cma \
+	    `pwd`/_build/bolt.cmi \
+	    `pwd`/_build/bolt.cmo \
+	    `pwd`/_build/bolt.cmxa \
+	    `pwd`/_build/bolt.cmja \
+	    `pwd`/_build/bolt.ja; \
+	else \
+	  mkdir -p /usr/lib/ocaml/bolt; \
+	  cp `pwd`/_build/src/syntax/bolt_pp.cmo /usr/lib/ocaml/bolt; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/boltThread.$ext && cp `pwd`/_build/src/threads/boltThread.$ext /usr/lib/ocaml/bolt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmxa cmja ja; do \
+	    test -f `pwd`/_build/bolt.$ext && cp `pwd`/_build/bolt.$ext /usr/lib/ocaml/bolt || true; \
+	  done \
+	fi
+ocamlfind: Package `bolt' not found
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmxa
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmo
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmi
+Installed /home/opam/.opam/system/lib/bolt/bolt.cma
+Installed /home/opam/.opam/system/lib/bolt/bolt.a
+Installed /home/opam/.opam/system/lib/bolt/boltThread.o
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmx
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmo
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmi
+Installed /home/opam/.opam/system/lib/bolt/bolt_pp.cmo
+Installed /home/opam/.opam/system/lib/bolt/META
+Installing bolt.1.4.
+
+=-=-= Installing acgtk.1.0b =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/acgtk.1.0b+opam.tar.gz
+sending incremental file list
+acgtk.1.0b+opam.tar.gz
+
+sent 256,814 bytes  received 35 bytes  171,232.67 bytes/sec
+total size is 256,631  speedup is 1.00
+Building acgtk.1.0b:
+  ./configure --prefix=/home/opam/.opam/system
+  make all
+  make install-all
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for camlp4o... camlp4o
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamldep.opt... ocamldep.opt
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc.opt... no
+checking for ocamlyacc... ocamlyacc
+checking for ocamlfind... /home/opam/.opam/system/bin/ocamlfind
+checking for opam... /usr/bin/opam
+checking for dypgen.opt... dypgen.opt
+checking for dypgen.opt version... dypgen.opt (20120619) is ok
+checking for requested library : dypgen... testing with /home/opam/.opam/system/bin/ocamlfind
+Found with /home/opam/.opam/system/bin/ocamlfind => -I /home/opam/.opam/system/lib/dyp
+checking for requested library : bolt... testing with /home/opam/.opam/system/bin/ocamlfind
+Found with /home/opam/.opam/system/bin/ocamlfind => -I /home/opam/.opam/system/lib/bolt
+bolt_pp.byte preprocessor is /home/opam/.opam/system/lib/bolt/bolt_pp.cmo -level $(BOLT_LEVEL)
+Bolt log level is NONE.
+checking for ocamlc.opt version... ocamlc.opt version is 4.01.0
+checking for config/ml_check.ml... yes
+ocamlc.opt version  is ok
+Compilation will be done with the -dtypes option
+camlp4o calls will be done with the -loc loc option
+Compilation will be done with the -w yz option
+camlp4o calls will be done with the camlp4lib.cma library
+checking whether make sets $(MAKE)... yes
+configure: creating ./config.status
+config.status: creating ./Makefile
+config.status: creating config/Makefile
+config.status: creating src/Makefile.master
+config.status: creating src/Makefile.common
+config.status: creating src/Makefile
+config.status: creating src/utils/Makefile
+config.status: creating src/logic/Makefile
+config.status: creating src/grammars/Makefile
+config.status: creating src/acg-data/Makefile
+config.status: creating src/scripting/Makefile
+config.status: creating src/datalog.prover/Makefile
+config.status: creating src/reduction/Makefile
