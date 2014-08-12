@@ -1752,3 +1752,97 @@ config.status: creating Makefile
 config.status: creating myocamlbuild.ml
 chmod a-w myocamlbuild.ml META Makefile version.ml
 /usr/bin/ocamlbuild  -no-links -tag dtypes -tags cairo_yes,concrete_yes  -classic-display -log "build.log" mlpost.cma mlpost_desc_options.cma mlpost_options.cma mlpost.cmxa mlpost_desc_options.cmxa mlpost_options.cmxa tool.native
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/usr/bin/ocamllex.opt -q myocamlmacroparser.mll
+/usr/bin/ocamldep.opt -modules myocamlmacroparser.ml > myocamlmacroparser.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o myocamlmacroparser.cmo myocamlmacroparser.ml
+/usr/bin/ocamlopt.opt -c -dtypes -for-pack Mlpost -I concrete -I gui -I dvi -I backend -o myocamlmacroparser.cmx myocamlmacroparser.ml
+/usr/bin/ocamlopt.opt myocamlmacroparser.cmx -o myocamlmacroparser.native
+/usr/bin/ocamldep.opt -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -modules mlpost.mli > mlpost.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I /home/opam/.opam/system/lib/cairo -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -I concrete -I gui -I dvi -I backend -o mlpost.cmi mlpost.mli
+cp mlpost_cairo.mlpack mlpost.mlpack
+/usr/bin/ocamldep.opt -modules signature.ml > signature.ml.depends
+/usr/bin/ocamldep.opt -modules types.mli > types.mli.depends
+/usr/bin/ocamldep.opt -modules concrete/concrete_types.ml > concrete/concrete_types.ml.depends
+/usr/bin/ocamldep.opt -modules hashcons.mli > hashcons.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/concrete_types.cmo concrete/concrete_types.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o hashcons.cmi hashcons.mli
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o types.cmi types.mli
+/usr/bin/ocamldep.opt -modules num.ml > num.ml.depends
+/usr/bin/ocamldep.opt -modules point.ml > point.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o num.cmo num.ml
+/usr/bin/ocamldep.opt -modules metaPath.ml > metaPath.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o point.cmo point.ml
+/usr/bin/ocamldep.opt -modules path.ml > path.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o metaPath.cmo metaPath.ml
+/usr/bin/ocamldep.opt -modules transform.ml > transform.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o transform.cmo transform.ml
+/usr/bin/ocamldep.opt -modules pen.ml > pen.ml.depends
+/usr/bin/ocamldep.opt -modules dash.ml > dash.ml.depends
+/usr/bin/ocamldep.opt -modules color.ml > color.ml.depends
+/usr/bin/ocamldep.opt -modules brush.ml > brush.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o color.cmo color.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o dash.cmo dash.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o pen.cmo pen.ml
+/usr/bin/ocamldep.opt -modules box.ml > box.ml.depends
+/usr/bin/ocamldep.opt -modules command.ml > command.ml.depends
+/usr/bin/ocamldep.opt -modules misc.ml > misc.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o misc.cmo misc.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o path.cmo path.ml
+/usr/bin/ocamldep.opt -modules picture.ml > picture.ml.depends
+/usr/bin/ocamldep.opt -modules shapes.ml > shapes.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o command.cmo command.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o picture.cmo picture.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o shapes.cmo shapes.ml
+/usr/bin/ocamldep.opt -modules arrow.ml > arrow.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o box.cmo box.ml
+/usr/bin/ocamldep.opt -modules helpers.ml > helpers.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o arrow.cmo arrow.ml
+/usr/bin/ocamldep.opt -modules tree.ml > tree.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o helpers.cmo helpers.ml
+/usr/bin/ocamldep.opt -modules tree_adv.ml > tree_adv.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o signature.cmo signature.ml
+/usr/bin/ocamldep.opt -modules diag.ml > diag.ml.depends
+/usr/bin/ocamldep.opt -modules plot.ml > plot.ml.depends
+/usr/bin/ocamldep.opt -modules real_plot.ml > real_plot.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o brush.cmo brush.ml
+/usr/bin/ocamldep.opt -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -modules concrete.ml > concrete.ml.depends
+/usr/bin/ocamldep.opt -modules backend/compute.ml > backend/compute.ml.depends
+/usr/bin/ocamldep.opt -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -modules concrete/ctypes.mli > concrete/ctypes.mli.depends
+/usr/bin/ocamldep.opt -modules backend/gentex.mli > backend/gentex.mli.depends
+/usr/bin/ocamldep.opt -modules dvi/dev_save.mli > dvi/dev_save.mli.depends
+/usr/bin/ocamldep.opt -modules dvi/dviinterp.mli > dvi/dviinterp.mli.depends
+/usr/bin/ocamldep.opt -modules dvi/dvi.mli > dvi/dvi.mli.depends
+/usr/bin/ocamldep.opt -modules dvi/dvi_util.ml > dvi/dvi_util.ml.depends
+/usr/bin/ocamldep.opt -modules dvi/fonts.mli > dvi/fonts.mli.depends
+/usr/bin/ocamldep.opt -modules dvi/tfm.mli > dvi/tfm.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/tfm.cmi dvi/tfm.mli
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dvi_util.cmo dvi/dvi_util.ml
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/fonts.cmi dvi/fonts.mli
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dvi.cmi dvi/dvi.mli
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dviinterp.cmi dvi/dviinterp.mli
+/usr/bin/ocamldep.opt -modules concrete/matrix.mli > concrete/matrix.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I /home/opam/.opam/system/lib/cairo -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -I concrete -I gui -I dvi -I backend -o concrete/ctypes.cmi concrete/ctypes.mli
+/usr/bin/ocamldep.opt -modules concrete/point_lib.mli > concrete/point_lib.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dev_save.cmi dvi/dev_save.mli
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/matrix.cmi concrete/matrix.mli
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/point_lib.cmi concrete/point_lib.mli
+/usr/bin/ocamldep.opt -modules concrete/metapath_lib.mli > concrete/metapath_lib.mli.depends
+/usr/bin/ocamldep.opt -modules concrete/spline_lib.mli > concrete/spline_lib.mli.depends
+/usr/bin/ocamldep.opt -modules concrete/spline.mli > concrete/spline.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/spline.cmi concrete/spline.mli
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/spline_lib.cmi concrete/spline_lib.mli
+/usr/bin/ocamldep.opt -modules backend/picture_lib.mli > backend/picture_lib.mli.depends
+/usr/bin/ocamlc.opt -c -dtypes -I backend -I concrete -I gui -I dvi -o backend/gentex.cmi backend/gentex.mli
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/metapath_lib.cmi concrete/metapath_lib.mli
+/usr/bin/ocamlc.opt -c -dtypes -I backend -I concrete -I gui -I dvi -o backend/picture_lib.cmi backend/picture_lib.mli
+/usr/bin/ocamldep.opt -modules backend/lookForTeX.ml > backend/lookForTeX.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I backend -I concrete -I gui -I dvi -o backend/compute.cmo backend/compute.ml
+/usr/bin/ocamldep.opt -modules metapost_tool.ml > metapost_tool.ml.depends
+/usr/bin/ocamllex.opt -q scan_prelude.mll
+/usr/bin/ocamldep.opt -modules scan_prelude.ml > scan_prelude.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o scan_prelude.cmo scan_prelude.ml
+/usr/bin/ocamlc.opt -c -dtypes -I backend -I concrete -I gui -I dvi -o backend/lookForTeX.cmo backend/lookForTeX.ml
+/usr/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o metapost_tool.cmo metapost_tool.ml
+/usr/bin/ocamldep.opt -modules legend.ml > legend.ml.depends
+/usr/bin/ocamlc.opt -c -dtypes -pp '/usr/bin/camlp4o Camlp4MacroParser.cmo  -D CAIRO -D CONCRETE' -I concrete -I gui -I dvi -I backend -o concrete.cmo concrete.ml

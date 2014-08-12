@@ -762,3 +762,50 @@ ocamlfind ocamldep -package ipaddr -modules lib/tuntap.mli > lib/tuntap.mli.depe
 ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmi lib/tuntap.mli
 ocamlfind ocamldep -package ipaddr -modules lib/tuntap.ml > lib/tuntap.ml.depends
 ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmo lib/tuntap.ml
+ocamlfind ocamlc -a -dllib -ltuntap_stubs -cclib -ltuntap_stubs lib/tuntap.cmo -o lib/tuntap.cma
+ocamlfind ocamlopt -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmx lib/tuntap.ml
+ocamlfind ocamlopt -a -cclib -ltuntap_stubs lib/tuntap.cmx -o lib/tuntap.cmxa
+ocamlfind ocamlopt -shared -I lib lib/tuntap.cmx -o lib/tuntap.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.mli
+Installed /home/opam/.opam/system/lib/tuntap/libtuntap_stubs.a
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cma
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmxa
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.a
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmxs
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmi
+Installed /home/opam/.opam/system/lib/tuntap/tuntap.cmx
+Installed /home/opam/.opam/system/lib/tuntap/META
+Installed /home/opam/.opam/system/lib/stublibs/dlltuntap_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlltuntap_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing tuntap.0.7.0.
+
+=-=-= Installing mirari.0.9.7 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirari.0.9.7+opam.tar.gz
+sending incremental file list
+mirari.0.9.7+opam.tar.gz
+
+sent 14,555 bytes  received 35 bytes  9,726.67 bytes/sec
+total size is 14,422  speedup is 0.99
+Building mirari.0.9.7:
+  make
+rm -rf _build
+mkdir -p _build/lib
+echo let project_version=\"0.9.6\" > lib/path_generated.ml
+ocamlbuild -use-ocamlfind -pkg cmdliner -pkg unix -pkg tuntap -pkg fd-send-recv lib/main.native
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/main.ml > lib/main.ml.depends
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/mirari.mli > lib/mirari.mli.depends
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/path_generated.ml > lib/path_generated.ml.depends
+ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/mirari.cmi lib/mirari.mli
+ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/path_generated.cmo lib/path_generated.ml
+ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/main.cmo lib/main.ml
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/mirari.ml > lib/mirari.ml.depends
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/util.ml > lib/util.ml.depends
+ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/util.cmo lib/util.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/util.cmx lib/util.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/mirari.cmx lib/mirari.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/path_generated.cmx lib/path_generated.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/main.cmx lib/main.ml
+ocamlfind ocamlopt -linkpkg -package fd-send-recv -package tuntap -package unix -package cmdliner lib/util.cmx lib/mirari.cmx lib/path_generated.cmx lib/main.cmx -o lib/main.native
+Installing mirari.0.9.7.
