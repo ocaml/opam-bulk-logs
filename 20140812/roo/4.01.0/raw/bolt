@@ -151,3 +151,49 @@ cp /tmp/versiona9e461.ml src/library/version.ml
 WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links bolt_pp.cmo
 /usr/bin/ocamldep.opt -pp /usr/bin/camlp4of -modules src/syntax/bolt_pp.ml > src/syntax/bolt_pp.ml.depends
 /usr/bin/ocamlc.opt -c -I +camlp4 -pp /usr/bin/camlp4of -I src/syntax -I src -I src/support -I src/threads -I src/library -o src/syntax/bolt_pp.cmo src/syntax/bolt_pp.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links boltThread.cmo
+/usr/bin/ocamldep.opt -modules src/threads/boltThread.mli > src/threads/boltThread.mli.depends
+/usr/bin/ocamlc.opt -c -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmi src/threads/boltThread.mli
+/usr/bin/ocamldep.opt -modules src/threads/boltThread.ml > src/threads/boltThread.ml.depends
+cp /tmp/version9aea21.ml src/library/version.ml
+/usr/bin/ocamlc.opt -c -thread -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmo src/threads/boltThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/usr ocamlbuild -classic-display -no-links boltThread.cmx
+cp /tmp/version9274ff.ml src/library/version.ml
+/usr/bin/ocamlopt.opt -c -thread -for-pack Bolt -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmx src/threads/boltThread.ml
+if [ -x "/home/opam/.opam/system/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/system/bin/ocamlfind query bolt && /home/opam/.opam/system/bin/ocamlfind remove bolt || true; \
+	  /home/opam/.opam/system/bin/ocamlfind install bolt META -optional \
+	    `pwd`/_build/src/syntax/bolt_pp.cmo \
+	    `pwd`/_build/src/threads/boltThread.cm* \
+	    `pwd`/_build/src/threads/boltThread.o \
+	    `pwd`/_build/src/threads/boltThread.jo \
+	    `pwd`/_build/bolt.a \
+	    `pwd`/_build/bolt.cma \
+	    `pwd`/_build/bolt.cmi \
+	    `pwd`/_build/bolt.cmo \
+	    `pwd`/_build/bolt.cmxa \
+	    `pwd`/_build/bolt.cmja \
+	    `pwd`/_build/bolt.ja; \
+	else \
+	  mkdir -p /usr/lib/ocaml/bolt; \
+	  cp `pwd`/_build/src/syntax/bolt_pp.cmo /usr/lib/ocaml/bolt; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/boltThread.$ext && cp `pwd`/_build/src/threads/boltThread.$ext /usr/lib/ocaml/bolt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmxa cmja ja; do \
+	    test -f `pwd`/_build/bolt.$ext && cp `pwd`/_build/bolt.$ext /usr/lib/ocaml/bolt || true; \
+	  done \
+	fi
+ocamlfind: Package `bolt' not found
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmxa
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmo
+Installed /home/opam/.opam/system/lib/bolt/bolt.cmi
+Installed /home/opam/.opam/system/lib/bolt/bolt.cma
+Installed /home/opam/.opam/system/lib/bolt/bolt.a
+Installed /home/opam/.opam/system/lib/bolt/boltThread.o
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmx
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmo
+Installed /home/opam/.opam/system/lib/bolt/boltThread.cmi
+Installed /home/opam/.opam/system/lib/bolt/bolt_pp.cmo
+Installed /home/opam/.opam/system/lib/bolt/META
+Installing bolt.1.4.
