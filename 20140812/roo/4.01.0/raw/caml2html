@@ -18,3 +18,102 @@ The following actions will be performed:
 default    Synchronizing with /home/opam/opam-repository/archives/camlmix.1.3.0+opam.tar.gz
 sending incremental file list
 camlmix.1.3.0+opam.tar.gz
+
+sent 16,632 bytes  received 35 bytes  33,334.00 bytes/sec
+total size is 16,498  speedup is 0.99
+Building camlmix.1.3.0:
+  make
+  make install PREFIX=/home/opam/.opam/system
+contents='let version = "1.3.0"'; \
+	  if test "`cat version.ml`" != "$contents"; then \
+	    echo "$contents" > version.ml;\
+	  fi
+ocamllex lexer.mll
+29 states, 305 transitions, table size 1394 bytes
+ocamlyacc  parser_directive.mly
+make[1]: Entering directory `/home/opam/.opam/system/build/camlmix.1.3.0'
+making ._ncdi/parser_directive.di from parser_directive.mli
+making ._ncdi/lexer.di from lexer.mli
+making ._d/parser_directive.d from parser_directive.ml
+making ._d/lexer.d from lexer.ml
+making ._d/main.d from main.ml
+making ._d/directive.d from directive.ml
+making ._d/version.d from version.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlmix.1.3.0'
+make[1]: Entering directory `/home/opam/.opam/system/build/camlmix.1.3.0'
+ocamlopt -c version.ml
+ocamlc -c lexer.mli
+ocamlopt -c lexer.ml
+ocamlc -c parser_directive.mli
+ocamlopt -c parser_directive.ml
+ocamlopt -c directive.ml
+ocamlopt -c main.ml
+ocamlopt \
+				  \
+				             unix.cmxa   -o camlmix \
+				version.cmx lexer.cmx parser_directive.cmx directive.cmx main.cmx
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlmix.1.3.0'
+install -m 0755 camlmix /home/opam/.opam/system/bin/
+Installing camlmix.1.3.0.
+
+=-=-= Installing caml2html.1.4.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/caml2html.1.4.3+opam.tar.gz
+sending incremental file list
+caml2html.1.4.3+opam.tar.gz
+
+sent 33,767 bytes  received 35 bytes  67,604.00 bytes/sec
+total size is 33,627  speedup is 0.99
+Building caml2html.1.4.3:
+  mkdir -p /home/opam/.opam/system/bin
+  make
+  make lib
+  make install PREFIX=/home/opam/.opam/system
+ocamlc -w A -c hashtbl2.mli
+ocamlopt -dtypes -c hashtbl2.ml
+camlmix -clean version.ml.mlx -o version.ml
+ocamlopt -dtypes -c version.ml
+ocamlc -w A -c annot.mli
+ocamlopt -dtypes -c annot.ml
+ocamlopt -dtypes -c tag.ml
+ocamlc -w A -c plugin.mli
+ocamlopt -dtypes -c plugin.ml
+ocamllex input.mll
+98 states, 2531 transitions, table size 10712 bytes
+2799 additional bytes used for bindings
+ocamlc -w A -c input.mli
+ocamlopt -dtypes -c input.ml
+ocamlc -w A -c output.mli
+ocamlopt -dtypes -c output.ml
+ocamlc -w A -c output_latex.mli
+ocamlopt -dtypes -c output_latex.ml
+ocamlopt -dtypes -c main.ml
+ocamlopt -o caml2html str.cmxa unix.cmxa  hashtbl2.cmx  version.cmx  annot.cmx  tag.cmx  plugin.cmx  input.cmx  output.cmx  output_latex.cmx  main.cmx
+rm -f caml2html_test.mli
+ocamlc -i caml2html_test.ml > caml2html_test.mli
+File "caml2html_test.ml", line 35, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+ocamlc -c caml2html_test.mli
+File "caml2html_test.mli", line 3, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+ocamlc -c -dtypes caml2html_test.ml
+File "caml2html_test.ml", line 35, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+./caml2html -o caml2html_test.html \
+		caml2html_test.mli caml2html_test.ml caml2html_test2.ml \
+		-ln -ie7 \
+		-ext date:date \
+		-ext cat:cat \
+		-ext "rot13:tr '[a-z]' '[n-za-m]'"
+./caml2html -o caml2html_self_test.html \
+		tag.ml annot.mli annot.ml plugin.mli plugin.ml \
+		input.mli input.mll output.mli output.ml \
+		output_latex.mli output_latex.ml \
+		main.ml \
+		-ln
+./caml2html -latex -o caml2html_self_test.tex \
+		tag.ml annot.mli annot.ml plugin.mli plugin.ml \
+		input.mli input.mll output.mli output.ml \
+		output_latex.mli output_latex.ml \
+		main.ml \
+		-ln
+ocamlc -w A -dtypes -c hashtbl2.ml
