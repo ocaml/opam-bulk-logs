@@ -501,3 +501,35 @@ cp /tmp/predefinedfc49a2.ml src/driver/predefined.ml
 cp /tmp/version838557.ml src/common/version.ml
 /usr/bin/ocamlc.opt -c -I +camlp4 -I +compiler-libs -I +camlp4/Camlp4Parsers -I +ocamldoc -I src/driver -I src -I src/common -I src/parsers -I src/outputs -I src/checks -o src/driver/mascot.cmo src/driver/mascot.ml
 /usr/bin/ocamlc.opt dynlink.cma unix.cma str.cma -I +camlp4 camlp4lib.cma -I +compiler-libs ocamlcommon.cma -I +camlp4/Camlp4Parsers camlp4fulllib.cma -I +ocamldoc odoc_info.cma mascotLibrary.cmo src/driver/mascot.cmo -o src/driver/mascot.byte
++ /usr/bin/ocamlc.opt dynlink.cma unix.cma str.cma -I +camlp4 camlp4lib.cma -I +compiler-libs ocamlcommon.cma -I +camlp4/Camlp4Parsers camlp4fulllib.cma -I +ocamldoc odoc_info.cma mascotLibrary.cmo src/driver/mascot.cmo -o src/driver/mascot.byte
+File "/usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4_import)", line 1:
+Warning 31: files /usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4_import) and /usr/lib/ocaml/camlp4/camlp4lib.cma(Camlp4_import) both define a module named Camlp4_import
+File "/usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4_config)", line 1:
+Warning 31: files /usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4_config) and /usr/lib/ocaml/camlp4/camlp4lib.cma(Camlp4_config) both define a module named Camlp4_config
+File "/usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4)", line 1:
+Warning 31: files /usr/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4) and /usr/lib/ocaml/camlp4/camlp4lib.cma(Camlp4) both define a module named Camlp4
+/usr/bin/ocamlopt.opt -c -I +camlp4 -I +compiler-libs -I +camlp4/Camlp4Parsers -I +ocamldoc -for-pack MascotLibrary -I src/driver -I src -I src/common -I src/parsers -I src/outputs -I src/checks -o src/driver/mascot.cmx src/driver/mascot.ml
+/usr/bin/ocamlopt.opt dynlink.cmxa unix.cmxa str.cmxa -I +camlp4 camlp4lib.cmxa -I +compiler-libs ocamlcommon.cmxa -I +camlp4/Camlp4Parsers camlp4fulllib.cmxa -I +ocamldoc odoc_info.cmxa mascotLibrary.cmx src/driver/mascot.cmx -o src/driver/mascot.native
++ /usr/bin/ocamlopt.opt dynlink.cmxa unix.cmxa str.cmxa -I +camlp4 camlp4lib.cmxa -I +compiler-libs ocamlcommon.cmxa -I +camlp4/Camlp4Parsers camlp4fulllib.cmxa -I +ocamldoc odoc_info.cmxa mascotLibrary.cmx src/driver/mascot.cmx -o src/driver/mascot.native
+/usr/bin/ld: error in /usr/lib/ocaml/camlp4/camlp4fulllib.a(Camlp4.o)(.eh_frame); no .eh_frame_hdr table will be created.
+if [ -x "/home/opam/.opam/system/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/system/bin/ocamlfind query mascot && /home/opam/.opam/system/bin/ocamlfind remove mascot || true; \
+	  /home/opam/.opam/system/bin/ocamlfind install mascot META -optional `pwd`/_build/mascotLibrary.cm* `pwd`/_build/mascotLibrary.a `pwd`/_build/mascotLibrary.o `pwd`/_build/src/driver/mascot.byte `pwd`/_build/src/driver/mascot.native; \
+	else \
+	  mkdir -p /usr/lib/ocaml/mascot; \
+	  for ext in cmi cmo cmx cmj a o; do \
+	    test -f `pwd`/_build/mascotLibrary.$ext && cp `pwd`/_build/mascotLibrary.$ext /usr/lib/ocaml/mascot || true; \
+	  done; \
+	  for ext in byte native; do \
+	    test -f `pwd`/_build/src/driver/mascot.$ext && cp `pwd`/_build/src/driver/mascot.$ext /usr/bin || true; \
+	  done \
+	fi
+ocamlfind: Package `mascot' not found
+Installed /home/opam/.opam/system/lib/mascot/mascot.native
+Installed /home/opam/.opam/system/lib/mascot/mascot.byte
+Installed /home/opam/.opam/system/lib/mascot/mascotLibrary.o
+Installed /home/opam/.opam/system/lib/mascot/mascotLibrary.cmx
+Installed /home/opam/.opam/system/lib/mascot/mascotLibrary.cmo
+Installed /home/opam/.opam/system/lib/mascot/mascotLibrary.cmi
+Installed /home/opam/.opam/system/lib/mascot/META
+Installing mascot.1.0.
