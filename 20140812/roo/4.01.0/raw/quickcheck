@@ -201,3 +201,98 @@ Building quickcheck.1.0.0:
   ocaml setup.ml -configure --prefix /home/opam/.opam/system
   ocaml setup.ml -build
   ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ quickcheck
+Package version: ..................................... 1.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_optcomp: ......................................... /home/opam/.opam/system/lib/optcomp
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.mli > src/quickCheck.mli.depends
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.mli > src/quickCheck_gen.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmi src/quickCheck_gen.mli
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmi src/quickCheck.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.ml > src/quickCheck.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.mli > src/quickCheck_util.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmi src/quickCheck_util.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.ml > src/quickCheck_gen.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.ml > src/quickCheck_util.ml.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmo src/quickCheck.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmo src/quickCheck_gen.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmo src/quickCheck_util.ml
+ocamlfind ocamlc -a -w @a -g src/quickCheck_util.cmo src/quickCheck_gen.cmo src/quickCheck.cmo -o src/quickcheck.cma
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmx src/quickCheck_util.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmx src/quickCheck_gen.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmx src/quickCheck.ml
+ocamlfind ocamlopt -a -w @a -g src/quickCheck_util.cmx src/quickCheck_gen.cmx src/quickCheck.cmx -o src/quickcheck.cmxa
+ocamlfind ocamlopt -shared -linkall src/quickcheck.cmxa -o src/quickcheck.cmxs
+ocamlfind ocamldep -package optcomp -modules tests/test.ml > tests/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package optcomp -I tests -I src -o tests/test.cmo tests/test.ml
+ocamlfind ocamlopt -c -g -I src -package optcomp -I tests -I src -o tests/test.cmx tests/test.ml
+ocamlfind ocamlopt -g -linkpkg -package optcomp src/quickcheck.cmxa tests/test.cmx -o tests/test.native
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck.mli
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_gen.mli
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_util.mli
+Installed /home/opam/.opam/system/lib/quickcheck/quickcheck.cma
+Installed /home/opam/.opam/system/lib/quickcheck/quickcheck.cmxa
+Installed /home/opam/.opam/system/lib/quickcheck/quickcheck.a
+Installed /home/opam/.opam/system/lib/quickcheck/quickcheck.cmxs
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck.cmi
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_gen.cmi
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_util.cmi
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck.cmx
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_gen.cmx
+Installed /home/opam/.opam/system/lib/quickcheck/quickCheck_util.cmx
+Installed /home/opam/.opam/system/lib/quickcheck/META
+Installing quickcheck.1.0.0.
