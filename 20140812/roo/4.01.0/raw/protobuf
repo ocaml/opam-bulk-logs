@@ -4742,3 +4742,74 @@ ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -sy
 ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
 	sint64.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c varint.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	varint.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c protocol.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	protocol.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c builder.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	builder.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	parser.ml
+File "parser.ml", line 44, characters 21-543:
+Error: Signature mismatch:
+       ...
+       Values do not match:
+         val map : 'a t -> f:('a -> 'b) -> 'b t
+       is not included in
+         val map :
+           [ `Custom of 'a t -> f:('a -> 'b) -> 'b t | `Define_using_bind ]
+       File "parser.ml", line 69, characters 6-9: Actual declaration
+make[3]: *** [parser.cmx] Error 2
+make[3]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0/lib/protobuf'
+make[2]: *** [protobuf] Error 2
+make[2]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0/lib'
+make[1]: *** [all_trampoline] Error 2
+make[1]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0'
+make: *** [all] Error 2
+[ERROR] The compilation of protobuf.1.0.0 failed.
+Removing protobuf.1.0.0.
+  ocamlfind remove protobuf
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/protobuf
+
+
+===== ERROR while installing protobuf.1.0.0 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/protobuf.1.0.0
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/protobuf.1.0.0/protobuf-13991-8b8a2d.env
+# stdout-file          /home/opam/.opam/system/build/protobuf.1.0.0/protobuf-13991-8b8a2d.out
+# stderr-file          /home/opam/.opam/system/build/protobuf.1.0.0/protobuf-13991-8b8a2d.err
+### stdout ###
+# ...[truncated]
+# 	protocol.ml
+# ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c builder.mli
+# ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+# 	builder.ml
+# ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+# ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+# 	parser.ml
+# make[3]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0/lib/protobuf'
+# make[2]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0/lib'
+# make[1]: Leaving directory `/home/opam/.opam/system/build/protobuf.1.0.0'
+### stderr ###
+# ...[truncated]
+#        Values do not match:
+#          val map : 'a t -> f:('a -> 'b) -> 'b t
+#        is not included in
+#          val map :
+#            [ `Custom of 'a t -> f:('a -> 'b) -> 'b t | `Define_using_bind ]
+#        File "parser.ml", line 69, characters 6-9: Actual declaration
+# make[3]: *** [parser.cmx] Error 2
+# make[2]: *** [protobuf] Error 2
+# make[1]: *** [all_trampoline] Error 2
+# make: *** [all] Error 2
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712191841.export"
+'opam install protobuf' failed.
