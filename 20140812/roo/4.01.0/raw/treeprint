@@ -1316,3 +1316,85 @@ File OMyMakefile: line 188, characters 3-26:
 File OMyMakefile: line 669, characters 2-21:
    Warning: old-style foreach expression.
    This expression should use a => binding.
+--- Checking for ocamlfind... (found /home/opam/.opam/system/bin/ocamlfind)
+--- Checking for ocamlc.opt... (found /usr/bin/ocamlc.opt)
+--- Checking for ocamlopt.opt... (found /usr/bin/ocamlopt.opt)
+--- Checking whether ocamlc understands the "z" warnings... (yes)
+*** omake: finished reading OMakefiles (2.59 sec)
+--- Checking if ocamldep understands -modules... (yes)
+- build lib printer.cmi
++ ocamlfind ocamlc -annot -bin-annot -for-pack Treeprint -package spotlib,ocaml_conv -g -w A-4-9 -warn-error a -g -syntax camlp4o -package meta_conv.syntax -I . -c printer.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+File "printer.mli", line 99, characters 2-8:
+Warning 44: this open statement shadows the type identifier t (which is later used)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+- build lib printer.o
++ ocamlfind ocamlopt -annot -bin-annot -for-pack Treeprint -package spotlib,ocaml_conv -g -w A-4-9 -warn-error a -syntax camlp4o -package meta_conv.syntax -I . -c printer.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+File "printer.ml", line 20, characters 2-13:
+Warning 44: this open statement shadows the value identifier flush (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier + (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier * (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier - (which is later used)
+- build lib treeprint.cmx
++ ocamlfind ocamlopt -package spotlib,ocaml_conv -g -pack -annot -bin-annot -o treeprint.cmx printer.cmx
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+- build lib treeprint.cmi
++ ocamlfind ocamlopt -package spotlib,ocaml_conv -g -pack -o treeprint.cmx printer.cmx
+- build lib printer.cmo
++ ocamlfind ocamlc -annot -bin-annot -for-pack Treeprint -package spotlib,ocaml_conv -g -w A-4-9 -warn-error a -g -syntax camlp4o -package meta_conv.syntax -I . -c printer.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+File "printer.ml", line 20, characters 2-13:
+Warning 44: this open statement shadows the value identifier flush (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier + (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier * (which is later used)
+File "printer.ml", line 194, characters 0-10:
+Warning 44: this open statement shadows the value identifier - (which is later used)
+- build lib treeprint.cmt
++ ocamlfind ocamlc -package spotlib,ocaml_conv -g -g -pack -annot -bin-annot -o treeprint.cmo printer.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+- build lib test.o
++ ocamlfind ocamlc -annot -bin-annot -for-pack Treeprint -package spotlib,ocaml_conv -g -w A-4-9 -warn-error a -g -syntax camlp4o -package meta_conv.syntax -I . -c test.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+- build lib test.o
++ ocamlfind ocamlopt -annot -bin-annot -for-pack Treeprint -package spotlib,ocaml_conv -g -w A-4-9 -warn-error a -syntax camlp4o -package meta_conv.syntax -I .findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+ -c test.ml
+- build lib test.run
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
++ ocamlfind ocamlc -package spotlib,ocaml_conv -g -g -I . -o test.run printer.cmo test.cmo -linkpkg
+- build lib test.opt
++ ocamlfind ocamlopt -package spotlib,ocaml_conv -g -I . -o test.opt printer.cmx test.cmx -linkpkg
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+*** omake: done (5.55 sec, 3/3 scans, 10/16 rules, 29/111 digests)
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.12 sec)
+- build lib treeprint.cmxa
++ findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+<if ... then ... [else ...]>
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+- build lib <install>
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/treeprint
++ ocamlfind remove treeprint
+- build lib <install>
++ ocamlfind install treeprint META printer.mli treeprint.cmi treeprint.cmo treeprint.cmx treeprint.cmaInstalled /home/opam/.opam/system/lib/treeprint/treeprint.cmt
+ treeprint.cmxa treeprint.cmxs treeprint.o treeprint.a treeprint.cmt
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.a
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.o
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cmxs
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cmxa
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cma
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cmx
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cmo
+Installed /home/opam/.opam/system/lib/treeprint/treeprint.cmi
+Installed /home/opam/.opam/system/lib/treeprint/printer.mli
+Installed /home/opam/.opam/system/lib/treeprint/META
+*** omake: done (0.31 sec, 0/2 scans, 2/14 rules, 5/87 digests)
+Installing treeprint.1.0.2.
