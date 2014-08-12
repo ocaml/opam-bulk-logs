@@ -4570,3 +4570,36 @@ ocaml setup.ml -build
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.mli > lib/FS_unix.mli.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmi lib/FS_unix.mli
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.ml > lib/FS_unix.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmo lib/kvro_fs_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmo lib/FS_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/fs_common.cmo lib/kvro_fs_unix.cmo lib/FS_unix.cmo -o lib/mirage_fs_unix.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/fs_common.cmx lib/fs_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmx lib/kvro_fs_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmx lib/FS_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/fs_common.cmx lib/kvro_fs_unix.cmx lib/FS_unix.cmx -o lib/mirage_fs_unix.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/mirage_fs_unix.cmxa lib/fs_common.cmx lib/kvro_fs_unix.cmx lib/FS_unix.cmx -o lib/mirage_fs_unix.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.mli
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.mli
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cma
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cmxa
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.a
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cmxs
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.cmi
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.cmi
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/fs_common.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/META
+Installing mirage-fs-unix.1.1.1.
+
+=-=-= Installing mirage-net-unix.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-net-unix.1.1.1+opam.tar.gz
+sending incremental file list
+mirage-net-unix.1.1.1+opam.tar.gz
+
+sent 46,092 bytes  received 35 bytes  92,254.00 bytes/sec
+total size is 45,946  speedup is 1.00
+Building mirage-net-unix.1.1.1:
+  make
+  make install
