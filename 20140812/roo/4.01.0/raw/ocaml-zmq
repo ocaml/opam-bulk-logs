@@ -506,3 +506,81 @@ pkg_uint_uint64: ..................................... /home/opam/.opam/system/l
 pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -Wall -ccopt -W -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
++ ocamlfind ocamlc -ccopt -Wall -ccopt -W -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+src/caml_zmq_stubs.c:126:5: error: 'ZMQ_HWM' undeclared here (not in a function)
+     ZMQ_HWM,
+     ^
+src/caml_zmq_stubs.c:149:5: error: 'ZMQ_SWAP' undeclared here (not in a function)
+     ZMQ_SWAP,
+     ^
+src/caml_zmq_stubs.c:149:5: error: initializer element is not constant
+src/caml_zmq_stubs.c:149:5: error: (near initialization for 'native_int64_option_for[0]')
+src/caml_zmq_stubs.c:152:5: error: 'ZMQ_RECOVERY_IVL_MSEC' undeclared here (not in a function)
+     ZMQ_RECOVERY_IVL_MSEC,
+     ^
+src/caml_zmq_stubs.c:152:5: error: initializer element is not constant
+src/caml_zmq_stubs.c:152:5: error: (near initialization for 'native_int64_option_for[3]')
+src/caml_zmq_stubs.c:153:5: error: 'ZMQ_MCAST_LOOP' undeclared here (not in a function)
+     ZMQ_MCAST_LOOP,
+     ^
+src/caml_zmq_stubs.c:153:5: error: initializer element is not constant
+src/caml_zmq_stubs.c:153:5: error: (near initialization for 'native_int64_option_for[4]')
+src/caml_zmq_stubs.c: In function 'caml_zmq_send':
+src/caml_zmq_stubs.c:373:5: error: too few arguments to function 'zmq_send'
+     result = zmq_send (sock, &msg, option);
+     ^
+In file included from src/caml_zmq_stubs.c:26:0:
+/usr/include/zmq.h:354:16: note: declared here
+ ZMQ_EXPORT int zmq_send (void *s, const void *buf, size_t len, int flags);
+                ^
+src/caml_zmq_stubs.c:373:12: warning: assignment makes integer from pointer without a cast [enabled by default]
+     result = zmq_send (sock, &msg, option);
+            ^
+src/caml_zmq_stubs.c: In function 'caml_zmq_recv':
+src/caml_zmq_stubs.c:415:5: error: too few arguments to function 'zmq_recv'
+     result = zmq_recv (sock, &request, option);
+     ^
+In file included from src/caml_zmq_stubs.c:26:0:
+/usr/include/zmq.h:356:16: note: declared here
+ ZMQ_EXPORT int zmq_recv (void *s, void *buf, size_t len, int flags);
+                ^
+src/caml_zmq_stubs.c:415:12: warning: assignment makes integer from pointer without a cast [enabled by default]
+     result = zmq_recv (sock, &request, option);
+            ^
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' src/libZMQB_stubs.a src/dllZMQB_stubs.so src/ZMQB.cma src/ZMQB.cmxa src/ZMQB.a src/ZMQB.cmxs test/test.native -tag debug' terminated with error code 10")
+[ERROR] The compilation of ocaml-zmq.0 failed.
+Removing ocaml-zmq.0.
+  ocamlfind remove ZMQ
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ZMQ
+
+
+===== ERROR while installing ocaml-zmq.0 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/ocaml-zmq.0
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/ocaml-zmq.0/ocaml-zmq-776-c61e7b.env
+# stdout-file          /home/opam/.opam/system/build/ocaml-zmq.0/ocaml-zmq-776-c61e7b.out
+# stderr-file          /home/opam/.opam/system/build/ocaml-zmq.0/ocaml-zmq-776-c61e7b.err
+### stdout ###
+# ...[truncated]
+#      result = zmq_recv (sock, &request, option);
+#      ^
+# In file included from src/caml_zmq_stubs.c:26:0:
+# /usr/include/zmq.h:356:16: note: declared here
+#  ZMQ_EXPORT int zmq_recv (void *s, void *buf, size_t len, int flags);
+#                 ^
+# src/caml_zmq_stubs.c:415:12: warning: assignment makes integer from pointer without a cast [enabled by default]
+#      result = zmq_recv (sock, &request, option);
+#             ^
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' src/libZMQB_stubs.a src/dllZMQB_stubs.so src/ZMQB.cma src/ZMQB.cmxa src/ZMQB.a src/ZMQB.cmxs test/test.native -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712162652.export"
+'opam install ocaml-zmq' failed.
