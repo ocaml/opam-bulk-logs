@@ -47,3 +47,266 @@ cppo.0.9.4+opam.tar.gz
 
 sent 21,320 bytes  received 35 bytes  42,710.00 bytes/sec
 total size is 21,189  speedup is 0.99
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/system/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+
+=-=-= Installing easy-format.1.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/system/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/system/lib/easy-format/META
+Installing easy-format.1.0.2.
+
+=-=-= Installing obuild.0.0.8 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/obuild.0.0.8+opam.tar.gz
+sending incremental file list
+obuild.0.0.8+opam.tar.gz
+
+sent 72,029 bytes  received 35 bytes  144,128.00 bytes/sec
+total size is 71,884  speedup is 1.00
+Building obuild.0.0.8:
+  ./bootstrap
+  cp dist/build/obuild/obuild dist/build/obuild-simple/obuild-simple /home/opam/.opam/system/bin
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING gconf
+COMPILING types
+COMPILING dag
+COMPILING pp
+COMPILING filetype
+COMPILING expr
+COMPILING utils
+COMPILING modname
+COMPILING taskdep
+COMPILING dist
+COMPILING helper
+COMPILING dagutils
+COMPILING process
+COMPILING findlibConf
+COMPILING scheduler
+COMPILING prog
+COMPILING dependencies
+COMPILING generators
+COMPILING hier
+COMPILING meta
+COMPILING target
+COMPILING project
+COMPILING analyze
+COMPILING configure
+COMPILING prepare
+COMPILING buildprogs
+COMPILING build
+COMPILING exception
+BUILDING library obuild.cmxa
+COMPILING sdist
+COMPILING doc
+COMPILING init
+COMPILING help
+COMPILING install
+COMPILING path_generated
+COMPILING main
+LINKING obuild.bootstrap
+Configuring obuild-0.0.8...
+[ 1 of 54] Compiling Ext.Fugue                     
+[ 2 of 54] Intfing Ext.Filepath                  
+[ 3 of 54] Compiling Ext.Filepath                  
+[ 4 of 54] Intfing Ext.Filesystem                
+[ 5 of 54] Compiling Ext.Filesystem                
+[ 6 of 54] Packing Ext                           
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cmxa
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cmxs
+[ 7 of 54] Linking library dist/build/lib-obuild.ext/obuild_ext.cma
+[ 8 of 54] Checking dist/build/lib-obuild.ext
+[ 9 of 54] Compiling Obuild.Types                  
+[10 of 54] Compiling Obuild.Gconf                  
+[11 of 54] Compiling Obuild.Filetype               
+[12 of 54] Compiling Obuild.Pp                     
+[13 of 54] Compiling Obuild.Expr                   
+[14 of 54] Compiling Obuild.Dag                    
+[15 of 54] Compiling Obuild.Modname                
+[16 of 54] Compiling Obuild.Utils                  
+[17 of 54] Compiling Obuild.Taskdep                
+[18 of 54] Compiling Obuild.Helper                 
+[19 of 54] Compiling Obuild.Dist                   
+[20 of 54] Compiling Obuild.Dagutils               
+[21 of 54] Compiling Obuild.Process                
+[22 of 54] Compiling Obuild.Scheduler              
+[23 of 54] Compiling Obuild.Prog                   
+[24 of 54] Compiling Obuild.FindlibConf            
+[25 of 54] Compiling Obuild.Generators             
+[26 of 54] Compiling Obuild.Dependencies           
+[27 of 54] Compiling Obuild.Hier                   
+[28 of 54] Compiling Obuild.Meta                   
+[29 of 54] Compiling Obuild.Target                 
+[30 of 54] Compiling Obuild.Project                
+[31 of 54] Compiling Obuild.Analyze                
+[32 of 54] Compiling Obuild.Prepare                
+[33 of 54] Compiling Obuild.Configure              
+[34 of 54] Compiling Obuild.Buildprogs             
+[35 of 54] Compiling Obuild.Build                  
+[36 of 54] Compiling Obuild.Exception              
+[37 of 54] Packing Obuild                        
+[38 of 54] Linking library dist/build/lib-obuild/obuild.cmxa
+[38 of 54] Linking library dist/build/lib-obuild/obuild.cmxs
+[38 of 54] Linking library dist/build/lib-obuild/obuild.cma
+[39 of 54] Checking dist/build/lib-obuild
+[40 of 54] Compiling Assimilate_oasis              
+[41 of 54] Compiling Simple                        
+[42 of 54] Compiling Doc                           
+[43 of 54] Compiling Help                          
+[44 of 54] Compiling Path_generated                
+[45 of 54] Compiling Sdist                         
+[46 of 54] Compiling Install                       
+[47 of 54] Compiling Init                          
+[48 of 54] Linking executable dist/build/obuild-from-oasis/obuild-from-oasis
+[49 of 54] Linking executable dist/build/obuild-simple/obuild-simple
+[50 of 54] Compiling Main                          
+[51 of 54] Checking dist/build/obuild-from-oasis
+[52 of 54] Checking dist/build/obuild-simple
+[53 of 54] Linking executable dist/build/obuild/obuild
+[54 of 54] Checking dist/build/obuild
+
+real	0m4.121s
+user	0m2.765s
+sys	0m1.918s
+Installing obuild.0.0.8.
+
+=-=-= Installing ounit.2.0.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ounit.2.0.0+opam.tar.gz
+sending incremental file list
+ounit.2.0.0+opam.tar.gz
+
+sent 107,801 bytes  received 35 bytes  215,672.00 bytes/sec
+total size is 107,649  speedup is 1.00
+Building ounit.2.0.0:
+  make build
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ ounit
+Package version: ..................................... 2.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_threads: ......................................... /usr/lib/ocaml
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
+W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitUtils.ml > src/oUnitUtils.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitPropList.ml > src/oUnitPropList.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitPlugin.ml > src/oUnitPlugin.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitConf.ml > src/oUnitConf.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitPropList.cmo src/oUnitPropList.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitUtils.cmo src/oUnitUtils.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitConf.cmo src/oUnitConf.ml
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitChooser.ml > src/oUnitChooser.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitCache.ml > src/oUnitCache.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitTest.ml > src/oUnitTest.ml.depends
