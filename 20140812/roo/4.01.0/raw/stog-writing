@@ -3840,3 +3840,241 @@ ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
 camlp4o -printer Camlp4OCamlPrinter.cmo \
 	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_ocaml.mll > higlo_ocaml.ml
 ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+camlp4o -printer Camlp4OCamlPrinter.cmo \
+	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_xml.mll > higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo_printers.mli
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -o higlo.byte -package dynlink -linkpkg higlo.cmo higlo_ocaml.cmo higlo_xml.cmo higlo_printers.cmo higlo_main.ml
+ocamlfind ocamlopt -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
+ocamlfind ocamlopt -package ulex,xtmpl -shared -o higlo.cmxs -annot -rectypes -g higlo.cmx
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_ocaml.cmxs higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_xml.cmxs higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -o higlo -package dynlink -linkpkg higlo.cmx higlo_ocaml.cmx higlo_xml.cmx higlo_printers.cmx higlo_main.ml
+Creating mk-higlo... done
+rm higlo_ocaml.ml higlo_xml.ml
+ocamlfind install higlo META LICENSE \
+		higlo.cmi higlo.mli higlo.cmo higlo.cmx higlo.cmxs higlo.o \
+		higlo_ocaml.cmx higlo_xml.cmx higlo_ocaml.cmxs higlo_xml.cmxs higlo_ocaml.cmo higlo_xml.cmo higlo_ocaml.o higlo_xml.o higlo_ocaml.cmi higlo_xml.cmi \
+		higlo_main.cmi higlo_main.cmo higlo_main.cmx higlo_main.o \
+		higlo_printers.cmi higlo_printers.cmo higlo_printers.cmx higlo_printers.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo.o
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo.mli
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmi
+Installed /home/opam/.opam/system/lib/higlo/LICENSE
+Installed /home/opam/.opam/system/lib/higlo/META
+Installing higlo.0.3.
+
+=-=-= Installing stog.0.12.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/stog.0.12.0+opam.tar.gz
+sending incremental file list
+stog.0.12.0+opam.tar.gz
+
+sent 892,971 bytes  received 35 bytes  1,786,012.00 bytes/sec
+total size is 892,627  speedup is 1.00
+Building stog.0.12.0:
+  ./configure --prefix /home/opam/.opam/system
+  make stog_filter_parser.mli
+  make all
+  make install-lib install-share
+checking for ocamlc... /usr/bin/ocamlc
+found OCaml version 4.1.0 (4.01.0)
+checking for ocamlfind... /home/opam/.opam/system/bin/ocamlfind
+checking for camlp4... /usr/bin/camlp4
+checking for ocamlprof... /usr/bin/ocamlprof
+checking for ocamlmktop... /usr/bin/ocamlmktop
+checking for ocamlmklib... /usr/bin/ocamlmklib
+checking for ocamlyacc... /usr/bin/ocamlyacc
+checking for ocamllex... /usr/bin/ocamllex
+checking for ocamldoc... /usr/bin/ocamldoc
+checking for ocamldep... /usr/bin/ocamldep
+checking for ocamlopt... /usr/bin/ocamlopt
+checking for ocaml... /usr/bin/ocaml
+checking for ocamlc.opt... /usr/bin/ocamlc.opt
+we can use /usr/bin/ocamlc.opt
+checking for ocamlopt.opt... /usr/bin/ocamlopt.opt
+we can use /usr/bin/ocamlopt.opt
+checking for ocamldep.opt... /usr/bin/ocamldep.opt
+we can use /usr/bin/ocamldep.opt
+checking for ocamldoc.opt... /usr/bin/ocamldoc.opt
+we can use /usr/bin/ocamldoc.opt
+checking for ocamllex.opt... /usr/bin/ocamllex.opt
+we can use /usr/bin/ocamllex.opt
+Objective-Caml version 4.1.0 (4.01.0)
+interpreter:                /usr/bin/ocaml
+bytecode compiler:          /usr/bin/ocamlc.opt
+native code compiler:       /usr/bin/ocamlopt.opt
+documentation generator(s): /usr/bin/ocamldoc, /usr/bin/ocamldoc.opt
+lexer generator:            /usr/bin/ocamllex.opt
+parser generator:           /usr/bin/ocamlyacc
+dependencies generator:     /usr/bin/ocamldep.opt
+library builder:            /usr/bin/ocamlmklib
+toplevel builder:           /usr/bin/ocamlmktop
+profiler:                   /usr/bin/ocamlprof
+camlp4:                     /usr/bin/camlp4
+ocamlfind:                  /home/opam/.opam/system/bin/ocamlfind
+
+### checking required tools and libraries ###
+checking for xmlm... ok
+checking for xtmpl... ok
+checking for netstring... ok
+checking for config-file... ok
+checking for higlo... ok
+
+###
+configure: creating ./config.status
+config.status: creating master.Makefile
+config.status: creating META
+config.status: creating stog_config.ml
+config.status: creating stog_install.ml
+
+### Results of configuration ###
+
+Version is 0.12.0
+Binaries will be installed in /usr/bin
+Shared files will be installed in /home/opam/.opam/system/share/stog
+/usr/bin/ocamlyacc -v stog_filter_parser.mly
+6 shift/reduce conflicts.
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_install.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_msg.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_misc.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_highlight.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_config.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_trie.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmap.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_graph.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_path.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_types.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_types.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_intl.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_find.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tags.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_io.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_info.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml_types.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_deps.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmpl.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_parser.mli
+/usr/bin/ocamllex.opt stog_filter_lexer.mll
+22 states, 335 transitions, table size 1472 bytes
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -i stog_filter_lexer.ml > stog_filter_lexer.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_lexer.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_html5.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_engine.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_svg.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_of_latex.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_latex.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_cut.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_list.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_html.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_blocks.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_plug.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_dyn.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_install.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_msg.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_misc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_highlight.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_config.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_trie.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmap.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_graph.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_path.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_intl.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_find.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tags.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_io.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_info.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_deps.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmpl.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_lexer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_html5.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_engine.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_svg.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_of_latex.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_latex.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_cut.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_list.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_html.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_blocks.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_plug.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_dyn.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -o stog.cmxa stog_install.cmx stog_msg.cmx stog_misc.cmx stog_highlight.cmx stog_config.cmx stog_trie.cmx stog_tmap.cmx stog_graph.cmx stog_path.cmx stog_filter_types.cmx stog_types.cmx stog_intl.cmx stog_find.cmx stog_tags.cmx stog_io.cmx stog_info.cmx stog_ocaml_types.cmx stog_deps.cmx stog_tmpl.cmx stog_filter_parser.cmx stog_filter_lexer.cmx stog_filter.cmx stog_html5.cmx stog_engine.cmx stog_ocaml.cmx stog_svg.cmx stog_of_latex.cmx stog_latex.cmx stog_cut.cmx stog_list.cmx stog_html.cmx stog_blocks.cmx stog_plug.cmx stog_dyn.cmx
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -o stog.cmxs stog_install.cmx stog_msg.cmx stog_misc.cmx stog_highlight.cmx stog_config.cmx stog_trie.cmx stog_tmap.cmx stog_graph.cmx stog_path.cmx stog_filter_types.cmx stog_types.cmx stog_intl.cmx stog_find.cmx stog_tags.cmx stog_io.cmx stog_info.cmx stog_ocaml_types.cmx stog_deps.cmx stog_tmpl.cmx stog_filter_parser.cmx stog_filter_lexer.cmx stog_filter.cmx stog_html5.cmx stog_engine.cmx stog_ocaml.cmx stog_svg.cmx stog_of_latex.cmx stog_latex.cmx stog_cut.cmx stog_list.cmx stog_html.cmx stog_blocks.cmx stog_plug.cmx stog_dyn.cmx
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_main.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers -verbose -linkall -linkpkg -o stog -I +ocamldoc -annot -rectypes -g  stog.cmxa stog_main.cmx
+Effective set of compiler predicates: pkg_xmlm,pkg_str,pkg_xtmpl,pkg_unix,pkg_bigarray,pkg_netsys,pkg_netstring,pkg_config-file,pkg_dynlink,pkg_camlp4,pkg_ulex,pkg_higlo,pkg_higlo.ocaml,pkg_higlo.xml,pkg_higlo.lexers,autolink,native
++ ocamlopt.opt -verbose -linkall -o stog -I /usr/lib/ocaml/ocamldoc -annot -rectypes -g -I /home/opam/.opam/system/lib/xmlm -I /home/opam/.opam/system/lib/xtmpl -I /home/opam/.opam/system/lib/netsys -I /home/opam/.opam/system/lib/netstring -I /home/opam/.opam/system/lib/config-file -I /usr/lib/ocaml/camlp4 -I /home/opam/.opam/system/lib/ulex -I /home/opam/.opam/system/lib/higlo /home/opam/.opam/system/lib/xmlm/xmlm.cmxa /usr/lib/ocaml/str.cmxa /home/opam/.opam/system/lib/xtmpl/xtmpl.cmx /usr/lib/ocaml/unix.cmxa /usr/lib/ocaml/bigarray.cmxa /home/opam/.opam/system/lib/netsys/netsys_oothr.cmxa /home/opam/.opam/system/lib/netsys/netsys.cmxa /home/opam/.opam/system/lib/netstring/netstring.cmxa /home/opam/.opam/system/lib/config-file/config_file.cmx /usr/lib/ocaml/dynlink.cmxa /home/opam/.opam/system/lib/ulex/ulexing.cmxa /home/opam/.opam/system/lib/higlo/higlo.cmx /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmx /home/opam/.opam/system/lib/higlo/higlo_xml.cmx stog.cmxa stog_main.cmx
++ as -o '/tmp/camlstartup6977c5.o' '/tmp/camlstartup7327d1.s'
++ gcc -o 'stog'   '-L/usr/lib/ocaml/ocamldoc' '-L/home/opam/.opam/system/lib/xmlm' '-L/home/opam/.opam/system/lib/xtmpl' '-L/home/opam/.opam/system/lib/netsys' '-L/home/opam/.opam/system/lib/netstring' '-L/home/opam/.opam/system/lib/config-file' '-L/usr/lib/ocaml/camlp4' '-L/home/opam/.opam/system/lib/ulex' '-L/home/opam/.opam/system/lib/higlo' '-L/usr/lib/ocaml' -Wl,-E '/tmp/camlstartup6977c5.o' '/usr/lib/ocaml/std_exit.o' 'stog_main.o' 'stog.a' '/home/opam/.opam/system/lib/higlo/higlo_xml.o' '/home/opam/.opam/system/lib/higlo/higlo_ocaml.o' '/home/opam/.opam/system/lib/higlo/higlo.o' '/home/opam/.opam/system/lib/ulex/ulexing.a' '/usr/lib/ocaml/dynlink.a' '/home/opam/.opam/system/lib/config-file/config_file.o' '/home/opam/.opam/system/lib/netstring/netstring.a' '/home/opam/.opam/system/lib/netsys/netsys.a' '/home/opam/.opam/system/lib/netsys/netsys_oothr.a' '/usr/lib/ocaml/bigarray.a' '/usr/lib/ocaml/unix.a' '/home/opam/.opam/system/lib/xtmpl/xtmpl.o' '/usr/lib/ocaml/str.a' '/home/opam/.opam/system/lib/xmlm/xmlm.a' '/usr/lib/ocaml/stdlib.a' '-lnetsys' '-lrt' '-lpthread' '-lbigarray' '-lunix' '-lcamlstr' '/usr/lib/ocaml/libasmrun.a' -lm  -ldl
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c latex2stog.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -o latex2stog -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers -linkall -linkpkg stog.cmxa latex2stog.cmx
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/plugin_example.cmxs plugins/plugin_example.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/stog_asy.cmxs plugins/stog_asy.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/stog_disqus.cmxs plugins/stog_disqus.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/stog_dot.cmxs plugins/stog_dot.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/stog_markdown.cmxs plugins/stog_markdown.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o plugins/stog_multi_doc.cmxs plugins/stog_multi_doc.ml
+Creating mk-stog... done
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -shared -o odoc_stog.cmxs odoc_stog.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_install.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_msg.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_misc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_highlight.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_config.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_trie.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmap.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_graph.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_path.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_intl.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_find.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tags.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_io.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_info.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_deps.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_tmpl.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter_lexer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_filter.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_html5.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_engine.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_ocaml.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_svg.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_of_latex.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_latex.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_cut.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -package xmlm,xtmpl,netstring,config-file,dynlink,unix,str,higlo.lexers  -I +ocamldoc -annot -rectypes -g  -c stog_list.ml
