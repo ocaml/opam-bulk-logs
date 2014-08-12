@@ -3508,3 +3508,89 @@ Building tar-format.0.2.1:
 ./configure
 Makefile:1: config.mk: No such file or directory
 ocaml setup.ml -configure --enable-lwtunix
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ tar
+Package version: ..................................... 0.2
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+lwtunix: ............................................. true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
+pkg_re_str: .......................................... /home/opam/.opam/system/lib/re
+pkg_lwt: ............................................. /home/opam/.opam/system/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
+
+ocaml setup.ml -build
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar.mli > lib/tar.mli.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmi lib/tar.mli
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar.ml > lib/tar.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmo lib/tar.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/tar.cmo -o lib/tar.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmx lib/tar.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/tar.cmx -o lib/tar.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/tar.cmx -o lib/tar.cmxs
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_unix.mli > lib/tar_unix.mli.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmi lib/tar_unix.mli
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_unix.ml > lib/tar_unix.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmo lib/tar_unix.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/tar_unix.cmo -o lib/tar_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmx lib/tar_unix.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/tar_unix.cmx -o lib/tar_unix.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/tar_unix.cmx -o lib/tar_unix.cmxs
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_lwt_unix.mli > lib/tar_lwt_unix.mli.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_lwt_unix.cmi lib/tar_lwt_unix.mli
+ocamlfind ocamldep -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_lwt_unix.ml > lib/tar_lwt_unix.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_lwt_unix.cmo lib/tar_lwt_unix.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/tar_lwt_unix.cmo -o lib/tar_lwt_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package lwt.unix -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_lwt_unix.cmx lib/tar_lwt_unix.ml
