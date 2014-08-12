@@ -344,3 +344,209 @@ ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
 /usr/bin/ocamlc.opt -c -o cset.cmo cset.ml
 /usr/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
 /usr/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/usr/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/usr/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/usr/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/usr/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/usr/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/usr/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/usr/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/usr/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/usr/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/usr/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/usr/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/usr/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/usr/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/usr/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/system/lib/ulex/ulexing.a
+Installed /home/opam/.opam/system/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/system/lib/ulex/utf8.mli
+Installed /home/opam/.opam/system/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/system/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+Installing ulex.1.1.
+
+=-=-= Installing opa-base.1.1.0+4263 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/opa-base.1.1.0+4263+opam.tar.gz
+sending incremental file list
+opa-base.1.1.0+4263+opam.tar.gz
+
+sent 9,459,549 bytes  received 35 bytes  6,306,389.33 bytes/sec
+total size is 9,457,108  speedup is 1.00
+Applying configure_notty.patch.
+patching file configure
+Hunk #2 succeeded at 680 (offset -8 lines).
+Applying rm_deps.patch.
+patching file configure
+Applying ocamlfind.patch.
+patching file configure
+Building opa-base.1.1.0+4263:
+  ./configure -prefix /home/opam/.opam/system
+  make _build/myocamlbuild.exe
+  _build/myocamlbuild.exe ocamllib/libbase.cma ocamllib/libbase.cmxa
+Checking your OS... Linux
+Checking your architecture... x86_64
+Checking ocamlopt... /usr/bin/ocamlopt.opt
+Checking ocamlbuild... /usr/bin/ocamlbuild
+Checking ocamldir... /usr/lib/ocaml
+Checking ocaml version... 4.01.0
+Checking your ocaml setup... 4.01.0, Unix 64bit
+Checking for camlp4... /usr/bin/camlp4o
+Checking for perl 5... found
+Checking for ocamlfind... /home/opam/.opam/system/bin/ocamlfind
+Checking for ulex... ocamlfind:/home/opam/.opam/system/lib/ulex, OK
+Checking for camlzip... ocamlfind:/home/opam/.opam/system/lib/camlzip/../zip, OK
+Checking for ocamlgraph... ocamlfind:/home/opam/.opam/system/lib/ocamlgraph, OK
+
+Congrats, you're all set. Installation will be done in:
+	/home/opam/.opam/system
+
+Ocamlbuild generation
+perl -n -e 'if (/^ *(#include) +"(\.\.\/)*([^"]+)".*/) { print "$3\n"; }' ocamllib/libbase/cmap.c > ocamllib/libbase/cmap.c.depends
+perl -n -e 'if (/^ *(#include) +"(\.\.\/)*([^"]+)".*/) { print "$3\n"; }' ocamllib/libbase/memory.c > ocamllib/libbase/memory.c.depends
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/build/opa-base.1.1.0+4263/_build -c ocamllib/libbase/cmap.c
+mv cmap.o ocamllib/libbase/cmap.o
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/build/opa-base.1.1.0+4263/_build -c ocamllib/libbase/memory.c
+mv memory.o ocamllib/libbase/memory.o
+/usr/bin/ocamlmklib -o ocamllib/libbase/stubs ocamllib/libbase/cmap.o ocamllib/libbase/memory.o
+/usr/bin/ocamldep.opt -modules tools/build/config.mli > tools/build/config.mli.depends
+/usr/bin/ocamlc.opt -c -I tools/build -I tools -I ocamllib -I lib -I compiler -o tools/build/config.cmi tools/build/config.mli
+/usr/bin/ocamldep.opt -modules tools/build/config.ml > tools/build/config.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/mlstate_platform.ml > ocamllib/libbase/mlstate_platform.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/pathTransform.ml > ocamllib/libbase/pathTransform.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/option.mli > ocamllib/libbase/option.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/option.cmi ocamllib/libbase/option.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/option.ml > ocamllib/libbase/option.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleParser.mli > ocamllib/libbase/consoleParser.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/consoleParser.cmi ocamllib/libbase/consoleParser.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleParser.ml > ocamllib/libbase/consoleParser.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/base.mli > ocamllib/libbase/base.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArg.mli > ocamllib/libbase/baseArg.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArray.mli > ocamllib/libbase/baseArray.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseChar.mli > ocamllib/libbase/baseChar.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseFilename.ml > ocamllib/libbase/baseFilename.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseFormat.mli > ocamllib/libbase/baseFormat.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseHashtbl.mli > ocamllib/libbase/baseHashtbl.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseInt64.mli > ocamllib/libbase/baseInt64.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseLazy.mli > ocamllib/libbase/baseLazy.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseList.mli > ocamllib/libbase/baseList.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseMap.mli > ocamllib/libbase/baseMap.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseMapSig.ml > ocamllib/libbase/baseMapSig.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/iterSig.ml > ocamllib/libbase/iterSig.ml.depends
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/iterSig.cmo ocamllib/libbase/iterSig.ml
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/orderedTypeSig.ml > ocamllib/libbase/orderedTypeSig.ml.depends
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseMapSig.cmo ocamllib/libbase/baseMapSig.ml
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/orderedTypeSig.cmo ocamllib/libbase/orderedTypeSig.ml
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseMarshal.mli > ocamllib/libbase/baseMarshal.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseObj.mli > ocamllib/libbase/baseObj.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseRandom.mli > ocamllib/libbase/baseRandom.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseSet.mli > ocamllib/libbase/baseSet.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseSetSig.ml > ocamllib/libbase/baseSetSig.ml.depends
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseSetSig.cmo ocamllib/libbase/baseSetSig.ml
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseString.mli > ocamllib/libbase/baseString.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseUtf8.mli > ocamllib/libbase/baseUtf8.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseArg.cmi ocamllib/libbase/baseArg.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseArray.cmi ocamllib/libbase/baseArray.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseChar.cmi ocamllib/libbase/baseChar.mli
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseFilename.cmo ocamllib/libbase/baseFilename.ml
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseFormat.cmi ocamllib/libbase/baseFormat.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseHashtbl.cmi ocamllib/libbase/baseHashtbl.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseInt64.cmi ocamllib/libbase/baseInt64.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseLazy.cmi ocamllib/libbase/baseLazy.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseList.cmi ocamllib/libbase/baseList.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseMap.cmi ocamllib/libbase/baseMap.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseMarshal.cmi ocamllib/libbase/baseMarshal.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseObj.cmi ocamllib/libbase/baseObj.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseRandom.cmi ocamllib/libbase/baseRandom.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseSet.cmi ocamllib/libbase/baseSet.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseString.cmi ocamllib/libbase/baseString.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseUtf8.cmi ocamllib/libbase/baseUtf8.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/base.cmi ocamllib/libbase/base.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleAnim.mli > ocamllib/libbase/consoleAnim.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/consoleAnim.cmi ocamllib/libbase/consoleAnim.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/consoleAnim.ml > ocamllib/libbase/consoleAnim.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/base.ml > ocamllib/libbase/base.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/topologicSort.mli > ocamllib/libbase/topologicSort.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/topologicSort.cmi ocamllib/libbase/topologicSort.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/topologicSort.ml > ocamllib/libbase/topologicSort.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/stringMap.mli > ocamllib/libbase/stringMap.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/stringSet.mli > ocamllib/libbase/stringSet.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/stringMap.cmi ocamllib/libbase/stringMap.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/stringSet.cmi ocamllib/libbase/stringSet.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/filePos.mli > ocamllib/libbase/filePos.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/ansi.ml > ocamllib/libbase/ansi.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/hdList.mli > ocamllib/libbase/hdList.mli.depends
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/ansi.cmo ocamllib/libbase/ansi.ml
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/hdList.cmi ocamllib/libbase/hdList.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/filePos.cmi ocamllib/libbase/filePos.mli
+/usr/bin/ocamldep.opt -pp 'perl /home/opam/.opam/system/build/opa-base.1.1.0+4263/tools/utils/ppdebug.pl' -modules ocamllib/libbase/filePos.ml > ocamllib/libbase/filePos.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/debugVariables.mli > ocamllib/libbase/debugVariables.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/intMap.mli > ocamllib/libbase/intMap.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/listHashtbl.mli > ocamllib/libbase/listHashtbl.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/debugVariables.cmi ocamllib/libbase/debugVariables.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/intMap.cmi ocamllib/libbase/intMap.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/listHashtbl.cmi ocamllib/libbase/listHashtbl.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseObj.ml > ocamllib/libbase/baseObj.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseMarshal.ml > ocamllib/libbase/baseMarshal.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArg.ml > ocamllib/libbase/baseArg.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/date.mli > ocamllib/libbase/date.mli.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/time.mli > ocamllib/libbase/time.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/time.cmi ocamllib/libbase/time.mli
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/date.cmi ocamllib/libbase/date.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseArray.ml > ocamllib/libbase/baseArray.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseChar.ml > ocamllib/libbase/baseChar.ml.depends
+/usr/bin/ocamldep.opt -pp 'perl /home/opam/.opam/system/build/opa-base.1.1.0+4263/tools/utils/ppdebug.pl' -modules ocamllib/libbase/baseHashtbl.ml > ocamllib/libbase/baseHashtbl.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseFormat.ml > ocamllib/libbase/baseFormat.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/fBuffer.mli > ocamllib/libbase/fBuffer.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/fBuffer.cmi ocamllib/libbase/fBuffer.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseLazy.ml > ocamllib/libbase/baseLazy.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseList.ml > ocamllib/libbase/baseList.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseRandom.ml > ocamllib/libbase/baseRandom.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseString.ml > ocamllib/libbase/baseString.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/charMap.mli > ocamllib/libbase/charMap.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/charMap.cmi ocamllib/libbase/charMap.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseSys.mli > ocamllib/libbase/baseSys.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/baseSys.cmi ocamllib/libbase/baseSys.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseSys.ml > ocamllib/libbase/baseSys.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/date.ml > ocamllib/libbase/date.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseUnix.ml > ocamllib/libbase/baseUnix.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseUtf8.ml > ocamllib/libbase/baseUtf8.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/cactutf.mli > ocamllib/libbase/cactutf.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/cactutf.cmi ocamllib/libbase/cactutf.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/baseInt64.ml > ocamllib/libbase/baseInt64.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/resArray.mli > ocamllib/libbase/resArray.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/resArray.cmi ocamllib/libbase/resArray.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/resArray.ml > ocamllib/libbase/resArray.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/reader.ml > ocamllib/libbase/reader.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/stringReader.mli > ocamllib/libbase/stringReader.mli.depends
+/usr/bin/ocamlc.opt -c -warn-error A -w L -w Z -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/reader.cmo ocamllib/libbase/reader.ml
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/stringReader.cmi ocamllib/libbase/stringReader.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/stringReader.ml > ocamllib/libbase/stringReader.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/fileReader.mli > ocamllib/libbase/fileReader.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/fileReader.cmi ocamllib/libbase/fileReader.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/fileReader.ml > ocamllib/libbase/fileReader.ml.depends
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/file.mli > ocamllib/libbase/file.mli.depends
+/usr/bin/ocamlc.opt -c -I ocamllib/libbase -I tools -I ocamllib -I lib -I compiler -I tools/build -o ocamllib/libbase/file.cmi ocamllib/libbase/file.mli
+/usr/bin/ocamldep.opt -modules ocamllib/libbase/file.ml > ocamllib/libbase/file.ml.depends
