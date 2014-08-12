@@ -5750,3 +5750,27 @@ total size is 13,457  speedup is 0.99
 Building opass.1.0.1:
   make
   make PREFIX=/home/opam/.opam/system install
+./env_trampoline all_trampoline
+make[1]: Entering directory `/home/opam/.opam/system/build/opass.1.0.1'
+make -C lib
+make[2]: Entering directory `/home/opam/.opam/system/build/opass.1.0.1/lib'
+make -C editable .d
+make[3]: Entering directory `/home/opam/.opam/system/build/opass.1.0.1/lib/editable'
+ocamlfind ocamldep -package core  entry.ml form.ml engine.ml   entry.mli form.mli engine.mli > .d
+make[3]: Leaving directory `/home/opam/.opam/system/build/opass.1.0.1/lib/editable'
+make[3]: Entering directory `/home/opam/.opam/system/build/opass.1.0.1/lib/editable'
+make[3]: `.d' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/system/build/opass.1.0.1/lib/editable'
+make -C editable native-code
+make[3]: Entering directory `/home/opam/.opam/system/build/opass.1.0.1/lib/editable'
+ocamlfind ocamlc -thread -I +camlp4 -package core -c entry.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
+	entry.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core -c form.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
+	form.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core -c engine.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
+	engine.ml
+ocamlfind ocamlopt -pack -o editable.cmx entry.cmx form.cmx engine.cmx
+ocamlfind ocamlopt -for-pack Editable -package core -a -thread -I +camlp4 -o editable.cmxa editable.cmx
