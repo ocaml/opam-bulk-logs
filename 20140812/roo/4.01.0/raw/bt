@@ -1210,3 +1210,59 @@ ocamlfind ocamlc -g  -c bitmatch.ml
 ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
 ocamlfind ocamlc -g  \
 	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/system/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/system/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/system/lib/bitstring/META
+Installed /home/opam/.opam/system/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/system/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+
+=-=-= Installing lwt.2.4.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lwt.2.4.5+opam.tar.gz
+sending incremental file list
+lwt.2.4.5+opam.tar.gz
+
+sent 301,853 bytes  received 35 bytes  603,776.00 bytes/sec
+total size is 301,655  speedup is 1.00
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
