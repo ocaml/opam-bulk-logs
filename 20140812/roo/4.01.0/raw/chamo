@@ -1572,3 +1572,173 @@ Building pcre-ocaml.7.1.1:
   make
   make install
 ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+lib/pcre_stubs.c: In function 'pcre_exec_stub':
+lib/pcre_stubs.c:556:9: warning: initializer element is not computable at load time [enabled by default]
+         { subj_start, (value *) NULL, (value *) NULL, (value) NULL };
+         ^
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.mli > lib/pcre.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmi lib/pcre.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.ml > lib/pcre.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lpcre_stubs -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmo -o lib/pcre.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmx -o lib/pcre.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -cclib -lpcre_stubs -I lib -cclib -lpcre lib/pcre.cmxa lib/pcre.cmx -o lib/pcre.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/cloc/cloc.ml > examples/cloc/cloc.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pcre/pcre.mli
+Installed /home/opam/.opam/system/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cma
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/system/lib/pcre/pcre.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/system/lib/pcre/META
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+
+=-=-= Installing lablgtk-extras.1.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lablgtk-extras.1.4+opam.tar.gz
+sending incremental file list
+lablgtk-extras.1.4+opam.tar.gz
+
+sent 110,488 bytes  received 35 bytes  221,046.00 bytes/sec
+total size is 110,329  speedup is 1.00
+Building lablgtk-extras.1.4:
+  ./configure --prefix /home/opam/.opam/system
+  make all
+  make install
+File "checkocaml.ml", line 425, characters 18-20:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "checkocaml.ml", line 830, characters 33-35:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+checking for ocamlc... /usr/bin/ocamlc
+found OCaml version 4.1.0 (4.01.0)
+checking for ocamlfind... /home/opam/.opam/system/bin/ocamlfind
+checking for camlp4... /usr/bin/camlp4
+checking for ocamlprof... /usr/bin/ocamlprof
+checking for ocamlmktop... /usr/bin/ocamlmktop
+checking for ocamlmklib... /usr/bin/ocamlmklib
+checking for ocamlyacc... /usr/bin/ocamlyacc
+checking for ocamllex... /usr/bin/ocamllex
+checking for ocamldoc... /usr/bin/ocamldoc
+checking for ocamldep... /usr/bin/ocamldep
+checking for ocamlopt... /usr/bin/ocamlopt
+checking for ocaml... /usr/bin/ocaml
+checking for ocamlc.opt... /usr/bin/ocamlc.opt
+we can use /usr/bin/ocamlc.opt
+checking for ocamlopt.opt... /usr/bin/ocamlopt.opt
+we can use /usr/bin/ocamlopt.opt
+checking for ocamldep.opt... /usr/bin/ocamldep.opt
+we can use /usr/bin/ocamldep.opt
+checking for ocamldoc.opt... /usr/bin/ocamldoc.opt
+we can use /usr/bin/ocamldoc.opt
+checking for ocamllex.opt... /usr/bin/ocamllex.opt
+we can use /usr/bin/ocamllex.opt
+Objective-Caml version 4.1.0 (4.01.0)
+interpreter:                /usr/bin/ocaml
+bytecode compiler:          /usr/bin/ocamlc.opt
+native code compiler:       /usr/bin/ocamlopt.opt
+documentation generator(s): /usr/bin/ocamldoc, /usr/bin/ocamldoc.opt
+lexer generator:            /usr/bin/ocamllex.opt
+parser generator:           /usr/bin/ocamlyacc
+dependencies generator:     /usr/bin/ocamldep.opt
+library builder:            /usr/bin/ocamlmklib
+toplevel builder:           /usr/bin/ocamlmktop
+profiler:                   /usr/bin/ocamlprof
+camlp4:                     /usr/bin/camlp4
+ocamlfind:                  /home/opam/.opam/system/bin/ocamlfind
+
+### checking required tools and libraries ###
+checking for config-file... ok
+checking for lablgtk2... ok
+checking for lablgtk2.sourceview2... ok
+checking for xmlm... ok
+
+###
+ocaml library path is /usr/lib/ocaml
+configure: creating ./config.status
