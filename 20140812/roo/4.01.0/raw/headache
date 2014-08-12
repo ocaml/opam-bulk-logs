@@ -46,3 +46,30 @@ config.status: creating Makefile
 Everything seems to be ok.
 You can now start compilation by 'make'.
 ------------------------------------------------------------
+make all
+make[1]: Entering directory `/home/opam/.opam/system/build/headache.1.03'
+/usr/bin/ocamlc  -c info.ml
+/usr/bin/ocamlc  -c model.ml
+/usr/bin/ocamlc  -c config.ml
+/usr/bin/ocamlyacc -v config_parse.mly
+/usr/bin/ocamlc  -c config_parse.mli
+/usr/bin/ocamlyacc -v config_parse.mly
+/usr/bin/ocamlc  -c config_parse.ml
+/usr/bin/ocamllex config_lex.mll
+24 states, 529 transitions, table size 2260 bytes
+/usr/bin/ocamlc  -c config_lex.ml
+/usr/bin/ocamlc  -c mkconfig.ml
+ocamlc -o mkconfig unix.cma str.cma model.cmo config.cmo config_parse.cmo config_lex.cmo mkconfig.cmo
+./mkconfig
+/usr/bin/ocamlc  -c config_builtin.ml
+/usr/bin/ocamlc  -c main.ml
+ocamlc -o headache unix.cma str.cma info.cmo model.cmo config.cmo config_parse.cmo config_lex.cmo config_builtin.cmo main.cmo
+make[1]: Leaving directory `/home/opam/.opam/system/build/headache.1.03'
+
+------------------------------------------------------------
+Compilation seems to succeed
+You can install the software. As a superuser, do
+'make install'
+------------------------------------------------------------
+cp -f headache /home/opam/.opam/system/bin
+Installing headache.1.03.
