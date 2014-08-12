@@ -142,3 +142,58 @@ pkg_unix: ............................................ /usr/lib/ocaml
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -modules qCheck.mli > qCheck.mli.depends
+ocamlfind ocamlc -c -g -package unix -I generator -o qCheck.cmi qCheck.mli
+ocamlfind ocamldep -package unix -modules qCheck.ml > qCheck.ml.depends
+ocamlfind ocamldep -package unix -modules generator/generator.mli > generator/generator.mli.depends
+ocamlfind ocamlc -c -g -package unix -I generator -o generator/generator.cmi generator/generator.mli
+ocamlfind ocamldep -package unix -modules generator/generator.ml > generator/generator.ml.depends
+ocamlfind ocamlc -c -g -package unix -I generator -o qCheck.cmo qCheck.ml
+ocamlfind ocamlc -c -g -package unix -I generator -o generator/generator.cmo generator/generator.ml
+ocamlfind ocamlc -a qCheck.cmo generator/generator.cmo -o qcheck.cma
+ocamlfind ocamlopt -c -g -package unix -I generator -o qCheck.cmx qCheck.ml
+ocamlfind ocamlopt -c -g -package unix -I generator -o generator/generator.cmx generator/generator.ml
+ocamlfind ocamlopt -a qCheck.cmx generator/generator.cmx -o qcheck.cmxa
+ocamlfind ocamlopt -shared -linkall qcheck.cmxa -o qcheck.cmxs
+ocamlfind ocamldoc -dump qCheck.odoc -package unix -I generator qCheck.mli
++ ocamlfind ocamldoc -dump qCheck.odoc -package unix -I generator qCheck.mli
+Warning: Element Generator not found
+ocamlfind ocamldoc -dump generator/generator.odoc -package unix -I generator generator/generator.mli
+rm -rf qcheck.docdir
+mkdir -p qcheck.docdir
+ocamlfind ocamldoc -load qCheck.odoc -load generator/generator.odoc -html -d qcheck.docdir
++ ocamlfind ocamldoc -load qCheck.odoc -load generator/generator.odoc -html -d qcheck.docdir
+Warning: Tag @out not handled by this generator
+Warning: Tag @n not handled by this generator
+Warning: Tag @rand not handled by this generator
+Warning: Tag @size not handled by this generator
+Warning: Tag @limit not handled by this generator
+ocaml setup.ml -build 
+ocamlfind ocamlopt -shared -linkall qcheck.cmxa -o qcheck.cmxs
+ocaml setup.ml -doc 
+mkdir -p man/man3/
+ocamlfind ocamldoc -I _build/ -man -d man/man3 qCheck.ml qCheck.mli
+Warning: Element Generator not found
+Warning: Tag @out not handled by this generator
+Warning: Tag @n not handled by this generator
+Warning: Tag @rand not handled by this generator
+Warning: Tag @size not handled by this generator
+Warning: Tag @limit not handled by this generator
+Warning: Tag @out not handled by this generator
+Warning: Tag @n not handled by this generator
+Warning: Tag @rand not handled by this generator
+Warning: Tag @size not handled by this generator
+Warning: Tag @limit not handled by this generator
+ocaml setup.ml -install 
+W: Cannot find source header for module generator/Generator in library qcheck
+Installed /home/opam/.opam/system/lib/qcheck/qCheck.mli
+Installed /home/opam/.opam/system/lib/qcheck/qcheck.cma
+Installed /home/opam/.opam/system/lib/qcheck/qcheck.cmxa
+Installed /home/opam/.opam/system/lib/qcheck/qcheck.a
+Installed /home/opam/.opam/system/lib/qcheck/qcheck.cmxs
+Installed /home/opam/.opam/system/lib/qcheck/qCheck.cmi
+Installed /home/opam/.opam/system/lib/qcheck/generator.cmi
+Installed /home/opam/.opam/system/lib/qcheck/qCheck.cmx
+Installed /home/opam/.opam/system/lib/qcheck/generator.cmx
+Installed /home/opam/.opam/system/lib/qcheck/META
+Installing qcheck.0.2.
