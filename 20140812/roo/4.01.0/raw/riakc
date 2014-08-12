@@ -4933,3 +4933,8 @@ ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring
 ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c builder.mli
 ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
 	builder.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	parser.ml
+ocamlfind ocamlopt -pack -o protobuf.cmx fixed32.cmx fixed64.cmx sint32.cmx sint64.cmx varint.cmx protocol.cmx builder.cmx parser.cmx
+ocamlfind ocamlopt -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o -a -thread -I +camlp4 -o protobuf.cmxa protobuf.cmx
