@@ -511,4 +511,945 @@ checking for SSL_new in -lssl... yes
 checking how to run the C preprocessor... gcc -E
 checking for grep that handles long lines and -e... /bin/grep
 checking for egrep... /bin/grep -E
-checking for ANSI C header files... 
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking openssl/ssl.h usability... yes
+checking openssl/ssl.h presence... yes
+checking for openssl/ssl.h... yes
+checking for TLSv1_1_method in -lssl... yes
+checking for TLSv1_2_method in -lssl... yes
+checking for ocamlfind... /home/opam/.opam/system/bin/ocamlfind
+checking for ocamlcp... /usr/bin/ocamlcp
+checking for latex... no
+checking for dvips... no
+checking for ps2pdf... no
+configure: creating ./config.status
+config.status: creating src/Makefile
+config.status: creating src/META
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+making ._bcdi/ssl.di from ssl.mli
+making ._d/ssl.d from ssl.ml
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+ocamlc -c -cc "gcc" -ccopt "-fPIC -g -O2 -DHAVE_TLS11 -DHAVE_TLS12 -ansi -DCAML_NAME_SPACE -Wall \
+				-DPIC   \
+				    -o ssl_stubs.o " ssl_stubs.c 
+ar rcs libssl_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl.mli
+ocamlc -c -thread ssl.ml
+ocamlmklib                     \
+				-o ssl_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_stubs.so              \
+				-cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  -o ssl.cma  ssl.cmo
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+making ._d/ssl_threads.d from ssl_threads.ml
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+ar rcs libssl_threads_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl_threads.mli
+ocamlc -c -thread ssl_threads.ml
+ocamlmklib                     \
+				-o ssl_threads_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_threads_stubs.so              \
+				-cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  -o ssl_threads.cma  ssl.cmo ssl_threads.cmo
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+making ._ncdi/ssl.di from ssl.mli
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: `libssl_stubs.a' is up to date.
+ocamlopt -c -thread ssl.ml
+ocamlopt -a -thread              -cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl.cmxa ssl.cmx
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[4]: `libssl_threads_stubs.a' is up to date.
+ocamlopt -c -thread ssl_threads.ml
+ocamlopt -a -thread              -cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl_threads.cmxa ssl.cmx ssl_threads.cmx
+make[4]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+/home/opam/.opam/system/bin/ocamlfind install  ssl META ssl.mli ssl_threads.mli ssl.cmi ssl_threads.cmi ssl.cma ssl_threads.cma ssl.cmxa ssl_threads.cmxa ssl.cmx ssl_threads.cmx libssl_stubs.a libssl_threads_stubs.a ssl.a ssl_threads.a dllssl_stubs.so dllssl_threads_stubs.so
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.a
+Installed /home/opam/.opam/system/lib/ssl/ssl.a
+Installed /home/opam/.opam/system/lib/ssl/libssl_threads_stubs.a
+Installed /home/opam/.opam/system/lib/ssl/libssl_stubs.a
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.cmx
+Installed /home/opam/.opam/system/lib/ssl/ssl.cmx
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.cmxa
+Installed /home/opam/.opam/system/lib/ssl/ssl.cmxa
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.cma
+Installed /home/opam/.opam/system/lib/ssl/ssl.cma
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.cmi
+Installed /home/opam/.opam/system/lib/ssl/ssl.cmi
+Installed /home/opam/.opam/system/lib/ssl/ssl_threads.mli
+Installed /home/opam/.opam/system/lib/ssl/ssl.mli
+Installed /home/opam/.opam/system/lib/ssl/META
+Installed /home/opam/.opam/system/lib/stublibs/dllssl_threads_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllssl_threads_stubs.so.owner
+Installed /home/opam/.opam/system/lib/stublibs/dllssl_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllssl_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/system/build/ssl.0.4.7/src'
+Installing ssl.0.4.7.
+
+=-=-= Installing uint.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/uint.1.1.1+opam.tar.gz
+sending incremental file list
+uint.1.1.1+opam.tar.gz
+
+sent 47,754 bytes  received 35 bytes  95,578.00 bytes/sec
+total size is 47,619  speedup is 1.00
+Building uint.1.1.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ uint
+Package version: ..................................... 1.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/uint32_stubs.c
+mv uint32_stubs.o lib/uint32_stubs.o
+ocamlfind ocamlc -c lib/uint64_stubs.c
+mv uint64_stubs.o lib/uint64_stubs.o
+/usr/bin/ocamlmklib -o lib/uint_stubs lib/uint32_stubs.o lib/uint64_stubs.o
+ocamlfind ocamldep -modules lib/uint.mli > lib/uint.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint.cmi lib/uint.mli
+ocamlfind ocamldep -modules lib/uint.ml > lib/uint.ml.depends
+ocamlfind ocamldep -modules lib/uint32.mli > lib/uint32.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint32.cmi lib/uint32.mli
+ocamlfind ocamldep -modules lib/uint32.ml > lib/uint32.ml.depends
+ocamlfind ocamldep -modules lib/uint64.mli > lib/uint64.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint64.cmi lib/uint64.mli
+ocamlfind ocamldep -modules lib/uint64.ml > lib/uint64.ml.depends
+ocamlfind ocamldep -modules lib/uint128.mli > lib/uint128.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint128.cmi lib/uint128.mli
+ocamlfind ocamldep -modules lib/uint128.ml > lib/uint128.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint.cmo lib/uint.ml
+ocamlfind ocamlc -c -g -I lib -o lib/uint32.cmo lib/uint32.ml
+ocamlfind ocamlc -c -g -I lib -o lib/uint64.cmo lib/uint64.ml
+ocamlfind ocamlc -c -g -I lib -o lib/uint128.cmo lib/uint128.ml
+ocamlfind ocamlc -a -dllib -luint_stubs -cclib -luint_stubs lib/uint.cmo lib/uint32.cmo lib/uint64.cmo lib/uint128.cmo -o lib/uint.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/uint.cmx lib/uint.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/uint64.cmx lib/uint64.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/uint32.cmx lib/uint32.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/uint128.cmx lib/uint128.ml
+ocamlfind ocamlopt -a -cclib -luint_stubs lib/uint.cmx lib/uint32.cmx lib/uint64.cmx lib/uint128.cmx -o lib/uint.cmxa
+ocamlfind ocamlopt -shared -I lib lib/uint.cmx -o lib/uint.cmxs
+Installed /home/opam/.opam/system/lib/uint/uint32.h
+Installed /home/opam/.opam/system/lib/uint/uint64.h
+Installed /home/opam/.opam/system/lib/uint/uint.mli
+Installed /home/opam/.opam/system/lib/uint/uint32.mli
+Installed /home/opam/.opam/system/lib/uint/uint64.mli
+Installed /home/opam/.opam/system/lib/uint/uint128.mli
+Installed /home/opam/.opam/system/lib/uint/libuint_stubs.a
+Installed /home/opam/.opam/system/lib/uint/uint.cma
+Installed /home/opam/.opam/system/lib/uint/uint.cmxa
+Installed /home/opam/.opam/system/lib/uint/uint.a
+Installed /home/opam/.opam/system/lib/uint/uint.cmxs
+Installed /home/opam/.opam/system/lib/uint/uint.cmi
+Installed /home/opam/.opam/system/lib/uint/uint32.cmi
+Installed /home/opam/.opam/system/lib/uint/uint64.cmi
+Installed /home/opam/.opam/system/lib/uint/uint128.cmi
+Installed /home/opam/.opam/system/lib/uint/uint.cmx
+Installed /home/opam/.opam/system/lib/uint/uint32.cmx
+Installed /home/opam/.opam/system/lib/uint/uint64.cmx
+Installed /home/opam/.opam/system/lib/uint/uint128.cmx
+Installed /home/opam/.opam/system/lib/uint/META
+Installed /home/opam/.opam/system/lib/stublibs/dlluint_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlluint_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing uint.1.1.1.
+
+=-=-= Installing type_conv.111.13.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/type_conv.111.13.00+opam.tar.gz
+sending incremental file list
+type_conv.111.13.00+opam.tar.gz
+
+sent 61,887 bytes  received 35 bytes  123,844.00 bytes/sec
+total size is 61,743  speedup is 1.00
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ type_conv
+Package version: ..................................... 111.13.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/system/lib/type_conv/META
+Installing type_conv.111.13.00.
+
+=-=-= Installing ucorelib.0.0.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ucorelib.0.0.2+opam.tar.gz
+sending incremental file list
+ucorelib.0.0.2+opam.tar.gz
+
+sent 70,489 bytes  received 35 bytes  141,048.00 bytes/sec
+total size is 70,342  speedup is 1.00
+Building ucorelib.0.0.2:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/system
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ ucorelib
+Package version: ..................................... 0.0.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules src/uCoreLib.mli > src/uCoreLib.mli.depends
+ocamlfind ocamlc -c -g -I src -o src/uCoreLib.cmi src/uCoreLib.mli
+ocamlfind ocamldep -modules src/uCoreLib.ml > src/uCoreLib.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/uCoreLib.cmo src/uCoreLib.ml
++ ocamlfind ocamlc -c -g -I src -o src/uCoreLib.cmo src/uCoreLib.ml
+File "src/uCoreLib.ml", line 1663, characters 27-29:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "src/uCoreLib.ml", line 311, characters 16-18:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "src/uCoreLib.ml", line 92, characters 31-33:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a src/uCoreLib.cmo -o src/ucorelib.cma
+ocamlfind ocamlopt -c -g -I src -o src/uCoreLib.cmx src/uCoreLib.ml
++ ocamlfind ocamlopt -c -g -I src -o src/uCoreLib.cmx src/uCoreLib.ml
+File "src/uCoreLib.ml", line 92, characters 31-33:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "src/uCoreLib.ml", line 311, characters 16-18:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "src/uCoreLib.ml", line 1663, characters 27-29:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a src/uCoreLib.cmx -o src/ucorelib.cmxa
+ocamlfind ocamlopt -shared -linkall src/ucorelib.cmxa -o src/ucorelib.cmxs
+ocamlfind ocamldep -package oUnit -modules test/test.ml > test/test.ml.depends
++ ocamlfind ocamldep -package oUnit -modules test/test.ml > test/test.ml.depends
+File "test/test.ml", line 16, characters 52-54:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 21, characters 49-51:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 414, characters 26-28:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 435, characters 26-28:
+Warning 14: illegal backslash escape in string.
+ocamlfind ocamlc -c -g -I src -package oUnit -I test -I src -o test/test.cmo test/test.ml
++ ocamlfind ocamlc -c -g -I src -package oUnit -I test -I src -o test/test.cmo test/test.ml
+File "test/test.ml", line 16, characters 52-54:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 21, characters 49-51:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 414, characters 26-28:
+Warning 14: illegal backslash escape in string.
+File "test/test.ml", line 435, characters 26-28:
+Warning 14: illegal backslash escape in string.
+ocamlfind ocamlc -g -linkpkg -package oUnit src/ucorelib.cma test/test.cmo -o test/test.byte
+Installed /home/opam/.opam/system/lib/ucorelib/uCoreLib.mli
+Installed /home/opam/.opam/system/lib/ucorelib/ucorelib.cma
+Installed /home/opam/.opam/system/lib/ucorelib/ucorelib.cmxa
+Installed /home/opam/.opam/system/lib/ucorelib/ucorelib.a
+Installed /home/opam/.opam/system/lib/ucorelib/ucorelib.cmxs
+Installed /home/opam/.opam/system/lib/ucorelib/uCoreLib.cmi
+Installed /home/opam/.opam/system/lib/ucorelib/uCoreLib.cmx
+Installed /home/opam/.opam/system/lib/ucorelib/META
+Installing ucorelib.0.0.2.
+
+=-=-= Installing sexplib.111.25.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sexplib.111.25.00+opam.tar.gz
+sending incremental file list
+sexplib.111.25.00+opam.tar.gz
+
+sent 136,491 bytes  received 35 bytes  273,052.00 bytes/sec
+total size is 136,325  speedup is 1.00
+Building sexplib.111.25.00:
+  ./configure --enable-syntax
+  make
+  make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ sexplib
+Package version: ..................................... 111.25.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Build the syntax extension: .......................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_bigarray: ........................................ /usr/lib/ocaml
+pkg_num: ............................................. /home/opam/.opam/system/lib/num
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ sexplib
+Package version: ..................................... 111.25.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Build the syntax extension: .......................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /usr/bin/camlp4o
+pkg_bigarray: ........................................ /usr/lib/ocaml
+pkg_num: ............................................. /home/opam/.opam/system/lib/num
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/system/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'sexplib_unix' in library sexplib_unix
+W: Cannot find source file matching module 'sexplib_num' in library sexplib_num
+W: Cannot find source file matching module 'sexplib' in library sexplib
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/conv.mli > lib/conv.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/sexp.mli > lib/sexp.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/sexp_intf.ml > lib/sexp_intf.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -pp 'cpp -undef -traditional -Isyntax -w' -package bigarray -modules lib/pre_sexp.ml > lib/pre_sexp.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/lexer.mli > lib/lexer.mli.depends
+/usr/bin/ocamlyacc lib/parser.mly
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/parser.mli > lib/parser.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/type.ml > lib/type.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/type.cmo lib/type.ml
+/usr/bin/ocamlyacc lib/parser_with_layout.mly
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/parser_with_layout.mli > lib/parser_with_layout.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/type_with_layout.mli > lib/type_with_layout.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/src_pos.mli > lib/src_pos.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/src_pos.cmi lib/src_pos.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/type_with_layout.cmi lib/type_with_layout.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser.cmi lib/parser.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser_with_layout.cmi lib/parser_with_layout.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/lexer.cmi lib/lexer.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -pp 'cpp -undef -traditional -Isyntax -w' -package bigarray -I lib -o lib/pre_sexp.cmo lib/pre_sexp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/sexp_intf.cmo lib/sexp_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/sexp.cmi lib/sexp.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/conv.cmi lib/conv.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -syntax camlp4o -package camlp4.macro -package bigarray -modules lib/conv.ml > lib/conv.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/conv_error.ml > lib/conv_error.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/exn_magic.mli > lib/exn_magic.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/exn_magic.cmi lib/exn_magic.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/exn_magic.ml > lib/exn_magic.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/macro.mli > lib/macro.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/macro.cmi lib/macro.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/macro.ml > lib/macro.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/path.mli > lib/path.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/path.cmi lib/path.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/path.ml > lib/path.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/sexp.ml > lib/sexp.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/sexp_with_layout.ml > lib/sexp_with_layout.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/sexp_with_layout.cmo lib/sexp_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/src_pos.ml > lib/src_pos.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/std.ml > lib/std.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/type_with_layout.ml > lib/type_with_layout.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/parser.ml > lib/parser.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/parser_with_layout.ml > lib/parser_with_layout.ml.depends
+/usr/bin/ocamllex.opt -q lib/lexer.mll
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -modules lib/lexer.ml > lib/lexer.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.macro -package bigarray -I lib -o lib/conv.cmo lib/conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/conv_error.cmo lib/conv_error.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/exn_magic.cmo lib/exn_magic.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/macro.cmo lib/macro.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/path.cmo lib/path.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/sexp.cmo lib/sexp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/src_pos.cmo lib/src_pos.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/std.cmo lib/std.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/type_with_layout.cmo lib/type_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser.cmo lib/parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/parser_with_layout.cmo lib/parser_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package bigarray -I lib -o lib/lexer.cmo lib/lexer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g lib/type.cmo lib/parser.cmo lib/src_pos.cmo lib/type_with_layout.cmo lib/parser_with_layout.cmo lib/lexer.cmo lib/pre_sexp.cmo lib/sexp_intf.cmo lib/sexp_with_layout.cmo lib/sexp.cmo lib/conv.cmo lib/conv_error.cmo lib/exn_magic.cmo lib/macro.cmo lib/path.cmo lib/std.cmo -o lib/sexplib.cmo
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/sexplib.cmo -o lib/sexplib.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/type.cmx lib/type.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/src_pos.cmx lib/src_pos.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/type_with_layout.cmx lib/type_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/parser.cmx lib/parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/parser_with_layout.cmx lib/parser_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/lexer.cmx lib/lexer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -pp 'cpp -undef -traditional -Isyntax -w' -package bigarray -for-pack Sexplib -I lib -o lib/pre_sexp.cmx lib/pre_sexp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp_with_layout.cmx lib/sexp_with_layout.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp_intf.cmx lib/sexp_intf.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/sexp.cmx lib/sexp.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.macro -package bigarray -for-pack Sexplib -I lib -o lib/conv.cmx lib/conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/macro.cmx lib/macro.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/conv_error.cmx lib/conv_error.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/exn_magic.cmx lib/exn_magic.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/path.cmx lib/path.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package bigarray -for-pack Sexplib -I lib -o lib/std.cmx lib/std.ml
+touch lib/sexplib.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I lib lib/type.cmx lib/parser.cmx lib/src_pos.cmx lib/type_with_layout.cmx lib/parser_with_layout.cmx lib/lexer.cmx lib/pre_sexp.cmx lib/sexp_intf.cmx lib/sexp_with_layout.cmx lib/sexp.cmx lib/conv.cmx lib/conv_error.cmx lib/exn_magic.cmx lib/macro.cmx lib/path.cmx lib/std.cmx -o lib/sexplib.cmx  ; then  rm -f lib/sexplib.mli  ; else  rm -f lib/sexplib.mli  ; exit 1; fi
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/sexplib.cmx -o lib/sexplib.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/sexplib.cmxa lib/sexplib.cmx -o lib/sexplib.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package num -package bigarray -modules num/lib/sexplib_num_conv.mli > num/lib/sexplib_num_conv.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package num -package bigarray -I num/lib -I lib -o num/lib/sexplib_num_conv.cmi num/lib/sexplib_num_conv.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package num -package bigarray -modules num/lib/sexplib_num_conv.ml > num/lib/sexplib_num_conv.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package num -package bigarray -modules num/lib/std.ml > num/lib/std.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package num -package bigarray -I num/lib -I lib -o num/lib/sexplib_num_conv.cmo num/lib/sexplib_num_conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package num -package bigarray -I num/lib -I lib -o num/lib/std.cmo num/lib/std.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g num/lib/sexplib_num_conv.cmo num/lib/std.cmo -o num/lib/sexplib_num.cmo
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a num/lib/sexplib_num.cmo -o num/lib/sexplib_num.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package num -package bigarray -for-pack Sexplib_num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmx num/lib/sexplib_num_conv.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package num -package bigarray -for-pack Sexplib_num -I num/lib -I lib -o num/lib/sexplib_num_conv.cmx num/lib/sexplib_num_conv.ml
+findlib: [WARNING] Interface std.cmi occurs in several directories: num/lib, lib
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package num -package bigarray -for-pack Sexplib_num -I num/lib -I lib -o num/lib/std.cmx num/lib/std.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package num -package bigarray -for-pack Sexplib_num -I num/lib -I lib -o num/lib/std.cmx num/lib/std.ml
+findlib: [WARNING] Interface std.cmi occurs in several directories: num/lib, lib
+touch num/lib/sexplib_num.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I num/lib num/lib/sexplib_num_conv.cmx num/lib/std.cmx -o num/lib/sexplib_num.cmx  ; then  rm -f num/lib/sexplib_num.mli  ; else  rm -f num/lib/sexplib_num.mli  ; exit 1; fi
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared num/lib/sexplib_num.cmxa num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package unix -modules unix/lib/sexplib_unix_conv.ml > unix/lib/sexplib_unix_conv.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package bigarray -package unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmo unix/lib/sexplib_unix_conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g unix/lib/sexplib_unix_conv.cmo -o unix/lib/sexplib_unix.cmo
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a unix/lib/sexplib_unix.cmo -o unix/lib/sexplib_unix.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package bigarray -package unix -for-pack Sexplib_unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmx unix/lib/sexplib_unix_conv.ml
+touch unix/lib/sexplib_unix.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I unix/lib unix/lib/sexplib_unix_conv.cmx -o unix/lib/sexplib_unix.cmx  ; then  rm -f unix/lib/sexplib_unix.mli  ; else  rm -f unix/lib/sexplib_unix.mli  ; exit 1; fi
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared unix/lib/sexplib_unix.cmxa unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmxa syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
++ /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a top/sexplib_install_printers.cmx -o top/sexplib_top.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared top/sexplib_top.cmxa top/sexplib_install_printers.cmx -o top/sexplib_top.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix_conv.ml
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmi
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cma
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.a
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_unix/sexplib_unix.cmx
+Installed /home/opam/.opam/system/lib/sexplib_unix/META
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib_num/std.ml
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmi
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cma
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxa
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.a
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmxs
+Installed /home/opam/.opam/system/lib/sexplib_num/sexplib_num.cmx
+Installed /home/opam/.opam/system/lib/sexplib_num/META
+W: Cannot find source header for module Parser in library sexplib
+W: Cannot find source header for module Parser_with_layout in library sexplib
+Installed /home/opam/.opam/system/lib/sexplib/conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/conv_error.ml
+Installed /home/opam/.opam/system/lib/sexplib/exn_magic.mli
+Installed /home/opam/.opam/system/lib/sexplib/macro.mli
+Installed /home/opam/.opam/system/lib/sexplib/path.mli
+Installed /home/opam/.opam/system/lib/sexplib/pre_sexp.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexp_intf.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexp_with_layout.ml
+Installed /home/opam/.opam/system/lib/sexplib/src_pos.mli
+Installed /home/opam/.opam/system/lib/sexplib/std.ml
+Installed /home/opam/.opam/system/lib/sexplib/type.ml
+Installed /home/opam/.opam/system/lib/sexplib/type_with_layout.mli
+Installed /home/opam/.opam/system/lib/sexplib/lexer.mli
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib.cmx
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.ml
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cma
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.a
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_top.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmi
+Installed /home/opam/.opam/system/lib/sexplib/sexplib_install_printers.cmx
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.mli
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cma
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxa
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.a
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmxs
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmi
+Installed /home/opam/.opam/system/lib/sexplib/pa_sexp_conv.cmx
+Installed /home/opam/.opam/system/lib/sexplib/META
+Installing sexplib.111.25.00.
+
+=-=-= Installing imap.0.10.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/imap.0.10.0+opam.tar.gz
+sending incremental file list
+imap.0.10.0+opam.tar.gz
+
+sent 106,506 bytes  received 35 bytes  213,082.00 bytes/sec
+total size is 106,354  speedup is 1.00
+Building imap.0.10.0:
+  make PREFIX=/home/opam/.opam/system
+  make PREFIX=/home/opam/.opam/system install
+ocaml setup.ml -configure   
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ imap
+Package version: ..................................... 0.10.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build and install everything: ........................ false
+GNU SASL support: .................................... false
+Lwt support: ......................................... false
+Unix support: ........................................ true
+Async support: ....................................... false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_uint: ............................................ /home/opam/.opam/system/lib/uint
+pkg_str: ............................................. /usr/lib/ocaml
+pkg_cryptokit: ....................................... /home/opam/.opam/system/lib/cryptokit
+pkg_ucorelib: ........................................ /home/opam/.opam/system/lib/ucorelib
+pkg_sexplib: ......................................... /home/opam/.opam/system/lib/sexplib
+pkg_sexplib_syntax: .................................. /home/opam/.opam/system/lib/sexplib
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_ssl: ............................................. /home/opam/.opam/system/lib/ssl
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+W: Cannot find source file matching module 'imap' in library imap
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/mime.mli > imap/mime.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_uint.mli > imap/imap_uint.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_set.mli > imap/imap_set.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_set.cmi imap/imap_set.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/parser.mli > imap/parser.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_uint.cmi imap/imap_uint.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/parser.cmi imap/parser.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/mime.cmi imap/mime.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/mime.ml > imap/mime.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_types.mli > imap/imap_types.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_types.cmi imap/imap_types.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_types.ml > imap/imap_types.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_set.ml > imap/imap_set.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/client.mli > imap/client.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/auth.mli > imap/auth.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/IO.mli > imap/IO.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/auth.cmi imap/auth.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/IO.cmi imap/IO.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/client.cmi imap/client.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/client.ml > imap/client.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/response.mli > imap/response.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/sender.mli > imap/sender.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/utils.mli > imap/utils.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/response.cmi imap/response.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/sender.cmi imap/sender.mli
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/utils.cmi imap/utils.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/auth.ml > imap/auth.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/sender.ml > imap/sender.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/parser.ml > imap/parser.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/response.ml > imap/response.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/utils.ml > imap/utils.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -modules imap/imap_uint.ml > imap/imap_uint.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/mime.cmo imap/mime.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_types.cmo imap/imap_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_set.cmo imap/imap_set.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/client.cmo imap/client.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/auth.cmo imap/auth.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/sender.cmo imap/sender.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/parser.cmo imap/parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/response.cmo imap/response.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/utils.cmo imap/utils.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -I imap -o imap/imap_uint.cmo imap/imap_uint.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g imap/imap_set.cmo imap/imap_uint.cmo imap/parser.cmo imap/mime.cmo imap/imap_types.cmo imap/IO.cmi imap/auth.cmo imap/utils.cmo imap/response.cmo imap/sender.cmo imap/client.cmo -o imap/imap.cmo
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a imap/imap.cmo -o imap/imap.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/imap_set.cmx imap/imap_set.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/imap_uint.cmx imap/imap_uint.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/parser.cmx imap/parser.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/mime.cmx imap/mime.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/imap_types.cmx imap/imap_types.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/utils.cmx imap/utils.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/auth.cmx imap/auth.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/response.cmx imap/response.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/sender.cmx imap/sender.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package str -package ucorelib -package uint -for-pack Imap -I imap -o imap/client.cmx imap/client.ml
+touch imap/imap.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I imap imap/imap_set.cmx imap/imap_uint.cmx imap/parser.cmx imap/mime.cmx imap/imap_types.cmx imap/IO.cmi imap/auth.cmx imap/utils.cmx imap/response.cmx imap/sender.cmx imap/client.cmx -o imap/imap.cmx  ; then  rm -f imap/imap.mli  ; else  rm -f imap/imap.mli  ; exit 1; fi
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a imap/imap.cmx -o imap/imap.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared imap/imap.cmxa imap/imap.cmx -o imap/imap.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package ssl -package str -package ucorelib -package uint -package unix -modules unix/imap_unix.mli > unix/imap_unix.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I imap -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package ssl -package str -package ucorelib -package uint -package unix -I unix -I imap -o unix/imap_unix.cmi unix/imap_unix.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package ssl -package str -package ucorelib -package uint -package unix -modules unix/imap_unix.ml > unix/imap_unix.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I imap -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package ssl -package str -package ucorelib -package uint -package unix -I unix -I imap -o unix/imap_unix.cmo unix/imap_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a unix/imap_unix.cmo -o unix/imap_unix.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I imap -package cryptokit -package sexplib -syntax camlp4o -package sexplib.syntax -package ssl -package str -package ucorelib -package uint -package unix -I unix -I imap -o unix/imap_unix.cmx unix/imap_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a unix/imap_unix.cmx -o unix/imap_unix.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared unix/imap_unix.cmxa unix/imap_unix.cmx -o unix/imap_unix.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/imap/mime.mli
+Installed /home/opam/.opam/system/lib/imap/imap_types.mli
+Installed /home/opam/.opam/system/lib/imap/imap_set.mli
+Installed /home/opam/.opam/system/lib/imap/client.mli
+Installed /home/opam/.opam/system/lib/imap/auth.mli
+Installed /home/opam/.opam/system/lib/imap/IO.mli
+Installed /home/opam/.opam/system/lib/imap/imap.cmi
+Installed /home/opam/.opam/system/lib/imap/imap.cma
+Installed /home/opam/.opam/system/lib/imap/imap.cmxa
+Installed /home/opam/.opam/system/lib/imap/imap.a
+Installed /home/opam/.opam/system/lib/imap/imap.cmxs
+Installed /home/opam/.opam/system/lib/imap/imap.cmx
+Installed /home/opam/.opam/system/lib/imap/imap_unix.mli
+Installed /home/opam/.opam/system/lib/imap/imap_unix.cma
+Installed /home/opam/.opam/system/lib/imap/imap_unix.cmxa
+Installed /home/opam/.opam/system/lib/imap/imap_unix.a
+Installed /home/opam/.opam/system/lib/imap/imap_unix.cmxs
+Installed /home/opam/.opam/system/lib/imap/imap_unix.cmi
+Installed /home/opam/.opam/system/lib/imap/imap_unix.cmx
+Installed /home/opam/.opam/system/lib/imap/META
+Installing imap.0.10.0.
