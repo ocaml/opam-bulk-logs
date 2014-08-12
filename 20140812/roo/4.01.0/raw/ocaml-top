@@ -2734,3 +2734,31 @@ Warning: 7 incomplete packages (will not be built):
   Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
 Build Successful in 0.91s. 0 jobs (parallelism 0.0x), 0 files generated.
 Installing ocaml-top.1.1.2.
+
+=-=-= ocp-indent.1.4.1 information =-=-=
+OCP-INDENT installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-indent)
+
+To use it from Vim, add to your .vimrc:
+  let g:ocp_indent_vimfile = system("opam config var share")
+  let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+  let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+
+  autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
+.
+
+=-=-= ocp-index.1.0.2 information =-=-=
+OCP-INDEX installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-index).
