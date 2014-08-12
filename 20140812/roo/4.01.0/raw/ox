@@ -6388,3 +6388,10 @@ pkg_threads: ......................................... /usr/lib/ocaml
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxStart.ml > lib/OxStart.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxShared.ml > lib/OxShared.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxShared.cmo lib/OxShared.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxPlatform.mli > lib/OxPlatform.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxPlatform.cmi lib/OxPlatform.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package async -package core -package openflow -package openflow.async -package packet -package threads -modules lib/OxPlatform.ml > lib/OxPlatform.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxStart.cmo lib/OxStart.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxPlatform.cmo lib/OxPlatform.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/OxShared.cmo lib/OxStart.cmo lib/OxPlatform.cmo -o lib/ox.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package async -package core -package openflow -package openflow.async -package packet -package threads -thread -I lib -o lib/OxShared.cmx lib/OxShared.ml
