@@ -92,3 +92,72 @@ config.status: creating src/META
 config.status: creating src/Makefile
 config.status: creating tests/Makefile
 config.status: creating examples/Makefile
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+/usr/bin/ocamldep fftw3.mli > ._bcdi/fftw3.di
+/usr/bin/ocamldep fftw3.ml > ._d/fftw3.d
+/usr/bin/ocamldep fftw3S.ml > ._d/fftw3S.d
+/usr/bin/ocamldep fftw3D.ml > ._d/fftw3D.d
+/usr/bin/ocamldep fftw3_geomF.ml > ._d/fftw3_geomF.d
+/usr/bin/ocamldep fftw3_geomC.ml > ._d/fftw3_geomC.d
+/usr/bin/ocamldep fftw3_utils.ml > ._d/fftw3_utils.d
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+/usr/bin/ocamlc.opt -c -cc "cc" -ccopt "-fPIC -g -O2 -DFFTW3F_EXISTS -DHASH_EXISTS \
+				-DPIC   \
+				    -o fftw3_stubs.o " fftw3_stubs.c
+ar rcs libfftw3_stubs.a  fftw3_stubs.o
+/usr/bin/ocamlc.opt -c -dtypes fftw3_utils.ml
+/usr/bin/ocamlc.opt -c -dtypes fftw3_geomC.ml
+/usr/bin/ocamlc.opt -c -dtypes fftw3_geomF.ml
+/usr/bin/ocamlc.opt -c -dtypes fftw3D.ml
+/usr/bin/ocamlc.opt -c -dtypes fftw3S.ml
+/usr/bin/ocamlc.opt -c -dtypes fftw3.mli
+/usr/bin/ocamlc.opt -c -dtypes fftw3.ml
+ocamlmklib         \
+				-o fftw3_stubs  fftw3_stubs.o -lm -lfftw3 -lfftw3f  \
+				
+/usr/bin/ocamlc.opt -a -cclib -lfftw3_stubs -cclib -lm -cclib -lfftw3 -cclib -lfftw3f   -dllib dllfftw3_stubs.so -custom             -o fftw3.cma fftw3_utils.cmo fftw3_geomC.cmo fftw3_geomF.cmo fftw3D.cmo fftw3S.cmo fftw3.cmo
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+/usr/bin/ocamldep -native fftw3.mli > ._ncdi/fftw3.di
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: `libfftw3_stubs.a' is up to date.
+/usr/bin/ocamlopt.opt -c -dtypes fftw3_utils.ml
+/usr/bin/ocamlopt.opt -c -dtypes fftw3_geomC.ml
+/usr/bin/ocamlopt.opt -c -dtypes fftw3_geomF.ml
+/usr/bin/ocamlopt.opt -c -dtypes fftw3D.ml
+/usr/bin/ocamlopt.opt -c -dtypes fftw3S.ml
+/usr/bin/ocamlopt.opt -c -dtypes fftw3.ml
+/usr/bin/ocamlopt.opt -a -cclib -lfftw3_stubs -cclib -lm -cclib -lfftw3 -cclib -lfftw3f               -o fftw3.cmxa fftw3_utils.cmx fftw3_geomC.cmx fftw3_geomF.cmx fftw3D.cmx fftw3S.cmx fftw3.cmx
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[1]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: `libfftw3_stubs.a' is up to date.
+/usr/bin/ocamlc.opt -a -cclib -lfftw3_stubs -cclib -lm -cclib -lfftw3 -cclib -lfftw3f   -dllib dllfftw3_stubs.so -custom             -o fftw3.cma fftw3_utils.cmo fftw3_geomC.cmo fftw3_geomF.cmo fftw3D.cmo fftw3S.cmo fftw3.cmo
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+make[2]: `libfftw3_stubs.a' is up to date.
+make[2]: `fftw3.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+
+Installing library with ocamlfind
+/home/opam/.opam/system/bin/ocamlfind install  fftw3 META fftw3.mli fftw3.cmi fftw3.cma fftw3.cmxa fftw3.a libfftw3_stubs.a dllfftw3_stubs.so
+Installed /home/opam/.opam/system/lib/fftw3/libfftw3_stubs.a
+Installed /home/opam/.opam/system/lib/fftw3/fftw3.a
+Installed /home/opam/.opam/system/lib/fftw3/fftw3.cmxa
+Installed /home/opam/.opam/system/lib/fftw3/fftw3.cma
+Installed /home/opam/.opam/system/lib/fftw3/fftw3.cmi
+Installed /home/opam/.opam/system/lib/fftw3/fftw3.mli
+Installed /home/opam/.opam/system/lib/fftw3/META
+Installed /home/opam/.opam/system/lib/stublibs/dllfftw3_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllfftw3_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/system/build/fftw3.0.7/src'
+Installing fftw3.0.7.
