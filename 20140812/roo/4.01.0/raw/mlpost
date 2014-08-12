@@ -121,3 +121,143 @@ ocamlfind ocamlopt   \
 ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
 ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
 	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/system/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/system/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/system/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/system/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/system/lib/bitstring/META
+Installed /home/opam/.opam/system/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/system/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+
+=-=-= Installing mlpost.0.8.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mlpost.0.8.1+opam.tar.gz
+sending incremental file list
+mlpost.0.8.1+opam.tar.gz
+
+sent 305,058 bytes  received 35 bytes  610,186.00 bytes/sec
+total size is 304,857  speedup is 1.00
+Applying opam.patch.
+patching file configure.in
+Building mlpost.0.8.1:
+  ./configure --prefix /home/opam/.opam/system --mandir /home/opam/.opam/system/man
+  make
+  make install
+  make contrib
+  make install-contrib
+checking for ocamlc... /usr/bin/ocamlc
+ocaml version is 4.01.0
+ocaml library path is /usr/lib/ocaml and /usr/local/lib/ocaml
+checking for ocamlopt... /usr/bin/ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... /usr/bin/ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... /usr/bin/ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for camlp4o... /usr/bin/camlp4o
+checking camlp4o version... ok
+checking for ocamldoc... /usr/bin/ocamldoc
+checking for ocamldep... /usr/bin/ocamldep
+checking for ocamllex... /usr/bin/ocamllex
+checking for ocamllex.opt... /usr/bin/ocamllex.opt
+checking for ocamlyacc... /usr/bin/ocamlyacc
+checking for ocamlbuild... /usr/bin/ocamlbuild
+checking ocamlbuild version... ok
+checking ocamlbuild place... ok
+checking for ocamlweb... true
+checking platform... not Win32
+checking for ocamlfind... yes
+Mlpost library will be installed in: /home/opam/.opam/system/lib/mlpost
+ocamlfind: Package `cairo' not found
+checking for /usr/lib/ocaml/cairo/cairo.cma... no
+checking for /usr/local/lib/ocaml/cairo/cairo.cma... no
+ocamlfind found bitstring in /home/opam/.opam/system/lib/bitstring
+ocamlfind: Package `lablgtk2' not found
+checking for /usr/lib/ocaml/lablgtk2/lablgtk.cma... no
+checking for /usr/local/lib/ocaml/lablgtk2/lablgtk2.cma... no
+ocamlfind: Package `cairo.lablgtk2' not found
+checking for /usr/lib/ocaml/cairo/cairo_lablgtk.cma... no
+checking for /usr/local/lib/ocaml/cairo/cairo_lablgtk.cma... no
+checking for gv... no
+checking for evince... no
+checking for xpdf... no
+checking for acroread... no
+checking for evince... no
+---------------------------------------------------
+  Mlpost library will be installed in: /home/opam/.opam/system/lib/mlpost
+  native code compilation: yes
+  Support for concrete computations in mlpost: yes
+  Cairo support in mlpost: no
+  Contrib mlpost_lablgtk : no
+---------------------------------------------------
+configure: creating ./config.status
+config.status: creating META
+config.status: creating version.ml
+config.status: creating Makefile
+config.status: creating myocamlbuild.ml
+autoconf
+make: autoconf: Command not found
+make: *** [configure] Error 127
+[ERROR] The compilation of mlpost.0.8.1 failed.
+Removing mlpost.0.8.1.
+  ocamlfind remove mlpost_dot
+  ocamlfind remove mlpost
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/mlpost_dot
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/mlpost
+
+
+===== ERROR while installing mlpost.0.8.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/mlpost.0.8.1
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/mlpost.0.8.1/mlpost-906-335865.env
+# stdout-file          /home/opam/.opam/system/build/mlpost.0.8.1/mlpost-906-335865.out
+# stderr-file          /home/opam/.opam/system/build/mlpost.0.8.1/mlpost-906-335865.err
+### stdout ###
+# ...[truncated]
+#   Support for concrete computations in mlpost: yes
+#   Cairo support in mlpost: no
+#   Contrib mlpost_lablgtk : no
+# ---------------------------------------------------
+# configure: creating ./config.status
+# config.status: creating META
+# config.status: creating version.ml
+# config.status: creating Makefile
+# config.status: creating myocamlbuild.ml
+# autoconf
+### stderr ###
+# ocamlfind: Package `cairo' not found
+# ocamlfind: Package `lablgtk2' not found
+# ocamlfind: Package `cairo.lablgtk2' not found
+# make: autoconf: Command not found
+# make: *** [configure] Error 127
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140712212711.export"
+'opam install mlpost' failed.
