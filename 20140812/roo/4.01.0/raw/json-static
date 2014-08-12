@@ -839,3 +839,35 @@ OCAMLPATH="..:$OCAMLPATH" \
 	ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -custom -o ocamlrpcgen \
 		-package unix,netstring,str \
 		rpc_generator.cma main.cmo -linkpkg
+echo /home/opam/.opam/system/bin/ocamlrpcgen >rpcgen-packlist
+rm lexer.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc-generator'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+../rpc-generator/ocamlrpcgen -aux rpc_portmapper.x
+../rpc-generator/ocamlrpcgen -clnt rpc_portmapper.x
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+../rpc-generator/ocamlrpcgen -aux rpc_auth_gssapi.x
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+ocamlfind ocamldep -syntax camlp4o -package camlp4.macro  *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/rpc'
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix" -c  rpc.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c  rpc.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c  rpc_common.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix" -c  rpc_program.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c  rpc_program.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix" -c  rpc_util.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c  rpc_util.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix" -c  rpc_portmapper_aux.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c  rpc_portmapper_aux.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix" -c  rpc_packer.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netsys -I ../../src/netstring -I ../../src/netgssapi -package "unix"  -c -w p rpc_packer.ml
