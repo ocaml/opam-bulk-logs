@@ -253,4 +253,67 @@ checking for strings.h... yes
 checking for inttypes.h... yes
 checking for stdint.h... yes
 checking for unistd.h... yes
-checking dssi.h usability... 
+checking dssi.h usability... yes
+checking dssi.h presence... yes
+checking for dssi.h... yes
+checking for ocaml-ladspa... ok
+checking for ocaml_ladspa.h... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/META
+config.status: creating src/Makefile
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+ocamldep dssi.mli > ._bcdi/dssi.di
+ocamldep dssi.ml > ._d/dssi.d
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -I/home/opam/.opam/system/lib/ladspa -g -O2 -I/home/opam/.opam/system/include -Wall -DCAML_NAME_SPACE \
+				-DPIC -fPIC -I/home/opam/.opam/system/include  \
+				  -I/home/opam/.opam/system/lib/ladspa  -o dssi_stubs.o " dssi_stubs.c
+ar rcs libdssi_stubs.a  dssi_stubs.o
+ocamlc.opt -c -I /home/opam/.opam/system/lib/ladspa dssi.mli
+ocamlc.opt -c -I /home/opam/.opam/system/lib/ladspa dssi.ml
+ocamlmklib    -I /home/opam/.opam/system/lib/ladspa  -L/home/opam/.opam/system/lib -L/home/opam/.opam/system/lib/ladspa   \
+				-o dssi_stubs  dssi_stubs.o   \
+				
+ocamlc.opt -a -dllib dlldssi_stubs.so    -I /home/opam/.opam/system/lib/ladspa   -ccopt -L/home/opam/.opam/system/lib  -ccopt -L/home/opam/.opam/system/lib -ccopt -L/home/opam/.opam/system/lib/ladspa    -cclib -ldssi_stubs    -o dssi.cma dssi.cmo
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+ocamldep -native dssi.mli > ._ncdi/dssi.di
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: `libdssi_stubs.a' is up to date.
+ocamlopt.opt -c -I /home/opam/.opam/system/lib/ladspa dssi.ml
+ocamlopt.opt -a     -I /home/opam/.opam/system/lib/ladspa   -ccopt -L/home/opam/.opam/system/lib  -ccopt -L/home/opam/.opam/system/lib -ccopt -L/home/opam/.opam/system/lib/ladspa   -cclib -ldssi_stubs    -o dssi.cmxa dssi.cmx
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[1]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: `libdssi_stubs.a' is up to date.
+make[2]: `dssi.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: Entering directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+make[2]: `libdssi_stubs.a' is up to date.
+make[2]: `dssi.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+
+Installing library with ocamlfind
+ocamlfind install  dssi META dssi.mli dssi.cmi dssi.cma dssi.cmxa dssi.cmx dssi.a libdssi_stubs.a dlldssi_stubs.so
+Installed /home/opam/.opam/system/lib/dssi/libdssi_stubs.a
+Installed /home/opam/.opam/system/lib/dssi/dssi.a
+Installed /home/opam/.opam/system/lib/dssi/dssi.cmx
+Installed /home/opam/.opam/system/lib/dssi/dssi.cmxa
+Installed /home/opam/.opam/system/lib/dssi/dssi.cma
+Installed /home/opam/.opam/system/lib/dssi/dssi.cmi
+Installed /home/opam/.opam/system/lib/dssi/dssi.mli
+Installed /home/opam/.opam/system/lib/dssi/META
+Installed /home/opam/.opam/system/lib/stublibs/dlldssi_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dlldssi_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/system/build/dssi.0.1.1/src'
+Installing dssi.0.1.1.
