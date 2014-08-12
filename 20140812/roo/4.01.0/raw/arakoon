@@ -86,3 +86,101 @@ checking for bzlib.h... yes
 checking for BZ2_bzReadOpen in -lbz2... yes
 configure: creating ./config.status
 config.status: creating Makefile
+ocamlc.opt -ccopt "-D BZ_PREFIX  " -c c_bz.c
+ocamlmklib -oc camlbz2 c_bz.o -lbz2 
+ocamlc.opt -c bz2.mli
+ocamlc.opt -c bz2.ml
+ocamlmklib -oc camlbz2 -o bz2 bz2.cmo -lbz2 
+ocamlopt.opt -c bz2.ml
+ocamlmklib -oc camlbz2 -o bz2 bz2.cmx -lbz2 
+ocamlfind remove  bz2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/bz2
+ocamlfind install  \
+		-patch-version 0.6.0 -ldconf ignore \
+		bz2 META bz2.cmi bz2.cmx bz2.mli bz2.a bz2.cma bz2.cmxa dllcamlbz2.so libcamlbz2.a
+Installed /home/opam/.opam/system/lib/bz2/libcamlbz2.a
+Installed /home/opam/.opam/system/lib/bz2/bz2.cmxa
+Installed /home/opam/.opam/system/lib/bz2/bz2.cma
+Installed /home/opam/.opam/system/lib/bz2/bz2.a
+Installed /home/opam/.opam/system/lib/bz2/bz2.mli
+Installed /home/opam/.opam/system/lib/bz2/bz2.cmx
+Installed /home/opam/.opam/system/lib/bz2/bz2.cmi
+Installed /home/opam/.opam/system/lib/bz2/META
+Installed /home/opam/.opam/system/lib/stublibs/dllcamlbz2.so
+Installed /home/opam/.opam/system/lib/stublibs/dllcamlbz2.so.owner
+Installing camlbz2.0.6.0.
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing ounit.2.0.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ounit.2.0.0+opam.tar.gz
+sending incremental file list
+ounit.2.0.0+opam.tar.gz
+
+sent 107,801 bytes  received 35 bytes  215,672.00 bytes/sec
+total size is 107,649  speedup is 1.00
+Building ounit.2.0.0:
+  make build
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ ounit
+Package version: ..................................... 2.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_threads: ......................................... /usr/lib/ocaml
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
