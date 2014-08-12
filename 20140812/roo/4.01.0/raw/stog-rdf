@@ -1144,3 +1144,428 @@ total size is 51,727  speedup is 1.00
 Building xmlm.1.2.0:
   ./pkg/pkg-git
   ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/system/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+
+=-=-= Installing pcre-ocaml.7.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.1.1+opam.tar.gz
+sending incremental file list
+pcre-ocaml.7.1.1+opam.tar.gz
+
+sent 86,695 bytes  received 35 bytes  173,460.00 bytes/sec
+total size is 86,546  speedup is 1.00
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
++ /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+lib/pcre_stubs.c: In function 'pcre_exec_stub':
+lib/pcre_stubs.c:556:9: warning: initializer element is not computable at load time [enabled by default]
+         { subj_start, (value *) NULL, (value *) NULL, (value) NULL };
+         ^
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.mli > lib/pcre.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmi lib/pcre.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules lib/pcre.ml > lib/pcre.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lpcre_stubs -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmo -o lib/pcre.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmx -o lib/pcre.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -cclib -lpcre_stubs -I lib -cclib -lpcre lib/pcre.cmxa lib/pcre.cmx -o lib/pcre.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/cloc/cloc.ml > examples/cloc/cloc.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pcre/pcre.mli
+Installed /home/opam/.opam/system/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cma
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/system/lib/pcre/pcre.a
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/system/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/system/lib/pcre/META
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+
+=-=-= Installing ulex.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ulex.1.1+opam.tar.gz
+sending incremental file list
+ulex.1.1+opam.tar.gz
+
+sent 20,477 bytes  received 35 bytes  41,024.00 bytes/sec
+total size is 20,348  speedup is 0.99
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/usr/bin/ocamlc.opt unix.cma -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/usr/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/usr/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/usr/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/usr/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/usr/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/usr/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/usr/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/usr/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/usr/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/usr/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/usr/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/usr/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/usr/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/usr/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/usr/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/usr/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/usr/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/usr/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/usr/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /usr/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/usr/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/system/lib/ulex/ulexing.a
+Installed /home/opam/.opam/system/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/system/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/system/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/system/lib/ulex/utf8.mli
+Installed /home/opam/.opam/system/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/system/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/system/build/ulex.1.1/_build'
+Installing ulex.1.1.
+
+=-=-= Installing xtmpl.0.9 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/xtmpl.0.9+opam.tar.gz
+sending incremental file list
+xtmpl.0.9+opam.tar.gz
+
+sent 14,173 bytes  received 35 bytes  28,416.00 bytes/sec
+total size is 14,043  speedup is 0.99
+Building xtmpl.0.9:
+  make all
+  make install
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.mli
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -shared -o xtmpl.cmxs `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.cmx
+ocamlfind install xtmpl META LICENSE \
+		xtmpl.cmi xtmpl.mli xtmpl.cmo xtmpl.cmx xtmpl.cmxs xtmpl.o
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.o
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.cmxs
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.cmx
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.cmo
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.mli
+Installed /home/opam/.opam/system/lib/xtmpl/xtmpl.cmi
+Installed /home/opam/.opam/system/lib/xtmpl/LICENSE
+Installed /home/opam/.opam/system/lib/xtmpl/META
+Installing xtmpl.0.9.
+
+=-=-= Installing higlo.0.3 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/higlo.0.3+opam.tar.gz
+sending incremental file list
+higlo.0.3+opam.tar.gz
+
+sent 11,104 bytes  received 35 bytes  22,278.00 bytes/sec
+total size is 10,974  speedup is 0.99
+Building higlo.0.3:
+  make all
+  make install-lib
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo.mli
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
+camlp4o -printer Camlp4OCamlPrinter.cmo \
+	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_ocaml.mll > higlo_ocaml.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+camlp4o -printer Camlp4OCamlPrinter.cmo \
+	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_xml.mll > higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo_printers.mli
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -o higlo.byte -package dynlink -linkpkg higlo.cmo higlo_ocaml.cmo higlo_xml.cmo higlo_printers.cmo higlo_main.ml
+ocamlfind ocamlopt -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
+ocamlfind ocamlopt -package ulex,xtmpl -shared -o higlo.cmxs -annot -rectypes -g higlo.cmx
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_ocaml.cmxs higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_xml.cmxs higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -o higlo -package dynlink -linkpkg higlo.cmx higlo_ocaml.cmx higlo_xml.cmx higlo_printers.cmx higlo_main.ml
+Creating mk-higlo... done
+rm higlo_ocaml.ml higlo_xml.ml
+ocamlfind install higlo META LICENSE \
+		higlo.cmi higlo.mli higlo.cmo higlo.cmx higlo.cmxs higlo.o \
+		higlo_ocaml.cmx higlo_xml.cmx higlo_ocaml.cmxs higlo_xml.cmxs higlo_ocaml.cmo higlo_xml.cmo higlo_ocaml.o higlo_xml.o higlo_ocaml.cmi higlo_xml.cmi \
+		higlo_main.cmi higlo_main.cmo higlo_main.cmx higlo_main.o \
+		higlo_printers.cmi higlo_printers.cmo higlo_printers.cmx higlo_printers.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_printers.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_main.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmi
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.o
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo_xml.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo_ocaml.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo.o
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmxs
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmx
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmo
+Installed /home/opam/.opam/system/lib/higlo/higlo.mli
+Installed /home/opam/.opam/system/lib/higlo/higlo.cmi
+Installed /home/opam/.opam/system/lib/higlo/LICENSE
+Installed /home/opam/.opam/system/lib/higlo/META
+Installing higlo.0.3.
+
+=-=-= Installing ocamlnet.3.7.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocamlnet.3.7.4+opam.tar.gz
+sending incremental file list
+ocamlnet.3.7.4+opam.tar.gz
+
+sent 3,417,452 bytes  received 35 bytes  6,834,974.00 bytes/sec
+total size is 3,416,489  speedup is 1.00
+Building ocamlnet.3.7.4:
+  ./configure -bindir /home/opam/.opam/system/bin -enable-pcre -disable-gtk2 -disable-ssl -disable-zip -enable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.4
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for PCRE... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... found
+Checking whether out-of-heap values are supported and mutable... yes
+Checking for POSIX shared memory... found
+Checking for POSIX semaphores (anonymous)... found
+Checking for POSIX semaphores (named)... found
+Checking for POSIX spawn... found
+Checking for POSIX fadvise... found
+Checking for POSIX fallocate... found
+Checking for POSIX memalign... found
+Checking for syslog... found
+Checking for POSIX functions like openat... found
+Checking for fchdir... found
+Checking for fdopendir... found
+Checking for realpath... found
+Checking for grantpt (System V style PTYs)... found
+Checking for posix_openpt (System V style PTYs)... found
+Checking for initgroups...found
+Checking for POSIX clocks...found
+Checking for POSIX timers...found
+Checking for eventfd (Linux)...found
+Checking for timerfd (Linux)...found
+Checking for epoll (Linux)...found
+Checking for compare_and_swap (GCC)...found
+Checking for GPROF... found
+Checking for O_SHARE_DELETE... yes
+Checking for O_CLOEXEC... yes
+Checking for getpeereid... not found
+Checking for getpeerucred... not found
+Checking whether netcamlbox and netmulticore are supported... yes
+Checking for cryptokit... found
+Preprocessor for ocamlrpcgen: cpp
+
+Effective options:
+    -enable-pcre
+    -disable-full-pcre
+    -disable-gtk
+    -disable-gtk2
+    -disable-tcl
+    -disable-ssl
+    -disable-zip
+    -enable-crypto
+    -disable-apache
+    -with-nethttpd
+    -without-rpc-auth-dh
+    -bindir /home/opam/.opam/system/bin
+    -datadir /home/opam/.opam/system/lib/netstring
+    -cpp cpp
+
+Writing Makefile.conf
+
+Please check Makefile.conf.
+
+You can now compile Ocamlnet by invoking
+   make all
+for the bytecode compiler, and optionally by invoking
+   make opt
+for the native-code compiler (if supported on your architecture).
+Finally, a
+   make install
+will install the package(s).
+for pkg in netstring-pcre netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd netmech-scram nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make all ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -D ENABLE_STR_EXTERNALS -D HAVE_PCRE \
+	    -intf netstring_pcre.mlip > netstring_pcre.mli || \
+	      rm -f netstring_pcre.mli
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -D ENABLE_STR_EXTERNALS -D HAVE_PCRE \
+	    -impl netstring_pcre.mlp > netstring_pcre.ml || \
+	      rm -f netstring_pcre.ml
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+ocamlfind ocamldep   *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+ocamlfind ocamlc -g   -package "unix pcre" -c  netstring_pcre.mli
+ocamlfind ocamlc -g   -package "unix pcre"  -c  netstring_pcre.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g   -package "unix pcre"  -a -o netstring-pcre.cma  netstring_pcre.cmo; \
+	else \
+		../../tools/mkstublib -o netstring-pcre netstring_pcre.cmo  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netstring-pcre'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocamlnet.3.7.4/src/netsys'
+ocamlfind ocamldep -package "camlp4.macro" -syntax camlp4o  *.ml *.mli >depend || { rm -f depend; exit 1; }
