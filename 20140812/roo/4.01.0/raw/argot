@@ -103,3 +103,18 @@ echo 'argot.cmo' > argot.itarget
 (test -x /usr/bin/ocamlopt && test TRUE = TRUE && echo 'argot.cmxs' >> argot.itarget) || true
 (test -x /usr/bin/ocamljava && echo 'argot.cmjs' >> argot.itarget) || true
 /usr/bin/ocamlbuild -classic-display -no-links argot.otarget
+cp /tmp/version0607a8.ml src/version.ml
+if [ -x "/home/opam/.opam/system/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/system/bin/ocamlfind query argot && /home/opam/.opam/system/bin/ocamlfind remove argot || true; \
+	  /home/opam/.opam/system/bin/ocamlfind install argot META `pwd`/_build/*.cmo `pwd`/_build/*.cm?s; \
+	else \
+	  mkdir -p `/usr/bin/ocamldoc -customdir`; \
+	  for ext in cmo cmxs cmjs; do \
+	    test -f `pwd`/_build/argot.$ext && cp `pwd`/_build/argot.$ext `/usr/bin/ocamldoc -customdir` || true; \
+	  done \
+	fi
+ocamlfind: Package `argot' not found
+Installed /home/opam/.opam/system/lib/argot/argot.cmxs
+Installed /home/opam/.opam/system/lib/argot/argot.cmo
+Installed /home/opam/.opam/system/lib/argot/META
+Installing argot.1.1.
