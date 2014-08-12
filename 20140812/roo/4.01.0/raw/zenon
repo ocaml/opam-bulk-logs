@@ -7371,3 +7371,15 @@ coqc -q zenon_coqbool.v
 coqc -q zenon_equiv.v
 coqc -q zenon_induct.v
 coqc -q zenon_focal.v
+mkdir -p "/home/opam/.opam/system/bin"
+cp zenon "/home/opam/.opam/system/bin"/"zenon-0.7.1"
+(cd "/home/opam/.opam/system/bin" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+mkdir -p "/home/opam/.opam/system/lib"/"zenon-0.7.1"
+(cd "/home/opam/.opam/system/lib" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+cp zenon.v zenon_coqbool.v zenon_equiv.v zenon_induct.v zenon_focal.v "/home/opam/.opam/system/lib"/"zenon-0.7.1"/
+for i in zenon.vo zenon_coqbool.vo zenon_equiv.vo zenon_induct.vo zenon_focal.vo; \
+	  do [ ! -f $i ] || cp $i "/home/opam/.opam/system/lib/"zenon-0.7.1""/; \
+	done
+Installing zenon.0.7.1.
