@@ -5456,3 +5456,43 @@ pkg_tcpip_channel: ................................... /home/opam/.opam/system/l
 pkg_lwt_syntax: ...................................... /home/opam/.opam/system/lib/lwt
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP.ml > lib/HTTP.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.mli > lib/HTTP_IO.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmi lib/HTTP_IO.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.ml > lib/HTTP_IO.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmo lib/HTTP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/HTTP_IO.cmo lib/HTTP.cmo -o lib/mirage-http.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmx lib/HTTP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/HTTP_IO.cmx lib/HTTP.cmx -o lib/mirage-http.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall lib/mirage-http.cmxa -o lib/mirage-http.cmxs
+# Parallel statistics: { count(total): 1(11), max: 2, min: 2, average(total): 2.000(1.091) }
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.ml
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cma
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cmxa
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.a
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cmxs
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.cmi
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP_IO.cmx
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.cmx
+Installed /home/opam/.opam/system/lib/mirage-http/META
+Installing mirage-http.1.1.0.
+
+=-=-= Installing mirage-www.1.2.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-www.1.2.0+opam.tar.gz
+sending incremental file list
+mirage-www.1.2.0+opam.tar.gz
+
+sent 5,607,357 bytes  received 35 bytes  11,214,784.00 bytes/sec
+total size is 5,605,856  speedup is 1.00
+Building mirage-www.1.2.0:
+  make configure
+  make MODE=unix
+mirage configure src/config.ml  --unix
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+[32mMirage[m      [36mUsing specified config file:[m src/config.ml
+[32mMirage[m      [36mProcessing:[m /home/opam/.opam/system/build/mirage-www.1.2.0/src/config.ml
+[32mMirage[m      [33m=>[m rm -rf /home/opam/.opam/system/build/mirage-www.1.2.0/src/_build/config.*
+[32mMirage[m      [33m=>[m cd /home/opam/.opam/system/build/mirage-www.1.2.0/src && ocamlbuild -use-ocamlfind -tags annot,bin_annot -pkg mirage config.cmxs
