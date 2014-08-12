@@ -333,3 +333,79 @@ ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_exp
 ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_light_cmd.ml
 ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_getopt_cmd.ml
 ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_compile_cmd.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_cc.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_to_proto.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -pp "camlp4o -I /home/opam/.opam/system/lib/ulex pa_ulex.cma " -I ../piqilib piqi_of_proto.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -pp "camlp4o -I /home/opam/.opam/system/lib/ulex pa_ulex.cma " -I ../piqilib piqi_http.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_rpc.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_server.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_call.ml
+ocamlfind ocamlopt -package unix,ulex,easy-format,xmlm -c -I ../piqilib piqi_run.ml
+ocamlfind ocamlopt \
+				-package unix,ulex,easy-format,xmlm -linkpkg \
+				    -I ../piqilib        ../piqilib/piqilib.cmxa    -o piqi \
+				descriptor_piqi.cmx piqi_tools_piqi.cmx piqi_rpc_piqi.cmx piqi_main.cmx piqi_json_pp.cmx piqi_pp_cmd.cmx piqi_convert_cmd.cmx piqi_check.cmx piqi_expand.cmx piqi_light_cmd.cmx piqi_getopt_cmd.cmx piqi_compile_cmd.cmx piqi_cc.cmx piqi_to_proto.cmx piqi_of_proto.cmx piqi_http.cmx piqi_rpc.cmx piqi_server.cmx piqi_call.cmx piqi_run.cmx
+make[2]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/src'
+make[1]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/src'
+make -C piqilib
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[2]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[2]: `libpiqilib_stubs.a' is up to date.
+make[2]: `piqilib.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[1]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+install -d /home/opam/.opam/system/bin
+install src/piqi /home/opam/.opam/system/bin
+install -d /home/opam/.opam/system/share/man/man1
+install -m 644 doc/piqi.1 /home/opam/.opam/system/share/man/man1
+make -C deps uninstall
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/deps'
+set -e; \
+	for dir in   ; do \
+		make -C $dir uninstall; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/deps'
+make -C piqilib uninstall
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+
+Uninstalling library with ocamlfind
+ocamlfind remove  piqilib
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/piqilib
+
+Uninstallation successful.
+make[1]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+test -d  || mkdir -p 
+make -C deps install
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/deps'
+set -e; \
+	for dir in   ; do \
+		make -C $dir install; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/deps'
+make -C piqilib install
+make[1]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[2]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+ocamlfind ocamldep piqi_xml_type.mli > ._bcdi/piqi_xml_type.di
+ocamlfind ocamldep piqi_json_type.mli > ._bcdi/piqi_json_type.di
+ocamlfind ocamldep piqi_c.mli > ._bcdi/piqi_c.di
+make[2]: Leaving directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[2]: Entering directory `/home/opam/.opam/system/build/piqilib.0.6.6/piqilib'
+make[2]: `libpiqilib_stubs.a' is up to date.
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_version.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_piqirun.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_piqi.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqloc.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_util.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piq_ast.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_impl_piqi.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_boot.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_c.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_config.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_iolist.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_name.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_common.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_file.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_command.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_protobuf.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -I +camlp4 piqi_db.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c -pp "camlp4o -I /home/opam/.opam/system/lib/ulex pa_ulex.cma " -I +camlp4 piq_lexer.ml
