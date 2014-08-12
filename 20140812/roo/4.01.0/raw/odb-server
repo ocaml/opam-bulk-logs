@@ -113,3 +113,8 @@ ocamlc -g -linkall -o odb-server.byte -I +threads -annot -thread unix.cma thread
 	 odb.cma server.cmo
 ocamlc -g -o odb-client.byte -I +threads -annot -thread unix.cma threads.cma dynlink.cma str.cma odb.cma client.cmo
 ocamlopt -g -shared -o plugins/ocamlwc.cmxs  -I +threads -annot -thread plugins/ocamlwc.ml
+mkdir -p /home/opam/.opam/system/lib/odb-server
+cp -f odb_config.cmi odb_misc.cmi odb_file.cmi odb_commands.cmi odb_comm.cmi odb_project_types.cmi odb_project_parser.cmi odb_project_lexer.cmi odb_project.cmi odb_client.cmi odb_doc.cmi odb_tools.cmi odb_project_tool.cmi odb_server.cmi odb.cmxa odb.cma odb.a \
+	`ls server.cmi | grep -v server.cmi` /home/opam/.opam/system/lib/odb-server
+cp -f odb-server odb-client  /home/opam/.opam/system/bin
+Installing odb-server.0.1.
