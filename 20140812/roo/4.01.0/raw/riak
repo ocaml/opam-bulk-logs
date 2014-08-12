@@ -2036,3 +2036,22 @@ pkg_piqi_runtime: .................................... /home/opam/.opam/system/l
 pkg_riak_pb: ......................................... /home/opam/.opam/system/lib/riak-pb
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package riak-pb -package piqi.runtime -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules src/riak.mli > src/riak.mli.depends
+ocamlfind ocamlc -c -g -package riak-pb -package piqi.runtime -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I src -o src/riak.cmi src/riak.mli
+ocamlfind ocamldep -package riak-pb -package piqi.runtime -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules src/riak.ml > src/riak.ml.depends
+ocamlfind ocamlc -c -g -package riak-pb -package piqi.runtime -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I src -o src/riak.cmo src/riak.ml
+ocamlfind ocamlc -a -package lwt.syntax src/riak.cmo -o src/riak.cma
+ocamlfind ocamlopt -c -g -package riak-pb -package piqi.runtime -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I src -o src/riak.cmx src/riak.ml
+ocamlfind ocamlopt -a -package lwt.syntax src/riak.cmx -o src/riak.cmxa
+ocamlfind ocamlopt -shared -package lwt.syntax src/riak.cmx -o src/riak.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/riak/riak.mli
+Installed /home/opam/.opam/system/lib/riak/riak.cma
+Installed /home/opam/.opam/system/lib/riak/riak.cmxa
+Installed /home/opam/.opam/system/lib/riak/riak.a
+Installed /home/opam/.opam/system/lib/riak/riak.cmxs
+Installed /home/opam/.opam/system/lib/riak/riak.cmi
+Installed /home/opam/.opam/system/lib/riak/riak.cmx
+Installed /home/opam/.opam/system/lib/riak/META
+Installing riak.1.0.0.
