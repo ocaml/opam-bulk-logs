@@ -5460,3 +5460,64 @@ pkg_lwt_syntax: ...................................... /home/opam/.opam/system/l
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.mli > lib/HTTP_IO.mli.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmi lib/HTTP_IO.mli
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.ml > lib/HTTP_IO.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmo lib/HTTP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/HTTP_IO.cmo lib/HTTP.cmo -o lib/mirage-http.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmx lib/HTTP.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/HTTP_IO.cmx lib/HTTP.cmx -o lib/mirage-http.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -linkall lib/mirage-http.cmxa -o lib/mirage-http.cmxs
+# Parallel statistics: { count(total): 1(11), max: 2, min: 2, average(total): 2.000(1.091) }
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.ml
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cma
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cmxa
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.a
+Installed /home/opam/.opam/system/lib/mirage-http/mirage-http.cmxs
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.cmi
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP_IO.cmx
+Installed /home/opam/.opam/system/lib/mirage-http/HTTP.cmx
+Installed /home/opam/.opam/system/lib/mirage-http/META
+Installing mirage-http.1.1.0.
+
+=-=-= Installing mirage-www.1.2.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-www.1.2.0+opam.tar.gz
+sending incremental file list
+mirage-www.1.2.0+opam.tar.gz
+
+sent 5,607,357 bytes  received 35 bytes  11,214,784.00 bytes/sec
+total size is 5,605,856  speedup is 1.00
+Building mirage-www.1.2.0:
+  make configure
+  make MODE=unix
+mirage configure src/config.ml  --unix
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+[32mMirage[m      [36mUsing specified config file:[m src/config.ml
+[32mMirage[m      [36mProcessing:[m /home/opam/.opam/system/build/mirage-www.1.2.0/src/config.ml
+[32mMirage[m      [33m=>[m rm -rf /home/opam/.opam/system/build/mirage-www.1.2.0/src/_build/config.*
+[32mMirage[m      [33m=>[m cd /home/opam/.opam/system/build/mirage-www.1.2.0/src && ocamlbuild -use-ocamlfind -tags annot,bin_annot -pkg mirage config.cmxs
+[32mwww[m         [36mUsing configuration:[m /home/opam/.opam/system/build/mirage-www.1.2.0/src/config.ml
+[32mwww[m         1 job [Dispatch.Main]
+[32mwww[m         [36mGenerating:[m main.ml
+[32mwww[m         [36mNow run 'make depend' to install the package dependencies for this unikernel.[m
+cd src && make build
+make[1]: Entering directory `/home/opam/.opam/system/build/mirage-www.1.2.0/src'
+ocamlbuild -classic-display -use-ocamlfind -pkgs lwt.syntax,cow.syntax,cowabloga,cstruct,io-page,io-page.unix,lwt,mirage-clock-unix,mirage-console-unix,mirage-fs-unix,mirage-http,mirage-net-unix,mirage-types,mirage-types.lwt,tcpip.stack-direct -tags "syntax(camlp4o),annot,bin_annot,strict_sequence,principal" -cflag -g -lflags -g,-linkpkg main.native
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules main.ml > main.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules dispatch.ml > dispatch.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules blog.ml > blog.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules data.ml > data.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules paper.ml > paper.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules perf.ml > perf.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o paper.cmo paper.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o perf.cmo perf.ml
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules pages.ml > pages.ml.depends
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules site_config.ml > site_config.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o data.cmo data.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o site_config.cmo site_config.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o pages.cmo pages.ml
+ocamlfind ocamldep -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -modules wiki.ml > wiki.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o blog.cmo blog.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o wiki.cmo wiki.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o dispatch.cmo dispatch.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package tcpip.stack-direct -package mirage-types.lwt -package mirage-types -package mirage-net-unix -package mirage-http -package mirage-fs-unix -package mirage-console-unix -package mirage-clock-unix -package lwt -package io-page.unix -package io-page -package cstruct -package cowabloga -package cow.syntax -package lwt.syntax -syntax camlp4o -o main.cmo main.ml
