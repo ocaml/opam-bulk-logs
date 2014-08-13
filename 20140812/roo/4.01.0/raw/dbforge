@@ -622,4 +622,91 @@ checking for sys/types.h... yes
 checking for sys/stat.h... yes
 checking for stdlib.h... yes
 checking for string.h... yes
-checking for memory.h... 
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking mysql/mysql.h usability... yes
+checking mysql/mysql.h presence... yes
+checking for mysql/mysql.h... yes
+configure: creating ./config.status
+config.status: creating Makefile
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+ocamldep mysql.mli > ._bcdi/mysql.di
+ocamldep -pp "camlp4o " mysql.ml > ._d/mysql.d
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
+				-DPIC   \
+				    -o mysql_stubs.o " mysql_stubs.c
+ar rcs libmysql_stubs.a  mysql_stubs.o
+ocamlc -c mysql.mli
+ocamlc -c -pp "camlp4o " mysql.ml
+ocamlmklib         \
+				-o mysql_stubs  mysql_stubs.o -lz -lmysqlclient  \
+				
+ocamlc -a -dllib dllmysql_stubs.so             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cma mysql.cmo
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+ocamldep -native mysql.mli > ._ncdi/mysql.di
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+ocamlopt -c -pp "camlp4o " mysql.ml
+ocamlopt -a             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cmxa mysql.cmx
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+make[1]: `mysql.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+
+Installing library with ocamlfind
+ocamlfind install -patch-version "1.1.2" mysql META mysql.mli mysql.cmi mysql.cma mysql.cmx mysql.cmxa libmysql_stubs.a mysql.a dllmysql_stubs.so
+Installed /home/opam/.opam/system/lib/mysql/mysql.a
+Installed /home/opam/.opam/system/lib/mysql/libmysql_stubs.a
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmxa
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmx
+Installed /home/opam/.opam/system/lib/mysql/mysql.cma
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmi
+Installed /home/opam/.opam/system/lib/mysql/mysql.mli
+Installed /home/opam/.opam/system/lib/mysql/META
+Installed /home/opam/.opam/system/lib/stublibs/dllmysql_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllmysql_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+Installing mysql.1.1.2.
+
+=-=-= Installing xml-light.2.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/xml-light.2.4+opam.tar.gz
+sending incremental file list
+xml-light.2.4+opam.tar.gz
+
+sent 17,048 bytes  received 35 bytes  34,166.00 bytes/sec
+total size is 16,914  speedup is 0.99
+Building xml-light.2.4:
+  make install_ocamlfind
+ocamlyacc xml_parser.mly
+ocamlc  xml.mli
+ocamlc  dtd.mli
+ocamlc  xml_parser.mli
+ocamlc  -c xml_parser.ml
+ocamllex xml_lexer.mll
+248 states, 1238 transitions, table size 6440 bytes
+ocamlc  xml_lexer.mli
+ocamlc  -c xml_lexer.ml
+ocamlc  -c dtd.ml
+ocamlc  xmlParser.mli
+ocamlc  -c xmlParser.ml
+ocamlc  -c xml.ml
+ocamlc -o xml-light.cma -a  xml_parser.cmo xml_lexer.cmo dtd.cmo xmlParser.cmo xml.cmo
+ocamlc xml-light.cma test.ml -o test.exe
+mkdir doc
+ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
+ocamlopt  -c xml_parser.ml
+ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
