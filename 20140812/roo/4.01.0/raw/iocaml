@@ -6890,3 +6890,47 @@ pkg_ocplib_endian: ................................... /home/opam/.opam/system/l
 pkg_optcomp: ......................................... /home/opam/.opam/system/lib/optcomp
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -modules lib/lwt_io_ext.ml > lib/lwt_io_ext.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -modules lib/websocket.mli > lib/websocket.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -I lib -o lib/lwt_io_ext.cmo lib/lwt_io_ext.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -I lib -o lib/websocket.cmi lib/websocket.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -modules lib/websocket.ml > lib/websocket.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -I lib -o lib/websocket.cmo lib/websocket.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -package lwt.syntax lib/lwt_io_ext.cmo lib/websocket.cmo -o lib/websocket.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -I lib -o lib/lwt_io_ext.cmx lib/lwt_io_ext.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -syntax camlp4o -I lib -o lib/websocket.cmx lib/websocket.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -package lwt.syntax lib/lwt_io_ext.cmx lib/websocket.cmx -o lib/websocket.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -package lwt.syntax lib/websocket.cmxa lib/lwt_io_ext.cmx lib/websocket.cmx -o lib/websocket.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -modules tests/wscat.ml > tests/wscat.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmo tests/wscat.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmx tests/wscat.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -package lwt.syntax -package ocplib-endian -package optcomp lib/websocket.cmxa tests/wscat.cmx -o tests/wscat.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.ml
+Installed /home/opam/.opam/system/lib/websocket/websocket.mli
+Installed /home/opam/.opam/system/lib/websocket/websocket.cma
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmxa
+Installed /home/opam/.opam/system/lib/websocket/websocket.a
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmxs
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmi
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.cmi
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmx
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.cmx
+Installed /home/opam/.opam/system/lib/websocket/META
+Installing websocket.0.8.1.
+
+=-=-= Installing iocaml.0.4.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/iocaml.0.4.4+opam.tar.gz
+sending incremental file list
+iocaml.0.4.4+opam.tar.gz
+
+sent 2,312,946 bytes  received 35 bytes  4,625,962.00 bytes/sec
+total size is 2,312,257  speedup is 1.00
+Building iocaml.0.4.4:
+  make all
+ocaml-crunch -o filesys.ml -m plain filesys-1.1
+Generating filesys.ml
+Skipping generation of .mli
+ocamlbuild -use-ocamlfind iocamlserver.byte
+ocamlfind ocamldep -syntax camlp4o -package findlib,cow,lwt.syntax,cohttp.lwt,websocket,iocaml-kernel,uuidm,yojson -modules iocamlserver.ml > iocamlserver.ml.depends
