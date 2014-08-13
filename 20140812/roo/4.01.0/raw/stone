@@ -751,3 +751,60 @@ pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
 
 ./setup.exe -build 
 ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/system/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/system/lib/type_conv/META
+Installing type_conv.111.13.00.
+
+=-=-= Installing ulex.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ulex.1.1+opam.tar.gz
+sending incremental file list
+ulex.1.1+opam.tar.gz
+
+sent 20,477 bytes  received 35 bytes  41,024.00 bytes/sec
+total size is 20,348  speedup is 0.99
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/usr/bin/ocamlc.opt unix.cma -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/usr/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/usr/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/usr/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/usr/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/usr/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/usr/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/usr/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/usr/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/usr/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/usr/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/usr/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/usr/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/usr/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/usr/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/usr/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /usr/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/usr/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/usr/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/usr/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/usr/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
