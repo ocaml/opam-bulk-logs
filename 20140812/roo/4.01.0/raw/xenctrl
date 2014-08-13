@@ -1838,3 +1838,141 @@ ocamlfind ocamlopt -package "cmdliner" -linkpkg configure.ml -o configure
 ./configure
 Looking for xenctrl.h: ok
 Looking for libxl.h: missing
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ xen-lowlevel-libs
+Package version: ..................................... 0.9.8
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the xenlight bindings: ......................... false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_unix: ............................................ /usr/lib/ocaml
+pkg_lwt: ............................................. /home/opam/.opam/system/lib/lwt
+pkg_bigarray: ........................................ /usr/lib/ocaml
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gnttab_stubs.c
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/eventchn_stubs.c
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenmmap_stubs.c
+mv xenmmap_stubs.o lib/xenmmap_stubs.o
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenctrl_stubs.c
+mv gntshr_stubs.o lib/gntshr_stubs.o
+mv gnttab_stubs.o lib/gnttab_stubs.o
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenguest_stubs.c
+mv eventchn_stubs.o lib/eventchn_stubs.o
++ ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenguest_stubs.c
+lib/xenguest_stubs.c: In function 'dispatch_suspend':
+lib/xenguest_stubs.c:259:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  int domid = (int) arg;
+              ^
+lib/xenguest_stubs.c: In function 'stub_xc_domain_save':
+lib/xenguest_stubs.c:594:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  callbacks.data = (void*) c_domid;
+                   ^
+lib/xenguest_stubs.c: In function 'stub_xc_domain_restore':
+lib/xenguest_stubs.c:682:9: warning: passing argument 14 of 'xc_domain_restore' makes integer from pointer without a cast [enabled by default]
+         );
+         ^
+In file included from lib/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: expected 'int' but argument is of type 'long unsigned int *'
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+lib/xenguest_stubs.c:682:9: error: too few arguments to function 'xc_domain_restore'
+         );
+         ^
+In file included from lib/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: declared here
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' lib/libxenctrl_stubs.a lib/dllxenctrl_stubs.so lib/xenctrl.cma lib/xenctrl.cmxa lib/xenctrl.a lib/xenctrl.cmxs lwt/xenctrl_lwt.cma lwt/xenctrl_lwt.cmxa lwt/xenctrl_lwt.a lwt/xenctrl_lwt.cmxs test/test_hvm_check_pvdriver.native test/test_gntshr.native test/test_events.native -tag debug -j 4' terminated with error code 10")
+make: *** [build] Error 1
+[ERROR] The compilation of xenctrl.0.9.8 failed.
+Removing xenctrl.0.9.8.
+  make uninstall
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/xenctrl
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/xenlight
+
+
+===== ERROR while installing xenctrl.0.9.8 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/xenctrl.0.9.8
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4034-865888.env
+# stdout-file          /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4034-865888.out
+# stderr-file          /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4034-865888.err
+### stdout ###
+# ...[truncated]
+#  int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+#      ^
+# lib/xenguest_stubs.c:682:9: error: too few arguments to function 'xc_domain_restore'
+#          );
+#          ^
+# In file included from lib/xenguest_stubs.c:27:0:
+# /usr/include/xenguest.h:123:5: note: declared here
+#  int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+#      ^
+# Command exited with code 2.
+### stderr ###
+# Makefile:6: config.mk: No such file or directory
+# E: Failure("Command ''/usr/bin/ocamlbuild' lib/libxenctrl_stubs.a lib/dllxenctrl_stubs.so lib/xenctrl.cma lib/xenctrl.cmxa lib/xenctrl.a lib/xenctrl.cmxs lwt/xenctrl_lwt.cma lwt/xenctrl_lwt.cmxa lwt/xenctrl_lwt.a lwt/xenctrl_lwt.cmxs test/test_hvm_check_pvdriver.native test/test_gntshr.native test/test_events.native -tag debug -j 4' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713034617.export"
+'opam install xenctrl' failed.
