@@ -6963,3 +6963,32 @@ ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax cam
 ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package cow,cow.syntax -o pages.cmo pages.ml
 ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package lwt,re -o uri_paths.cmo uri_paths.ml
 ocamlfind ocamlc -linkpkg -g -package findlib,cow,lwt.unix,cohttp,websocket,iocaml-kernel,uuidm,yojson kernel.cmo uri_paths.cmo bridge.cmo config.cmo files.cmo filesys.cmo pages.cmo iocamlserver.cmo -o iocamlserver.byte
+Installing iocaml.0.4.4.
+
+=-=-= ocp-index.1.0.2 information =-=-=
+OCP-INDEX installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-index).
+
+=-=-= ocp-indent.1.4.1 information =-=-=
+OCP-INDENT installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-indent)
+
+To use it from Vim, add to your .vimrc:
+  let g:ocp_indent_vimfile = system("opam config var share")
+  let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+  let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+
+  autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
+.
