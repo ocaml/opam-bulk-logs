@@ -643,3 +643,124 @@ ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
 ar rcs libmysql_stubs.a  mysql_stubs.o
 ocamlc -c mysql.mli
 ocamlc -c -pp "camlp4o " mysql.ml
+ocamlmklib         \
+				-o mysql_stubs  mysql_stubs.o -lz -lmysqlclient  \
+				
+ocamlc -a -dllib dllmysql_stubs.so             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cma mysql.cmo
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+ocamldep -native mysql.mli > ._ncdi/mysql.di
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+ocamlopt -c -pp "camlp4o " mysql.ml
+ocamlopt -a             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cmxa mysql.cmx
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/system/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+make[1]: `mysql.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/system/build/mysql.1.1.2'
+
+Installing library with ocamlfind
+ocamlfind install -patch-version "1.1.2" mysql META mysql.mli mysql.cmi mysql.cma mysql.cmx mysql.cmxa libmysql_stubs.a mysql.a dllmysql_stubs.so
+Installed /home/opam/.opam/system/lib/mysql/mysql.a
+Installed /home/opam/.opam/system/lib/mysql/libmysql_stubs.a
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmxa
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmx
+Installed /home/opam/.opam/system/lib/mysql/mysql.cma
+Installed /home/opam/.opam/system/lib/mysql/mysql.cmi
+Installed /home/opam/.opam/system/lib/mysql/mysql.mli
+Installed /home/opam/.opam/system/lib/mysql/META
+Installed /home/opam/.opam/system/lib/stublibs/dllmysql_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllmysql_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+Installing mysql.1.1.2.
+
+=-=-= Installing xml-light.2.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/xml-light.2.4+opam.tar.gz
+sending incremental file list
+xml-light.2.4+opam.tar.gz
+
+sent 17,048 bytes  received 35 bytes  34,166.00 bytes/sec
+total size is 16,914  speedup is 0.99
+Building xml-light.2.4:
+  make install_ocamlfind
+ocamlyacc xml_parser.mly
+ocamlc  xml.mli
+ocamlc  dtd.mli
+ocamlc  xml_parser.mli
+ocamlc  -c xml_parser.ml
+ocamllex xml_lexer.mll
+248 states, 1238 transitions, table size 6440 bytes
+ocamlc  xml_lexer.mli
+ocamlc  -c xml_lexer.ml
+ocamlc  -c dtd.ml
+ocamlc  xmlParser.mli
+ocamlc  -c xmlParser.ml
+ocamlc  -c xml.ml
+ocamlc -o xml-light.cma -a  xml_parser.cmo xml_lexer.cmo dtd.cmo xmlParser.cmo xml.cmo
+ocamlc xml-light.cma test.ml -o test.exe
+mkdir doc
+ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
+ocamlopt  -c xml_parser.ml
+ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
+ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
+ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/system/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/system/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/system/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/system/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/system/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/system/lib/xml-light/xml.mli
+Installed /home/opam/.opam/system/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/system/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/system/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/system/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/system/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/system/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/system/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/system/lib/xml-light/META
+Installing xml-light.2.4.
+
+=-=-= Installing xmlm.1.2.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+
+sent 51,862 bytes  received 35 bytes  103,794.00 bytes/sec
+total size is 51,727  speedup is 1.00
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/system/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+
+=-=-= Installing lablgtk.2.16.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lablgtk.2.16.0+opam.tar.gz
+sending incremental file list
+lablgtk.2.16.0+opam.tar.gz
