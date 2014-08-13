@@ -4567,3 +4567,104 @@ ocaml setup.ml -build
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/kvro_fs_unix.ml > lib/kvro_fs_unix.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/fs_common.ml > lib/fs_common.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/fs_common.cmo lib/fs_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.mli > lib/FS_unix.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmi lib/FS_unix.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -modules lib/FS_unix.ml > lib/FS_unix.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmo lib/kvro_fs_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmo lib/FS_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/fs_common.cmo lib/kvro_fs_unix.cmo lib/FS_unix.cmo -o lib/mirage_fs_unix.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/fs_common.cmx lib/fs_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/kvro_fs_unix.cmx lib/kvro_fs_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package cstruct.lwt -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package mirage-types -I lib -o lib/FS_unix.cmx lib/FS_unix.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/fs_common.cmx lib/kvro_fs_unix.cmx lib/FS_unix.cmx -o lib/mirage_fs_unix.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/mirage_fs_unix.cmxa lib/fs_common.cmx lib/kvro_fs_unix.cmx lib/FS_unix.cmx -o lib/mirage_fs_unix.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.mli
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.mli
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cma
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cmxa
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.a
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/mirage_fs_unix.cmxs
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.cmi
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.cmi
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/fs_common.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/FS_unix.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/kvro_fs_unix.cmx
+Installed /home/opam/.opam/system/lib/mirage-fs-unix/META
+Installing mirage-fs-unix.1.1.1.
+
+=-=-= Installing mirage-net-unix.1.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/mirage-net-unix.1.1.1+opam.tar.gz
+sending incremental file list
+mirage-net-unix.1.1.1+opam.tar.gz
+
+sent 46,092 bytes  received 35 bytes  92,254.00 bytes/sec
+total size is 45,946  speedup is 1.00
+Building mirage-net-unix.1.1.1:
+  make
+  make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ mirage-net-unix
+Package version: ..................................... 1.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... true
+pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
+pkg_lwt: ............................................. /home/opam/.opam/system/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+pkg_mirage_types: .................................... /home/opam/.opam/system/lib/mirage-types
+pkg_tuntap: .......................................... /home/opam/.opam/system/lib/tuntap
+pkg_io_page_unix: .................................... /home/opam/.opam/system/lib/io-page
+pkg_io_page: ......................................... /home/opam/.opam/system/lib/io-page
+pkg_ounit: ........................................... /home/opam/.opam/system/lib/oUnit
+
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
