@@ -2940,3 +2940,25 @@ pkg_netstring: ....................................... /home/opam/.opam/system/l
 pkg_str: ............................................. /usr/lib/ocaml
 ocamldoc: ............................................ /usr/bin/ocamldoc
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package netstring -package str -modules src/lib/weberizer.mli > src/lib/weberizer.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package netstring -package str -I src/lib -o src/lib/weberizer.cmi src/lib/weberizer.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package netstring -package str -modules src/lib/weberizer.ml > src/lib/weberizer.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -package netstring -package str -I src/lib -o src/lib/weberizer.cmo src/lib/weberizer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a src/lib/weberizer.cmo -o src/lib/weberizer.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -package netstring -package str -I src/lib -o src/lib/weberizer.cmx src/lib/weberizer.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/lib/weberizer.cmx -o src/lib/weberizer.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/lib/weberizer.cmxa src/lib/weberizer.cmx -o src/lib/weberizer.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package netstring -package str -modules src/app/weberizer_compile.ml > src/app/weberizer_compile.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src/lib -package netstring -package str -I src/app -I src/lib -o src/app/weberizer_compile.cmo src/app/weberizer_compile.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src/lib -package netstring -package str -I src/app -I src/lib -o src/app/weberizer_compile.cmx src/app/weberizer_compile.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package netstring -package str src/lib/weberizer.cmxa src/app/weberizer_compile.cmx -o src/app/weberizer_compile.native
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.mli
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.cma
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.cmxa
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.a
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.cmxs
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.cmi
+Installed /home/opam/.opam/system/lib/weberizer/weberizer.cmx
+Installed /home/opam/.opam/system/lib/weberizer/META
+Installing weberizer.0.7.7.
