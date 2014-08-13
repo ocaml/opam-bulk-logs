@@ -9,3 +9,30 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install merlin
+The following actions will be performed:
+ - install cppo.0.9.4 [required by merlin]
+ - install menhir.20130912 [required by merlin]
+ - install easy-format.1.0.2 [required by merlin]
+ - install biniou.1.0.9 [required by merlin]
+ - install yojson.1.1.8 [required by merlin]
+ - install merlin.1.6
+6 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing cppo.0.9.4 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cppo.0.9.4+opam.tar.gz
+sending incremental file list
+cppo.0.9.4+opam.tar.gz
+
+sent 21,320 bytes  received 35 bytes  42,710.00 bytes/sec
+total size is 21,189  speedup is 0.99
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
