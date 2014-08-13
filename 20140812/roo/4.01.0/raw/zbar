@@ -1190,3 +1190,103 @@ Building zbar.0.9:
   make PREFIX=/home/opam/.opam/system
   make PREFIX=/home/opam/.opam/system install
 ocamlopt.opt -o setup.bin setup.ml || ocamlopt -o setup.bin setup.ml || ocamlc -o setup.bin setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.cmo
+./setup.bin -configure  --prefix /home/opam/.opam/system
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ zbar
+Package version: ..................................... 0.9
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/system
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Build the ctypes binding: ............................ false
+Build the classic OCaml FFI binding: ................. true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt_unix: ........................................ /home/opam/.opam/system/lib/lwt
+ocamldoc: ............................................ /usr/bin/ocamldoc
+
+./setup.bin -build -classic-display
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c classic/zbar_stubs.c
+mv zbar_stubs.o classic/zbar_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o classic/zbar_stubs -lzbar classic/zbar_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package lwt.unix -modules classic/zbar.mli > classic/zbar.mli.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package lwt.unix -I classic -o classic/zbar.cmi classic/zbar.mli
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package lwt.unix -modules classic/zbar.ml > classic/zbar.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -package lwt.unix -I classic -o classic/zbar.cmo classic/zbar.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lzbar_stubs -cclib -lzbar_stubs -cclib -lzbar classic/zbar.cmo -o classic/zbar.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package lwt.unix -I classic -o classic/zbar.cmx classic/zbar.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lzbar_stubs -cclib -lzbar classic/zbar.cmx -o classic/zbar.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I classic classic/zbar.cmxa classic/zbar.cmx -o classic/zbar.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package lwt.unix -modules test/test.ml > test/test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I classic -package lwt.unix -I test -I classic -o test/test.cmo test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I classic -package lwt.unix -I test -I classic -o test/test.cmx test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -I classic -linkpkg -package lwt.unix classic/zbar.cmxa test/test.cmx -o test/test.native
+./setup.bin -test
+./setup.bin -doc
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -dump classic/zbar.odoc -package lwt.unix -I classic classic/zbar.mli
+rm -rf classic/zbar.docdir
+mkdir -p classic/zbar.docdir
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -load classic/zbar.odoc -html -d classic/zbar.docdir
+./setup.bin -install
+W: Nothing to install for findlib library 'zbar_ctypes'
+Installed /home/opam/.opam/system/lib/zbar/zbar.mli
+Installed /home/opam/.opam/system/lib/zbar/libzbar_stubs.a
+Installed /home/opam/.opam/system/lib/zbar/zbar.cma
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmxa
+Installed /home/opam/.opam/system/lib/zbar/zbar.a
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmxs
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmi
+Installed /home/opam/.opam/system/lib/zbar/zbar.cmx
+Installed /home/opam/.opam/system/lib/zbar/META
+Installed /home/opam/.opam/system/lib/stublibs/dllzbar_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllzbar_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing zbar.0.9.
