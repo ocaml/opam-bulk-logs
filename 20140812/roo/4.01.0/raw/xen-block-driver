@@ -4530,3 +4530,44 @@ ocamlfind ocamlopt -c -g -I lib -package xenctrl -package shared-memory-ring.lwt
 ocamlfind ocamlopt -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/device_number.cmx lib/device_number.ml
 ocamlfind ocamlopt -a -package lwt.syntax -package cstruct.syntax lib/blkproto.cmx lib/device_number.cmx -o lib/xenblock.cmxa
 ocamlfind ocamlopt -shared -linkall -package lwt.syntax -package cstruct.syntax lib/xenblock.cmxa -o lib/xenblock.cmxs
+ocamlfind ocamldep -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/blkfront.mli > lib/blkfront.mli.depends
+ocamlfind ocamlc -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/blkfront.cmi lib/blkfront.mli
+ocamlfind ocamldep -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/blkfront.ml > lib/blkfront.ml.depends
+ocamlfind ocamlc -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/blkfront.cmo lib/blkfront.ml
+ocamlfind ocamlc -a -package lwt.syntax -package cstruct.syntax lib/blkfront.cmo -o lib/blkfront.cma
+ocamlfind ocamlopt -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/blkfront.cmx lib/blkfront.ml
+ocamlfind ocamlopt -a -package lwt.syntax -package cstruct.syntax lib/blkfront.cmx -o lib/blkfront.cmxa
+ocamlfind ocamlopt -shared -package lwt.syntax -package cstruct.syntax lib/blkfront.cmx -o lib/blkfront.cmxs
+ocamlfind ocamldep -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/blkback.ml > lib/blkback.ml.depends
+ocamlfind ocamlc -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/blkback.cmo lib/blkback.ml
+ocamlfind ocamlc -a -package lwt.syntax -package cstruct.syntax lib/blkback.cmo -o lib/blkback.cma
+ocamlfind ocamlopt -c -g -I lib -package xenctrl -package shared-memory-ring.lwt -package shared-memory-ring -package mirage -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/blkback.cmx lib/blkback.ml
+ocamlfind ocamlopt -a -package lwt.syntax -package cstruct.syntax lib/blkback.cmx -o lib/blkback.cmxa
+ocamlfind ocamlopt -shared -package lwt.syntax -package cstruct.syntax lib/blkback.cmx -o lib/blkback.cmxs
+# Parallel statistics: { count(total): 2(24), max: 2, min: 2, average(total): 2.000(1.083) }
+Installed /home/opam/.opam/system/lib/xenblock/blkproto.ml
+Installed /home/opam/.opam/system/lib/xenblock/device_number.mli
+Installed /home/opam/.opam/system/lib/xenblock/xenblock.cma
+Installed /home/opam/.opam/system/lib/xenblock/xenblock.cmxa
+Installed /home/opam/.opam/system/lib/xenblock/xenblock.a
+Installed /home/opam/.opam/system/lib/xenblock/xenblock.cmxs
+Installed /home/opam/.opam/system/lib/xenblock/blkproto.cmi
+Installed /home/opam/.opam/system/lib/xenblock/device_number.cmi
+Installed /home/opam/.opam/system/lib/xenblock/blkproto.cmx
+Installed /home/opam/.opam/system/lib/xenblock/device_number.cmx
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.mli
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.cma
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.cmxa
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.a
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.cmxs
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.cmi
+Installed /home/opam/.opam/system/lib/xenblock/blkfront.cmx
+Installed /home/opam/.opam/system/lib/xenblock/blkback.ml
+Installed /home/opam/.opam/system/lib/xenblock/blkback.cma
+Installed /home/opam/.opam/system/lib/xenblock/blkback.cmxa
+Installed /home/opam/.opam/system/lib/xenblock/blkback.a
+Installed /home/opam/.opam/system/lib/xenblock/blkback.cmxs
+Installed /home/opam/.opam/system/lib/xenblock/blkback.cmi
+Installed /home/opam/.opam/system/lib/xenblock/blkback.cmx
+Installed /home/opam/.opam/system/lib/xenblock/META
+Installing xen-block-driver.0.2.5.
