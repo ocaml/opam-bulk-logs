@@ -6031,3 +6031,66 @@ Building flow.0.3:
 --- Checking if ocamldep understands -modules... (yes)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build _build/lib flow_base.cmo
++ ocamlfind ocamlc -syntax camlp4o -package core,lwt,lwt.unix,lwt.ssl,lwt.preemptive,sexplib,sexplib.syntax -thread -bin-annot -annot -warn-error P -I . -c flow_base.ml
+File "flow_base.ml", line 23, characters 21-306:
+Error: Signature mismatch:
+       ...
+       Values do not match:
+         val map :
+           ('a, 'b) Core.Std._result Lwt.t ->
+           f:('a -> 'c) -> ('c, 'b) Core.Std._result Lwt.t
+       is not included in
+         val map :
+           [ `Custom of ('a, 'd) t -> f:('a -> 'b) -> ('b, 'd) t
+           | `Define_using_bind ]
+       File "flow_base.ml", line 32, characters 6-9: Actual declaration
+*** omake: 27/99 targets are up to date
+*** omake: failed (9.40 sec, 6/6 scans, 4/4 rules, 40/93 digests)
+*** omake: targets were not rebuilt because of errors:
+   _build/lib/flow_base.cmo
+      depends on: _build/lib/flow_base.ml
+[ERROR] The compilation of flow.0.3 failed.
+Removing flow.0.3.
+  ocamlfind remove flow
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/flow
+
+
+===== ERROR while installing flow.0.3 =====
+# opam-version         1.1.1
+# os                   linux
+# command              omake
+# path                 /home/opam/.opam/system/build/flow.0.3
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/flow.0.3/flow-18600-03b1a4.env
+# stdout-file          /home/opam/.opam/system/build/flow.0.3/flow-18600-03b1a4.out
+# stderr-file          /home/opam/.opam/system/build/flow.0.3/flow-18600-03b1a4.err
+### stdout ###
+# ...[truncated]
+# --- Checking for ocamlfind... (found /home/opam/.opam/system/bin/ocamlfind)
+# --- Checking for ocamlc.opt... (found /usr/bin/ocamlc.opt)
+# --- Checking for ocamlopt.opt... (found /usr/bin/ocamlopt.opt)
+# --- Checking whether ocamlc understands the "z" warnings... (yes)
+# *** omake: finished reading OMakefiles (0.14 sec)
+# --- Checking if ocamldep understands -modules... (yes)
+# - build _build/lib flow_base.cmo
+# + ocamlfind ocamlc -syntax camlp4o -package core,lwt,lwt.unix,lwt.ssl,lwt.preemptive,sexplib,sexplib.syntax -thread -bin-annot -annot -warn-error P -I . -c flow_base.ml
+# *** omake: 27/99 targets are up to date
+# *** omake: failed (9.40 sec, 6/6 scans, 4/4 rules, 40/93 digests)
+### stderr ###
+# ...[truncated]
+#            ('a, 'b) Core.Std._result Lwt.t ->
+#            f:('a -> 'c) -> ('c, 'b) Core.Std._result Lwt.t
+#        is not included in
+#          val map :
+#            [ `Custom of ('a, 'd) t -> f:('a -> 'b) -> ('b, 'd) t
+#            | `Define_using_bind ]
+#        File "flow_base.ml", line 32, characters 6-9: Actual declaration
+# *** omake: targets were not rebuilt because of errors:
+#    _build/lib/flow_base.cmo
+#       depends on: _build/lib/flow_base.ml
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713021455.export"
+'opam install flow' failed.
