@@ -2037,3 +2037,102 @@ Warning 44: this open statement shadows the value identifier max_int (which is l
 + ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml.mli
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
 findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmi
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml_conv.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml/tests test.out.auto.mli
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common,compiler-libs.common -g -w A-4-9-44-24 -warn-error a -g -I . -I ../lib -c -i -I .. -I ../../lib test.out.ml > ocaml/tests/test.out.auto.mli
+- build ocaml ocaml_conv.cmo
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml_conv.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml.cmx
++ ocamlfind ocamlopt -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -I . -I ../lib -c ocaml.ml
+- build ocaml ocaml_conv.cmx
++ ocamlfind ocamlopt -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -I . -I ../lib -c ocaml_conv.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml.cmo
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common -g -w A-4-9-44 -warn-error a -g -I . -I ../lib -c ocaml.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cma
++ ocamlfind ocamlc -package compiler-libs.common -g -g -a -o ocaml_conv.cma ocaml.cmo ocaml_conv.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+- build ocaml/tests test.out
++ ocamlfind ocamlc -annot -bin-annot -package compiler-libs.common,compiler-libs.common -g -w A-4-9-44-24 -warn-error a -g -I . -I ../lib -I .. -I ../../lib ../../lib/meta_conv.cmo ocamlcommon.cma ../ocaml_conv.cma test.out.ml -o test.out
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface types.cmi occurs in several directories: ../../lib, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmxs
++ ocamlfind ocamlopt -package compiler-libs.common -g -shared -o ocaml_conv.cmxs ocaml.cmx ocaml_conv.cmx
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+- build ocaml ocaml_conv.cmxa
++ ocamlfind ocamlopt -package compiler-libs.common -g -a -o ocaml_conv.cmxa ocaml.cmx ocaml_conv.cmx
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
+*** omake: done (10.57 sec, 20/20 scans, 52/77 rules, 125/335 digests)
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.28 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+- build lib <install>
++ ocamlfind remove meta_conv
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/meta_conv
+- build lib <install>
++ ocamlfind install meta_conv META error.mli coder.mli result.mli internal.mli template.mli meta_conv.cmi meta_conv.cmo meta_conv.cmx meta_conv.cma meta_conv.cmxa meta_conv.cmxs meta_conv.o meta_conv.a ../pa/pa_meta_conv.cma ../pa/pa_meta_conv.cmxs ../pa/pa_meta_conv.cmi meta_conv.cmt
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmt
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cmi
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cmxs
+Installed /home/opam/.opam/system/lib/meta_conv/pa_meta_conv.cma
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.a
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.o
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmxs
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmxa
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cma
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmx
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmo
+Installed /home/opam/.opam/system/lib/meta_conv/meta_conv.cmi
+Installed /home/opam/.opam/system/lib/meta_conv/template.mli
+Installed /home/opam/.opam/system/lib/meta_conv/internal.mli
+Installed /home/opam/.opam/system/lib/meta_conv/result.mli
+Installed /home/opam/.opam/system/lib/meta_conv/coder.mli
+Installed /home/opam/.opam/system/lib/meta_conv/error.mli
+Installed /home/opam/.opam/system/lib/meta_conv/META
+- build ocaml <install>
++ ocamlfind remove ocaml_conv
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/ocaml_conv
+- build ocaml <install>
++ ocamlfind install ocaml_conv ocaml_conv.cmxa ocaml_conv.a ocaml_conv.cmxs ocaml_conv.cma ocaml.cmi ocaml_conv.cmi ocaml.mli ocaml_conv.mli META ocaml.cmt ocaml_conv.cmt ocaml.cmti ocaml_conv.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmti
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmt
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmt
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.mli
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.mli
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmi
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml.cmi
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cma
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmxs
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.a
+Installed /home/opam/.opam/system/lib/ocaml_conv/ocaml_conv.cmxa
+Installed /home/opam/.opam/system/lib/ocaml_conv/META
+*** omake: done (0.88 sec, 0/17 scans, 6/57 rules, 16/223 digests)
+Installing meta_conv.1.1.3.
+
+=-=-= Installing pa_ounit.109.53.02 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/pa_ounit.109.53.02+opam.tar.gz
+sending incremental file list
+pa_ounit.109.53.02+opam.tar.gz
+
+sent 54,760 bytes  received 35 bytes  109,590.00 bytes/sec
+total size is 54,617  speedup is 1.00
+Building pa_ounit.109.53.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
