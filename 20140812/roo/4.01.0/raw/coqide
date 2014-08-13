@@ -8476,3 +8476,928 @@ OCAMLLEX  ide/coq_lex.mll
 OCAMLLEX  lib/xml_lexer.mll
 78 states, 800 transitions, table size 3668 bytes
 OCAMLLEX  tools/coqdoc/cpretty.mll
+2461 states, 7373 transitions, table size 44258 bytes
+OCAMLLEX  tools/coqwc.mll
+230 states, 833 transitions, table size 4712 bytes
+OCAMLLEX  tools/gallina_lexer.mll
+190 states, 498 transitions, table size 3132 bytes
+ECHO... > scripts/tolink.ml
+sed -n -e '/^enum/p' -e 's/,//g' -e '/^  /p' kernel/byterun/coq_instruct.h | \
+	awk -f kernel/make-opcodes > "kernel/copcodes.ml" || (RV=$?; rm -f "kernel/copcodes.ml"; exit ${RV})
+sed -n -e '/^  /s/ \([A-Z]\)/ \&\&coq_lbl_\1/gp' \
+               -e '/^}/q' kernel/byterun/coq_instruct.h > "kernel/byterun/coq_jumptbl.h" || (RV=$?; rm -f "kernel/byterun/coq_jumptbl.h"; exit ${RV})
+"ocaml" theories/Numbers/Natural/BigN/NMake_gen.ml > "theories/Numbers/Natural/BigN/NMake_gen.v" || (RV=$?; rm -f "theories/Numbers/Natural/BigN/NMake_gen.v"; exit ${RV})
+ECHO... > plugins/rtauto/rtauto_plugin_mod.ml
+ECHO... > plugins/micromega/micromega_plugin_mod.ml
+ECHO... > plugins/nsatz/nsatz_plugin_mod.ml
+ECHO... > plugins/decl_mode/decl_mode_plugin_mod.ml
+ECHO... > plugins/field/field_plugin_mod.ml
+ECHO... > plugins/omega/omega_plugin_mod.ml
+ECHO... > plugins/firstorder/ground_plugin_mod.ml
+ECHO... > plugins/extraction/extraction_plugin_mod.ml
+ECHO... > plugins/fourier/fourier_plugin_mod.ml
+ECHO... > plugins/syntax/z_syntax_plugin_mod.ml
+ECHO... > plugins/syntax/nat_syntax_plugin_mod.ml
+ECHO... > plugins/syntax/ascii_syntax_plugin_mod.ml
+ECHO... > plugins/syntax/numbers_syntax_plugin_mod.ml
+ECHO... > plugins/syntax/string_syntax_plugin_mod.ml
+ECHO... > plugins/syntax/r_syntax_plugin_mod.ml
+ECHO... > plugins/xml/xml_plugin_mod.ml
+ECHO... > plugins/setoid_ring/newring_plugin_mod.ml
+ECHO... > plugins/cc/cc_plugin_mod.ml
+ECHO... > plugins/ring/ring_plugin_mod.ml
+ECHO... > plugins/romega/romega_plugin_mod.ml
+ECHO... > plugins/subtac/subtac_plugin_mod.ml
+ECHO... > plugins/quote/quote_plugin_mod.ml
+ECHO... > plugins/funind/recdef_plugin_mod.ml
+COQDEP  parsing/grammar.mllib
+COQDEP  parsing/highparsing.mllib
+COQDEP  parsing/parsing.mllib
+COQDEP  interp/interp.mllib
+COQDEP  plugins/funind/recdef_plugin.mllib
+COQDEP  plugins/quote/quote_plugin.mllib
+COQDEP  plugins/subtac/subtac_plugin.mllib
+COQDEP  plugins/romega/romega_plugin.mllib
+COQDEP  plugins/ring/ring_plugin.mllib
+COQDEP  plugins/cc/cc_plugin.mllib
+COQDEP  plugins/setoid_ring/newring_plugin.mllib
+COQDEP  plugins/xml/xml_plugin.mllib
+COQDEP  plugins/syntax/r_syntax_plugin.mllib
+COQDEP  plugins/syntax/string_syntax_plugin.mllib
+COQDEP  plugins/syntax/numbers_syntax_plugin.mllib
+COQDEP  plugins/syntax/ascii_syntax_plugin.mllib
+COQDEP  plugins/syntax/nat_syntax_plugin.mllib
+COQDEP  plugins/syntax/z_syntax_plugin.mllib
+COQDEP  plugins/fourier/fourier_plugin.mllib
+COQDEP  plugins/extraction/extraction_plugin.mllib
+COQDEP  plugins/firstorder/ground_plugin.mllib
+COQDEP  plugins/omega/omega_plugin.mllib
+COQDEP  plugins/field/field_plugin.mllib
+COQDEP  plugins/decl_mode/decl_mode_plugin.mllib
+COQDEP  plugins/nsatz/nsatz_plugin.mllib
+COQDEP  plugins/micromega/micromega_plugin.mllib
+COQDEP  plugins/rtauto/rtauto_plugin.mllib
+COQDEP  pretyping/pretyping.mllib
+COQDEP  tools/win32hack.mllib
+COQDEP  tactics/hightactics.mllib
+COQDEP  tactics/tactics.mllib
+COQDEP  kernel/kernel.mllib
+COQDEP  lib/lib.mllib
+COQDEP  proofs/proofs.mllib
+COQDEP  checker/check.mllib
+COQDEP  dev/printers.mllib
+COQDEP  toplevel/toplevel.mllib
+COQDEP  ide/ide.mllib
+COQDEP  library/library.mllib
+CCDEP     kernel/byterun/coq_values.c
+CCDEP     kernel/byterun/coq_interp.c
+CCDEP     kernel/byterun/coq_fix_code.c
+CCDEP     kernel/byterun/coq_memory.c
+CCDEP	ide/ide_win32_stubs.c
+OCAMLDEP  toplevel/whelp.mli
+OCAMLDEP  toplevel/vernacinterp.mli
+OCAMLDEP  toplevel/vernacentries.mli
+OCAMLDEP  toplevel/vernac.mli
+OCAMLDEP  toplevel/usage.mli
+OCAMLDEP  toplevel/toplevel.mli
+OCAMLDEP  toplevel/search.mli
+OCAMLDEP  toplevel/record.mli
+OCAMLDEP  toplevel/mltop.mli
+OCAMLDEP  toplevel/metasyntax.mli
+OCAMLDEP  toplevel/libtypes.mli
+OCAMLDEP  toplevel/lemmas.mli
+OCAMLDEP  toplevel/interface.mli
+OCAMLDEP  toplevel/indschemes.mli
+OCAMLDEP  toplevel/ind_tables.mli
+OCAMLDEP  toplevel/ide_slave.mli
+OCAMLDEP  toplevel/ide_intf.mli
+OCAMLDEP  toplevel/himsg.mli
+OCAMLDEP  toplevel/discharge.mli
+OCAMLDEP  toplevel/coqtop.mli
+OCAMLDEP  toplevel/coqinit.mli
+OCAMLDEP  toplevel/command.mli
+OCAMLDEP  toplevel/classes.mli
+OCAMLDEP  toplevel/class.mli
+OCAMLDEP  toplevel/cerrors.mli
+OCAMLDEP  toplevel/backtrack.mli
+OCAMLDEP  toplevel/autoinstance.mli
+OCAMLDEP  toplevel/auto_ind_decl.mli
+OCAMLDEP  tools/coqdoc/tokens.mli
+OCAMLDEP  tools/coqdoc/output.mli
+OCAMLDEP  tools/coqdoc/index.mli
+OCAMLDEP  tools/coqdoc/cpretty.mli
+OCAMLDEP  tools/coqdoc/alpha.mli
+OCAMLDEP  tools/coqdep_lexer.mli
+OCAMLDEP  tools/coqdep_common.mli
+OCAMLDEP  tactics/termdn.mli
+OCAMLDEP  tactics/tactics.mli
+OCAMLDEP  tactics/tacticals.mli
+OCAMLDEP  tactics/tactic_option.mli
+OCAMLDEP  tactics/tacinterp.mli
+OCAMLDEP  tactics/refine.mli
+OCAMLDEP  tactics/nbtermdn.mli
+OCAMLDEP  tactics/leminv.mli
+OCAMLDEP  tactics/inv.mli
+OCAMLDEP  tactics/hipattern.mli
+OCAMLDEP  tactics/hiddentac.mli
+OCAMLDEP  tactics/extratactics.mli
+OCAMLDEP  tactics/extraargs.mli
+OCAMLDEP  tactics/evar_tactics.mli
+OCAMLDEP  tactics/equality.mli
+OCAMLDEP  tactics/eqschemes.mli
+OCAMLDEP  tactics/elimschemes.mli
+OCAMLDEP  tactics/elim.mli
+OCAMLDEP  tactics/eauto.mli
+OCAMLDEP  tactics/dn.mli
+OCAMLDEP  tactics/contradiction.mli
+OCAMLDEP  tactics/btermdn.mli
+OCAMLDEP  tactics/autorewrite.mli
+OCAMLDEP  tactics/auto.mli
+OCAMLDEP  proofs/tactic_debug.mli
+OCAMLDEP  proofs/tacmach.mli
+OCAMLDEP  proofs/refiner.mli
+OCAMLDEP  proofs/redexpr.mli
+OCAMLDEP  proofs/proofview.mli
+OCAMLDEP  proofs/proof_type.mli
+OCAMLDEP  proofs/proof_global.mli
+OCAMLDEP  proofs/proof.mli
+OCAMLDEP  proofs/pfedit.mli
+OCAMLDEP  proofs/logic.mli
+OCAMLDEP  proofs/goal.mli
+OCAMLDEP  proofs/evar_refiner.mli
+OCAMLDEP  proofs/clenvtac.mli
+OCAMLDEP  proofs/clenv.mli
+OCAMLDEP  pretyping/vnorm.mli
+OCAMLDEP  pretyping/unification.mli
+OCAMLDEP  pretyping/typing.mli
+OCAMLDEP  pretyping/typeclasses_errors.mli
+OCAMLDEP  pretyping/typeclasses.mli
+OCAMLDEP  pretyping/termops.mli
+OCAMLDEP  pretyping/term_dnet.mli
+OCAMLDEP  pretyping/tacred.mli
+OCAMLDEP  pretyping/retyping.mli
+OCAMLDEP  pretyping/reductionops.mli
+OCAMLDEP  pretyping/recordops.mli
+OCAMLDEP  pretyping/pretyping.mli
+OCAMLDEP  pretyping/pretype_errors.mli
+OCAMLDEP  pretyping/pattern.mli
+OCAMLDEP  pretyping/namegen.mli
+OCAMLDEP  pretyping/matching.mli
+OCAMLDEP  pretyping/inductiveops.mli
+OCAMLDEP  pretyping/indrec.mli
+OCAMLDEP  pretyping/glob_term.mli
+OCAMLDEP  pretyping/evd.mli
+OCAMLDEP  pretyping/evarutil.mli
+OCAMLDEP  pretyping/evarconv.mli
+OCAMLDEP  pretyping/detyping.mli
+OCAMLDEP  pretyping/coercion.mli
+OCAMLDEP  pretyping/classops.mli
+OCAMLDEP  pretyping/cbv.mli
+OCAMLDEP  pretyping/cases.mli
+OCAMLDEP  pretyping/arguments_renaming.mli
+OCAMLDEP  plugins/xml/xmlcommand.mli
+OCAMLDEP  plugins/xml/xml.mli
+OCAMLDEP  plugins/xml/unshare.mli
+OCAMLDEP  plugins/xml/doubleTypeInference.mli
+OCAMLDEP  plugins/subtac/subtac_utils.mli
+OCAMLDEP  plugins/subtac/subtac_pretyping.mli
+OCAMLDEP  plugins/subtac/subtac_obligations.mli
+OCAMLDEP  plugins/subtac/subtac_errors.mli
+OCAMLDEP  plugins/subtac/subtac_command.mli
+OCAMLDEP  plugins/subtac/subtac_coercion.mli
+OCAMLDEP  plugins/subtac/subtac_classes.mli
+OCAMLDEP  plugins/subtac/subtac_cases.mli
+OCAMLDEP  plugins/subtac/subtac.mli
+OCAMLDEP  plugins/subtac/eterm.mli
+OCAMLDEP  plugins/rtauto/refl_tauto.mli
+OCAMLDEP  plugins/rtauto/proof_search.mli
+OCAMLDEP  plugins/romega/const_omega.mli
+OCAMLDEP  plugins/nsatz/utile.mli
+OCAMLDEP  plugins/nsatz/polynom.mli
+OCAMLDEP  plugins/micromega/sos.mli
+OCAMLDEP  plugins/micromega/micromega.mli
+OCAMLDEP  plugins/funind/indfun_common.mli
+OCAMLDEP  plugins/funind/indfun.mli
+OCAMLDEP  plugins/funind/glob_termops.mli
+OCAMLDEP  plugins/funind/glob_term_to_relation.mli
+OCAMLDEP  plugins/funind/functional_principles_types.mli
+OCAMLDEP  plugins/funind/functional_principles_proofs.mli
+OCAMLDEP  plugins/firstorder/unify.mli
+OCAMLDEP  plugins/firstorder/sequent.mli
+OCAMLDEP  plugins/firstorder/rules.mli
+OCAMLDEP  plugins/firstorder/instances.mli
+OCAMLDEP  plugins/firstorder/ground.mli
+OCAMLDEP  plugins/firstorder/formula.mli
+OCAMLDEP  plugins/extraction/table.mli
+OCAMLDEP  plugins/extraction/scheme.mli
+OCAMLDEP  plugins/extraction/ocaml.mli
+OCAMLDEP  plugins/extraction/modutil.mli
+OCAMLDEP  plugins/extraction/mlutil.mli
+OCAMLDEP  plugins/extraction/miniml.mli
+OCAMLDEP  plugins/extraction/haskell.mli
+OCAMLDEP  plugins/extraction/extraction.mli
+OCAMLDEP  plugins/extraction/extract_env.mli
+OCAMLDEP  plugins/extraction/common.mli
+OCAMLDEP  plugins/decl_mode/ppdecl_proof.mli
+OCAMLDEP  plugins/decl_mode/decl_proof_instr.mli
+OCAMLDEP  plugins/decl_mode/decl_mode.mli
+OCAMLDEP  plugins/decl_mode/decl_interp.mli
+OCAMLDEP  plugins/decl_mode/decl_expr.mli
+OCAMLDEP  plugins/cc/cctac.mli
+OCAMLDEP  plugins/cc/ccproof.mli
+OCAMLDEP  plugins/cc/ccalgo.mli
+OCAMLDEP  parsing/tok.mli
+OCAMLDEP  parsing/tactic_printer.mli
+OCAMLDEP  parsing/q_util.mli
+OCAMLDEP  parsing/printmod.mli
+OCAMLDEP  parsing/printer.mli
+OCAMLDEP  parsing/prettyp.mli
+OCAMLDEP  parsing/ppvernac.mli
+OCAMLDEP  parsing/pptactic.mli
+OCAMLDEP  parsing/ppconstr.mli
+OCAMLDEP  parsing/pcoq.mli
+OCAMLDEP  parsing/lexer.mli
+OCAMLDEP  parsing/extrawit.mli
+OCAMLDEP  parsing/extend.mli
+OCAMLDEP  parsing/egrammar.mli
+OCAMLDEP  library/summary.mli
+OCAMLDEP  library/states.mli
+OCAMLDEP  library/nametab.mli
+OCAMLDEP  library/nameops.mli
+OCAMLDEP  library/library.mli
+OCAMLDEP  library/libobject.mli
+OCAMLDEP  library/libnames.mli
+OCAMLDEP  library/lib.mli
+OCAMLDEP  library/impargs.mli
+OCAMLDEP  library/heads.mli
+OCAMLDEP  library/goptionstyp.mli
+OCAMLDEP  library/goptions.mli
+OCAMLDEP  library/global.mli
+OCAMLDEP  library/dischargedhypsmap.mli
+OCAMLDEP  library/decls.mli
+OCAMLDEP  library/declaremods.mli
+OCAMLDEP  library/declare.mli
+OCAMLDEP  library/decl_kinds.mli
+OCAMLDEP  library/assumptions.mli
+OCAMLDEP  lib/xml_utils.mli
+OCAMLDEP  lib/xml_parser.mli
+OCAMLDEP  lib/xml_lexer.mli
+OCAMLDEP  lib/util.mli
+OCAMLDEP  lib/unionfind.mli
+OCAMLDEP  lib/tries.mli
+OCAMLDEP  lib/system.mli
+OCAMLDEP  lib/store.mli
+OCAMLDEP  lib/segmenttree.mli
+OCAMLDEP  lib/rtree.mli
+OCAMLDEP  lib/profile.mli
+OCAMLDEP  lib/predicate.mli
+OCAMLDEP  lib/pp_control.mli
+OCAMLDEP  lib/pp.mli
+OCAMLDEP  lib/option.mli
+OCAMLDEP  lib/heap.mli
+OCAMLDEP  lib/hashtbl_alt.mli
+OCAMLDEP  lib/hashcons.mli
+OCAMLDEP  lib/gmapl.mli
+OCAMLDEP  lib/gmap.mli
+OCAMLDEP  lib/fset.mli
+OCAMLDEP  lib/fmap.mli
+OCAMLDEP  lib/flags.mli
+OCAMLDEP  lib/explore.mli
+OCAMLDEP  lib/errors.mli
+OCAMLDEP  lib/envars.mli
+OCAMLDEP  lib/dyn.mli
+OCAMLDEP  lib/dnet.mli
+OCAMLDEP  lib/bigint.mli
+OCAMLDEP  kernel/vm.mli
+OCAMLDEP  kernel/vconv.mli
+OCAMLDEP  kernel/univ.mli
+OCAMLDEP  kernel/typeops.mli
+OCAMLDEP  kernel/type_errors.mli
+OCAMLDEP  kernel/term_typing.mli
+OCAMLDEP  kernel/term.mli
+OCAMLDEP  kernel/subtyping.mli
+OCAMLDEP  kernel/sign.mli
+OCAMLDEP  kernel/safe_typing.mli
+OCAMLDEP  kernel/retroknowledge.mli
+OCAMLDEP  kernel/reduction.mli
+OCAMLDEP  kernel/pre_env.mli
+OCAMLDEP  kernel/names.mli
+OCAMLDEP  kernel/modops.mli
+OCAMLDEP  kernel/mod_typing.mli
+OCAMLDEP  kernel/mod_subst.mli
+OCAMLDEP  kernel/inductive.mli
+OCAMLDEP  kernel/indtypes.mli
+OCAMLDEP  kernel/esubst.mli
+OCAMLDEP  kernel/environ.mli
+OCAMLDEP  kernel/entries.mli
+OCAMLDEP  kernel/declarations.mli
+OCAMLDEP  kernel/csymtable.mli
+OCAMLDEP  kernel/cooking.mli
+OCAMLDEP  kernel/conv_oracle.mli
+OCAMLDEP  kernel/closure.mli
+OCAMLDEP  kernel/cemitcodes.mli
+OCAMLDEP  kernel/cbytegen.mli
+OCAMLDEP  kernel/cbytecodes.mli
+OCAMLDEP  interp/topconstr.mli
+OCAMLDEP  interp/syntax_def.mli
+OCAMLDEP  interp/smartlocate.mli
+OCAMLDEP  interp/reserve.mli
+OCAMLDEP  interp/ppextend.mli
+OCAMLDEP  interp/notation.mli
+OCAMLDEP  interp/modintern.mli
+OCAMLDEP  interp/implicit_quantifiers.mli
+OCAMLDEP  interp/genarg.mli
+OCAMLDEP  interp/dumpglob.mli
+OCAMLDEP  interp/coqlib.mli
+OCAMLDEP  interp/constrintern.mli
+OCAMLDEP  interp/constrextern.mli
+OCAMLDEP  ide/utils/okey.mli
+OCAMLDEP  ide/utils/configwin.mli
+OCAMLDEP  ide/utils/config_file.mli
+OCAMLDEP  ide/undo_lablgtk_lt26.mli
+OCAMLDEP  ide/undo_lablgtk_ge26.mli
+OCAMLDEP  ide/undo_lablgtk_ge212.mli
+OCAMLDEP  ide/undo.mli
+OCAMLDEP  ide/tags.mli
+OCAMLDEP  ide/preferences.mli
+OCAMLDEP  ide/minilib.mli
+OCAMLDEP  ide/ideutils.mli
+OCAMLDEP  ide/coqide.mli
+OCAMLDEP  ide/coq.mli
+OCAMLDEP  ide/command_windows.mli
+OCAMLDEP  config/coq_config.mli
+OCAMLDEP  checker/typeops.mli
+OCAMLDEP  checker/type_errors.mli
+OCAMLDEP  checker/term.mli
+OCAMLDEP  checker/subtyping.mli
+OCAMLDEP  checker/safe_typing.mli
+OCAMLDEP  checker/reduction.mli
+OCAMLDEP  checker/modops.mli
+OCAMLDEP  checker/mod_checking.mli
+OCAMLDEP  checker/inductive.mli
+OCAMLDEP  checker/indtypes.mli
+OCAMLDEP  checker/environ.mli
+OCAMLDEP  checker/declarations.mli
+OCAMLDEP  checker/closure.mli
+OCAMLDEP  checker/check_stat.mli
+OCAMLDEP  kernel/copcodes.ml
+OCAMLDEP  scripts/tolink.ml
+OCAMLDEP  tools/gallina_lexer.ml
+OCAMLDEP  tools/coqdep_lexer.ml
+OCAMLDEP  tools/coqwc.ml
+OCAMLDEP  tools/coqdoc/cpretty.ml
+OCAMLDEP  lib/xml_lexer.ml
+OCAMLDEP  ide/coq_lex.ml
+OCAMLDEP  ide/config_lexer.ml
+OCAMLDEP  ide/utf8_convert.ml
+OCAMLDEP  parsing/extrawit.ml
+OCAMLDEP  parsing/pptactic.ml
+OCAMLDEP  parsing/extend.ml
+OCAMLDEP  parsing/ppconstr.ml
+OCAMLDEP  parsing/tactic_printer.ml
+OCAMLDEP  parsing/printer.ml
+OCAMLDEP  parsing/egrammar.ml
+OCAMLDEP  parsing/printmod.ml
+OCAMLDEP  parsing/ppvernac.ml
+OCAMLDEP  parsing/tok.ml
+OCAMLDEP  parsing/prettyp.ml
+OCAMLDEP  interp/modintern.ml
+OCAMLDEP  interp/syntax_def.ml
+OCAMLDEP  interp/reserve.ml
+OCAMLDEP  interp/smartlocate.ml
+OCAMLDEP  interp/topconstr.ml
+OCAMLDEP  interp/constrintern.ml
+OCAMLDEP  interp/dumpglob.ml
+OCAMLDEP  interp/notation.ml
+OCAMLDEP  interp/constrextern.ml
+OCAMLDEP  interp/implicit_quantifiers.ml
+OCAMLDEP  interp/coqlib.ml
+OCAMLDEP  interp/genarg.ml
+OCAMLDEP  interp/ppextend.ml
+OCAMLDEP  plugins/funind/glob_termops.ml
+OCAMLDEP  plugins/funind/functional_principles_proofs.ml
+OCAMLDEP  plugins/funind/merge.ml
+OCAMLDEP  plugins/funind/invfun.ml
+OCAMLDEP  plugins/funind/indfun.ml
+OCAMLDEP  plugins/funind/functional_principles_types.ml
+OCAMLDEP  plugins/funind/glob_term_to_relation.ml
+OCAMLDEP  plugins/funind/recdef.ml
+OCAMLDEP  plugins/funind/indfun_common.ml
+OCAMLDEP  plugins/quote/quote.ml
+OCAMLDEP  plugins/subtac/subtac_cases.ml
+OCAMLDEP  plugins/subtac/subtac_utils.ml
+OCAMLDEP  plugins/subtac/subtac.ml
+OCAMLDEP  plugins/subtac/subtac_command.ml
+OCAMLDEP  plugins/subtac/subtac_pretyping.ml
+OCAMLDEP  plugins/subtac/subtac_obligations.ml
+OCAMLDEP  plugins/subtac/eterm.ml
+OCAMLDEP  plugins/subtac/subtac_pretyping_F.ml
+OCAMLDEP  plugins/subtac/subtac_errors.ml
+OCAMLDEP  plugins/subtac/subtac_classes.ml
+OCAMLDEP  plugins/subtac/subtac_coercion.ml
+OCAMLDEP  plugins/romega/const_omega.ml
+OCAMLDEP  plugins/romega/refl_omega.ml
+OCAMLDEP  plugins/ring/ring.ml
+OCAMLDEP  plugins/cc/ccalgo.ml
+OCAMLDEP  plugins/cc/ccproof.ml
+OCAMLDEP  plugins/cc/cctac.ml
+OCAMLDEP  plugins/xml/doubleTypeInference.ml
+OCAMLDEP  plugins/xml/acic.ml
+OCAMLDEP  plugins/xml/proof2aproof.ml
+OCAMLDEP  plugins/xml/unshare.ml
+OCAMLDEP  plugins/xml/cic2acic.ml
+OCAMLDEP  plugins/xml/xmlcommand.ml
+OCAMLDEP  plugins/xml/cic2Xml.ml
+OCAMLDEP  plugins/syntax/r_syntax.ml
+OCAMLDEP  plugins/syntax/numbers_syntax.ml
+OCAMLDEP  plugins/syntax/z_syntax.ml
+OCAMLDEP  plugins/syntax/string_syntax.ml
+OCAMLDEP  plugins/syntax/nat_syntax.ml
+OCAMLDEP  plugins/syntax/ascii_syntax.ml
+OCAMLDEP  plugins/fourier/fourier.ml
+OCAMLDEP  plugins/fourier/fourierR.ml
+OCAMLDEP  plugins/extraction/scheme.ml
+OCAMLDEP  plugins/extraction/common.ml
+OCAMLDEP  plugins/extraction/ocaml.ml
+OCAMLDEP  plugins/extraction/modutil.ml
+OCAMLDEP  plugins/extraction/extraction.ml
+OCAMLDEP  plugins/extraction/extract_env.ml
+OCAMLDEP  plugins/extraction/big.ml
+OCAMLDEP  plugins/extraction/mlutil.ml
+OCAMLDEP  plugins/extraction/haskell.ml
+OCAMLDEP  plugins/extraction/table.ml
+OCAMLDEP  plugins/firstorder/formula.ml
+OCAMLDEP  plugins/firstorder/unify.ml
+OCAMLDEP  plugins/firstorder/instances.ml
+OCAMLDEP  plugins/firstorder/sequent.ml
+OCAMLDEP  plugins/firstorder/rules.ml
+OCAMLDEP  plugins/firstorder/ground.ml
+OCAMLDEP  plugins/omega/omega.ml
+OCAMLDEP  plugins/omega/coq_omega.ml
+OCAMLDEP  plugins/decl_mode/decl_proof_instr.ml
+OCAMLDEP  plugins/decl_mode/decl_mode.ml
+OCAMLDEP  plugins/decl_mode/ppdecl_proof.ml
+OCAMLDEP  plugins/decl_mode/decl_interp.ml
+OCAMLDEP  plugins/nsatz/ideal.ml
+OCAMLDEP  plugins/nsatz/utile.ml
+OCAMLDEP  plugins/nsatz/polynom.ml
+OCAMLDEP  plugins/micromega/mfourier.ml
+OCAMLDEP  plugins/micromega/sos.ml
+OCAMLDEP  plugins/micromega/persistent_cache.ml
+OCAMLDEP  plugins/micromega/sos_types.ml
+OCAMLDEP  plugins/micromega/polynomial.ml
+OCAMLDEP  plugins/micromega/mutils.ml
+OCAMLDEP  plugins/micromega/csdpcert.ml
+OCAMLDEP  plugins/micromega/micromega.ml
+OCAMLDEP  plugins/micromega/certificate.ml
+OCAMLDEP  plugins/micromega/sos_lib.ml
+OCAMLDEP  plugins/micromega/coq_micromega.ml
+OCAMLDEP  plugins/rtauto/refl_tauto.ml
+OCAMLDEP  plugins/rtauto/proof_search.ml
+OCAMLDEP  pretyping/coercion.ml
+OCAMLDEP  pretyping/cases.ml
+OCAMLDEP  pretyping/unification.ml
+OCAMLDEP  pretyping/recordops.ml
+OCAMLDEP  pretyping/pretype_errors.ml
+OCAMLDEP  pretyping/tacred.ml
+OCAMLDEP  pretyping/evarconv.ml
+OCAMLDEP  pretyping/cbv.ml
+OCAMLDEP  pretyping/pattern.ml
+OCAMLDEP  pretyping/termops.ml
+OCAMLDEP  pretyping/term_dnet.ml
+OCAMLDEP  pretyping/pretyping.ml
+OCAMLDEP  pretyping/typeclasses.ml
+OCAMLDEP  pretyping/detyping.ml
+OCAMLDEP  pretyping/inductiveops.ml
+OCAMLDEP  pretyping/typeclasses_errors.ml
+OCAMLDEP  pretyping/typing.ml
+OCAMLDEP  pretyping/glob_term.ml
+OCAMLDEP  pretyping/matching.ml
+OCAMLDEP  pretyping/reductionops.ml
+OCAMLDEP  pretyping/classops.ml
+OCAMLDEP  pretyping/evd.ml
+OCAMLDEP  pretyping/indrec.ml
+OCAMLDEP  pretyping/namegen.ml
+OCAMLDEP  pretyping/arguments_renaming.ml
+OCAMLDEP  pretyping/retyping.ml
+OCAMLDEP  pretyping/vnorm.ml
+OCAMLDEP  pretyping/evarutil.ml
+OCAMLDEP  tools/coqdep.ml
+OCAMLDEP  tools/fake_ide.ml
+OCAMLDEP  tools/win32hack_filename.ml
+OCAMLDEP  tools/mkwinapp.ml
+OCAMLDEP  tools/coq_makefile.ml
+OCAMLDEP  tools/coq_tex.ml
+OCAMLDEP  tools/mingwpath.ml
+OCAMLDEP  tools/coqdep_boot.ml
+OCAMLDEP  tools/coqdoc/tokens.ml
+OCAMLDEP  tools/coqdoc/cdglobals.ml
+OCAMLDEP  tools/coqdoc/main.ml
+OCAMLDEP  tools/coqdoc/output.ml
+OCAMLDEP  tools/coqdoc/alpha.ml
+OCAMLDEP  tools/coqdoc/index.ml
+OCAMLDEP  tools/compat5.ml
+OCAMLDEP  tools/gallina.ml
+OCAMLDEP  tools/escape_string.ml
+OCAMLDEP  tools/coqdep_common.ml
+OCAMLDEP  tools/compat5b.ml
+OCAMLDEP  scripts/coqc.ml
+OCAMLDEP  scripts/coqmktop.ml
+OCAMLDEP  tactics/refine.ml
+OCAMLDEP  tactics/tacinterp.ml
+OCAMLDEP  tactics/elim.ml
+OCAMLDEP  tactics/tactics.ml
+OCAMLDEP  tactics/nbtermdn.ml
+OCAMLDEP  tactics/auto.ml
+OCAMLDEP  tactics/eqschemes.ml
+OCAMLDEP  tactics/evar_tactics.ml
+OCAMLDEP  tactics/contradiction.ml
+OCAMLDEP  tactics/elimschemes.ml
+OCAMLDEP  tactics/dn.ml
+OCAMLDEP  tactics/btermdn.ml
+OCAMLDEP  tactics/autorewrite.ml
+OCAMLDEP  tactics/tacticals.ml
+OCAMLDEP  tactics/hiddentac.ml
+OCAMLDEP  tactics/leminv.ml
+OCAMLDEP  tactics/inv.ml
+OCAMLDEP  tactics/equality.ml
+OCAMLDEP  tactics/tactic_option.ml
+OCAMLDEP  tactics/termdn.ml
+OCAMLDEP  myocamlbuild.ml
+OCAMLDEP  kernel/cbytecodes.ml
+OCAMLDEP  kernel/indtypes.ml
+OCAMLDEP  kernel/vconv.ml
+OCAMLDEP  kernel/mod_typing.ml
+OCAMLDEP  kernel/term.ml
+OCAMLDEP  kernel/declarations.ml
+OCAMLDEP  kernel/pre_env.ml
+OCAMLDEP  kernel/univ.ml
+OCAMLDEP  kernel/typeops.ml
+OCAMLDEP  kernel/names.ml
+OCAMLDEP  kernel/retroknowledge.ml
+OCAMLDEP  kernel/closure.ml
+OCAMLDEP  kernel/environ.ml
+OCAMLDEP  kernel/cbytegen.ml
+OCAMLDEP  kernel/inductive.ml
+OCAMLDEP  kernel/csymtable.ml
+OCAMLDEP  kernel/safe_typing.ml
+OCAMLDEP  kernel/type_errors.ml
+OCAMLDEP  kernel/cooking.ml
+OCAMLDEP  kernel/sign.ml
+OCAMLDEP  kernel/entries.ml
+OCAMLDEP  kernel/mod_subst.ml
+OCAMLDEP  kernel/conv_oracle.ml
+OCAMLDEP  kernel/term_typing.ml
+OCAMLDEP  kernel/reduction.ml
+OCAMLDEP  kernel/esubst.ml
+OCAMLDEP  kernel/vm.ml
+OCAMLDEP  kernel/cemitcodes.ml
+OCAMLDEP  kernel/subtyping.ml
+OCAMLDEP  kernel/modops.ml
+OCAMLDEP  lib/xml_parser.ml
+OCAMLDEP  lib/envars.ml
+OCAMLDEP  lib/explore.ml
+OCAMLDEP  lib/dnet.ml
+OCAMLDEP  lib/bigint.ml
+OCAMLDEP  lib/flags.ml
+OCAMLDEP  lib/tries.ml
+OCAMLDEP  lib/rtree.ml
+OCAMLDEP  lib/fset.ml
+OCAMLDEP  lib/store.ml
+OCAMLDEP  lib/segmenttree.ml
+OCAMLDEP  lib/errors.ml
+OCAMLDEP  lib/heap.ml
+OCAMLDEP  lib/unicodetable.ml
+OCAMLDEP  lib/unionfind.ml
+OCAMLDEP  lib/gmap.ml
+OCAMLDEP  lib/option.ml
+OCAMLDEP  lib/util.ml
+OCAMLDEP  lib/predicate.ml
+OCAMLDEP  lib/xml_utils.ml
+OCAMLDEP  lib/gmapl.ml
+OCAMLDEP  lib/hashcons.ml
+OCAMLDEP  lib/profile.ml
+OCAMLDEP  lib/hashtbl_alt.ml
+OCAMLDEP  lib/system.ml
+OCAMLDEP  lib/dyn.ml
+OCAMLDEP  lib/fmap.ml
+OCAMLDEP  lib/pp_control.ml
+OCAMLDEP  proofs/clenvtac.ml
+OCAMLDEP  proofs/proof_global.ml
+OCAMLDEP  proofs/tactic_debug.ml
+OCAMLDEP  proofs/proof.ml
+OCAMLDEP  proofs/tacmach.ml
+OCAMLDEP  proofs/proofview.ml
+OCAMLDEP  proofs/refiner.ml
+OCAMLDEP  proofs/proof_type.ml
+OCAMLDEP  proofs/goal.ml
+OCAMLDEP  proofs/clenv.ml
+OCAMLDEP  proofs/tacexpr.ml
+OCAMLDEP  proofs/redexpr.ml
+OCAMLDEP  proofs/logic.ml
+OCAMLDEP  proofs/evar_refiner.ml
+OCAMLDEP  proofs/pfedit.ml
+OCAMLDEP  checker/indtypes.ml
+OCAMLDEP  checker/validate.ml
+OCAMLDEP  checker/term.ml
+OCAMLDEP  checker/declarations.ml
+OCAMLDEP  checker/typeops.ml
+OCAMLDEP  checker/closure.ml
+OCAMLDEP  checker/environ.ml
+OCAMLDEP  checker/inductive.ml
+OCAMLDEP  checker/safe_typing.ml
+OCAMLDEP  checker/type_errors.ml
+OCAMLDEP  checker/checker.ml
+OCAMLDEP  checker/check_stat.ml
+OCAMLDEP  checker/reduction.ml
+OCAMLDEP  checker/main.ml
+OCAMLDEP  checker/check.ml
+OCAMLDEP  checker/subtyping.ml
+OCAMLDEP  checker/mod_checking.ml
+OCAMLDEP  checker/modops.ml
+OCAMLDEP  dev/top_printers.ml
+OCAMLDEP  dev/db_printers.ml
+OCAMLDEP  dev/vm_printers.ml
+OCAMLDEP  toplevel/metasyntax.ml
+OCAMLDEP  toplevel/ind_tables.ml
+OCAMLDEP  toplevel/auto_ind_decl.ml
+OCAMLDEP  toplevel/search.ml
+OCAMLDEP  toplevel/indschemes.ml
+OCAMLDEP  toplevel/vernacinterp.ml
+OCAMLDEP  toplevel/coqinit.ml
+OCAMLDEP  toplevel/class.ml
+OCAMLDEP  toplevel/backtrack.ml
+OCAMLDEP  toplevel/cerrors.ml
+OCAMLDEP  toplevel/discharge.ml
+OCAMLDEP  toplevel/vernacentries.ml
+OCAMLDEP  toplevel/coqtop.ml
+OCAMLDEP  toplevel/command.ml
+OCAMLDEP  toplevel/record.ml
+OCAMLDEP  toplevel/ide_slave.ml
+OCAMLDEP  toplevel/lemmas.ml
+OCAMLDEP  toplevel/vernac.ml
+OCAMLDEP  toplevel/libtypes.ml
+OCAMLDEP  toplevel/ide_intf.ml
+OCAMLDEP  toplevel/toplevel.ml
+OCAMLDEP  toplevel/usage.ml
+OCAMLDEP  toplevel/autoinstance.ml
+OCAMLDEP  toplevel/himsg.ml
+OCAMLDEP  toplevel/classes.ml
+OCAMLDEP  toplevel/vernacexpr.ml
+OCAMLDEP  config/coq_config.ml
+OCAMLDEP  theories/Numbers/Natural/BigN/NMake_gen.ml
+OCAMLDEP  ide/ideutils.ml
+OCAMLDEP  ide/ideproof.ml
+OCAMLDEP  ide/coqide_ui.ml
+OCAMLDEP  ide/tags.ml
+OCAMLDEP  ide/typed_notebook.ml
+OCAMLDEP  ide/coq_commands.ml
+OCAMLDEP  ide/command_windows.ml
+OCAMLDEP  ide/minilib.ml
+OCAMLDEP  ide/undo.ml
+OCAMLDEP  ide/gtk_parsing.ml
+OCAMLDEP  ide/utils/configwin_keys.ml
+OCAMLDEP  ide/utils/configwin_ihm.ml
+OCAMLDEP  ide/utils/editable_cells.ml
+OCAMLDEP  ide/utils/configwin_types.ml
+OCAMLDEP  ide/utils/config_file.ml
+OCAMLDEP  ide/utils/configwin_messages.ml
+OCAMLDEP  ide/utils/okey.ml
+OCAMLDEP  ide/utils/configwin.ml
+OCAMLDEP  ide/coq.ml
+OCAMLDEP  ide/coqide.ml
+OCAMLDEP  ide/preferences.ml
+OCAMLDEP  library/dischargedhypsmap.ml
+OCAMLDEP  library/global.ml
+OCAMLDEP  library/libobject.ml
+OCAMLDEP  library/states.ml
+OCAMLDEP  library/lib.ml
+OCAMLDEP  library/declaremods.ml
+OCAMLDEP  library/declare.ml
+OCAMLDEP  library/decl_kinds.ml
+OCAMLDEP  library/decls.ml
+OCAMLDEP  library/libnames.ml
+OCAMLDEP  library/goptions.ml
+OCAMLDEP  library/assumptions.ml
+OCAMLDEP  library/heads.ml
+OCAMLDEP  library/impargs.ml
+OCAMLDEP  library/nametab.ml
+OCAMLDEP  library/library.ml
+OCAMLDEP  library/nameops.ml
+OCAMLDEP  library/summary.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+OCAMLC    parsing/tok.mli
+OCAMLC    parsing/tok.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make --warn-undefined-variable --no-builtin-rules -f Makefile.build "parsing/tok.cmx"
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+OCAMLOPT  parsing/tok.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make --warn-undefined-variable --no-builtin-rules -f Makefile.build "parsing/tok.cmi"
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make[1]: `parsing/tok.cmi' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make --warn-undefined-variable --no-builtin-rules -f Makefile.build "coqide-files"
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+OCAMLDEP  plugins/funind/recdef_plugin_mod.ml
+OCAMLDEP  plugins/quote/quote_plugin_mod.ml
+OCAMLDEP  plugins/subtac/subtac_plugin_mod.ml
+OCAMLDEP  plugins/romega/romega_plugin_mod.ml
+OCAMLDEP  plugins/ring/ring_plugin_mod.ml
+OCAMLDEP  plugins/cc/cc_plugin_mod.ml
+OCAMLDEP  plugins/setoid_ring/newring_plugin_mod.ml
+OCAMLDEP  plugins/xml/xml_plugin_mod.ml
+OCAMLDEP  plugins/syntax/z_syntax_plugin_mod.ml
+OCAMLDEP  plugins/syntax/ascii_syntax_plugin_mod.ml
+OCAMLDEP  plugins/syntax/nat_syntax_plugin_mod.ml
+OCAMLDEP  plugins/syntax/r_syntax_plugin_mod.ml
+OCAMLDEP  plugins/syntax/numbers_syntax_plugin_mod.ml
+OCAMLDEP  plugins/syntax/string_syntax_plugin_mod.ml
+OCAMLDEP  plugins/fourier/fourier_plugin_mod.ml
+OCAMLDEP  plugins/extraction/extraction_plugin_mod.ml
+OCAMLDEP  plugins/firstorder/ground_plugin_mod.ml
+OCAMLDEP  plugins/omega/omega_plugin_mod.ml
+OCAMLDEP  plugins/field/field_plugin_mod.ml
+OCAMLDEP  plugins/decl_mode/decl_mode_plugin_mod.ml
+OCAMLDEP  plugins/nsatz/nsatz_plugin_mod.ml
+OCAMLDEP  plugins/micromega/micromega_plugin_mod.ml
+OCAMLDEP  plugins/rtauto/rtauto_plugin_mod.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make[1]: Nothing to be done for `coqide-files'.
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make --warn-undefined-variable --no-builtin-rules -f Makefile.build "coqide-binaries"
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+OCAMLC    config/coq_config.mli
+OCAMLC    config/coq_config.ml
+OCAMLC    lib/flags.mli
+OCAMLC    lib/flags.ml
+File "lib/flags.ml", line 103, characters 45-46:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+File "lib/flags.ml", line 103, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+OCAMLC    lib/xml_lexer.mli
+OCAMLC    lib/xml_lexer.ml
+OCAMLC    lib/xml_parser.mli
+OCAMLC    lib/xml_parser.ml
+OCAMLC    lib/xml_utils.mli
+OCAMLC    lib/xml_utils.ml
+OCAMLC    lib/pp_control.mli
+OCAMLC    lib/pp.mli
+"ocamlc" -rectypes  -c tools/compat5.ml
+"ocamlc" -rectypes  -c tools/compat5b.ml
+CAMLP4DEPS lib/compat.ml4
+CAMLP4O   lib/compat.ml4
+OCAMLDEP  lib/compat.ml
+OCAMLC    lib/compat.ml
+OCAMLC    lib/util.mli
+OCAMLC    library/goptionstyp.mli
+OCAMLC    toplevel/interface.mli
+OCAMLC    toplevel/ide_intf.mli
+OCAMLC    toplevel/ide_intf.ml
+OCAMLC    ide/minilib.mli
+OCAMLC    ide/minilib.ml
+OCAMLC    ide/utils/okey.mli
+OCAMLC    ide/utils/okey.ml
+OCAMLC    ide/utils/config_file.mli
+OCAMLC    ide/utils/config_file.ml
+OCAMLC    ide/utils/configwin_keys.ml
+OCAMLC    ide/utils/configwin_types.ml
+OCAMLC    ide/utils/configwin_messages.ml
+OCAMLC    ide/utils/configwin_ihm.ml
+OCAMLC    ide/utils/configwin.mli
+OCAMLC    ide/utils/configwin.ml
+OCAMLC    ide/utils/editable_cells.ml
+OCAMLC    ide/tags.mli
+OCAMLC    ide/tags.ml
+OCAMLC    ide/typed_notebook.ml
+OCAMLC    ide/config_lexer.ml
+OCAMLC    ide/utf8_convert.ml
+OCAMLC    ide/preferences.mli
+OCAMLC    ide/preferences.ml
+CAMLP4DEPS ide/project_file.ml4
+CAMLP4O   ide/project_file.ml4
+OCAMLDEP  ide/project_file.ml
+OCAMLC    ide/project_file.ml
+OCAMLC    ide/ideutils.mli
+OCAMLC    ide/ideutils.ml
+OCAMLC    ide/ideproof.ml
+OCAMLC    ide/coq_lex.ml
+OCAMLC    ide/gtk_parsing.ml
+OCAMLC    ide/undo.mli
+OCAMLC    ide/undo.ml
+File "ide/undo.ml", line 65, characters 7-9:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "ide/undo.ml", line 69, characters 48-50:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+OCAMLC    ide/coq.mli
+OCAMLC    ide/coq.ml
+OCAMLC    ide/coq_commands.ml
+OCAMLC    ide/command_windows.mli
+OCAMLC    ide/command_windows.ml
+OCAMLC    ide/coqide_ui.ml
+OCAMLC    ide/coqide.mli
+OCAMLC    ide/coqide.ml
+OCAMLC -a -o ide/ide.cma
+OCAMLC    kernel/byterun/coq_fix_code.c
+OCAMLC    kernel/byterun/coq_memory.c
+OCAMLC    kernel/byterun/coq_values.c
+OCAMLC    kernel/byterun/coq_interp.c
+cd kernel/byterun/ && \
+	"ocamlmklib" -oc coqrun coq_fix_code.o coq_memory.o coq_values.o coq_interp.o
+CAMLP4O   ide/coqide_main.ml4
+OCAMLC -o bin/coqide.byte
+OCAMLOPT  config/coq_config.ml
+OCAMLOPT  lib/flags.ml
+File "lib/flags.ml", line 103, characters 45-46:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+File "lib/flags.ml", line 103, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+OCAMLOPT  lib/xml_lexer.ml
+OCAMLOPT  lib/xml_parser.ml
+OCAMLOPT  lib/xml_utils.ml
+OCAMLC    lib/unicodetable.ml
+OCAMLOPT  lib/unicodetable.ml
+OCAMLC    lib/segmenttree.mli
+OCAMLOPT  lib/segmenttree.ml
+CAMLP4DEPS lib/pp.ml4
+CAMLP4O   lib/pp.ml4
+OCAMLDEP  lib/pp.ml
+OCAMLOPT  lib/pp.ml
+OCAMLOPT  lib/compat.ml
+OCAMLOPT  lib/util.ml
+File "lib/util.ml", line 75, characters 41-43:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "lib/util.ml", line 78, characters 40-42:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "lib/util.ml", line 78, characters 28-30:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "lib/util.ml", line 78, characters 14-16:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "lib/util.ml", line 113, characters 26-27:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+File "lib/util.ml", line 113, characters 11-12:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+File "lib/util.ml", line 305, characters 26-28:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+OCAMLOPT  toplevel/ide_intf.ml
+OCAMLOPT  ide/minilib.ml
+OCAMLOPT  ide/utils/okey.ml
+OCAMLOPT  ide/utils/config_file.ml
+OCAMLOPT  ide/utils/configwin_keys.ml
+OCAMLOPT  ide/utils/configwin_types.ml
+OCAMLOPT  ide/utils/configwin_messages.ml
+OCAMLOPT  ide/utils/configwin_ihm.ml
+OCAMLOPT  ide/utils/configwin.ml
+OCAMLOPT  ide/utils/editable_cells.ml
+OCAMLOPT  ide/tags.ml
+OCAMLOPT  ide/typed_notebook.ml
+OCAMLOPT  ide/config_lexer.ml
+OCAMLOPT  ide/utf8_convert.ml
+OCAMLOPT  ide/preferences.ml
+OCAMLOPT  ide/project_file.ml
+OCAMLOPT  ide/ideutils.ml
+OCAMLOPT  ide/ideproof.ml
+OCAMLOPT  ide/coq_lex.ml
+OCAMLOPT  ide/gtk_parsing.ml
+OCAMLOPT  ide/undo.ml
+File "ide/undo.ml", line 65, characters 7-9:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "ide/undo.ml", line 69, characters 48-50:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+OCAMLOPT  ide/coq.ml
+OCAMLOPT  ide/coq_commands.ml
+OCAMLOPT  ide/command_windows.ml
+OCAMLOPT  ide/coqide_ui.ml
+OCAMLOPT  ide/coqide.ml
+OCAMLOPT -a -o ide/ide.cmxa
+CAMLP4O   ide/coqide_main.ml4
+OCAMLOPT -o bin/coqide.opt
+strip bin/coqide.opt
+cd bin && ln -sf coqide.opt coqide
+rm ide/project_file.ml4.d lib/compat.ml4.d ide/project_file.ml.d lib/compat.ml.d lib/pp.ml4.d lib/pp.ml.d
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make --warn-undefined-variable --no-builtin-rules -f Makefile.build "install-coqide"
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+OCAMLDEP  lib/pp.ml
+OCAMLDEP  lib/compat.ml
+OCAMLDEP  ide/coqide_main_opt.ml
+OCAMLDEP  ide/coqide_main.ml
+OCAMLDEP  ide/project_file.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+make[1]: Entering directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+install -d "/home/opam/.opam/system/bin"
+install bin/coqide.opt "/home/opam/.opam/system/bin"
+./install.sh "/home/opam/.opam/system/lib/coq" ide/ide.cma ide/ide.cmxa ide/ide.a \
+	  ide/minilib.cmi ide/utils/okey.cmi ide/utils/config_file.cmi ide/utils/configwin_keys.cmi ide/utils/configwin_types.cmi ide/utils/configwin_messages.cmi ide/utils/configwin_ihm.cmi ide/utils/configwin.cmi ide/utils/editable_cells.cmi ide/tags.cmi ide/typed_notebook.cmi ide/config_lexer.cmi ide/utf8_convert.cmi ide/preferences.cmi ide/project_file.cmi ide/ideutils.cmi ide/ideproof.cmi ide/coq_lex.cmi ide/gtk_parsing.cmi ide/undo.cmi ide/coq.cmi ide/coq_commands.cmi ide/command_windows.cmi ide/coqide_ui.cmi ide/coqide.cmi
+cd "/home/opam/.opam/system/bin" && ln -sf coqide.opt coqide
+install -d "/home/opam/.opam/system/share/coq"
+install -m 644  ide/coq.png "/home/opam/.opam/system/share/coq"
+install -d "/home/opam/.opam/system/lib/coq/config"
+install -m 644  ide/coqide-gtk2rc "/home/opam/.opam/system/lib/coq/config"
+if [ X11 = QUARTZ ] ; then install -m 644  ide/mac_default_accel_map "/home/opam/.opam/system/lib/coq/config"/coqide.keys ; fi
+install -d "/home/opam/.opam/system/doc"
+install -m 644  ide/FAQ "/home/opam/.opam/system/doc"/FAQ-CoqIde
+make[1]: Leaving directory `/home/opam/.opam/system/build/coqide.8.4pl4'
+Installing coqide.8.4pl4.
