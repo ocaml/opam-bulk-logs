@@ -6938,3 +6938,49 @@ ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbu
 /home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
 /home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  /home/opam/.opam/system/bin/ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/async.cmxa lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/async/std.ml
+Installed /home/opam/.opam/system/lib/async/async.cmi
+Installed /home/opam/.opam/system/lib/async/async.cma
+Installed /home/opam/.opam/system/lib/async/async.cmxa
+Installed /home/opam/.opam/system/lib/async/async.a
+Installed /home/opam/.opam/system/lib/async/async.cmxs
+Installed /home/opam/.opam/system/lib/async/async.cmx
+Installed /home/opam/.opam/system/lib/async/META
+Installing async.111.25.00.
+
+[ERROR] Due to some errors while processing zmq.4.0-3, the following actions will NOT proceed:
+ - install async-zmq.0.0.1
+
+===== ERROR while installing zmq.4.0-3 =====
+# opam-version         1.1.1
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/system/build/zmq.4.0-3
+# compiler             system (4.01.0)
+# exit-code            1
+# env-file             /home/opam/.opam/system/build/zmq.4.0-3/zmq-11879-f0f09f.env
+# stdout-file          /home/opam/.opam/system/build/zmq.4.0-3/zmq-11879-f0f09f.out
+# stderr-file          /home/opam/.opam/system/build/zmq.4.0-3/zmq-11879-f0f09f.err
+### stdout ###
+# ...[truncated]
+# pkg_str: ............................................. /usr/lib/ocaml
+# 
+# /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+# + /home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/system/lib/uint -ccopt -Wall -ccopt -Wextra -ccopt -O2 -c src/caml_zmq_stubs.c
+# src/caml_zmq_stubs.c:30:17: fatal error: zmq.h: No such file or directory
+#  #include <zmq.h>
+#                  ^
+# compilation terminated.
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' src/libZMQ_stubs.a src/dllZMQ_stubs.so src/ZMQ.cma src/ZMQ.cmxa src/ZMQ.a src/ZMQ.cmxs examples/hwserver.native examples/hwclient.native examples/wuserver.native examples/wuclient.native examples/wuproxy.native examples/taskvent.native examples/taskwork.native examples/tasksink.native -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713011335.export"
+'opam install async-zmq' failed.
