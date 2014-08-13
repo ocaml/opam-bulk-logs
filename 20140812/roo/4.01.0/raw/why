@@ -8682,3 +8682,61 @@ caml_z.c:337:10: warning: variable 'sign_arg1' set but not used [-Wunused-but-se
 caml_z.c:1712:5: note: in expansion of macro 'Z_DECL'
      Z_DECL(arg1); Z_DECL(arg2);
      ^
+ocamlmklib -failsafe -o zarith caml_z_x86_64.o caml_z.o -lgmp
+ocamlopt   -c z.ml
+ocamlopt   -c q.ml
+ocamlopt   -c big_int_Z.ml
+ocamlmklib -failsafe -o zarith z.cmx q.cmx big_int_Z.cmx -lgmp
+ocamlopt -shared -o zarith.cmxs -I . zarith.cmxa
+ocamlfind install -destdir "/home/opam/.opam/system/lib" zarith META zarith.h zarith.cma libzarith.a z.mli q.mli big_int_Z.mli z.cmi q.cmi big_int_Z.cmi zarith.a zarith.cmxa zarith.cmxs dllzarith.so
+Installed /home/opam/.opam/system/lib/zarith/zarith.cmxs
+Installed /home/opam/.opam/system/lib/zarith/zarith.cmxa
+Installed /home/opam/.opam/system/lib/zarith/zarith.a
+Installed /home/opam/.opam/system/lib/zarith/big_int_Z.cmi
+Installed /home/opam/.opam/system/lib/zarith/q.cmi
+Installed /home/opam/.opam/system/lib/zarith/z.cmi
+Installed /home/opam/.opam/system/lib/zarith/big_int_Z.mli
+Installed /home/opam/.opam/system/lib/zarith/q.mli
+Installed /home/opam/.opam/system/lib/zarith/z.mli
+Installed /home/opam/.opam/system/lib/zarith/libzarith.a
+Installed /home/opam/.opam/system/lib/zarith/zarith.cma
+Installed /home/opam/.opam/system/lib/zarith/zarith.h
+Installed /home/opam/.opam/system/lib/zarith/META
+Installed /home/opam/.opam/system/lib/stublibs/dllzarith.so
+Installed /home/opam/.opam/system/lib/stublibs/dllzarith.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing zarith.1.2.
+
+=-=-= Installing ocamlgraph.1.8.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/ocamlgraph.1.8.5+opam.tar.gz
+sending incremental file list
+ocamlgraph.1.8.5+opam.tar.gz
+
+sent 285,327 bytes  received 35 bytes  190,241.33 bytes/sec
+total size is 285,130  speedup is 1.00
+Building ocamlgraph.1.8.5:
+  ./configure
+  make
+  make install-findlib
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /usr/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for ocamldoc... ocamldoc
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamlweb... true
+checking for ocamlfind... ocamlfind
+OCamlfind detected and enabled
+checking for /home/opam/.opam/system/lib/lablgtk2/lablgtk.cmxa... yes
+checking for /home/opam/.opam/system/lib/lablgtk2/lablgnomecanvas.cmxa... yes
+checking Win32 platform... no
+configure: creating ./config.status
