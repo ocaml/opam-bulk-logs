@@ -2190,3 +2190,85 @@ Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/system/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
 ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/system/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/system/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/system/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/system/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/system/bin"
+make[1]: Leaving directory `/home/opam/.opam/system/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+
+=-=-= Installing react.1.1.0 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/react.1.1.0+opam.tar.gz
+sending incremental file list
+react.1.1.0+opam.tar.gz
+
+sent 93,055 bytes  received 35 bytes  186,180.00 bytes/sec
+total size is 92,911  speedup is 1.00
+Building react.1.1.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
+ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+Installing react.1.1.0.
+
+=-=-= Installing gtk-light.0.0.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/gtk-light.0.0.1+opam.tar.gz
+sending incremental file list
+gtk-light.0.0.1+opam.tar.gz
+
+sent 8,561 bytes  received 35 bytes  17,192.00 bytes/sec
+total size is 8,425  speedup is 0.98
+Building gtk-light.0.0.1:
+  make
+  make install
+ocamlbuild -tag debug gtk_light.cma
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package batteries -package lablgtk2.auto-init -package react -package threads -modules gtk_light.mli > gtk_light.mli.depends
+ocamlfind ocamlc -c -g -package batteries -package lablgtk2.auto-init -package react -package threads -thread -o gtk_light.cmi gtk_light.mli
+ocamlfind ocamldep -package batteries -package lablgtk2.auto-init -package react -package threads -modules gtk_light.ml > gtk_light.ml.depends
+ocamlfind ocamldep -package react -modules signal.ml > signal.ml.depends
+ocamlfind ocamlc -c -g -package react -o signal.cmo signal.ml
+ocamlfind ocamlc -c -g -package batteries -package lablgtk2.auto-init -package react -package threads -thread -o gtk_light.cmo gtk_light.ml
+ocamlfind ocamlc -a -package batteries -package lablgtk2.auto-init -package react -package threads -thread signal.cmo gtk_light.cmo -o gtk_light.cma
+ocamlbuild -tag debug gtk_light.cmxa gtk_light.cmxs
+ocamlfind ocamlopt -c -g -package react -o signal.cmx signal.ml
+ocamlfind ocamlopt -c -g -package batteries -package lablgtk2.auto-init -package react -package threads -thread -o gtk_light.cmx gtk_light.ml
+ocamlfind ocamlopt -a -package batteries -package lablgtk2.auto-init -package react -package threads -thread signal.cmx gtk_light.cmx -o gtk_light.cmxa
+ocamlfind ocamlopt -shared -package batteries -package lablgtk2.auto-init -package react -package threads -thread gtk_light.cmx -o gtk_light.cmxs
+ocamlfind install gtk_light \
+	    META \
+	    _build/gtk_light.mli \
+	    _build/gtk_light.cmi \
+	    _build/gtk_light.cma \
+	    _build/gtk_light.cmxa \
+	    _build/gtk_light.cmxs \
+	    _build/gtk_light.a
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.a
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmxs
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmxa
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cma
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmi
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.mli
+Installed /home/opam/.opam/system/lib/gtk_light/META
+Installing gtk-light.0.0.1.
