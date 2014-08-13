@@ -397,3 +397,75 @@ make[2]: Entering directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flo
 ../flowcamlc.opt -nostdlib  map.fmli
 ../flowcamlc.opt -nostdlib  queue.fmli
 ../flowcamlc.opt -nostdlib  random.fmli
+../flowcamlc.opt -nostdlib  set.fmli
+../flowcamlc.opt -nostdlib  stack.fmli
+../flowcamlc.opt -nostdlib  charray.fmli
+../flowcamlc.opt -nostdlib  digest.fmli
+../flowcamlc.opt -nostdlib  filename.fmli
+../flowcamlc.opt -nostdlib  fmarshal.fmli
+../flowcamlc.opt -nostdlib  int32.fmli
+../flowcamlc.opt -nostdlib  int64.fmli
+../flowcamlc.opt -nostdlib  nativeint.fmli
+../flowcamlc.opt -nostdlib  string.fmli
+../flowcamlc.opt -nostdlib  sys.fmli
+../flowcamlc.opt -nostdlib  array.fml
+../flowcamlc.opt -nostdlib  buffer.fml
+../flowcamlc.opt -nostdlib  char.fml
+../flowcamlc.opt -nostdlib  complex.fml
+../flowcamlc.opt -nostdlib  hashtbl.fml
+../flowcamlc.opt -nostdlib  list.fml
+../flowcamlc.opt -nostdlib  map.fml
+../flowcamlc.opt -nostdlib  queue.fml
+../flowcamlc.opt -nostdlib  random.fml
+../flowcamlc.opt -nostdlib  set.fml
+../flowcamlc.opt -nostdlib  stack.fml
+make[2]: Leaving directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml/stdlib'
+make[1]: Leaving directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml'
+make runlib
+make[1]: Entering directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml'
+cd runlib && make
+make[2]: Entering directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml/runlib'
+/usr/bin/ocamlc -I . -w -A -c flowperv.mli
+cp -f ../stdlib/charray.mli charray.mli
+/usr/bin/ocamlc -I . -w -A -c charray.mli
+cp -f ../stdlib/fmarshal.mli fmarshal.mli
+/usr/bin/ocamlc -I . -w -A -c fmarshal.mli
+/usr/bin/ocamlc -I . -w -A -c flowperv.ml
+/usr/bin/ocamlc -I . -w -A -c charray.ml
+/usr/bin/ocamlc -I . -w -A -c fmarshal.ml
+/usr/bin/ocamlc -o flowcamlrun.cma -a flowperv.cmo charray.cmo fmarshal.cmo
+/usr/bin/ocamlopt -I . -c flowperv.ml
+File "flowperv.ml", line 69, characters 13-15:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+/usr/bin/ocamlopt -I . -c charray.ml
+/usr/bin/ocamlopt -I . -c fmarshal.ml
+/usr/bin/ocamlopt -o flowcamlrun.cmxa -a flowperv.cmx charray.cmx fmarshal.cmx
+rm fmarshal.mli charray.mli
+make[2]: Leaving directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml/runlib'
+make[1]: Leaving directory `/home/opam/.opam/system/build/flowcaml.1.07/src-flowcaml'
+
+------------------------------------------------------------
+Compilation seems to succeed.
+You can now install the software. As superuser, do
+'make install'.
+------------------------------------------------------------
+if test -d /home/opam/.opam/system/bin; then : ; \
+	else mkdir -p /home/opam/.opam/system/bin; fi
+if test -d /home/opam/.opam/system/lib/flowcaml; then : ; \
+	else mkdir -p /home/opam/.opam/system/lib/flowcaml; fi
+if test -d /home/opam/.opam/system/lib/flowcaml; then : ; \
+	else mkdir -p /home/opam/.opam/system/lib/flowcaml; fi
+cp -f flowcaml.opt /home/opam/.opam/system/bin/flowcaml
+cp -f flowcamlc.opt /home/opam/.opam/system/bin/flowcamlc
+cp -f flowcamldep /home/opam/.opam/system/bin
+cp -f flowcamlpol /home/opam/.opam/system/bin
+cd stdlib && cp *.fcmi /home/opam/.opam/system/lib/flowcaml
+cd runlib && cp *.mli *.cmi *.cma *.cmxa *.a /home/opam/.opam/system/lib/flowcaml
+
+------------------------------------------------------------
+Installation seems to succeed.
+
+If you want to uninstall flowcaml from your system do
+'make uninstall' as superuser.
+------------------------------------------------------------
+Installing flowcaml.1.07.
