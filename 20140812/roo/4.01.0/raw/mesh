@@ -136,3 +136,63 @@ Warning 26: unused variable v.
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayF.cmx src/mesh_displayF.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmx src/mesh_display.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -a src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared src/mesh_display.cmxa src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamlc -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -c src/triangle_stubs.c
+mv triangle_stubs.o src/triangle_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamlmklib -o src/mesh_triangle_stubs src/triangle_stubs.o
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangle.ml > src/mesh_triangle.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangleC.ml > src/mesh_triangleC.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangle_common.ml > src/mesh_triangle_common.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle_common.cmo src/mesh_triangle_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_triangleF.ml > src/mesh_triangleF.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleC.cmo src/mesh_triangleC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleF.cmo src/mesh_triangleF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle.cmo src/mesh_triangle.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a -dllib -lmesh_triangle_stubs -cclib -lmesh_triangle_stubs src/mesh_triangle_common.cmo src/mesh_triangleC.cmo src/mesh_triangleF.cmo src/mesh_triangle.cmo -o src/mesh_triangle.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle_common.cmx src/mesh_triangle_common.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleC.cmx src/mesh_triangleC.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangleF.cmx src/mesh_triangleF.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_triangle.cmx src/mesh_triangle.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lmesh_triangle_stubs src/mesh_triangle_common.cmx src/mesh_triangleC.cmx src/mesh_triangleF.cmx src/mesh_triangle.cmx -o src/mesh_triangle.cmxa
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I src/ src/mesh_triangle.cmxa src/mesh_triangle_common.cmx src/mesh_triangleC.cmx src/mesh_triangleF.cmx src/mesh_triangle.cmx -o src/mesh_triangle.cmxs
+Installed /home/opam/.opam/system/lib/mesh/mesh.ml
+Installed /home/opam/.opam/system/lib/mesh/easymesh.ml
+Installed /home/opam/.opam/system/lib/mesh/mesh.cma
+Installed /home/opam/.opam/system/lib/mesh/mesh.cmxa
+Installed /home/opam/.opam/system/lib/mesh/mesh.a
+Installed /home/opam/.opam/system/lib/mesh/mesh.cmxs
+Installed /home/opam/.opam/system/lib/mesh/easymesh.cmi
+Installed /home/opam/.opam/system/lib/mesh/mesh.cmi
+Installed /home/opam/.opam/system/lib/mesh/easymeshC.cmx
+Installed /home/opam/.opam/system/lib/mesh/easymeshF.cmx
+Installed /home/opam/.opam/system/lib/mesh/meshC.cmx
+Installed /home/opam/.opam/system/lib/mesh/meshF.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_common.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_utils.cmx
+Installed /home/opam/.opam/system/lib/mesh/easymesh.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.ml
+Installed /home/opam/.opam/system/lib/mesh/libmesh_triangle_stubs.a
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.cma
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.cmxa
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.a
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.cmxs
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.cmi
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangleC.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangleF.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle_common.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_triangle.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.ml
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.cma
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.cmxa
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.a
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.cmxs
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.cmi
+Installed /home/opam/.opam/system/lib/mesh/mesh_displayC.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_displayF.cmx
+Installed /home/opam/.opam/system/lib/mesh/mesh_display.cmx
+Installed /home/opam/.opam/system/lib/mesh/META
+Installed /home/opam/.opam/system/lib/stublibs/dllmesh_triangle_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllmesh_triangle_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing mesh.0.8.4.
