@@ -1154,3 +1154,84 @@ Building pcf-format.0.0.1:
   make
   make install
 ocaml setup.ml -configure
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/system/bin/ocamlfind
+ocamlc: .............................................. /usr/bin/ocamlc.opt
+ocamlopt: ............................................ /usr/bin/ocamlopt.opt
+ocamlbuild: .......................................... /usr/bin/ocamlbuild
+Package name: ........................................ pcf
+Package version: ..................................... 0.0.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /usr/lib/ocaml
+standard_library: .................................... /usr/lib/ocaml
+standard_runtime: .................................... /usr/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
+pkg_unix: ............................................ /usr/lib/ocaml
+
+ocaml setup.ml -build
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/pcf.mli > lib/pcf.mli.depends
+ocamlfind ocamlc -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf.cmi lib/pcf.mli
+ocamlfind ocamldep -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/pcf.ml > lib/pcf.ml.depends
+ocamlfind ocamlc -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf.cmo lib/pcf.ml
+ocamlfind ocamlc -a lib/pcf.cmo -o lib/pcf.cma
+ocamlfind ocamlopt -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf.cmx lib/pcf.ml
+ocamlfind ocamlopt -a lib/pcf.cmx -o lib/pcf.cmxa
+ocamlfind ocamlopt -shared lib/pcf.cmx -o lib/pcf.cmxs
+ocamlfind ocamldep -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/pcf_unix.mli > lib/pcf_unix.mli.depends
+ocamlfind ocamlc -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf_unix.cmi lib/pcf_unix.mli
+ocamlfind ocamldep -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/pcf_unix.ml > lib/pcf_unix.ml.depends
+ocamlfind ocamlc -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf_unix.cmo lib/pcf_unix.ml
+ocamlfind ocamlc -a lib/pcf_unix.cmo -o lib/pcf_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package unix -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/pcf_unix.cmx lib/pcf_unix.ml
+ocamlfind ocamlopt -a lib/pcf_unix.cmx -o lib/pcf_unix.cmxa
+ocamlfind ocamlopt -shared lib/pcf_unix.cmx -o lib/pcf_unix.cmxs
+ocamlfind ocamldep -package unix -package cstruct -modules dump/dump.ml > dump/dump.ml.depends
+ocamlfind ocamlc -c -g -I lib -I lib -package unix -package cstruct -I dump -I lib -o dump/dump.cmo dump/dump.ml
+ocamlfind ocamlopt -c -g -I lib -I lib -package unix -package cstruct -I dump -I lib -o dump/dump.cmx dump/dump.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package cstruct lib/pcf.cmxa lib/pcf_unix.cmxa dump/dump.cmx -o dump/dump.native
+ocaml setup.ml -build
