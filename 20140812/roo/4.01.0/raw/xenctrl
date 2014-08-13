@@ -1906,3 +1906,74 @@ ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntsh
 ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gnttab_stubs.c
 ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/eventchn_stubs.c
 ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenmmap_stubs.c
+mv xenmmap_stubs.o lib/xenmmap_stubs.o
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenctrl_stubs.c
+mv gnttab_stubs.o lib/gnttab_stubs.o
+mv gntshr_stubs.o lib/gntshr_stubs.o
+mv eventchn_stubs.o lib/eventchn_stubs.o
+ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenguest_stubs.c
+mv xenctrl_stubs.o lib/xenctrl_stubs.o
++ ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/xenguest_stubs.c
+lib/xenguest_stubs.c: In function 'dispatch_suspend':
+lib/xenguest_stubs.c:259:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  int domid = (int) arg;
+              ^
+lib/xenguest_stubs.c: In function 'stub_xc_domain_save':
+lib/xenguest_stubs.c:594:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  callbacks.data = (void*) c_domid;
+                   ^
+lib/xenguest_stubs.c: In function 'stub_xc_domain_restore':
+lib/xenguest_stubs.c:682:9: warning: passing argument 14 of 'xc_domain_restore' makes integer from pointer without a cast [enabled by default]
+         );
+         ^
+In file included from lib/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: expected 'int' but argument is of type 'long unsigned int *'
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+lib/xenguest_stubs.c:682:9: error: too few arguments to function 'xc_domain_restore'
+         );
+         ^
+In file included from lib/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: declared here
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' lib/libxenctrl_stubs.a lib/dllxenctrl_stubs.so lib/xenctrl.cma lib/xenctrl.cmxa lib/xenctrl.a lib/xenctrl.cmxs lwt/xenctrl_lwt.cma lwt/xenctrl_lwt.cmxa lwt/xenctrl_lwt.a lwt/xenctrl_lwt.cmxs test/test_hvm_check_pvdriver.native test/test_gntshr.native test/test_events.native -tag debug -j 4' terminated with error code 10")
+make: *** [build] Error 1
+[ERROR] The compilation of xenctrl.0.9.8 failed.
+Removing xenctrl.0.9.8.
+  make uninstall
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/xenctrl
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/xenlight
+
+
+===== ERROR while installing xenctrl.0.9.8 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/xenctrl.0.9.8
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4033-865888.env
+# stdout-file          /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4033-865888.out
+# stderr-file          /home/opam/.opam/system/build/xenctrl.0.9.8/xenctrl-4033-865888.err
+### stdout ###
+# ...[truncated]
+#  int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+#      ^
+# lib/xenguest_stubs.c:682:9: error: too few arguments to function 'xc_domain_restore'
+#          );
+#          ^
+# In file included from lib/xenguest_stubs.c:27:0:
+# /usr/include/xenguest.h:123:5: note: declared here
+#  int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+#      ^
+# Command exited with code 2.
+### stderr ###
+# Makefile:6: config.mk: No such file or directory
+# E: Failure("Command ''/usr/bin/ocamlbuild' lib/libxenctrl_stubs.a lib/dllxenctrl_stubs.so lib/xenctrl.cma lib/xenctrl.cmxa lib/xenctrl.a lib/xenctrl.cmxs lwt/xenctrl_lwt.cma lwt/xenctrl_lwt.cmxa lwt/xenctrl_lwt.a lwt/xenctrl_lwt.cmxs test/test_hvm_check_pvdriver.native test/test_gntshr.native test/test_events.native -tag debug -j 4' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713010418.export"
+'opam install xenctrl' failed.
