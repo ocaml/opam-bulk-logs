@@ -1286,3 +1286,29 @@ Compile tests executable and library and run them: ... false
 pkg_cstruct: ......................................... /home/opam/.opam/system/lib/cstruct
 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c unix/stub_alloc_pages.c
+mv stub_alloc_pages.o unix/stub_alloc_pages.o
+/usr/bin/ocamlmklib -o unix/io-page-unix_stubs unix/stub_alloc_pages.o
+ocamlfind ocamldep -package cstruct -modules unix/io_page.mli > unix/io_page.mli.depends
+ocamlfind ocamlc -c -g -package cstruct -I unix -o unix/io_page.cmi unix/io_page.mli
+ocamlfind ocamldep -package cstruct -modules unix/io_page.ml > unix/io_page.ml.depends
+ocamlfind ocamlc -c -g -package cstruct -I unix -o unix/io_page.cmo unix/io_page.ml
+ocamlfind ocamlc -a -dllib -lio-page-unix_stubs -cclib -lio-page-unix_stubs unix/io_page.cmo -o unix/io-page-unix.cma
+ocamlfind ocamlopt -c -g -package cstruct -I unix -o unix/io_page.cmx unix/io_page.ml
+ocamlfind ocamlopt -a -cclib -lio-page-unix_stubs unix/io_page.cmx -o unix/io-page-unix.cmxa
+ocamlfind ocamlopt -shared -linkall -I unix unix/io-page-unix.cmxa -o unix/io-page-unix.cmxs
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/io-page-unix
+W: Nothing to install for findlib library 'io-page-xen'
+Installed /home/opam/.opam/system/lib/io-page-unix/io_page.mli
+Installed /home/opam/.opam/system/lib/io-page-unix/libio-page-unix_stubs.a
+Installed /home/opam/.opam/system/lib/io-page-unix/io-page-unix.cma
+Installed /home/opam/.opam/system/lib/io-page-unix/io-page-unix.cmxa
+Installed /home/opam/.opam/system/lib/io-page-unix/io-page-unix.a
+Installed /home/opam/.opam/system/lib/io-page-unix/io-page-unix.cmxs
+Installed /home/opam/.opam/system/lib/io-page-unix/io_page.cmi
+Installed /home/opam/.opam/system/lib/io-page-unix/io_page.cmx
+Installed /home/opam/.opam/system/lib/io-page-unix/META
+Installed /home/opam/.opam/system/lib/stublibs/dllio-page-unix_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllio-page-unix_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing io-page-unix.0.9.9.
