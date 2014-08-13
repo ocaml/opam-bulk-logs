@@ -1196,3 +1196,66 @@ File "unify.ml", line 1344, characters 34-35:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 File "unify.ml", line 1392, characters 34-35:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
+- build .build/core coverage.cmo
++ ocamlfind ocamlc -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -g -I File "coverage.ml", line 99, characters 5-180:
+Warning 37: constructor CovCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 112, characters 5-68:
+Warning 37: constructor EqnCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 133, characters 5-207:
+Warning 37: unused constructor PatCandidate.
+File "coverage.ml", line 138, characters 5-189:
+Warning 37: unused constructor SomePatCands.
+. -c coverage.ml
+- build .build/core coverage.cmx
++ ocamlfind ocamlopt -syntax camlp4o File "coverage.ml", line 99, characters 5-180:
+Warning 37: constructor CovCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 112, characters 5-68:
+Warning 37: constructor EqnCtx is never used to build values.
+(However, this constructor appears in patterns.)
+File "coverage.ml", line 133, characters 5-207:
+Warning 37: unused constructor PatCandidate.
+File "coverage.ml", line 138, characters 5-189:
+Warning 37: unused constructor SomePatCands.
+-package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -noassert -inline 100 -I . -c coverage.ml
+- build .build/core index.cmx
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -noassert -inline 100 -I . -c index.ml
+File "index.ml", line 73, characters 5-87:
+Warning 37: constructor FSV is never used to build values.
+(However, this constructor appears in patterns.)
+- build File "reconstruct.ml", line 199, characters 5-62:
+Warning 37: constructor FullTyp is never used to build values.
+(However, this constructor appears in patterns.)
+.build/core reconstruct.cmo
++ ocamlfind ocamlc -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -g -I . -c reconstruct.ml
+- build .build/core reconstruct.cmx
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -for-pack Core -w z -noassert -inline File "reconstruct.ml", line 199, characters 5-62:
+100 -I . -c reconstruct.ml
+Warning 37: constructor FullTyp is never used to build values.
+(However, this constructor appears in patterns.)
+- build .build/beli main.o
++ ocamlfind ocamlc -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -g -I . -I +camlp4 -I ../core -c main.mlFile "main.ml", line 32, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+
+File "main.ml", line 32, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+- build .build/beli main.o
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -noassert -inline 100 -I . -I +camlp4 -I ../core -c main.ml
+/usr/bin/ld: error in /usr/lib/ocaml/camlp4/camlp4lib.a(Camlp4.o)(.eh_frame); no .eh_frame_hdr table will be created.
+- build .build/beli beli.opt
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -noassert -inline 100 -I . -I +camlp4 -I ../core -o beli.opt camlp4lib.cmxa ../core/beluga-core.cmxa main.cmx -linkpkg
+- build .build/beluga main.o
++ ocamlfind ocamlc -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -g -I . -I +camlp4 -I ../core -c main.ml
+File "main.ml", line 87, characters 23-25:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+File "main.ml", line 87, characters 23-25:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+- build .build/beluga main.o
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -noassert -inline 100 -I . -I +camlp4 -I ../core -c main.ml
+- build .build/beluga beluga.opt
++ ocamlfind ocamlopt -syntax camlp4o -package camlp4,extlib,oUnit,ulex,dynlink,unix -warn-error A -w Aep -warn-error A-37 -warn-error a -g -noassert -inline 100 -I . -I +camlp4 -I ../core -o beluga.opt camlp4lib.cmxa ../core/beluga-core.cmxa main.cmx /usr/bin/ld: error in /usr/lib/ocaml/camlp4/camlp4lib.a(Camlp4.o)(.eh_frame); no .eh_frame_hdr table will be created.
+-linkpkg
+*** omake: done (1 min 56.66 sec, 64/64 scans, 101/171 rules, 312/663 digests)
+Installing beluga.0.5.
