@@ -1394,3 +1394,46 @@ ocamldoc: ............................................ /usr/bin/ocamldoc
 ocaml setup.ml -build 
 /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
 ocamlfind ocamlc -ccopt -x -ccopt c++ -ccopt -Wall -ccopt -Wno-write-strings -c src/qfs_stubs.c
++ ocamlfind ocamlc -ccopt -x -ccopt c++ -ccopt -Wall -ccopt -Wno-write-strings -c src/qfs_stubs.c
+src/qfs_stubs.c:4:27: fatal error: kfs/KfsClient.h: No such file or directory
+ #include <kfs/KfsClient.h>
+                           ^
+compilation terminated.
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' src/libqfs_stubs.a src/dllqfs_stubs.so src/qfs.cma src/qfs.cmxa src/qfs.a src/qfs.cmxs src/example.native -tag debug' terminated with error code 10")
+make: *** [build] Error 1
+[ERROR] The compilation of qfs.0.1 failed.
+Removing qfs.0.1.
+  ocamlfind remove qfs
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/qfs
+
+
+===== ERROR while installing qfs.0.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/qfs.0.1
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/qfs.0.1/qfs-2720-0a5907.env
+# stdout-file          /home/opam/.opam/system/build/qfs.0.1/qfs-2720-0a5907.out
+# stderr-file          /home/opam/.opam/system/build/qfs.0.1/qfs-2720-0a5907.err
+### stdout ###
+# ...[truncated]
+# 
+# ocaml setup.ml -build 
+# /usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# ocamlfind ocamlc -ccopt -x -ccopt c++ -ccopt -Wall -ccopt -Wno-write-strings -c src/qfs_stubs.c
+# + ocamlfind ocamlc -ccopt -x -ccopt c++ -ccopt -Wall -ccopt -Wno-write-strings -c src/qfs_stubs.c
+# src/qfs_stubs.c:4:27: fatal error: kfs/KfsClient.h: No such file or directory
+#  #include <kfs/KfsClient.h>
+#                            ^
+# compilation terminated.
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' src/libqfs_stubs.a src/dllqfs_stubs.so src/qfs.cma src/qfs.cmxa src/qfs.a src/qfs.cmxs src/example.native -tag debug' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713055926.export"
+'opam install qfs' failed.
