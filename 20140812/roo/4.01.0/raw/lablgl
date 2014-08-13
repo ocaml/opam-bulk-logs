@@ -253,3 +253,42 @@ Setting up libxt-dev:amd64 (1:1.1.4-1) ...
 Setting up freeglut3-dev:amd64 (2.8.1-1) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
 ++ opam install lablgl -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lablgl
+Ubuntu srcexts:
+The following actions will be performed:
+ - install camlp4.4.01.0 [required by lablgl]
+ - install lablgl.20120306
+2 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing lablgl.20120306 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lablgl.20120306+opam.tar.gz
+sending incremental file list
+lablgl.20120306+opam.tar.gz
+
+sent 451,731 bytes  received 35 bytes  903,532.00 bytes/sec
+total size is 451,495  speedup is 1.00
+Building lablgl.20120306:
+  cp Makefile.config.ex Makefile.config
+  mkdir -p /home/opam/.opam/system/bin
+  make glut
+  make glutopt
+  make install -C src BINDIR=/home/opam/.opam/system/bin INSTALLDIR=/home/opam/.opam/system/lib/lablgl DLLDIR=/home/opam/.opam/system/lib/stublibs
+  make install -C LablGlut/src BINDIR=/home/opam/.opam/system/bin INSTALLDIR=/home/opam/.opam/system/lib/lablgl DLLDIR=/home/opam/.opam/system/lib/stublibs
+cd src && make all LIBDIR="`ocamlc -where`"
+make[1]: Entering directory `/home/opam/.opam/system/build/lablgl.20120306/src'
+ocamlc -pp camlp4o var2def.ml -o var2def
+ocamlc -pp camlp4o var2switch.ml -o var2switch
+ocamlrun ../src/var2def < gl_tags.var > gl_tags.h
+ocamlrun ../src/var2switch -table GL_ < gl_tags.var > gl_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_gl.c
+ocamlrun ../src/var2def < glu_tags.var > glu_tags.h
+ocamlrun ../src/var2switch GLU_ < glu_tags.var > glu_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glu.c
+ocamlrun ../src/var2def < raw_tags.var > raw_tags.h
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_raw.c
