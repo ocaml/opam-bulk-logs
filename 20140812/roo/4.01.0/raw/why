@@ -14815,3 +14815,21 @@ coqc  -R lib/coq Why lib/coq/WhyCM.v
 coqc  -R lib/coq Why lib/coq/Why.v
 coqc  -R lib/coq Why lib/coq/WhyReal.v
 coqc -R /home/opam/.opam/system/lib/why3/lib/why3/coq Why3 -R lib/coq Why lib/coq/Jessie_memory_model.v
+WHYLIB=lib bin/why.opt --dir lib/coq --coq-v8 -coq-preamble \
+        "Require Export Reals. Require Export Why." \
+        --no-coq-use-dp lib/why/jessie.why
+coqc  -R lib/coq Why lib/coq/jessie_why.v
+ocamlopt.opt -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph -o bin/why2html.opt tools/why2html.ml
+ocamlc.opt  -I atp -c -w Z -dtypes -g -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/cvcl_split.mli
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/cvcl_split.ml
+ocamlc.opt  -I atp -c -w Z -dtypes -g -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/simplify_split.mli
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/simplify_split.ml
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/smtlib_split.ml
+ocamlc.opt  -I atp -c -w Z -dtypes -g -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/zenon_split.mli
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/zenon_split.ml
+ocamlc.opt  -I atp -c -w Z -dtypes -g -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/ergo_split.mli
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/ergo_split.ml
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/rv_split.ml
+ocamlopt.opt  -I atp -c -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph tools/dp.ml
+ocamlopt.opt -w Z -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/system/lib/lablgtk2 -I +threads -I /home/opam/.opam/system/lib/ocamlgraph -o bin/why-dp.opt unix.cmxa str.cmxa src/lib.cmx tools/cvcl_split.cmx tools/simplify_split.cmx tools/smtlib_split.cmx tools/zenon_split.cmx tools/ergo_split.cmx tools/rv_split.cmx src/rc.cmx tools/dpConfig.cmx src/version.cmx tools/calldp.cmx tools/dp.cmx
+cc -o bin/why-cpulimit tools/cpulimit.c
