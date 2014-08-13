@@ -105,3 +105,23 @@ mv bcrypt_stub.o src/bcrypt_stub.o
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -a -cclib -lsafepass_stubs src/bcrypt.cmx -o src/safepass.cmxa
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I src src/safepass.cmxa src/bcrypt.cmx -o src/safepass.cmxs
 ocaml setup.ml -build 
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -shared -I src src/safepass.cmxa src/bcrypt.cmx -o src/safepass.cmxs
+ocaml setup.ml -doc 
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -dump src/bcrypt.odoc -I src src/bcrypt.mli
+rm -rf src/safepass-api.docdir
+mkdir -p src/safepass-api.docdir
+/home/opam/.opam/system/bin/ocamlfind ocamldoc -load src/bcrypt.odoc -html -d src/safepass-api.docdir
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/safepass/bcrypt.mli
+Installed /home/opam/.opam/system/lib/safepass/libsafepass_stubs.a
+Installed /home/opam/.opam/system/lib/safepass/safepass.cma
+Installed /home/opam/.opam/system/lib/safepass/safepass.cmxa
+Installed /home/opam/.opam/system/lib/safepass/safepass.a
+Installed /home/opam/.opam/system/lib/safepass/safepass.cmxs
+Installed /home/opam/.opam/system/lib/safepass/bcrypt.cmi
+Installed /home/opam/.opam/system/lib/safepass/bcrypt.cmx
+Installed /home/opam/.opam/system/lib/safepass/META
+Installed /home/opam/.opam/system/lib/stublibs/dllsafepass_stubs.so
+Installed /home/opam/.opam/system/lib/stublibs/dllsafepass_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing safepass.1.3.
