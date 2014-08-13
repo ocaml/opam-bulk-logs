@@ -1114,3 +1114,46 @@ ocamlfind ocamlc -a src/Markdown.cmo -o src/markdown.cma
 ocamlfind ocamlopt -c -g -I src -package tyxml -package str -package sexplib.syntax -package sexplib -package extlib -syntax camlp4o -I src -o src/Markdown.cmx src/Markdown.ml
 ocamlfind ocamlopt -a src/Markdown.cmx -o src/markdown.cmxa
 ocamlfind ocamlopt -shared -linkall src/markdown.cmxa -o src/markdown.cmxs
+ocamlfind ocamldep -package tyxml -package str -package sexplib -package extlib -modules src/MarkdownHTML.ml > src/MarkdownHTML.ml.depends
+ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
++ ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
+File "src/MarkdownHTML.ml", line 3, characters 27-39:
+Error: Unbound module Xhtml_sigs
+Command exited with code 2.
+E: Failure("Command ''/usr/bin/ocamlbuild' src/markdown.cma src/markdown.cmxa src/markdown.a src/markdown.cmxs src/html.cma src/html.cmxa src/html.a src/html.cmxs test/test.byte -tag debug' terminated with error code 10")
+make: *** [build] Error 1
+[ERROR] The compilation of ocaml-markdown.0.1.1 failed.
+Removing ocaml-markdown.0.1.1.
+  ocamlfind remove markdown
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/markdown
+
+
+===== ERROR while installing ocaml-markdown.0.1.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/ocaml-markdown.0.1.1
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/ocaml-markdown.0.1.1/ocaml-markdown-2042-d0f245.env
+# stdout-file          /home/opam/.opam/system/build/ocaml-markdown.0.1.1/ocaml-markdown-2042-d0f245.out
+# stderr-file          /home/opam/.opam/system/build/ocaml-markdown.0.1.1/ocaml-markdown-2042-d0f245.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlc -a src/Markdown.cmo -o src/markdown.cma
+# ocamlfind ocamlopt -c -g -I src -package tyxml -package str -package sexplib.syntax -package sexplib -package extlib -syntax camlp4o -I src -o src/Markdown.cmx src/Markdown.ml
+# ocamlfind ocamlopt -a src/Markdown.cmx -o src/markdown.cmxa
+# ocamlfind ocamlopt -shared -linkall src/markdown.cmxa -o src/markdown.cmxs
+# ocamlfind ocamldep -package tyxml -package str -package sexplib -package extlib -modules src/MarkdownHTML.ml > src/MarkdownHTML.ml.depends
+# ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
+# + ocamlfind ocamlc -c -g -I src -package tyxml -package str -package sexplib -package extlib -I src -o src/MarkdownHTML.cmo src/MarkdownHTML.ml
+# File "src/MarkdownHTML.ml", line 3, characters 27-39:
+# Error: Unbound module Xhtml_sigs
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/usr/bin/ocamlbuild' src/markdown.cma src/markdown.cmxa src/markdown.a src/markdown.cmxs src/html.cma src/html.cmxa src/html.a src/html.cmxs test/test.byte -tag debug' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713001835.export"
+'opam install ocaml-markdown' failed.
