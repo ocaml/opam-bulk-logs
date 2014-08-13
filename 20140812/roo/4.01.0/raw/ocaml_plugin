@@ -5490,3 +5490,8 @@ pkg_threads: ......................................... /usr/lib/ocaml
 ./setup.exe -build 
 W: Cannot find source file matching module 'async' in library async
 ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package threads -package async_unix -package async_kernel -package async_extra -modules lib/std.ml > lib/std.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -I lib -o lib/std.cmo lib/std.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
+/home/opam/.opam/system/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
