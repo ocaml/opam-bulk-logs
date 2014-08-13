@@ -2167,3 +2167,86 @@ cp melt/mlpost_on.ml melt/mlpost_specific.ml
 /usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/tool.cmo melt/tool.ml
 /usr/bin/ocamldep.opt -modules totoconf.ml > totoconf.ml.depends
 /usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o totoconf.cmo totoconf.ml
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cma str.cma bigarray.cma cairo.cma bitstring.cma mlpost.cma latex/variable.cmo prelude/pqueue.cmo prelude/clist.cmo latex/latex.cmo melt/melt_common.cmo melt/mlpost_specific.cmo melt/melt.cmo melt_version.cmo totoconf.cmo melt/tool.cmo -o melt/tool.byte
+/usr/bin/ocamldep.opt -modules latop/latop.ml > latop/latop.ml.depends
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I latop -I melt -I latex -I meltpp -I prelude -o latop/latop.cmo latop/latop.ml
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cma str.cma latop/latop.cmo -o latop/latop.byte
+/usr/bin/ocamldep.opt -modules meltpp/main.ml > meltpp/main.ml.depends
+/usr/bin/ocamldep.opt -modules meltpp/ast.mli > meltpp/ast.mli.depends
+/usr/bin/ocamllex.opt -q meltpp/lexer.mll
+/usr/bin/ocamldep.opt -modules meltpp/lexer.ml > meltpp/lexer.ml.depends
+/usr/bin/ocamlyacc meltpp/parser.mly
+/usr/bin/ocamldep.opt -modules meltpp/parser.mli > meltpp/parser.mli.depends
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/ast.cmi meltpp/ast.mli
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/parser.cmi meltpp/parser.mli
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/lexer.cmo meltpp/lexer.ml
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/main.cmo meltpp/main.ml
+/usr/bin/ocamldep.opt -modules meltpp/parser.ml > meltpp/parser.ml.depends
+/usr/bin/ocamlc.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/parser.cmo meltpp/parser.ml
+/usr/bin/ocamlc.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo dynlink.cma unix.cma str.cma bigarray.cma cairo.cma bitstring.cma mlpost.cma latex/variable.cmo prelude/pqueue.cmo prelude/clist.cmo latex/latex.cmo melt/melt_common.cmo melt/mlpost_specific.cmo melt/melt.cmo melt_version.cmo meltpp/parser.cmo meltpp/plugin_private.cmo meltpp/lexer.cmo meltpp/meltpp_plugin.cmo meltpp/main.cmo -o meltpp/main.byte
+/usr/bin/ocamldoc.opt -dump latex/latex.odoc -hide-warnings -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I latex -I melt -I meltpp -I prelude latex/latex.mli
+rm -rf latex/latex.docdir
+mkdir -p latex/latex.docdir
+/usr/bin/ocamldoc.opt -load latex/latex.odoc -html -hide-warnings -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -d latex/latex.docdir
+/usr/bin/ocamldoc.opt -dump melt/mlpost_specific.odoc -hide-warnings -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude melt/mlpost_specific.ml
+/usr/bin/ocamldoc.opt -dump melt/melt.odoc -hide-warnings -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude melt/melt.mli
+rm -rf melt/melt.docdir
+mkdir -p melt/melt.docdir
+/usr/bin/ocamldoc.opt -load melt/mlpost_specific.odoc -load melt/melt.odoc -html -hide-warnings -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -d melt/melt.docdir
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I prelude -I melt -I latex -I meltpp -o prelude/pqueue.cmx prelude/pqueue.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I prelude -I melt -I latex -I meltpp -o prelude/clist.cmx prelude/clist.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I latex -I melt -I meltpp -I prelude -o latex/variable.cmx latex/variable.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I latex -I melt -I meltpp -I prelude -o latex/latex.cmx latex/latex.ml
+/usr/bin/ocamlopt.opt -a -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo prelude/pqueue.cmx prelude/clist.cmx latex/variable.cmx latex/latex.cmx -o latex/latex.cmxa
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/melt_common.cmx melt/melt_common.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/mlpost_specific.cmx melt/mlpost_specific.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/plugin_private.cmx meltpp/plugin_private.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/melt.cmx melt/melt.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I meltpp -I melt -I latex -I prelude -o meltpp/meltpp_plugin.cmx meltpp/meltpp_plugin.ml
+/usr/bin/ocamlopt.opt -a -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo prelude/pqueue.cmx prelude/clist.cmx latex/variable.cmx latex/latex.cmx melt/melt_common.cmx melt/mlpost_specific.cmx melt/melt.cmx meltpp/plugin_private.cmx meltpp/meltpp_plugin.cmx -o melt/melt.cmxa
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt_version.cmx melt_version.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o totoconf.cmx totoconf.ml
+/usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/tool.cmx melt/tool.ml
+/usr/bin/ocamlopt.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cmxa str.cmxa bigarray.cmxa cairo.cmxa bitstring.cmxa mlpost.cmxa latex/variable.cmx prelude/pqueue.cmx prelude/clist.cmx latex/latex.cmx melt/melt_common.cmx melt/mlpost_specific.cmx melt/melt.cmx melt_version.cmx totoconf.cmx melt/tool.cmx -o melt/tool.native
++ /usr/bin/ocamlopt.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cmxa str.cmxa bigarray.cmxa cairo.cmxa bitstring.cmxa mlpost.cmxa latex/variable.cmx prelude/pqueue.cmx prelude/clist.cmx latex/latex.cmx melt/melt_common.cmx melt/mlpost_specific.cmx melt/melt.cmx melt_version.cmx totoconf.cmx melt/tool.cmx -o melt/tool.native
+/usr/bin/ld: /home/opam/.opam/system/lib/cairo/libmlcairo.a(ml_cairo_ft.o): undefined reference to symbol 'FcNameUnparse'
+//usr/lib/x86_64-linux-gnu/libfontconfig.so.1: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+File "caml_startup", line 1:
+Error: Error during linking
+Command exited with code 2.
+make: *** [world] Error 10
+Removing melt.1.4.0.
+[ERROR] The compilation of melt.1.4.0 failed.
+  ocamlfind remove melt
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/melt
+
+
+===== ERROR while installing melt.1.4.0 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/system/build/melt.1.4.0
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/melt.1.4.0/melt-22665-e4db2f.env
+# stdout-file          /home/opam/.opam/system/build/melt.1.4.0/melt-22665-e4db2f.out
+# stderr-file          /home/opam/.opam/system/build/melt.1.4.0/melt-22665-e4db2f.err
+### stdout ###
+# ...[truncated]
+# /usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o totoconf.cmx totoconf.ml
+# /usr/bin/ocamlopt.opt -c -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo -I melt -I latex -I meltpp -I prelude -o melt/tool.cmx melt/tool.ml
+# /usr/bin/ocamlopt.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cmxa str.cmxa bigarray.cmxa cairo.cmxa bitstring.cmxa mlpost.cmxa latex/variable.cmx prelude/pqueue.cmx prelude/clist.cmx latex/latex.cmx melt/melt_common.cmx melt/mlpost_specific.cmx melt/melt.cmx melt_version.cmx totoconf.cmx melt/tool.cmx -o melt/tool.native
+# + /usr/bin/ocamlopt.opt -I /home/opam/.opam/system/lib/mlpost -I /home/opam/.opam/system/lib/bitstring -I /home/opam/.opam/system/lib/cairo unix.cmxa str.cmxa bigarray.cmxa cairo.cmxa bitstring.cmxa mlpost.cmxa latex/variable.cmx prelude/pqueue.cmx prelude/clist.cmx latex/latex.cmx melt/melt_common.cmx melt/mlpost_specific.cmx melt/melt.cmx melt_version.cmx totoconf.cmx melt/tool.cmx -o melt/tool.native
+# /usr/bin/ld: /home/opam/.opam/system/lib/cairo/libmlcairo.a(ml_cairo_ft.o): undefined reference to symbol 'FcNameUnparse'
+# //usr/lib/x86_64-linux-gnu/libfontconfig.so.1: error adding symbols: DSO missing from command line
+# collect2: error: ld returned 1 exit status
+# File "caml_startup", line 1:
+# Error: Error during linking
+# Command exited with code 2.
+### stderr ###
+# make: *** [world] Error 10
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140713025113.export"
+'opam install melt' failed.
