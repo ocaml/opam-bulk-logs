@@ -1673,3 +1673,17 @@ ocamlfind ocamlopt -linkpkg -g -package compiler-libs.bytecomp src/bin-doc/bindo
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml, /usr/lib/ocaml/compiler-libs
 # Parallel statistics: { count(total): 2(32), max: 2, min: 2, average(total): 2.000(1.062) }
 mv driver.native bin-doc
+sed -e "s+__OCAMLC__+/usr/bin/ocamlc+" < scripts/ocamlc > /home/opam/.opam/system/bin/opam-doc-ocamlc
+sed -e "s+__OCAMLC__+/usr/bin/ocamlc+" < scripts/ocamlc.opt > /home/opam/.opam/system/bin/opam-doc-ocamlc.opt
+chmod +x /home/opam/.opam/system/bin/opam-doc-ocamlc
+chmod +x /home/opam/.opam/system/bin/opam-doc-ocamlc.opt
+cp bin-doc /home/opam/.opam/system/bin
+cp scripts/opam-doc-collect.sh /home/opam/.opam/system/bin/opam-doc-collect
+cp scripts/opam-doc-create.sh /home/opam/.opam/system/bin/opam-doc-create
+cp opam-doc-index /home/opam/.opam/system/bin/opam-doc-index
+cp scripts/opam-doc-serve.sh /home/opam/.opam/system/bin/opam-doc-serve
+cp scripts/opam-doc.sh /home/opam/.opam/system/bin/opam-doc
+rm -rf /home/opam/.opam/doc-static
+mkdir -p /home/opam/.opam/doc-static
+cp -r static/* /home/opam/.opam/doc-static/
+Installing opam-doc.0.9.3.
