@@ -2252,3 +2252,23 @@ ocamlfind ocamlc -c -g -package react -o signal.cmo signal.ml
 ocamlfind ocamlc -c -g -package batteries -package lablgtk2.auto-init -package react -package threads -thread -o gtk_light.cmo gtk_light.ml
 ocamlfind ocamlc -a -package batteries -package lablgtk2.auto-init -package react -package threads -thread signal.cmo gtk_light.cmo -o gtk_light.cma
 ocamlbuild -tag debug gtk_light.cmxa gtk_light.cmxs
+ocamlfind ocamlopt -c -g -package react -o signal.cmx signal.ml
+ocamlfind ocamlopt -c -g -package batteries -package lablgtk2.auto-init -package react -package threads -thread -o gtk_light.cmx gtk_light.ml
+ocamlfind ocamlopt -a -package batteries -package lablgtk2.auto-init -package react -package threads -thread signal.cmx gtk_light.cmx -o gtk_light.cmxa
+ocamlfind ocamlopt -shared -package batteries -package lablgtk2.auto-init -package react -package threads -thread gtk_light.cmx -o gtk_light.cmxs
+ocamlfind install gtk_light \
+	    META \
+	    _build/gtk_light.mli \
+	    _build/gtk_light.cmi \
+	    _build/gtk_light.cma \
+	    _build/gtk_light.cmxa \
+	    _build/gtk_light.cmxs \
+	    _build/gtk_light.a
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.a
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmxs
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmxa
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cma
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.cmi
+Installed /home/opam/.opam/system/lib/gtk_light/gtk_light.mli
+Installed /home/opam/.opam/system/lib/gtk_light/META
+Installing gtk-light.0.0.1.
