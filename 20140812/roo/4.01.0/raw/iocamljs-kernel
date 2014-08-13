@@ -4,3 +4,67 @@
 + '[' '' '!=' '' ']'
 ++ opam install iocamljs-kernel -e source,linux
 Ubuntu depexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install iocamljs-kernel
+Ubuntu srcexts:
+The following actions will be performed:
+ - install menhir.20130912 [required by iocamljs-kernel]
+ - install camlp4.4.01.0 [required by iocamljs-kernel]
+ - install lwt.2.4.5 [required by iocamljs-kernel]
+ - install js_of_ocaml.2.3 [required by iocamljs-kernel]
+ - install iocamljs-kernel.0.4.4
+5 to install | 0 to reinstall | 0 to upgrade | 0 to downgrade | 0 to remove
+
+=-=-= Installing camlp4.4.01.0 =-=-=
+Installing camlp4.4.01.0.
+
+=-=-= Installing menhir.20130912 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
+sending incremental file list
+menhir.20130912+opam.tar.gz
+
+sent 547,369 bytes  received 35 bytes  1,094,808.00 bytes/sec
+total size is 547,109  speedup is 1.00
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/system docdir=/home/opam/.opam/system/doc/menhir libdir=/home/opam/.opam/system/lib/menhir mandir=/home/opam/.opam/system/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/system/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/system/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
