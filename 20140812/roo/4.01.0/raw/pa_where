@@ -89,3 +89,13 @@ pkg_camlp4_quotations: ............................... /usr/lib/ocaml/camlp4
 pkg_camlp4_extend: ................................... /usr/lib/ocaml/camlp4
 
 ocaml setup.ml -build 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4o -modules src/pa_where.ml > src/pa_where.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4o -I src -o src/pa_where.cmo src/pa_where.ml
+ocamlfind ocamlc -a src/pa_where.cmo -o src/pa_where.cma
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/pa_where/pa_where.ml
+Installed /home/opam/.opam/system/lib/pa_where/pa_where.cma
+Installed /home/opam/.opam/system/lib/pa_where/pa_where.cmi
+Installed /home/opam/.opam/system/lib/pa_where/META
+Installing pa_where.0.4.
