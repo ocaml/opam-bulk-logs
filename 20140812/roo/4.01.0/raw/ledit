@@ -1581,3 +1581,16 @@ camlp5r -I ext ledit.mli -o ledit.ppi
 ocamlc -c -intf ledit.ppi
 /bin/rm -f ledit.ppi
 camlp5r -I ext ledit.ml -o ledit.ppo
+ocamlc -I `camlp5 -where` -c -impl ledit.ppo
+/bin/rm -f ledit.ppo
+camlp5r -I ext go.ml -o go.ppo
+ocamlc -I `camlp5 -where` -c -impl go.ppo
+/bin/rm -f go.ppo
+ocamlc -custom unix.cma -I `camlp5 -where` gramlib.cma cursor.cmo ledit.cmo go.cmo -o ledit.out
+VERSION=`sed -n -e 's/^.* version = "\(.*\)".*$/\1/p' go.ml`; \
+	sed s/LEDIT_VERSION/$VERSION/ ledit.1.tpl > ledit.1
+ocamlc -a -o ledit.cma cursor.cmo ledit.cmo
+mkdir -p /home/opam/.opam/system/bin /home/opam/.opam/system/man/man1
+cp ledit.out /home/opam/.opam/system/bin/ledit
+cp ledit.1 /home/opam/.opam/system/man/man1/ledit.1
+Installing ledit.2.03.
