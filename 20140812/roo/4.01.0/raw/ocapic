@@ -126,3 +126,87 @@ cp /home/opam/.opam/system/build/ocapic.3.0/etc/config.ml config.ml
 /usr/bin/ocamlc.opt -c -w Ae -warn-error A -o main.cmo main.ml
 /usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o constants.cmx constants.ml
 /usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o index.cmx index.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o instr.cmx instr.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o code.cmx code.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o config.cmx config.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o configs.cmx configs.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o data.cmx data.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o prim.cmx prim.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -o main.cmx main.ml
+/usr/bin/ocamlopt.opt -w Ae -warn-error A constants.cmx index.cmx instr.cmx code.cmx config.cmx configs.cmx data.cmx prim.cmx main.cmx -o main.native
+touch _build/main.native
+cp _build/main.native /home/opam/.opam/system/build/ocapic.3.0/bin/bc2asm
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/bc2asm'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/reggen'
+/usr/bin/ocamlopt.opt -w Ae -warn-error A reggen.ml -o /home/opam/.opam/system/build/ocapic.3.0/bin/reggen
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/reggen'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/rtgen'
+/usr/bin/ocamlopt.opt -w Ae -warn-error A rtgen.ml -o /home/opam/.opam/system/build/ocapic.3.0/bin/rtgen
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/rtgen'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/pics'
+mkdir -p /home/opam/.opam/system/build/ocapic.3.0/lib/18f4620
+/home/opam/.opam/system/build/ocapic.3.0/bin/rtgen < pic18f4620.reg > /home/opam/.opam/system/build/ocapic.3.0/lib/18f4620/pic.ml
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/pics'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/lib/extra'
+/usr/bin/ocamlc.opt -w Ae -warn-error A -c serial.mli
+/usr/bin/ocamlc.opt -w Ae -warn-error A -thread -c serial.ml
+/usr/bin/ocamlc.opt -w Ae -warn-error A -thread -c simul.mli
+/usr/bin/ocamlc.opt -w Ae -warn-error A -thread -c simul.ml
+/usr/bin/ocamlopt.opt -w Ae -warn-error A -thread -c serial.ml
+/usr/bin/ocamlopt.opt -w Ae -warn-error A -thread -c simul.ml
+/usr/bin/ocamldoc -hide-warnings -man -man-mini  serial.mli
+/usr/bin/ocamldoc -hide-warnings -man -man-mini  simul.mli
+make[1]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/lib/extra'
+make[1]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator'
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c shared.c
+cp shared.o /home/opam/.opam/system/build/ocapic.3.0/lib/shared.o
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c sf_regs.c
+cp sf_regs.o /home/opam/.opam/system/build/ocapic.3.0/lib/sf_regs.o
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c simu.c
+cp simu.o /home/opam/.opam/system/build/ocapic.3.0/lib/simu.o
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c cserial.c
+cp cserial.o /home/opam/.opam/system/build/ocapic.3.0/lib/cserial.o
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c ceeprom.c
+cp ceeprom.o /home/opam/.opam/system/build/ocapic.3.0/lib/ceeprom.o
+/usr/bin/ocamlc.opt -w Ae -warn-error A -ccopt -Wall -ccopt -O3 -c stds.c
+cp stds.o /home/opam/.opam/system/build/ocapic.3.0/lib/stds.o
+make[2]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/lcd'
+cp /home/opam/.opam/system/build/ocapic.3.0/etc/config.ml config.ml
+/usr/bin/ocamlbuild -cflags -w,Ae,-warn-error,A -lflags -w,Ae,-warn-error,A -no-links -classic-display -cflags -thread,-I,/home/opam/.opam/system/build/ocapic.3.0/lib/extra -lflags -thread,unix.cmxa,graphics.cmxa,threads.cmxa,-I,/home/opam/.opam/system/build/ocapic.3.0/lib/extra,simul.cmx main.native
+/usr/bin/ocamldep.opt -modules main.ml > main.ml.depends
+/usr/bin/ocamldep.opt -modules display.ml > display.ml.depends
+/usr/bin/ocamldep.opt -modules cgram.ml > cgram.ml.depends
+/usr/bin/ocamldep.opt -modules types.ml > types.ml.depends
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o types.cmo types.ml
+/usr/bin/ocamldep.opt -modules ddram.ml > ddram.ml.depends
+/usr/bin/ocamldep.opt -modules cgrom.ml > cgrom.ml.depends
+/usr/bin/ocamldep.opt -modules config.ml > config.ml.depends
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o config.cmo config.ml
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o cgrom.cmo cgrom.ml
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o cgram.cmo cgram.ml
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o ddram.cmo ddram.ml
+/usr/bin/ocamldep.opt -modules proto.ml > proto.ml.depends
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o display.cmo display.ml
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o proto.cmo proto.ml
+/usr/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o main.cmo main.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o types.cmx types.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o config.cmx config.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o cgrom.cmx cgrom.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o cgram.cmx cgram.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o ddram.cmx ddram.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o display.cmx display.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o proto.cmx proto.ml
+/usr/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra -o main.cmx main.ml
+/usr/bin/ocamlopt.opt -w Ae -warn-error A -thread unix.cmxa graphics.cmxa threads.cmxa -I /home/opam/.opam/system/build/ocapic.3.0/lib/extra simul.cmx types.cmx cgram.cmx config.cmx cgrom.cmx ddram.cmx display.cmx proto.cmx main.cmx -o main.native
+cp _build/main.native /home/opam/.opam/system/build/ocapic.3.0/bin/ocapic_lcd_simulator
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/lcd'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/goblet'
+ocamlopt -thread unix.cmxa threads.cmxa graphics.cmxa main.ml -o /home/opam/.opam/system/build/ocapic.3.0/bin/ocapic_goblet_simulator
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/goblet'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/dip40'
+ocamlopt -thread unix.cmxa threads.cmxa graphics.cmxa main.ml -o /home/opam/.opam/system/build/ocapic.3.0/bin/ocapic_dip40_simulator
+make[2]: Leaving directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/dip40'
+make[2]: Entering directory `/home/opam/.opam/system/build/ocapic.3.0/src/simulator/circuit'
+/usr/bin/ocamlbuild -cflags -w,Ae,-warn-error,A -lflags -w,Ae,-warn-error,A -no-links -classic-display -cflags -thread,-I,/home/opam/.opam/system/build/ocapic.3.0/lib/extra,-I,/home/opam/.opam/system/build/ocapic.3.0/src/simulator/lcd/_build -lflags -thread,-I,/home/opam/.opam/system/build/ocapic.3.0/lib/extra,-I,/home/opam/.opam/system/build/ocapic.3.0/src/simulator/lcd/_build,unix.cmxa,graphics.cmxa,threads.cmxa,simul.cmx,types.cmx,config.cmx,cgrom.cmx,cgram.cmx,ddram.cmx,display.cmx,proto.cmx main.native
+/usr/bin/ocamldep.opt -modules main.ml > main.ml.depends
+/usr/bin/ocamldep.opt -modules component.ml > component.ml.depends
