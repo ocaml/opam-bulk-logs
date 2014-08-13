@@ -804,3 +804,107 @@ Warning: 7 incomplete packages (will not be built):
 [ 84%] Devices.cmx                                           OK
 [ 86%] Mem.cmo                                               OK
 [ 86%] Vector.cmx                                            OK
+[ 88%] Kernel.cmo                                            OK
+[ 88%] Cuda.cmx                                              OK
+[ 88%] Cuda.cmo                                              OK
+[ 89%] OpenCL.cmx                                            OK
+[ 90%] spoc.cmo                                              OK
+[ 91%] spoc.cma                                              OK
+[ 91%] Mem.cmx                                               OK
+[ 96%] Custom.o                                              OK
+[ 96%] KernelOpenCL.cmx                                      OK
+[ 96%] KernelCuda.cmx                                        OK
+[ 96%] Opencl_dynlink.o                                      OK
+[ 96%] Tools.cmx                                             OK
+[ 96%] Kernel.cmx                                            OK
+[ 97%] Spoc_cu.o                                             OK
+[ 97%] cuda_drvapi_dynlink.o                                 OK
+[ 97%] Kernel_cuda.o                                         OK
+[ 97%] spoc.cmx                                              OK
+[ 98%] Kernel_opencl.o                                       OK
+[ 98%] spoc.cmxa                                             OK
+[ 98%] Spoc_c.o                                              OK
+[ 98%] Mem_c.o                                               OK
+-- stderr of ocamlc.opt --
+In file included from Mem_c.h:40:0,
+                 from Mem_c.c:39:
+Mem_c.c: In function 'cl_free_vec':
+/usr/lib/ocaml/caml/memory.h:235:26: warning: initialization makes integer from pointer without a cast [enabled by default]
+   value caml__temp_val = (val); \
+                          ^
+Mem_c.c:83:4: note: in expansion of macro 'Store_field'
+    Store_field(v,1,NULL);
+    ^
+Mem_c.c: In function 'spoc_opencl_free_vect':
+/usr/lib/ocaml/caml/memory.h:235:26: warning: initialization makes integer from pointer without a cast [enabled by default]
+   value caml__temp_val = (val); \
+                          ^
+Mem_c.c:446:4: note: in expansion of macro 'Store_field'
+    Store_field(dev_vec,1,NULL);
+    ^
+Mem_c.c: In function 'spoc_opencl_device_to_cpu':
+/usr/lib/ocaml/caml/memory.h:235:26: warning: initialization makes integer from pointer without a cast [enabled by default]
+   value caml__temp_val = (val); \
+                          ^
+Mem_c.c:762:2: note: in expansion of macro 'Store_field'
+  Store_field(dev_vec,1,NULL);
+  ^
+Mem_c.c: In function 'spoc_opencl_custom_device_to_cpu':
+/usr/lib/ocaml/caml/memory.h:235:26: warning: initialization makes integer from pointer without a cast [enabled by default]
+   value caml__temp_val = (val); \
+                          ^
+Mem_c.c:794:2: note: in expansion of macro 'Store_field'
+  Store_field(dev_vec,1,NULL);
+  ^
+[100%] libmlspoc.a                                           OK
+Build Successful in 1.18s. 54 jobs (parallelism 6.3x), 71 files generated.
+cd extension && make
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+ocamlfind ocamlc -I +camlp4 -pp camlp4of dynlink.cma camlp4lib.cma kernels_ext.ml
+File "kernels_ext.ml", line 147, characters 4-22:
+Warning 26: unused variable t.
+ocamlfind ocamlc -a kernels_ext.cmo -o kernels_ext.cma
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+cd Js && make
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+echo "//concat SPOC.js Kernel.js Mem.js " > spoc_lib.js
+for f in SPOC.js Kernel.js Mem.js  ; do \
+		 echo "//# 1 \"$f\"" >> spoc_lib.js; \
+	   cat $f >> spoc_lib.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+ocamlfind remove spoc
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/spoc
+cd extension && make uninstall
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+ocamlfind remove spoc_external_kernels
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/spoc_external_kernels
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+cd Js && make uninstall
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+rm -f `ocamlfind query spoc`/spoc_lib.js
+ocamlfind: Package `spoc' not found
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+ocp-build install
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 7 incomplete packages (will not be built):
+  Hidden: 7 incomplete packages in META files (use -print-incomplete-meta).
+Build Successful in 0.21s. 0 jobs (parallelism 0.0x), 0 files generated.
+	files:  spoc.cma libmlspoc.a spoc.cmxa spoc.a spoc.cmx libmlspoc.a
+Generated META file /home/opam/.opam/system/lib/spoc/META
+cp _obuild/spoc/*.cmi `ocamlfind query spoc`
+cd extension && make install
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+ocamlfind install spoc_external_kernels *.cm* META
+Installed /home/opam/.opam/system/lib/spoc_external_kernels/kernels_ext.cmo
+Installed /home/opam/.opam/system/lib/spoc_external_kernels/kernels_ext.cmi
+Installed /home/opam/.opam/system/lib/spoc_external_kernels/kernels_ext.cma
+Installed /home/opam/.opam/system/lib/spoc_external_kernels/META
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/extension'
+cd Js && make install
+make[1]: Entering directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+cp spoc_lib.js `ocamlfind query spoc`
+make[1]: Leaving directory `/home/opam/.opam/system/build/spoc.20140620/Js'
+Installing spoc.20140620.
