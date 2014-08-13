@@ -1787,3 +1787,25 @@ pkg_ounit: ........................................... /home/opam/.opam/system/l
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -package monomorphic -I lib -o lib/hamt.cmx lib/hamt.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -a lib/bitUtils.cmx lib/hamt.cmx -o lib/hamt.cmxa
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -shared lib/hamt.cmxa lib/bitUtils.cmx lib/hamt.cmx -o lib/hamt.cmxs
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package monomorphic -package oUnit -modules lib_test/test.ml > lib_test/test.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package monomorphic -package oUnit -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package monomorphic -package oUnit -I lib_test -I lib -o lib_test/test.cmx lib_test/test.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package monomorphic -package oUnit lib/hamt.cmxa lib_test/test.cmx -o lib_test/test.native
+/home/opam/.opam/system/bin/ocamlfind ocamldep -package monomorphic -package oUnit -modules lib_test/param.ml > lib_test/param.ml.depends
+/home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -I lib -package monomorphic -package oUnit -I lib_test -I lib -o lib_test/param.cmo lib_test/param.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -I lib -package monomorphic -package oUnit -I lib_test -I lib -o lib_test/param.cmx lib_test/param.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package monomorphic lib/hamt.cmxa lib_test/param.cmx -o lib_test/param.native
+
+Inserting elements in a IntMap
+0.000102
+100ocaml setup.ml -install
+Installed /home/opam/.opam/system/lib/hamt/hamt.mli
+Installed /home/opam/.opam/system/lib/hamt/hamt.cma
+Installed /home/opam/.opam/system/lib/hamt/hamt.cmxa
+Installed /home/opam/.opam/system/lib/hamt/hamt.a
+Installed /home/opam/.opam/system/lib/hamt/hamt.cmxs
+Installed /home/opam/.opam/system/lib/hamt/hamt.cmi
+Installed /home/opam/.opam/system/lib/hamt/bitUtils.cmx
+Installed /home/opam/.opam/system/lib/hamt/hamt.cmx
+Installed /home/opam/.opam/system/lib/hamt/META
+Installing hamt.0.1.
