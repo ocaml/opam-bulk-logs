@@ -230,3 +230,15 @@ Warning 3: deprecated: String.set
 ocamlopt -I +compiler-libs -c fl_metascanner.ml
 ocamlopt -I +compiler-libs -c fl_topo.ml
 ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+if [ 1 -gt 0 ]; then \
+	    ocamlopt -I +compiler-libs -shared -o findlib.cmxs findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx; \
+	fi
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 34, characters 24-36:
+Warning 3: deprecated: String.set
+File "frontend.ml", line 1718, characters 16-29:
+Warning 3: deprecated: String.create
