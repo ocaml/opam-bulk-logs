@@ -282,3 +282,41 @@ Analysing Query
 [3 of 8] Compiling Cdrom                         
   [CMD]: /usr/bin/ocamlopt.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /usr/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmx -c lib/cdrom.ml
   [CMD]: /usr/bin/ocamlc.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /usr/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmo -c lib/cdrom.ml
+  compilation order: Cdrom
+  self deps: 
+package deps: [unix]
+warning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.o[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxs
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cma
+  [CMD]: /usr/bin/ocamlmklib -o dist/build/lib-cdrom/stubs_cdrom dist/build/lib-cdrom/cdrom_stubs.c.o
+  [CMD]: /usr/bin/ocamlc.opt -a -o dist/build/lib-cdrom/cdrom.cma -I dist/build/lib-cdrom -I /usr/lib/ocaml -dllib -lstubs_cdrom cdrom.cmo
+  [CMD]: /usr/bin/ocamlopt.opt -shared -o dist/build/lib-cdrom/cdrom.cmxs -I dist/build/lib-cdrom -I /usr/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
+  [CMD]: /usr/bin/ocamlopt.opt -a -o dist/build/lib-cdrom/cdrom.cmxa -I dist/build/lib-cdrom -I /usr/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
+[5 of 8] Checking dist/build/lib-cdrom
+[6 of 8] Compiling Query                         
+  [CMD]: /usr/bin/ocamlopt.opt -I dist/build/query -I dist/build/autogen -I query -I dist/build/lib-cdrom -I /usr/lib/ocaml -bin-annot -o dist/build/query/query.cmx -c query/query.ml
+  compilation order: Query
+  self deps: cdrom
+package deps: [unix,cdrom]
+[7 of 8] Linking executable dist/build/query/query
+  [CMD]: /usr/bin/ocamlopt.opt -o dist/build/query/query -I dist/build/query -I /usr/lib/ocaml -I dist/build/lib-cdrom unix.cmxa cdrom.cmxa -cclib -Ldist/build/lib-cdrom query.cmx
+[8 of 8] Checking dist/build/query
+schedule finished: #processes=9 max_concurrency=2
+ocamlfind remove cdrom
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/cdrom
+ocamlfind install cdrom dist/build/lib-cdrom/cdrom.a dist/build/lib-cdrom/cdrom.cmi dist/build/lib-cdrom/cdrom.cmx dist/build/lib-cdrom/cdrom.o dist/build/lib-cdrom/dllstubs_cdrom.so dist/build/lib-cdrom/cdrom.cma dist/build/lib-cdrom/cdrom.cmo dist/build/lib-cdrom/cdrom.cmxa dist/build/lib-cdrom/cdrom_stubs.c.o dist/build/lib-cdrom/libstubs_cdrom.a lib/META lib/cdrom.mli 
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.mli
+Installed /home/opam/.opam/system/lib/cdrom/libstubs_cdrom.a
+Installed /home/opam/.opam/system/lib/cdrom/cdrom_stubs.c.o
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.cmxa
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.cmo
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.cma
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.o
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.cmx
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.cmi
+Installed /home/opam/.opam/system/lib/cdrom/cdrom.a
+Installed /home/opam/.opam/system/lib/cdrom/META
+Installed /home/opam/.opam/system/lib/stublibs/dllstubs_cdrom.so
+Installed /home/opam/.opam/system/lib/stublibs/dllstubs_cdrom.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/system/lib/stublibs is not mentioned in ld.conf
+Installing cdrom.0.9.1.
