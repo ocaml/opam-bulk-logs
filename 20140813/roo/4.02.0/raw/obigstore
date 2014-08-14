@@ -3080,3 +3080,65 @@ Building leveldb.1.0.3:
 --- Checking for gcc... (found /usr/bin/gcc)
 --- Checking for g++... (found /usr/bin/g++)
 --- Checking if ocamldep understands -modules... (yes)
+- build test test_00util.o
++ ocamlfind ocamlc -package unix,threads,oUnit -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -g -I . -I ../src -c test_00util.ml
+File "test_00util.ml", line 78, characters 10-23:
+Warning 3: deprecated: String.create
+File "test_00util.ml", line 80, characters 6-55:
+Warning 3: deprecated: String.set
+- build src levelDB.cmo
++ ocamlfind ocamlc -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -g -I . -c levelDB.ml
+File "levelDB.ml", line 253, characters 15-28:
+Warning 3: deprecated: String.create
+- build src levelDB.cmx
++ ocamlfind ocamlopt -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -inline 100 -I . -c levelDB.ml
+File "levelDB.ml", line 253, characters 15-28:
+Warning 3: deprecated: String.create
+File "test_00util.ml", line 1:
+Error: Some fatal warnings were triggered (2 occurrences)
+File "levelDB.ml", line 1:
+Error: Some fatal warnings were triggered (1 occurrences)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+File "levelDB.ml", line 1:
+Error: Some fatal warnings were triggered (1 occurrences)
+*** omake: 34/71 targets are up to date
+*** omake: failed (2.97 sec, 6/6 scans, 4/4 rules, 18/105 digests)
+*** omake: targets were not rebuilt because of errors:
+   src/levelDB.cmo
+      depends on: src/levelDB.ml
+   src/levelDB.cmx
+      depends on: src/levelDB.ml
+   src/levelDB.o
+      depends on: src/levelDB.ml
+   test/test_00util.cmi
+      depends on: test/test_00util.ml
+   test/test_00util.cmo
+      depends on: test/test_00util.ml
+   test/test_00util.cmx
+      depends on: test/test_00util.ml
+   test/test_00util.o
+      depends on: test/test_00util.ml
+[ERROR] The compilation of leveldb.1.0.3 failed.
+Removing leveldb.1.0.3.
+  ocamlfind remove leveldb
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/leveldb
+
+=-=-= Installing lwt.2.4.5 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/lwt.2.4.5+opam.tar.gz
+sending incremental file list
+lwt.2.4.5+opam.tar.gz
+
+sent 301,853 bytes  received 35 bytes  603,776.00 bytes/sec
+total size is 301,655  speedup is 1.00
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated: String.set
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd:
