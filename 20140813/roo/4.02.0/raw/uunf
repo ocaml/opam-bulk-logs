@@ -1,14 +1,14 @@
 ++ opam install uunf -e ubuntu
 + depext=
 + echo Ubuntu depexts:
-+ '[' '' '!=' '' ']'
 Ubuntu depexts:
++ '[' '' '!=' '' ']'
 ++ opam install uunf -e source,linux
+Ubuntu srcexts:
 + srcext=
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install uunf
-Ubuntu srcexts:
 The following actions will be performed:
  - install ocamlfind.1.5.2 [required by uunf]
  - install uunf.0.9.3
@@ -77,9 +77,9 @@ Configuration has been written to Makefile.config
 
 You can now do 'make all', and optionally 'make opt', to build ocamlfind.
 for p in findlib; do ( cd src/$p; make all ) || exit; done
+Makefile:150: depend: No such file or directory
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
 ocamllex fl_meta.mll
-Makefile:150: depend: No such file or directory
 22 states, 392 transitions, table size 1700 bytes
 ocamldep *.ml *.mli >depend
 make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
@@ -219,68 +219,3 @@ File "frontend.ml", line 34, characters 24-36:
 Warning 3: deprecated: String.set
 File "frontend.ml", line 1718, characters 16-29:
 Warning 3: deprecated: String.create
-ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
-		   ocaml_args.cmx frontend.cmx
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
-mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
-mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
-make install-config
-make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
-test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-for p in findlib; do ( cd src/$p; make install ); done
-make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
-mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
-mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
-test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
-files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a findlib.cmxs META` && \
-	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
-f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
-	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
-# the following "if" block is only needed for 4.00beta2
-if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
-	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
-	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
-	fi
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
-make install-meta
-make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-cd src/findlib; make install-num-top
-make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
-mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
-cp num_top.cma num_top.cmi num_top_printers.cmi \
-		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
-if [ 1 -eq 1 ]; then \
-		cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"; \
-	fi
-make install-doc
-make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
-cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
-cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
-make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
-Installing ocamlfind.1.5.2.
-
-=-=-= Installing uunf.0.9.3 =-=-=
-default    Synchronizing with /home/opam/opam-repository/archives/uunf.0.9.3+opam.tar.gz
-sending incremental file list
-uunf.0.9.3+opam.tar.gz
-
-sent 51,088 bytes  received 35 bytes  102,246.00 bytes/sec
-total size is 50,953  speedup is 1.00
-Building uunf.0.9.3:
-  ./pkg/pkg-git
-  ./pkg/build true false
-ocamlfind ocamldep -modules src/uunf.mli > src/uunf.mli.depends
-ocamlfind ocamlc -c -annot -I src -I test -o src/uunf.cmi src/uunf.mli
-ocamlfind ocamldep -modules src/uunf.ml > src/uunf.ml.depends
-ocamlfind ocamlopt -c -annot -I src -I test -o src/uunf.cmx src/uunf.ml
-ocamlfind ocamlc -c -annot -I src -I test -o src/uunf.cmo src/uunf.ml
-ocamlfind ocamlc -a src/uunf.cmo -o src/uunf.cma
-ocamlfind ocamlopt -a src/uunf.cmx -o src/uunf.cmxa
-ocamlfind ocamlopt -shared src/uunf.cmx -o src/uunf.cmxs
-Installing uunf.0.9.3.
