@@ -205,3 +205,176 @@ Warning 3: deprecated: String.set
 File "fl_meta.mll", line 62, characters 11-22:
 Warning 3: deprecated: String.set
 ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+if [ 1 -gt 0 ]; then \
+	    ocamlopt -I +compiler-libs -shared -o findlib.cmxs findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx; \
+	fi
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 34, characters 24-36:
+Warning 3: deprecated: String.set
+File "frontend.ml", line 1718, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a findlib.cmxs META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+if [ 1 -eq 1 ]; then \
+		cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"; \
+	fi
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+Installing ocamlfind.1.5.2.
+
+=-=-= Installing argot.1.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/argot.1.1+opam.tar.gz
+sending incremental file list
+argot.1.1+opam.tar.gz
+
+sent 356,977 bytes  received 35 bytes  714,024.00 bytes/sec
+total size is 356,771  speedup is 1.00
+Building argot.1.1:
+  sh configure
+  make all
+  make install
+Makefile.config successfully created
+echo 'argot.cmo' > argot.itarget
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamlopt && test TRUE = TRUE && echo 'argot.cmxs' >> argot.itarget) || true
+(test -x /home/opam/.opam/4.02.0+trunk/bin/ocamljava && echo 'argot.cmjs' >> argot.itarget) || true
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links argot.otarget
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 29, characters 15-29:
+Warning: the tag "src_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/icons.mli > src/icons.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/icons.cmi src/icons.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/icons.ml > src/icons.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc src/definitionParser.mly
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/definitionParser.mli > src/definitionParser.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/definitionParser.cmi src/definitionParser.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/definitionParser.ml > src/definitionParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/definitionLexer.mll
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/definitionLexer.ml > src/definitionLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/main.mli > src/main.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/main.cmi src/main.mli
+cp /tmp/version7ae749.ml src/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/main.ml > src/main.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/args.mli > src/args.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/definitions.mli > src/definitions.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/definitions.cmi src/definitions.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/base64.mli > src/base64.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/licenses.mli > src/licenses.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/search.mli > src/search.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/search_js.mli > src/search_js.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/tables.mli > src/tables.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/args.cmi src/args.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/base64.cmi src/base64.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/licenses.cmi src/licenses.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search.cmi src/search.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search_js.cmi src/search_js.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/tables.cmi src/tables.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/search_js.ml > src/search_js.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/utils.mli > src/utils.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/utils.cmi src/utils.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/licenses.ml > src/licenses.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/version.mli > src/version.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/version.cmi src/version.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/version.ml > src/version.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/definitions.ml > src/definitions.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/definitionLexer.cmo src/definitionLexer.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/base64.ml > src/base64.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/args.ml > src/args.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/tables.ml > src/tables.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/utils.ml > src/utils.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/search.ml > src/search.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/icons.cmo src/icons.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/definitionParser.cmo src/definitionParser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/main.cmo src/main.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search_js.cmo src/search_js.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/licenses.cmo src/licenses.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/version.cmo src/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/definitions.cmo src/definitions.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/base64.cmo src/base64.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/args.cmo src/args.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/tables.cmo src/tables.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/utils.cmo src/utils.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search.cmo src/search.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search.cmo src/search.ml
+File "src/search.ml", line 153, characters 75-77:
+Error: This expression has type
+         Odoc_info.Type.type_manifest = Odoc_type.type_manifest
+       but an expression was expected of type Types.type_expr
+Command exited with code 2.
+make: *** [all] Error 10
+[ERROR] The compilation of argot.1.1 failed.
+Removing argot.1.1.
+  ocamlfind remove argot
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/argot
+
+===== ERROR while installing argot.1.1 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make all
+# path                 /home/opam/.opam/4.02.0+trunk/build/argot.1.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/argot.1.1/argot-378-d2c37b.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/argot.1.1/argot-378-d2c37b.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/argot.1.1/argot-378-d2c37b.err
+### stdout ###
+# ...[truncated]
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/args.cmo src/args.ml
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/tables.cmo src/tables.ml
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/utils.cmo src/utils.ml
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search.cmo src/search.ml
+# + /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +ocamldoc -w Ae -warn-error A -I src -o src/search.cmo src/search.ml
+# File "src/search.ml", line 153, characters 75-77:
+# Error: This expression has type
+#          Odoc_info.Type.type_manifest = Odoc_type.type_manifest
+#        but an expression was expected of type Types.type_expr
+# Command exited with code 2.
+### stderr ###
+# make: *** [all] Error 10
+
+
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/4.02.0+trunk/backup/state-20140714054443.export"
+'opam install argot' failed.
