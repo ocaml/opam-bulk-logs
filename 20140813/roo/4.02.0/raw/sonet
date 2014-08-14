@@ -170,3 +170,167 @@ if ocamldep.opt >/dev/null 2>&1; then \
 if ocamldoc.opt >/dev/null 2>&1; then \
 		echo 'ocamldoc="ocamldoc.opt"' >>findlib.conf; \
 	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+for p in findlib; do ( cd src/$p; make opt ) || exit; done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+ocamldep *.ml *.mli >depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+ocamlopt -I +compiler-libs -c findlib_config.ml
+ocamlopt -I +compiler-libs -c fl_split.ml
+File "fl_split.ml", line 118, characters 43-62:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 119, characters 37-56:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 123, characters 34-47:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 124, characters 34-47:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 126, characters 26-39:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 127, characters 45-64:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 128, characters 38-57:
+Warning 3: deprecated: String.set
+File "fl_split.ml", line 136, characters 13-26:
+Warning 3: deprecated: String.create
+File "fl_split.ml", line 140, characters 1-19:
+Warning 3: deprecated: String.set
+ocamlopt -I +compiler-libs -c fl_metatoken.ml
+ocamlopt -I +compiler-libs -c fl_meta.ml
+File "fl_meta.mll", line 57, characters 13-26:
+Warning 3: deprecated: String.create
+File "fl_meta.mll", line 61, characters 11-29:
+Warning 3: deprecated: String.set
+File "fl_meta.mll", line 62, characters 11-22:
+Warning 3: deprecated: String.set
+ocamlopt -I +compiler-libs -c fl_metascanner.ml
+ocamlopt -I +compiler-libs -c fl_topo.ml
+ocamlopt -I +compiler-libs -c fl_package_base.ml
+ocamlopt -I +compiler-libs -c findlib.ml
+ocamlopt -I +compiler-libs -c fl_args.ml
+ocamlopt -I +compiler-libs -a -o findlib.cmxa findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx
+if [ 1 -gt 0 ]; then \
+	    ocamlopt -I +compiler-libs -shared -o findlib.cmxs findlib_config.cmx fl_split.cmx fl_metatoken.cmx fl_meta.cmx fl_metascanner.cmx fl_topo.cmx fl_package_base.cmx findlib.cmx fl_args.cmx; \
+	fi
+ocamlopt -I +compiler-libs -c ocaml_args.ml
+ocamlopt -I +compiler-libs -c frontend.ml
+File "frontend.ml", line 34, characters 24-36:
+Warning 3: deprecated: String.set
+File "frontend.ml", line 1718, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlopt -I +compiler-libs -o ocamlfind_opt findlib.cmxa unix.cmxa \
+		   ocaml_args.cmx frontend.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/man"
+make install-config
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+mkdir -p "`dirname \"/home/opam/.opam/4.02.0+trunk/lib/findlib.conf\"`"
+test -f "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf" || cp findlib.conf "/home/opam/.opam/4.02.0+trunk/lib/findlib.conf"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+for p in findlib; do ( cd src/$p; make install ); done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+mkdir -p "/home/opam/.opam/4.02.0+trunk/bin"
+test 1 -eq 0 || cp topfind "/home/opam/.opam/4.02.0+trunk/lib/ocaml"
+files=`../../tools/collect_files ../../Makefile.config findlib.cmi findlib.mli findlib.cma topfind.cmi topfind.mli fl_package_base.mli fl_package_base.cmi fl_metascanner.mli fl_metascanner.cmi fl_metatoken.cmi findlib_top.cma findlib.cmxa findlib.a findlib.cmxs META` && \
+	cp $files "/home/opam/.opam/4.02.0+trunk/lib/findlib"
+f="ocamlfind"; { test -f ocamlfind_opt && f="ocamlfind_opt"; }; \
+	cp $f "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind"
+# the following "if" block is only needed for 4.00beta2
+if [ 1 -eq 0 -a -f "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/topdirs.cmi" ]; then \
+	    cd "/home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/"; \
+	    cp topdirs.cmi toploop.cmi "/home/opam/.opam/4.02.0+trunk/lib/findlib/"; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+make install-meta
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+for x in `ls site-lib-src`; do if [ "$x" != "CVS" -a -f "site-lib-src/$x/META" ]; then mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/$x"; cp site-lib-src/$x/META "/home/opam/.opam/4.02.0+trunk/lib/$x"; fi; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+cd src/findlib; make install-num-top
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/num-top"
+cp num_top.cma num_top.cmi num_top_printers.cmi \
+		"/home/opam/.opam/4.02.0+trunk/lib/num-top"
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2/src/findlib'
+if [ 1 -eq 1 ]; then \
+		cp tools/safe_camlp4 "/home/opam/.opam/4.02.0+trunk/bin"; \
+	fi
+make install-doc
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1 /home/opam/.opam/4.02.0+trunk/man/man3 /home/opam/.opam/4.02.0+trunk/man/man5
+cp doc/ref-man/ocamlfind.1 /home/opam/.opam/4.02.0+trunk/man/man1
+cp doc/ref-man/META.5 doc/ref-man/site-lib.5 doc/ref-man/findlib.conf.5 /home/opam/.opam/4.02.0+trunk/man/man5
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfind.1.5.2'
+Installing ocamlfind.1.5.2.
+
+=-=-= Installing sonet.0.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/sonet.0.1.2+opam.tar.gz
+sending incremental file list
+sonet.0.1.2+opam.tar.gz
+
+sent 111,923 bytes  received 35 bytes  223,916.00 bytes/sec
+total size is 111,771  speedup is 1.00
+Building sonet.0.1.2:
+  make
+  make install
+ocamlbuild all.otarget
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "protocols/bencode/tests/_tags", line 1, characters 30-41:
+Warning: the tag "use_bencode" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c eventloop/epoll_stubs.c
+mv epoll_stubs.o eventloop/epoll_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o eventloop/eventloop eventloop/epoll_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/async_conn.mli > eventloop/async_conn.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/eventloop.mli > eventloop/eventloop.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/eventloop.cmi eventloop/eventloop.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/async_conn.cmi eventloop/async_conn.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/async_conn.ml > eventloop/async_conn.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/conn_map.ml > eventloop/conn_map.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/conn_map.cmo eventloop/conn_map.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/epoll_poller.mli > eventloop/epoll_poller.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/net_events.mli > eventloop/net_events.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/net_events.cmi eventloop/net_events.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/epoll_poller.cmi eventloop/epoll_poller.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/epoll_poller.ml > eventloop/epoll_poller.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/eventloop.ml > eventloop/eventloop.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/unix_poller.mli > eventloop/unix_poller.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/unix_poller.cmi eventloop/unix_poller.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/net_events.ml > eventloop/net_events.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules eventloop/unix_poller.ml > eventloop/unix_poller.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/async_conn.cmo eventloop/async_conn.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/async_conn.cmo eventloop/async_conn.ml
+File "eventloop/async_conn.ml", line 56, characters 12-25:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/epoll_poller.cmo eventloop/epoll_poller.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/eventloop.cmo eventloop/eventloop.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/net_events.cmo eventloop/net_events.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -o eventloop/unix_poller.cmo eventloop/unix_poller.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/net_events.cmx eventloop/net_events.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/epoll_poller.cmx eventloop/epoll_poller.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/unix_poller.cmx eventloop/unix_poller.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/eventloop.cmx eventloop/eventloop.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/conn_map.cmx eventloop/conn_map.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/async_conn.cmx eventloop/async_conn.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -annot -I eventloop -o eventloop/async_conn.cmx eventloop/async_conn.ml
+File "eventloop/async_conn.ml", line 56, characters 12-25:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -dllib -leventloop -cclib -leventloop eventloop/net_events.cmo eventloop/epoll_poller.cmo eventloop/unix_poller.cmo eventloop/eventloop.cmo eventloop/conn_map.cmo eventloop/async_conn.cmo -o eventloop/eventloop.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -cclib -leventloop eventloop/net_events.cmx eventloop/epoll_poller.cmx eventloop/unix_poller.cmx eventloop/eventloop.cmx eventloop/conn_map.cmx eventloop/async_conn.cmx -o eventloop/eventloop.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http.mli > protocols/http/http.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/uri.mli > protocols/http/uri.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/uri.cmi protocols/http/uri.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/http.cmi protocols/http/http.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http.ml > protocols/http/http.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/httputils.mli > protocols/http/httputils.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/httputils.cmi protocols/http/httputils.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http_client.mli > protocols/http/http_client.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/http_client.cmi protocols/http/http_client.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http_client.ml > protocols/http/http_client.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http_client_conn.mli > protocols/http/http_client_conn.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/http_client_conn.cmi protocols/http/http_client_conn.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/http_client_conn.ml > protocols/http/http_client_conn.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/httputils.ml > protocols/http/httputils.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules protocols/http/uri.ml > protocols/http/uri.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -annot -I eventloop -I protocols/http -o protocols/http/http.cmo protocols/http/http.ml
