@@ -6889,3 +6889,85 @@ ocaml setup.ml -build
 /home/opam/.opam/system/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -modules tests/wscat.ml > tests/wscat.ml.depends
 /home/opam/.opam/system/bin/ocamlfind ocamlc -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmo tests/wscat.ml
 /home/opam/.opam/system/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmx tests/wscat.ml
+/home/opam/.opam/system/bin/ocamlfind ocamlopt -g -linkpkg -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -package lwt.syntax -package ocplib-endian -package optcomp lib/websocket.cmxa tests/wscat.cmx -o tests/wscat.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.ml
+Installed /home/opam/.opam/system/lib/websocket/websocket.mli
+Installed /home/opam/.opam/system/lib/websocket/websocket.cma
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmxa
+Installed /home/opam/.opam/system/lib/websocket/websocket.a
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmxs
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmi
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.cmi
+Installed /home/opam/.opam/system/lib/websocket/websocket.cmx
+Installed /home/opam/.opam/system/lib/websocket/lwt_io_ext.cmx
+Installed /home/opam/.opam/system/lib/websocket/META
+Installing websocket.0.8.1.
+
+[ERROR] Due to some errors while processing iocamljs-kernel.0.4.4, the following actions will NOT proceed:
+ - install iocaml.0.4.4
+
+===== ERROR while installing iocamljs-kernel.0.4.4 =====
+# opam-version         1.1.1
+# os                   linux
+# command              make clean min
+# path                 /home/opam/.opam/system/build/iocamljs-kernel.0.4.4
+# compiler             system (4.01.0)
+# exit-code            2
+# env-file             /home/opam/.opam/system/build/iocamljs-kernel.0.4.4/iocamljs-kernel-15482-ece7a3.env
+# stdout-file          /home/opam/.opam/system/build/iocamljs-kernel.0.4.4/iocamljs-kernel-15482-ece7a3.out
+# stderr-file          /home/opam/.opam/system/build/iocamljs-kernel.0.4.4/iocamljs-kernel-15482-ece7a3.err
+### stdout ###
+# ...[truncated]
+# 		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler \
+# 		-I /usr/lib/ocaml/compiler-libs \
+# 		exec.ml
+# ocamlfind ocamlc -c iocaml.mli
+# ocamlfind ocamlc -c \
+# 		-syntax camlp4o -package js_of_ocaml.syntax \
+# 		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler \
+# 		-I /usr/lib/ocaml/compiler-libs \
+# 		iocaml.ml
+# make[1]: Leaving directory `/home/opam/.opam/system/build/iocamljs-kernel.0.4.4'
+### stderr ###
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /usr/lib/ocaml/compiler-libs, /usr/lib/ocaml
+# File "iocaml.ml", line 248, characters 32-48:
+# Error: This expression has type string -> string option
+#        but an expression was expected of type
+#          string * string -> string option
+#        Type string is not compatible with type string * string 
+# make[1]: *** [iocaml.cmo] Error 2
+# make: *** [min] Error 2
+
+
+=-=-= ocp-index.1.0.2 information =-=-=
+OCP-INDEX installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-index).
+
+=-=-= ocp-indent.1.4.1 information =-=-=
+OCP-INDENT installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-indent)
+
+To use it from Vim, add to your .vimrc:
+  let g:ocp_indent_vimfile = system("opam config var share")
+  let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+  let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+
+  autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
+.
+
+The former state can be restored with opam switch import -f "/home/opam/.opam/system/backup/state-20140715064014.export"
+'opam install iocaml' failed.
