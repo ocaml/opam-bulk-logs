@@ -80,3 +80,25 @@ OCamlbuild additional flags: .........................
 Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 
+/usr/bin/ocamlopt.opt unix.cmxa -I /usr/lib/ocaml/ocamlbuild /usr/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /usr/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules genspir.mli > genspir.mli.depends
+ocamlfind ocamlc -c -g -o genspir.cmi genspir.mli
+ocamlfind ocamldep -modules genspir.ml > genspir.ml.depends
+ocamlfind ocamlc -c -g -o genspir.cmo genspir.ml
+ocamlfind ocamlc -a genspir.cmo -o genspir.cma
+ocamlfind ocamlopt -c -g -o genspir.cmx genspir.ml
+ocamlfind ocamlopt -a genspir.cmx -o genspir.cmxa
+ocamlfind ocamlopt -shared genspir.cmx -o genspir.cmxs
+ocamlfind ocamldep -modules example.ml > example.ml.depends
+ocamlfind ocamlc -c -g -o example.cmo example.ml
+ocamlfind ocamlopt -c -g -o example.cmx example.ml
+ocamlfind ocamlopt -g -linkpkg genspir.cmxa example.cmx -o example.native
+Installed /home/opam/.opam/system/lib/genspir/genspir.mli
+Installed /home/opam/.opam/system/lib/genspir/genspir.cma
+Installed /home/opam/.opam/system/lib/genspir/genspir.cmxa
+Installed /home/opam/.opam/system/lib/genspir/genspir.a
+Installed /home/opam/.opam/system/lib/genspir/genspir.cmxs
+Installed /home/opam/.opam/system/lib/genspir/genspir.cmi
+Installed /home/opam/.opam/system/lib/genspir/genspir.cmx
+Installed /home/opam/.opam/system/lib/genspir/META
+Installing genspir.0.1.
