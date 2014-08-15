@@ -4375,3 +4375,90 @@ ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
 ocamlfind ocamlc -a syntax/pa_custom_printf.cmo -o syntax/pa_custom_printf.cma
 ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_custom_printf.cmx syntax/pa_custom_printf.ml
+ocamlfind ocamlopt -a syntax/pa_custom_printf.cmx -o syntax/pa_custom_printf.cmxa
+ocamlfind ocamlopt -shared syntax/pa_custom_printf.cmx -o syntax/pa_custom_printf.cmxs
+ocamlfind ocamldep -ppopt syntax/pa_custom_printf.cmo -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -syntax camlp4o -modules sample/test.ml > sample/test.ml.depends
+ocamlfind ocamlc -c -g -ppopt syntax/pa_custom_printf.cmo -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -syntax camlp4o -I sample -o sample/test.cmo sample/test.ml
+ocamlfind ocamlc -g -linkpkg -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit sample/test.cmo -o sample/test.byte
+./setup.exe -install 
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf_dummy.ml
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf.cma
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf.cmxa
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf.a
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf.cmxs
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf_dummy.cmi
+Installed /home/opam/.opam/system/lib/custom_printf/custom_printf_dummy.cmx
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.mli
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.cma
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.cmxa
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.a
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.cmxs
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.cmi
+Installed /home/opam/.opam/system/lib/custom_printf/pa_custom_printf.cmx
+Installed /home/opam/.opam/system/lib/custom_printf/META
+Installing custom_printf.109.27.00.
+
+=-=-= Installing cfstream.1.1.2 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/cfstream.1.1.2+opam.tar.gz
+sending incremental file list
+cfstream.1.1.2+opam.tar.gz
+
+sent 22,603 bytes  received 35 bytes  45,276.00 bytes/sec
+total size is 22,468  speedup is 0.99
+Building cfstream.1.1.2:
+  omake -j2 PREFIX=/home/opam/.opam/system COMPILE_TEST=false
+  omake install
+*** omake: reading OMakefiles
+--- Checking for ocamlfind... (found /home/opam/.opam/system/bin/ocamlfind)
+--- Checking for ocamlc.opt... (found /usr/bin/ocamlc.opt)
+--- Checking for ocamlopt.opt... (found /usr/bin/ocamlopt.opt)
+--- Checking whether ocamlc understands the "z" warnings... (yes)
+*** omake: finished reading OMakefiles (0.16 sec)
+--- Checking if ocamldep understands -modules... (yes)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (17.13 sec, 5/5 scans, 10/21 rules, 34/101 digests)
+*** omake: reading OMakefiles
+Building test
+*** omake: finished reading OMakefiles (0.01 sec)
+- build _build/src/lib <uninstall_lib>
++ ocamlfind remove cfstream
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/system/lib/cfstream
+- build _build/src/lib <install_lib>
++ ocamlfind install cfstream META *.cm[iox] *.o cfstream.cma cfstream.cmxa *.a
+Installed /home/opam/.opam/system/lib/cfstream/cfstream.a
+Installed /home/opam/.opam/system/lib/cfstream/cfstream.cmxa
+Installed /home/opam/.opam/system/lib/cfstream/cfstream.cma
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_stream.o
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_streamable.o
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_about.o
+Installed /home/opam/.opam/system/lib/cfstream/CFStream.o
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_about.cmx
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_streamable.cmo
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_streamable.cmi
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_about.cmo
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_stream.cmi
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_streamable.cmx
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_stream.cmo
+Installed /home/opam/.opam/system/lib/cfstream/CFStream.cmi
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_about.cmi
+Installed /home/opam/.opam/system/lib/cfstream/CFStream_stream.cmx
+Installed /home/opam/.opam/system/lib/cfstream/CFStream.cmo
+Installed /home/opam/.opam/system/lib/cfstream/CFStream.cmx
+Installed /home/opam/.opam/system/lib/cfstream/META
+*** omake: done (0.04 sec, 0/5 scans, 2/23 rules, 0/73 digests)
+Installing cfstream.1.1.2.
+
+=-=-= Installing core.109.47.00 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/core.109.47.00+opam.tar.gz
+sending incremental file list
+core.109.47.00+opam.tar.gz
+
+sent 700,024 bytes  received 35 bytes  1,400,118.00 bytes/sec
+total size is 699,725  speedup is 1.00
+Building core.109.47.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
