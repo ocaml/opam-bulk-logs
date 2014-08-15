@@ -147,3 +147,318 @@ cd runtime; make all
 make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/runtime'
 ocamlc -g -ccopt "-Wall -g" idlalloc.c
 ocamlc -g -ccopt "-Wall -g" comintf.c
+ocamlc -g -ccopt "-Wall -g" comerror.c
+comerror.c: In function 'camlidl_error':
+comerror.c:52:8: warning: unused variable 'msg' [-Wunused-variable]
+   char msg[1024];
+        ^
+comerror.c: In function 'camlidl_uncaught_exception':
+comerror.c:171:3: warning: implicit declaration of function 'caml_format_exception' [-Wimplicit-function-declaration]
+   char * msg = format_caml_exception(exn_bucket);
+   ^
+In file included from /usr/lib/ocaml/caml/mlvalues.h:18:0,
+                 from comerror.c:20:
+/usr/lib/ocaml/caml/compatibility.h:250:31: warning: initialization makes pointer from integer without a cast [enabled by default]
+ #define format_caml_exception caml_format_exception /*SP*/
+                               ^
+comerror.c:171:16: note: in expansion of macro 'format_caml_exception'
+   char * msg = format_caml_exception(exn_bucket);
+                ^
+rm -f libcamlidl.a
+ar rc libcamlidl.a idlalloc.o comintf.o comerror.o
+ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/runtime'
+cd lib; make all
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/lib'
+ocamlc -g -c com.mli
+ocamlc -g -c com.ml
+ocamlc -g -a -o com.cma com.cmo
+ocamlopt -c com.ml
+ocamlopt -a -o com.cmxa com.cmx
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/lib'
+cd tools; make all
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/tools'
+cd compiler; make install
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/compiler'
+cp camlidl /home/opam/.opam/system/bin
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/compiler'
+cd runtime; make install
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/runtime'
+cp camlidlruntime.h /home/opam/.opam/system/lib/camlidl/caml/camlidlruntime.h
+cp libcamlidl.a /home/opam/.opam/system/lib/camlidl/libcamlidl.a
+cd /home/opam/.opam/system/lib/camlidl; ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/runtime'
+cd lib; make install
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/lib'
+cp com.cmi com.cma com.cmxa com.a /home/opam/.opam/system/lib/camlidl
+cd /home/opam/.opam/system/lib/camlidl; ranlib com.a
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/lib'
+cd tools; make install
+make[1]: Entering directory `/home/opam/.opam/system/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/system/build/camlidl.1.05/tools'
+Installing camlidl.1.05.
+
+=-=-= Installing conf-gmp.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/conf-gmp.1+opam.tar.gz
+sending incremental file list
+conf-gmp.1+opam.tar.gz
+
+sent 381 bytes  received 35 bytes  832.00 bytes/sec
+total size is 250  speedup is 0.60
+Building conf-gmp.1:
+  cc -c test.c
+Installing conf-gmp.1.
+
+=-=-= Installing conf-mpfr.1 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/conf-mpfr.1+opam.tar.gz
+sending incremental file list
+conf-mpfr.1+opam.tar.gz
+
+sent 500 bytes  received 35 bytes  1,070.00 bytes/sec
+total size is 368  speedup is 0.69
+Building conf-mpfr.1:
+  cc test.c -lgmp -lmpfr
+Installing conf-mpfr.1.
+
+=-=-= Installing apron.0.9.10 =-=-=
+default    Synchronizing with /home/opam/opam-repository/archives/apron.0.9.10+opam.tar.gz
+sending incremental file list
+apron.0.9.10+opam.tar.gz
+
+sent 2,039,158 bytes  received 35 bytes  4,078,386.00 bytes/sec
+total size is 2,038,533  speedup is 1.00
+Applying opam.patch.
+patching file apron/Makefile
+patching file apron/box/Makefile
+patching file apron/examples/Makefile
+patching file apron/mlapronidl/Makefile
+patching file apron/newpolka/Makefile
+patching file apron/octagons/Makefile
+patching file apron/ppl/Makefile
+patching file apron/products/Makefile
+patching file apron/taylor1plus/Makefile
+patching file apron/test/Makefile
+patching file mlgmpidl/Makefile
+Building apron.0.9.10:
+  make rebuild
+  make
+  make install
+sed  -e '1 aHAS_MPFR=1\n' Makefile.config >mlgmpidl/Makefile.config
+cp -f Makefile.config apron/Makefile.config 
+(cd mlgmpidl; make depend all install)
+make[1]: Entering directory `/home/opam/.opam/system/build/apron.0.9.10/mlgmpidl'
+mkdir -p tmp
+for i in mpz mpq mpf mpfr gmp_random; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -prepro cpp -I /home/opam/.opam/system/build/apron.0.9.10/mlgmpidl tmp/${i}.idl; \
+		sed  -f sedscript_c tmp/${i}_stubs.c >${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module mpz
+tmp/mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module mpq
+tmp/mpq.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpq.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module mpf
+tmp/mpf.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpf.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpq.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpq.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module mpfr
+tmp/mpfr.idl:19:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpfr.idl:23:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+tmp/mpfr.idl:114:11: warning: missing terminating " character [enabled by default]
+ quote(MLI,"val strtofr : t -> string -> base:int -> mpfr_rnd_t -> int * int\n
+           ^
+tmp/mpfr.idl:115:14: warning: missing terminating ' character [enabled by default]
+   (** As MPFR's strtofr, but returns a pair [(r,i)] where [r] is the usual
+              ^
+tmp/mpfr.idl:119:7: warning: missing terminating " character [enabled by default]
+   *)\n")
+       ^
+mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpq.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpq.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpf.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpf.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module gmp_random
+mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpf.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpf.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpq.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpq.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpfr.idl:19:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpfr.idl:23:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpfr.idl:114:11: warning: missing terminating " character [enabled by default]
+ quote(MLI,"val strtofr : t -> string -> base:int -> mpfr_rnd_t -> int * int\n
+           ^
+mpfr.idl:115:14: warning: missing terminating ' character [enabled by default]
+   (** As MPFR's strtofr, but returns a pair [(r,i)] where [r] is the usual
+              ^
+mpfr.idl:119:7: warning: missing terminating " character [enabled by default]
+   *)\n")
+       ^
+ocamldep mpz.mli mpq.mli mpf.mli mpfr.mli gmp_random.mli mpzf.mli mpqf.mli mpfrf.mli mpz.ml mpq.ml mpf.ml mpfr.ml gmp_random.ml mpzf.ml mpqf.ml mpfrf.ml >Makefile.depend
+make[1]: Leaving directory `/home/opam/.opam/system/build/apron.0.9.10/mlgmpidl'
+make[1]: Entering directory `/home/opam/.opam/system/build/apron.0.9.10/mlgmpidl'
+ocamldep mpz.mli mpq.mli mpf.mli mpfr.mli gmp_random.mli mpzf.mli mpqf.mli mpfrf.mli mpz.ml mpq.ml mpf.ml mpfr.ml gmp_random.ml mpzf.ml mpqf.ml mpfrf.ml >Makefile.depend
+ocamlc.opt -g -c mpz.mli
+ocamlc.opt -g -c mpq.mli
+ocamlc.opt -g -c mpf.mli
+ocamlc.opt -g -c mpfr.mli
+ocamlc.opt -g -c gmp_random.mli
+ocamlc.opt -g -c mpzf.mli
+ocamlc.opt -g -c mpqf.mli
+ocamlc.opt -g -c mpfrf.mli
+ocamlc.opt -g -c mpz.ml
+ocamlc.opt -g -c mpq.ml
+ocamlc.opt -g -c mpf.ml
+ocamlc.opt -g -c mpfr.ml
+ocamlc.opt -g -c gmp_random.ml
+ocamlc.opt -g -c mpzf.ml
+ocamlc.opt -g -c mpqf.ml
+ocamlc.opt -g -c mpfrf.ml
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99  -U__STRICT_ANSI__ -fPIC -g -O0 -UNDEBUG -I/usr/include -I/usr/include -I/home/opam/.opam/system/lib/ocaml -I/home/opam/.opam/system/lib/camlidl -c -o mpz_caml.o mpz_caml.c
+mpz_caml.c: In function 'camlidl_mpz_mpz_init':
+mpz_caml.c:32:34: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpz_mpz_init(value _unit)
+                                  ^
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99  -U__STRICT_ANSI__ -fPIC -g -O0 -UNDEBUG -I/usr/include -I/usr/include -I/home/opam/.opam/system/lib/ocaml -I/home/opam/.opam/system/lib/camlidl -c -o mpq_caml.o mpq_caml.c
+mpq_caml.c: In function 'camlidl_mpq_mpq_init':
+mpq_caml.c:60:34: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpq_mpq_init(value _unit)
+                                  ^
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99  -U__STRICT_ANSI__ -fPIC -g -O0 -UNDEBUG -I/usr/include -I/usr/include -I/home/opam/.opam/system/lib/ocaml -I/home/opam/.opam/system/lib/camlidl -c -o mpf_caml.o mpf_caml.c
+mpf_caml.c: In function 'camlidl_mpf_mpf_get_default_prec':
+mpf_caml.c:68:46: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpf_mpf_get_default_prec(value _unit)
+                                              ^
+mpf_caml.c: In function 'camlidl_mpf_mpf_init':
+mpf_caml.c:78:34: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpf_mpf_init(value _unit)
+                                  ^
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99  -U__STRICT_ANSI__ -fPIC -g -O0 -UNDEBUG -I/usr/include -I/usr/include -I/home/opam/.opam/system/lib/ocaml -I/home/opam/.opam/system/lib/camlidl -c -o mpfr_caml.o mpfr_caml.c
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_get_default_rounding_mode':
+mpfr_caml.c:92:57: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_get_default_rounding_mode(value _unit)
+                                                         ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_get_emin':
+mpfr_caml.c:127:40: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_get_emin(value _unit)
+                                        ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_get_emax':
+mpfr_caml.c:137:40: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_get_emax(value _unit)
+                                        ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_clear_underflow':
+mpfr_caml.c:197:47: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_clear_underflow(value _unit)
+                                               ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_clear_overflow':
+mpfr_caml.c:203:46: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_clear_overflow(value _unit)
+                                              ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_clear_nanflag':
+mpfr_caml.c:209:45: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_clear_nanflag(value _unit)
+                                             ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_clear_inexflag':
+mpfr_caml.c:215:46: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_clear_inexflag(value _unit)
+                                              ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_clear_flags':
+mpfr_caml.c:221:43: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_clear_flags(value _unit)
+                                           ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_underflow_p':
+mpfr_caml.c:227:43: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_underflow_p(value _unit)
+                                           ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_overflow_p':
+mpfr_caml.c:237:42: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_overflow_p(value _unit)
+                                          ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_nanflag_p':
+mpfr_caml.c:247:41: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_nanflag_p(value _unit)
+                                         ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_inexflag_p':
+mpfr_caml.c:257:42: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_inexflag_p(value _unit)
+                                          ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_get_default_prec':
+mpfr_caml.c:276:48: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_get_default_prec(value _unit)
+                                                ^
+mpfr_caml.c: In function 'camlidl_mpfr_mpfr_init':
+mpfr_caml.c:286:36: warning: unused parameter '_unit' [-Wunused-parameter]
+ value camlidl_mpfr_mpfr_init(value _unit)
+                                    ^
