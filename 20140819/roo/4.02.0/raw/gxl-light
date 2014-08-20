@@ -48,3 +48,45 @@ ocamlc -o xml-light.cma -a  xml_parser.cmo xml_lexer.cmo dtd.cmo xmlParser.cmo x
 ocamlc xml-light.cma test.ml -o test.exe
 mkdir doc
 ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
+ocamlopt  -c xml_parser.ml
+ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
+ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
+ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/META
+Installing xml-light.2.4.
+Building gxl-light.1.0:
+  make build
+  make install
+ocamlopt -I `ocamlfind query xml-light` -c GXL.ml gxlDocument.ml
+ocamlopt -I `ocamlfind query xml-light` -a GXL.cmx gxlDocument.cmx -o gxl-light.cmxa
+ocamlc -I `ocamlfind query xml-light` -c GXL.ml gxlDocument.ml
+ocamlc -I `ocamlfind query xml-light` -a GXL.cmo gxlDocument.cmo -o gxl-light.cma
+ocamlfind install gxl-light gxl-light.cmxa gxl-light.cma META gxlDocument.cmi GXL.cmi gxl-light.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/gxl-light.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/GXL.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/gxlDocument.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/gxl-light.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/gxl-light.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/gxl-light/META
+Installing gxl-light.1.0.
