@@ -361,3 +361,10 @@ ocamlfind ocamldep -package ctypes -modules src/tgl4.ml > src/tgl4.ml.depends
 ocamlfind ocamldep -package ctypes -modules src/tgl4.mli > src/tgl4.mli.depends
 ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmi src/tgl4.mli
 ocamlfind ocamlopt -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmx src/tgl4.ml
++ ocamlfind ocamlopt -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmx src/tgl4.ml
+File "src/tgl4.ml", line 776, characters 14-27:
+Warning 3: deprecated: String.create
+File "src/tgl4.ml", line 777, characters 30-52:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -a -thread -ccopt -Wl,-no-as-needed -package ctypes.foreign -package ctypes src/tgl4.cmx -o src/tgl4.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmo src/tgl4.ml
