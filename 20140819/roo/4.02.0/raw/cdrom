@@ -6,9 +6,9 @@ Ubuntu depexts:
 ++ opam install cdrom -e source,linux
 + srcext=
 + echo Ubuntu srcexts:
+Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install cdrom
-Ubuntu srcexts:
 The following actions will be performed:
  - install   obuild.0.0.8                          [required by cdrom]
  - install   cdrom.0.9.1
@@ -18,15 +18,15 @@ The following actions will be performed:
 [default] Synchronizing with /home/opam/opam-repository/archives/cdrom.0.9.1+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/obuild.0.0.8+opam.tar.gz
 sending incremental file list
-obuild.0.0.8+opam.tar.gz
 sending incremental file list
-
-sent 72,029 bytes  received 35 bytes  144,128.00 bytes/sec
-total size is 71,884  speedup is 1.00
 cdrom.0.9.1+opam.tar.gz
+obuild.0.0.8+opam.tar.gz
 
 sent 12,802 bytes  received 35 bytes  25,674.00 bytes/sec
 total size is 12,670  speedup is 0.99
+
+sent 72,029 bytes  received 35 bytes  144,128.00 bytes/sec
+total size is 71,884  speedup is 1.00
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Building obuild.0.0.8:
@@ -110,17 +110,17 @@ Warning 3: deprecated: String.create
 [13 of 54] Compiling Obuild.Expr
 [14 of 54] Compiling Obuild.Dag
 [15 of 54] Compiling Obuild.Modname
+[16 of 54] Compiling Obuild.Utils
 File "obuild/dag.ml", line 191, characters 23-34:
 Warning 3: deprecated: String.copy
 File "obuild/dag.ml", line 194, characters 39-62:
 Warning 3: deprecated: String.set
 
-[16 of 54] Compiling Obuild.Utils
 [17 of 54] Compiling Obuild.Taskdep
 [18 of 54] Compiling Obuild.Helper
 [19 of 54] Compiling Obuild.Dist
-[20 of 54] Compiling Obuild.Dagutils
-[21 of 54] Compiling Obuild.Process
+[20 of 54] Compiling Obuild.Process
+[21 of 54] Compiling Obuild.Dagutils
 File "obuild/process.ml", line 59, characters 12-25:
 Warning 3: deprecated: String.create
 
@@ -160,9 +160,9 @@ Warning 3: deprecated: String.create
 [53 of 54] Linking executable dist/build/obuild/obuild
 [54 of 54] Checking dist/build/obuild
 
-real	0m6.816s
-user	0m5.332s
-sys	0m1.875s
+real	0m7.584s
+user	0m6.219s
+sys	0m2.175s
 Installing obuild.0.0.8.
 Building cdrom.0.9.1:
   make
@@ -226,13 +226,6 @@ Analysing Query
 [3 of 8] Compiling Cdrom
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmx -c lib/cdrom.ml
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmo -c lib/cdrom.ml
-  compilation order: Cdrom
-  self deps: 
-package deps: [unix]
-warning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.o[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
-[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxs
-[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cma
-  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o dist/build/lib-cdrom/stubs_cdrom dist/build/lib-cdrom/cdrom_stubs.c.o
 lib/cdrom_stubs.c: In function 'stub_CDROM_DRIVE_STATUS':
 lib/cdrom_stubs.c:47:6: warning: variable 'ok' set but not used [-Wunused-but-set-variable]
   int ok = 0;                                                                     \
@@ -248,6 +241,13 @@ lib/cdrom_stubs.c:82:1: note: in expansion of macro 'make_ioctl_stub'
  make_ioctl_stub(CDROM_DISC_STATUS);
  ^
 
+  compilation order: Cdrom
+  self deps: 
+package deps: [unix]
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxs
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cma
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o dist/build/lib-cdrom/stubs_cdrom dist/build/lib-cdrom/cdrom_stubs.c.o
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -o dist/build/lib-cdrom/cdrom.cma -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -dllib -lstubs_cdrom cdrom.cmo
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -shared -o dist/build/lib-cdrom/cdrom.cmxs -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -o dist/build/lib-cdrom/cdrom.cmxa -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
@@ -323,7 +323,7 @@ Analysing Query
   compilation order: Cdrom
   self deps: 
 package deps: [unix]
-warning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.o[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
+warning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.owarning: (temporarily?) missing file dist/build/lib-cdrom/cdrom_stubs.c.o[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
 [4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxs
 [4 of 8] Linking library dist/build/lib-cdrom/cdrom.cma
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o dist/build/lib-cdrom/stubs_cdrom dist/build/lib-cdrom/cdrom_stubs.c.o
@@ -356,8 +356,8 @@ package deps: [unix,cdrom]
 [8 of 8] Checking dist/build/query
 schedule finished: #processes=9 max_concurrency=2
 ocamlfind remove cdrom
-ocamlfind install cdrom dist/build/lib-cdrom/cdrom.a dist/build/lib-cdrom/cdrom.cmi dist/build/lib-cdrom/cdrom.cmx dist/build/lib-cdrom/cdrom.o dist/build/lib-cdrom/dllstubs_cdrom.so dist/build/lib-cdrom/cdrom.cma dist/build/lib-cdrom/cdrom.cmo dist/build/lib-cdrom/cdrom.cmxa dist/build/lib-cdrom/cdrom_stubs.c.o dist/build/lib-cdrom/libstubs_cdrom.a lib/META lib/cdrom.mli 
 ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/cdrom
+ocamlfind install cdrom dist/build/lib-cdrom/cdrom.a dist/build/lib-cdrom/cdrom.cmi dist/build/lib-cdrom/cdrom.cmx dist/build/lib-cdrom/cdrom.o dist/build/lib-cdrom/dllstubs_cdrom.so dist/build/lib-cdrom/cdrom.cma dist/build/lib-cdrom/cdrom.cmo dist/build/lib-cdrom/cdrom.cmxa dist/build/lib-cdrom/cdrom_stubs.c.o dist/build/lib-cdrom/libstubs_cdrom.a lib/META lib/cdrom.mli 
 Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.mli
 Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/libstubs_cdrom.a
 Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom_stubs.c.o
