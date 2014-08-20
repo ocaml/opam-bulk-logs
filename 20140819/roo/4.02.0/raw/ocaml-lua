@@ -176,3 +176,55 @@ ocamlfind ocamlopt -shared -linkall -I src src/lua.cmxa -o src/lua.cmxs
 ocaml setup.ml -build 
 File "setup.ml", line 213, characters 8-26:
 Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+ocamlfind ocamlopt -shared -linkall -I src src/lua.cmxa -o src/lua.cmxs
+ocaml setup.ml -doc 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+ocamlfind ocamldoc -dump src/lua_api.odoc -package unix -package threads -I +threads -I src src/lua_api.ml
++ ocamlfind ocamldoc -dump src/lua_api.odoc -package unix -package threads -I +threads -I src src/lua_api.ml
+ocamlfind: [WARNING] Package `threads' signals error: Missing -thread or -vmthread switch
+Warning: Module or module type Lua_aux_lib not found
+Warning: Module or module type Lua_api_lib not found
+Warning: Module or module type Lua_aux_lib not found
+Warning: Module or module type Lua_api_lib not found
+Warning: Element Lua_aux_lib.newstate not found
+Warning: Element Lua_api_lib not found
+Warning: Element Lua_aux_lib not found
+ocamlfind ocamldoc -dump src/lua_api_lib.odoc -package unix -package threads -I +threads -I src src/lua_api_lib.mli
++ ocamlfind ocamldoc -dump src/lua_api_lib.odoc -package unix -package threads -I +threads -I src src/lua_api_lib.mli
+ocamlfind: [WARNING] Package `threads' signals error: Missing -thread or -vmthread switch
+Warning: Element Lua_aux_lib.newstate not found
+ocamlfind ocamldoc -dump src/lua_aux_lib.odoc -package unix -package threads -I +threads -I src src/lua_aux_lib.mli
++ ocamlfind ocamldoc -dump src/lua_aux_lib.odoc -package unix -package threads -I +threads -I src src/lua_aux_lib.mli
+ocamlfind: [WARNING] Package `threads' signals error: Missing -thread or -vmthread switch
+rm -rf src/api-lua.docdir
+mkdir -p src/api-lua.docdir
+ocamlfind ocamldoc -load src/lua_api.odoc -load src/lua_api_lib.odoc -load src/lua_aux_lib.odoc -html -d src/api-lua.docdir
+ocaml setup.ml -install 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api_lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_aux_lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/liblua_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_aux_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_api_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/lua_aux_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lua/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllua_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllua_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing ocaml-lua.1.2.
