@@ -72,3 +72,19 @@ total size is 24,751  speedup is 0.99
 
 sent 547,373 bytes  received 35 bytes  1,094,816.00 bytes/sec
 total size is 547,113  speedup is 1.00
+zephyrus.0.1+opam.tar.gz
+
+sent 25,941,424 bytes  received 35 bytes  3,990,993.69 bytes/sec
+total size is 25,934,966  speedup is 1.00
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
