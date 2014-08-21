@@ -1917,3 +1917,20 @@ ocamlfind ocamlc -c -g -bin-annot -syntax camlp4o -package camlp4.quotations.r -
 ocamlbuild -use-ocamlfind  HardCamlJS.cma
 ocamlfind ocamldep -syntax camlp4o -package js_of_ocaml,js_of_ocaml.syntax -modules js/wave.ml > js/wave.ml.depends
 ocamlfind ocamlc -c -g -bin-annot -syntax camlp4o -package js_of_ocaml,js_of_ocaml.syntax -I js -I src -o js/wave.cmo js/wave.ml
+ocamlfind ocamlc -pack -g js/wave.cmo -o HardCamlJS.cmo
+ocamlfind ocamlc -a HardCaml.cmo HardCamlJS.cmo -o HardCamlJS.cma
+ocamlbuild -use-ocamlfind  HardCaml.cma HardCaml.cmxa
+ocamlbuild -use-ocamlfind  pa_hardcaml.cmo
+ocamlbuild -use-ocamlfind  HardCamlJS.cma
+ocamlfind install hardcaml META \
+		_build/HardCaml.cmi _build/HardCaml.cmxa _build/HardCaml.cma _build/HardCaml.a _build/HardCamlJS.cmi _build/HardCamlJS.cma  _build/src/pa_hardcaml.cmo _build/src/pa_hardcaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/pa_hardcaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/pa_hardcaml.cmo
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCamlJS.cma
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCamlJS.cmi
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCaml.a
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCaml.cma
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/HardCaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/hardcaml/META
+Installing hardcaml.1.0.0.
