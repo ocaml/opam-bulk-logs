@@ -1425,3 +1425,222 @@ ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
 ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building atdgen.1.3.1:
+  make
+  make install BINDIR=/home/opam/.opam/4.01.0/bin
+echo 'let version = "1.3.1"' > ag_version.ml
+ocamlfind ocamldep -package "str atd biniou yojson" ag_doc.mli ag_string_match.mli ag_util.mli ag_version.ml ag_error.ml ag_mapping.ml ag_doc_lexer.ml ag_doc.ml ag_ocaml.ml ag_indent.ml ag_ox_emit.ml ag_biniou.ml ag_xb_emit.ml ag_ob_mapping.ml ag_ob_spe.ml ag_ob_emit.ml ag_string_match.ml ag_json.ml ag_oj_mapping.ml ag_oj_emit.ml ag_validate.ml ag_ov_mapping.ml ag_ov_emit.ml ag_ob_run.ml ag_oj_run.ml ag_ov_run.ml ag_util.ml > dep
+echo 1.3.1 > VERSION
+echo 'version = "1.3.1"' > META
+cat META.in >> META
+ocamllex ag_doc_lexer.mll
+46 states, 313 transitions, table size 1528 bytes
+make dep
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+make[1]: `dep' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+make atdgen.cma atdgen.run
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_version.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_error.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_mapping.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_doc_lexer.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_doc.mli
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ocaml.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_indent.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ox_emit.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_biniou.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_xb_emit.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ob_mapping.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ob_spe.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ob_emit.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_string_match.mli
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_json.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_oj_mapping.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_oj_emit.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_validate.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ov_mapping.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ov_emit.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ob_run.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_oj_run.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_ov_run.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_util.mli
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_doc.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_string_match.ml
+ocamlfind ocamlc -dtypes -g -c -package "str atd biniou yojson" ag_util.ml
+ocamlfind ocamlc -dtypes -g -o atdgen.cma -a ag_version.cmo ag_error.cmo ag_mapping.cmo ag_doc_lexer.cmo ag_doc.cmo ag_ocaml.cmo ag_indent.cmo ag_ox_emit.cmo ag_biniou.cmo ag_xb_emit.cmo ag_ob_mapping.cmo ag_ob_spe.cmo ag_ob_emit.cmo ag_string_match.cmo ag_json.cmo ag_oj_mapping.cmo ag_oj_emit.cmo ag_validate.cmo ag_ov_mapping.cmo ag_ov_emit.cmo ag_ob_run.cmo ag_oj_run.cmo ag_ov_run.cmo ag_util.cmo
+ocamlfind ocamlc -dtypes -g -o atdgen.run \
+		-package "str atd biniou yojson" -linkpkg \
+		ag_version.cmo ag_error.cmo ag_mapping.cmo ag_doc_lexer.cmo ag_doc.cmo ag_ocaml.cmo ag_indent.cmo ag_ox_emit.cmo ag_biniou.cmo ag_xb_emit.cmo ag_ob_mapping.cmo ag_ob_spe.cmo ag_ob_emit.cmo ag_string_match.cmo ag_json.cmo ag_oj_mapping.cmo ag_oj_emit.cmo ag_validate.cmo ag_ov_mapping.cmo ag_ov_emit.cmo ag_ob_run.cmo ag_oj_run.cmo ag_ov_run.cmo ag_util.cmo ag_main.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+make atdgen.cmxa atdgen.cmxs atdgen
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_version.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_error.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_mapping.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_doc_lexer.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_doc.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ocaml.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_indent.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ox_emit.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_biniou.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_xb_emit.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ob_mapping.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ob_spe.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ob_emit.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_string_match.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_json.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_oj_mapping.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_oj_emit.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_validate.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ov_mapping.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ov_emit.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ob_run.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_oj_run.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_ov_run.ml
+ocamlfind ocamlopt -dtypes -g -c -package "str atd biniou yojson" ag_util.ml
+ocamlfind ocamlopt -dtypes -g -o atdgen.cmxa -a ag_version.cmx ag_error.cmx ag_mapping.cmx ag_doc_lexer.cmx ag_doc.cmx ag_ocaml.cmx ag_indent.cmx ag_ox_emit.cmx ag_biniou.cmx ag_xb_emit.cmx ag_ob_mapping.cmx ag_ob_spe.cmx ag_ob_emit.cmx ag_string_match.cmx ag_json.cmx ag_oj_mapping.cmx ag_oj_emit.cmx ag_validate.cmx ag_ov_mapping.cmx ag_ov_emit.cmx ag_ob_run.cmx ag_oj_run.cmx ag_ov_run.cmx ag_util.cmx
+ocamlfind ocamlopt -dtypes -g -shared -o atdgen.cmxs ag_version.cmx ag_error.cmx ag_mapping.cmx ag_doc_lexer.cmx ag_doc.cmx ag_ocaml.cmx ag_indent.cmx ag_ox_emit.cmx ag_biniou.cmx ag_xb_emit.cmx ag_ob_mapping.cmx ag_ob_spe.cmx ag_ob_emit.cmx ag_string_match.cmx ag_json.cmx ag_oj_mapping.cmx ag_oj_emit.cmx ag_validate.cmx ag_ov_mapping.cmx ag_ov_emit.cmx ag_ob_run.cmx ag_oj_run.cmx ag_ov_run.cmx ag_util.cmx
+ocamlfind ocamlopt -dtypes -g -o atdgen \
+		-package "str atd biniou yojson" -linkpkg \
+		ag_version.cmx ag_error.cmx ag_mapping.cmx ag_doc_lexer.cmx ag_doc.cmx ag_ocaml.cmx ag_indent.cmx ag_ox_emit.cmx ag_biniou.cmx ag_xb_emit.cmx ag_ob_mapping.cmx ag_ob_spe.cmx ag_ob_emit.cmx ag_string_match.cmx ag_json.cmx ag_oj_mapping.cmx ag_oj_emit.cmx ag_validate.cmx ag_ov_mapping.cmx ag_ov_emit.cmx ag_ob_run.cmx ag_oj_run.cmx ag_ov_run.cmx ag_util.cmx ag_main.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/atdgen.1.3.1'
+test ! -f atdgen.run || cp atdgen.run /home/opam/.opam/4.01.0/bin/
+test ! -f atdgen.run.exe || cp atdgen.run.exe /home/opam/.opam/4.01.0/bin/
+test ! -f atdgen || cp atdgen /home/opam/.opam/4.01.0/bin/
+test ! -f atdgen.exe || cp atdgen.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install atdgen META \
+		 ag_doc.mli ag_string_match.mli ag_util.mli ag_version.cmi ag_error.cmi ag_mapping.cmi ag_doc_lexer.cmi ag_doc.cmi ag_ocaml.cmi ag_indent.cmi ag_ox_emit.cmi ag_biniou.cmi ag_xb_emit.cmi ag_ob_mapping.cmi ag_ob_spe.cmi ag_ob_emit.cmi ag_string_match.cmi ag_json.cmi ag_oj_mapping.cmi ag_oj_emit.cmi ag_validate.cmi ag_ov_mapping.cmi ag_ov_emit.cmi ag_ob_run.cmi ag_oj_run.cmi ag_ov_run.cmi ag_util.cmi ag_version.cmo ag_error.cmo ag_mapping.cmo ag_doc_lexer.cmo ag_doc.cmo ag_ocaml.cmo ag_indent.cmo ag_ox_emit.cmo ag_biniou.cmo ag_xb_emit.cmo ag_ob_mapping.cmo ag_ob_spe.cmo ag_ob_emit.cmo ag_string_match.cmo ag_json.cmo ag_oj_mapping.cmo ag_oj_emit.cmo ag_validate.cmo ag_ov_mapping.cmo ag_ov_emit.cmo ag_ob_run.cmo ag_oj_run.cmo ag_ov_run.cmo ag_util.cmo ag_version.cmx ag_error.cmx ag_mapping.cmx ag_doc_lexer.cmx ag_doc.cmx ag_ocaml.cmx ag_indent.cmx ag_ox_emit.cmx ag_biniou.cmx ag_xb_emit.cmx ag_ob_mapping.cmx ag_ob_spe.cmx ag_ob_emit.cmx ag_string_match.cmx ag_json.cmx ag_oj_mapping.cmx ag_oj_emit.cmx ag_validate.cmx ag_ov_mapping.cmx ag_ov_emit.cmx ag_ob_run.cmx ag_oj_run.cmx ag_ov_run.cmx ag_util.cmx atdgen.cmxs ag_version.o ag_error.o ag_mapping.o ag_doc_lexer.o ag_doc.o ag_ocaml.o ag_indent.o ag_ox_emit.o ag_biniou.o ag_xb_emit.o ag_ob_mapping.o ag_ob_spe.o ag_ob_emit.o ag_string_match.o ag_json.o ag_oj_mapping.o ag_oj_emit.o ag_validate.o ag_ov_mapping.o ag_ov_emit.o ag_ob_run.o ag_oj_run.o ag_ov_run.o ag_util.o \
+			atdgen.cma atdgen.a atdgen.cmxa
+Installed /home/opam/.opam/4.01.0/lib/atdgen/atdgen.cmxa
+Installed /home/opam/.opam/4.01.0/lib/atdgen/atdgen.a
+Installed /home/opam/.opam/4.01.0/lib/atdgen/atdgen.cma
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_util.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_run.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_run.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_run.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_emit.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_mapping.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_validate.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_emit.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_mapping.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_json.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_string_match.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_emit.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_spe.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_mapping.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_xb_emit.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ox_emit.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_indent.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ocaml.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc_lexer.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_mapping.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_error.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_version.o
+Installed /home/opam/.opam/4.01.0/lib/atdgen/atdgen.cmxs
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_util.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_run.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_run.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_run.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_emit.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_mapping.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_validate.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_emit.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_mapping.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_json.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_string_match.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_emit.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_spe.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_mapping.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_xb_emit.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ox_emit.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_indent.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ocaml.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_mapping.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_error.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_version.cmx
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_util.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_run.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_run.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_run.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_emit.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_mapping.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_validate.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_emit.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_mapping.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_json.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_string_match.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_emit.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_spe.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_mapping.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_xb_emit.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ox_emit.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_indent.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ocaml.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc_lexer.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_mapping.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_error.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_version.cmo
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_util.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_run.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_run.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_run.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_emit.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ov_mapping.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_validate.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_emit.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_oj_mapping.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_json.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_string_match.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_emit.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_spe.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ob_mapping.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_xb_emit.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ox_emit.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_indent.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_ocaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc_lexer.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_mapping.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_error.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_version.cmi
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_util.mli
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_string_match.mli
+Installed /home/opam/.opam/4.01.0/lib/atdgen/ag_doc.mli
+Installed /home/opam/.opam/4.01.0/lib/atdgen/META
+Installing atdgen.1.3.1.
+Building swdogen.0.1.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
