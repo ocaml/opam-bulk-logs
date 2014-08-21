@@ -1,0 +1,48 @@
+++ opam install oclock -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install oclock -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install oclock
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   oclock.0.4.0
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/oclock.0.4.0+opam.tar.gz
+sending incremental file list
+oclock.0.4.0+opam.tar.gz
+
+sent 6,159 bytes  received 35 bytes  12,388.00 bytes/sec
+total size is 6,026  speedup is 0.97
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building oclock.0.4.0:
+  make all
+  make install
+ocamldep  *.ml *.mli > .depend
+ocamlc  -c oclock.mli
+ocamlc  -c oclock.ml
+cc -fPIC -I/home/opam/.opam/4.01.0/lib/ocaml   -c -o oclock_stubs.o oclock_stubs.c
+ld -shared -o dlloclock.so oclock_stubs.o -lrt
+ocamlc  -dllib -loclock oclock.cmo -a -o oclock.cma
+ocamlopt  -c oclock.ml
+ar crs liboclock.a oclock_stubs.o
+ocamlopt  -cclib -loclock -cclib -lrt -cclib -lpthread oclock.cmx -a -o oclock.cmxa
+rm oclock_stubs.o
+ocamlfind install oclock oclock.cma oclock.cmxa liboclock.a oclock.cmi oclock.a META -dll dlloclock.so 
+Installed /home/opam/.opam/4.01.0/lib/oclock/oclock.a
+Installed /home/opam/.opam/4.01.0/lib/oclock/oclock.cmi
+Installed /home/opam/.opam/4.01.0/lib/oclock/liboclock.a
+Installed /home/opam/.opam/4.01.0/lib/oclock/oclock.cmxa
+Installed /home/opam/.opam/4.01.0/lib/oclock/oclock.cma
+Installed /home/opam/.opam/4.01.0/lib/oclock/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlloclock.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlloclock.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing oclock.0.4.0.
