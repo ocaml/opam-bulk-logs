@@ -1,14 +1,14 @@
 ++ opam install merlin -e ubuntu
 + depext=
 + echo Ubuntu depexts:
-Ubuntu depexts:
 + '[' '' '!=' '' ']'
+Ubuntu depexts:
 ++ opam install merlin -e source,linux
-Ubuntu srcexts:
 + srcext=
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install merlin
+Ubuntu srcexts:
 The following actions will be performed:
  - install   cppo.0.9.4                            [required by yojson]
  - install   easy-format.1.0.2                     [required by yojson]
@@ -24,27 +24,27 @@ The following actions will be performed:
 [default] Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
 sending incremental file list
 sending incremental file list
-sending incremental file list
-easy-format.1.0.2+opam.tar.gz
 biniou.1.0.9+opam.tar.gz
 cppo.0.9.4+opam.tar.gz
-
-sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
-total size is 13,580  speedup is 0.99
+sending incremental file list
+easy-format.1.0.2+opam.tar.gz
 
 sent 24,346 bytes  received 35 bytes  48,762.00 bytes/sec
 total size is 24,213  speedup is 0.99
 
 sent 21,321 bytes  received 35 bytes  42,712.00 bytes/sec
 total size is 21,190  speedup is 0.99
+
+sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+total size is 13,580  speedup is 0.99
 [default] Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/merlin.1.7+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/yojson.1.1.8+opam.tar.gz
 sending incremental file list
 sending incremental file list
+sending incremental file list
 menhir.20130912+opam.tar.gz
 yojson.1.1.8+opam.tar.gz
-sending incremental file list
 merlin.1.7+opam.tar.gz
 
 sent 24,885 bytes  received 35 bytes  49,840.00 bytes/sec
@@ -780,11 +780,6 @@ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
-+ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
-File "lexer.mll", line 60, characters 4-26:
-Warning 3: deprecated: String.set
-File "lexer.mll", line 68, characters 18-29:
-Warning 3: deprecated: String.copy
 + ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 File "parameterizedGrammar.ml", line 340, characters 26-38:
 Warning 3: deprecated: Array.create
@@ -793,6 +788,11 @@ File "partialGrammar.ml", line 259, characters 10-21:
 Warning 3: deprecated: String.copy
 File "partialGrammar.ml", line 262, characters 6-18:
 Warning 3: deprecated: String.set
++ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
+File "lexer.mll", line 60, characters 4-26:
+Warning 3: deprecated: String.set
+File "lexer.mll", line 68, characters 18-29:
+Warning 3: deprecated: String.copy
 ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
 ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
 ocamlfind ocamlc -c -o tokenType.cmi tokenType.mli
@@ -1658,530 +1658,3 @@ ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/
 ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typemod.cmi src/ocaml/typing/typemod.mli
 ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/browse_misc.cmo src/browse_misc.ml
 ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/browse.cmx src/browse.ml
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/extensions_utils.ml > src/extensions_utils.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/chunk_parser.ml > src/ocaml/chunk_parser.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/fake.ml > src/fake.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/logger.ml > src/logger.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline_utils.ml > src/outline_utils.ml.depends
-ocamlfind ocamldep -modules src/ocaml/parsing/syntaxerr.ml > src/ocaml/parsing/syntaxerr.ml.depends
-ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/fake.cmx src/fake.ml
-ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/logger.cmx src/logger.ml
-ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/outline_utils.cmx src/outline_utils.ml
-ocamlfind ocamlopt -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/syntaxerr.cmx src/ocaml/parsing/syntaxerr.ml
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/extensions.ml > src/extensions.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/extensions.mli > src/extensions.mli.depends
-ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/extensions.cmi src/extensions.mli
-ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/chunk_parser.cmx src/ocaml/chunk_parser.ml
-/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/lexer.mll
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/lexer.ml > src/lexer.ml.depends
-ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/lexer.mli > src/lexer.mli.depends
-ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/lexer.cmi src/lexer.mli
-ocamlfind ocamldep -modules src/ocaml/typing/typemod.ml > src/ocaml/typing/typemod.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/cmt_format.ml > src/ocaml/typing/cmt_format.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/cmt_format.mli > src/ocaml/typing/cmt_format.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/cmt_format.cmi src/ocaml/typing/cmt_format.mli
-ocamlfind ocamldep -modules src/ocaml/typing/ctype.ml > src/ocaml/typing/ctype.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/includemod.ml > src/ocaml/typing/includemod.ml.depends
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/ctype.cmx src/ocaml/typing/ctype.ml
-+ ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/ctype.cmx src/ocaml/typing/ctype.ml
-File "src/ocaml/typing/ctype.ml", line 258, characters 5-14:
-Warning 3: deprecated: Sort.list
-File "src/ocaml/typing/ctype.ml", line 387, characters 22-31:
-Warning 3: deprecated: Sort.list
-ocamlfind ocamldep -modules src/ocaml/typing/includeclass.ml > src/ocaml/typing/includeclass.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/includeclass.mli > src/ocaml/typing/includeclass.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/includeclass.cmi src/ocaml/typing/includeclass.mli
-ocamlfind ocamldep -modules src/ocaml/typing/printtyp.ml > src/ocaml/typing/printtyp.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/oprint.ml > src/ocaml/typing/oprint.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/oprint.mli > src/ocaml/typing/oprint.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/oprint.cmi src/ocaml/typing/oprint.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/oprint.cmx src/ocaml/typing/oprint.ml
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/printtyp.cmx src/ocaml/typing/printtyp.ml
-+ ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/printtyp.cmx src/ocaml/typing/printtyp.ml
-File "src/ocaml/typing/printtyp.ml", line 208, characters 24-42:
-Warning 3: deprecated: Lazy.lazy_from_val
-ocamlfind ocamldep -modules src/ocaml/typing/includecore.ml > src/ocaml/typing/includecore.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/mtype.ml > src/ocaml/typing/mtype.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/mtype.mli > src/ocaml/typing/mtype.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/mtype.cmi src/ocaml/typing/mtype.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/includeclass.cmx src/ocaml/typing/includeclass.ml
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/includecore.cmx src/ocaml/typing/includecore.ml
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/mtype.cmx src/ocaml/typing/mtype.ml
-ocamlfind ocamldep -modules src/ocaml/typing/stypes.ml > src/ocaml/typing/stypes.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/stypes.mli > src/ocaml/typing/stypes.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/stypes.cmi src/ocaml/typing/stypes.mli
-ocamlfind ocamldep -modules src/ocaml/typing/typeclass.ml > src/ocaml/typing/typeclass.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/typeclass.mli > src/ocaml/typing/typeclass.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typeclass.cmi src/ocaml/typing/typeclass.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/cmt_format.cmx src/ocaml/typing/cmt_format.ml
-+ ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/cmt_format.cmx src/ocaml/typing/cmt_format.ml
-File "src/ocaml/typing/cmt_format.ml", line 26, characters 21-34:
-Warning 3: deprecated: String.create
-ocamlfind ocamldep -modules src/ocaml/typing/parmatch.ml > src/ocaml/typing/parmatch.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/parmatch.mli > src/ocaml/typing/parmatch.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/parmatch.cmi src/ocaml/typing/parmatch.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/stypes.cmx src/ocaml/typing/stypes.ml
-ocamlfind ocamldep -modules src/ocaml/typing/typecore.ml > src/ocaml/typing/typecore.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/typecore.mli > src/ocaml/typing/typecore.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typecore.cmi src/ocaml/typing/typecore.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/parmatch.cmx src/ocaml/typing/parmatch.ml
-+ ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/parmatch.cmx src/ocaml/typing/parmatch.ml
-File "src/ocaml/typing/parmatch.ml", line 713, characters 19-31:
-Warning 3: deprecated: Array.create
-File "src/ocaml/typing/parmatch.ml", line 714, characters 20-32:
-Warning 3: deprecated: Array.create
-ocamlfind ocamldep -modules src/ocaml/typing/typetexp.ml > src/ocaml/typing/typetexp.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/typetexp.mli > src/ocaml/typing/typetexp.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typetexp.cmi src/ocaml/typing/typetexp.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typetexp.cmx src/ocaml/typing/typetexp.ml
-ocamlfind ocamldep -modules src/ocaml/typing/typedecl.ml > src/ocaml/typing/typedecl.ml.depends
-ocamlfind ocamldep -modules src/ocaml/typing/typedecl.mli > src/ocaml/typing/typedecl.mli.depends
-ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typedecl.cmi src/ocaml/typing/typedecl.mli
-ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typecore.cmx src/ocaml/typing/typecore.ml
-+ ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typecore.cmx src/ocaml/typing/typecore.ml
-File "src/ocaml/typing/typecore.ml", line 1254, characters 12-52:
-Error: Unbound module Printf.CamlinternalPr
-Command exited with code 2.
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-Hint: Recursive traversal of subdirectories was not enabled for this build,
-  as the working directory does not look like an ocamlbuild project (no
-  '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-  you should add the option "-r" or create an empty '_tags' file.
-  
-  To enable recursive traversal for some subdirectories only, you can use the
-  following '_tags' file:
-  
-      true: -traverse
-      <dir1> or <dir2>: traverse
-      
-make: *** [ocamlmerlin.native] Error 10
-Removing merlin.1.7.
-[ERROR] The compilation of merlin.1.7 failed.
-  Nothing to do.
-
-
-#=== ERROR while installing merlin.1.7 ========================================#
-# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
-# os                   linux
-# command              make
-# path                 /home/opam/.opam/4.02.0+trunk/build/merlin.1.7
-# compiler             4.02.0+trunk
-# exit-code            2
-# env-file             /home/opam/.opam/4.02.0+trunk/build/merlin.1.7/merlin-3372-2c871f.env
-# stdout-file          /home/opam/.opam/4.02.0+trunk/build/merlin.1.7/merlin-3372-2c871f.out
-# stderr-file          /home/opam/.opam/4.02.0+trunk/build/merlin.1.7/merlin-3372-2c871f.err
-### stdout ###
-# ...[truncated]
-#   as the working directory does not look like an ocamlbuild project (no
-#   '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
-#   you should add the option "-r" or create an empty '_tags' file.
-#   
-#   To enable recursive traversal for some subdirectories only, you can use the
-#   following '_tags' file:
-#   
-#       true: -traverse
-#       <dir1> or <dir2>: traverse
-#       
-### stderr ###
-# tput: No value for $TERM and no -T specified
-# tput: No value for $TERM and no -T specified
-# tput: No value for $TERM and no -T specified
-# make: *** [ocamlmerlin.native] Error 10
-
-
-=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-These actions have been completed successfully
- - install   menhir.20130912
- - install   yojson.1.1.8
- - install   easy-format.1.0.2
- - install   biniou.1.0.9
- - install   cppo.0.9.4
-The following failed
- - install   merlin.1.7
-
-The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140722162344.export"
-'opam install merlin' failed.
