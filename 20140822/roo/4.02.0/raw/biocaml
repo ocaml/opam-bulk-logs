@@ -4752,3 +4752,13 @@ ocamlfind ocamlopt -shared lib/sexplib.cmx -o lib/sexplib.cmxs
 ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
 ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
