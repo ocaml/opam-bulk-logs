@@ -85,3 +85,28 @@ OCamlbuild additional flags: ...................
 pkg_unix: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
 
 /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/fd_send_recv_stubs.c
+mv fd_send_recv_stubs.o lib/fd_send_recv_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o lib/fd_send_recv_stubs lib/fd_send_recv_stubs.o
+ocamlfind ocamldep -package unix -modules lib/fd_send_recv.mli > lib/fd_send_recv.mli.depends
+ocamlfind ocamlc -c -g -package unix -I lib -o lib/fd_send_recv.cmi lib/fd_send_recv.mli
+ocamlfind ocamldep -package unix -modules lib/fd_send_recv.ml > lib/fd_send_recv.ml.depends
+ocamlfind ocamlc -c -g -package unix -I lib -o lib/fd_send_recv.cmo lib/fd_send_recv.ml
+ocamlfind ocamlc -a -dllib -lfd_send_recv_stubs -cclib -lfd_send_recv_stubs lib/fd_send_recv.cmo -o lib/fd_send_recv.cma
+ocamlfind ocamlopt -c -g -package unix -I lib -o lib/fd_send_recv.cmx lib/fd_send_recv.ml
+ocamlfind ocamlopt -a -cclib -lfd_send_recv_stubs lib/fd_send_recv.cmx -o lib/fd_send_recv.cmxa
+ocamlfind ocamlopt -shared -I lib lib/fd_send_recv.cmx -o lib/fd_send_recv.cmxs
+# No parallelism done
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/libfd_send_recv_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/fd_send_recv.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fd-send-recv/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllfd_send_recv_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllfd_send_recv_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing fd-send-recv.1.0.1.
