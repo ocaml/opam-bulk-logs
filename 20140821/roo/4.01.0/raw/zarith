@@ -145,3 +145,27 @@ caml_z.c:337:10: warning: variable 'sign_arg1' set but not used [-Wunused-but-se
 caml_z.c:1712:5: note: in expansion of macro 'Z_DECL'
      Z_DECL(arg1); Z_DECL(arg2);
      ^
+ocamlmklib -failsafe -o zarith caml_z_x86_64.o caml_z.o -lgmp
+ocamlopt   -c z.ml
+ocamlopt   -c q.ml
+ocamlopt   -c big_int_Z.ml
+ocamlmklib -failsafe -o zarith z.cmx q.cmx big_int_Z.cmx -lgmp
+ocamlopt -shared -o zarith.cmxs -I . zarith.cmxa
+ocamlfind install -destdir "/home/opam/.opam/4.01.0/lib" zarith META zarith.h zarith.cma libzarith.a z.mli q.mli big_int_Z.mli z.cmi q.cmi big_int_Z.cmi zarith.a zarith.cmxa zarith.cmxs dllzarith.so
+Installed /home/opam/.opam/4.01.0/lib/zarith/zarith.cmxs
+Installed /home/opam/.opam/4.01.0/lib/zarith/zarith.cmxa
+Installed /home/opam/.opam/4.01.0/lib/zarith/zarith.a
+Installed /home/opam/.opam/4.01.0/lib/zarith/big_int_Z.cmi
+Installed /home/opam/.opam/4.01.0/lib/zarith/q.cmi
+Installed /home/opam/.opam/4.01.0/lib/zarith/z.cmi
+Installed /home/opam/.opam/4.01.0/lib/zarith/big_int_Z.mli
+Installed /home/opam/.opam/4.01.0/lib/zarith/q.mli
+Installed /home/opam/.opam/4.01.0/lib/zarith/z.mli
+Installed /home/opam/.opam/4.01.0/lib/zarith/libzarith.a
+Installed /home/opam/.opam/4.01.0/lib/zarith/zarith.cma
+Installed /home/opam/.opam/4.01.0/lib/zarith/zarith.h
+Installed /home/opam/.opam/4.01.0/lib/zarith/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllzarith.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllzarith.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing zarith.1.2.
