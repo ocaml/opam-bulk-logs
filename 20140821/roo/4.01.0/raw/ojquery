@@ -1739,3 +1739,35 @@ ocamlfind ocamlc -syntax camlp4o \
 		-c toplevel/jsooTop.ml -o toplevel/jsooTop.cmo
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
 ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/ocamlbuild'
+ocamlbuild -use-ocamlfind ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
+ocamlfind ocamlopt -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmx ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlopt -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxs
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/ocamlbuild'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/runtime'
+echo "//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js" > runtime.js
+for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js ; do \
+		 echo "//# 1 \"$f\"" >> runtime.js; \
+	   cat $f >> runtime.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/runtime'
+make -C jsoo_tools
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4/jsoo_tools'
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_common.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mktop.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
