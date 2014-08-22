@@ -634,3 +634,33 @@ imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int',
                      ^
 imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
 gcc -fPIC -c -I"/home/opam/.opam/4.01.0/lib/ocaml" -fopenmp -I/usr/include/ImageMagick   imagemagick_list.c
+ocamlmklib  -o  imagemagick_stubs  imagemagick_wrap.o imagemagick_list.o  \
+	     -lMagickCore  
+ocamlc -a  -o magick.cma  magick.cmo  -dllib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlopt -c magick.ml
+ocamlopt -a  -o magick.cmxa  magick.cmx  -cclib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlopt -shared -linkall -I ./ -o magick.cmxs  magick.cmxa  -cclib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlfind install magick META \
+	    magick.mli	\
+	    magick.cmi	\
+	    magick.cma	\
+	    magick.cmxa	\
+	    magick.cmxs	\
+	    magick.a	\
+	    dllimagemagick_stubs.so \
+	    libimagemagick_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/magick/libimagemagick_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.a
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.cmxs
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.cmxa
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.cma
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.cmi
+Installed /home/opam/.opam/4.01.0/lib/magick/magick.mli
+Installed /home/opam/.opam/4.01.0/lib/magick/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllimagemagick_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllimagemagick_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing imagemagick.0.34.
