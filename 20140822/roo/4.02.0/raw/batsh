@@ -6074,3 +6074,27 @@ ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -packag
 ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -syntax camlp4o -thread -for-pack Batsh -I src -o src/winbat_ast.cmx src/winbat_ast.ml
 ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/winbat_transform.cmx src/winbat_transform.ml
 ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/winbat_compile.cmx src/winbat_compile.ml
+ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/winbat_format.cmx src/winbat_format.ml
+ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/winbat_functions.cmx src/winbat_functions.ml
+ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/bash.cmx src/bash.ml
+ocamlfind ocamlopt -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -for-pack Batsh -I src -o src/winbat.cmx src/winbat.ml
+touch src/batsh.mli  ; if  ocamlfind ocamlopt -pack -g -I src src/batsh_ast.cmx src/formatutil.cmx src/batsh_format.cmx src/parser_yacc.cmx src/lexer.cmx src/symbol_table.cmx src/parser.cmx src/bash_ast.cmx src/bash_transform.cmx src/bash_compile.cmx src/bash_format.cmx src/bash_functions.cmx src/bash.cmx src/winbat_ast.cmx src/winbat_transform.cmx src/winbat_compile.cmx src/winbat_format.cmx src/winbat_functions.cmx src/winbat.cmx -o src/batsh.cmx  ; then  rm -f src/batsh.mli  ; else  rm -f src/batsh.mli  ; exit 1; fi
+ocamlfind ocamlopt -a src/batsh.cmx -o src/batsh.cmxa
+ocamlfind ocamlopt -shared src/batsh.cmx -o src/batsh.cmxs
+ocamlfind ocamldep -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -modules src/main.ml > src/main.ml.depends
+ocamlfind ocamlc -c -g -I src -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread -I src -o src/main.cmo src/main.ml
+ocamlfind ocamlc -g -linkpkg -package threads -package sexplib.syntax -package dlist -package core_kernel -package cmdliner -thread src/batsh.cma src/bash_ast.cmo src/batsh_ast.cmo src/symbol_table.cmo src/bash_transform.cmo src/formatutil.cmo src/batsh_format.cmo src/parser_yacc.cmo src/lexer.cmo src/parser.cmo src/bash_compile.cmo src/bash_format.cmo src/bash_functions.cmo src/bash.cmo src/winbat_ast.cmo src/winbat_transform.cmo src/winbat_compile.cmo src/winbat_format.cmo src/winbat_functions.cmo src/winbat.cmo src/main.cmo -o src/main.byte
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/parser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/bash.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/winbat.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/batsh.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/batsh.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/batsh.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/batsh.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/batsh.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/batsh/META
+Installing batsh.0.0.4.
