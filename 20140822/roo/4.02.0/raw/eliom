@@ -11226,3 +11226,117 @@ ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c s
 ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
 ocamlfind ocamlc -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.mli
 ocamlfind ocamlc -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -shared -linkall -o syntax/pa_deriving_Json.cmxs syntax/pa_deriving_Json.cmx
+ocamllex deriving_json/deriving_Json_lexer.mll
+129 states, 789 transitions, table size 3930 bytes
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_lexer.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+ocamlfind ocamlc -package lwt,graphics -I ./ graphics/graphics_js.mli -o graphics/graphics_js.cmi
+File "graphics/graphics_js.mli", line 22, characters 23-31:
+Error: Unbound module Graphics
+make[1]: *** [graphics/graphics_js.cmi] Error 2
+make: *** [library] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.2/lib'
+[ERROR] The compilation of js_of_ocaml.2.2 failed.
+Removing js_of_ocaml.2.2.
+  ocamlfind remove js_of_ocaml
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml
+Building ocsigenserver.2.4.0:
+  sh configure --prefix /home/opam/.opam/4.02.0+trunk --ocsigen-user opam --ocsigen-group opam --commandpipe /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command --logdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/log/ocsigenserver --mandir /home/opam/.opam/4.02.0+trunk/man/man1 --docdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/share/doc/ocsigenserver --commandpipe /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command --staticpagesdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www --datadir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/lib/ocsigenserver --sysconfdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver
+  make
+  make install
+
+	Welcome to Ocsigen server, version 2.4.0.
+
+Checking for ocamlc ... found
+Checking for OCaml version... 4.02.0+dev16-2014-08-21
+Checking for ocamlfind ... found
+Checking for react ... found
+Checking for ssl ... found
+Checking for lwt ... found
+Checking for lwt.unix ... found
+Checking for lwt.react ... found
+Checking for lwt.ssl ... found
+Checking for netstring ... found
+Checking for netstring-pcre ... found
+Checking for netsys ... found
+Checking for pcre ... found
+Checking for cryptokit ... found
+Checking for tyxml ... found
+Checking for sqlite3 ... not found
+Checking for dbm ... found
+Checking for camlzip ... not found
+Checking for zip ... not found
+Checking for lwt.extra ... found
+Checking for rlwrap ... not found
+Checking for ledit ... not found
+
+Effective options:
+    --disable-debug
+    --disable-annot
+    --enable-natdynlink
+    --without-sqlite
+    --with-dbm
+    --without-camlzip
+    --with-preempt
+    --name ocsigenserver
+    --root 
+    --temproot 
+    --prefix /home/opam/.opam/4.02.0+trunk
+    --ocsigen-user opam
+    --ocsigen-group opam
+    --bindir /home/opam/.opam/4.02.0+trunk/bin
+    --libdir $(shell ${OCAMLFIND} printconf destdir)
+    --sysconfdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver
+    --mandir /home/opam/.opam/4.02.0+trunk/man/man1
+    --docdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/share/doc/ocsigenserver
+    --logdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/log/ocsigenserver
+    --staticpagesdir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www
+    --uploaddir /tmp
+    --datadir /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/lib/ocsigenserver
+    --commandpipe /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command
+
+Writing Makefile.config
+
+
+Please check Makefile.config.
+
+You can now compile Ocsigen Server by invoking:
+
+   make
+   make doc
+
+You may want to test the server before installation:
+
+   make run.local
+   make run.opt.local
+
+Finally, if you want system-wide install, (become root if needed and) do:
+
+   make install
+   make install.doc
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src'
+cat files/META.in \
+	  | sed s/%%CAMLZIPNAME%%// \
+	  | sed s/%%NAME%%/ocsigenserver/g \
+	  | sed s/%%DEPS%%/lwt.ssl,lwt.extra,ipaddr,netstring,netstring-pcre,findlib,cryptokit,tyxml,tyxml.parser,dynlink/g \
+	  | sed s/%%BASEDEPS%%/lwt,ipaddr/g \
+	  > files/META
