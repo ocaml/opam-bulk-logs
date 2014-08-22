@@ -2661,3 +2661,46 @@ ocamlfind ocamldep -package re.str -package cstruct.syntax -package cstruct -syn
 ocamlfind ocamlc -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmi lib/tar.mli
 ocamlfind ocamldep -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar.ml > lib/tar.ml.depends
 ocamlfind ocamlc -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmo lib/tar.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/tar.cmo -o lib/tar.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar.cmx lib/tar.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/tar.cmx -o lib/tar.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/tar.cmx -o lib/tar.cmxs
+ocamlfind ocamldep -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_unix.mli > lib/tar_unix.mli.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmi lib/tar_unix.mli
+ocamlfind ocamldep -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -modules lib/tar_unix.ml > lib/tar_unix.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmo lib/tar_unix.ml
++ ocamlfind ocamlc -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmo lib/tar_unix.ml
+File "lib/tar_unix.ml", line 23, characters 10-23:
+Warning 3: deprecated: String.create
+File "lib/tar_unix.ml", line 37, characters 15-28:
+Warning 3: deprecated: String.create
+ocamlfind ocamlc -a -package cstruct.syntax lib/tar_unix.cmo -o lib/tar_unix.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmx lib/tar_unix.ml
++ ocamlfind ocamlopt -c -g -I lib -package re.str -package cstruct.syntax -package cstruct -syntax camlp4o -I lib -o lib/tar_unix.cmx lib/tar_unix.ml
+File "lib/tar_unix.ml", line 23, characters 10-23:
+Warning 3: deprecated: String.create
+File "lib/tar_unix.ml", line 37, characters 15-28:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -a -package cstruct.syntax lib/tar_unix.cmx -o lib/tar_unix.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/tar_unix.cmx -o lib/tar_unix.cmxs
+ocaml setup.ml -install 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/tar_unix.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/tar/META
+Installing tar-format.0.2.1.
