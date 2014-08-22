@@ -7835,3 +7835,109 @@ pkg_tcpip_channel: ................................... /home/opam/.opam/4.02.0+t
 pkg_lwt_syntax: ...................................... /home/opam/.opam/4.02.0+trunk/lib/lwt
 
 /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP.ml > lib/HTTP.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.mli > lib/HTTP_IO.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmi lib/HTTP_IO.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -modules lib/HTTP_IO.ml > lib/HTTP_IO.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmo lib/HTTP.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmo lib/HTTP_IO.ml
+File "lib/HTTP_IO.ml", line 56, characters 14-27:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lib/HTTP_IO.cmo lib/HTTP.cmo -o lib/mirage-http.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP_IO.cmx lib/HTTP_IO.ml
+File "lib/HTTP_IO.ml", line 56, characters 14-27:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cohttp.lwt-core -syntax camlp4o -package lwt.syntax -package tcpip.channel -I lib -o lib/HTTP.cmx lib/HTTP.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lib/HTTP_IO.cmx lib/HTTP.cmx -o lib/mirage-http.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -linkall lib/mirage-http.cmxa -o lib/mirage-http.cmxs
+# Parallel statistics: { count(total): 1(11), max: 2, min: 2, average(total): 2.000(1.091) }
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/HTTP.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/mirage-http.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/mirage-http.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/mirage-http.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/mirage-http.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/HTTP.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/HTTP_IO.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/HTTP.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage-http/META
+Installing mirage-http.1.1.0.
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+#=== ERROR while installing cow.0.10.1 ========================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              make all
+# path                 /home/opam/.opam/4.02.0+trunk/build/cow.0.10.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/cow.0.10.1/cow-11691-038aac.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/cow.0.10.1/cow-11691-038aac.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/cow.0.10.1/cow-11691-038aac.err
+### stdout ###
+# ...[truncated]
+#   as the working directory does not look like an ocamlbuild project (no
+#   '_tags' or 'myocamlbuild.ml' file). If you have modules in subdirectories,
+#   you should add the option "-r" or create an empty '_tags' file.
+#   
+#   To enable recursive traversal for some subdirectories only, you can use the
+#   following '_tags' file:
+#   
+#       true: -traverse
+#       <dir1> or <dir2>: traverse
+#       
+### stderr ###
+# make: *** [all] Error 10
+
+These actions have been completed successfully
+ - install   ezjsonm.0.2.0
+ - install   uutf.0.9.3
+ - install   mirage-types.1.2.0
+ - install   sexplib.111.25.00
+ - install   shared-memory-ring.1.1.0
+ - install   xmlm.1.2.0
+ - install   fat-filesystem.0.10.1
+ - install   conduit.0.5.1
+ - install   mirage.1.2.0
+ - install   mirage-block-unix.1.2.1
+ - install   stringext.1.0.0
+ - install   mirage-clock-unix.1.0.0
+ - install   camlp4.4.02.0
+ - install   lwt.2.4.5
+ - install   mirage-net-unix.1.1.1
+ - install   omd.0.9.3
+ - install   crunch.1.3.0
+ - install   tcpip.1.1.6
+ - install   mirage-http.1.1.0
+ - install   io-page.1.1.1
+ - install   base-bytes.base
+ - install   mirage-fs-unix.1.1.1
+ - install   cstruct.1.4.0
+ - install   ulex.1.1
+ - install   cohttp.0.11.2
+ - install   ipaddr.2.5.0
+ - install   ssl.0.4.7
+ - install   ounit.2.0.0
+ - install   jsonm.0.9.1
+ - install   tuntap.1.0.0
+ - install   mirage-console-unix.1.0.0
+ - install   mirage-unix.1.1.0
+ - install   dyntype.0.9.0
+ - install   optcomp.1.6
+ - install   cmdliner.0.9.5
+ - install   type_conv.111.13.00
+ - install   re.1.2.2
+ - install   uri.1.7.2
+ - install   fieldslib.109.20.03
+ - install   ocplib-endian.0.7
+The following failed
+ - install   cow.0.10.1
+Due to the errors, the following have been cancelled
+ - install   cowabloga.0.0.7
+ - install   mirage-www.1.2.0
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140722212848.export"
+'opam install mirage-www' failed.
