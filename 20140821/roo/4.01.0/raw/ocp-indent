@@ -897,3 +897,98 @@ Executables will be installed in /home/opam/.opam/4.01.0/bin
 ocp-build -init -scan -install-lib /home/opam/.opam/4.01.0/lib
 tput: No value for $TERM and no -T specified
 stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 2 incomplete packages (will not be built):
+  Hidden: 2 incomplete packages in META files (use -print-incomplete-meta).
+[ 19%] approx_common.mlimods                                 OK
+[ 22%] approx_tokens.mlmods                                  OK
+[ 24%] pos.mlmods                                            OK
+[ 26%] pos.mlimods                                           OK
+[ 29%] util.mlmods                                           OK
+[ 32%] nstream.mlmods                                        OK
+[ 35%] nstream.mlimods                                       OK
+[ 37%] compat.mlmods                                         OK
+[ 40%] indentConfig.mlmods                                   OK
+[ 42%] indentConfig.mlimods                                  OK
+[ 45%] indentBlock.mlmods                                    OK
+[ 47%] approx_lexer.ml                                       OK
+-- stdout of ocamllex.opt --
+209 states, 5156 transitions, table size 21878 bytes
+2468 additional bytes used for bindings
+[ 48%] indentBlock.mlimods                                   OK
+[ 50%] indentPrinter.mlmods                                  OK
+[ 52%] indentPrinter.mlimods                                 OK
+[ 54%] indentVersion.mlmods                                  OK
+[ 57%] indentArgs.mlmods                                     OK
+[ 59%] indentArgs.mlimods                                    OK
+[ 61%] indentMain.mlmods                                     OK
+[ 63%] approx_common.cmi                                     OK
+[ 64%] pos.cmi                                               OK
+[ 67%] util.cmo                                              OK
+[ 68%] compat.cmo                                            OK
+[ 69%] indentConfig.cmi                                      OK
+[ 69%] approx_lexer.mlmods                                   OK
+[ 71%] indentVersion.cmo                                     OK
+[ 72%] approx_tokens.cmo                                     OK
+[ 74%] pos.cmo                                               OK
+[ 74%] approx_lexer.cmo                                      OK
+[ 77%] ocp-indent.lexer.cma                                  OK
+[ 77%] nstream.cmi                                           OK
+[ 79%] indentConfig.cmo                                      OK
+[ 79%] indentBlock.cmi                                       OK
+[ 81%] nstream.cmo                                           OK
+[ 82%] indentPrinter.cmi                                     OK
+[ 84%] ocp-indent.utils.cma                                  OK
+[ 84%] indentArgs.cmi                                        OK
+[ 86%] indentPrinter.cmo                                     OK
+[ 86%] indentMain.cmo                                        OK
+[ 86%] indentArgs.cmo                                        OK
+[ 86%] approx_tokens.cmx                                     OK
+[ 87%] pos.cmx                                               OK
+[ 87%] util.cmx                                              OK
+[ 87%] compat.cmx                                            OK
+[ 87%] indentVersion.cmx                                     OK
+[ 87%] indentBlock.cmo                                       OK
+[ 88%] ocp-indent.lib.cma                                    OK
+[ 89%] ocp-indent.byte                                       OK
+[ 89%] approx_lexer.cmx                                      OK
+[ 92%] ocp-indent.lexer.cmxa                                 OK
+[ 92%] nstream.cmx                                           OK
+[ 93%] indentConfig.cmx                                      OK
+[ 94%] ocp-indent.utils.cmxa                                 OK
+[ 94%] indentBlock.cmx                                       OK
+[ 95%] indentPrinter.cmx                                     OK
+[ 97%] indentArgs.cmx                                        OK
+[ 98%] ocp-indent.lib.cmxa                                   OK
+[ 98%] indentMain.cmx                                        OK
+[100%] ocp-indent.asm                                        OK
+Build Successful in 2.38s. 59 jobs (parallelism 1.3x), 86 files generated.
+ocp-build -install-lib /home/opam/.opam/4.01.0/lib
+tput: No value for $TERM and no -T specified
+stty: standard input: Inappropriate ioctl for device
+Updating ocp-build.root
+Warning: 2 incomplete packages (will not be built):
+  Hidden: 2 incomplete packages in META files (use -print-incomplete-meta).
+Build Successful in 0.35s. 0 jobs (parallelism 0.0x), 0 files generated.
+cp _obuild/ocp-indent/ocp-indent.asm ocp-indent
+mkdir -p man/man1
+./ocp-indent --help=groff >man/man1/ocp-indent.1
+Installing ocp-indent.1.4.1.
+
+=-=- ocp-indent.1.4.1 information -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+OCP-INDENT installed.
+
+To use it from emacs, add the following to your .emacs:
+  (add-to-list 'load-path (concat
+     (replace-regexp-in-string "\n$" ""
+        (shell-command-to-string "opam config var share"))
+     "/emacs/site-lisp"))
+  (require 'ocp-indent)
+
+To use it from Vim, add to your .vimrc:
+  let g:ocp_indent_vimfile = system("opam config var share")
+  let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+  let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+
+  autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
+
