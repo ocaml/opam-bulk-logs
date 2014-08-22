@@ -1463,3 +1463,52 @@ Installed /home/opam/.opam/4.01.0/lib/lablgtk2/META
 Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/4.01.0/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/4.01.0/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/4.01.0/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/4.01.0/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/4.01.0/bin"
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+Building bitstring.2.0.4:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make srcdir=./
+  make install
+checking for a sed that does not truncate output... /bin/sed
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a BSD-compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for function prototypes... yes
+checking whether gcc and cc understand -c and -o together... yes
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
