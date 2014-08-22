@@ -6877,3 +6877,8 @@ File "read.mll", line 367, characters 12-25:
 Warning 3: deprecated: String.create
 File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
