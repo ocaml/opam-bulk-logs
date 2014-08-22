@@ -966,3 +966,17 @@ Installing Camlp4Top...
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmx
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.o
   install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.a
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.a
+sed -e s/@@VERSION@@/"4.02.0+dev16-2014-08-21"/g camlp4/META.in > camlp4/META
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+Installing camlp4.4.02.0.
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
