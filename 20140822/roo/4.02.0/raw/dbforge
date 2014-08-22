@@ -728,3 +728,214 @@ make[1]: *** Deleting file `._d/mysql.d'
 ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
 				-DPIC   \
 				    -o mysql_stubs.o " mysql_stubs.c
+ar rcs libmysql_stubs.a  mysql_stubs.o
+ocamlc -c mysql.mli
+ocamlc -c -pp "camlp4o " mysql.ml
+sh: 1: camlp4o: not found
+File "mysql.ml", line 1:
+Error: Error while running external preprocessor
+Command line: camlp4o  'mysql.ml' > /tmp/ocamlpp75f15f
+
+make[1]: *** [mysql.cmo] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make: *** [byte-code-library] Error 2
+[ERROR] The compilation of mysql.1.1.2 failed.
+Removing mysql.1.1.2.
+  ocamlfind remove mysql
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/mysql
+Building xml-light.2.4:
+  make install_ocamlfind
+ocamlyacc xml_parser.mly
+ocamlc  xml.mli
+ocamlc  dtd.mli
+ocamlc  xml_parser.mli
+ocamlc  -c xml_parser.ml
+ocamllex xml_lexer.mll
+248 states, 1238 transitions, table size 6440 bytes
+ocamlc  xml_lexer.mli
+ocamlc  -c xml_lexer.ml
+ocamlc  -c dtd.ml
+ocamlc  xmlParser.mli
+ocamlc  -c xmlParser.ml
+ocamlc  -c xml.ml
+ocamlc -o xml-light.cma -a  xml_parser.cmo xml_lexer.cmo dtd.cmo xmlParser.cmo xml.cmo
+ocamlc xml-light.cma test.ml -o test.exe
+mkdir doc
+ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
+ocamlopt  -c xml_parser.ml
+ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
+ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
+ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/xml-light/META
+Installing xml-light.2.4.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk LABLGLDIR=/home/opam/.opam/4.02.0+trunk/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.02.0+dev16-2014-08-21
+ocaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.02.0+trunk/lib/ocaml/lablgtk2 and /home/opam/.opam/4.02.0+trunk/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... no
+configure: error: Cannot find camlp4o.
+[ERROR] The compilation of lablgtk.2.16.0 failed.
+Removing lablgtk.2.16.0.
+  ocamlfind remove lablgtk2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/lablgtk2
+
+#=== ERROR while installing config-file.1.2 ===================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.02.0+trunk
+# path                 /home/opam/.opam/4.02.0+trunk/build/config-file.1.2
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18285-865888.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18285-865888.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18285-865888.err
+### stdout ###
+# checking for ocamlfind... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+# checking for camlp4... no
+### stderr ###
+# configure: error: Cannot find camlp4.
+
+
+#=== ERROR while installing lablgtk.2.16.0 ====================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.02.0+trunk LABLGLDIR=/home/opam/.opam/4.02.0+trunk/lib/lablgl
+# path                 /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-19541-548b09.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-19541-548b09.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-19541-548b09.err
+### stdout ###
+# ...[truncated]
+# checking for ocamlopt.opt... ocamlopt.opt
+# checking ocamlc.opt version... ok
+# checking for ocamlrun... ocamlrun
+# checking for ocamldep... ocamldep
+# checking for ocamldoc... ocamldoc
+# checking for ocamllex... ocamllex
+# checking for ocamlyacc... ocamlyacc
+# checking for ocamlmktop... ocamlmktop
+# checking for ocamlmklib... ocamlmklib
+# checking for camlp4o... no
+### stderr ###
+# configure: error: Cannot find camlp4o.
+
+
+#=== ERROR while installing mysql.1.1.2 =======================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2/mysql-18454-e4db2f.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2/mysql-18454-e4db2f.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2/mysql-18454-e4db2f.err
+### stdout ###
+# ...[truncated]
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+# make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+# ocamldep -pp "camlp4o " mysql.ml > ._d/mysql.d
+# ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
+# 				-DPIC   \
+# 				    -o mysql_stubs.o " mysql_stubs.c
+# ar rcs libmysql_stubs.a  mysql_stubs.o
+# ocamlc -c mysql.mli
+# ocamlc -c -pp "camlp4o " mysql.ml
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+### stderr ###
+# ...[truncated]
+# Command line: camlp4o  'mysql.ml' > /tmp/ocamlpp2ad22c
+# 
+# make[1]: *** Deleting file `._d/mysql.d'
+# sh: 1: camlp4o: not found
+# File "mysql.ml", line 1:
+# Error: Error while running external preprocessor
+# Command line: camlp4o  'mysql.ml' > /tmp/ocamlpp75f15f
+# 
+# make[1]: *** [mysql.cmo] Error 2
+# make: *** [byte-code-library] Error 2
+
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   conf-gtksourceview.2
+ - install   xml-light.2.4
+ - install   xmlm.1.2.0
+ - install   conf-glade.2
+The following failed
+ - install   config-file.1.2
+ - install   lablgtk.2.16.0
+ - install   mysql.1.1.2
+Due to the errors, the following have been cancelled
+ - install   lablgtk-extras.1.4
+ - install   dbforge.2.0.1
+
+=-=- lablgtk.2.16.0 troobleshooting -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+This package requires gtk+ 2.0 development packages installed on your system
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140722231643.export"
+'opam install dbforge' failed.
