@@ -31,7 +31,7 @@ cd termbox && ./waf configure && ./waf
 Setting top to                           : /home/opam/.opam/4.02.0+trunk/build/termbox.0.1.0/termbox 
 Setting out to                           : /home/opam/.opam/4.02.0+trunk/build/termbox.0.1.0/termbox/build 
 Checking for 'gcc' (c compiler)          : /usr/bin/gcc 
-'configure' finished successfully (0.259s)
+'configure' finished successfully (0.051s)
 Waf: Entering directory `/home/opam/.opam/4.02.0+trunk/build/termbox.0.1.0/termbox/build'
 [ 1/11] c: src/termbox.c -> build/src/termbox.c.1.o
 [ 2/11] c: src/utf8.c -> build/src/utf8.c.1.o
@@ -52,7 +52,9 @@ In file included from ../src/termbox.c:16:0:
 ../src/termbox.c:599:8: warning: ignoring return value of 'read', declared with attribute warn_unused_result [-Wunused-result]
     read(winch_fds[0], &zzz, sizeof(int));
         ^
-[ 7/11] cshlib: build/src/termbox.c.1.o build/src/utf8.c.1.o -> build/src/libtermbox.so
+[ 7/11] cstlib: build/src/termbox.c.2.o build/src/utf8.c.2.o -> build/src/libtermbox.a
+[ 8/11] cprogram: build/src/demo/output.c.2.o -> build/src/demo/output
+[ 9/11] cprogram: build/src/demo/keyboard.c.1.o -> build/src/demo/keyboard
 ../src/termbox.c: In function 'sigwinch_handler':
 ../src/termbox.c:526:7: warning: ignoring return value of 'write', declared with attribute warn_unused_result [-Wunused-result]
   write(winch_fds[1], &zzz, sizeof(int));
@@ -66,12 +68,10 @@ In file included from ../src/termbox.c:16:0:
 ../src/termbox.c:599:8: warning: ignoring return value of 'read', declared with attribute warn_unused_result [-Wunused-result]
     read(winch_fds[0], &zzz, sizeof(int));
         ^
-[ 8/11] cstlib: build/src/termbox.c.2.o build/src/utf8.c.2.o -> build/src/libtermbox.a
-[ 9/11] cprogram: build/src/demo/keyboard.c.1.o -> build/src/demo/keyboard
-[10/11] cprogram: build/src/demo/output.c.2.o -> build/src/demo/output
+[10/11] cshlib: build/src/termbox.c.1.o build/src/utf8.c.1.o -> build/src/libtermbox.so
 [11/11] vnum: build/src/libtermbox.so -> build/src/libtermbox.so.1 build/src/libtermbox.so.1.0.0
 Waf: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/termbox.0.1.0/termbox/build'
-'build' finished successfully (0.936s)
+'build' finished successfully (1.303s)
 # Comple just the stubs into an object file.
 ocamlfind ocamlc -c termbox_stubs.c -ccopt -fPIC -ccopt -Itermbox/src -o termbox_stubs.o
 # Make the dynamic and static libraries containing the stubs AND termbox objects.
