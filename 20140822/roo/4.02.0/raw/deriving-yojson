@@ -989,3 +989,169 @@ ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.c
 ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
 ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
 ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+File "bi_util.ml", line 11, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 13, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 18, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 20, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 36, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 41, characters 6-64:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 43, characters 4-54:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 24, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 40, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 86, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 90, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 96, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 97, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 102, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 103, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 104, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 105, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 116, characters 13-26:
+Warning 3: deprecated: String.create
+File "bi_inbuf.ml", line 99, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_io.ml", line 86, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 88, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 90, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 92, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 216, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 220, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 231, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 235, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 562, characters 12-25:
+Warning 3: deprecated: String.create
+File "bi_stream.ml", line 56, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+File "bi_util.ml", line 11, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 13, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 18, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 20, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 36, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 41, characters 6-64:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 43, characters 4-54:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 24, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 40, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 86, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 90, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 96, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 97, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 102, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 103, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 104, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 105, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 116, characters 13-26:
+Warning 3: deprecated: String.create
+File "bi_inbuf.ml", line 99, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_io.ml", line 86, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 88, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 90, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 92, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 216, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 220, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 231, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 235, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 562, characters 12-25:
+Warning 3: deprecated: String.create
+File "bi_stream.ml", line 56, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
+ocamlfind ocamlopt -o test_biniou -dtypes -g \
+		-package "easy-format unix" -linkpkg \
+		biniou.cmxa test_biniou.ml

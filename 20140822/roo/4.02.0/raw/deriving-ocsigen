@@ -1159,3 +1159,9 @@ ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I
 ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/enum_class.ml
 ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/bounded_class.ml
 ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/eq_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/typeable_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/pickle_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/functor_class.ml
+ocamlfind ocamlc -o pa_deriving.cma -a pa_deriving_common.cmo pa_deriving.cmo classes/show_class.cmo classes/dump_class.cmo classes/enum_class.cmo classes/bounded_class.cmo classes/eq_class.cmo classes/typeable_class.cmo classes/pickle_class.cmo classes/functor_class.cmo
+ocamlfind ocamlopt -package camlp4 -for-pack Pa_deriving_common -c id.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package optcomp -for-pack Pa_deriving_common -c utils.ml
