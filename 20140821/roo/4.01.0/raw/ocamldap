@@ -634,3 +634,12 @@ sed -e 's|@NET_DB_DIR@|/home/opam/.opam/4.01.0/lib/netstring|' netdb.mlp >netdb.
 sed -e 's/@VERSION@/3.7.4/' netconst.mlp >netconst.ml
 ocamllex netglob_lex.mll
 69 states, 297 transitions, table size 1602 bytes
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -DWORDSIZE_64 -DHOST_IS_LITTLE_ENDIAN -DUSE_NETSYS_XDR \
+	    -impl netnumber.mlp > netnumber.ml || rm -f netnumber.ml
+ocaml ../../tools/unicode_charinfo.ml unicode_charinfo.txt \
+		> netunichar.ml
+camlp4  pa_o.cmo pa_op.cmo pr_o.cmo \
+	    -parser Camlp4MacroParser -D ENABLE_STR_EXTERNALS -D HAVE_PCRE \
+	    -impl netstring_str.mlp > netstring_str.ml || \
+	      rm -f netstring_str.ml
