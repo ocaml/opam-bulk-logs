@@ -961,3 +961,152 @@ Installing Camlp4Top...
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmi
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmo
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4_config.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmx
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.o
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.a
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.a
+sed -e s/@@VERSION@@/"4.02.0+dev16-2014-08-21"/g camlp4/META.in > camlp4/META
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+Installing camlp4.4.02.0.
+Building config-file.1.2:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make all
+  make install
+checking for ocamlfind... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+checking for camlp4... /home/opam/.opam/4.02.0+trunk/bin/camlp4
+configure: creating ./config.status
+config.status: creating master.Makefile
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc   -c config_file.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc   -c config_file.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt   -c config_file.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -o config_file.cmxs -shared config_file.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/config_file.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/config-file/META
+Installing config-file.1.2.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.4-1:
+  ./configure -bindir /home/opam/.opam/4.02.0+trunk/bin -disable-pcre -disable-gtk2 -disable-ssl -disable-zip -disable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.4
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... found
+Checking whether out-of-heap values are supported and mutable... yes
+Checking for POSIX shared memory... found
+Checking for POSIX semaphores (anonymous)... found
+Checking for POSIX semaphores (named)... found
+Checking for POSIX spawn... found
+Checking for POSIX fadvise... found
+Checking for POSIX fallocate... found
+Checking for POSIX memalign... found
+Checking for syslog... found
+Checking for POSIX functions like openat... found
+Checking for fchdir... found
+Checking for fdopendir... found
+Checking for realpath... found
+Checking for grantpt (System V style PTYs)... found
+Checking for posix_openpt (System V style PTYs)... found
+Checking for initgroups...found
+Checking for POSIX clocks...found
+Checking for POSIX timers...found
+Checking for eventfd (Linux)...found
+Checking for timerfd (Linux)...found
+Checking for epoll (Linux)...found
+Checking for compare_and_swap (GCC)...found
+Checking for GPROF... found
+Checking for O_SHARE_DELETE... yes
+Checking for O_CLOEXEC... yes
+Checking for getpeereid... not found
+Checking for getpeerucred... not found
+Checking whether netcamlbox and netmulticore are supported... yes
+Preprocessor for ocamlrpcgen: cpp
+
+Effective options:
+    -disable-pcre
+    -disable-full-pcre
+    -disable-gtk
+    -disable-gtk2
+    -disable-tcl
+    -disable-ssl
+    -disable-zip
+    -disable-crypto
+    -disable-apache
+    -with-nethttpd
+    -without-rpc-auth-dh
+    -bindir /home/opam/.opam/4.02.0+trunk/bin
+    -datadir /home/opam/.opam/4.02.0+trunk/lib/netstring
+    -cpp cpp
+
+Writing Makefile.conf
+
+Please check Makefile.conf.
+
+You can now compile Ocamlnet by invoking
+   make all
+for the bytecode compiler, and optionally by invoking
+   make opt
+for the native-code compiler (if supported on your architecture).
+Finally, a
+   make install
+will install the package(s).
+for pkg in netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make all ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netsys'
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netsys'
+ocamlfind ocamldep -package "camlp4.macro" -syntax camlp4o  *.ml *.mli >depend || { rm -f depend; exit 1; }
