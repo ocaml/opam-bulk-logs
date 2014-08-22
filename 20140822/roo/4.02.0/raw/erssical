@@ -1397,3 +1397,70 @@ ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa oput.cmx
 ocamlopt.opt -thread -c -I ..  ominimal.ml -o ominimal.cmx
 ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ominimal.cmx -o ominimal.opt
 ocamlopt.opt -thread -c -I ..  ossl.ml -o ossl.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ossl.cmx -o ossl.opt
+ocamlopt.opt -thread -c -I ..  ocurl_test_threads.ml -o ocurl_test_threads.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ocurl_test_threads.cmx -o ocurl_test_threads.opt
+ocamlopt.opt -thread -c -I ..  opar.ml -o opar.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa opar.cmx -o opar.opt
+ocamlopt.opt -thread -c -I ..  test_cb_exn.ml -o test_cb_exn.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa test_cb_exn.cmx -o test_cb_exn.opt
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocurl.0.7.1/examples'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocurl.0.7.1'
+ocamlfind install -patch-version 0.7.1 -ldconf ignore curl META curl.a curl.cmi curl.mli curl.cma libcurl-helper.a dllcurl-helper.so curl.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/curl.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/libcurl-helper.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/curl.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/curl.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/curl.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/curl.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/curl/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcurl-helper.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcurl-helper.so.owner
+Installing ocurl.0.7.1.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.4-1:
+  ./configure -bindir /home/opam/.opam/4.02.0+trunk/bin -disable-pcre -disable-gtk2 -disable-ssl -disable-zip -disable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.4
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... found
+Checking whether out-of-heap values are supported and mutable... yes
+Checking for POSIX shared memory... found
+Checking for POSIX semaphores (anonymous)... found
+Checking for POSIX semaphores (named)... 
