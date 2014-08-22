@@ -55,3 +55,122 @@ ocamlfind ocamlopt -c -g -o PPrintRenderer.cmx PPrintRenderer.ml
 ocamlfind ocamlopt -c -g -o PPrintEngine.cmx PPrintEngine.ml
 ocamlfind ocamlopt -c -g -o PPrintCombinators.cmx PPrintCombinators.ml
 ocamlfind ocamlopt -c -g -o PPrintOCaml.cmx PPrintOCaml.ml
+ocamlfind ocamlopt -c -g -o PPrint.cmx PPrint.ml
+ocamlfind ocamlopt -a -g PPrintRenderer.cmx PPrintEngine.cmx PPrintCombinators.cmx PPrintOCaml.cmx PPrint.cmx -o PPrintLib.cmxa
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind install pprint META \
+		_build/PPrintLib.cma _build/PPrintLib.cmxa \
+		_build/PPrintLib.a _build/*.cmx _build/*.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/META
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+Installing pprint.20140424.
+Building ocp-ocamlres.0.3:
+  make all
+  make doc
+  make BINDIR=/home/opam/.opam/4.02.0+trunk/bin LIBDIR=/home/opam/.opam/4.02.0+trunk/lib install
+  make DOCDIR=/home/opam/.opam/4.02.0+trunk/doc install-doc
+ocamlfind ocamldep -I src -package unix,str,pprint,dynlink src/oCamlRes.ml src/oCamlResScanners.ml src/oCamlResSubFormats.ml src/oCamlResFormats.ml src/oCamlResRegistry.ml > .depend
+sed -i s/src/build/g .depend
+mkdir build
+cp src/oCamlRes.mli  build/oCamlRes.mli
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlRes.mli
+cp src/oCamlRes.ml  build/oCamlRes.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlRes.ml
+cp src/oCamlResScanners.ml  build/oCamlResScanners.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
+File "build/oCamlResScanners.ml", line 111, characters 21-34:
+Warning 3: deprecated: String.create
+cp src/oCamlResSubFormats.ml  build/oCamlResSubFormats.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+File "build/oCamlResSubFormats.ml", line 157, characters 20-33:
+Warning 3: deprecated: String.create
+File "build/oCamlResSubFormats.ml", line 158, characters 12-25:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 158, characters 28-40:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 159, characters 12-37:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 159, characters 40-67:
+Warning 3: deprecated: String.set
+cp src/oCamlResFormats.ml  build/oCamlResFormats.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+File "build/oCamlResFormats.ml", line 50, characters 14-25:
+Warning 3: deprecated: String.copy
+File "build/oCamlResFormats.ml", line 54, characters 13-27:
+Warning 3: deprecated: String.set
+cp src/oCamlResRegistry.ml  build/oCamlResRegistry.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlc -a -package unix,str,pprint,dynlink build/oCamlRes.cmo build/oCamlResScanners.cmo build/oCamlResSubFormats.cmo build/oCamlResFormats.cmo build/oCamlResRegistry.cmo -o build/ocplib-ocamlres.cma
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlRes.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
+File "build/oCamlResScanners.ml", line 111, characters 21-34:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+File "build/oCamlResSubFormats.ml", line 157, characters 20-33:
+Warning 3: deprecated: String.create
+File "build/oCamlResSubFormats.ml", line 158, characters 12-25:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 158, characters 28-40:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 159, characters 12-37:
+Warning 3: deprecated: String.set
+File "build/oCamlResSubFormats.ml", line 159, characters 40-67:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+File "build/oCamlResFormats.ml", line 50, characters 14-25:
+Warning 3: deprecated: String.copy
+File "build/oCamlResFormats.ml", line 54, characters 13-27:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlopt -a -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxa
+ocamlfind ocamlopt -shared -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxs
+cp src/oCamlResMain.ml  build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.byte build/ocplib-ocamlres.cma build/oCamlResMain.cmo
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlopt -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.asm build/ocplib-ocamlres.cmxa build/oCamlResMain.cmx
+cp src/META  build/META
+rm build/oCamlRes.mli build/oCamlRes.ml build/oCamlResSubFormats.ml build/oCamlResRegistry.ml build/oCamlResFormats.ml build/oCamlResScanners.ml build/oCamlResMain.ml
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+ocamlfind install -destdir /home/opam/.opam/4.02.0+trunk/lib ocplib-ocamlres \
+          build/META \
+          build/*ocplib-ocamlres.* \
+	   build/oCamlRes.cmi  build/oCamlRes.cmti  build/oCamlRes.cmt  build/oCamlResScanners.cmt  build/oCamlResSubFormats.cmt  build/oCamlResFormats.cmt  build/oCamlResRegistry.cmt src/oCamlRes.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlRes.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlResRegistry.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlResFormats.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlResSubFormats.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlResScanners.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlRes.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlRes.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/oCamlRes.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/ocplib-ocamlres.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/ocplib-ocamlres.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/ocplib-ocamlres.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/ocplib-ocamlres.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocplib-ocamlres/META
+install build/ocp-ocamlres.asm /home/opam/.opam/4.02.0+trunk/bin/ocp-ocamlres
+install build/ocp-ocamlres.byte /home/opam/.opam/4.02.0+trunk/bin/ocp-ocamlres.byte
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+install -d /home/opam/.opam/4.02.0+trunk/doc/ocp-ocamlres
+install doc/*.html /home/opam/.opam/4.02.0+trunk/doc/ocp-ocamlres/
+Installing ocp-ocamlres.0.3.
