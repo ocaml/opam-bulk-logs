@@ -918,3 +918,40 @@ ocamlfind ocamldep -package unix -package str -package pcre -package extlib -mod
 ocamlfind ocamlc -c -g -I src -package unix -package str -package pcre -package extlib -I src -o src/expectStr.cmo src/expectStr.ml
 ocamlfind ocamlc -a src/expectStr.cmo -o src/expect-str.cma
 ocamlfind ocamlopt -c -g -I src -package unix -package str -package pcre -package extlib -I src -o src/expectStr.cmx src/expectStr.ml
+ocamlfind ocamlopt -a src/expectStr.cmx -o src/expect-str.cmxa
+ocamlfind ocamlopt -shared -linkall src/expect-str.cmxa -o src/expect-str.cmxs
+ocamlfind ocamldep -package unix -package threads -package str -package pcre -package oUnit -package extlib -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamldep -package unix -package threads -package str -package pcre -package oUnit -package extlib -modules test/TestCommon.ml > test/TestCommon.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -I src -package unix -package threads -package str -package pcre -package oUnit -package extlib -thread -I test -I src -o test/TestCommon.cmo test/TestCommon.ml
+ocamlfind ocamlc -c -g -I src -I src -I src -package unix -package threads -package str -package pcre -package oUnit -package extlib -thread -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -linkpkg -package unix -package threads -package str -package pcre -package oUnit -package extlib -thread src/expect.cma src/expect-pcre.cma src/expect-str.cma test/TestCommon.cmo test/test.cmo -o test/test.byte
+ocamlfind ocamldep -package unix -package threads -package str -package pcre -package oUnit -package extlib -modules test/qa.ml > test/qa.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -I src -package unix -package threads -package str -package pcre -package oUnit -package extlib -thread -I test -I src -o test/qa.cmo test/qa.ml
+ocamlfind ocamlc -g -linkpkg test/qa.cmo -o test/qa.byte
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISLibrary.ml", line 400, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectStr.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-str.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-str.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-str.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-str.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectStr.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectStr.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectPcre.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-pcre.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-pcre.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-pcre.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expect-pcre.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectPcre.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/expectPcre.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/expect/META
+Installing ocaml-expect.0.0.3.
