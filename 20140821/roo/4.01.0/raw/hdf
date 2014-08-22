@@ -1101,3 +1101,36 @@ mv idlalloc.o src/idlalloc.o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -ccopt -fPIC -c src/hdf_impl.c
 mv hdf_impl.o src/hdf_impl.o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -ccopt -fPIC -c src/hdf_wrapper_stubs.c
+mv hdf_wrapper_stubs.o src/hdf_wrapper_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o src/hdf_stubs -L/usr/lib /usr/lib/libmfhdf.a /usr/lib/libdf.a -ljpeg -lz src/idlalloc.o src/hdf_impl.o src/hdf_wrapper_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf.mli > src/hdf.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf_wrapper.mli > src/hdf_wrapper.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf_wrapper.cmi src/hdf_wrapper.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf.cmi src/hdf.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf.ml > src/hdf.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/extGenarray.ml > src/extGenarray.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/extGenarray.cmo src/extGenarray.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package batteries -package pcre -modules src/hdf_wrapper.ml > src/hdf_wrapper.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf.cmo src/hdf.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -c -g -package batteries -package pcre -I src -o src/hdf_wrapper.cmo src/hdf_wrapper.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -cc /usr/bin/h4cc -a -dllib -lhdf_stubs -cclib -lhdf_stubs -cclib -L/usr/lib -cclib /usr/lib/libmfhdf.a -cclib /usr/lib/libdf.a -cclib -ljpeg -cclib -lz src/extGenarray.cmo src/hdf_wrapper.cmo src/hdf.cmo -o src/hdf.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package batteries -package pcre -I src -o src/extGenarray.cmx src/extGenarray.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package batteries -package pcre -I src -o src/hdf_wrapper.cmx src/hdf_wrapper.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package batteries -package pcre -I src -o src/hdf.cmx src/hdf.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -lhdf_stubs -cclib -L/usr/lib -cclib /usr/lib/libmfhdf.a -cclib /usr/lib/libdf.a -cclib -ljpeg -cclib -lz src/extGenarray.cmx src/hdf_wrapper.cmx src/hdf.cmx -o src/hdf.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -I src -cclib -L/usr/lib -cclib /usr/lib/libmfhdf.a -cclib /usr/lib/libdf.a -cclib -ljpeg -cclib -lz src/hdf.cmx -o src/hdf.cmxs
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.mli
+Installed /home/opam/.opam/4.01.0/lib/hdf4/libhdf_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.cma
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.cmxa
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.a
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.cmxs
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.cmi
+Installed /home/opam/.opam/4.01.0/lib/hdf4/extGenarray.cmx
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf_wrapper.cmx
+Installed /home/opam/.opam/4.01.0/lib/hdf4/hdf.cmx
+Installed /home/opam/.opam/4.01.0/lib/hdf4/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllhdf_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllhdf_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing hdf.0.9.1.
