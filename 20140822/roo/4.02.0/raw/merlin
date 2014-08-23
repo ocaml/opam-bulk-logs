@@ -1405,3 +1405,66 @@ File "read.mll", line 367, characters 12-25:
 Warning 3: deprecated: String.create
 File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/META
+Installing yojson.1.1.8.
+Building merlin.1.7:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  rm -rf /home/opam/.opam/4.02.0+trunk/share/ocamlmerlin
+  make
+  make merlin.install
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Merlin configuration
+--------------------
+Found findlib	GOOD
+Found yojson	GOOD
+Found menhirLib	GOOD
+
+System config:
+  OCaml standard library: /home/opam/.opam/4.02.0+trunk/lib/ocaml
+  Ocaml ABI version: Unknown, defaulting to 4.00.1
+
+Will install:
+  ocamlmerlin binary in: /home/opam/.opam/4.02.0+trunk/bin
+  vim mode in: /home/opam/.opam/4.02.0+trunk/share/ocamlmerlin/vim
+  
+To customize directories, use:
+  ./configure [--prefix <dir>] [--bindir <dir>] [--sharedir <dir>] [--stdlib <stdlibdir>] [--vimdir <vimdir>] [--with-vimbufsync | --without-vimbufsync]
+
+For more informations rerun with --help.
+Now, type 'make' to compile then 'make install'.
+ocamlbuild -Is src,src/config,src/utils,src/ocaml,src/ocaml/utils,src/ocaml/typing,src/ocaml/parsing   -use-ocamlfind ocamlmerlin.native
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocamlmerlin.ml > src/ocamlmerlin.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/command.mli > src/command.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/IO.mli > src/IO.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/location.mli > src/ocaml/parsing/location.mli.depends
+ocamlfind ocamldep -modules src/ocaml/utils/warnings.mli > src/ocaml/utils/warnings.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/utils -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -o src/ocaml/utils/warnings.cmi src/ocaml/utils/warnings.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/protocol.mli > src/protocol.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/location.cmi src/ocaml/parsing/location.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/std.ml > src/std.ml.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/std.cmo src/std.ml
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/protocol.cmi src/protocol.mli
