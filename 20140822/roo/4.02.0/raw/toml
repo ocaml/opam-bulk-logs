@@ -1010,3 +1010,57 @@ Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmo
 Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmi
 Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/META
 Installing menhir.20130912.
+Building toml.1.0.0:
+  make build
+  make install
+ocamlbuild -use-ocamlfind -yaccflags --explain -use-menhir -package str -I src toml.cmxa
+ocamlfind ocamldep -package str -modules src/toml.ml > src/toml.ml.depends
+ocamlfind ocamldep -package str -modules src/toml.mli > src/toml.mli.depends
+ocamlfind ocamldep -package str -modules src/tomlType.mli > src/tomlType.mli.depends
+ocamlfind ocamlc -c -package str -I src -o src/tomlType.cmi src/tomlType.mli
+ocamlfind ocamlc -c -package str -I src -o src/toml.cmi src/toml.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q src/tomlLexer.mll
+ocamlfind ocamldep -package str -modules src/tomlLexer.ml > src/tomlLexer.ml.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/tomlParser.mly > src/tomlParser.mly.depends
+menhir --ocamlc 'ocamlfind ocamlc -package str -I src' --explain --infer src/tomlParser.mly
+ocamlfind ocamldep -package str -modules src/tomlParser.mli > src/tomlParser.mli.depends
+ocamlfind ocamldep -package str -modules src/tomlUnicode.ml > src/tomlUnicode.ml.depends
+ocamlfind ocamlc -c -package str -I src -o src/tomlParser.cmi src/tomlParser.mli
+ocamlfind ocamlc -c -package str -I src -o src/tomlUnicode.cmo src/tomlUnicode.ml
++ ocamlfind ocamlc -c -package str -I src -o src/tomlUnicode.cmo src/tomlUnicode.ml
+File "src/tomlUnicode.ml", line 13, characters 4-93:
+Warning 3: deprecated: String.set
+File "src/tomlUnicode.ml", line 19, characters 14-25:
+Warning 3: deprecated: String.copy
+File "src/tomlUnicode.ml", line 27, characters 14-25:
+Warning 3: deprecated: String.copy
+File "src/tomlUnicode.ml", line 34, characters 14-25:
+Warning 3: deprecated: String.copy
+ocamlfind ocamlc -c -package str -I src -o src/tomlLexer.cmo src/tomlLexer.ml
+ocamlfind ocamldep -package str -modules src/tomlParser.ml > src/tomlParser.ml.depends
+ocamlfind ocamlopt -c -package str -I src -o src/tomlParser.cmx src/tomlParser.ml
+ocamlfind ocamlopt -c -package str -I src -o src/tomlUnicode.cmx src/tomlUnicode.ml
++ ocamlfind ocamlopt -c -package str -I src -o src/tomlUnicode.cmx src/tomlUnicode.ml
+File "src/tomlUnicode.ml", line 13, characters 4-93:
+Warning 3: deprecated: String.set
+File "src/tomlUnicode.ml", line 19, characters 14-25:
+Warning 3: deprecated: String.copy
+File "src/tomlUnicode.ml", line 27, characters 14-25:
+Warning 3: deprecated: String.copy
+File "src/tomlUnicode.ml", line 34, characters 14-25:
+Warning 3: deprecated: String.copy
+ocamlfind ocamlopt -c -package str -I src -o src/tomlLexer.cmx src/tomlLexer.ml
+ocamlfind ocamlopt -c -package str -I src -o src/toml.cmx src/toml.ml
+ocamlfind ocamlopt -a -package str src/tomlParser.cmx src/tomlUnicode.cmx src/tomlLexer.cmx src/toml.cmx -o src/toml.cmxa
+ocamlbuild -use-ocamlfind -yaccflags --explain -use-menhir -package str -I src toml.cma
+ocamlfind ocamlc -c -package str -I src -o src/toml.cmo src/toml.ml
+ocamlfind ocamlc -c -package str -I src -o src/tomlParser.cmo src/tomlParser.ml
+ocamlfind ocamlc -a -package str src/tomlParser.cmo src/tomlUnicode.cmo src/tomlLexer.cmo src/toml.cmo -o src/toml.cma
+ocamlfind install toml META _build/src/toml.a _build/src/toml.cmxa _build/src/toml.cma _build/src/toml.cmi _build/src/tomlType.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/tomlType.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/toml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/toml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/toml.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/toml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/toml/META
+Installing toml.1.0.0.
