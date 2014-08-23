@@ -7770,3 +7770,22 @@ ocamlfind ocamlc -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-fil
 if test -f `dirname stog_writing.ml`/`basename stog_writing.ml .ml`.mli && test ! -f `dirname stog_writing.ml`/`basename stog_writing.ml .ml`.cmi ; then \
 	ocamlfind ocamlc -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-file -rectypes -c `dirname stog_writing.ml`/`basename stog_writing.ml .ml`.mli; fi
 ocamlfind ocamlc -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-file -rectypes -c stog_writing.ml
+ocamlfind ocamlc -a -package menhirLib -o stog_writing.cma \
+	-I +ocamldoc `ls bibtex.cmi bib_parser.cmi bib_parser.cmo bib_lexer.cmo stog_writing.cmo | grep -v cmi`
+ocamlfind ocamlopt -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-file -rectypes -c bib_parser.ml
+ocamlfind ocamlopt -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-file -rectypes -c bib_lexer.ml
+ocamlfind ocamlopt -I +ocamldoc -g -annot -package menhirLib,xtmpl,stog,config-file -rectypes -c stog_writing.ml
+ocamlfind ocamlopt  -shared -o stog_writing.cmxs \
+	-I +ocamldoc `ls bibtex.cmi bib_parser.cmi bib_parser.cmx bib_lexer.cmx stog_writing.cmx | grep -v cmi`
+#-package menhirLib -linkpkg
+ocamlfind ocamlopt -a -package menhirLib -o stog_writing.cmxa \
+	-I +ocamldoc `ls bibtex.cmi bib_parser.cmi bib_parser.cmx bib_lexer.cmx stog_writing.cmx | grep -v cmi`
+rm bib_lexer.ml
+ocamlfind install stog-writing META \
+	stog_writing.cmxs stog_writing.cma stog_writing.cmxa stog_writing.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/stog-writing/stog_writing.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/stog-writing/stog_writing.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/stog-writing/stog_writing.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/stog-writing/stog_writing.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/stog-writing/META
+Installing stog-writing.0.12.0.
