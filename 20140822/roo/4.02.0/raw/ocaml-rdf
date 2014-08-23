@@ -4417,3 +4417,48 @@ make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1
 make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc-generator'
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc-generator'
 ocamlfind ocamldep -syntax camlp4o -package camlp4.macro  *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc-generator'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc-generator'
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  config.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  syntax.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  options.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix" -c  parser.mli
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  parser.ml
+ocamllex lexer.mll
+127 states, 803 transitions, table size 3974 bytes
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  lexer.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  rename.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  generate.ml
+File "generate.ml", line 612, characters 6-22:
+Warning 26: unused variable get_type_of_decl.
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  direct.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -a -o rpc_generator.cma  config.cmo syntax.cmo options.cmo parser.cmo lexer.cmo rename.cmo generate.cmo direct.cmo; \
+	else \
+		../../tools/mkstublib -o rpc_generator config.cmo syntax.cmo options.cmo parser.cmo lexer.cmo rename.cmo generate.cmo direct.cmo  ; \
+	fi
+ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -c  main.ml
+rm -f ocamlrpcgen ocamlrpcgen
+OCAMLPATH="..:$OCAMLPATH" \
+	ocamlfind ocamlc -g  -I ../../src/netstring -package "unix"  -custom -o ocamlrpcgen \
+		-package unix,netstring,str \
+		rpc_generator.cma main.cmo -linkpkg
+echo /home/opam/.opam/4.02.0+trunk/bin/ocamlrpcgen >rpcgen-packlist
+rm lexer.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc-generator'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc'
+../rpc-generator/ocamlrpcgen -aux rpc_portmapper.x
+../rpc-generator/ocamlrpcgen -clnt rpc_portmapper.x
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+../rpc-generator/ocamlrpcgen -aux rpc_auth_gssapi.x
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/rpc'
+ocamlfind ocamldep -syntax camlp4o -package camlp4.macro  *.ml *.mli >depend || { rm -f depend; exit 1; }
