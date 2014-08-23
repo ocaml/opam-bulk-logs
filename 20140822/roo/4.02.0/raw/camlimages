@@ -998,3 +998,64 @@ Warning: Supported: all_formats supported
 *** omake: finished reading OMakefiles (3.40 sec)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build src jis_unicode.cmo
++ ocamlfind ocamlc -warn-error A -g -I . -c jis_unicode.ml
+File "jis_unicode.ml", line 18, characters 15-27:
+Warning 3: deprecated: Array.create
+File "jis_unicode.ml", line 1:
+Error: Some fatal warnings were triggered (1 occurrences)
+*** omake: 190/546 targets are up to date
+*** omake: failed (6.76 sec, 33/33 scans, 26/47 rules, 110/412 digests)
+*** omake: targets were not rebuilt because of errors:
+   src/jis_unicode.cmo
+      depends on: src/jis_unicode.ml
+[ERROR] The compilation of camlimages.4.1.1 failed.
+Removing camlimages.4.1.1.
+  ocamlfind remove camlimages
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/camlimages
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   omake.0.9.8.6-0.rc1
+The following failed
+ - install   camlimages.4.1.1
+
+#=== ERROR while installing camlimages.4.1.1 ==================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              omake --configure
+# path                 /home/opam/.opam/4.02.0+trunk/build/camlimages.4.1.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/camlimages.4.1.1/camlimages-2935-ad8886.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/camlimages.4.1.1/camlimages-2935-ad8886.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/camlimages.4.1.1/camlimages-2935-ad8886.err
+### stdout ###
+# ...[truncated]
+# Warning: Supported: all_formats supported
+# Warning: gifanim is not built: it requires gif lablgtk2
+# Warning: Supported: all_formats supported
+# Warning: tiffps is not built: it requires tiff jpeg ps
+# Warning: Supported: all_formats supported
+# *** omake: finished reading OMakefiles (3.40 sec)
+# - build src jis_unicode.cmo
+# + ocamlfind ocamlc -warn-error A -g -I . -c jis_unicode.ml
+# *** omake: 190/546 targets are up to date
+# *** omake: failed (6.76 sec, 33/33 scans, 26/47 rules, 110/412 digests)
+### stderr ###
+# ...[truncated]
+# ocamlfind: Package `lablgtk2' not found
+# *** omake: warning: stdout is not a tty, disabling the progress bar
+#    (use --progress to override).
+# File "jis_unicode.ml", line 18, characters 15-27:
+# Warning 3: deprecated: Array.create
+# File "jis_unicode.ml", line 1:
+# Error: Some fatal warnings were triggered (1 occurrences)
+# *** omake: targets were not rebuilt because of errors:
+#    src/jis_unicode.cmo
+#       depends on: src/jis_unicode.ml
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140723010641.export"
+'opam install camlimages' failed.
