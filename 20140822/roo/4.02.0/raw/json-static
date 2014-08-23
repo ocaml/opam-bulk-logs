@@ -6252,3 +6252,23 @@ Installing json-wheel.1.0.6.
 Building json-static.0.9.8:
   make
   make install PREFIX=/home/opam/.opam/4.02.0+trunk
+echo $CAMLP4_VERSION
+310
+echo $CAMLP4ORF
+camlp4orf
+echo $CAMLP4RF
+camlp4rf
+echo $PR_O
+-printer o
+echo $PR_R
+-printer r
+echo $PARSER
+-parser
+echo $PRINTER
+-printer
+echo '# 1 "pa_json_static.ml.310"' > pa_json_static.ml
+cat pa_json_static.ml.310 >> pa_json_static.ml
+ln -sf pa_json_static.ml.annot pa_json_static.annot
+ocamlc -c -dtypes \
+		-pp 'camlp4orf -loc _loc' \
+		-I +camlp4 pa_json_static.ml
