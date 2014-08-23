@@ -6454,3 +6454,51 @@ ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_constan
 ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_types.ml
 ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_parser_sanity.mli
 ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_parser_sanity.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_misc.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_misc.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_common.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_common.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_threaded_tcp_server.mli
+cp http_threaded_tcp_server.{cmi,mli} non_mt/
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c non_mt/http_threaded_tcp_server.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_tcp_server.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_tcp_server.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c cookie_lexer.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c cookie_lexer.ml
+File "cookie_lexer.ml", line 211, characters 27-39:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_parser.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_parser.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_message.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_message.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_request.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_request.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_daemon.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_daemon.ml
+File "http_daemon.ml", line 457, characters 2-250:
+Warning 23: all the fields are explicitly listed in this record:
+the 'with' clause is useless.
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_response.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_response.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_user_agent.mli
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -c http_user_agent.ml
+File "http_user_agent.ml", line 76, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -a -o http.cma http_constants.cmo http_types.cmo http_parser_sanity.cmo http_misc.cmo http_common.cmo non_mt/http_threaded_tcp_server.cmo http_tcp_server.cmo cookie_lexer.cmo http_parser.cmo http_message.cmo http_request.cmo http_daemon.cmo http_response.cmo http_user_agent.cmo
+cp http_threaded_tcp_server.{cmi,mli} mt/
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -package threads -thread -c mt/http_threaded_tcp_server.ml
+ocamlfind ocamlc  -pp camlp4o -package "unix str pcre netstring" -a -o http_mt.cma http_constants.cmo http_types.cmo http_parser_sanity.cmo http_misc.cmo http_common.cmo mt/http_threaded_tcp_server.cmo http_tcp_server.cmo cookie_lexer.cmo http_parser.cmo http_message.cmo http_request.cmo http_daemon.cmo http_response.cmo http_user_agent.cmo
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_constants.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_types.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_parser_sanity.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_misc.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_common.ml
+cp http_threaded_tcp_server.{cmi,mli} non_mt/
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c non_mt/http_threaded_tcp_server.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_tcp_server.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c cookie_lexer.ml
+File "cookie_lexer.ml", line 211, characters 27-39:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_parser.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_message.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_request.ml
