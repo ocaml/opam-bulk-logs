@@ -4806,3 +4806,27 @@ ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix" 
 ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix"  -c  netcgi_dbi.ml
 ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix" -c  netcgi1_compat.mli
 ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix"  -c  netcgi1_compat.ml
+ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix" -c  netcgi_test.mli
+ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix"  -c  netcgi_test.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/netstring -I ../../src/netsys -package "unix"  -a -o netcgi.cma  netcgi_common.cmo netcgi.cmo netcgi_ajp.cmo netcgi_scgi.cmo netcgi_cgi.cmo netcgi_fcgi.cmo  netcgi_dbi.cmo netcgi1_compat.cmo netcgi_test.cmo; \
+	else \
+		../../tools/mkstublib -o netcgi netcgi_common.cmo netcgi.cmo netcgi_ajp.cmo netcgi_scgi.cmo netcgi_cgi.cmo netcgi_fcgi.cmo  netcgi_dbi.cmo netcgi1_compat.cmo netcgi_test.cmo  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netcgi2'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netplex'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netplex'
+../rpc-generator/ocamlrpcgen -aux netplex_ctrl.x -int unboxed -direct
+../rpc-generator/ocamlrpcgen -clnt netplex_ctrl.x -int unboxed -direct
+../rpc-generator/ocamlrpcgen -srv2 netplex_ctrl.x -int unboxed -direct
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netplex'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netplex'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.4-1/src/netplex'
+ocamlfind ocamldep  -syntax camlp4o -package camlp4 *.ml *.mli >depend || { rm -f depend; exit 1; }
