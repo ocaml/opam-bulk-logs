@@ -117,3 +117,15 @@ ocamlfind ocamlc -c -annot -bin-annot -package uutf -I src -I test -o src/otfm.c
 ocamlfind ocamlc -a src/otfm.cmo -o src/otfm.cma
 ocamlfind ocamlopt -a src/otfm.cmx -o src/otfm.cmxa
 ocamlfind ocamlopt -shared src/otfm.cmx -o src/otfm.cmxs
+ocamlfind ocamldep -package uutf -modules test/otftrip.ml > test/otftrip.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -package uutf -I test -I src -o test/otftrip.cmo test/otftrip.ml
++ ocamlfind ocamlc -c -annot -bin-annot -package uutf -I test -I src -o test/otftrip.cmo test/otftrip.ml
+File "test/otftrip.ml", line 21, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -c -annot -bin-annot -package uutf -I test -I src -o test/otftrip.cmx test/otftrip.ml
++ ocamlfind ocamlopt -c -annot -bin-annot -package uutf -I test -I src -o test/otftrip.cmx test/otftrip.ml
+File "test/otftrip.ml", line 21, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -linkpkg -package uutf src/otfm.cmx test/otftrip.cmx -o test/otftrip.native
+Installing otfm.0.1.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/otfm.0.1.0/otfm.install: is your OPAM up-to-date ?
