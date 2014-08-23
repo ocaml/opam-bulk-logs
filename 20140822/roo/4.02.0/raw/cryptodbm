@@ -1297,3 +1297,58 @@ ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum
 ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/signature.cmx src/signature.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/stats.cmx src/stats.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/subtable.cmx src/subtable.ml
+touch src/cryptodbm_internals.mli  ; if  ocamlfind ocamlopt -pack -g -I src src/config.cmx src/types.cmx src/cipher.cmx src/utils.cmx src/lowerDB_impl.cmx src/strings.cmx src/kinds.cmx src/operations.cmx src/setp.cmx src/signature.cmx src/stats.cmx src/subtable.cmx -o src/cryptodbm_internals.cmx  ; then  rm -f src/cryptodbm_internals.mli  ; else  rm -f src/cryptodbm_internals.mli  ; exit 1; fi
+ocamlfind ocamlopt -a src/errors.cmx src/cryptodbm_internals.cmx -o src/cryptodbm_internals.cmxa
+ocamlfind ocamlopt -shared src/cryptodbm_internals.cmx -o src/cryptodbm_internals.cmxs
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules src/cryptodbm.mli > src/cryptodbm.mli.depends
+ocamlfind ocamlc -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmi src/cryptodbm.mli
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules src/cryptodbm.ml > src/cryptodbm.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmo src/cryptodbm.ml
+ocamlfind ocamlc -a src/cryptodbm.cmo -o src/cryptodbm.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmx src/cryptodbm.ml
+ocamlfind ocamlopt -a src/cryptodbm.cmx -o src/cryptodbm.cmxa
+ocamlfind ocamlopt -shared src/cryptodbm.cmx -o src/cryptodbm.cmxs
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_dbm.ml > test/test_dbm.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/common.ml > test/common.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/bitarray.mli > test/bitarray.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/bitarray.cmi test/bitarray.mli
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_dbm_helper.ml > test/test_dbm_helper.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmo test/common.ml
++ ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmo test/common.ml
+File "test/common.ml", line 184, characters 6-23:
+Warning 3: deprecated: String.set
+File "test/common.ml", line 190, characters 51-64:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/helper.ml > test/helper.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmo test/helper.ml
++ ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmo test/helper.ml
+File "test/helper.ml", line 9, characters 10-21:
+Warning 3: deprecated: String.copy
+File "test/helper.ml", line 11, characters 4-31:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm_helper.cmo test/test_dbm_helper.ml
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm.cmo test/test_dbm.ml
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/bitarray.ml > test/bitarray.ml.depends
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/bitarray.cmx test/bitarray.ml
++ ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/bitarray.cmx test/bitarray.ml
+File "test/bitarray.ml", line 39, characters 2-34:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmx test/common.ml
++ ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmx test/common.ml
+File "test/common.ml", line 184, characters 6-23:
+Warning 3: deprecated: String.set
+File "test/common.ml", line 190, characters 51-64:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmx test/helper.ml
++ ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmx test/helper.ml
+File "test/helper.ml", line 9, characters 10-21:
+Warning 3: deprecated: String.copy
+File "test/helper.ml", line 11, characters 4-31:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm_helper.cmx test/test_dbm_helper.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm.cmx test/test_dbm.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/errors.cmx src/cryptodbm_internals.cmx src/cryptodbm.cmxa test/bitarray.cmx test/common.cmx test/helper.cmx test/test_dbm_helper.cmx test/test_dbm.cmx -o test/test_dbm.native
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_data_kind.ml > test/test_data_kind.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_data_kind.cmo test/test_data_kind.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_data_kind.cmx test/test_data_kind.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/cryptodbm.cmxa src/errors.cmx src/cryptodbm_internals.cmx test/helper.cmx test/test_data_kind.cmx -o test/test_data_kind.native
