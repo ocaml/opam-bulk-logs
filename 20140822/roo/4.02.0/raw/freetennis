@@ -2864,3 +2864,215 @@ ocamlc -c -w s -I +labltk gluQuadric.ml
 ocamlc -c -w s -I +labltk gluTess.mli
 ocamlc -c -w s -I +labltk gluTess.ml
 ocamlc -c -w s -I +labltk gluMat.mli
+ocamlc -c -w s -I +labltk gluMat.ml
+ocamlc -c -w s -I +labltk glArray.mli
+ocamlc -c -w s -I +labltk glArray.ml
+ocamlc -c -w s -I +labltk glShader.mli
+ocamlc -c -w s -I +labltk glShader.ml
+ocamlmklib -o lablgl ml_gl.o	ml_glu.o	ml_raw.o ml_glarray.o ml_glutess.o	ml_shader.o raw.cmo gl.cmo		glLight.cmo	glList.cmo	glMap.cmo glMat.cmo	glMisc.cmo	glPix.cmo	glClear.cmo glTex.cmo	glDraw.cmo	glFunc.cmo	gluMisc.cmo gluNurbs.cmo	gluQuadric.cmo	gluTess.cmo	gluMat.cmo glArray.cmo	glShader.cmo -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+cd LablGlut/src && make
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include -I../../src" wrap_glut.c
+wrap_glut.c: In function 'ml_glutBitmapLength':
+wrap_glut.c:392:3: warning: pointer targets in passing argument 2 of 'glutBitmapLength' differ in signedness [-Wpointer-sign]
+   return Val_int(glutBitmapLength(i2font(Int_val(font)), String_val(str)));
+   ^
+In file included from /usr/include/GL/glut.h:17:0,
+                 from wrap_glut.c:16:
+/usr/include/GL/freeglut_std.h:517:26: note: expected 'const unsigned char *' but argument is of type 'char *'
+ FGAPI int     FGAPIENTRY glutBitmapLength( void* font, const unsigned char* string );
+                          ^
+wrap_glut.c: In function 'ml_glutStrokeLength':
+wrap_glut.c:398:3: warning: pointer targets in passing argument 2 of 'glutStrokeLength' differ in signedness [-Wpointer-sign]
+   return Val_int(glutStrokeLength(i2font(Int_val(font)), String_val(str)));
+   ^
+In file included from /usr/include/GL/glut.h:17:0,
+                 from wrap_glut.c:16:
+/usr/include/GL/freeglut_std.h:518:26: note: expected 'const unsigned char *' but argument is of type 'char *'
+ FGAPI int     FGAPIENTRY glutStrokeLength( void* font, const unsigned char* string );
+                          ^
+ocamlc -c -w s  glut.mli
+ocamlc -c -w s  glut.ml
+ocamlmklib -o lablglut wrap_glut.o glut.cmo -lglut -lGL -lGLU 
+ocamlmktop  -I . -I ../../src  -o lablgluttop \
+	  lablglut.cma lablgl.cma
+make INSTALLDIR="`ocamlc -where`/lablGL" real-lablglut
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+generate lablglut
+echo "#!/bin/sh" > lablglut
+echo "# toplevel with lablGL and LablGlut" >> lablglut
+if test -f dlllablglut.so; then \
+	    echo 'exec ocaml -I "/home/opam/.opam/4.02.0+trunk/lib/ocaml/lablGL" lablgl.cma lablglut.cma $*' >> lablglut; \
+	 else echo 'exec "/home/opam/.opam/4.02.0+trunk/lib/ocaml/lablGL/lablgluttop" -I "/home/opam/.opam/4.02.0+trunk/lib/ocaml/lablGL" $*' >> lablglut; fi
+chmod 755 lablglut
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cd src && make opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+ocamlopt -c -I +labltk raw.ml
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated: Pervasives.or
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk gl.ml
+ocamlopt -c -I +labltk glLight.ml
+ocamlopt -c -I +labltk glList.ml
+ocamlopt -c -I +labltk glMap.ml
+ocamlopt -c -I +labltk glMat.ml
+File "glMat.ml", line 73, characters 10-22:
+Warning 3: deprecated: Array.create
+ocamlopt -c -I +labltk glMisc.ml
+File "glMisc.ml", line 26, characters 15-17:
+Warning 3: deprecated: Pervasives.or
+File "glMisc.ml", line 26, characters 15-17:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk glPix.ml
+ocamlopt -c -I +labltk glClear.ml
+ocamlopt -c -I +labltk glTex.ml
+File "glTex.ml", line 111, characters 12-24:
+Warning 3: deprecated: Array.create
+ocamlopt -c -I +labltk glDraw.ml
+File "glDraw.ml", line 30, characters 28-30:
+Warning 3: deprecated: Pervasives.or
+File "glDraw.ml", line 30, characters 28-30:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk glFunc.ml
+ocamlopt -c -I +labltk gluMisc.ml
+ocamlopt -c -I +labltk gluNurbs.ml
+File "gluNurbs.ml", line 57, characters 23-25:
+Warning 3: deprecated: Pervasives.or
+File "gluNurbs.ml", line 57, characters 23-25:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk gluQuadric.ml
+ocamlopt -c -I +labltk gluTess.ml
+ocamlopt -c -I +labltk gluMat.ml
+ocamlopt -c -I +labltk glArray.ml
+ocamlopt -c -I +labltk glShader.ml
+ocamlmklib -o lablgl ml_gl.o	ml_glu.o	ml_raw.o ml_glarray.o ml_glutess.o	ml_shader.o raw.cmx gl.cmx glLight.cmx glList.cmx glMap.cmx glMat.cmx glMisc.cmx glPix.cmx glClear.cmx glTex.cmx glDraw.cmx glFunc.cmx gluMisc.cmx gluNurbs.cmx gluQuadric.cmx gluTess.cmx gluMat.cmx glArray.cmx glShader.cmx -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+cd LablGlut/src && make opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+ocamlopt -c  glut.ml
+ocamlmklib -o lablglut wrap_glut.o glut.cmx -lglut -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+sed -e "s|@LABLGL_MLS@|raw gl glLight glList glMap glMat glMisc glPix glClear glTex glDraw glFunc gluMisc gluNurbs gluQuadric gluTess gluMat glArray glShader|" \
+	    -e "s|@TOGL_MLS@|togl|" \
+	    -e "s|@GLUT_MLS@|glut|" \
+	    -e "s|@GLLIBS@||" \
+	    -e "s|@TKLIBS@||" \
+	    -e "s|@GLUTLIBS@||" < build.ml.in > build.ml
+if test -d "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; then : ; else mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; fi
+cp build.ml raw.ml gl.ml glLight.ml glList.ml glMap.ml glMat.ml glMisc.ml glPix.ml glClear.ml glTex.ml glDraw.ml glFunc.ml gluMisc.ml gluNurbs.ml gluQuadric.ml gluTess.ml gluMat.ml glArray.ml glShader.ml raw.mli gl.mli glLight.mli glList.mli glMap.mli glMat.mli glMisc.mli glPix.mli glClear.mli glTex.mli glDraw.mli glFunc.mli gluMisc.mli gluNurbs.mli gluQuadric.mli gluTess.mli gluMat.mli glArray.mli glShader.mli "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cp liblablgl.a "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : liblablgl.a
+if test -f dlllablgl.so; then cp dlllablgl.so "/home/opam/.opam/4.02.0+trunk/lib/stublibs"; fi
+cp raw.cmi gl.cmi glLight.cmi glList.cmi glMap.cmi glMat.cmi glMisc.cmi glPix.cmi glClear.cmi glTex.cmi glDraw.cmi glFunc.cmi gluMisc.cmi gluNurbs.cmi gluQuadric.cmi gluTess.cmi gluMat.cmi glArray.cmi glShader.cmi lablgl.cma "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+cp lablgl.cmxa lablgl.a raw.cmx gl.cmx glLight.cmx glList.cmx glMap.cmx glMat.cmx glMisc.cmx glPix.cmx glClear.cmx glTex.cmx glDraw.cmx glFunc.cmx gluMisc.cmx gluNurbs.cmx gluQuadric.cmx gluTess.cmx gluMat.cmx glArray.cmx glShader.cmx "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : lablgl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+if test -d "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; then : ; else mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; fi
+cp glut.ml glut.mli "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cp liblablglut.a "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : liblablglut.a
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp dlllablglut.so "/home/opam/.opam/4.02.0+trunk/lib/stublibs"
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp lablglut "/home/opam/.opam/4.02.0+trunk/bin"
+cp glut.cmi lablglut.cma "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp lablglut.cmxa lablglut.a glut.cmx "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : lablglut.a
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+Installing lablgl.20120306.
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk LABLGLDIR=/home/opam/.opam/4.02.0+trunk/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.02.0+dev16-2014-08-21
+ocaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.02.0+trunk/lib/ocaml/lablgtk2 and /home/opam/.opam/4.02.0+trunk/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+checking for GTK+ - version >= 2.0.0... yes (version 2.24.23)
+checking pkg-config is at least version 0.9.0... yes
+checking for GTKGL... no
+checking for GLADE... no
+checking for RSVG... no
+checking for GNOMECANVAS... no
+checking for GNOMEUI... no
+checking for PANEL... no
+checking for GTKSPELL... no
+checking for GTKSOURCEVIEW... no
+checking for GTKSOURCEVIEW2... no
+checking for GTKQUARTZ... no
+checking for GTKALL... yes
+configure: creating ./config.status
+config.status: creating config.make
+
+LablGTK configuration:
+	threads  	system
+	native dynlink 	yes
+	GtkGLArea 	not found
+	libglade 	not found
+	librsvg  	not found
+	libgnomecanvas 	not found
+	libgnomeui 	not found
+	libpanelapplet 	not found
+	gtkspell 	not found
+	gtksourceview 1 	not found
+	gtksourceview 2 	not found
+	quartz    	not found
+
+	debug   	no
+	C compiler	gcc
+make -C src world
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/src'
+ocamlc.opt -c -pp "camlp4o -impl" -impl varcc.ml4
+ocamlc.opt   -o varcc varcc.cmo
+rm -f *_tags.h *_tags.c
+./varcc gdkpixbuf_tags.var
+./varcc gdk_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_gdkpixbuf.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.02.0+trunk/lib/ocaml' 'ml_gdkpixbuf.c'
+./varcc pango_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_gdk.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.02.0+trunk/lib/ocaml' 'ml_gdk.c'
