@@ -3819,3 +3819,80 @@ File "_tags", line 30, characters 27-49:
 Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
 /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp /home/opam/.opam/4.02.0+trunk/bin/camlp4of -modules src/syntax/bolt_pp.ml > src/syntax/bolt_pp.ml.depends
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I +camlp4 -pp /home/opam/.opam/4.02.0+trunk/bin/camlp4of -I src/syntax -I src -I src/support -I src/threads -I src/library -o src/syntax/bolt_pp.cmo src/syntax/bolt_pp.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links boltThread.cmo
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/threads/boltThread.mli > src/threads/boltThread.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmi src/threads/boltThread.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/threads/boltThread.ml > src/threads/boltThread.ml.depends
+cp /tmp/version3dc064.ml src/library/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -thread -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmo src/threads/boltThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.02.0+trunk ocamlbuild -classic-display -no-links boltThread.cmx
+File "_tags", line 27, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/version0865ea.ml src/library/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -thread -for-pack Bolt -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmx src/threads/boltThread.ml
+if [ -x "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind query bolt && /home/opam/.opam/4.02.0+trunk/bin/ocamlfind remove bolt || true; \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind install bolt META -optional \
+	    `pwd`/_build/src/syntax/bolt_pp.cmo \
+	    `pwd`/_build/src/threads/boltThread.cm* \
+	    `pwd`/_build/src/threads/boltThread.o \
+	    `pwd`/_build/src/threads/boltThread.jo \
+	    `pwd`/_build/bolt.a \
+	    `pwd`/_build/bolt.cma \
+	    `pwd`/_build/bolt.cmi \
+	    `pwd`/_build/bolt.cmo \
+	    `pwd`/_build/bolt.cmxa \
+	    `pwd`/_build/bolt.cmja \
+	    `pwd`/_build/bolt.ja; \
+	else \
+	  mkdir -p /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt; \
+	  cp `pwd`/_build/src/syntax/bolt_pp.cmo /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/boltThread.$ext && cp `pwd`/_build/src/threads/boltThread.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmxa cmja ja; do \
+	    test -f `pwd`/_build/bolt.$ext && cp `pwd`/_build/bolt.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/bolt || true; \
+	  done \
+	fi
+ocamlfind: Package `bolt' not found
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/boltThread.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/bolt_pp.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/bolt/META
+Installing bolt.1.4.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2419, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux): ....... available
+testing for credentials getting (NetBSD): ...... unavailable
+testing for credentials getting (OpenBSD): ..... unavailable
+testing for credentials getting (FreeBSD): ..... unavailable
+testing for credentials getting (getpeereid): .. unavailable
+testing for fdatasync: ......................... available
+testing for netdb_reentrant:
