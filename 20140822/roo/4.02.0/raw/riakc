@@ -1689,3 +1689,34 @@ ocamlfind ocamlc -g  -c bitmatch.ml
 ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
 ocamlfind ocamlc -g  \
 	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+File "bitstring.ml", line 64, characters 12-25:
+Warning 3: deprecated: String.create
+File "bitstring.ml", line 74, characters 12-25:
+Warning 3: deprecated: String.create
+File "bitstring.ml", line 93, characters 12-25:
+Warning 3: deprecated: String.create
+File "bitstring.ml", line 103, characters 12-25:
+Warning 3: deprecated: String.create
+File "bitstring.ml", line 1033, characters 1-22:
+Warning 3: deprecated: String.set
+File "bitstring.ml", line 1037, characters 1-36:
+Warning 3: deprecated: String.set
+File "bitstring.ml", line 1152, characters 4-34:
+Warning 3: deprecated: String.set
+File "bitstring.ml", line 1197, characters 4-96:
+Warning 3: deprecated: String.set
+File "bitstring.ml", line 1205, characters 25-45:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
