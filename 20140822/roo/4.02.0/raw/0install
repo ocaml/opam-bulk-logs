@@ -1106,3 +1106,131 @@ ocamllex cppo_lexer.mll
 354 states, 13186 transitions, table size 54868 bytes
 3462 additional bytes used for bindings
 ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building extlib.1.6.1:
+  make minimal=1 build install
+ocamlc -g -c enum.mli enum.ml
+ocamlc -g -c bitSet.mli bitSet.ml
+File "bitSet.ml", line 23, characters 40-53:
+Warning 3: deprecated: String.create
+File "bitSet.ml", line 28, characters 64-75:
+Warning 3: deprecated: String.fill
+ocamlc -g -c dynArray.mli dynArray.ml
+ocamlc -g -c extArray.mli extArray.ml
+camlp4of pr_o.cmo -D OCAML4 -impl extHashtbl.mlpp -o extHashtbl.ml
+ocamlc -g -c extHashtbl.mli extHashtbl.ml
+ocamlc -g -c extList.mli extList.ml
+ocamlc -g -c extString.mli extString.ml
+File "extString.ml", line 28, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 30, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 126, characters 2-8:
+Warning 3: deprecated: create
+File "extString.ml", line 173, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 175, characters 21-31:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 180, characters 10-16:
+Warning 3: deprecated: create
+File "extString.ml", line 182, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 212, characters 12-25:
+Warning 3: deprecated: String.create
+File "extString.ml", line 215, characters 14-26:
+Warning 3: deprecated: String.set
+File "extString.ml", line 231, characters 12-18:
+Warning 3: deprecated: create
+File "extString.ml", line 250, characters 28-39:
+Warning 3: deprecated: String.copy
+ocamlc -g -c global.mli global.ml
+ocamlc -g -c IO.mli IO.ml
+File "IO.ml", line 65, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 119, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 180, characters 13-26:
+Warning 3: deprecated: String.create
+File "IO.ml", line 324, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 752, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 769, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 771, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 788, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlc -g -c option.mli option.ml
+ocamlc -g -c pMap.mli pMap.ml
+ocamlc -g -c std.mli std.ml
+File "std.ml", line 52, characters 16-29:
+Warning 3: deprecated: String.create
+File "std.ml", line 65, characters 37-50:
+Warning 3: deprecated: String.create
+File "std.ml", line 67, characters 13-26:
+Warning 3: deprecated: String.create
+File "std.ml", line 162, characters 14-27:
+Warning 3: deprecated: Obj.final_tag
+ocamlc -g -c base64.mli base64.ml
+File "base64.ml", line 98, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlc -g -c refList.mli refList.ml
+ocamlc -g -c optParse.mli optParse.ml
+ocamlc -g -c dllist.mli dllist.ml
+ocamlc -g -c extLib.ml
+ocamlc -g -a -o extLib.cma enum.cmo bitSet.cmo dynArray.cmo extArray.cmo extHashtbl.cmo extList.cmo extString.cmo global.cmo IO.cmo option.cmo pMap.cmo std.cmo base64.cmo refList.cmo optParse.cmo dllist.cmo extLib.cmo
+ocamlopt -g -c enum.mli enum.ml
+ocamlopt -g -c bitSet.mli bitSet.ml
+File "bitSet.ml", line 23, characters 40-53:
+Warning 3: deprecated: String.create
+File "bitSet.ml", line 28, characters 64-75:
+Warning 3: deprecated: String.fill
+ocamlopt -g -c dynArray.mli dynArray.ml
+ocamlopt -g -c extArray.mli extArray.ml
+ocamlopt -g -c extHashtbl.mli extHashtbl.ml
+ocamlopt -g -c extList.mli extList.ml
