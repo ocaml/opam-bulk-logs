@@ -3874,3 +3874,26 @@ pkg_cmdliner: ........................................ /home/opam/.opam/4.02.0+t
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/mirage.cmo lib/mirage.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/mirage_misc.cmo lib/mirage_misc.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lib/mirage_misc.cmo lib/mirage.cmo -o lib/mirage.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/mirage_misc.cmx lib/mirage_misc.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/mirage.cmx lib/mirage.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lib/mirage_misc.cmx lib/mirage.cmx -o lib/mirage.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared lib/mirage.cmxa lib/mirage_misc.cmx lib/mirage.cmx -o lib/mirage.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -modules lib/main.ml > lib/main.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/main.cmo lib/main.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -I lib -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix -I lib -o lib/main.cmx lib/main.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -linkpkg -package cmdliner -package dynlink -package ipaddr -package lwt -package mirage-types -package mirage-types.lwt -package unix lib/mirage.cmxa lib/main.cmx -o lib/main.native
+./setup.bin -test
+./setup.bin -doc
+./setup.bin -install
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage_misc.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage_misc.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage_misc.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/mirage.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mirage/META
+Installing mirage.1.2.0.
