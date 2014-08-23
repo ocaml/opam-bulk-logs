@@ -2424,3 +2424,17 @@ sed  -e 's/@PACKAGE@/pgocaml/' \
 		-e 's/@EXTLIB@/extlib/' \
 		< META.in > META
 ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_config.ml
+ocamlfind ocamlc -g  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.mli
+ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.ml
+ocamlfind ocamlc -g  -package unix,extlib,pcre,calendar,csv -c pGOCaml.mli
+ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml.ml
+ocamlfind ocamlc -g -package unix,extlib,pcre,calendar,csv -a -o pgocaml.cma pGOCaml_config.cmo pGOCaml_generic.cmo pGOCaml.cmo
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_config.ml
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.ml
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml.ml
+ocamlfind ocamlopt  -package unix,extlib,pcre,calendar,csv -a -o pgocaml.cmxa pGOCaml_config.cmx pGOCaml_generic.cmx pGOCaml.cmx
+ocamlfind ocamlc -g -package unix,extlib,pcre,calendar,csv \
+	  -pp "camlp4o pa_extend.cmo q_MLast.cmo -parser Camlp4MacroParser -impl" \
+	  -I +camlp4 -c -impl pa_pgsql.ml4
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pgocaml_prof.ml
+ocamlfind ocamlopt  -package unix,extlib,pcre,calendar,csv -linkpkg -o pgocaml_prof pgocaml_prof.cmx
