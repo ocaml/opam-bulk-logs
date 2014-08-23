@@ -1321,3 +1321,14 @@ ocamlfind ocamlopt -c -g -package camlp4.lib -package camlp4.quotations.o -packa
 ocamlfind ocamlopt -a src/ODN.cmx -o src/odn.cmxa
 ocamlfind ocamlopt -shared -linkall src/odn.cmxa -o src/odn.cmxs
 ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_odn.ml > src/pa_odn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_odn.cmo src/pa_odn.ml
+ocamlfind ocamlc -a src/pa_odn.cmo -o src/pa_odn.cma
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_noodn.ml > src/pa_noodn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_noodn.cmo src/pa_noodn.ml
+ocamlfind ocamlc -a src/pa_noodn.cmo -o src/pa_noodn.cma
+Skipping precommit checks.
+ocaml setup.ml -test 
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1946, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
