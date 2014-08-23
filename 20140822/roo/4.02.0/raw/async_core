@@ -1986,3 +1986,7 @@ ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_bin_prot.cmi syntax/pa_bin_prot.mli
 ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -modules syntax/pa_bin_prot.ml > syntax/pa_bin_prot.ml.depends
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_bin_prot.cmo syntax/pa_bin_prot.ml
+ocamlfind ocamlc -a syntax/pa_bin_prot.cmo -o syntax/pa_bin_prot.cma
+ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_bin_prot.cmx syntax/pa_bin_prot.ml
+ocamlfind ocamlopt -a syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxa
+ocamlfind ocamlopt -shared syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxs
