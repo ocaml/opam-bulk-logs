@@ -659,3 +659,100 @@ ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
 ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
 ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
 ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0+trunk/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk LABLGLDIR=/home/opam/.opam/4.02.0+trunk/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.02.0+dev16-2014-08-21
+ocaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.02.0+trunk/lib/ocaml/lablgtk2 and /home/opam/.opam/4.02.0+trunk/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... no
+configure: error: Cannot find camlp4o.
+[ERROR] The compilation of lablgtk.2.16.0 failed.
+Removing lablgtk.2.16.0.
+  ocamlfind remove lablgtk2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/lablgtk2
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   conf-gtksourceview.2
+ - install   xmlm.1.2.0
+ - install   conf-glade.2
+The following failed
+ - install   config-file.1.2
+ - install   lablgtk.2.16.0
+Due to the errors, the following have been cancelled
+ - install   gtktop.2.0
+ - install   ocamltop-gtk.2.1.1
+ - install   lablgtk-extras.1.4
+
+=-=- lablgtk.2.16.0 troobleshooting -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+This package requires gtk+ 2.0 development packages installed on your system
+
+#=== ERROR while installing config-file.1.2 ===================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.02.0+trunk
+# path                 /home/opam/.opam/4.02.0+trunk/build/config-file.1.2
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18235-6cc03f.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18235-6cc03f.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/config-file.1.2/config-file-18235-6cc03f.err
+### stdout ###
+# checking for ocamlfind... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+# checking for camlp4... no
+### stderr ###
+# configure: error: Cannot find camlp4.
+
+
+#=== ERROR while installing lablgtk.2.16.0 ====================================#
+# opam-version         1.2.0~beta4 (b20433ccd4fb06c854e7d9af73b8f310c42a6b5c)
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.02.0+trunk LABLGLDIR=/home/opam/.opam/4.02.0+trunk/lib/lablgl
+# path                 /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-18607-b76d46.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-18607-b76d46.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/lablgtk.2.16.0/lablgtk-18607-b76d46.err
+### stdout ###
+# ...[truncated]
+# checking for ocamlopt.opt... ocamlopt.opt
+# checking ocamlc.opt version... ok
+# checking for ocamlrun... ocamlrun
+# checking for ocamldep... ocamldep
+# checking for ocamldoc... ocamldoc
+# checking for ocamllex... ocamllex
+# checking for ocamlyacc... ocamlyacc
+# checking for ocamlmktop... ocamlmktop
+# checking for ocamlmklib... ocamlmklib
+# checking for camlp4o... no
+### stderr ###
+# configure: error: Cannot find camlp4o.
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140723080012.export"
+'opam install ocamltop-gtk' failed.
