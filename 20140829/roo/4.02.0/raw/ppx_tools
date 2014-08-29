@@ -9,3 +9,50 @@ Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install ppx_tools
+The following actions will be performed:
+ - install   ppx_tools.0.99.1
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ppx_tools.0.99.1+opam.tar.gz
+sending incremental file list
+ppx_tools.0.99.1+opam.tar.gz
+
+sent 14,941 bytes  received 35 bytes  29,952.00 bytes/sec
+total size is 14,804  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building ppx_tools.0.99.1:
+  make all
+  make install
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlc -a -o ppx_tools.cma ast_convenience.cmo ast_mapper_class.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c genlifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o genlifter ocamlcommon.cma ppx_tools.cma genlifter.cmo
+./genlifter -I +compiler-libs Parsetree.expression > ast_lifter.ml || rm -rf ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c dumpast.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o dumpast ocamlcommon.cma ocamlbytecomp.cma ast_lifter.cmo dumpast.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ppx_metaquot.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o ppx_metaquot ocamlcommon.cma ppx_tools.cma ast_lifter.cmo ppx_metaquot.cmo
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlopt -a -o ppx_tools.cmxa ast_convenience.cmx ast_mapper_class.cmx
+ocamlopt -shared -o ppx_tools.cmxs -linkall ppx_tools.cmxa
+ocamlfind install ppx_tools META genlifter dumpast ppx_metaquot ppx_tools.cma ppx_tools.cmxa ppx_tools.a ppx_tools.cmxs ast_convenience.cmi ast_convenience.cmx ast_mapper_class.cmi ast_mapper_class.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ast_mapper_class.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ast_mapper_class.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ast_convenience.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ast_convenience.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ppx_tools.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ppx_tools.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ppx_tools.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ppx_tools.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/ppx_metaquot
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/dumpast
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/genlifter
+Installed /home/opam/.opam/4.02.0+trunk/lib/ppx_tools/META
+Installing ppx_tools.0.99.1.
