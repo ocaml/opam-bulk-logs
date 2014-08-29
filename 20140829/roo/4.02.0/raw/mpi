@@ -90,3 +90,48 @@ Setting up libopenmpi1.6 (1.6.5-8) ...
 Setting up libopenmpi-dev (1.6.5-8) ...
 update-alternatives: using /usr/lib/openmpi/include to provide /usr/include/mpi (mpi) in auto mode
 Setting up mpi-default-dev (1.0.2ubuntu1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install mpi -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install mpi
+The following actions will be performed:
+ - install   mpi.1.01
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/mpi.1.01+opam.tar.gz
+sending incremental file list
+mpi.1.01+opam.tar.gz
+
+sent 60,011 bytes  received 35 bytes  120,092.00 bytes/sec
+total size is 59,878  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building mpi.1.01:
+  make all
+  make opt
+  make install
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o init.o init.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o comm.o comm.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o msgs.o msgs.c
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o collcomm.o collcomm.c
+collcomm.c: In function 'caml_mpi_scatter_float':
+collcomm.c:123:12: warning: unused variable 'len' [-Wunused-variable]
+   mlsize_t len = Wosize_val(data) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_scatter_floatarray':
+collcomm.c:145:12: warning: unused variable 'srclen' [-Wunused-variable]
+   mlsize_t srclen = Wosize_val(source) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_gather_float':
+collcomm.c:197:12: warning: unused variable 'reslen' [-Wunused-variable]
+   mlsize_t reslen = Wosize_val(result) / Double_wosize;
+            ^
+collcomm.c: In function 'caml_mpi_allgather_float':
+collcomm.c:245:12: warning: unused variable 'reslen' [-Wunused-variable]
+   mlsize_t reslen = Wosize_val(result) / Double_wosize;
+            ^
+/usr/bin/mpicc.openmpi -I`ocamlc -where` -I/usr/lib/openmpi/include -O2 -g -Wall   -c -o groups.o groups.c
