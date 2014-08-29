@@ -586,3 +586,155 @@ Installing Camlp4Top...
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4orf.cma
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4r.cma
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4rf.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmx
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.o
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4_config.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmx
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.o
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.a
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.a
+sed -e s/@@VERSION@@/"4.02.0+dev16-2014-08-21"/g camlp4/META.in > camlp4/META
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+Installing camlp4.4.02.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+File "pkg/topkg-ext.ml", line 42, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building ocp-build.1.99.8-beta:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+checking for ocamlc... ocamlc
+OCaml version is 4.02.0+dev16-2014-08-21
+OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /bin/sed
+checking Major version... 4
+checking Minor version... 02
+checking Point version... 0+dev16-2014-08-21
+checking for gawk... no
+checking for mawk... mawk
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating ../src/ocp-build-bundle.ocp
+config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+
+Executables will be installed in /home/opam/.opam/4.02.0+trunk/bin
+Libraries will be installed in /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex
+Data files will be installed in /home/opam/.opam/4.02.0+trunk/share/typerex
+Manual pages will be installed in /home/opam/.opam/4.02.0+trunk/share/man
+Creating root directory _obuild/
+make -C boot
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+awk '{ print "external "$1": unit -> unit = \"" $1 "\"" }' primitives > primitives.ml
+./make-ocpbuild-run.sh
+Configuring for host x86_64-unknown-linux-gnu ...
+Configuring for target x86_64-unknown-linux-gnu ...
+Using compiler gcc.
+The C compiler is ANSI-compliant.
+Checking the sizes of integers and pointers...
+Wow! A 64 bit architecture!
+This is a little-endian architecture.
+Doubles can be word-aligned.
+64-bit integers can be word-aligned.
+Native division and modulus have round-towards-zero semantics, will use them.
+ranlib found
+#! appears to work in shell scripts.
+POSIX signal handling found.
+expm1(), log1p(), hypot(), copysign() found.
+getrusage() found.
+times() found.
+You have BSD sockets.
+socklen_t is defined in <sys/socket.h>
+inet_aton() found.
+IPv6 is supported.
+unistd.h found.
+off_t is defined in <sys/types.h>
+dirent.h found.
+rewinddir() found.
+lockf() found.
+mkfifo() found.
+getcwd() found.
+getwd() found.
+getpriority() found.
+utime() found.
+utimes() found.
+dup2() found.
+fchmod() found.
+truncate() found.
+sys/select.h found.
+select() found.
+symlink() found.
+waitpid() found.
+wait4() found.
+getgroups() found.
+setgroups() found.
+initgroups() found.
+POSIX termios found.
+Asynchronous I/O are supported.
+setitimer() found.
+gethostname() found.
+uname() found.
+gettimeofday() found.
+mktime() found.
+setsid() found.
+putenv() found.
+setlocale() and <locale.h> found.
+dlopen() found in -ldl.
+Dynamic loading of shared libraries is supported.
+mmap() found.
+pwrite() found
+gethostbyname_r() found (with 6 arguments).
+gethostbyaddr_r() found (with 8 arguments).
+mkstemp() found
+Replay debugger supported.
+System stack overflow can be detected.
+POSIX threads library supported.
+Options for linking with POSIX threads: -lpthread
+sigwait() found
+Bytecode threads library supported.
+[WARNING] Cannot compile X11 program.
+[WARNING] X11 not found, the "graph" library will not be supported.
