@@ -828,3 +828,56 @@ module lincons1
 module generator1
 module texpr1
 module tcons1
+module abstract1
+module policy
+module disjunction
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/mlapronidl'
+(cd newpolka; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/newpolka'
+ln -s -f ../mlapronidl/manager.idl manager.idl
+mkdir -p tmp
+for i in polka; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -nocpp tmp/${i}.idl; \
+		cp tmp/${i}_stubs.c ${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module polka
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/newpolka'
+(cd box; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/box'
+ln -s -f ../mlapronidl/scalar.idl scalar.idl
+ln -s -f ../mlapronidl/interval.idl interval.idl
+ln -s -f ../mlapronidl/coeff.idl coeff.idl
+ln -s -f ../mlapronidl/dim.idl dim.idl
+ln -s -f ../mlapronidl/linexpr0.idl linexpr0.idl
+ln -s -f ../mlapronidl/lincons0.idl lincons0.idl
+ln -s -f ../mlapronidl/generator0.idl generator0.idl
+ln -s -f ../mlapronidl/texpr0.idl texpr0.idl
+ln -s -f ../mlapronidl/tcons0.idl tcons0.idl
+ln -s -f ../mlapronidl/manager.idl manager.idl
+ln -s -f ../mlapronidl/abstract0.idl abstract0.idl
+ln -s -f ../mlapronidl/var.idl var.idl
+ln -s -f ../mlapronidl/environment.idl environment.idl
+ln -s -f ../mlapronidl/linexpr1.idl linexpr1.idl
+ln -s -f ../mlapronidl/lincons1.idl lincons1.idl
+ln -s -f ../mlapronidl/generator1.idl generator1.idl
+ln -s -f ../mlapronidl/texpr1.idl texpr1.idl
+ln -s -f ../mlapronidl/tcons1.idl tcons1.idl
+ln -s -f ../mlapronidl/abstract1.idl abstract1.idl
+ln -s -f ../mlapronidl/policy.idl policy.idl
+mkdir -p tmp
+cp box.idl tmp/box.idl
+camlidl -no-include -nocpp tmp/box.idl
+sed  -f ../mlapronidl/sedscript_c tmp/box_stubs.c >box_caml.c
+sed  -f sedscript_caml tmp/box.ml >box.ml
+sed  -f sedscript_caml tmp/box.mli >box.mli
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/box'
+(cd octagons; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/octagons'
+mkdir -p tmp
+cp ../mlapronidl/*.idl tmp
+cp oct.idl tmp/
+cd tmp && camlidl -no-include -nocpp -I . oct.idl
