@@ -7004,3 +7004,12 @@ ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,
 ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
 	import_csv.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv -cclib -lre2_stubs -cclib -lstdc++ -c import_1password.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	import_1password.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv -cclib -lre2_stubs -cclib -lstdc++ -c db_io.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	db_io.ml
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	opass.ml
+ocamlfind ocamlopt -package core,core_extended,str,db,password,editable,csv -thread -linkpkg -o opass.native \
+	forms.cmx db_io.cmx oui.cmx import_1password.cmx import_txt.cmx import_csv.cmx opass.cmx
