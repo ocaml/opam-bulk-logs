@@ -1,0 +1,48 @@
+++ opam install uucp -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install uucp -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install uucp
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   base-bytes.base                       [required by uucp]
+ - install   uucp.0.9.0
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/uucp.0.9.0+opam.tar.gz
+sending incremental file list
+uucp.0.9.0+opam.tar.gz
+
+sent 464,750 bytes  received 35 bytes  929,570.00 bytes/sec
+total size is 464,511  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing base-bytes.base.
+Building uucp.0.9.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+File "pkg/topkg-ext.ml", line 42, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -package bytes -modules src/uucp.ml > src/uucp.ml.depends
+ocamlfind ocamldep -package bytes -modules src/uucp.mli > src/uucp.mli.depends
+ocamlfind ocamlc -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp.cmi src/uucp.mli
+ocamlfind ocamldep -package bytes -modules src/uucp_age.ml > src/uucp_age.ml.depends
+ocamlfind ocamldep -package bytes -modules src/data/uucp_age_data.ml > src/data/uucp_age_data.ml.depends
+ocamlfind ocamldep -package bytes -modules src/uucp_rmap.ml > src/uucp_rmap.ml.depends
+ocamlfind ocamlc -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp_rmap.cmo src/uucp_rmap.ml
+ocamlfind ocamlc -c -bin-annot -package bytes -I src/data -I test -I src -o src/data/uucp_age_data.cmo src/data/uucp_age_data.ml
+ocamlfind ocamlc -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp_age.cmo src/uucp_age.ml
+ocamlfind ocamlopt -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp_rmap.cmx src/uucp_rmap.ml
+ocamlfind ocamlopt -c -bin-annot -package bytes -I src/data -I test -I src -o src/data/uucp_age_data.cmx src/data/uucp_age_data.ml
+ocamlfind ocamldep -package bytes -modules src/uucp_alpha.ml > src/uucp_alpha.ml.depends
+ocamlfind ocamldep -package bytes -modules src/data/uucp_alpha_data.ml > src/data/uucp_alpha_data.ml.depends
+ocamlfind ocamldep -package bytes -modules src/uucp_tmapbool.ml > src/uucp_tmapbool.ml.depends
+ocamlfind ocamlc -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp_tmapbool.cmo src/uucp_tmapbool.ml
+ocamlfind ocamlc -c -bin-annot -package bytes -I src/data -I test -I src -o src/data/uucp_alpha_data.cmo src/data/uucp_alpha_data.ml
+ocamlfind ocamlc -c -bin-annot -package bytes -I src -I test -I src/data -o src/uucp_alpha.cmo src/uucp_alpha.ml
