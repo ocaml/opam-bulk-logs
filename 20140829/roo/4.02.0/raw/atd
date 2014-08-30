@@ -1,8 +1,8 @@
 ++ opam install atd -e ubuntu
 + depext=
-Ubuntu depexts:
 + echo Ubuntu depexts:
 + '[' '' '!=' '' ']'
+Ubuntu depexts:
 ++ opam install atd -e source,linux
 + srcext=
 Ubuntu srcexts:
@@ -22,15 +22,15 @@ The following actions will be performed:
 sending incremental file list
 atd.1.1.2+opam.tar.gz
 sending incremental file list
+sending incremental file list
 easy-format.1.0.2+opam.tar.gz
+menhir.20130912+opam.tar.gz
 
 sent 42,654 bytes  received 35 bytes  85,378.00 bytes/sec
 total size is 42,520  speedup is 1.00
 
 sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
 total size is 13,580  speedup is 0.99
-sending incremental file list
-menhir.20130912+opam.tar.gz
 
 sent 547,369 bytes  received 35 bytes  1,094,808.00 bytes/sec
 total size is 547,109  speedup is 1.00
@@ -315,6 +315,11 @@ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
+File "lexer.mll", line 60, characters 4-26:
+Warning 3: deprecated: String.set
+File "lexer.mll", line 68, characters 18-29:
+Warning 3: deprecated: String.copy
 + ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 File "partialGrammar.ml", line 259, characters 10-21:
 Warning 3: deprecated: String.copy
@@ -323,11 +328,6 @@ Warning 3: deprecated: String.set
 + ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
 File "parameterizedGrammar.ml", line 340, characters 26-38:
 Warning 3: deprecated: Array.create
-+ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
-File "lexer.mll", line 60, characters 4-26:
-Warning 3: deprecated: String.set
-File "lexer.mll", line 68, characters 18-29:
-Warning 3: deprecated: String.copy
 ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
 ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
 ocamlfind ocamlc -c -o tokenType.cmi tokenType.mli
@@ -737,14 +737,14 @@ File "lexer.mll", line 60, characters 4-26:
 Warning 3: deprecated: String.set
 File "lexer.mll", line 68, characters 18-29:
 Warning 3: deprecated: String.copy
-+ ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
-File "parameterizedGrammar.ml", line 340, characters 26-38:
-Warning 3: deprecated: Array.create
 + ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 File "partialGrammar.ml", line 259, characters 10-21:
 Warning 3: deprecated: String.copy
 File "partialGrammar.ml", line 262, characters 6-18:
 Warning 3: deprecated: String.set
++ ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
+File "parameterizedGrammar.ml", line 340, characters 26-38:
+Warning 3: deprecated: Array.create
 ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
 ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
 ocamlfind ocamlc -c -o tokenType.cmi tokenType.mli
