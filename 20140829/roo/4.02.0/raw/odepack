@@ -126,3 +126,62 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbui
 /usr/bin/gfortran -c -o src/fortran/opkdmain.o -fPIC -O3 '-std=legacy' src/fortran/opkdmain.f
 /usr/bin/gfortran -c -o src/fortran/opkda2.o -fPIC -O3 '-std=legacy' src/fortran/opkda2.f
 /usr/bin/gfortran -c -o src/fortran/opkda1.o -fPIC -O3 '-std=legacy' src/fortran/opkda1.f
++ /usr/bin/gfortran -c -o src/fortran/opkda1.o -fPIC -O3 '-std=legacy' src/fortran/opkda1.f
+src/fortran/opkda1.f:1256.43:
+
+     1   RWORK(LACOR), IA, JA, RWORK(LWM), RWORK(LWM), IPFLAG, F, JAC)  
+                                           1
+Warning: Type mismatch in argument 'iwk' at (1); passed REAL(8) to INTEGER(4)
+src/fortran/opkda1.f:9540.51:
+
+     1   RWORK(LACOR), IA, JA, IC, JC, RWORK(LWM), RWORK(LWM), IPFLAG,  
+                                                   1
+Warning: Type mismatch in argument 'iwk' at (1); passed REAL(8) to INTEGER(4)
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c src/odepack_stubs.c
+mv odepack_stubs.o src/odepack_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o src/odepack_stubs src/fortran/opkda1.o src/fortran/opkda2.o src/fortran/opkdmain.o -cclib -lgfortran src/odepack_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules src/odepack.mli > src/odepack.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -package bigarray -I src -o src/odepack.cmi src/odepack.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules src/odepack.ml > src/odepack.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -package bigarray -I src -o src/odepack.cmo src/odepack.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -lodepack_stubs -cclib -lodepack_stubs -cclib -lgfortran src/odepack.cmo -o src/odepack.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -package bigarray -I src -o src/odepack.cmx src/odepack.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -lodepack_stubs -cclib -lgfortran src/odepack.cmx -o src/odepack.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -I src src/odepack.cmxa src/odepack.cmx -o src/odepack.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules tests/lsoda.ml > tests/lsoda.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/lsoda.cmo tests/lsoda.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I tests -I src -o tests/lsoda.cmx tests/lsoda.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package bigarray src/odepack.cmxa tests/lsoda.cmx -o tests/lsoda.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules tests/lsodar.ml > tests/lsodar.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/lsodar.cmo tests/lsodar.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I tests -I src -o tests/lsodar.cmx tests/lsodar.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package bigarray src/odepack.cmxa tests/lsodar.cmx -o tests/lsodar.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules tests/minimal.ml > tests/minimal.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/minimal.cmo tests/minimal.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I tests -I src -o tests/minimal.cmx tests/minimal.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package bigarray src/odepack.cmxa tests/minimal.cmx -o tests/minimal.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules tests/pendulum.ml > tests/pendulum.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/pendulum.cmo tests/pendulum.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I tests -I src -o tests/pendulum.cmx tests/pendulum.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package bigarray src/odepack.cmxa tests/pendulum.cmx -o tests/pendulum.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -modules tests/closure.ml > tests/closure.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/closure.cmo tests/closure.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I tests -I src -o tests/closure.cmx tests/closure.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I src -linkpkg -package bigarray src/odepack.cmxa tests/closure.cmx -o tests/closure.native
+File "setup.ml", line 245, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2500, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/libodepack_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/odepack.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/odepack/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllodepack_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllodepack_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing odepack.0.6.6.
