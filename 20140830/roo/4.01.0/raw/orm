@@ -292,3 +292,149 @@ make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
 ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 pa_orm.ml > ._d/pa_orm.d
 ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_appengine.ml > ._d/p4_orm_appengine.d
 ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_sqlite.ml > ._d/p4_orm_sqlite.d
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_utils.ml > ._d/p4_utils.d
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 pa_hash.ml > ._d/pa_hash.d
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_hash.ml > ._d/p4_hash.d
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_hash.ml
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 pa_hash.ml
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_utils.ml
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_sqlite.ml
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_appengine.ml
+ocamlfind ocamlc -package dyntype,dyntype.syntax -c -pp "camlp4orf " -annot -g -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 pa_orm.ml
+ocamlfind ocamlc -a -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4    -g            -o pa_orm.cma p4_hash.cmo pa_hash.cmo p4_utils.cmo p4_orm_sqlite.cmo p4_orm_appengine.cmo pa_orm.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make -f Makefile.orm all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+ocamlfind ocamldep sig.ml > ._d/sig.d
+ocamlfind ocamldep db.ml > ._d/db.d
+ocamlfind ocamldep sql_cache.ml > ._d/sql_cache.d
+ocamlfind ocamldep sql_delete.ml > ._d/sql_delete.d
+ocamlfind ocamldep sql_get.ml > ._d/sql_get.d
+ocamlfind ocamldep sql_save.ml > ._d/sql_save.d
+ocamlfind ocamldep sql_init.ml > ._d/sql_init.d
+ocamlfind ocamldep sql_backend.ml > ._d/sql_backend.d
+ocamlfind ocamldep weakid.ml > ._d/weakid.d
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+ocamlc -c -cc "cc" -ccopt "-fPIC  \
+				-DPIC -DNATIVE_CODE   \
+				    -o custom_unix_stubs.o " custom_unix_stubs.c
+ar rcs liborm_stubs.a  custom_unix_stubs.o
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot weakid.mli
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm weakid.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_backend.ml
+File "sql_backend.ml", line 263, characters 66-86:
+Warning 43: the label field is not optional.
+File "sql_backend.ml", line 264, characters 78-97:
+Warning 43: the label field is not optional.
+File "sql_backend.ml", line 267, characters 73-93:
+Warning 43: the label field is not optional.
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_init.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_save.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_get.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_delete.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sql_cache.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot db.mli
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm db.ml
+ocamlfind ocamlopt -package sqlite3,dyntype.syntax -c -annot -for-pack Orm sig.ml
+ocamlfind ocamlopt -pack -o orm.cmx   weakid.cmx sql_backend.cmx sql_init.cmx sql_save.cmx sql_get.cmx sql_delete.cmx sql_cache.cmx db.cmx sig.cmx
+ocamlfind ocamlopt -a  -cclib -lorm_stubs    -o orm.cmxa orm.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm weakid.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_backend.ml
+File "sql_backend.ml", line 263, characters 66-86:
+Warning 43: the label field is not optional.
+File "sql_backend.ml", line 264, characters 78-97:
+Warning 43: the label field is not optional.
+File "sql_backend.ml", line 267, characters 73-93:
+Warning 43: the label field is not optional.
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_init.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_save.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_get.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_delete.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sql_cache.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm db.ml
+ocamlfind ocamlc -package sqlite3,dyntype.syntax -c -annot -g -for-pack Orm sig.ml
+ocamlfind ocamlc -pack -o orm.cmo -g  weakid.cmo sql_backend.cmo sql_init.cmo sql_save.cmo sql_get.cmo sql_delete.cmo sql_cache.cmo db.cmo sig.cmo
+ocamlmklib         \
+				-o orm_stubs  custom_unix_stubs.o   \
+				
+ocamlfind ocamlc -a -dllib dllorm_stubs.so -custom     -g         -cclib -lorm_stubs    -o orm.cma orm.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -C lib/
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -C syntax all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: `pa_orm.cma' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make -f Makefile.orm all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+ocamlfind ocamlopt -pack -o orm.cmx   weakid.cmx sql_backend.cmx sql_init.cmx sql_save.cmx sql_get.cmx sql_delete.cmx sql_cache.cmx db.cmx sig.cmx
+ocamlfind ocamlopt -a  -cclib -lorm_stubs    -o orm.cmxa orm.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+ocamlfind ocamlc -a -dllib dllorm_stubs.so -custom     -g         -cclib -lorm_stubs    -o orm.cma orm.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -C lib/ install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -C syntax all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: `pa_orm.cma' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make -f Makefile.orm all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+make[3]: `orm.cmxa' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+make[3]: `orm.cma' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -f Makefile.orm libinstall
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+make[3]: `orm.cmxa' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[3]: `liborm_stubs.a' is up to date.
+make[3]: `orm.cma' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+
+Installing library with ocamlfind
+ocamlfind install  orm META orm.cmx orm.cmxa orm.cma orm.cmi orm.a dllorm_stubs.so liborm_stubs.a syntax/pa_orm.cma 
+Installed /home/opam/.opam/4.01.0/lib/orm/pa_orm.cma
+Installed /home/opam/.opam/4.01.0/lib/orm/liborm_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/orm/orm.a
+Installed /home/opam/.opam/4.01.0/lib/orm/orm.cmi
+Installed /home/opam/.opam/4.01.0/lib/orm/orm.cma
+Installed /home/opam/.opam/4.01.0/lib/orm/orm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/orm/orm.cmx
+Installed /home/opam/.opam/4.01.0/lib/orm/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllorm_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllorm_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+Installing orm.0.7.0.
