@@ -2387,3 +2387,74 @@ File "qtest.mll", line 267, character 47: unescaped newline in string.
 ocamllex warning:
 File "qtest.mll", line 268, character 1: unescaped newline in string.
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules qtest.ml > qtest.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules core.ml > core.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q misclex.mll
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules misclex.ml > misclex.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o misclex.cmo misclex.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc qparse.mly
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules qparse.mli > qparse.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o core.cmo core.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o qparse.cmi qparse.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o qtest.cmo qtest.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o misclex.cmx misclex.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules qparse.ml > qparse.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o core.cmx core.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o qparse.cmx qparse.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o qtest.cmx qtest.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -linkpkg -package str misclex.cmx core.cmx qparse.cmx qtest.cmx -o qtest.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules quickcheck.mli > quickcheck.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmi quickcheck.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules quickcheck.ml > quickcheck.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package oUnit -package str -modules runner.ml > runner.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmo quickcheck.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmo quickcheck.ml
+File "quickcheck.ml", line 70, characters 10-23:
+Warning 3: deprecated: String.create
+File "quickcheck.ml", line 72, characters 4-31:
+Warning 3: deprecated: String.set
+File "quickcheck.ml", line 74, characters 2-17:
+Warning 3: deprecated: String.set
+File "quickcheck.ml", line 81, characters 10-23:
+Warning 3: deprecated: String.create
+File "quickcheck.ml", line 83, characters 4-19:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o runner.cmo runner.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a quickcheck.cmo runner.cmo -o QTest2Lib.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o quickcheck.cmx quickcheck.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o quickcheck.cmx quickcheck.ml
+File "quickcheck.ml", line 70, characters 10-23:
+Warning 3: deprecated: String.create
+File "quickcheck.ml", line 72, characters 4-31:
+Warning 3: deprecated: String.set
+File "quickcheck.ml", line 74, characters 2-17:
+Warning 3: deprecated: String.set
+File "quickcheck.ml", line 81, characters 10-23:
+Warning 3: deprecated: String.create
+File "quickcheck.ml", line 83, characters 4-19:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o runner.cmx runner.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a quickcheck.cmx runner.cmx -o QTest2Lib.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared QTest2Lib.cmxa quickcheck.cmx runner.cmx -o QTest2Lib.cmxs
+
+#### ocamlfind remove QTest2Lib ####
+
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib
+
+#### ocaml setup.ml -install ####
+
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/quickcheck.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/runner.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/QTest2Lib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/QTest2Lib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/QTest2Lib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/QTest2Lib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/runner.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/quickcheck.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/runner.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/quickcheck.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/QTest2Lib/META
+Installing qtest.2.0.1.
