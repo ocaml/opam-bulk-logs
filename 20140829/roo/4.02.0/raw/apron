@@ -221,3 +221,50 @@ Installing conf-mpfr.1.
 Applying opam.patch.
 patching file apron/Makefile
 patching file apron/box/Makefile
+patching file apron/examples/Makefile
+patching file apron/mlapronidl/Makefile
+patching file apron/newpolka/Makefile
+patching file apron/octagons/Makefile
+patching file apron/ppl/Makefile
+patching file apron/products/Makefile
+patching file apron/taylor1plus/Makefile
+patching file apron/test/Makefile
+patching file mlgmpidl/Makefile
+Building apron.0.9.10:
+  make rebuild
+  make
+  make install
+sed  -e '1 aHAS_MPFR=1\n' Makefile.config >mlgmpidl/Makefile.config
+cp -f Makefile.config apron/Makefile.config 
+(cd mlgmpidl; make depend all install)
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/mlgmpidl'
+mkdir -p tmp
+for i in mpz mpq mpf mpfr gmp_random; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -prepro cpp -I /home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/mlgmpidl tmp/${i}.idl; \
+		sed  -f sedscript_c tmp/${i}_stubs.c >${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module mpz
+tmp/mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module mpq
+tmp/mpq.idl:18:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpq.idl:22:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
+module mpf
