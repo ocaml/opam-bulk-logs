@@ -2901,3 +2901,92 @@ Installed /home/opam/.opam/4.02.0+trunk/lib/cow/cow.cma
 Installed /home/opam/.opam/4.02.0+trunk/lib/cow/cow.cmi
 Installed /home/opam/.opam/4.02.0+trunk/lib/cow/META
 Installing cow.1.0.0.
+Applying configure.diff.
+patching file configure
+Applying configure2.diff.
+patching file configure
+Building stone.0.1:
+  ./configure --bin-dir /home/opam/.opam/4.02.0+trunk/bin
+  make
+  make install
+ocamlfind ocamlc -linkpkg -I src/ -I src/packed/ -o src/utils/pack_text src/utils/pack_text.ml
+mkdir -p src/packed
+src/utils/pack_text data/config.stone src/packed/config_pak.ml
+src/utils/pack_text data/example_index.md src/packed/example_index_pak.ml
+src/utils/pack_text data/template.html src/packed/template_pak.ml
+src/utils/pack_text data/style.css src/packed/style_pak.ml
+ocamlfind ocamlc -package cow,cow.syntax,config-file,unix -syntax camlp4o -linkpkg -I src/ -I src/packed/ -o stone src/packed/config_pak.ml src/packed/example_index_pak.ml src/packed/template_pak.ml src/packed/style_pak.ml src/util.ml src/params.ml src/template.ml src/conf.ml src/gen.ml src/stone.ml 
+File "src/util.ml", line 125, characters 13-26:
+Warning 3: deprecated: String.create
+File "src/util.ml", line 127, characters 4-14:
+Warning 3: deprecated: String.set
+File "src/util.ml", line 128, characters 4-16:
+Warning 3: deprecated: String.set
+File "src/util.ml", line 129, characters 4-16:
+Warning 3: deprecated: String.set
+File "src/template.ml", line 18, characters 19-29:
+Error: The function applied to this argument has type
+         ?enc:Cow.Xml.encoding -> ('a Cow.Xml.frag as 'a) Cow.Xml.frag list
+This argument cannot be applied with label ~templates
+make: *** [stone] Error 2
+Removing stone.0.1.
+[ERROR] The compilation of stone.0.1 failed.
+  make uninstall
+rm -f /home/opam/.opam/4.02.0+trunk/bin/stone
+
+#=== ERROR while installing stone.0.1 =========================================#
+# opam-version         1.2.0~beta4 (f1b5dba54b197e6bdd7278503a66d1039af87d80)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/stone.0.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/stone.0.1/stone-6592-326a35.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/stone.0.1/stone-6592-326a35.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/stone.0.1/stone-6592-326a35.err
+### stdout ###
+# ocamlfind ocamlc -linkpkg -I src/ -I src/packed/ -o src/utils/pack_text src/utils/pack_text.ml
+# mkdir -p src/packed
+# src/utils/pack_text data/config.stone src/packed/config_pak.ml
+# src/utils/pack_text data/example_index.md src/packed/example_index_pak.ml
+# src/utils/pack_text data/template.html src/packed/template_pak.ml
+# src/utils/pack_text data/style.css src/packed/style_pak.ml
+# ocamlfind ocamlc -package cow,cow.syntax,config-file,unix -syntax camlp4o -linkpkg -I src/ -I src/packed/ -o stone src/packed/config_pak.ml src/packed/example_index_pak.ml src/packed/template_pak.ml src/packed/style_pak.ml src/util.ml src/params.ml src/template.ml src/conf.ml src/gen.ml src/stone.ml 
+### stderr ###
+# ...[truncated]
+# Warning 3: deprecated: String.set
+# File "src/util.ml", line 128, characters 4-16:
+# Warning 3: deprecated: String.set
+# File "src/util.ml", line 129, characters 4-16:
+# Warning 3: deprecated: String.set
+# File "src/template.ml", line 18, characters 19-29:
+# Error: The function applied to this argument has type
+#          ?enc:Cow.Xml.encoding -> ('a Cow.Xml.frag as 'a) Cow.Xml.frag list
+# This argument cannot be applied with label ~templates
+# make: *** [stone] Error 2
+
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   ezjsonm.0.2.0
+ - install   uutf.0.9.3
+ - install   sexplib.111.25.00
+ - install   ulex.1.1
+ - install   omd.1.0.0
+ - install   xmlm.1.2.0
+ - install   ounit.2.0.0
+ - install   stringext.1.0.0
+ - install   jsonm.0.9.1
+ - install   camlp4.4.02.0
+ - install   dyntype.0.9.0
+ - install   cow.1.0.0
+ - install   type_conv.111.13.00
+ - install   re.1.2.2
+ - install   uri.1.7.2
+ - install   config-file.1.2
+The following failed
+ - install   stone.0.1
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140730114734.export"
+'opam install stone' failed.
