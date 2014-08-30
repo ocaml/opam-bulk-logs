@@ -1142,3 +1142,58 @@ Removing ocp-build.1.99.8-beta.
   rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-misc
   rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build
   rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   camlp4.4.02.0
+ - install   ctypes.0.3.3
+ - install   base-bytes.base
+The following failed
+ - install   conf-nanomsg.0
+ - install   ocp-build.1.99.8-beta
+Due to the errors, the following have been cancelled
+ - install   onanomsg.0.1
+
+#=== ERROR while installing conf-nanomsg.0 ====================================#
+# opam-version         1.2.0~beta4 (f1b5dba54b197e6bdd7278503a66d1039af87d80)
+# os                   linux
+# command              pkg-config libnanomsg
+# path                 /home/opam/.opam/4.02.0+trunk/build/conf-nanomsg.0
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/conf-nanomsg.0/conf-nanomsg-2148-c61e7b.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/conf-nanomsg.0/conf-nanomsg-2148-c61e7b.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/conf-nanomsg.0/conf-nanomsg-2148-c61e7b.err
+
+
+#=== ERROR while installing ocp-build.1.99.8-beta =============================#
+# opam-version         1.2.0~beta4 (f1b5dba54b197e6bdd7278503a66d1039af87d80)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-3011-6cc03f.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-3011-6cc03f.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-3011-6cc03f.err
+### stdout ###
+# ...[truncated]
+# gcc -Wl,-E -o ocamlrun \
+# 		  prims.o libbyterun402.a -lm  -ldl  -lpthread
+# echo "/usr/local/lib/ocaml/stublibs" > ld.conf
+# echo "/usr/local/lib/ocaml" >> ld.conf
+# make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+# ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix -I ocamlrun-4.02/byterun -cclib -lbyterun402
+# cat ocp-build.run ocp-build.boot > ocp-build
+# chmod +x ocp-build
+# ./ocp-build -help >/dev/null 2>&1
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+### stderr ###
+# config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+# make[1]: *** [ocp-build] Error 2
+# make: *** [boot/ocp-build] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140730112039.export"
+'opam install onanomsg' failed.
