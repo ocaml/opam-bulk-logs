@@ -88,3 +88,21 @@ ocamlfind ocamlc -g  -package unix -c ancient.ml
 gcc -g -fPIC -Wall -Werror -DOCAML_VERSION_MAJOR=4 -DOCAML_VERSION_MINOR=2 -I/home/opam/.opam/4.02.0+trunk/lib/ocaml   -c -o ancient_c.o ancient_c.c
 ocamlmklib -o ancient -Lmmalloc -lmmalloc ancient.cmo ancient_c.o
 ocamlfind ocamlopt   -package unix -c ancient.ml
+ocamlmklib -o ancient -Lmmalloc -lmmalloc ancient.cmx ancient_c.o
+sed  -e 's/@PACKAGE@/ancient/' \
+	     -e 's/@VERSION@/0.9.0/' \
+	     < META.in > META
+ocamlfind ocamlopt   -package unix -c test_ancient_dict_write.ml
+LIBRARY_PATH=.:$LIBRARY_PATH \
+	ocamlfind ocamlopt  -package unix -linkpkg -o test_ancient_dict_write.opt ancient.cmxa test_ancient_dict_write.cmx
+ocamlfind ocamlopt   -package unix -c test_ancient_dict_verify.ml
+LIBRARY_PATH=.:$LIBRARY_PATH \
+	ocamlfind ocamlopt  -package unix -linkpkg -o test_ancient_dict_verify.opt ancient.cmxa test_ancient_dict_verify.cmx
+ocamlfind ocamlopt   -package unix -c test_ancient_dict_read.ml
+LIBRARY_PATH=.:$LIBRARY_PATH \
+	ocamlfind ocamlopt  -package unix -linkpkg -o test_ancient_dict_read.opt ancient.cmxa test_ancient_dict_read.cmx
+rm -rf /home/opam/.opam/4.02.0+trunk/lib/ancient
+install -c -m 0755 -d /home/opam/.opam/4.02.0+trunk/lib/ancient
+install -c -m 0644 *.cmi *.mli *.cma *.cmxa *.a META \
+	  /home/opam/.opam/4.02.0+trunk/lib/ancient
+Installing ancient.0.9.0.
