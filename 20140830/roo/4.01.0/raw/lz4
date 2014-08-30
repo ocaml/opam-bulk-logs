@@ -25,3 +25,38 @@ Ubuntu srcexts: https://gist.githubusercontent.com/whitequark/eef074a8daa14602e4
 ++ mktemp
 + t=/tmp/tmp.sFwlhqkAEM
 + curl -sL https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh
++ bash -ex /tmp/tmp.sFwlhqkAEM
++ opam install lz4
+The following actions will be performed:
+ - install   base-bytes.legacy                     [required by lz4]
+ - install   ctypes.0.3.3                          [required by lz4]
+ - install   lz4.1.0.0
+=== 3 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lz4.1.0.0+opam.tar.gz
+sending incremental file list
+ctypes.0.3.3+opam.tar.gz
+sending incremental file list
+lz4.1.0.0+opam.tar.gz
+
+sent 132,062 bytes  received 35 bytes  264,194.00 bytes/sec
+total size is 131,901  speedup is 1.00
+
+sent 48,133 bytes  received 35 bytes  96,336.00 bytes/sec
+total size is 47,999  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing base-bytes.legacy.
+Building ctypes.0.3.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed: ...................... available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx        -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o make_primitive_details_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o  
