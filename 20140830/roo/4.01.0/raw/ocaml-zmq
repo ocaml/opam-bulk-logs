@@ -551,3 +551,41 @@ E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libZMQB_stubs.
 [ERROR] The compilation of ocaml-zmq.0 failed.
 Removing ocaml-zmq.0.
   ocamlfind remove ZMQ
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/ZMQ
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   uint.1.1.1
+ - install   ounit.2.0.0
+The following failed
+ - install   ocaml-zmq.0
+
+#=== ERROR while installing ocaml-zmq.0 =======================================#
+# opam-version         1.2.0~beta4 (d8c24d3f1f022888ce1bfe073c2c5210cd837b37)
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.01.0/build/ocaml-zmq.0
+# compiler             4.01.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.01.0/build/ocaml-zmq.0/ocaml-zmq-873-ad8886.env
+# stdout-file          /home/opam/.opam/4.01.0/build/ocaml-zmq.0/ocaml-zmq-873-ad8886.out
+# stderr-file          /home/opam/.opam/4.01.0/build/ocaml-zmq.0/ocaml-zmq-873-ad8886.err
+### stdout ###
+# ...[truncated]
+#      result = zmq_recv (sock, &request, option);
+#      ^
+# In file included from src/caml_zmq_stubs.c:26:0:
+# /usr/include/zmq.h:356:16: note: declared here
+#  ZMQ_EXPORT int zmq_recv (void *s, void *buf, size_t len, int flags);
+#                 ^
+# src/caml_zmq_stubs.c:415:12: warning: assignment makes integer from pointer without a cast [enabled by default]
+#      result = zmq_recv (sock, &request, option);
+#             ^
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libZMQB_stubs.a src/dllZMQB_stubs.so src/ZMQB.cma src/ZMQB.cmxa src/ZMQB.a src/ZMQB.cmxs test/test.native -tag debug' terminated with error code 10")
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140730230917.export"
+'opam install ocaml-zmq' failed.
