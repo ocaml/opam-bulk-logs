@@ -10911,3 +10911,17 @@ ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c s
 ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
 ocamlfind ocamlc -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.mli
 ocamlfind ocamlc -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -shared -linkall -o syntax/pa_deriving_Json.cmxs syntax/pa_deriving_Json.cmx
+ocamllex deriving_json/deriving_Json_lexer.mll
+129 states, 789 transitions, table size 3930 bytes
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_lexer.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
