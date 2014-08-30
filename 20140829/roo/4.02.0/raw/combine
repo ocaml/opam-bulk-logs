@@ -1,1 +1,58 @@
 ++ opam install combine -e ubuntu
++ depext=
+Ubuntu depexts:
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+++ opam install combine -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install combine
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   menhir.20130912                       [required by combine]
+ - install   combine.0.55
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/combine.0.55+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
+sending incremental file list
+combine.0.55+opam.tar.gz
+sending incremental file list
+menhir.20130912+opam.tar.gz
+
+sent 116,140 bytes  received 35 bytes  232,350.00 bytes/sec
+total size is 115,987  speedup is 1.00
+
+sent 547,369 bytes  received 35 bytes  1,094,808.00 bytes/sec
+total size is 547,109  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk docdir=/home/opam/.opam/4.02.0+trunk/doc/menhir libdir=/home/opam/.opam/4.02.0+trunk/lib/menhir mandir=/home/opam/.opam/4.02.0+trunk/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.02.0+trunk/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 10, characters 27-40:
+Warning: the tag "use_ocamlyacc" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
