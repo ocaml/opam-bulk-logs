@@ -1169,3 +1169,21 @@ ocamlopt.opt -g -inline 10 -linkall -o mlnet \
 	  \
 	  \
 	-I build    build/extlib.cmxa    build/cdk.cmxa    build/bitstring.cmxa    build/magic.cmxa    build/common.cmxa    build/client.cmxa    build/core.cmxa    build/driver.cmxa    src/daemon/common/commonMain.cmx  
+mkdir -p /home/opam/.opam/4.01.0/bin
+if test -f mlnet; then \
+             rm -f /home/opam/.opam/4.01.0/bin/mlnet; cp -f mlnet /home/opam/.opam/4.01.0/bin/mlnet; \
+             for link in mlslsk mldonkey mlgnut mldc mlbt; do \
+               rm -f /home/opam/.opam/4.01.0/bin/$link; ln -s mlnet /home/opam/.opam/4.01.0/bin/$link; \
+             done; \
+         fi
+if test -f mlgui; then \
+             rm -f /home/opam/.opam/4.01.0/bin/mlgui; cp -f mlgui /home/opam/.opam/4.01.0/bin/mlgui; \
+             rm -f /home/opam/.opam/4.01.0/bin/mldonkey_gui; ln -s mlgui /home/opam/.opam/4.01.0/bin/mldonkey_gui; \
+         fi
+if test -f mlnet+gui; then \
+             rm -f /home/opam/.opam/4.01.0/bin/mlnet+gui; cp -f mlnet+gui /home/opam/.opam/4.01.0/bin/mlnet+gui; \
+             for link in mlslsk+gui mldonkey+gui mlgnut+gui mldc+gui mlbt+gui; do \
+               rm -f /home/opam/.opam/4.01.0/bin/$link; ln -s mlnet+gui /home/opam/.opam/4.01.0/bin/$link; \
+             done; \
+         fi
+Installing mldonkey.3.1.5.
