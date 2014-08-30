@@ -226,3 +226,93 @@ Building ocamlfuse.2.7.1-cvs2:
 make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
 camlidl -header  \
 				 Fuse_bindings.idl
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+making ._ncdi/Fuse_bindings.di from Fuse_bindings.mli
+making ._d/Fuse_bindings.d from Fuse_bindings.ml
+making ._d/Fuse.d from Fuse.ml
+making ._d/Fuse_lib.d from Fuse_lib.ml
+making ._d/Unix_util.d from Unix_util.ml
+making ._d/Result.d from Result.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Fuse_bindings_stubs.o " Fuse_bindings_stubs.c 
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Unix_util_stubs.o " Unix_util_stubs.c 
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+				-DPIC -DNATIVE_CODE   \
+				  -I/home/opam/.opam/4.02.0+trunk/lib/camlidl  -o Fuse_util.o " Fuse_util.c 
+In file included from Fuse_util.c:30:0:
+Fuse_util.c: In function 'gm281_ops_init':
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/memory.h:226:28: warning: initialization makes pointer from integer without a cast [enabled by default]
+   type caml__temp_result = (result); \
+                            ^
+Fuse_util.c:614:3: note: in expansion of macro 'CAMLreturnT'
+   CAMLreturnT(OPNAME##_RTYPE, res); \
+   ^
+Fuse_util.c:296:5: note: in expansion of macro 'CALLBACK'
+     MACRO(init) \
+     ^
+Fuse_util.c:625:1: note: in expansion of macro 'FOR_ALL_OPS'
+ FOR_ALL_OPS(CALLBACK)
+ ^
+ar rcs libFuse_stubs.a Fuse_bindings_stubs.o Unix_util_stubs.o Fuse_util.o
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Result.ml
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Unix_util.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_bindings.mli
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_bindings.ml
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_lib.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse.mli
+ocamlopt -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse.ml
+ocamlopt -a -thread     -I /home/opam/.opam/4.02.0+trunk/lib/camlidl -linkall        -cclib -lFuse_stubs -cclib -lfuse -cclib -lcamlidl \
+				 -o Fuse.cmxa Result.cmx Unix_util.cmx Fuse_bindings.cmx Fuse_lib.cmx Fuse.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+making ._bcdi/Fuse_bindings.di from Fuse_bindings.mli
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: `libFuse_stubs.a' is up to date.
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Result.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Unix_util.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_bindings.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse_lib.ml
+ocamlc -c -thread -I /home/opam/.opam/4.02.0+trunk/lib/camlidl Fuse.ml
+ocamlmklib    -I /home/opam/.opam/4.02.0+trunk/lib/camlidl      \
+				-o Fuse_stubs Fuse_bindings_stubs.o Unix_util_stubs.o Fuse_util.o -lfuse \
+				
+ocamlc -a -thread -dllib dllFuse_stubs.so -custom    -I /home/opam/.opam/4.02.0+trunk/lib/camlidl -linkall        bigarray.cma \
+				-cclib -lFuse_stubs -cclib -lfuse -cclib -lcamlidl -o Fuse.cma  Result.cmo Unix_util.cmo Fuse_bindings.cmo Fuse_lib.cmo Fuse.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: `libFuse_stubs.a' is up to date.
+ocamlopt -a -thread      -linkall        -cclib -lFuse_stubs -cclib -lfuse -cclib -lcamlidl \
+				 -o Fuse.cmxa Result.cmx Unix_util.cmx Fuse_bindings.cmx Fuse_lib.cmx Fuse.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: `libFuse_stubs.a' is up to date.
+make[1]: `Fuse.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+
+Installing library with ocamlfind
+ocamlfind install  Fuse META Fuse.a Fuse.cma Fuse.cmi Fuse.mli Fuse.cmxa Fuse_bindings.cmi Fuse_lib.cmi Unix_util.cmi dllFuse_stubs.so libFuse_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/libFuse_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Unix_util.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse_bindings.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/Fuse.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/Fuse/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllFuse_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllFuse_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlfuse.2.7.1-cvs2/lib'
+Installing ocamlfuse.2.7.1-cvs2.
