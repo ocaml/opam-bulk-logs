@@ -8037,3 +8037,13 @@ ocamlfind ocamlc -c -g -package threads -package email_message -package core_ext
 ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/send_mail.ml > lib/send_mail.ml.depends
 ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/smtp.mli > lib/smtp.mli.depends
 ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/smtp.cmi lib/smtp.mli
+ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/smtp.ml > lib/smtp.ml.depends
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/comm.cmo lib/comm.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/lexer.cmo lib/lexer.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/send_mail.cmo lib/send_mail.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/smtp.cmo lib/smtp.ml
+ocamlfind ocamlc -pack -g lib/comm.cmo lib/lexer.cmo lib/smtp.cmo lib/send_mail.cmo -o lib/async_smtp.cmo
+ocamlfind ocamlc -a lib/async_smtp.cmo -o lib/async_smtp.cma
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/comm.cmx lib/comm.ml
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/lexer.cmx lib/lexer.ml
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/smtp.cmx lib/smtp.ml
