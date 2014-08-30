@@ -780,3 +780,41 @@ pkg_type_conv: ....................................... /home/opam/.opam/4.02.0+t
 
 ./setup.exe -build 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/typehash_stubs.c
+mv typehash_stubs.o lib/typehash_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/typehashlib_stubs lib/typehash_stubs.o
+ocamlfind ocamldep -modules lib/typehash.mli > lib/typehash.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/typehash.cmi lib/typehash.mli
+ocamlfind ocamldep -modules lib/typehash.ml > lib/typehash.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/typehash.cmo lib/typehash.ml
+ocamlfind ocamlc -a -dllib -ltypehashlib_stubs -cclib -ltypehashlib_stubs lib/typehash.cmo -o lib/typehashlib.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/typehash.cmx lib/typehash.ml
+ocamlfind ocamlopt -a -cclib -ltypehashlib_stubs lib/typehash.cmx -o lib/typehashlib.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/typehashlib.cmxa -o lib/typehashlib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -package camlp4.extend -modules syntax/pa_typehash.ml > syntax/pa_typehash.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I syntax -o syntax/pa_typehash.cmo syntax/pa_typehash.ml
+ocamlfind ocamlc -a syntax/pa_typehash.cmo -o syntax/pa_typehash.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I syntax -o syntax/pa_typehash.cmx syntax/pa_typehash.ml
+ocamlfind ocamlopt -a syntax/pa_typehash.cmx -o syntax/pa_typehash.cmxa
+ocamlfind ocamlopt -shared syntax/pa_typehash.cmx -o syntax/pa_typehash.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehash.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/libtypehashlib_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehashlib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehashlib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehashlib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehashlib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehash.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/typehash.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/pa_typehash.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/typehashlib/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlltypehashlib_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlltypehashlib_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing typehashlib.109.15.04.
