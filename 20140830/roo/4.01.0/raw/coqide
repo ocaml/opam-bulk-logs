@@ -2005,3 +2005,8 @@ rm -f compile.ppo
 OCAMLN=ocaml CAMLP5N=camlp5 EXE= ./compile.sh -e "Grammar.Entry.obj Pcaml.interf" -e "Grammar.Entry.obj Pcaml.implem" -e "Grammar.Entry.obj Pcaml.top_phrase" -e "Grammar.Entry.obj Pcaml.use_file"  ../etc/pa_o.ml ../etc/pa_op.ml > o_fast.ml.tmp
 ocamlc -c tmp.mli
 ocamlrun ../meta/camlp5r -nolib -I ../meta pa_macro.cmo pa_extend.cmo q_MLast.cmo -meta_action tmp.ml -o tmp.ppo
+ocamlc -I ../lib -I ../main -c -impl tmp.ppo
+rm tmp.ppo
+ocamlrun ../main/camlp5 ./compile.cmo ./tmp.cmo ../etc/pr_r.cmo ../etc/pr_rp.cmo  -sep nn -impl - < /dev/null
+cat ../etc/pa_o.ml ../etc/pa_op.ml | sed -e "s/Plexer.gmake ()/Lazy.force P.lexer/" -e "/EXTEND/,/END/d" -e "/Grammar.Entry.of_parser/d" -e "/Grammar.Entry.gcreate/d" -e "/Grammar.Entry.create/d" | grep -v '#load' | grep -v "^IFDEF" | grep -v "^END" | grep -v DELETE_RULE | cat comp_head.ml.tpl - o_fast.ml.tmp comp_trail.ml.tpl > pa_o_fast.ml
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_o_fast.ppo pa_o_fast.ml
