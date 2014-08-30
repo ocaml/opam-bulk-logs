@@ -38,3 +38,32 @@ total size is 13,580  speedup is 0.99
 sent 21,321 bytes  received 35 bytes  42,712.00 bytes/sec
 total size is 21,190  speedup is 0.99
 [default] Synchronizing with /home/opam/opam-repository/archives/merlin.1.7.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/yojson.1.1.8+opam.tar.gz
+sending incremental file list
+sending incremental file list
+sending incremental file list
+yojson.1.1.8+opam.tar.gz
+menhir.20130912+opam.tar.gz
+merlin.1.7.1+opam.tar.gz
+
+sent 24,882 bytes  received 35 bytes  49,834.00 bytes/sec
+total size is 24,749  speedup is 0.99
+
+sent 547,371 bytes  received 35 bytes  1,094,812.00 bytes/sec
+total size is 547,111  speedup is 1.00
+
+sent 911,276 bytes  received 35 bytes  1,822,622.00 bytes/sec
+total size is 910,931  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
