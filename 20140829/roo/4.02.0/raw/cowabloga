@@ -3217,3 +3217,7 @@ ocamlfind ocamlc -pack pa_lib/p4_helpers.cmo pa_lib/p4_type.cmo pa_lib/p4_value.
 ocamlfind ocamlc -a -package type_conv -package camlp4.quotations -package camlp4 lib/dyntype.cmo pa_lib/pa_dyntype.cmo -o pa_lib/pa_dyntype.cma
 ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmx pa_lib/p4_helpers.ml
 ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmx pa_lib/p4_type.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmx pa_lib/p4_value.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmx pa_lib/pa_type.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmx pa_lib/pa_value.ml
+touch pa_lib/pa_dyntype.mli  ; if  ocamlfind ocamlopt -pack -I pa_lib pa_lib/p4_helpers.cmx pa_lib/p4_type.cmx pa_lib/p4_value.cmx pa_lib/pa_type.cmx pa_lib/pa_value.cmx -o pa_lib/pa_dyntype.cmx  ; then  rm -f pa_lib/pa_dyntype.mli  ; else  rm -f pa_lib/pa_dyntype.mli  ; exit 1; fi
