@@ -1037,3 +1037,145 @@ mv d3des.o src/d3des.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
 mv stubs-des.o src/stubs-des.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Applying opam.patch.
+patching file OMakefile
+Applying fam.patch.
+patching file lib/configure/Configure.om
+Applying readline.patch.
+patching file lib/configure/readline.om
+Building omake.0.9.8.6-0.rc1:
+  make bootstrap PREFIX=/home/opam/.opam/4.01.0
+  make all PREFIX=/home/opam/.opam/4.01.0
+  make install PREFIX=/home/opam/.opam/4.01.0
+mkdir -p boot
+ln -sf ../src/Makefile boot/Makefile
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+ln -sf ../src/clib/omake_shell_sys.c omake_shell_sys.c
+ln -sf ../src/clib/readline.c readline.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_heap.c lm_heap.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_heap.h lm_heap.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_channel.c lm_channel.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_compat_win32.c lm_compat_win32.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_compat_win32.h lm_compat_win32.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_ctype.c lm_ctype.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_printf.c lm_printf.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_uname_ext.c lm_uname_ext.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_unix_cutil.c lm_unix_cutil.c
+ln -sf ../src/clib/../libmojave-external/cutil/unixsupport.h unixsupport.h
+ln -sf ../src/clib/../libmojave-external/cutil/fam_win32.c fam_win32.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_kqueue.c fam_kqueue.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_inotify.c fam_inotify.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_pseudo.h fam_pseudo.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_notify.c lm_notify.c
+ln -sf ../src/clib/../libmojave-external/cutil/inotify.h inotify.h
+ln -sf ../src/clib/../libmojave-external/cutil/inotify-syscalls.h inotify-syscalls.h
+ln -sf ../src/clib/../libmojave-external/cutil/inotify.om inotify.om
+ln -sf ../src/clib/../libmojave-external/cutil/lm_termsize.c lm_termsize.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_terminfo.c lm_terminfo.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_fs_case_sensitive.c lm_fs_case_sensitive.c
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_printf.ml lm_printf.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_debug.ml lm_debug.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_heap.ml lm_heap.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_list_util.ml lm_list_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_array_util.ml lm_array_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set_sig.ml lm_set_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set.ml lm_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map_sig.ml lm_map_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map.ml lm_map.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_int_set.ml lm_int_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_index.ml lm_index.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_sig.ml lm_thread_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread.ml lm_thread.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_util.ml lm_string_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_set.ml lm_string_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_printf.mli lm_printf.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_debug.mli lm_debug.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_list_util.mli lm_list_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_array_util.mli lm_array_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set.mli lm_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map.mli lm_map.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_int_set.mli lm_int_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_index.mli lm_index.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_core.mli lm_thread_core.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread.mli lm_thread.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_util.mli lm_string_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_set.mli lm_string_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_pool.mli lm_thread_pool.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_arg.ml lm_arg.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_hash_sig.ml lm_hash_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_hash.ml lm_hash.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_location.ml lm_location.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_position.ml lm_position.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_channel.ml lm_channel.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_lexer.ml lm_lexer.ml
