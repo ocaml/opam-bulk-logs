@@ -468,3 +468,30 @@ Processing cp1006
    (Heavy conflicts: 2 of 256)
 Processing cp037
    (Heavy conflicts: 0 of 256)
+touch netdb_done
+test -d netdb
+(cd netdb && ls *.netdb) | \
+	{ while read f; do echo "/home/opam/.opam/4.01.0/lib/netstring/$f"; done; } >netdb-packlist
+sed -e 's/@VERSION@/3.7.4/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.4-1/src/netstring'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.4-1/src/netstring'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.4-1/src/netstring'
+ocamlfind ocamldep   *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.4-1/src/netstring'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.4-1/src/netstring'
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netconst.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netconst.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netstring_str.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netstring_str.ml
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netbuffer.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netbuffer.ml
+File "netbuffer.ml", line 266, characters 14-15:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix" -c  netunichar.mli
+ocamlfind ocamlc -g  -I ../../src/netsys -I ../netstring-pcre -package "str bigarray unix"  -c  netunichar.ml
