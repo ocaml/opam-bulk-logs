@@ -4943,3 +4943,7 @@ ocamlfind ocamldep -package threads -package str -package re -package mpp -packa
 ocamlfind ocamldep -package threads -package str -package re -package mpp -package core -modules src/fragment.ml > src/fragment.ml.depends
 ocamlfind ocamlc -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment.cmo src/fragment.ml
 ocamlfind ocamlc -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment_main.cmo src/fragment_main.ml
+ocamlfind ocamlopt -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment.cmx src/fragment.ml
+ocamlfind ocamlopt -c -g -package threads -package str -package re -package mpp -package core -thread -I src -o src/fragment_main.cmx src/fragment_main.ml
+ocamlfind ocamlopt -g -linkpkg -package threads -package str -package re -package mpp -package core -thread src/fragment.cmx src/fragment_main.cmx -o src/fragment_main.native
+Installing frag.0.1.0.
