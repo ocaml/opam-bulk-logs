@@ -316,3 +316,37 @@ Setting up libxt-dev:amd64 (1:1.1.4-1) ...
 Setting up freeglut3-dev:amd64 (2.8.1-1) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
 ++ opam install lablgl -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lablgl
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgl]
+ - install   lablgl.20120306
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgl.20120306+opam.tar.gz
+sending incremental file list
+lablgl.20120306+opam.tar.gz
+
+sent 451,734 bytes  received 35 bytes  903,538.00 bytes/sec
+total size is 451,498  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building lablgl.20120306:
+  cp Makefile.config.ex Makefile.config
+  mkdir -p /home/opam/.opam/4.01.0/bin
+  make glut
+  make glutopt
+  make install -C src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+  make install -C LablGlut/src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+cd src && make all LIBDIR="`ocamlc -where`"
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/src'
+ocamlc -pp camlp4o var2def.ml -o var2def
+ocamlc -pp camlp4o var2switch.ml -o var2switch
+ocamlrun ../src/var2def < gl_tags.var > gl_tags.h
+ocamlrun ../src/var2switch -table GL_ < gl_tags.var > gl_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_gl.c
