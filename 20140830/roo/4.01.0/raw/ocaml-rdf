@@ -312,3 +312,31 @@ ocamlfind ocamlc -c -g -o checkOCamlVersion.cmo checkOCamlVersion.ml
 ocamlfind ocamlc -linkpkg str.cma -g checkOCamlVersion.cmo -o checkOCamlVersion.byte
 # No parallelism done
 Version 4.01.0 is OK.
+ocamlfind ocamldep -modules menhir.ml > menhir.ml.depends
+ocamlfind ocamldep -modules back.mli > back.mli.depends
+ocamlfind ocamlc -c -o back.cmi back.mli
+ocamlfind ocamlc -c -g -o menhir.cmo menhir.ml
+ocamlfind ocamldep -modules back.ml > back.ml.depends
+ocamlfind ocamldep -modules codeBackend.ml > codeBackend.ml.depends
+ocamlfind ocamldep -modules codeBackend.mli > codeBackend.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamlc -c -o codeBackend.cmi codeBackend.mli
+ocamlfind ocamldep -modules action.ml > action.ml.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules keyword.ml > keyword.ml.depends
+ocamlfind ocamldep -modules positions.ml > positions.ml.depends
+ocamlfind ocamldep -modules printer.ml > printer.ml.depends
+ocamlfind ocamldep -modules printer.mli > printer.mli.depends
+ocamlfind ocamlc -c -o printer.cmi printer.mli
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q lineCount.mll
+ocamlfind ocamldep -modules lineCount.ml > lineCount.ml.depends
+ocamlfind ocamlc -c -g -o lineCount.cmo lineCount.ml
+ocamlfind ocamldep -modules settings.ml > settings.ml.depends
