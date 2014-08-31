@@ -782,3 +782,26 @@ ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_analysis.cmi -package str -packa
 ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_analysis.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_analysis.ml
 ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_errors.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.mli
 ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_errors.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_generate_c.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_generate_c.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_internals.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_internals.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_public_name.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_public_name.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_generate_ml.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_generate_ml.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.ml
+ocamlfind ocamlc -c -o _build/src/cstubs/cstubs_inverted.cmi -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.mli
+ocamlfind ocamlc -package str -package bytes     -c -o _build/src/cstubs/cstubs_inverted.cmo -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.ml
+ocamlfind ocamlc -a    -package str -package bytes  -o _build/cstubs.cma _build/src/cstubs/cstubs_analysis.cmo _build/src/cstubs/cstubs_errors.cmo _build/src/cstubs/cstubs_generate_c.cmo _build/src/cstubs/cstubs_internals.cmo _build/src/cstubs/cstubs_public_name.cmo _build/src/cstubs/cstubs_generate_ml.cmo _build/src/cstubs/cstubs.cmo _build/src/cstubs/cstubs_inverted.cmo 
+ocamlfind opt -c -o _build/src/cstubs/cstubs_analysis.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_analysis.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_errors.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_errors.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_c.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_internals.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_public_name.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_ml.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_inverted.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.ml
+ocamlfind opt -a -linkall   -package str -package bytes   -o _build/cstubs.cmxa _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx 
+ocamlfind opt -shared -linkall   -package str -package bytes  -o _build/cstubs.cmxs _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx  
