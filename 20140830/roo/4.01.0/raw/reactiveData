@@ -51,3 +51,20 @@ ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/r
 + ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxa
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
 ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
++ ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
++ ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+Installing react.1.2.0.
+Building reactiveData.0.1:
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -package react -modules src/reactiveData.ml > src/reactiveData.ml.depends
+ocamlfind ocamldep -package react -modules src/reactiveData.mli > src/reactiveData.mli.depends
+ocamlfind ocamlc -c -package react -I src -o src/reactiveData.cmi src/reactiveData.mli
+ocamlfind ocamlopt -c -package react -I src -o src/reactiveData.cmx src/reactiveData.ml
+ocamlfind ocamlopt -a -package react src/reactiveData.cmx -o src/reactiveData.cmxa
+ocamlfind ocamlc -c -package react -I src -o src/reactiveData.cmo src/reactiveData.ml
+ocamlfind ocamlc -a -package react src/reactiveData.cmo -o src/reactiveData.cma
+ocamlfind ocamlopt -shared -package react src/reactiveData.cmx -o src/reactiveData.cmxs
+Installing reactiveData.0.1.
