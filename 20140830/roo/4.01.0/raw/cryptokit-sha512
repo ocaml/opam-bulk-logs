@@ -114,3 +114,77 @@ mv d3des.o src/d3des.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
 mv stubs-des.o src/stubs-des.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha512.c
+mv sha512.o src/sha512.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha512.c
+mv stubs-sha512.o src/stubs-sha512.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/sha512.o src/stubs-sha512.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o
+ocamlfind ocamldep -package unix -package num -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package unix -package num -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package unix -package num -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package unix -package num -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package unix -package num -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1928, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package unix -package num -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package unix -package num -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1928, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocamlfind ocamldep -package unix -package num -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package num -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -custom -I src -linkpkg -package unix -package num src/cryptokit.cma test/test.cmo -o test/test.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit-sha512.1.6.3.
