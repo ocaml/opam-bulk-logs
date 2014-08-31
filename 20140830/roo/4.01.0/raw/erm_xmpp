@@ -424,3 +424,73 @@ Compile tests executable and library and run them: ... false
 pkg_erm_xml: ......................................... /home/opam/.opam/4.01.0/lib/erm_xml
 pkg_cryptokit: ....................................... /home/opam/.opam/4.01.0/lib/cryptokit
 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules uni_data.ml > uni_data.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules uni_norm.ml > uni_norm.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules stringprep.ml > stringprep.ml.depends
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o uni_data.cmo uni_data.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o uni_norm.cmo uni_norm.ml
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules streamError.ml > streamError.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules stanzaError.ml > stanzaError.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules xmlstream.ml > xmlstream.ml.depends
+ocamlfind ocamldep -package camlp4 -package cryptokit -package erm_xml -syntax camlp4o -modules sasl.ml > sasl.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XMPP.ml > XMPP.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules JID.mli > JID.mli.depends
+ocamlfind ocamlc -c -g -package camlp4 -package cryptokit -package erm_xml -syntax camlp4o -o sasl.cmo sasl.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o stanzaError.cmo stanzaError.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o streamError.cmo streamError.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o xmlstream.cmo xmlstream.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o JID.cmi JID.mli
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules JID.ml > JID.ml.depends
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o stringprep.cmo stringprep.ml
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules roster.ml > roster.ml.depends
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XMPP.cmo XMPP.ml
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_disco.ml > XEP_disco.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_last.ml > XEP_last.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_muc.ml > XEP_muc.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_xdata.ml > XEP_xdata.ml.depends
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_xdata.cmo XEP_xdata.ml
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_stats.ml > XEP_stats.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_time.ml > XEP_time.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_vcard.ml > XEP_vcard.ml.depends
+ocamlfind ocamldep -package cryptokit -package erm_xml -modules XEP_version.ml > XEP_version.ml.depends
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o JID.cmo JID.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o roster.cmo roster.ml
++ ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o roster.cmo roster.ml
+File "roster.ml", line 37, characters 33-2097:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Xmlcdata _
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_disco.cmo XEP_disco.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_last.cmo XEP_last.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_muc.cmo XEP_muc.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_stats.cmo XEP_stats.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_time.cmo XEP_time.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_vcard.cmo XEP_vcard.ml
+ocamlfind ocamlc -c -g -package cryptokit -package erm_xml -o XEP_version.cmo XEP_version.ml
+ocamlfind ocamlc -a uni_data.cmo uni_norm.cmo stringprep.cmo streamError.cmo stanzaError.cmo xmlstream.cmo sasl.cmo JID.cmo XMPP.cmo roster.cmo XEP_disco.cmo XEP_last.cmo XEP_xdata.cmo XEP_muc.cmo XEP_stats.cmo XEP_time.cmo XEP_vcard.cmo XEP_version.cmo -o erm_xmpp.cma
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o uni_data.cmx uni_data.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o uni_norm.cmx uni_norm.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o stringprep.cmx stringprep.ml
+ocamlfind ocamlopt -c -g -package camlp4 -package cryptokit -package erm_xml -syntax camlp4o -o sasl.cmx sasl.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o stanzaError.cmx stanzaError.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o streamError.cmx streamError.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o xmlstream.cmx xmlstream.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o JID.cmx JID.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XMPP.cmx XMPP.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_xdata.cmx XEP_xdata.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o roster.cmx roster.ml
++ ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o roster.cmx roster.ml
+File "roster.ml", line 37, characters 33-2097:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+Xmlcdata _
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_disco.cmx XEP_disco.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_last.cmx XEP_last.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_muc.cmx XEP_muc.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_stats.cmx XEP_stats.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_time.cmx XEP_time.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_vcard.cmx XEP_vcard.ml
+ocamlfind ocamlopt -c -g -package cryptokit -package erm_xml -o XEP_version.cmx XEP_version.ml
+ocamlfind ocamlopt -a uni_data.cmx uni_norm.cmx stringprep.cmx streamError.cmx stanzaError.cmx xmlstream.cmx sasl.cmx JID.cmx XMPP.cmx roster.cmx XEP_disco.cmx XEP_last.cmx XEP_xdata.cmx XEP_muc.cmx XEP_stats.cmx XEP_time.cmx XEP_vcard.cmx XEP_version.cmx -o erm_xmpp.cmxa
+ocamlfind ocamlopt -shared -linkall erm_xmpp.cmxa -o erm_xmpp.cmxs
