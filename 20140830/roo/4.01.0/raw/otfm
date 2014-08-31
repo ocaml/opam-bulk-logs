@@ -56,3 +56,10 @@ ocamlfind ocamlc -c -annot -bin-annot -package uutf -I test -I src -o test/otftr
 ocamlfind ocamldep -package uutf -modules src/otfm.ml > src/otfm.ml.depends
 ocamlfind ocamlopt -c -annot -bin-annot -package uutf -I src -I test -o src/otfm.cmx src/otfm.ml
 ocamlfind ocamlopt -c -annot -bin-annot -package uutf -I test -I src -o test/otftrip.cmx test/otftrip.ml
+ocamlfind ocamlopt -linkpkg -package uutf src/otfm.cmx test/otftrip.cmx -o test/otftrip.native
+ocamlfind ocamlopt -a src/otfm.cmx -o src/otfm.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -package uutf -I src -I test -o src/otfm.cmo src/otfm.ml
+ocamlfind ocamlc -a src/otfm.cmo -o src/otfm.cma
+ocamlfind ocamlopt -shared src/otfm.cmx -o src/otfm.cmxs
+Installing otfm.0.2.0.
+2014/08/31 11:34:11 Error: Cannot destroy container 79a7ec43363ef2814bb5258d9b568ab9fef54d71a92a472bf9b89860febedf8e: Driver aufs failed to remove root filesystem 79a7ec43363ef2814bb5258d9b568ab9fef54d71a92a472bf9b89860febedf8e: rename /var/lib/docker/aufs/diff/79a7ec43363ef2814bb5258d9b568ab9fef54d71a92a472bf9b89860febedf8e /var/lib/docker/aufs/diff/79a7ec43363ef2814bb5258d9b568ab9fef54d71a92a472bf9b89860febedf8e-removing: device or resource busy
