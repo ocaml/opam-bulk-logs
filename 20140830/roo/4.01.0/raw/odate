@@ -2143,3 +2143,54 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/oDate.mli > src/oDate.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/oDuration.mli > src/oDuration.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/oDuration.cmi src/oDuration.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/oDate.cmi src/oDate.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/oDate.ml > src/oDate.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/date_lexer.mll
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/date_lexer.ml > src/date_lexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/date_lexer.cmo src/date_lexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/oDuration.ml > src/oDuration.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/duration_lexer.mll
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/duration_lexer.ml > src/duration_lexer.ml.depends
+menhir --raw-depend --ocamldep '/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules' src/duration_parser.mly > src/duration_parser.mly.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/duration_private.ml > src/duration_private.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/duration_private.cmo src/duration_private.ml
+menhir --ocamlc '/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -I src' --infer src/duration_parser.mly
++ menhir --ocamlc '/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -I src' --infer src/duration_parser.mly
+Warning: 2 states have shift/reduce conflicts.
+Warning: 6 shift/reduce conflicts were arbitrarily resolved.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/duration_parser.mli > src/duration_parser.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/duration_parser.cmi src/duration_parser.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/duration_lexer.cmo src/duration_lexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/duration_parser.ml > src/duration_parser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/oDate.cmo src/oDate.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/oDuration.cmo src/oDuration.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -o src/duration_parser.cmo src/duration_parser.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/date_lexer.cmo src/duration_private.cmo src/duration_parser.cmo src/duration_lexer.cmo src/oDuration.cmo src/oDate.cmo -o src/odate.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/duration_private.cmx src/duration_private.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/duration_parser.cmx src/duration_parser.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/duration_lexer.cmx src/duration_lexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/date_lexer.cmx src/date_lexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/oDuration.cmx src/oDuration.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -o src/oDate.cmx src/oDate.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/date_lexer.cmx src/duration_private.cmx src/duration_parser.cmx src/duration_lexer.cmx src/oDuration.cmx src/oDate.cmx -o src/odate.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/odate.cmxa src/date_lexer.cmx src/duration_private.cmx src/duration_parser.cmx src/duration_lexer.cmx src/oDuration.cmx src/oDate.cmx -o src/odate.cmxs
+Installed /home/opam/.opam/4.01.0/lib/odate/oDate.mli
+Installed /home/opam/.opam/4.01.0/lib/odate/oDuration.mli
+Installed /home/opam/.opam/4.01.0/lib/odate/odate.cma
+Installed /home/opam/.opam/4.01.0/lib/odate/odate.cmxa
+Installed /home/opam/.opam/4.01.0/lib/odate/odate.a
+Installed /home/opam/.opam/4.01.0/lib/odate/odate.cmxs
+Installed /home/opam/.opam/4.01.0/lib/odate/oDuration.cmi
+Installed /home/opam/.opam/4.01.0/lib/odate/oDate.cmi
+Installed /home/opam/.opam/4.01.0/lib/odate/duration_private.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/duration_parser.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/duration_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/date_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/oDuration.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/oDate.cmx
+Installed /home/opam/.opam/4.01.0/lib/odate/META
+Installing odate.0.5.
