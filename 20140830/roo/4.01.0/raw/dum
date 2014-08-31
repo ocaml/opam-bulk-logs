@@ -34,3 +34,50 @@ Building easy-format.1.0.2:
   make install
 ocamlc -c easy_format.mli
 ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building dum.1.0.1:
+  make
+  make install
+echo "1.0.1" > VERSION
+ocamlfind ocamlc -c -g dum.mli -package easy-format
+ocamlfind ocamlc -c -g dum.ml -package easy-format
+ocamlfind ocamlc -a -g -o dum.cma dum.cmo -package easy-format
+touch done-all
+ocamlfind ocamlc -c -g dum.mli -package easy-format
+ocamlfind ocamlopt -c -g dum.ml -package easy-format
+ocamlfind ocamlopt -a -g -o dum.cmxa dum.cmx -package easy-format
+touch done-opt
+sed -e 's:@VERSION@:1.0.1:' META.in > META
+ocamlfind install dum META dum.mli dum.cmi \
+		`test -f done-all && echo dum.cma || :`\
+		`test -f done-opt && echo dum.cmx dum.cmxa dum.o dum.a || :`
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.a
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.o
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.cmx
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.cma
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.cmi
+Installed /home/opam/.opam/4.01.0/lib/dum/dum.mli
+Installed /home/opam/.opam/4.01.0/lib/dum/META
+Installing dum.1.0.1.
