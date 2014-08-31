@@ -3059,3 +3059,8 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package cohttp -package cohttp.lwt -package cstruct -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.str -package unix -package uri -package uuidm -I src -o src/options.cmx src/options.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package cohttp -package cohttp.lwt -package cstruct -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.str -package unix -package uri -package uuidm -I src -o src/unixext.cmx src/unixext.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package cohttp -package cohttp.lwt -package cstruct -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.str -package unix -package uri -package uuidm -I src -o src/newcli.cmx src/newcli.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg -package cohttp -package cohttp.lwt -package cstruct -package lwt -package lwt.ssl -package lwt.syntax -package lwt.unix -package re.str -package unix -package uri -package uuidm src/channels.cmx src/cli_protocol.cmx src/cohttp_unbuffered_io.cmx src/options.cmx src/pervasiveext.cmx src/unixext.cmx src/newcli.cmx -o src/newcli.native
+ocaml setup.ml -build
+mkdir -p /home/opam/.opam/4.01.0/bin
+install -m 755 newcli.native /home/opam/.opam/4.01.0/bin/xe || echo "Failed to install xe"
+Installing xe.0.6.2.
