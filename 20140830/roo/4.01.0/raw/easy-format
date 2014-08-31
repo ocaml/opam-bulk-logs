@@ -31,3 +31,22 @@ touch bytecode
 ocamlc -c easy_format.mli
 ocamlopt -c -dtypes easy_format.ml
 ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+2014/08/31 04:58:01 Error: Cannot destroy container 025b67e5eb1861ed8ee37dba526544e87b2b1fd172cf87363209303d5b7b14f6: Driver aufs failed to remove root filesystem 025b67e5eb1861ed8ee37dba526544e87b2b1fd172cf87363209303d5b7b14f6: rename /var/lib/docker/aufs/mnt/025b67e5eb1861ed8ee37dba526544e87b2b1fd172cf87363209303d5b7b14f6 /var/lib/docker/aufs/mnt/025b67e5eb1861ed8ee37dba526544e87b2b1fd172cf87363209303d5b7b14f6-removing: device or resource busy
