@@ -639,3 +639,9 @@ ocamlfind ocamlopt -package unix,str -c -dtypes -for-pack Ocamlscript utils.ml
 ocamlfind ocamlopt -package unix,str -c -dtypes -for-pack Ocamlscript ocaml.ml
 ocamlfind ocamlopt -pack               \
 				  -o ocamlscript.cmx version.cmx pipeline.cmx common.cmx utils.cmx ocaml.cmx
+make[1]: `ocamlscript.o' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlscript.2.0.2'
+touch nc.done
+ocamlfind ocamlopt -o ocamlscript -pp 'camlp4o -I . -parser pa_tryfinally.cmo -parser pa_opt.cmo' \
+	  -package 'unix str' -linkpkg -dtypes \
+	  ocamlscript.cmx main.ml
