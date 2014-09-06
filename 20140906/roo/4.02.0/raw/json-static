@@ -2700,3 +2700,135 @@ make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6
 make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
 ocamlfind ocamlopt -package netstring -c json_type.ml
 ocamlfind ocamlopt -package netstring -c json_parser.ml
+ocamlfind ocamlopt -package netstring -c json_lexer.ml
+ocamlfind ocamlopt -package netstring -c json_io.ml
+ocamlfind ocamlopt -package netstring -c json_compat.ml
+ocamlfind ocamlopt -a                \
+				 -o jsonwheel.cmxa json_type.cmx json_parser.cmx json_lexer.cmx json_io.cmx json_compat.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+echo 'let version = "1.0.6"' > version.ml
+make ncl
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+make[2]: `jsonwheel.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+ocamlfind ocamlopt -o jsoncat -package netstring -linkpkg \
+		jsonwheel.cmxa version.ml jsoncat.ml
+File "jsoncat.ml", line 43, characters 4-26:
+Warning 3: deprecated: String.set
+make META
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+make[1]: `META' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/json-wheel.1.0.6'
+ocamlfind install json-wheel META json_*.cmi \
+		json_type.mli json_io.mli json_compat.ml \
+		`test -f jsonwheel.cma && echo jsonwheel.cma json_*.cmo` \
+		`test -f jsonwheel.cmxa && echo jsonwheel.cmxa jsonwheel.a json_*.cmx json_*.o`
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_type.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_parser.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_lexer.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_io.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_compat.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_type.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_parser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_lexer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_io.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_compat.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/jsonwheel.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/jsonwheel.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_type.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_parser.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_lexer.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_io.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_compat.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/jsonwheel.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_compat.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_type.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_type.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_parser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_lexer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_io.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/json_compat.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/json-wheel/META
+if test -f jsoncat; \
+		then install -m 0755 jsoncat /home/opam/.opam/4.02.0+trunk/bin/ ; \
+		else : ; fi
+Installing json-wheel.1.0.6.
+Building json-static.0.9.8:
+  make
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk
+echo $CAMLP4_VERSION
+309
+echo $CAMLP4ORF
+camlp4o pa_extend.cmo q_MLast.cmo
+echo $CAMLP4RF
+camlp4r pa_extend.cmo q_MLast.cmo
+echo $PR_O
+pr_o.cmo
+echo $PR_R
+pr_r.cmo
+echo $PARSER
+
+echo $PRINTER
+
+echo '# 1 "pa_json_static.ml.309"' > pa_json_static.ml
+cat pa_json_static.ml.309 >> pa_json_static.ml
+ln -sf pa_json_static.ml.annot pa_json_static.annot
+ocamlc -c -dtypes \
+		-pp 'camlp4o pa_extend.cmo q_MLast.cmo -loc _loc' \
+		-I +camlp4 pa_json_static.ml
+sh: 1: camlp4o: not found
+[ERROR] The compilation of json-static.0.9.8 failed.
+File "pa_json_static.ml", line 1:
+Error: Error while running external preprocessor
+Command line: camlp4o pa_extend.cmo q_MLast.cmo -loc _loc 'pa_json_static.ml' > /tmp/ocamlppd198f5
+
+make: *** [common] Error 2
+Removing json-static.0.9.8.
+  ocamlfind remove json-static
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/json-static
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   ocamlnet.3.7.5
+ - install   json-wheel.1.0.6
+The following failed
+ - install   json-static.0.9.8
+
+#=== ERROR while installing json-static.0.9.8 =================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/json-static.0.9.8
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/json-static.0.9.8/json-static-5791-a71bb4.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/json-static.0.9.8/json-static-5791-a71bb4.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/json-static.0.9.8/json-static-5791-a71bb4.err
+### stdout ###
+# ...[truncated]
+# echo $PARSER
+# 
+# echo $PRINTER
+# 
+# echo '# 1 "pa_json_static.ml.309"' > pa_json_static.ml
+# cat pa_json_static.ml.309 >> pa_json_static.ml
+# ln -sf pa_json_static.ml.annot pa_json_static.annot
+# ocamlc -c -dtypes \
+# 		-pp 'camlp4o pa_extend.cmo q_MLast.cmo -loc _loc' \
+# 		-I +camlp4 pa_json_static.ml
+### stderr ###
+# sh: 1: camlp4o: not found
+# File "pa_json_static.ml", line 1:
+# Error: Error while running external preprocessor
+# Command line: camlp4o pa_extend.cmo q_MLast.cmo -loc _loc 'pa_json_static.ml' > /tmp/ocamlppd198f5
+# 
+# make: *** [common] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140806194850.export"
+'opam install json-static' failed.
+2014/09/06 20:52:03 Error: Cannot destroy container c19fffdd9ae41e8089d122ac640151e556e92c4f922b08d59be06b697194b889: Driver aufs failed to remove root filesystem c19fffdd9ae41e8089d122ac640151e556e92c4f922b08d59be06b697194b889: rename /var/lib/docker/aufs/diff/c19fffdd9ae41e8089d122ac640151e556e92c4f922b08d59be06b697194b889 /var/lib/docker/aufs/diff/c19fffdd9ae41e8089d122ac640151e556e92c4f922b08d59be06b697194b889-removing: device or resource busy
