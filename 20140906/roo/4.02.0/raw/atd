@@ -517,3 +517,25 @@ ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
 ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
 ocamlfind ocamlc -c -o pprint.cmi pprint.mli
 ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc sentenceParser.mly
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
+ocamlfind ocamldep -modules tableBackend.ml > tableBackend.ml.depends
+ocamlfind ocamldep -modules tableBackend.mli > tableBackend.mli.depends
+ocamlfind ocamlc -c -o tableBackend.cmi tableBackend.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBackend.cmx codeBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
