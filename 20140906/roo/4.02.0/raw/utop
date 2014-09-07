@@ -971,3 +971,110 @@ ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . camomileLibrary
 ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . camomileLibraryDefault.ml
 ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . camomileLibraryDyn.ml
 ocamlopt.opt -a -o camomile.cmxa public/unicodeString.cmx configInt.cmx internal/uReStrParserType.cmx internal/database.cmx camomileDefaultConfig.cmx internal/bitsvect.cmx internal/bytesvect.cmx internal/avlTree.cmx internal/iSet.cmx internal/iMap.cmx internal/tbl31.cmx internal/byte_labeled_dag.cmx internal/xArray.cmx public/oOChannel.cmx public/uChar.cmx public/uSet.cmx public/uMap.cmx public/uCharTbl.cmx public/uText.cmx public/xString.cmx public/subText.cmx public/uLine.cmx public/locale.cmx internal/hangul.cmx internal/unidata.cmx internal/charmap.cmx internal/unimap.cmx public/charEncoding.cmx public/uTF8.cmx public/uTF16.cmx public/uCS4.cmx public/uPervasives.cmx public/uCharInfo.cmx public/uNF.cmx public/uCol.cmx public/caseMap.cmx public/uRe.cmx internal/uReStrParser.cmx internal/uReStrLexer.cmx public/uReStr.cmx internal/stringPrep_data.cmx public/stringPrep.cmx camomileLibrary.cmx camomileLibraryDefault.cmx camomileLibraryDyn.cmx
+ocamlopt.opt -shared -linkall -o camomile.cmxs camomile.cmxa
+ocamlopt.opt -a -o camomileLibrary.cmxa public/unicodeString.cmx configInt.cmx internal/uReStrParserType.cmx internal/database.cmx camomileDefaultConfig.cmx internal/bitsvect.cmx internal/bytesvect.cmx internal/avlTree.cmx internal/iSet.cmx internal/iMap.cmx internal/tbl31.cmx internal/byte_labeled_dag.cmx internal/xArray.cmx public/oOChannel.cmx public/uChar.cmx public/uSet.cmx public/uMap.cmx public/uCharTbl.cmx public/uText.cmx public/xString.cmx public/subText.cmx public/uLine.cmx public/locale.cmx internal/hangul.cmx internal/unidata.cmx internal/charmap.cmx internal/unimap.cmx public/charEncoding.cmx public/uTF8.cmx public/uTF16.cmx public/uCS4.cmx public/uPervasives.cmx public/uCharInfo.cmx public/uNF.cmx public/uCol.cmx public/caseMap.cmx public/uRe.cmx internal/uReStrParser.cmx internal/uReStrLexer.cmx public/uReStr.cmx internal/stringPrep_data.cmx public/stringPrep.cmx camomileLibrary.cmx
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/camomileconfig.ml
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/toolslib.ml
+ocamlc.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/absOrd.mli
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/absOrd.ml
+ocamlc.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/camomileconfig.ml
+ocamlc.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/toolslib.ml
+ocamlc.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/absCe.mli
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/absCe.ml
+ocamlyacc -v toolslib/colParser.mly
+ocamlc.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/colParser.mli
+ocamlyacc -v toolslib/colParser.mly
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/colParser.ml
+ocamllex.opt toolslib/colLexer.mll
+49 states, 2442 transitions, table size 10062 bytes
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . toolslib/colLexer.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -a -o toolslib.cmxa public/unicodeString.cmx configInt.cmx internal/uReStrParserType.cmx internal/database.cmx camomileDefaultConfig.cmx internal/bitsvect.cmx internal/bytesvect.cmx internal/avlTree.cmx internal/iSet.cmx internal/iMap.cmx internal/tbl31.cmx internal/byte_labeled_dag.cmx internal/xArray.cmx public/oOChannel.cmx public/uChar.cmx public/uSet.cmx public/uMap.cmx public/uCharTbl.cmx public/uText.cmx public/xString.cmx public/subText.cmx public/uLine.cmx public/locale.cmx internal/hangul.cmx internal/unidata.cmx internal/charmap.cmx internal/unimap.cmx public/charEncoding.cmx public/uTF8.cmx public/uTF16.cmx public/uCS4.cmx public/uPervasives.cmx public/uCharInfo.cmx public/uNF.cmx public/uCol.cmx public/caseMap.cmx public/uRe.cmx internal/uReStrParser.cmx internal/uReStrLexer.cmx public/uReStr.cmx internal/stringPrep_data.cmx public/stringPrep.cmx toolslib/camomileconfig.cmx toolslib/toolslib.cmx toolslib/absOrd.cmx toolslib/absCe.cmx toolslib/colParser.cmx toolslib/colLexer.cmx
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_unidata.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_unidata.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_unidata.cmx
+mkdir -p database
+tools/parse_unidata.opt database < unidata/UnicodeData.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_uniset.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_uniset.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_uniset.cmx
+/bin/grep -F White_Space unidata/PropList.txt | tools/parse_uniset.opt database White_Space
+/bin/grep -F Bidi_Control unidata/PropList.txt | tools/parse_uniset.opt database Bidi_Control
+/bin/grep -F Join_Control unidata/PropList.txt | tools/parse_uniset.opt database Join_Control
+/bin/grep -F Hyphen unidata/PropList.txt | tools/parse_uniset.opt database Hyphen
+/bin/grep -F Quotation_Mark unidata/PropList.txt | tools/parse_uniset.opt database Quotation_Mark
+/bin/grep -F Terminal_Punctuation unidata/PropList.txt | tools/parse_uniset.opt database Terminal_Punctuation
+/bin/grep -F Other_Math unidata/PropList.txt | tools/parse_uniset.opt database Other_Math
+/bin/grep -F Hex_Digit unidata/PropList.txt | tools/parse_uniset.opt database Hex_Digit
+/bin/grep -F ASCII_Hex_Digit unidata/PropList.txt | tools/parse_uniset.opt database ASCII_Hex_Digit
+/bin/grep -F Other_Alphabetic unidata/PropList.txt | tools/parse_uniset.opt database Other_Alphabetic
+/bin/grep -F Ideographic unidata/PropList.txt | tools/parse_uniset.opt database Ideographic
+/bin/grep -F Diacritic unidata/PropList.txt | tools/parse_uniset.opt database Diacritic
+/bin/grep -F Extender unidata/PropList.txt | tools/parse_uniset.opt database Extender
+/bin/grep -F Other_Lowercase unidata/PropList.txt | tools/parse_uniset.opt database Other_Lowercase
+/bin/grep -F Other_Uppercase unidata/PropList.txt | tools/parse_uniset.opt database Other_Uppercase
+/bin/grep -F Noncharacter_Code_Point unidata/PropList.txt | tools/parse_uniset.opt database Noncharacter_Code_Point
+/bin/grep -F Other_Grapheme_Extend unidata/PropList.txt | tools/parse_uniset.opt database Other_Grapheme_Extend
+/bin/grep -F Grapheme_Link unidata/PropList.txt | tools/parse_uniset.opt database Grapheme_Link
+/bin/grep -F IDS_Binary_Operator unidata/PropList.txt | tools/parse_uniset.opt database IDS_Binary_Operator
+/bin/grep -F IDS_Trinary_Operator unidata/PropList.txt | tools/parse_uniset.opt database IDS_Trinary_Operator
+/bin/grep -F Radical unidata/PropList.txt | tools/parse_uniset.opt database Radical
+/bin/grep -F Unified_Ideograph unidata/PropList.txt | tools/parse_uniset.opt database Unified_Ideograph
+/bin/grep -F Other_Default_Ignorable_Code_Point unidata/PropList.txt | tools/parse_uniset.opt database Other_Default_Ignorable_Code_Point
+/bin/grep -F Deprecated unidata/PropList.txt | tools/parse_uniset.opt database Deprecated
+/bin/grep -F Soft_Dotted unidata/PropList.txt | tools/parse_uniset.opt database Soft_Dotted
+/bin/grep -F Logical_Order_Exception unidata/PropList.txt | tools/parse_uniset.opt database Logical_Order_Exception
+/bin/grep -F Math unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Math
+/bin/grep -F Alphabetic unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Alphabetic
+/bin/grep -F Lowercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Lowercase
+/bin/grep -F Uppercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Uppercase
+/bin/grep -F ID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Start
+/bin/grep -F ID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Continue
+/bin/grep -F XID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Start
+/bin/grep -F XID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Continue
+/bin/grep -F Default_Ignorable_Code_Point unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Default_Ignorable_Code_Point
+/bin/grep -F Grapheme_Extend unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Extend
+/bin/grep -F Grapheme_Base unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Base
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/camomilestringprep.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilestringprep.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilestringprep.cmx
+tools/camomilestringprep.opt -in unidata/stringprep -out database
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_casefolding.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_casefolding.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_casefolding.cmx
+tools/parse_casefolding.opt database < unidata/CaseFolding.txt
+tools/parse_uniset.opt database composition_exclusion < unidata/CompositionExclusions.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_age.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_age.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_age.cmx
+tools/parse_age.opt database < unidata/DerivedAge.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_scripts.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_scripts.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_scripts.cmx
+tools/parse_scripts.opt database < unidata/Scripts.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_specialcasing.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_specialcasing.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_specialcasing.cmx
+tools/parse_specialcasing.opt database < unidata/SpecialCasing.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_allkeys.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_allkeys.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_allkeys.cmx
+tools/parse_allkeys.opt database < unidata/tr10/allkeys.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . mappings/gen_mappings.ml
+File "mappings/gen_mappings.ml", line 91, characters 11-24:
+Warning 3: deprecated: String.create
+File "mappings/gen_mappings.ml", line 93, characters 4-30:
+Warning 3: deprecated: String.set
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o mappings/gen_mappings.opt bigarray.cmxa str.cmxa toolslib.cmxa mappings/gen_mappings.cmx
+cd mappings && ./gen_mappings.opt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/camomilecharmap.ml
+File "tools/camomilecharmap.ml", line 153, characters 11-22:
+Warning 3: deprecated: String.copy
+File "tools/camomilecharmap.ml", line 156, characters 2-14:
+Warning 3: deprecated: String.set
+File "tools/camomilecharmap.ml", line 161, characters 2-34:
+Warning 3: deprecated: String.set
+File "tools/camomilecharmap.ml", line 162, characters 2-35:
+Warning 3: deprecated: String.set
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilecharmap.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilecharmap.cmx
+tools/camomilecharmap.opt -d charmaps charmaps/ANSI_X3.110-1983 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ANSI_X3.4-1968 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ARMSCII-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ASMO_449 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BIG5 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BIG5-HKSCS || true
+tools/camomilecharmap.opt -d charmaps charmaps/BRF || true
+tools/camomilecharmap.opt -d charmaps charmaps/BS_4730 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BS_VIEWDATA || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP10007 || true
