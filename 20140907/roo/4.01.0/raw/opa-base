@@ -18,3 +18,64 @@ Preparing to unpack .../zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb ...
 Unpacking zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
 Setting up zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
 ++ opam install opa-base -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install opa-base
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ulex]
+ - install   camlzip.1.05                          [required by opa-base]
+ - install   ocamlgraph.1.8.5                      [required by opa-base]
+ - install   ulex.1.1                              [required by opa-base]
+ - install   opa-base.1.1.0+4263
+=== 5 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocamlgraph.1.8.5+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/opa-base.1.1.0+4263+opam.tar.gz
+sending incremental file list
+sending incremental file list
+sending incremental file list
+ocamlgraph.1.8.5+opam.tar.gz
+camlzip.1.05+opam.tar.gz
+opa-base.1.1.0+4263+opam.tar.gz
+
+sent 26,593 bytes  received 35 bytes  53,256.00 bytes/sec
+total size is 26,460  speedup is 0.99
+
+sent 285,331 bytes  received 35 bytes  570,732.00 bytes/sec
+total size is 285,134  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/ulex.1.1+opam.tar.gz
+sending incremental file list
+ulex.1.1+opam.tar.gz
+
+sent 9,459,539 bytes  received 35 bytes  18,919,148.00 bytes/sec
+total size is 9,457,098  speedup is 1.00
+
+sent 20,477 bytes  received 35 bytes  41,024.00 bytes/sec
+total size is 20,348  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+ocamlopt -c zip.ml
