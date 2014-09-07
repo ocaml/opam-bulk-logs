@@ -241,3 +241,61 @@ hash_values/main.byte irr_enums_poly_values.txt > irr_enums_wrap_poly_values.h
 cp irr_enums.mli irr_enums.ml
 hash_values/main.byte methods_hash_values.txt > methods_hash_values.h
 g++ -fPIC -I `ocamlc -where` -I /usr/include/irrlicht -c irr_enums_wrap.cpp
+g++ -fPIC -I `ocamlc -where` -I /usr/include/irrlicht -c irr_core_wrap.cpp
+g++ -fPIC -I `ocamlc -where` -I /usr/include/irrlicht -c irr_video_wrap.cpp
+g++ -fPIC -I `ocamlc -where` -I /usr/include/irrlicht -c irr_scene_wrap.cpp
++ g++ -fPIC -I `ocamlc -where` -I /usr/include/irrlicht -c irr_scene_wrap.cpp
+irr_scene_wrap.cpp: In function 'value ml_ISceneNode_getAutomaticCulling(value)':
+irr_scene_wrap.cpp:98:70: error: invalid conversion from 'irr::u32 {aka unsigned int}' to 'irr::scene::E_CULLING_TYPE' [-fpermissive]
+  return Val_culling_type(((ISceneNode*) v_node)->getAutomaticCulling());
+                                                                      ^
+In file included from irr_enums_wrap.h:8:0,
+                 from global.h:22,
+                 from irr_scene_wrap.cpp:3:
+irr_enums_wrap_conv.h:55:7: error:   initializing argument 1 of 'value Val_culling_type(irr::scene::E_CULLING_TYPE)' [-fpermissive]
+ value Val_culling_type(E_CULLING_TYPE);
+       ^
+Command exited with code 1.
+E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' hash_values/main.byte enums/main.byte libirrlicht_stubs.a dllirrlicht_stubs.so irrlicht.cma irrlicht.cmxa irrlicht.a irrlicht.cmxs -tag debug' terminated with error code 10")
+[ERROR] The compilation of irrlicht.0.0.3 failed.
+Removing irrlicht.0.0.3.
+  ocamlfind remove irrlicht
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/irrlicht
+
+
+#=== ERROR while installing irrlicht.0.0.3 ====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.02.0+trunk/build/irrlicht.0.0.3
+# compiler             4.02.0+trunk
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0+trunk/build/irrlicht.0.0.3/irrlicht-474-6d07ae.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/irrlicht.0.0.3/irrlicht-474-6d07ae.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/irrlicht.0.0.3/irrlicht-474-6d07ae.err
+### stdout ###
+# ...[truncated]
+# irr_scene_wrap.cpp:98:70: error: invalid conversion from 'irr::u32 {aka unsigned int}' to 'irr::scene::E_CULLING_TYPE' [-fpermissive]
+#   return Val_culling_type(((ISceneNode*) v_node)->getAutomaticCulling());
+#                                                                       ^
+# In file included from irr_enums_wrap.h:8:0,
+#                  from global.h:22,
+#                  from irr_scene_wrap.cpp:3:
+# irr_enums_wrap_conv.h:55:7: error:   initializing argument 1 of 'value Val_culling_type(irr::scene::E_CULLING_TYPE)' [-fpermissive]
+#  value Val_culling_type(E_CULLING_TYPE);
+#        ^
+# Command exited with code 1.
+### stderr ###
+# ...[truncated]
+# Warning 3: deprecated: String.set
+# File "/home/axiles/src/oasis-0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# File "/home/axiles/src/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+# Warning 3: deprecated: String.set
+# File "/home/axiles/src/oasis-0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# W: Cannot find source file matching module 'Irr_enums' in library irrlicht
+# W: Cannot find source file matching module 'Irr_enums' in library irrlicht
+# E: Failure("Command ''/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild' hash_values/main.byte enums/main.byte libirrlicht_stubs.a dllirrlicht_stubs.so irrlicht.cma irrlicht.cmxa irrlicht.a irrlicht.cmxs -tag debug' terminated with error code 10")
+
+'opam install irrlicht' failed.
