@@ -950,3 +950,102 @@ sed -e s/@@VERSION@@/"4.02.1+dev0-2014-08-29"/g camlp4/META.in > camlp4/META
 mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 Installing camlp4.4.02.0+1.
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+Building cryptokit-sha512.1.6.3:
+  make
+  make install
+ocaml setup.ml -configure 
+File "/home/vb/.opam/system/build/oasis.0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/vb/.opam/system/build/oasis.0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ..................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: ........................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ...................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: .................................. cryptokit
+Package version: ............................... 1.6
+os_type: ....................................... Unix
+system: ........................................ linux
+architecture: .................................. amd64
+ccomp_type: .................................... cc
+ocaml_version: ................................. 4.02.1
+standard_library_default: ...................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .............................. /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .............................. /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ........................... gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ............................. gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ......................................... default
+ext_obj: ....................................... .o
+ext_asm: ....................................... .s
+ext_lib: ....................................... .a
+ext_dll: ....................................... .so
+default_executable_name: ....................... a.out
+systhread_supported: ........................... true
+Install architecture-independent files dir: .... /usr/local
+Install architecture-dependent files in dir: ... $prefix
+User executables: .............................. $exec_prefix/bin
+System admin executables: ...................... $exec_prefix/sbin
+Program executables: ........................... $exec_prefix/libexec
+Read-only single-machine data: ................. $prefix/etc
+Modifiable architecture-independent data: ...... $prefix/com
+Modifiable single-machine data: ................ $prefix/var
+Object code libraries: ......................... $exec_prefix/lib
+Read-only arch-independent data root: .......... $prefix/share
+Read-only architecture-independent data: ....... $datarootdir
+Info documentation: ............................ $datarootdir/info
+Locale-dependent data: ......................... $datarootdir/locale
+Man documentation: ............................. $datarootdir/man
+Documentation root: ............................ $datarootdir/doc/$pkg_name
+HTML documentation: ............................ $docdir
+DVI documentation: ............................. $docdir
+PDF documentation: ............................. $docdir
+PS documentation: .............................. $docdir
+findlib_version: ............................... 1.5.2
+is_native: ..................................... true
+suffix_program: ................................ 
+Remove a file.: ................................ rm -f
+Remove a directory.: ........................... rm -rf
+Turn ocaml debug flag on: ...................... true
+Turn ocaml profile flag on: .................... false
+Compiler support generation of .cmxs.: ......... true
+OCamlbuild additional flags: ................... 
+Enable ZLib: ................................... true
+Build and run benchmark: ....................... false
+ocamldoc: ...................................... /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+pkg_unix: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_num: ....................................... /home/opam/.opam/4.02.0+trunk/lib/num
+
+ocaml setup.ml -build -classic-display
+File "/home/vb/.opam/system/build/oasis.0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/vb/.opam/system/build/oasis.0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
