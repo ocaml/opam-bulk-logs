@@ -3540,3 +3540,330 @@ tools/camomilelocaledef.opt --file locales/zh_MO.txt locales
 tools/camomilelocaledef.opt --file locales/zh_SG.txt locales 
 tools/camomilelocaledef.opt --file locales/zh_TW.txt locales 
 tools/camomilelocaledef.opt --file locales/zh_TW_STROKE.txt locales 
+tools/camomilelocaledef.opt --file locales/zh__PINYIN.txt locales 
+rm toolslib/colLexer.ml internal/uReStrLexer.ml toolslib/colParser.mli toolslib/colParser.ml
+files= &&\
+	if [ -f camomileLibrary.cmx ]; then files=camomileLibrary.cmx; fi && \
+	if [ -f camomileLibrary.cma ]; then files="camomileLibrary.cma $files"; fi && \
+	if [ -f camomileLibrary.cmxa ]; then files="camomileLibrary.cmxa $files"; fi && \
+	if [ -f camomileLibraryDefault.cmx ]; then files="camomileLibraryDefault.cmx $files"; fi && \
+	if [ -f camomileLibraryDyn.cmx ]; then files="camomileLibraryDyn.cmx $files"; fi && \
+	if [ -f camomile.cma ]; then files="camomile.cma $files"; fi&& \
+	if [ -f camomile.cmxa ]; then files="camomile.cmxa $files"; fi&& \
+	if [ -f camomile.cmxs ]; then files="camomile.cmxs $files"; fi&& \
+	if [ -f camomile.a ]; then files="camomile.a $files"; fi && \
+	ocamlfind install camomile $files META camomileLibrary.mli camomileLibraryDefault.mli camomileLibraryDyn.mli camomileLibrary.cmi camomileLibraryDefault.cmi camomileLibraryDyn.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDyn.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDefault.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibrary.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDyn.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDefault.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibrary.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibrary.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibrary.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibrary.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDefault.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomileLibraryDyn.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomile.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomile.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomile.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/camomile.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/camomile/META
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'/camomile
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'/camomile/database
+cp -f database/*.mar '/home/opam/.opam/4.02.0+trunk/share'/camomile/database || true
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'/camomile/charmaps
+cp -f charmaps/*.mar '/home/opam/.opam/4.02.0+trunk/share'/camomile/charmaps || true
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'/camomile/mappings
+cp -f mappings/*.mar '/home/opam/.opam/4.02.0+trunk/share'/camomile/mappings || true
+mkdir -p '/home/opam/.opam/4.02.0+trunk/share'/camomile/locales
+cp -f locales/*.mar '/home/opam/.opam/4.02.0+trunk/share'/camomile/locales || true
+Installing camomile.0.8.5.
+Building patoline.0.1:
+  ocaml unix.cma configure.ml --prefix /home/opam/.opam/4.02.0+trunk --bin-prefix /home/opam/.opam/4.02.0+trunk/bin --ocaml-libs /home/opam/.opam/4.02.0+trunk/lib --fonts-dir /home/opam/.opam/4.02.0+trunk/share/patoline/fonts --grammars-dir /home/opam/.opam/4.02.0+trunk/lib/patoline/grammars --plugins-dir /home/opam/.opam/4.02.0+trunk/lib/patoline/plugins --hyphen-dir /home/opam/.opam/4.02.0+trunk/share/patoline/hyphen
+  make
+  make install
+File "configure.ml", line 41, characters 10-23:
+Warning 3: deprecated: String.create
+File "configure.ml", line 510, characters 22-35:
+Warning 3: deprecated: String.create
+Looking for package dyp... found (dyp)
+Looking for package camomile... found (camomile)
+Looking for package sqlite3... found (sqlite3)
+Looking for package camlimages.all_formats... found (camlimages.all_formats)
+Looking for package zip... found (zip)
+Looking for package cairo... not found
+Looking for package str... found (str)
+Looking for package lablgl... not found
+Looking for package netstring... not found
+
+Good news: you can use Patoline !
+
+Now build it by doing:
+	make
+	make install
+
+And optionally
+	make doc
+	make check
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src'
+make -C Rbuffer rbuffer.cmxa
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/Rbuffer'
+ocamlc -o rbuffer.cmi rbuffer.mli
+ocamlc -o rope.cmi rope.mli
+ocamlopt -a -o rbuffer.cmxa rbuffer.ml
+File "rbuffer.ml", line 62, characters 10-23:
+Warning 3: deprecated: String.create
+File "rbuffer.ml", line 88, characters 10-23:
+Warning 3: deprecated: String.create
+File "rbuffer.ml", line 116, characters 10-23:
+Warning 3: deprecated: String.create
+File "rbuffer.ml", line 140, characters 18-31:
+Warning 3: deprecated: String.create
+File "rbuffer.ml", line 152, characters 2-21:
+Warning 3: deprecated: String.set
+File "rbuffer.ml", line 167, characters 14-27:
+Warning 3: deprecated: String.create
+File "rbuffer.ml", line 174, characters 14-27:
+Warning 3: deprecated: String.create
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/Rbuffer'
+make -C Typography _build/Typography.cmxa
+ls: cannot access */*/*.mli: No such file or directory
+ls: cannot access */*/*.mli: No such file or directory
+ls: cannot access */*/*.mli: No such file or directory
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/Typography'
+ocamlbuild -use-ocamlfind -classic-display Typography.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 1, characters 14-25:
+Warning: the tag "use_rbuffer" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 3, characters 33-47:
+Warning: the tag "unicode_ranges" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Config.ml > Config.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules ConfigUtil.ml > ConfigUtil.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Config.cmo Config.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules TypoLanguage.ml > TypoLanguage.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Layout.ml > Layout.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Util.mli > Util.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Util.cmi Util.mli
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Layout.cmo Layout.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o TypoLanguage.cmo TypoLanguage.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Util.ml > Util.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Bezier.mli > Bezier.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Bezier.cmi Bezier.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Bezier.ml > Bezier.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Distance.ml > Distance.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Offset.mli > Offset.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Offset.cmi Offset.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Offset.ml > Offset.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/FTypes.ml > Fonts/FTypes.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Type2.ml > Fonts/Type2.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/CFF.ml > Fonts/CFF.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/CFFStd.ml > Fonts/CFFStd.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/FTypes.cmo Fonts/FTypes.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Type2.cmo Fonts/Type2.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Type2.cmo Fonts/Type2.ml
+File "Fonts/Type2.ml", line 88, characters 18-30:
+Warning 3: deprecated: Array.create
+File "Fonts/Type2.ml", line 101, characters 11-23:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/CFFStd.cmo Fonts/CFFStd.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Opentype.ml > Fonts/Opentype.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/CFF.cmo Fonts/CFF.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/CFF.cmo Fonts/CFF.ml
+File "Fonts/CFF.ml", line 163, characters 10-22:
+Warning 3: deprecated: Array.create
+File "Fonts/CFF.ml", line 166, characters 15-28:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 180, characters 17-30:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 229, characters 12-25:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 235, characters 12-25:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 243, characters 12-25:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 309, characters 14-26:
+Warning 3: deprecated: Array.create
+File "Fonts/CFF.ml", line 329, characters 14-26:
+Warning 3: deprecated: Array.create
+File "Fonts/CFF.ml", line 332, characters 17-30:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 443, characters 12-25:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 453, characters 12-25:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 481, characters 10-23:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 671, characters 23-36:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 691, characters 14-27:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 698, characters 16-29:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 742, characters 16-29:
+Warning 3: deprecated: String.create
+File "Fonts/CFF.ml", line 802, characters 4-26:
+Warning 3: deprecated: String.set
+File "Fonts/CFF.ml", line 803, characters 4-29:
+Warning 3: deprecated: String.set
+File "Fonts/CFF.ml", line 804, characters 42-66:
+Warning 3: deprecated: String.set
+File "Fonts/CFF.ml", line 859, characters 8-44:
+Warning 3: deprecated: String.set
+File "Fonts/CFF.ml", line 860, characters 8-46:
+Warning 3: deprecated: String.set
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Cmap.ml > Fonts/Cmap.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Opentype_layout.ml > Fonts/Opentype_layout.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Sfnt/make_unicode_ranges.ml > Fonts/Sfnt/make_unicode_ranges.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts/Sfnt -I Fonts -I Output -o Fonts/Sfnt/make_unicode_ranges.cmo Fonts/Sfnt/make_unicode_ranges.ml
+ocamlfind ocamlc -linkall -linkpkg str.cma Fonts/Sfnt/make_unicode_ranges.cmo -o Fonts/Sfnt/make_unicode_ranges.byte
+Fonts/Sfnt/make_unicode_ranges.byte Fonts/Sfnt/unicode
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts/Sfnt/unicode_ranges.ml > Fonts/Sfnt/unicode_ranges.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Cmap.cmo Fonts/Cmap.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Cmap.cmo Fonts/Cmap.ml
+File "Fonts/Cmap.ml", line 42, characters 20-33:
+Warning 3: deprecated: String.create
+File "Fonts/Cmap.ml", line 54, characters 12-52:
+Warning 3: deprecated: String.set
+File "Fonts/Cmap.ml", line 63, characters 10-45:
+Warning 3: deprecated: String.set
+File "Fonts/Cmap.ml", line 65, characters 10-85:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Opentype_layout.cmo Fonts/Opentype_layout.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Opentype_layout.cmo Fonts/Opentype_layout.ml
+File "Fonts/Opentype_layout.ml", line 280, characters 8-12:
+Warning 26: unused variable off0.
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts/Sfnt -I Fonts -I Output -o Fonts/Sfnt/unicode_ranges.cmo Fonts/Sfnt/unicode_ranges.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Fonts.ml > Fonts.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Opentype.cmo Fonts/Opentype.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts/Opentype.cmo Fonts/Opentype.ml
+File "Fonts/Opentype.ml", line 70, characters 20-33:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 78, characters 10-23:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 111, characters 18-31:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1295, characters 18-31:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1333, characters 10-23:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1338, characters 27-38:
+Warning 3: deprecated: String.copy
+File "Fonts/Opentype.ml", line 1352, characters 20-33:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1360, characters 25-38:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1501, characters 15-28:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1509, characters 19-32:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1516, characters 14-27:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1813, characters 15-28:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1881, characters 17-30:
+Warning 3: deprecated: String.create
+File "Fonts/Opentype.ml", line 1882, characters 4-34:
+Warning 3: deprecated: String.set
+File "Fonts/Opentype.ml", line 1883, characters 4-34:
+Warning 3: deprecated: String.set
+File "Fonts/Opentype.ml", line 1884, characters 4-34:
+Warning 3: deprecated: String.set
+File "Fonts/Opentype.ml", line 1885, characters 4-34:
+Warning 3: deprecated: String.set
+File "Fonts/Opentype.ml", line 982, characters 6-11:
+Warning 26: unused variable subst.
+File "Fonts/Opentype.ml", line 1008, characters 26-29:
+Warning 26: unused variable cov.
+File "Fonts/Opentype.ml", line 1218, characters 30-35:
+Warning 26: unused variable bt_ok.
+File "Fonts/Opentype.ml", line 1219, characters 30-38:
+Warning 26: unused variable ahead_ok.
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Output/OutputCommon.mli > Output/OutputCommon.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Fonts.cmo Fonts.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Output -I Fonts -I Fonts/Sfnt -o Output/OutputCommon.cmi Output/OutputCommon.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Output/OutputCommon.ml > Output/OutputCommon.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Box.ml > Box.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Badness.mli > Badness.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Box.cmo Box.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Box.cmo Box.ml
+File "Box.ml", line 345, characters 10-12:
+Warning 26: unused variable sz.
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Badness.cmi Badness.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Badness.ml > Badness.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Break.mli > Break.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Break.cmi Break.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Break.ml > Break.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Document.ml > Document.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Distance.cmo Distance.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Complete.ml > Complete.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Document.cmo Document.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Document.cmo Document.ml
+File "Document.ml", line 35, characters 9-27:
+Warning 3: deprecated: Lazy.lazy_from_fun
+File "Document.ml", line 1101, characters 21-34:
+Warning 3: deprecated: String.create
+File "Document.ml", line 1103, characters 48-61:
+Warning 3: deprecated: String.set
+File "Document.ml", line 1137, characters 19-32:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Hyphenate.ml > Hyphenate.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Maths.ml > Maths.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o ConfigUtil.cmo ConfigUtil.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Output/OutputPaper.mli > Output/OutputPaper.mli.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Output -I Fonts -I Fonts/Sfnt -o Output/OutputPaper.cmi Output/OutputPaper.mli
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Output/OutputPaper.ml > Output/OutputPaper.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Output/OutputDrawing.ml > Output/OutputDrawing.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Geometry.ml > Geometry.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Proj3d.ml > Proj3d.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Diagrams.ml > Diagrams.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Geometry.cmo Geometry.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Maths.cmo Maths.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Maths.cmo Maths.ml
+File "Maths.ml", line 500, characters 21-23:
+Warning 3: deprecated: Pervasives.or
+File "Maths.ml", line 566, characters 27-29:
+Warning 3: deprecated: Pervasives.or
+File "Maths.ml", line 570, characters 22-24:
+Warning 3: deprecated: Pervasives.or
+File "Maths.ml", line 844, characters 84-102:
+Warning 3: deprecated: Lazy.lazy_from_val
+File "Maths.ml", line 913, characters 11-13:
+Warning 3: deprecated: Pervasives.or
+File "Maths.ml", line 913, characters 11-13:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "Maths.ml", line 500, characters 21-23:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "Maths.ml", line 570, characters 22-24:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "Maths.ml", line 566, characters 27-29:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Proj3d.cmo Proj3d.ml
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules ProofTree.ml > ProofTree.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Offset.cmo Offset.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Util.cmo Util.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Util.cmo Util.ml
+File "Util.ml", line 52, characters 2-42:
+Warning 3: deprecated: String.set
+File "Util.ml", line 53, characters 2-36:
+Warning 3: deprecated: String.set
+File "Util.ml", line 80, characters 2-34:
+Warning 3: deprecated: String.set
+File "Util.ml", line 81, characters 2-36:
+Warning 3: deprecated: String.set
+File "Util.ml", line 82, characters 2-36:
+Warning 3: deprecated: String.set
+File "Util.ml", line 83, characters 2-36:
+Warning 3: deprecated: String.set
+File "Util.ml", line 286, characters 8-21:
+Warning 3: deprecated: String.create
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Bezier.cmo Bezier.ml
++ ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Bezier.cmo Bezier.ml
+File "Bezier.ml", line 42, characters 8-20:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Output -I Fonts -I Fonts/Sfnt -o Output/OutputCommon.cmo Output/OutputCommon.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Badness.cmo Badness.ml
+ocamlfind ocamlc -c -I ../../Rbuffer -rectypes -rectypes -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Break.cmo Break.ml
