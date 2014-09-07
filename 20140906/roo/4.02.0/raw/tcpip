@@ -3165,3 +3165,85 @@ mv barrier_stubs.o lib/barrier_stubs.o
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmx lwt/lwt_ring.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lwt/lwt_ring.cmx -o lwt/lwt_shared_memory_ring.cmxa
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -linkall lwt/lwt_shared_memory_ring.cmxa -o lwt/lwt_shared_memory_ring.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/ring_test.ml > lib_test/ring_test.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.mli > lib_test/old_ring.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmi lib_test/old_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmo lib_test/ring_test.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmo lib_test/ring_test.ml
+File "lib_test/ring_test.ml", line 38, characters 2-7:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.ml > lib_test/old_ring.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmx lib_test/old_ring.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmx lib_test/ring_test.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmx lib_test/ring_test.ml
+File "lib_test/ring_test.ml", line 38, characters 2-7:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c lib_test/old_ring_stubs.c
+mv old_ring_stubs.o lib_test/old_ring_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib_test/ring_test_stubs lib_test/old_ring_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.unix -package oUnit lib/shared_memory_ring.cmxa lib_test/old_ring.cmx xen/console_ring.cmxa xen/xenstore_ring.cmxa lib_test/ring_test.cmx lib_test/libring_test_stubs.a -o lib_test/ring_test.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -modules lwt_test/lwt_test.ml > lwt_test/lwt_test.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -I lwt_test -I lib -I lwt -I xen -o lwt_test/lwt_test.cmo lwt_test/lwt_test.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -I lwt_test -I lib -I lwt -I xen -o lwt_test/lwt_test.cmx lwt_test/lwt_test.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.syntax -package lwt.unix -package oUnit lib/shared_memory_ring.cmxa lwt/lwt_shared_memory_ring.cmxa lwt_test/lwt_test.cmx -o lwt_test/lwt_test.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -modules examples/client.ml > examples/client.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -I examples -I lib -I lwt -I xen -o examples/client.cmo examples/client.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -I examples -I lib -I lwt -I xen -o examples/client.cmx examples/client.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.syntax -package lwt.unix lib/shared_memory_ring.cmxa lwt/lwt_shared_memory_ring.cmxa examples/client.cmx -o examples/client.native
+# No parallelism done
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lib/ring.odoc -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I lwt -I xen lib/ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/lwt_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lib -I lwt -I xen lwt/lwt_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/xenstore_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/xenstore_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/console_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/console_ring.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/console_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/console_ring.mli
+Warning: Module type Ring.Bidirectional_byte_stream not found
+Warning: Module type Ring.Bidirectional_byte_stream not found
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/xenstore_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/xenstore_ring.mli
+Warning: Module type Ring.Bidirectional_byte_stream not found
+Warning: Module type Ring.Bidirectional_byte_stream not found
+rm -rf doc/api.docdir
+mkdir -p doc/api.docdir
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load lib/ring.odoc -load lwt/lwt_ring.odoc -load xen/xenstore_ring.odoc -load xen/console_ring.odoc -html -d doc/api.docdir
+# Parallel statistics: { count(total): 1(8), max: 4, min: 4, average(total): 4.000(1.375) }
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/ring.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/libshared_memory_ring_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/shared_memory_ring.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/shared_memory_ring.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/shared_memory_ring.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/shared_memory_ring.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/ring.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/ring.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/xenstore_ring.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_ring.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_shared_memory_ring.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_shared_memory_ring.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_shared_memory_ring.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_shared_memory_ring.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_ring.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/lwt_ring.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/console_ring.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/shared-memory-ring/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllshared_memory_ring_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllshared_memory_ring_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing shared-memory-ring.1.1.0.
+Building tuntap.1.0.0:
+  make PREFIX=/home/opam/.opam/4.02.0+trunk
+  make PREFIX=/home/opam/.opam/4.02.0+trunk install
+ocaml setup.ml -configure 
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2412, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun

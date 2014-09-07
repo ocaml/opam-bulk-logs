@@ -87,3 +87,74 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/uint32_stubs.c
+mv uint32_stubs.o lib/uint32_stubs.o
+ocamlfind ocamlc -c lib/uint64_stubs.c
+mv uint64_stubs.o lib/uint64_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o lib/uint_stubs lib/uint32_stubs.o lib/uint64_stubs.o
+ocamlfind ocamldep -modules lib/uint.mli > lib/uint.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint.cmi lib/uint.mli
+ocamlfind ocamldep -modules lib/uint.ml > lib/uint.ml.depends
+ocamlfind ocamldep -modules lib/uint32.mli > lib/uint32.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint32.cmi lib/uint32.mli
+ocamlfind ocamldep -modules lib/uint32.ml > lib/uint32.ml.depends
+ocamlfind ocamldep -modules lib/uint64.mli > lib/uint64.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint64.cmi lib/uint64.mli
+ocamlfind ocamldep -modules lib/uint64.ml > lib/uint64.ml.depends
+ocamlfind ocamldep -modules lib/uint128.mli > lib/uint128.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint128.cmi lib/uint128.mli
+ocamlfind ocamldep -modules lib/uint128.ml > lib/uint128.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/uint.cmo lib/uint.ml
++ ocamlfind ocamlc -c -g -I lib -o lib/uint.cmo lib/uint.ml
+File "lib/uint.ml", line 109, characters 21-34:
+Warning 3: deprecated: String.create
+File "lib/uint.ml", line 117, characters 10-46:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -g -I lib -o lib/uint32.cmo lib/uint32.ml
+ocamlfind ocamlc -c -g -I lib -o lib/uint64.cmo lib/uint64.ml
+ocamlfind ocamlc -c -g -I lib -o lib/uint128.cmo lib/uint128.ml
+ocamlfind ocamlc -a -dllib -luint_stubs -cclib -luint_stubs lib/uint.cmo lib/uint32.cmo lib/uint64.cmo lib/uint128.cmo -o lib/uint.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/uint.cmx lib/uint.ml
++ ocamlfind ocamlopt -c -g -I lib -o lib/uint.cmx lib/uint.ml
+File "lib/uint.ml", line 109, characters 21-34:
+Warning 3: deprecated: String.create
+File "lib/uint.ml", line 117, characters 10-46:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -g -I lib -o lib/uint64.cmx lib/uint64.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/uint32.cmx lib/uint32.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/uint128.cmx lib/uint128.ml
+ocamlfind ocamlopt -a -cclib -luint_stubs lib/uint.cmx lib/uint32.cmx lib/uint64.cmx lib/uint128.cmx -o lib/uint.cmxa
+ocamlfind ocamlopt -shared -I lib lib/uint.cmx -o lib/uint.cmxs
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint32.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint64.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint32.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint64.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint128.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/libuint_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint32.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint64.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint128.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint32.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint64.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/uint128.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/uint/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlluint_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlluint_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing uint.1.1.1.
