@@ -1739,3 +1739,77 @@ File "setup.ml", line 232, characters 8-26:
 Warning 3: deprecated: String.set
 File "setup.ml", line 2391, characters 6-24:
 Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ comparelib
+Package version: ..................................... 109.60.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.02.0+trunk/lib/type_conv
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/comparelib_dummy.ml > lib/comparelib_dummy.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/comparelib_dummy.cmo lib/comparelib_dummy.ml
+ocamlfind ocamlc -a lib/comparelib_dummy.cmo -o lib/comparelib.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/comparelib_dummy.cmx lib/comparelib_dummy.ml
+ocamlfind ocamlopt -a lib/comparelib_dummy.cmx -o lib/comparelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/comparelib.cmxa -o lib/comparelib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_compare.ml > syntax/pa_compare.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_compare.cmo syntax/pa_compare.ml
+ocamlfind ocamlc -a syntax/pa_compare.cmo -o syntax/pa_compare.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_compare.cmx syntax/pa_compare.ml
