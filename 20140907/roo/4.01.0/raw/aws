@@ -280,3 +280,138 @@ ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/da
 ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/calendar_builder.ml
 ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/calendar.ml
 ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/fcalendar.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/printer.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/version.ml
+mkdir -p target
+ocamlfind ocamlopt -I src -I target -I tests -noassert -pack -o target/calendarLib.cmx \
+		src/period.cmi src/date_sig.cmi src/time_sig.cmi src/calendar_sig.cmi src/utils.cmx src/time_Zone.cmx src/time.cmx src/ftime.cmx src/date.cmx src/calendar_builder.cmx src/calendar.cmx src/fcalendar.cmx src/printer.cmx src/version.cmx
+ocamlfind ocamlopt -I src -I target -I tests -noassert -a -o target/calendarLib.cmxa target/calendarLib.cmx
+ocamlfind ocamlopt -I target -shared -linkall -o target/calendarLib.cmxs target/calendarLib.cmxa
+echo "description = \"calendar library\"" > META
+echo "version = \"2.03.2\"" >> META
+echo "archive(byte) = \"calendarLib.cma\"" >> META
+echo "archive(native) = \"calendarLib.cmxa\"" >> META
+echo "requires = \"unix str\"" >> META
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.a
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.o
+Installed /home/opam/.opam/4.01.0/lib/calendar/version.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/printer.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/fcalendar.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendar.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendar_builder.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendar_sig.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/date.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/date_sig.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/ftime.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/time.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/time_sig.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/period.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/time_Zone.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/utils.mli
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cmx
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cmo
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cmi
+Installed /home/opam/.opam/4.01.0/lib/calendar/calendarLib.cma
+Installed /home/opam/.opam/4.01.0/lib/calendar/META
+Installing calendar.2.03.2.
+Installing camlp4.4.01.0.
+Building conf-libpcre.1:
+  pkg-config libpcre
+Installing conf-libpcre.1.
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+Building cryptokit.1.9:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ cryptokit
+Package version: ..................................... 1.9
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Define include path for zlib.: ....................... 
+Define library path for zlib.: ....................... 
+Enable ZLib: ......................................... true
+Build and run benchmark: ............................. false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_num: ............................................. /home/opam/.opam/4.01.0/lib/num
+
+ocaml setup.ml -build -classic-display
