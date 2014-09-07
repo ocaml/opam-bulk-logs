@@ -1868,3 +1868,38 @@ ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
 ocamlfind ocamlc -c -g -I src -o src/react.cmo src/react.ml
 ocamlfind ocamlc -a src/react.cmo -o src/react.cma
 ocamlfind ocamlopt -c -g -I src -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+ocamlfind ocamldep -package unix -modules test/clock.ml > test/clock.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I test -I src -o test/clock.cmo test/clock.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I test -I src -o test/clock.cmx test/clock.ml
+ocamlfind ocamlopt -g -linkpkg -package unix src/react.cmxa test/clock.cmx -o test/clock.native
+ocamlfind ocamldep -package unix -modules test/breakout.ml > test/breakout.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I test -I src -o test/breakout.cmo test/breakout.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I test -I src -o test/breakout.cmx test/breakout.ml
+ocamlfind ocamlopt -g -linkpkg -package unix src/react.cmxa test/breakout.cmx -o test/breakout.native
+ocamlfind ocamldep -package unix -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -g -linkpkg src/react.cmxa test/test.cmx -o test/test.native
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/Users/dbuenzli/.odb/install-oasis/oasis-0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/react.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/react/META
+Installing react.0.9.4.
+Building lwt.2.4.4:
+  ./configure --disable-libev --enable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib --disable-text
+  make build
+  make install
+File "setup.ml", line 220, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1800, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
