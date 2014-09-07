@@ -746,3 +746,219 @@ gcc -O2 -Wall -fpic -I/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml -Duse_clong -
 gcc -O2 -Wall -fpic -I/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml -Duse_dlong -c -o kernel/ocaml/o/numerix-d.o kernel/ocaml/c/numerix.c
 gcc -O2 -Wall -fpic -I/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml -Duse_slong -c -o kernel/ocaml/o/numerix-s.o kernel/ocaml/c/numerix.c
 gcc -O2 -Wall -fpic -I/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml -c -o kernel/ocaml/o/numerix-g.o kernel/ocaml/c/gmp.c
+ocamlmklib -I kernel/ocaml/o -o numerix -oc numerix-ocaml kernel/ocaml/o/numerix.cmo kernel/ocaml/o/numerix.cmx  kernel/ocaml/o/chrono.o kernel/ocaml/o/hash.o kernel/ocaml/o/numerix-c.o kernel/ocaml/o/numerix-d.o kernel/ocaml/o/numerix-s.o kernel/ocaml/o/numerix-g.o  kernel/n/o/numerix-c.o kernel/n/o/numerix-d.o kernel/n/o/numerix-s.o kernel/n/o/numerix-t.o   -lgmp
+mv numerix.cma libnumerix-ocaml.a kernel/ocaml/o
+if test -e dllnumerix-ocaml.so; then mv dllnumerix-ocaml.so kernel/ocaml/o; fi
+mv numerix.cmxa numerix.a kernel/ocaml/o
+sed -e 's/_Mode_list_/ "Clong" :: "Dlong" :: "Slong" :: "Big" :: "Gmp" ::/' \
+	    -e 's?_directory_?/home/opam/.opam/4.02.0+trunk/lib?' \
+	    -e 's/_numerix_version_/0.22/' \
+	    kernel/ocaml/ml/toplevelcfg.ml >kernel/ocaml/o/toplevelcfg.ml
+ocamlc.opt -I kernel/ocaml/o -o kernel/ocaml/o/toplevelcfg.cmo -c kernel/ocaml/o/toplevelcfg.ml
+ocamlmktop -I kernel/ocaml/o -o kernel/ocaml/o/ocamlnumx nums.cma kernel/ocaml/o/numerix.cma kernel/ocaml/o/toplevelcfg.cmo
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/pi  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/pi.ml
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/shanks  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/shanks.ml
+File "exemples/ocaml/shanks.ml", line 62, characters 37-38:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 65, characters 36-37:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 213, characters 8-9:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 195, characters 39-41:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/shanks.ml", line 195, characters 39-41:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/shanks.ml", line 213, characters 8-9:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/shanks.ml", line 65, characters 36-37:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/shanks.ml", line 62, characters 37-38:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/simple  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/simple.ml
+File "exemples/ocaml/simple.ml", line 82, characters 6-51:
+Warning 3: deprecated: String.set
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/digits  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/digits.ml
+File "exemples/ocaml/digits.ml", line 77, characters 17-18:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 80, characters 18-20:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/digits.ml", line 176, characters 29-31:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/digits.ml", line 184, characters 20-21:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 194, characters 26-27:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 30-31:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 46-47:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 46-47:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 248, characters 30-31:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 194, characters 26-27:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 184, characters 20-21:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 176, characters 29-31:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/digits.ml", line 80, characters 18-20:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/digits.ml", line 77, characters 17-18:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/sqrt-163  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/sqrt-163.ml
+File "exemples/ocaml/sqrt-163.ml", line 1:
+Warning 24: bad source file name: "Sqrt-163" is not a valid module name.
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/cmp  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/cmp.ml
+File "exemples/ocaml/cmp.ml", line 270, characters 20-21:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/cmp.ml", line 270, characters 20-21:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlc.opt -I kernel/ocaml/o -o exemples/ocaml/rcheck  nums.cma kernel/ocaml/o/numerix.cma exemples/ocaml/rcheck.ml
+File "exemples/ocaml/rcheck.ml", line 84, characters 16-18:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/rcheck.ml", line 84, characters 28-30:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/rcheck.ml", line 84, characters 28-30:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/rcheck.ml", line 84, characters 16-18:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/pi-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/pi.ml
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/shanks-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/shanks.ml
+File "exemples/ocaml/shanks.ml", line 62, characters 37-38:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 65, characters 36-37:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 213, characters 8-9:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/shanks.ml", line 195, characters 39-41:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/shanks.ml", line 195, characters 39-41:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/shanks.ml", line 213, characters 8-9:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/shanks.ml", line 65, characters 36-37:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/shanks.ml", line 62, characters 37-38:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/simple-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/simple.ml
+File "exemples/ocaml/simple.ml", line 82, characters 6-51:
+Warning 3: deprecated: String.set
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/digits-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/digits.ml
+File "exemples/ocaml/digits.ml", line 77, characters 17-18:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 80, characters 18-20:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/digits.ml", line 176, characters 29-31:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/digits.ml", line 184, characters 20-21:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 194, characters 26-27:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 30-31:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 46-47:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/digits.ml", line 248, characters 46-47:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 248, characters 30-31:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 194, characters 26-27:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 184, characters 20-21:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+File "exemples/ocaml/digits.ml", line 176, characters 29-31:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/digits.ml", line 80, characters 18-20:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/digits.ml", line 77, characters 17-18:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/sqrt-163-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/sqrt-163.ml
+File "exemples/ocaml/sqrt-163.ml", line 1:
+Warning 24: bad source file name: "Sqrt-163" is not a valid module name.
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/cmp-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/cmp.ml
+File "exemples/ocaml/cmp.ml", line 270, characters 20-21:
+Warning 3: deprecated: Pervasives.&
+File "exemples/ocaml/cmp.ml", line 270, characters 20-21:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlopt.opt -I kernel/ocaml/o -o exemples/ocaml/rcheck-opt  nums.cmxa kernel/ocaml/o/numerix.cmxa exemples/ocaml/rcheck.ml
+File "exemples/ocaml/rcheck.ml", line 84, characters 16-18:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/rcheck.ml", line 84, characters 28-30:
+Warning 3: deprecated: Pervasives.or
+File "exemples/ocaml/rcheck.ml", line 84, characters 28-30:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "exemples/ocaml/rcheck.ml", line 84, characters 16-18:
+Warning 3: deprecated: operator (or); you should use (||) instead
+-------------------- Testing the Ocaml interface
+CAML_LD_LIBRARY_PATH=kernel/ocaml/o:$CAML_LD_LIBRARY_PATH; \
+	LD_LIBRARY_PATH=kernel/ocaml/o:$LD_LIBRARY_PATH; \
+	export CAML_LD_LIBRARY_PATH LD_LIBRARY_PATH; \
+	for i in pi shanks simple digits sqrt-163; do for j in  clong dlong slong big gmp; do \
+	     exemples/ocaml/$i -test -e $j; \
+	done; done
+exemples/ocaml/pi	Clong	test ok
+exemples/ocaml/pi	Dlong	test ok
+exemples/ocaml/pi	Slong	test ok
+exemples/ocaml/pi	Big	test ok
+exemples/ocaml/pi	Gmp	test ok
+exemples/ocaml/shanks	Clong	test ok
+exemples/ocaml/shanks	Dlong	test ok
+exemples/ocaml/shanks	Slong	test ok
+exemples/ocaml/shanks	Big	test ok
+exemples/ocaml/shanks	Gmp	test ok
+exemples/ocaml/simple	Clong	test ok
+exemples/ocaml/simple	Dlong	test ok
+exemples/ocaml/simple	Slong	test ok
+exemples/ocaml/simple	Big	test ok
+exemples/ocaml/simple	Gmp	test ok
+exemples/ocaml/digits	Clong	test ok
+exemples/ocaml/digits	Dlong	test ok
+exemples/ocaml/digits	Slong	test ok
+exemples/ocaml/digits	Big	test ok
+exemples/ocaml/digits	Gmp	test ok
+exemples/ocaml/sqrt-163	Clong	test ok
+exemples/ocaml/sqrt-163	Dlong	test ok
+exemples/ocaml/sqrt-163	Slong	test ok
+exemples/ocaml/sqrt-163	Big	test ok
+exemples/ocaml/sqrt-163	Gmp	test ok
+-------------------- Testing the Ocamlopt interface
+CAML_LD_LIBRARY_PATH=kernel/ocaml/o:$CAML_LD_LIBRARY_PATH; \
+	LD_LIBRARY_PATH=kernel/ocaml/o:$LD_LIBRARY_PATH; \
+	export CAML_LD_LIBRARY_PATH LD_LIBRARY_PATH; \
+	for i in pi shanks simple digits sqrt-163; do for j in  clong dlong slong big gmp; do \
+	    exemples/ocaml/$i-opt -test -e $j; \
+	done; done
+exemples/ocaml/pi-opt	Clong	test ok
+exemples/ocaml/pi-opt	Dlong	test ok
+exemples/ocaml/pi-opt	Slong	test ok
+exemples/ocaml/pi-opt	Big	test ok
+exemples/ocaml/pi-opt	Gmp	test ok
+exemples/ocaml/shanks-opt	Clong	test ok
+exemples/ocaml/shanks-opt	Dlong	test ok
+exemples/ocaml/shanks-opt	Slong	test ok
+exemples/ocaml/shanks-opt	Big	test ok
+exemples/ocaml/shanks-opt	Gmp	test ok
+exemples/ocaml/simple-opt	Clong	test ok
+exemples/ocaml/simple-opt	Dlong	test ok
+exemples/ocaml/simple-opt	Slong	test ok
+exemples/ocaml/simple-opt	Big	test ok
+exemples/ocaml/simple-opt	Gmp	test ok
+exemples/ocaml/digits-opt	Clong	test ok
+exemples/ocaml/digits-opt	Dlong	test ok
+exemples/ocaml/digits-opt	Slong	test ok
+exemples/ocaml/digits-opt	Big	test ok
+exemples/ocaml/digits-opt	Gmp	test ok
+exemples/ocaml/sqrt-163-opt	Clong	test ok
+exemples/ocaml/sqrt-163-opt	Dlong	test ok
+exemples/ocaml/sqrt-163-opt	Slong	test ok
+exemples/ocaml/sqrt-163-opt	Big	test ok
+exemples/ocaml/sqrt-163-opt	Gmp	test ok
+mkdir -p /home/opam/.opam/4.02.0+trunk/bin /home/opam/.opam/4.02.0+trunk/lib /home/opam/.opam/4.02.0+trunk/include
+cp -p kernel/ocaml/o/ocamlnumx /home/opam/.opam/4.02.0+trunk/bin
+cp -p kernel/ocaml/o/libnumerix-ocaml.a kernel/ocaml/o/numerix.cmi kernel/ocaml/o/numerix.cma kernel/ocaml/o/numerix.a kernel/ocaml/o/numerix.cmxa  /home/opam/.opam/4.02.0+trunk/lib
+cp -p kernel/ocaml/o/numerix.ml kernel/ocaml/o/numerix.mli /home/opam/.opam/4.02.0+trunk/include
+ranlib /home/opam/.opam/4.02.0+trunk/lib/libnumerix-ocaml.a
+if test -e kernel/ocaml/o/dllnumerix-ocaml.so; then cp -p kernel/ocaml/o/dllnumerix-ocaml.so /home/opam/.opam/4.02.0+trunk/lib; fi
+*** Check that /home/opam/.opam/4.02.0+trunk/lib is in your LD_LIBRARY_PATH ***
+Installing numerix.0.22.
