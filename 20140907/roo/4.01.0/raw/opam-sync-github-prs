@@ -308,3 +308,30 @@ Installing camlp4.4.01.0.
 Building cmdliner.0.9.5:
   ocaml pkg/git.ml
   ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
