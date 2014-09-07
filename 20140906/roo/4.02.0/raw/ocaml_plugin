@@ -6535,3 +6535,279 @@ File "setup.ml", line 245, characters 8-26:
 Warning 3: deprecated: String.set
 File "setup.ml", line 2500, characters 6-24:
 Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ async
+Package version: ..................................... 111.25.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_async_kernel: .................................... /home/opam/.opam/4.02.0+trunk/lib/async_kernel
+pkg_async_unix: ...................................... /home/opam/.opam/4.02.0+trunk/lib/async_unix
+pkg_async_extra: ..................................... /home/opam/.opam/4.02.0+trunk/lib/async_extra
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+
+./setup.exe -build 
+W: Cannot find source file matching module 'async' in library async
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package threads -package async_unix -package async_kernel -package async_extra -modules lib/std.ml > lib/std.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -I lib -o lib/std.cmo lib/std.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared lib/async.cmxa lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/std.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/async.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/async/META
+Installing async.111.25.00.
+Building ocaml_plugin.111.28.00:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+File "setup.ml", line 245, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2500, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ ocaml_plugin
+Package version: ..................................... 111.28.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_dynlink: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_async: ........................................... /home/opam/.opam/4.02.0+trunk/lib/async
+pkg_sexplib: ......................................... /home/opam/.opam/4.02.0+trunk/lib/sexplib
+pkg_sexplib_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/sexplib
+pkg_comparelib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/comparelib
+pkg_comparelib_syntax: ............................... /home/opam/.opam/4.02.0+trunk/lib/comparelib
+pkg_bin_prot: ........................................ /home/opam/.opam/4.02.0+trunk/lib/bin_prot
+pkg_bin_prot_syntax: ................................. /home/opam/.opam/4.02.0+trunk/lib/bin_prot
+pkg_fieldslib: ....................................... /home/opam/.opam/4.02.0+trunk/lib/fieldslib
+pkg_fieldslib_syntax: ................................ /home/opam/.opam/4.02.0+trunk/lib/fieldslib
+pkg_herelib: ......................................... /home/opam/.opam/4.02.0+trunk/lib/herelib
+pkg_herelib_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/herelib
+pkg_pa_ounit_syntax: ................................. /home/opam/.opam/4.02.0+trunk/lib/pa_ounit
+pkg_pa_test_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/pa_test
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_type_conv: ....................................... /home/opam/.opam/4.02.0+trunk/lib/type_conv
+
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 245, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2500, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ ocaml_plugin
+Package version: ..................................... 111.28.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_dynlink: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_async: ........................................... /home/opam/.opam/4.02.0+trunk/lib/async
+pkg_sexplib: ......................................... /home/opam/.opam/4.02.0+trunk/lib/sexplib
+pkg_sexplib_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/sexplib
+pkg_comparelib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/comparelib
+pkg_comparelib_syntax: ............................... /home/opam/.opam/4.02.0+trunk/lib/comparelib
+pkg_bin_prot: ........................................ /home/opam/.opam/4.02.0+trunk/lib/bin_prot
+pkg_bin_prot_syntax: ................................. /home/opam/.opam/4.02.0+trunk/lib/bin_prot
+pkg_fieldslib: ....................................... /home/opam/.opam/4.02.0+trunk/lib/fieldslib
+pkg_fieldslib_syntax: ................................ /home/opam/.opam/4.02.0+trunk/lib/fieldslib
+pkg_herelib: ......................................... /home/opam/.opam/4.02.0+trunk/lib/herelib
+pkg_herelib_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/herelib
+pkg_pa_ounit_syntax: ................................. /home/opam/.opam/4.02.0+trunk/lib/pa_ounit
+pkg_pa_test_syntax: .................................. /home/opam/.opam/4.02.0+trunk/lib/pa_test
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_type_conv: ....................................... /home/opam/.opam/4.02.0+trunk/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'ocaml_plugin' in library ocaml_plugin
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/import.ml > lib/import.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ml_bundle.mli > lib/ml_bundle.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/ml_bundle.cmi lib/ml_bundle.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ml_bundle.ml > lib/ml_bundle.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocamldep.mli > lib/ocamldep.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/ocamldep.cmi lib/ocamldep.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocamldep.ml > lib/ocamldep.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/shell.mli > lib/shell.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/shell.cmi lib/shell.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocaml_compiler.mli > lib/ocaml_compiler.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocaml_dynloader.mli > lib/ocaml_dynloader.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/plugin_cache.mli > lib/plugin_cache.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/plugin_uuid.mli > lib/plugin_uuid.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/plugin_uuid.cmi lib/plugin_uuid.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/plugin_cache.cmi lib/plugin_cache.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/ocaml_dynloader.cmi lib/ocaml_dynloader.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/ocaml_compiler.cmi lib/ocaml_compiler.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocaml_compiler.ml > lib/ocaml_compiler.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/import.cmo lib/import.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/params.mli > lib/params.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/tar.mli > lib/tar.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/params.cmi lib/params.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -I lib -o lib/tar.cmi lib/tar.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/ocaml_dynloader.ml > lib/ocaml_dynloader.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/params.ml > lib/params.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/plugin_cache.ml > lib/plugin_cache.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -syntax camlp4o -package threads -package sexplib.syntax -package sexplib -package pa_test.syntax -package pa_ounit.syntax -package herelib.syntax -package herelib -package fieldslib.syntax -package fieldslib -package dynlink -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async -modules lib/plugin_uuid.ml > lib/plugin_uuid.ml.depends
