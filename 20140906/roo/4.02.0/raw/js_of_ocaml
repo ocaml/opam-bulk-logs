@@ -2577,3 +2577,196 @@ ocamlfind ocamlc -package lwt -I deriving_json -c dom_html.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_html.ml
 ocamlfind ocamlc -package lwt -I deriving_json -c dom_svg.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_svg.ml
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g file.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c firebug.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g firebug.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js.ml
+sed -e "s|%%VERSION%%|`sed -e 1q ../VERSION`|" sys_js.mlp >sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c sys_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c regexp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g regexp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c cSS.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g cSS.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c url.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g url.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c form.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g form.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c xmlHttpRequest.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g xmlHttpRequest.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c json.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c jsonp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g jsonp.ml
+File "jsonp.ml", line 21, characters 10-23:
+Warning 3: deprecated: String.create
+File "jsonp.ml", line 23, characters 4-9:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -package lwt -I deriving_json -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c eventSource.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g eventSource.ml
+(echo "#include <stdlib.h>"; \
+	 echo "#include <stdio.h>"; \
+	 echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+	 (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml dom_svg.ml file.ml dom_events.ml firebug.ml lwt_js.ml sys_js.ml regexp.ml cSS.ml url.ml form.ml xmlHttpRequest.ml lwt_js_events.ml json.ml jsonp.ml webGL.ml webSockets.ml keycode.ml eventSource.ml | \
+	  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
+ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo dom_svg.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo lwt_js_events.cmo json.cmo jsonp.cmo webGL.cmo webSockets.cmo keycode.cmo eventSource.cmo stubs.o
+ocamlfind ocamlc -package lwt,lwt.log -I . -I log log/lwt_log_js.mli -o log/lwt_log_js.cmi
+ocamlfind ocamlc -syntax camlp4o -package lwt,lwt.syntax,lwt.log -ppopt syntax/pa_js.cmo -I log -c log/lwt_log_js.ml -o log/lwt_log_js.cmo
+ocamlfind ocamlc -a -o log/logger.cma log/lwt_log_js.cmo
+ocamlfind ocamlc -package lwt -I . -I log toplevel/jsooTop.mli -o toplevel/jsooTop.cmi
+make -C ../compiler local/compiler.cma
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/compiler'
+echo "let s = \"2.4.1\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+mkdir -p local
+cp compiler.* local/
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/compiler'
+ocamlfind ocamlc -syntax camlp4o \
+		-package lwt,lwt.syntax \
+		-ppopt syntax/pa_js.cmo \
+		-I toplevel -I ../compiler/local -I +compiler-libs \
+		-c toplevel/jsooTop.ml -o toplevel/jsooTop.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+File "toplevel/jsooTop.ml", line 111, characters 12-30:
+Warning 3: deprecated: Lazy.lazy_from_fun
+ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/ocamlbuild'
+ocamlbuild -use-ocamlfind ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
+ocamlfind ocamlopt -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmx ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlopt -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxs
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/ocamlbuild'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/runtime'
+echo "//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js" > runtime.js
+for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js ; do \
+		 echo "//# 1 \"$f\"" >> runtime.js; \
+	   cat $f >> runtime.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/runtime'
+make -C jsoo_tools
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_common.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+File "jsoo_common.ml", line 25, characters 21-34:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mktop.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mktop.cmx -o jsoo_mktop.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+mv -f jsoo_mktop.opt jsoo_mktop
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mkcmis.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mkcmis.cmx -o jsoo_mkcmis.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+mv -f jsoo_mkcmis.opt jsoo_mkcmis
+rm jsoo_common.cmx jsoo_mkcmis.cmx jsoo_mktop.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind install -patch-version 2.4.1 js_of_ocaml lib/META lib/*.cmi lib/log/*.cmi lib/toplevel/jsooTop.cmi ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmi lib/js_of_ocaml.cma lib/syntax/pa_js.cmo lib/dlljs_of_ocaml.so lib/libjs_of_ocaml.a lib/log/logger.cma lib/syntax/pa_js.cmx lib/syntax/pa_js.cmxs lib/toplevel/jsooTop.cmo ocamlbuild/_build/ocamlbuild_js_of_ocaml.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxa ocamlbuild/_build/ocamlbuild_js_of_ocaml.a ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxs runtime/runtime.js runtime/weak.js runtime/polyfill/classlist.js runtime/polyfill/array.js runtime/toplevel.js runtime/graphics.js runtime/nat.js  lib/*.mli lib/log/*.mli lib/toplevel/jsooTop.mli ocamlbuild/_build/ocamlbuild_js_of_ocaml.mli compiler/compiler.cmi compiler/compiler.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_log_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/xmlHttpRequest.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webSockets.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webGL.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/url.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/typed_array.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/sys_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/regexp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js_events.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/keycode.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsonp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/json.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/form.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/firebug.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/file.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/eventSource.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_svg.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_html.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_events.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/cSS.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/nat.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/graphics.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/toplevel.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/array.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/classlist.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/weak.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/runtime.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/logger.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/libjs_of_ocaml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js_of_ocaml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_log_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/xmlHttpRequest.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webSockets.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webGL.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/url.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/typed_array.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/sys_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/regexp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js_events.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/keycode.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsonp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/json.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/form.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/firebug.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/file.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/eventSource.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_svg.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_html.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_events.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/cSS.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlljs_of_ocaml.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlljs_of_ocaml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing js_of_ocaml.2.4.1.
