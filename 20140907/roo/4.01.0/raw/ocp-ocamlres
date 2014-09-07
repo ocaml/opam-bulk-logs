@@ -1,0 +1,146 @@
+++ opam install ocp-ocamlres -e ubuntu
++ depext=
+Ubuntu depexts:
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+++ opam install ocp-ocamlres -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install ocp-ocamlres
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   pprint.20140424                       [required by ocp-ocamlres]
+ - install   ocp-ocamlres.0.3
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ocp-ocamlres.0.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/pprint.20140424+opam.tar.gz
+sending incremental file list
+sending incremental file list
+pprint.20140424+opam.tar.gz
+ocp-ocamlres.0.3+opam.tar.gz
+
+sent 23,315 bytes  received 35 bytes  46,700.00 bytes/sec
+total size is 23,179  speedup is 0.99
+
+sent 29,383 bytes  received 35 bytes  58,836.00 bytes/sec
+total size is 29,246  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building pprint.20140424:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/4.01.0/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind ocamldep -modules PPrint.ml > PPrint.ml.depends
+ocamlfind ocamldep -modules PPrintCombinators.mli > PPrintCombinators.mli.depends
+ocamlfind ocamldep -modules PPrintEngine.mli > PPrintEngine.mli.depends
+ocamlfind ocamldep -modules PPrintRenderer.ml > PPrintRenderer.ml.depends
+ocamlfind ocamlc -c -g -o PPrintRenderer.cmo PPrintRenderer.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmi PPrintEngine.mli
+ocamlfind ocamldep -modules PPrintOCaml.mli > PPrintOCaml.mli.depends
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmi PPrintCombinators.mli
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmi PPrintOCaml.mli
+ocamlfind ocamldep -modules PPrintCombinators.ml > PPrintCombinators.ml.depends
+ocamlfind ocamldep -modules PPrintEngine.ml > PPrintEngine.ml.depends
+ocamlfind ocamldep -modules PPrintOCaml.ml > PPrintOCaml.ml.depends
+ocamlfind ocamlc -c -g -o PPrint.cmo PPrint.ml
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmo PPrintCombinators.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmo PPrintEngine.ml
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmo PPrintOCaml.ml
+ocamlfind ocamlc -a -g PPrintRenderer.cmo PPrintEngine.cmo PPrintCombinators.cmo PPrintOCaml.cmo PPrint.cmo -o PPrintLib.cma
+ocamlfind ocamlopt -c -g -o PPrintRenderer.cmx PPrintRenderer.ml
+ocamlfind ocamlopt -c -g -o PPrintEngine.cmx PPrintEngine.ml
+ocamlfind ocamlopt -c -g -o PPrintCombinators.cmx PPrintCombinators.ml
+ocamlfind ocamlopt -c -g -o PPrintOCaml.cmx PPrintOCaml.ml
+ocamlfind ocamlopt -c -g -o PPrint.cmx PPrint.ml
+ocamlfind ocamlopt -a -g PPrintRenderer.cmx PPrintEngine.cmx PPrintCombinators.cmx PPrintOCaml.cmx PPrint.cmx -o PPrintLib.cmxa
+make: Leaving directory `/home/opam/.opam/4.01.0/build/pprint.20140424/src'
+make: Entering directory `/home/opam/.opam/4.01.0/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind install pprint META \
+		_build/PPrintLib.cma _build/PPrintLib.cmxa \
+		_build/PPrintLib.a _build/*.cmx _build/*.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintRenderer.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintOCaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintEngine.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintCombinators.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrint.cmi
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintRenderer.cmx
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintOCaml.cmx
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintEngine.cmx
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintCombinators.cmx
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrint.cmx
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintLib.a
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintLib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pprint/PPrintLib.cma
+Installed /home/opam/.opam/4.01.0/lib/pprint/META
+make: Leaving directory `/home/opam/.opam/4.01.0/build/pprint.20140424/src'
+Installing pprint.20140424.
+Applying non-portable-sed-option.diff.
+patching file Makefile
+Building ocp-ocamlres.0.3:
+  make all
+  make doc
+  make BINDIR=/home/opam/.opam/4.01.0/bin LIBDIR=/home/opam/.opam/4.01.0/lib install
+  make DOCDIR=/home/opam/.opam/4.01.0/doc install-doc
+ocamlfind ocamldep -I src -package unix,str,pprint,dynlink src/oCamlRes.ml src/oCamlResScanners.ml src/oCamlResSubFormats.ml src/oCamlResFormats.ml src/oCamlResRegistry.ml > .depend
+sed -i.old s/src/build/g .depend
+mkdir build
+cp src/oCamlRes.mli  build/oCamlRes.mli
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlRes.mli
+cp src/oCamlRes.ml  build/oCamlRes.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlRes.ml
+cp src/oCamlResScanners.ml  build/oCamlResScanners.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
+cp src/oCamlResSubFormats.ml  build/oCamlResSubFormats.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+cp src/oCamlResFormats.ml  build/oCamlResFormats.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+cp src/oCamlResRegistry.ml  build/oCamlResRegistry.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlc -a -package unix,str,pprint,dynlink build/oCamlRes.cmo build/oCamlResScanners.cmo build/oCamlResSubFormats.cmo build/oCamlResFormats.cmo build/oCamlResRegistry.cmo -o build/ocplib-ocamlres.cma
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlRes.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlopt -a -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxa
+ocamlfind ocamlopt -shared -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxs
+cp src/oCamlResMain.ml  build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.byte build/ocplib-ocamlres.cma build/oCamlResMain.cmo
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlopt -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.asm build/ocplib-ocamlres.cmxa build/oCamlResMain.cmx
+cp src/META  build/META
+rm build/oCamlRes.mli build/oCamlRes.ml build/oCamlResSubFormats.ml build/oCamlResRegistry.ml build/oCamlResFormats.ml build/oCamlResScanners.ml build/oCamlResMain.ml
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+ocamlfind install -destdir /home/opam/.opam/4.01.0/lib ocplib-ocamlres \
+          build/META \
+          build/*ocplib-ocamlres.* \
+	   build/oCamlRes.cmi  build/oCamlRes.cmti  build/oCamlRes.cmt  build/oCamlResScanners.cmt  build/oCamlResSubFormats.cmt  build/oCamlResFormats.cmt  build/oCamlResRegistry.cmt src/oCamlRes.mli
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.mli
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResRegistry.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResFormats.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResSubFormats.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResScanners.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmti
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmi
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cma
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.a
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/META
+install build/ocp-ocamlres.asm /home/opam/.opam/4.01.0/bin/ocp-ocamlres
+install build/ocp-ocamlres.byte /home/opam/.opam/4.01.0/bin/ocp-ocamlres.byte
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+install -d /home/opam/.opam/4.01.0/doc/ocp-ocamlres
+install doc/*.html /home/opam/.opam/4.01.0/doc/ocp-ocamlres/
+Installing ocp-ocamlres.0.3.
