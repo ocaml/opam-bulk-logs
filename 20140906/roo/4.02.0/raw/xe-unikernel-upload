@@ -5060,3 +5060,63 @@ pkg_cmdliner: ........................................ /home/opam/.opam/4.02.0+t
 ocamlfind ocamldep -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -modules lib/mbr.mli > lib/mbr.mli.depends
 ocamlfind ocamlc -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr.cmi lib/mbr.mli
 ocamlfind ocamldep -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -modules lib/mbr.ml > lib/mbr.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr.cmo lib/mbr.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/mbr.cmo -o lib/mbr.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr.cmx lib/mbr.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/mbr.cmx -o lib/mbr.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/mbr.cmx -o lib/mbr.cmxs
+ocamlfind ocamldep -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -modules lib/mbr_lwt.ml > lib/mbr_lwt.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr_lwt.cmo lib/mbr_lwt.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/mbr_lwt.cmo -o lib/mbr_lwt.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr_lwt.cmx lib/mbr_lwt.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/mbr_lwt.cmx -o lib/mbr_lwt.cmxa
+ocamlfind ocamlopt -shared -package cstruct.syntax lib/mbr_lwt.cmx -o lib/mbr_lwt.cmxs
+ocamlfind ocamldep -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -modules lib/mbr_partition.mli > lib/mbr_partition.mli.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr_partition.cmi lib/mbr_partition.mli
+ocamlfind ocamldep -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -modules lib/mbr_partition.ml > lib/mbr_partition.ml.depends
+ocamlfind ocamlc -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr_partition.cmo lib/mbr_partition.ml
+ocamlfind ocamlc -a -package cstruct.syntax lib/mbr_partition.cmo -o lib/mbr_mirage.cma
+ocamlfind ocamlopt -c -g -I lib -package re.str -package oUnit -package mirage-types.lwt -package lwt.unix -package lwt -package cstruct.syntax -package cstruct.lwt -package cstruct -syntax camlp4o -I lib -o lib/mbr_partition.cmx lib/mbr_partition.ml
+ocamlfind ocamlopt -a -package cstruct.syntax lib/mbr_partition.cmx -o lib/mbr_mirage.cmxa
+ocamlfind ocamlopt -shared -linkall -package cstruct.syntax lib/mbr_mirage.cmxa -o lib/mbr_mirage.cmxs
+ocamlfind ocamldep -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -modules cli/main.ml > cli/main.ml.depends
+ocamlfind ocamldep -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -modules cli/common.ml > cli/common.ml.depends
+ocamlfind ocamldep -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -modules cli/impl.ml > cli/impl.ml.depends
+ocamlfind ocamlc -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/common.cmo cli/common.ml
+ocamlfind ocamlc -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/impl.cmo cli/impl.ml
+ocamlfind ocamlc -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/main.cmo cli/main.ml
+ocamlfind ocamlopt -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/common.cmx cli/common.ml
+ocamlfind ocamlopt -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/impl.cmx cli/impl.ml
+ocamlfind ocamlopt -c -g -I lib -I lib -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner -I cli -I lib -o cli/main.cmx cli/main.ml
+ocamlfind ocamlopt -g -linkpkg -package re.str -package oUnit -package lwt.unix -package lwt -package cstruct.lwt -package cstruct -package cmdliner cli/common.cmx lib/mbr.cmxa lib/mbr_lwt.cmxa cli/impl.cmx cli/main.cmx -o cli/main.native
+# No parallelism done
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_partition.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_mirage.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_mirage.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_mirage.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_mirage.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_partition.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_partition.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/mbr_lwt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mbr-format/META
+Installing mbr-format.0.2.
+Building mirage-block-unix.1.2.1:
+  make
+  make install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2393, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
