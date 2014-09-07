@@ -160,3 +160,79 @@ File "src/tplib_abstract.ml", line 140, characters 7-10:
 Warning 26: unused variable dim.
 ocamlfind ocamlopt -c -I src/bindings -I src -o src/bindings/vector_array.cmx src/bindings/vector_array.ml
 ocamlfind ocamlopt -c -I src/bindings -I src -o src/bindings/tplib_double_callback.cmx src/bindings/tplib_double_callback.ml
+ocamlfind ocamlopt -a src/config.cmx src/random_generator.cmx src/numeric_plugin.cmx src/numeric.cmx src/semiring.cmx src/vector.cmx src/halfspace.cmx src/union_find.cmx src/hypergraph.cmx src/tplib_core.cmx src/tplib_abstract.cmx -o src/tplib.cmxa
+ocamlfind ocamlopt -linkpkg -output-obj -package findlib -package dynlink -package num src/tplib.cmxa src/bindings/semiring_double.cmx src/bindings/vector_array.cmx src/bindings/tplib_double_callback.cmx -o src/bindings/tplib_double_callback.obj.o
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_ext_rays.ml > src/compute_ext_rays.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays.cmo src/compute_ext_rays.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays.cmx src/compute_ext_rays.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_ext_rays.cmx -o src/compute_ext_rays.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_ext_rays_polar.ml > src/compute_ext_rays_polar.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays_polar.cmo src/compute_ext_rays_polar.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_ext_rays_polar.cmx src/compute_ext_rays_polar.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_ext_rays_polar.cmx -o src/compute_ext_rays_polar.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_halfspaces.ml > src/compute_halfspaces.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_halfspaces.cmo src/compute_halfspaces.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_halfspaces.cmx src/compute_halfspaces.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_halfspaces.cmx -o src/compute_halfspaces.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_tangent_hypergraph.ml > src/compute_tangent_hypergraph.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tangent_hypergraph.cmo src/compute_tangent_hypergraph.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tangent_hypergraph.cmx src/compute_tangent_hypergraph.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_tangent_hypergraph.cmx -o src/compute_tangent_hypergraph.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_minimal_external_representations.ml > src/compute_minimal_external_representations.ml.depends
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_minimal_external_representations.cmo src/compute_minimal_external_representations.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_minimal_external_representations.cmx src/compute_minimal_external_representations.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/compute_minimal_external_representations.cmx -o src/compute_minimal_external_representations.native
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/compute_tropical_complex.ml > src/compute_tropical_complex.ml.depends
+ocamlfind ocamldep -modules src/cell_decomposition.mli > src/cell_decomposition.mli.depends
+ocamlfind ocamldep -modules src/polytrope.mli > src/polytrope.mli.depends
+ocamlfind ocamlc -c -I src -o src/polytrope.cmi src/polytrope.mli
+ocamlfind ocamlc -c -I src -o src/cell_decomposition.cmi src/cell_decomposition.mli
+ocamlfind ocamlc -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tropical_complex.cmo src/compute_tropical_complex.ml
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/cell_decomposition.ml > src/cell_decomposition.ml.depends
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/germ.ml > src/germ.ml.depends
+ocamlfind ocamldep -modules src/germ.mli > src/germ.mli.depends
+ocamlfind ocamlc -c -I src -o src/germ.cmi src/germ.mli
+ocamlfind ocamldep -package findlib -package dynlink -package num -package unix -modules src/polytrope.ml > src/polytrope.ml.depends
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/germ.cmx src/germ.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/polytrope.cmx src/polytrope.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/cell_decomposition.cmx src/cell_decomposition.ml
+ocamlfind ocamlopt -c -package findlib -package dynlink -package num -package unix -I src -o src/compute_tropical_complex.cmx src/compute_tropical_complex.ml
+ocamlfind ocamlopt -linkpkg -linkall -package findlib -package dynlink -package num -package unix src/tplib.cmxa src/germ.cmx src/polytrope.cmx src/cell_decomposition.cmx src/compute_tropical_complex.cmx -o src/compute_tropical_complex.native
+cc -g -O2 -I/home/opam/.opam/4.02.0+trunk/lib/ocaml -c -o _build/src/bindings/tplib_double.o src/bindings/tplib_double.c
+cat /home/opam/.opam/4.02.0+trunk/lib/ocaml/libasmrun.a > _build/src/bindings/libtplib_double.a
+ar rcs _build/src/bindings/libtplib_double.a _build/src/bindings/tplib_double_callback.obj.o _build/src/bindings/tplib_double.o
+ranlib _build/src/bindings/libtplib_double.a
+ocamlfind install -destdir `ocamlfind printconf destdir` tplib src/META \
+	_build/src/tplib.a _build/src/numeric.mli _build/src/semiring.mli _build/src/vector.mli _build/src/halfspace.mli _build/src/hypergraph.mli _build/src/tplib_core.mli _build/src/tplib_abstract.mli _build/src/tplib.cmxa _build/src/numeric.cmi _build/src/semiring.cmi _build/src/vector.cmi _build/src/halfspace.cmi _build/src/hypergraph.cmi _build/src/tplib_core.cmi _build/src/tplib_abstract.cmi 
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib_abstract.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib_core.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/hypergraph.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/halfspace.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/vector.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/semiring.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/numeric.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib_abstract.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib_core.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/hypergraph.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/halfspace.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/vector.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/semiring.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/numeric.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/tplib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/tplib/META
+test -d /home/opam/.opam/4.02.0+trunk/bin || install -d /home/opam/.opam/4.02.0+trunk/bin
+/usr/bin/install -c _build/src/compute_ext_rays _build/src/compute_ext_rays_polar _build/src/compute_halfspaces _build/src/compute_tangent_hypergraph _build/src/compute_minimal_external_representations _build/src/compute_tropical_complex /home/opam/.opam/4.02.0+trunk/bin
+ocamlbuild -classic-display -no-links -build-dir _build -use-ocamlfind src/tplib.mllib \
+		src/numeric.cmi src/semiring.cmi src/vector.cmi src/halfspace.cmi src/hypergraph.cmi src/tplib_core.cmi src/tplib_abstract.cmi \
+		 \
+		src/bindings/tplib_double_callback.obj.o \
+		src/compute_ext_rays.native src/compute_ext_rays_polar.native src/compute_halfspaces.native src/compute_tangent_hypergraph.native src/compute_minimal_external_representations.native src/compute_tropical_complex.native	
+cat /home/opam/.opam/4.02.0+trunk/lib/ocaml/libasmrun.a > _build/src/bindings/libtplib_double.a
+ar rcs _build/src/bindings/libtplib_double.a _build/src/bindings/tplib_double_callback.obj.o _build/src/bindings/tplib_double.o
+ranlib _build/src/bindings/libtplib_double.a
+mkdir -p /home/opam/.opam/4.02.0+trunk/include
+/usr/bin/install -c -m 644 src/bindings/tplib_double.h /home/opam/.opam/4.02.0+trunk/include
+mkdir -p /home/opam/.opam/4.02.0+trunk/lib
+/usr/bin/install -c -m 644 _build/src/bindings/libtplib_double.a /home/opam/.opam/4.02.0+trunk/lib
+Installing tplib.1.3.
