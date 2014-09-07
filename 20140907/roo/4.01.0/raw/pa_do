@@ -208,3 +208,23 @@ ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package
 ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_std.ml > tests/do_std.ml.depends
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_std.cmo tests/do_std.ml
 ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_std.cmo -o tests/do_std.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_concrete.ml > tests/do_concrete.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_concrete.cmo tests/do_concrete.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_concrete.cmo -o tests/do_concrete.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_api.ml > tests/do_api.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_api.cmo tests/do_api.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_api.cmo -o tests/do_api.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_macro.ml > tests/test_macro.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_macro.cmo tests/test_macro.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_macro.cmo -o tests/test_macro.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_complex.ml > tests/test_complex.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_complex.cmo tests/test_complex.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_complex.cmo -o tests/test_complex.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/ad_hoc_newton.ml > examples/ad_hoc_newton.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/ad_hoc_newton.cmo examples/ad_hoc_newton.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/ad_hoc_newton.cmo -o examples/ad_hoc_newton.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/comp_diff.ml > examples/comp_diff.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/comp_diff.cmo examples/comp_diff.ml
+ocamlfind ocamlc -g -linkpkg examples/comp_diff.cmo -o examples/comp_diff.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/pi_digits.ml > examples/pi_digits.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/pi_digits.cmo examples/pi_digits.ml
