@@ -1,0 +1,98 @@
+++ opam install aio -e ubuntu
++ depext=libaio-dev
+Ubuntu depexts: libaio-dev
++ echo Ubuntu depexts: libaio-dev
++ '[' libaio-dev '!=' '' ']'
++ sudo apt-get install -qq -y build-essential m4
++ sudo apt-get install -qq -y libaio-dev
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin: 
+Selecting previously unselected package libaio1:amd64.
+(Reading database ... 20147 files and directories currently installed.)
+Preparing to unpack .../libaio1_0.3.109-4_amd64.deb ...
+Unpacking libaio1:amd64 (0.3.109-4) ...
+Selecting previously unselected package libaio-dev.
+Preparing to unpack .../libaio-dev_0.3.109-4_amd64.deb ...
+Unpacking libaio-dev (0.3.109-4) ...
+Setting up libaio1:amd64 (0.3.109-4) ...
+Setting up libaio-dev (0.3.109-4) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install aio -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install aio
+The following actions will be performed:
+ - install   aio.0.0.3
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/aio.0.0.3+opam.tar.gz
+sending incremental file list
+aio.0.0.3+opam.tar.gz
+
+sent 26,877 bytes  received 35 bytes  53,824.00 bytes/sec
+total size is 26,747  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying meta.patch.
+patching file lib/META
+Building aio.0.0.3:
+  make
+  make install
+make -C lib all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+ocamldep aio.mli > ._bcdi/aio.di
+ocamldep aio.ml > ._d/aio.d
+ocamldep aio_buffer.ml > ._d/aio_buffer.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+ocamlc -c -cc "cc" -ccopt "-fPIC -O2 -g -W -Wall \
+				-DPIC   \
+				    -o aio_stubs.o " aio_stubs.c
+aio_stubs.c: In function 'caml_aio_run':
+aio_stubs.c:272:3: warning: ignoring return value of 'read', declared with attribute warn_unused_result [-Wunused-result]
+   (void)read(ctx->fd, &num, sizeof(num));
+   ^
+ocamlc -c -cc "cc" -ccopt "-fPIC -O2 -g -W -Wall \
+				-DPIC   \
+				    -o aio_buffer_stubs.o " aio_buffer_stubs.c
+ar rcs libaio_stubs.a  aio_stubs.o aio_buffer_stubs.o
+ocamlc -c aio_buffer.ml
+ocamlc -c aio.mli
+ocamlc -c aio.ml
+ocamlmklib         \
+				-o aio_stubs  aio_stubs.o aio_buffer_stubs.o -laio  \
+				
+ocamlc -a -cclib -laio_stubs -cclib -laio   -dllib dllaio_stubs.so -custom             -o aio.cma aio_buffer.cmo aio.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make -C lib install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+make[2]: `libaio_stubs.a' is up to date.
+make[2]: `aio.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+
+Installing byte-code library with ocamlfind
+ocamlfind install  aio META \
+	  aio.mli aio.cmi aio.cma libaio_stubs.a dllaio_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/aio/libaio_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/aio/aio.cma
+Installed /home/opam/.opam/4.01.0/lib/aio/aio.cmi
+Installed /home/opam/.opam/4.01.0/lib/aio/aio.mli
+Installed /home/opam/.opam/4.01.0/lib/aio/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllaio_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllaio_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/aio.0.0.3/lib'
+Installing aio.0.0.3.
