@@ -2403,3 +2403,13 @@ mv tmp.ml Parser.ml
 ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Util.cmx Util.ml
 ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -thread -c -o Build.cmx Build.ml
 ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -rectypes -c -o Parser.cmx Parser.ml
+File "tmp.dyp", line 690, characters 42-44:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -rectypes -c -o Generateur.cmx Generateur.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o SimpleGenerateur.cmx SimpleGenerateur.ml
+ocamlopt -thread -rectypes -I +threads -c -o Main.cmx Main.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -linkpkg -o patoline -I +threads str.cmxa threads.cmxa rbuffer.cmxa dynlink.cmxa Util.cmx Language.cmx Config.cmx Build.cmx Parser.cmx Generateur.cmx SimpleGenerateur.cmx Main.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Patoline'
+make -C cesure cesure
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/cesure'
+ocamlfind ocamlopt -package camomile,zip,camlimages.all_formats -I ../Typography/_build -I ../Rbuffer -o cesure rbuffer.cmxa Typography.cmxa str.cmxa -linkpkg cesure.ml
