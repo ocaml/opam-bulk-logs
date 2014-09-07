@@ -568,3 +568,100 @@ Setting up libcairo2-dev (1.13.0~20140204-0ubuntu1) ...
 Setting up libpango1.0-dev (1.36.3-1ubuntu1) ...
 Setting up libgtk2.0-dev (2.24.23-0ubuntu1.1) ...
 Setting up libglade2-dev:amd64 (1:2.6.4-2) ...
+Setting up libgtksourceview2.0-dev (2.10.5-1ubuntu2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install ocamltop-gtk -e source,linux
+Ubuntu srcexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install ocamltop-gtk
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgtk]
+ - install   conf-glade.2                          [required by gtktop]
+ - install   xmlm.1.2.0                            [required by lablgtk-extras]
+ - install   conf-gtksourceview.2                  [required by lablgtk-extras, lablgtk]
+ - install   config-file.1.2                       [required by lablgtk-extras]
+ - install   lablgtk.2.16.0                        [required by ocamltop-gtk]
+ - install   lablgtk-extras.1.4                    [required by gtktop]
+ - install   gtktop.2.0                            [required by ocamltop-gtk]
+ - install   ocamltop-gtk.2.1.1
+=== 9 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/config-file.1.2+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/gtktop.2.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgtk.2.16.0+opam.tar.gz
+sending incremental file list
+sending incremental file list
+sending incremental file list
+gtktop.2.0+opam.tar.gz
+config-file.1.2+opam.tar.gz
+lablgtk.2.16.0+opam.tar.gz
+
+sent 47,216 bytes  received 35 bytes  94,502.00 bytes/sec
+total size is 47,081  speedup is 1.00
+
+sent 49,861 bytes  received 35 bytes  99,792.00 bytes/sec
+total size is 49,721  speedup is 1.00
+
+sent 825,330 bytes  received 35 bytes  1,650,730.00 bytes/sec
+total size is 824,999  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgtk-extras.1.4+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocamltop-gtk.2.1.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+lablgtk-extras.1.4+opam.tar.gz
+sending incremental file list
+ocamltop-gtk.2.1.1+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+
+sent 110,488 bytes  received 35 bytes  221,046.00 bytes/sec
+total size is 110,329  speedup is 1.00
+
+sent 44,532 bytes  received 35 bytes  89,134.00 bytes/sec
+total size is 44,389  speedup is 1.00
+
+sent 51,864 bytes  received 35 bytes  103,798.00 bytes/sec
+total size is 51,729  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building conf-glade.2:
+  pkg-config libglade-2.0
+Installing conf-glade.2.
+Building conf-gtksourceview.2:
+  pkg-config gtksourceview-2.0
+Installing conf-gtksourceview.2.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building config-file.1.2:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make all
+  make install
+checking for ocamlfind... /home/opam/.opam/4.01.0/bin/ocamlfind
+checking for camlp4... /home/opam/.opam/4.01.0/bin/camlp4
+configure: creating ./config.status
+config.status: creating master.Makefile
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -o config_file.cmxs -shared config_file.cmx
