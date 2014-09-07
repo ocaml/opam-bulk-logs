@@ -1847,3 +1847,76 @@ make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1'
 ocamlc.opt -c  curl.mli -o curl.cmi
 ocamlc.opt -c  curl.ml -o curl.cmo
 ocamlc.opt -c -ccopt "-g -O2   -DHAVE_CONFIG_H -Wall" curl-helper.c
+ocamlmklib -oc curl-helper curl-helper.o -lcurl  
+ocamlmklib -o curl curl.cmo -oc curl-helper -lcurl  
+ocamlfind c -package lwt -c curl_lwt.mli -o curl_lwt.cmi
+ocamlfind c -package lwt.unix -c curl_lwt.ml -o curl_lwt.cmo
+ocamlopt.opt -c  curl.ml -o curl.cmx
+ocamlmklib -o curl curl.cmx -oc curl-helper -lcurl  
+ocamlfind opt -package lwt.unix -c curl_lwt.ml -o curl_lwt.cmx
+(cd examples; make)
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1/examples'
+ocamlc.opt -thread -c -I ..  ocurl.ml -o ocurl.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ocurl.cmo -o ocurl
+ocamlc.opt -thread -c -I ..  oput.ml -o oput.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma oput.cmo -o oput
+ocamlc.opt -thread -c -I ..  ominimal.ml -o ominimal.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ominimal.cmo -o ominimal
+ocamlc.opt -thread -c -I ..  ossl.ml -o ossl.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ossl.cmo -o ossl
+ocamlc.opt -thread -c -I ..  ocurl_test_threads.ml -o ocurl_test_threads.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ocurl_test_threads.cmo -o ocurl_test_threads
+ocamlc.opt -thread -c -I ..  opar.ml -o opar.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma opar.cmo -o opar
+ocamlc.opt -thread -c -I ..  test_cb_exn.ml -o test_cb_exn.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma test_cb_exn.cmo -o test_cb_exn
+ocamlfind c -custom -linkpkg -syntax camlp4o -package lwt.unix,lwt.syntax -I .. -ccopt -L.. ../curl.cma ../curl_lwt.cmo test_lwt.ml -o test_lwt
+ocamlfind c -custom -linkpkg -syntax camlp4o -package lwt.unix,lwt.syntax -I .. -ccopt -L.. ../curl.cma ../curl_lwt.cmo test_lwt_unit.ml -o test_lwt_unit
+ocamlopt.opt -thread -c -I ..  ocurl.ml -o ocurl.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ocurl.cmx -o ocurl.opt
+ocamlopt.opt -thread -c -I ..  oput.ml -o oput.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa oput.cmx -o oput.opt
+ocamlopt.opt -thread -c -I ..  ominimal.ml -o ominimal.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ominimal.cmx -o ominimal.opt
+ocamlopt.opt -thread -c -I ..  ossl.ml -o ossl.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ossl.cmx -o ossl.opt
+ocamlopt.opt -thread -c -I ..  ocurl_test_threads.ml -o ocurl_test_threads.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ocurl_test_threads.cmx -o ocurl_test_threads.opt
+ocamlopt.opt -thread -c -I ..  opar.ml -o opar.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa opar.cmx -o opar.opt
+ocamlopt.opt -thread -c -I ..  test_cb_exn.ml -o test_cb_exn.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa test_cb_exn.cmx -o test_cb_exn.opt
+ocamlfind opt -linkpkg -syntax camlp4o -package lwt.unix,lwt.syntax -I .. -ccopt -L.. ../curl.cmxa ../curl_lwt.cmx test_lwt.ml -o test_lwt.opt
+ocamlfind opt -linkpkg -syntax camlp4o -package lwt.unix,lwt.syntax -I .. -ccopt -L.. ../curl.cmxa ../curl_lwt.cmx test_lwt_unit.ml -o test_lwt_unit.opt
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1/examples'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1'
+ocamlfind install -patch-version 0.7.1 -ldconf ignore curl META curl.a curl.cmi curl.mli curl.cma libcurl-helper.a dllcurl-helper.so curl_lwt.cmo curl.cmxa curl_lwt.cmx curl_lwt.cmi curl_lwt.mli curl_lwt.o
+Installed /home/opam/.opam/4.01.0/lib/curl/curl_lwt.o
+Installed /home/opam/.opam/4.01.0/lib/curl/curl_lwt.mli
+Installed /home/opam/.opam/4.01.0/lib/curl/curl_lwt.cmi
+Installed /home/opam/.opam/4.01.0/lib/curl/curl_lwt.cmx
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cmxa
+Installed /home/opam/.opam/4.01.0/lib/curl/curl_lwt.cmo
+Installed /home/opam/.opam/4.01.0/lib/curl/libcurl-helper.a
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cma
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.mli
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cmi
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.a
+Installed /home/opam/.opam/4.01.0/lib/curl/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurl-helper.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurl-helper.so.owner
+Installing ocurl.0.7.1.
+Building yojson.1.1.8:
+  make
+  make install
+sed -e 's:@@VERSION@@:1.1.8:' META.in > META
+cppo -n yojson.mli.cppo -o yojson.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
+ocamllex read.mll
+433 states, 2020 transitions, table size 10678 bytes
+cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
