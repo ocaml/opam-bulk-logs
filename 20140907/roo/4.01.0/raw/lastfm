@@ -18,3 +18,74 @@ Preparing to unpack .../libpcrecpp0_1%3a8.31-2ubuntu2_amd64.deb ...
 Unpacking libpcrecpp0:amd64 (1:8.31-2ubuntu2) ...
 Selecting previously unselected package libpcre3-dev:amd64.
 Preparing to unpack .../libpcre3-dev_1%3a8.31-2ubuntu2_amd64.deb ...
+Unpacking libpcre3-dev:amd64 (1:8.31-2ubuntu2) ...
+Setting up libpcrecpp0:amd64 (1:8.31-2ubuntu2) ...
+Setting up libpcre3-dev:amd64 (1:8.31-2ubuntu2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install lastfm -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lastfm
+The following actions will be performed:
+ - install   xmlm.1.2.0                            [required by xmlplaylist]
+ - install   conf-libpcre.1                        [required by pcre-ocaml]
+ - install   xmlplaylist.0.1.3                     [required by lastfm]
+ - install   pcre-ocaml.7.1.1                      [required by lastfm]
+ - install   lastfm.0.3.0
+=== 5 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/lastfm.0.3.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.1.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+sending incremental file list
+lastfm.0.3.0+opam.tar.gz
+pcre-ocaml.7.1.1+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+
+sent 78,910 bytes  received 35 bytes  157,890.00 bytes/sec
+total size is 78,765  speedup is 1.00
+
+sent 86,695 bytes  received 35 bytes  173,460.00 bytes/sec
+total size is 86,546  speedup is 1.00
+
+sent 51,864 bytes  received 35 bytes  103,798.00 bytes/sec
+total size is 51,729  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlplaylist.0.1.3+opam.tar.gz
+sending incremental file list
+xmlplaylist.0.1.3+opam.tar.gz
+
+sent 64,893 bytes  received 35 bytes  129,856.00 bytes/sec
+total size is 64,751  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building conf-libpcre.1:
+  pkg-config libpcre
+Installing conf-libpcre.1.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
