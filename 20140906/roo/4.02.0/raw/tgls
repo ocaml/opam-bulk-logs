@@ -337,3 +337,27 @@ ocamlfind ocamldep -package ctypes -modules src/tgl3.ml > src/tgl3.ml.depends
 ocamlfind ocamldep -package ctypes -modules src/tgl3.mli > src/tgl3.mli.depends
 ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmi src/tgl3.mli
 ocamlfind ocamlopt -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmx src/tgl3.ml
+ocamlfind ocamlopt -a -thread -ccopt -Wl,-no-as-needed -package ctypes.foreign -package ctypes src/tgl3.cmx -o src/tgl3.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmo src/tgl3.ml
+ocamlfind ocamlc -a -custom -thread -ccopt -Wl,-no-as-needed -dllib -ltgl3 -package ctypes.foreign -package ctypes src/tgl3.cmo -o src/tgl3.cma
+ocamlfind ocamlopt -shared -thread -ccopt -Wl,-no-as-needed -package ctypes.foreign -package ctypes src/tgl3.cmx -o src/tgl3.cmxs
+ocamlfind ocamldep -package compiler-libs.toplevel -modules src/tgl3_top.ml > src/tgl3_top.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -thread -package compiler-libs.toplevel -I src -I test -o src/tgl3_top.cmo src/tgl3_top.ml
++ ocamlfind ocamlc -c -annot -bin-annot -thread -package compiler-libs.toplevel -I src -I test -o src/tgl3_top.cmo src/tgl3_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamlopt -c -annot -bin-annot -thread -package compiler-libs.toplevel -I src -I test -o src/tgl3_top.cmx src/tgl3_top.ml
++ ocamlfind ocamlopt -c -annot -bin-annot -thread -package compiler-libs.toplevel -I src -I test -o src/tgl3_top.cmx src/tgl3_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamlopt -a -thread -package compiler-libs.toplevel src/tgl3_top.cmx -o src/tgl3_top.cmxa
++ ocamlfind ocamlopt -a -thread -package compiler-libs.toplevel src/tgl3_top.cmx -o src/tgl3_top.cmxa
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamlc -a -thread -package compiler-libs.toplevel src/tgl3_top.cmo -o src/tgl3_top.cma
++ ocamlfind ocamlc -a -thread -package compiler-libs.toplevel src/tgl3_top.cmo -o src/tgl3_top.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamlopt -shared -thread -package compiler-libs.toplevel src/tgl3_top.cmx -o src/tgl3_top.cmxs
++ ocamlfind ocamlopt -shared -thread -package compiler-libs.toplevel src/tgl3_top.cmx -o src/tgl3_top.cmxs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamldep -package ctypes -modules src/tgl4.ml > src/tgl4.ml.depends
+ocamlfind ocamldep -package ctypes -modules src/tgl4.mli > src/tgl4.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmi src/tgl4.mli
+ocamlfind ocamlopt -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl4.cmx src/tgl4.ml
