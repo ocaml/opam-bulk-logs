@@ -164,3 +164,63 @@ make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
 cd runtime; make all
 make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
 ocamlc -g -ccopt "-Wall -g" idlalloc.c
+ocamlc -g -ccopt "-Wall -g" comintf.c
+ocamlc -g -ccopt "-Wall -g" comerror.c
+comerror.c: In function 'camlidl_error':
+comerror.c:52:8: warning: unused variable 'msg' [-Wunused-variable]
+   char msg[1024];
+        ^
+comerror.c: In function 'camlidl_uncaught_exception':
+comerror.c:171:3: warning: implicit declaration of function 'caml_format_exception' [-Wimplicit-function-declaration]
+   char * msg = format_caml_exception(exn_bucket);
+   ^
+In file included from /home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:18:0,
+                 from comerror.c:20:
+/home/opam/.opam/4.01.0/lib/ocaml/caml/compatibility.h:250:31: warning: initialization makes pointer from integer without a cast [enabled by default]
+ #define format_caml_exception caml_format_exception /*SP*/
+                               ^
+comerror.c:171:16: note: in expansion of macro 'format_caml_exception'
+   char * msg = format_caml_exception(exn_bucket);
+                ^
+rm -f libcamlidl.a
+ar rc libcamlidl.a idlalloc.o comintf.o comerror.o
+ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cd lib; make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+ocamlc -g -c com.mli
+ocamlc -g -c com.ml
+ocamlc -g -a -o com.cma com.cmo
+ocamlopt -c com.ml
+ocamlopt -a -o com.cmxa com.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cd tools; make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+cd compiler; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
+cp camlidl /home/opam/.opam/4.01.0/bin
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
+cd runtime; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cp camlidlruntime.h /home/opam/.opam/4.01.0/lib/camlidl/caml/camlidlruntime.h
+cp libcamlidl.a /home/opam/.opam/4.01.0/lib/camlidl/libcamlidl.a
+cd /home/opam/.opam/4.01.0/lib/camlidl; ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cd lib; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cp com.cmi com.cma com.cmxa com.a /home/opam/.opam/4.01.0/lib/camlidl
+cd /home/opam/.opam/4.01.0/lib/camlidl; ranlib com.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cd tools; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+Installing camlidl.1.05.
+Building ocamlfuse.2.7.1-cvs2:
+  make -C lib INCDIRS=/home/opam/.opam/4.01.0/lib/camlidl
+  make -C lib install
+make: Entering directory `/home/opam/.opam/4.01.0/build/ocamlfuse.2.7.1-cvs2/lib'
+camlidl -header  \
+				 Fuse_bindings.idl
