@@ -939,3 +939,34 @@ ocamlfind ocamlc -c -o cst.cmi cst.mli
 ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
 ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
 ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sentenceParser.mly > sentenceParser.mly.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
++ /home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
+Grammar has 2 nonterminal symbols, among which 1 start symbols.
+Grammar has 5 terminal symbols.
+Grammar has 5 productions.
+Built an LR(0) automaton with 11 states.
+The grammar is SLR(1).
+Built an LR(1) automaton with 11 states.
+3 out of 11 states are represented.
+0 out of 10 symbols keep track of their start position.
+0 out of 10 symbols keep track of their end position.
+5 out of 11 states have a default reduction.
+4 out of 6 productions exploit shiftreduce optimization.
+0 out of 11 states can peek at an error.
+0 out of 11 states can do error recovery.
+42 functions before inlining, 7 functions after inlining.
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
