@@ -1088,3 +1088,26 @@ pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/l
 ./setup.exe -build 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
 ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -modules syntax/pa_enumerate.mli > syntax/pa_enumerate.mli.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmi syntax/pa_enumerate.mli
+ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -modules syntax/pa_enumerate.ml > syntax/pa_enumerate.ml.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmo syntax/pa_enumerate.ml
+ocamlfind ocamlc -a syntax/pa_enumerate.cmo -o syntax/enumerate.cma
+ocamlfind ocamlopt -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -I syntax -o syntax/pa_enumerate.cmx syntax/pa_enumerate.ml
+ocamlfind ocamlopt -a syntax/pa_enumerate.cmx -o syntax/enumerate.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/enumerate.cmxa -o syntax/enumerate.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/enumerate/pa_enumerate.mli
+Installed /home/opam/.opam/4.01.0/lib/enumerate/enumerate.cma
+Installed /home/opam/.opam/4.01.0/lib/enumerate/enumerate.cmxa
+Installed /home/opam/.opam/4.01.0/lib/enumerate/enumerate.a
+Installed /home/opam/.opam/4.01.0/lib/enumerate/enumerate.cmxs
+Installed /home/opam/.opam/4.01.0/lib/enumerate/pa_enumerate.cmi
+Installed /home/opam/.opam/4.01.0/lib/enumerate/pa_enumerate.cmx
+Installed /home/opam/.opam/4.01.0/lib/enumerate/META
+Installing enumerate.111.08.00.
+Building fieldslib.109.20.03:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
