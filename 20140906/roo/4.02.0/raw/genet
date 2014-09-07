@@ -4099,3 +4099,215 @@ ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
 ar rcs libmysql_stubs.a  mysql_stubs.o
 ocamlc -c mysql.mli
 ocamlc -c -pp "camlp4o " mysql.ml
+ocamlmklib         \
+				-o mysql_stubs  mysql_stubs.o -lz -lmysqlclient  \
+				
+ocamlc -a -dllib dllmysql_stubs.so             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cma mysql.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+ocamldep -native mysql.mli > ._ncdi/mysql.di
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+ocamlopt -c -pp "camlp4o " mysql.ml
+ocamlopt -a             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cmxa mysql.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+make[1]: `mysql.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/mysql.1.1.2'
+
+Installing library with ocamlfind
+ocamlfind install -patch-version "1.1.2" mysql META mysql.mli mysql.cmi mysql.cma mysql.cmx mysql.cmxa libmysql_stubs.a mysql.a dllmysql_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/libmysql_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/mysql.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/mysql/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllmysql_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllmysql_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+Installing mysql.1.1.2.
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocaml setup.ml -build 
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+lib/pcre_stubs.c: In function 'pcre_exec_stub':
+lib/pcre_stubs.c:556:9: warning: initializer element is not computable at load time [enabled by default]
+         { subj_start, (value *) NULL, (value *) NULL, (value) NULL };
+         ^
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules lib/pcre.mli > lib/pcre.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmi lib/pcre.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules lib/pcre.ml > lib/pcre.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
+File "lib/pcre.ml", line 273, characters 10-23:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 279, characters 12-25:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 285, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 286, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 287, characters 11-28:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 582, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 633, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 682, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 739, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 746, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 762, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 767, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 785, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 790, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 807, characters 24-35:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 923, characters 30-41:
+Warning 3: deprecated: String.copy
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -lpcre_stubs -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmo -o lib/pcre.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
+File "lib/pcre.ml", line 273, characters 10-23:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 279, characters 12-25:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 285, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 286, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 287, characters 11-28:
+Warning 3: deprecated: String.unsafe_set
+File "lib/pcre.ml", line 582, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 633, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 682, characters 16-29:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 739, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 746, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 762, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 767, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 785, characters 14-27:
+Warning 3: deprecated: String.create
+File "lib/pcre.ml", line 790, characters 20-31:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 807, characters 24-35:
+Warning 3: deprecated: String.copy
+File "lib/pcre.ml", line 923, characters 30-41:
+Warning 3: deprecated: String.copy
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmx -o lib/pcre.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -cclib -lpcre_stubs -I lib -cclib -lpcre lib/pcre.cmxa lib/pcre.cmx -o lib/pcre.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules examples/cloc/cloc.ml > examples/cloc/cloc.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
+File "examples/cloc/cloc.ml", line 5, characters 15-28:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
+File "examples/cloc/cloc.ml", line 5, characters 15-28:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
