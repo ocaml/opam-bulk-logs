@@ -5473,3 +5473,89 @@ W: Cannot find source file matching module 'async' in library async
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package threads -package async_unix -package async_kernel -package async_extra -modules lib/std.ml > lib/std.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -I lib -o lib/std.cmo lib/std.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/async.cmxa lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/async/std.ml
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmi
+Installed /home/opam/.opam/4.01.0/lib/async/async.cma
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmxa
+Installed /home/opam/.opam/4.01.0/lib/async/async.a
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmxs
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmx
+Installed /home/opam/.opam/4.01.0/lib/async/META
+Installing async.111.25.00.
+Building async_graphics.0.5.1:
+  ./install.sh
+ocamlfind ocamldep -package graphics -package async -modules async_graphics.mli > async_graphics.mli.depends
+ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmi async_graphics.mli
+ocamlfind ocamldep -package graphics -package async -modules async_graphics.ml > async_graphics.ml.depends
+ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmo async_graphics.ml
++ ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmo async_graphics.ml
+File "async_graphics.ml", line 17, characters 8-16:
+Error: Unbound module Graphics
+Command exited with code 2.
+ocamlfind: _build/async_graphics.a: No such file or directory
+Removing async_graphics.0.5.1.
+[ERROR] The compilation of async_graphics.0.5.1 failed.
+  ocamlfind remove async_graphics
+Removed /home/opam/.opam/4.01.0/lib/async_graphics
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   core_kernel.111.28.00
+ - install   sexplib.111.25.00
+ - install   async.111.25.00
+ - install   pa_test.111.08.00
+ - install   enumerate.111.08.00
+ - install   custom_printf.111.25.00
+ - install   camlp4.4.01.0
+ - install   ounit.2.0.0
+ - install   async_kernel.111.28.00
+ - install   comparelib.109.60.00
+ - install   pa_ounit.111.28.00
+ - install   core.111.28.00
+ - install   variantslib.109.15.03
+ - install   pipebang.110.01.00
+ - install   typerep.111.17.00
+ - install   async_unix.111.28.00
+ - install   type_conv.111.13.00
+ - install   herelib.109.35.02
+ - install   async_extra.111.28.00
+ - install   pa_bench.111.28.00
+ - install   fieldslib.109.20.03
+ - install   bin_prot.111.03.00
+The following failed
+ - install   async_graphics.0.5.1
+
+#=== ERROR while installing async_graphics.0.5.1 ==============================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              ./install.sh
+# path                 /home/opam/.opam/4.01.0/build/async_graphics.0.5.1
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/async_graphics.0.5.1/async_graphics-16288-70a526.env
+# stdout-file          /home/opam/.opam/4.01.0/build/async_graphics.0.5.1/async_graphics-16288-70a526.out
+# stderr-file          /home/opam/.opam/4.01.0/build/async_graphics.0.5.1/async_graphics-16288-70a526.err
+### stdout ###
+# ocamlfind ocamldep -package graphics -package async -modules async_graphics.mli > async_graphics.mli.depends
+# ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmi async_graphics.mli
+# ocamlfind ocamldep -package graphics -package async -modules async_graphics.ml > async_graphics.ml.depends
+# ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmo async_graphics.ml
+# + ocamlfind ocamlc -c -thread -package graphics -package async -o async_graphics.cmo async_graphics.ml
+# File "async_graphics.ml", line 17, characters 8-16:
+# Error: Unbound module Graphics
+# Command exited with code 2.
+### stderr ###
+# ocamlfind: _build/async_graphics.a: No such file or directory
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140807214202.export"
+'opam install async_graphics' failed.
