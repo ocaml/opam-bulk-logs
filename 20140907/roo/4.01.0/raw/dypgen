@@ -1,0 +1,100 @@
+++ opam install dypgen -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install dypgen -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install dypgen
+The following actions will be performed:
+ - install   dypgen.20120619-1
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/dypgen.20120619-1+opam.tar.gz
+sending incremental file list
+dypgen.20120619-1+opam.tar.gz
+
+sent 473,233 bytes  received 35 bytes  946,536.00 bytes/sec
+total size is 472,987  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying install-bsd-compatible.patch.
+patching file Makefile
+patching file dyplib/Makefile
+Building dypgen.20120619-1:
+  make
+  make install DYPGENLIBDIR=/home/opam/.opam/4.01.0/lib BINDIR=/home/opam/.opam/4.01.0/bin MANDIR=/home/opam/.opam/4.01.0/man/man1
+cd dyplib; make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+ocamlc  -c dyp.mli
+ocamlc  -c priority_by_relation.ml
+ocamlc  -c automaton.ml
+ocamlc  -c dyplex.ml
+ocamlc  -c dyp.ml
+ocamlc -a -o dyp.cma priority_by_relation.cmo automaton.cmo dyplex.cmo dyp.cmo
+ocamlopt  -c priority_by_relation.ml
+ocamlopt  -c automaton.ml
+ocamlopt  -c dyplex.ml
+ocamlopt  -c dyp.ml
+ocamlopt -a -o dyp.cmxa priority_by_relation.cmx automaton.cmx dyplex.cmx dyp.cmx
+ocamlopt  -p -c -o priority_by_relation.p.cmx priority_by_relation.ml
+ocamlopt  -p -c -o automaton.p.cmx automaton.ml
+ocamlopt  -p -c -o dyplex.p.cmx dyplex.ml
+ocamlopt  -p -c -o dyp.p.cmx dyp.ml
+ocamlopt -a -o dyp.p.cmxa priority_by_relation.p.cmx automaton.p.cmx dyplex.p.cmx dyp.p.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+cd dypgen; make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dypgen'
+ocamlc -I ../dyplib -c parse_tree.mli
+ocamlc -I ../dyplib -c dypgen_parser.mli
+ocamlc -I ../dyplib -c argument.ml
+ocamllex extract_type.mll
+360 states, 11307 transitions, table size 47388 bytes
+22672 additional bytes used for bindings
+ocamlc -I ../dyplib -c extract_type.ml
+ocamlc -I ../dyplib -c dypgen_parser.ml
+ocamllex dypgen_lexer.mll
+195 states, 1556 transitions, table size 7394 bytes
+2280 additional bytes used for bindings
+ocamlc -I ../dyplib -c dypgen_lexer.ml
+ocamllex insert_linenum.mll
+42 states, 273 transitions, table size 1344 bytes
+ocamlc -I ../dyplib -c insert_linenum.ml
+ocamlc -I ../dyplib -c dypgen.ml
+ocamlc -I ../dyplib -o dypgen dyp.cma argument.cmo extract_type.cmo dypgen_parser.cmo dypgen_lexer.cmo insert_linenum.cmo dypgen.cmo
+ocamlopt -I ../dyplib -c argument.ml
+ocamlopt -I ../dyplib -c extract_type.ml
+ocamlopt -I ../dyplib -c dypgen_parser.ml
+ocamlopt -I ../dyplib -c dypgen_lexer.ml
+ocamlopt -I ../dyplib -c insert_linenum.ml
+ocamlopt -I ../dyplib -c dypgen.ml
+ocamlopt -I ../dyplib -o dypgen.opt dyp.cmxa argument.cmx extract_type.cmx dypgen_parser.cmx dypgen_lexer.cmx insert_linenum.cmx dypgen.cmx
+rm dypgen_lexer.ml extract_type.ml insert_linenum.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dypgen'
+mkdir -p /home/opam/.opam/4.01.0/bin
+cp dypgen/dypgen.opt /home/opam/.opam/4.01.0/bin
+install -d /home/opam/.opam/4.01.0/bin
+install -m 755 dypgen/dypgen /home/opam/.opam/4.01.0/bin
+install -m 755 dyp2gram.pl /home/opam/.opam/4.01.0/bin/dyp2gram
+install -d /home/opam/.opam/4.01.0/man/man1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dypgen.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dypgen.opt.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dyp2gram.1
+cd dyplib; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+ocamlfind remove -destdir /home/opam/.opam/4.01.0/lib dyp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/dyp
+install -d /home/opam/.opam/4.01.0/lib
+ocamlfind install -destdir /home/opam/.opam/4.01.0/lib dyp META dyp.cma dyp.cmxa dyp.a dyp.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.a
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cma
+Installed /home/opam/.opam/4.01.0/lib/dyp/META
+chmod a-x /home/opam/.opam/4.01.0/lib/dyp/META #why is this needed ?
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+Installing dypgen.20120619-1.
