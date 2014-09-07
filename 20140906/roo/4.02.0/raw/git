@@ -4622,3 +4622,101 @@ ocamlfind ocamlc -pack -g lib/variant.cmo -o lib/variantslib.cmo
 ocamlfind ocamlc -a lib/variantslib.cmo -o lib/variantslib.cma
 ocamlfind ocamlopt -c -g -for-pack Variantslib -I lib -o lib/variant.cmx lib/variant.ml
 touch lib/variantslib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/variant.cmx -o lib/variantslib.cmx  ; then  rm -f lib/variantslib.mli  ; else  rm -f lib/variantslib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/variantslib.cmx -o lib/variantslib.cmxa
+ocamlfind ocamlopt -shared lib/variantslib.cmx -o lib/variantslib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.mli > syntax/pa_variants_conv.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmi syntax/pa_variants_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.ml > syntax/pa_variants_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmo syntax/pa_variants_conv.ml
+ocamlfind ocamlc -a syntax/pa_variants_conv.cmo -o syntax/pa_variants_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmx syntax/pa_variants_conv.ml
+ocamlfind ocamlopt -a syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variant.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/variantslib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/variantslib/META
+Installing variantslib.109.15.03.
+Building conduit.0.5.1:
+  make
+  make install
+Building with Lwt support.
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.ml > lib/conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.mli > lib/conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmi lib/conduit.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmx lib/conduit.ml
+ocamlfind ocamlopt -shared -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmo lib/conduit.ml
+ocamlfind ocamlc -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmo -o lib/conduit.cma
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxa
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_conduit.ml > lib/lwt_unix_conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_conduit.mli > lib/lwt_unix_conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmi lib/lwt_unix_conduit.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_net.ml > lib/lwt_unix_net.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_net.mli > lib/lwt_unix_net.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmi lib/lwt_unix_net.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmx lib/lwt_unix_net.ml
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmx lib/lwt_unix_conduit.ml
++ ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmx lib/lwt_unix_conduit.ml
+File "lib/lwt_unix_conduit.ml", line 53, characters 25-33:
+Warning 27: unused variable certfile.
+File "lib/lwt_unix_conduit.ml", line 53, characters 50-57:
+Warning 27: unused variable keyfile.
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/lwt_unix_net.cmx lib/lwt_unix_conduit.cmx -o lib/conduit-lwt.cmxa
+ocamlfind ocamlopt -shared -linkall -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit-lwt.cmxa -o lib/conduit-lwt.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmo lib/lwt_unix_conduit.ml
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmo lib/lwt_unix_net.ml
++ ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmo lib/lwt_unix_conduit.ml
+File "lib/lwt_unix_conduit.ml", line 53, characters 25-33:
+Warning 27: unused variable certfile.
+File "lib/lwt_unix_conduit.ml", line 53, characters 50-57:
+Warning 27: unused variable keyfile.
+ocamlfind ocamlc -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/lwt_unix_net.cmo lib/lwt_unix_conduit.cmo -o lib/conduit-lwt.cma
+# Parallel statistics: { count(total): 1(21), max: 2, min: 2, average(total): 2.000(1.048) }
+Building with Lwt support.
+ocamlfind ocamlopt -shared -linkall -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit-lwt.cmxa -o lib/conduit-lwt.cmxs
+# No parallelism done
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/conduit
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_net.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_net.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_net.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_net.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_conduit.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_conduit.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_conduit.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/lwt_unix_conduit.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit-lwt.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit-lwt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit-lwt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/conduit-lwt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/conduit/META
+Installing conduit.0.5.1.
+Building cstruct.1.4.0:
+  make
+  make install
+ocaml setup.ml -configure --enable-lwt --enable-unix --disable-async --enable-tests
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
