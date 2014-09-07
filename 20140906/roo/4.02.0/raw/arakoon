@@ -1956,3 +1956,67 @@ ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -p
 ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/nursery/ncfg.ml > src/nursery/ncfg.ml.depends
 ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/nursery/client_cfg.ml > src/nursery/client_cfg.ml.depends
 ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/tools/ini.ml > src/tools/ini.ml.depends
+ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -modules src/inifiles/inifiles.mli > src/inifiles/inifiles.mli.depends
+ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -I src/inifiles -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/tools -I src/main -I src/nursery -I src/client -I src/system -I src/msg -I src/node -o src/inifiles/inifiles.cmi src/inifiles/inifiles.mli
+ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -modules src/tools/llio.mli > src/tools/llio.mli.depends
+ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/tools -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/main -I src/nursery -I src/client -I src/system -I src/inifiles -I src/msg -I src/node -o src/tools/ini.cmo src/tools/ini.ml
+ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -I src/tools -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/main -I src/nursery -I src/client -I src/system -I src/inifiles -I src/msg -I src/node -o src/tools/llio.cmi src/tools/llio.mli
+ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/nursery/routing.ml > src/nursery/routing.ml.depends
+ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/client/client_log.ml > src/client/client_log.ml.depends
+ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/tools/log_extra.ml > src/tools/log_extra.ml.depends
+ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/client -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/tools -I src/main -I src/nursery -I src/system -I src/inifiles -I src/msg -I src/node -o src/client/client_log.cmo src/client/client_log.ml
++ ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/client -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/tools -I src/main -I src/nursery -I src/system -I src/inifiles -I src/msg -I src/node -o src/client/client_log.cmo src/client/client_log.ml
+File "src/client/client_log.ml", line 4, characters 2-36:
+Error: Unbound module Printf.CamlinternalPr
+Command exited with code 2.
+make: *** [build] Error 10
+Removing arakoon.1.6.7.
+[ERROR] The compilation of arakoon.1.6.7 failed.
+  rm -rf /home/opam/.opam/4.02.0+trunk/bin/arakoon
+  make uninstall_client DESTDIR=/home/opam/.opam/4.02.0+trunk
+ocamlfind remove arakoon_client -destdir /home/opam/.opam/4.02.0+trunk/lib/
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/arakoon_client
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   camlbz2.0.6.0
+ - install   lwt.2.4.5
+ - install   camltc.0.9.2
+ - install   ounit.2.0.0
+ - install   camlp4.4.02.0+1
+The following failed
+ - install   arakoon.1.6.7
+
+#=== ERROR while installing arakoon.1.6.7 =====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/arakoon.1.6.7
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/arakoon.1.6.7/arakoon-6342-60459a.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/arakoon.1.6.7/arakoon-6342-60459a.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/arakoon.1.6.7/arakoon-6342-60459a.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/tools -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/main -I src/nursery -I src/client -I src/system -I src/inifiles -I src/msg -I src/node -o src/tools/ini.cmo src/tools/ini.ml
+# ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -I src/tools -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/main -I src/nursery -I src/client -I src/system -I src/inifiles -I src/msg -I src/node -o src/tools/llio.cmi src/tools/llio.mli
+# ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/nursery/routing.ml > src/nursery/routing.ml.depends
+# ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/client/client_log.ml > src/client/client_log.ml.depends
+# ocamlfind ocamldep -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -modules src/tools/log_extra.ml > src/tools/log_extra.ml.depends
+# ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/client -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/tools -I src/main -I src/nursery -I src/system -I src/inifiles -I src/msg -I src/node -o src/client/client_log.cmo src/client/client_log.ml
+# + ocamlfind ocamlc -c -g -annot -thread -warn-error A -pp camlp4of -package dynlink -package camltc -package str -package bz2 -package oUnit -package lwt.unix -package lwt.preemptive -package lwt -pp 'camlp4of -loc loc logger_macro.cmo' -I src/client -I doc -I src -I examples/ocaml -I src/plugins -I src/tlog -I src/paxos -I src/tools -I src/main -I src/nursery -I src/system -I src/inifiles -I src/msg -I src/node -o src/client/client_log.cmo src/client/client_log.ml
+# File "src/client/client_log.ml", line 4, characters 2-36:
+# Error: Unbound module Printf.CamlinternalPr
+# Command exited with code 2.
+### stderr ###
+# fatal: Not a git repository (or any of the parent directories): .git
+# fatal: Not a git repository (or any of the parent directories): .git
+# fatal: Not a git repository (or any of the parent directories): .git
+# ocamlfind: Package `bisect' not found
+# make: *** [build] Error 10
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807161204.export"
+'opam install arakoon' failed.
