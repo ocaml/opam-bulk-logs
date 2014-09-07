@@ -896,3 +896,22 @@ ocamlopt.opt -c -g -annot  main.ml
 ocamlopt.opt -g -annot  -o combine.opt nums.cmxa unix.cmxa combine.cmxa main.cmx
 ocamlopt.opt -c -g -annot  sudoku.ml
 ocamlopt.opt -o sudoku.opt -g -annot  str.cmxa combine.cmxa sudoku.cmx
+ocamlopt.opt -c -g -annot  queens.ml
+ocamlopt.opt -o queens.opt unix.cmxa -g -annot  combine.cmxa queens.cmx
+ocamlc.opt  -a -g -o combine.cma combine.cmo
+ocamlc.opt -c -g  test.ml
+ocamlc.opt -o test.byte -g  nums.cma unix.cma combine.cma test.cmo
+ocamlc.opt -c -g  main.ml
+ocamlc.opt -g  -o combine.byte nums.cma unix.cma combine.cma main.cmo
+./test.byte
+for f in examples/*.cmb; do ./combine.byte --parse-only $f ; done
+mkdir -p /home/opam/.opam/4.01.0/bin
+mkdir -p /home/opam/.opam/4.01.0/lib/combine
+# mkdir -p /home/opam/.opam/4.01.0/share/man/man1
+# cp -f combine.1 /home/opam/.opam/4.01.0/share/man/man1
+cp -f combine.a combine.cmxa /home/opam/.opam/4.01.0/lib/combine
+cp -f combine.cmi combine.cma /home/opam/.opam/4.01.0/lib/combine
+cp -f META /home/opam/.opam/4.01.0/lib/combine
+# cp -f matrix.mli dlx.mli zdd.mli emc.mli d4.mli tiling.mli backtracking.mli ast.cmi parser.mli lexer.mli interp.mli /home/opam/.opam/4.01.0/lib/combine
+cp -f combine.opt /home/opam/.opam/4.01.0/bin/combine
+Installing combine.0.55.
