@@ -434,3 +434,52 @@ ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/MacOSPa
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/UnixPath.cmx src/UnixPath.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/Win32Path.cmx src/Win32Path.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FilePath.cmx src/FilePath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtil.cmx src/FileUtil.ml
++ ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtil.cmx src/FileUtil.ml
+File "src/FileUtil.ml", line 625, characters 16-34:
+Warning 3: deprecated: Lazy.lazy_from_val
+ocamlfind ocamlopt -a src/FileStringExt.cmx src/CommonPath.cmx src/FilePath_type.cmx src/ExtensionPath.cmx src/MacOSPath.cmx src/UnixPath.cmx src/Win32Path.cmx src/FilePath.cmx src/FileUtil.cmx -o src/fileutils.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils.cmxa -o src/fileutils.cmxs
+ocamlfind ocamldep -package unix -package str -modules src/FileUtilStr.ml > src/FileUtilStr.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmo src/FileUtilStr.ml
+ocamlfind ocamlc -a src/FileUtilStr.cmo -o src/fileutils-str.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmx src/FileUtilStr.ml
+ocamlfind ocamlopt -a src/FileUtilStr.cmx -o src/fileutils-str.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils-str.cmxa -o src/fileutils-str.cmxs
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/BenchFind.ml > test/BenchFind.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/BenchFind.cmo test/BenchFind.ml
+ocamlfind ocamlc -g -linkpkg -package unix src/fileutils.cma test/BenchFind.cmo -o test/BenchFind.byte
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -linkpkg -package unix -package str -package oUnit src/fileutils.cma src/fileutils-str.cma test/test.cmo -o test/test.byte
+ocaml setup.ml -install 
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISLibrary.ml", line 400, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtil.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FilePath.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtil.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FilePath.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtil.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FilePath.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/CommonPath.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/ExtensionPath.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FilePath_type.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileStringExt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/MacOSPath.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/UnixPath.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/Win32Path.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtilStr.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils-str.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils-str.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils-str.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/fileutils-str.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtilStr.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/FileUtilStr.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/fileutils/META
+Installing fileutils.0.4.4.
