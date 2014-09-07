@@ -4344,3 +4344,52 @@ mv barrier_stubs.o lib/barrier_stubs.o
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmo xen/xenstore_ring.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a xen/xenstore_ring.cmo -o xen/xenstore_ring.cma
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmx xen/xenstore_ring.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -modules lwt/lwt_ring.mli > lwt/lwt_ring.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmi lwt/lwt_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -modules lwt/lwt_ring.ml > lwt/lwt_ring.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmo lwt/lwt_ring.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lwt/lwt_ring.cmo -o lwt/lwt_shared_memory_ring.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmx lwt/lwt_ring.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lwt/lwt_ring.cmx -o lwt/lwt_shared_memory_ring.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -linkall lwt/lwt_shared_memory_ring.cmxa -o lwt/lwt_shared_memory_ring.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/ring_test.ml > lib_test/ring_test.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.mli > lib_test/old_ring.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmi lib_test/old_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmo lib_test/ring_test.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmo lib_test/ring_test.ml
+File "lib_test/ring_test.ml", line 38, characters 2-7:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.ml > lib_test/old_ring.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmx lib_test/old_ring.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmx lib_test/ring_test.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmx lib_test/ring_test.ml
+File "lib_test/ring_test.ml", line 38, characters 2-7:
+Warning 3: deprecated: String.set
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c lib_test/old_ring_stubs.c
+mv old_ring_stubs.o lib_test/old_ring_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib_test/ring_test_stubs lib_test/old_ring_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.unix -package oUnit lib/shared_memory_ring.cmxa lib_test/old_ring.cmx xen/console_ring.cmxa xen/xenstore_ring.cmxa lib_test/ring_test.cmx lib_test/libring_test_stubs.a -o lib_test/ring_test.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -modules lwt_test/lwt_test.ml > lwt_test/lwt_test.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -I lwt_test -I lib -I lwt -I xen -o lwt_test/lwt_test.cmo lwt_test/lwt_test.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package oUnit -syntax camlp4o -I lwt_test -I lib -I lwt -I xen -o lwt_test/lwt_test.cmx lwt_test/lwt_test.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.syntax -package lwt.unix -package oUnit lib/shared_memory_ring.cmxa lwt/lwt_shared_memory_ring.cmxa lwt_test/lwt_test.cmx -o lwt_test/lwt_test.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -modules examples/client.ml > examples/client.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -I examples -I lib -I lwt -I xen -o examples/client.cmo examples/client.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -I lib -I lwt -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -syntax camlp4o -I examples -I lib -I lwt -I xen -o examples/client.cmx examples/client.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cstruct -package cstruct.syntax -package lwt -package lwt.syntax -package lwt.unix lib/shared_memory_ring.cmxa lwt/lwt_shared_memory_ring.cmxa examples/client.cmx -o examples/client.native
+# No parallelism done
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lib/ring.odoc -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I lwt -I xen lib/ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/lwt_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lib -I lwt -I xen lwt/lwt_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/xenstore_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/xenstore_ring.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/console_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/console_ring.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/xenstore_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/xenstore_ring.mli
+Warning: Module type Ring.Bidirectional_byte_stream not found
+Warning: Module type Ring.Bidirectional_byte_stream not found
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump xen/console_ring.odoc -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I xen -I lwt xen/console_ring.mli
+Warning: Module type Ring.Bidirectional_byte_stream not found
+Warning: Module type Ring.Bidirectional_byte_stream not found
+rm -rf doc/api.docdir
+mkdir -p doc/api.docdir
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load lib/ring.odoc -load lwt/lwt_ring.odoc -load xen/xenstore_ring.odoc -load xen/console_ring.odoc -html -d doc/api.docdir
