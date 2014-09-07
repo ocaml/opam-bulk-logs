@@ -894,3 +894,36 @@ OMAKEFLAGS= OMAKEPATH=lib src/main/omake --dotomake .omake --force-dotomake -j2 
    (use --progress to override).
 *** omake: done (0.84 sec, 0/235 scans, 2/536 rules, 0/1821 digests)
 Installing omake.0.9.8.6-0.rc1.
+Applying fix_build.patch.
+patching file OMakefile
+patching file config.omake
+patching file src/META.in
+patching file src/OMakefile
+patching file test/unit/OMakefile
+Building reins.0.1a:
+  omake
+  omake install
+*** omake: reading OMakefiles
+--- Checking for ocamlfind... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlfind)
+--- Checking for ocamlc.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt)
+--- Checking for ocamlopt.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt)
+--- Checking whether ocamlc understands the "z" warnings... (yes)
+File src/OMakefile: lines 20:2-25:12:
+   Warning: old-style foreach expression.
+   This expression should use a => binding.
+*** omake: finished reading OMakefiles (0.11 sec)
+--- Checking if ocamldep understands -modules... (yes)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+- build src/base types.o
+File "types.ml", line 379, characters 12-25:
++ ocamlfind ocamlopt -dtypes -w +a-4-27-k -for-pack Reins -I . -cWarning 3: deprecated: String.create
+ types.ml
+File "types.ml", line 381, characters 1-32:
+Warning 3: deprecated: String.set
+- buildFile "types.ml", line 379, characters 12-25:
+Warning 3: deprecated: String.create
+File "types.ml", line 381, characters 1-32:
+Warning 3: deprecated: String.set
+ src/base types.cmo
++ ocamlfind ocamlc -dtypes -w +a-4-27-k -for-pack Reins -g -I . -c types.ml
