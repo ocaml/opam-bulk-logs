@@ -5972,3 +5972,63 @@ ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt cor
 ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/benchmark.cmx lib/benchmark.ml
 ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/display.cmx lib/display.ml
 ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/bench.cmx lib/bench.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/bench_result.cmx lib/bench_result.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/partial_array.cmx lib/partial_array.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -ppopt -pa-ounit-lib -ppopt core_bench -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Core_bench -I lib -o lib/std.cmx lib/std.ml
+touch lib/core_bench.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/display_units.cmx lib/variable.cmx lib/analysis_config.cmx lib/analysis_result.cmx lib/linear_algebra.cmx lib/measurement_sample.cmx lib/verbosity.cmx lib/measurement.cmx lib/linear_algebra_wrapper.cmx lib/analysis.cmx lib/display_column.cmx lib/bench_command_column.cmx lib/defaults.cmx lib/display_config.cmx lib/run_config.cmx lib/test.cmx lib/bench_command.cmx lib/benchmark.cmx lib/to_string.cmx lib/display.cmx lib/bench.cmx lib/bench_result.cmx lib/partial_array.cmx lib/std.cmx -o lib/core_bench.cmx  ; then  rm -f lib/core_bench.mli  ; else  rm -f lib/core_bench.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lcore_bench_stubs lib/core_bench.cmx -o lib/core_bench.cmxa
+ocamlfind ocamlopt -shared -I lib lib/core_bench.cmx -o lib/core_bench.cmxs
+ocamlfind ocamldep -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -modules inline-benchmarks/runner.mli > inline-benchmarks/runner.mli.depends
+ocamlfind ocamlc -c -g -I lib -thread -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -I inline-benchmarks -I lib -o inline-benchmarks/runner.cmi inline-benchmarks/runner.mli
+ocamlfind ocamldep -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -modules inline-benchmarks/runner.ml > inline-benchmarks/runner.ml.depends
+ocamlfind ocamlc -c -g -I lib -thread -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -I inline-benchmarks -I lib -o inline-benchmarks/runner.cmo inline-benchmarks/runner.ml
+ocamlfind ocamlc -pack -g inline-benchmarks/runner.cmo -o inline-benchmarks/inline_benchmarks.cmo
+ocamlfind ocamlc -a inline-benchmarks/inline_benchmarks.cmo -o inline-benchmarks/inline_benchmarks.cma
+ocamlfind ocamlopt -c -g -I lib -thread -package pa_ounit.syntax -package pa_ounit -package threads -package comparelib.syntax -package fieldslib.syntax -package sexplib.syntax -package textutils -package core -for-pack Inline_benchmarks -I inline-benchmarks -I lib -o inline-benchmarks/runner.cmx inline-benchmarks/runner.ml
+touch inline-benchmarks/inline_benchmarks.mli  ; if  ocamlfind ocamlopt -pack -g -I inline-benchmarks inline-benchmarks/runner.cmx -o inline-benchmarks/inline_benchmarks.cmx  ; then  rm -f inline-benchmarks/inline_benchmarks.mli  ; else  rm -f inline-benchmarks/inline_benchmarks.mli  ; exit 1; fi
+ocamlfind ocamlopt -a inline-benchmarks/inline_benchmarks.cmx -o inline-benchmarks/inline_benchmarks.cmxa
+ocamlfind ocamlopt -shared inline-benchmarks/inline_benchmarks.cmx -o inline-benchmarks/inline_benchmarks.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/analysis.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/analysis_config.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/analysis_result.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/bench.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/bench_command.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/bench_command_column.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/bench_result.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/benchmark.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/defaults.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/display.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/display_column.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/display_config.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/display_units.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/linear_algebra.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/linear_algebra_wrapper.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/measurement.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/measurement_sample.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/partial_array.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/run_config.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/std.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/test.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/to_string.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/variable.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/verbosity.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/libcore_bench_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/core_bench.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/runner.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/inline_benchmarks.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/core_bench/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcore_bench_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcore_bench_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing core_bench.109.58.01.
