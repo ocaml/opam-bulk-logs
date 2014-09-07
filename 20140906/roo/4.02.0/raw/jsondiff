@@ -417,3 +417,47 @@ File "read.mll", line 367, characters 12-25:
 Warning 3: deprecated: String.create
 File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/META
+Installing yojson.1.1.8.
+Building jsondiff.0.0.1:
+  make
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk
+sed -e 's:@@VERSION@@:0.0.0:' META.in > META
+ocamlfind ocamlc -c -g -package biniou,yojson,unix jsondiff.ml
+ocamlfind ocamlc -o jsondiff.byte -package biniou,yojson,unix -linkpkg \
+	       	jsondiff.cmo 
+ocamlfind ocamlopt -c -g -package biniou,yojson,unix jsondiff.ml
+ocamlfind ocamlopt -o jsondiff -package biniou,yojson,unix -linkpkg \
+		jsondiff.cmx 
+test ! -f jsondiff || cp jsondiff /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f jsondiff.exe || cp jsondiff.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install jsondiff META \
+          $(ls jsondiff.mli jsondiff.cmi jsondiff.cmo jsondiff.cmx jsondiff.o)
+ls: cannot access jsondiff.mli: No such file or directory
+Installed /home/opam/.opam/4.02.0+trunk/lib/jsondiff/jsondiff.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/jsondiff/jsondiff.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jsondiff/jsondiff.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/jsondiff/jsondiff.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jsondiff/META
+Installing jsondiff.0.0.1.
