@@ -909,3 +909,805 @@ Warning 3: deprecated: String.create
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitCore.cmx src/oUnitCore.ml
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitTestData.cmx src/oUnitTestData.ml
 ocamlfind ocamlopt -a src/oUnitUtils.cmx src/oUnitPropList.cmx src/oUnitConf.cmx src/oUnitPlugin.cmx src/oUnitLogger.cmx src/oUnitShared.cmx src/oUnitTest.cmx src/oUnitCache.cmx src/oUnitResultSummary.cmx src/oUnitChooser.cmx src/oUnitLoggerStd.cmx src/oUnitLoggerHTMLData.cmx src/oUnitLoggerHTML.cmx src/oUnitLoggerJUnit.cmx src/oUnitBracket.cmx src/oUnitAssert.cmx src/oUnitState.cmx src/oUnitDiff.cmx src/oUnitCheckEnv.cmx src/oUnitRunner.cmx src/oUnitRunnerProcesses.cmx src/oUnitCore.cmx src/oUnitTestData.cmx -o src/oUnitAdvanced.cmxa
+ocamlfind ocamlopt -shared -linkall src/oUnitAdvanced.cmxa -o src/oUnitAdvanced.cmxs
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit.mli > src/oUnit.mli.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit2.mli > src/oUnit2.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmi src/oUnit2.mli
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmi src/oUnit.mli
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit.ml > src/oUnit.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit2.ml > src/oUnit2.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmo src/oUnit.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmo src/oUnit2.ml
+ocamlfind ocamlc -a src/oUnit2.cmo src/oUnit.cmo -o src/oUnit.cma
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmx src/oUnit2.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmx src/oUnit.ml
+ocamlfind ocamlopt -a src/oUnit2.cmx src/oUnit.cmx -o src/oUnit.cmxa
+ocamlfind ocamlopt -shared src/oUnit.cmx -o src/oUnit.cmxs
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitThreads.ml > src/oUnitThreads.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitRunnerThreads.ml > src/oUnitRunnerThreads.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmo src/oUnitRunnerThreads.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmo src/oUnitThreads.ml
+ocamlfind ocamlc -a src/oUnitRunnerThreads.cmo src/oUnitThreads.cmo -o src/oUnitThreads.cma
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmx src/oUnitRunnerThreads.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmx src/oUnitThreads.ml
+ocamlfind ocamlopt -a src/oUnitRunnerThreads.cmx src/oUnitThreads.cmx -o src/oUnitThreads.cmxa
+ocamlfind ocamlopt -shared src/oUnitThreads.cmx -o src/oUnitThreads.cmxs
+ocaml setup.ml -install 
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISFindlib.ml", line 256, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+W: Cannot find source header for module OUnitLoggerHTMLData in library oUnitAdvanced
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit2.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit2.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnit2.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitThreads.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunnerThreads.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitUtils.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPropList.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPlugin.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitChooser.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitResultSummary.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerStd.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerHTML.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerJUnit.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAssert.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitBracket.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTest.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitState.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunner.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunnerProcesses.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCore.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLogger.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitConf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitShared.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCache.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTestData.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCheckEnv.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitDiff.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAdvanced.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAdvanced.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAdvanced.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAdvanced.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitUtils.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPropList.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPlugin.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitChooser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitResultSummary.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerStd.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerHTML.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerHTMLData.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerJUnit.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAssert.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitBracket.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTest.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitState.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunner.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunnerProcesses.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCore.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLogger.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitConf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitShared.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCache.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTestData.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCheckEnv.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitDiff.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitUtils.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPropList.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitPlugin.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitChooser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitResultSummary.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerStd.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerHTML.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerHTMLData.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLoggerJUnit.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitAssert.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitBracket.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTest.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitState.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunner.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitRunnerProcesses.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCore.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitLogger.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitConf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitShared.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCache.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitTestData.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitCheckEnv.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/oUnitDiff.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/oUnit/META
+Installing ounit.2.0.0.
+Building herelib.109.35.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2385, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ herelib
+Package version: ..................................... 109.35.02
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/here.ml > lib/here.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/here.cmo lib/here.ml
+ocamlfind ocamlc -a lib/here.cmo -o lib/herelib.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/here.cmx lib/here.ml
+ocamlfind ocamlopt -a lib/here.cmx -o lib/herelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/herelib.cmxa -o lib/herelib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/pa_here.mli > lib/pa_here.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmi lib/pa_here.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/pa_here.ml > lib/pa_here.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmo lib/pa_here.ml
+ocamlfind ocamlc -a lib/pa_here.cmo -o lib/pa_herelib.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/pa_here.cmx lib/pa_here.ml
+ocamlfind ocamlopt -a lib/pa_here.cmx -o lib/pa_herelib.cmxa
+ocamlfind ocamlopt -shared -linkall lib/pa_herelib.cmxa -o lib/pa_herelib.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/here.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/herelib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/herelib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/herelib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/herelib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/here.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/here.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_here.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_herelib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_herelib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_herelib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_herelib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_here.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_here.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/herelib/META
+Installing herelib.109.35.02.
+Building ocp-build.1.99.8-beta:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+checking for ocamlc... ocamlc
+OCaml version is 4.02.1+dev0-2014-08-29
+OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /bin/sed
+checking Major version... 4
+checking Minor version... 02
+checking Point version... 1+dev0-2014-08-29
+checking for gawk... no
+checking for mawk... mawk
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating ../src/ocp-build-bundle.ocp
+config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+
+Executables will be installed in /home/opam/.opam/4.02.0+trunk/bin
+Libraries will be installed in /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex
+Data files will be installed in /home/opam/.opam/4.02.0+trunk/share/typerex
+Manual pages will be installed in /home/opam/.opam/4.02.0+trunk/share/man
+Creating root directory _obuild/
+make -C boot
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+awk '{ print "external "$1": unit -> unit = \"" $1 "\"" }' primitives > primitives.ml
+./make-ocpbuild-run.sh
+Configuring for host x86_64-unknown-linux-gnu ...
+Configuring for target x86_64-unknown-linux-gnu ...
+Using compiler gcc.
+The C compiler is ANSI-compliant.
+Checking the sizes of integers and pointers...
+Wow! A 64 bit architecture!
+This is a little-endian architecture.
+Doubles can be word-aligned.
+64-bit integers can be word-aligned.
+Native division and modulus have round-towards-zero semantics, will use them.
+ranlib found
+#! appears to work in shell scripts.
+POSIX signal handling found.
+expm1(), log1p(), hypot(), copysign() found.
+getrusage() found.
+times() found.
+You have BSD sockets.
+socklen_t is defined in <sys/socket.h>
+inet_aton() found.
+IPv6 is supported.
+unistd.h found.
+off_t is defined in <sys/types.h>
+dirent.h found.
+rewinddir() found.
+lockf() found.
+mkfifo() found.
+getcwd() found.
+getwd() found.
+getpriority() found.
+utime() found.
+utimes() found.
+dup2() found.
+fchmod() found.
+truncate() found.
+sys/select.h found.
+select() found.
+symlink() found.
+waitpid() found.
+wait4() found.
+getgroups() found.
+setgroups() found.
+initgroups() found.
+POSIX termios found.
+Asynchronous I/O are supported.
+setitimer() found.
+gethostname() found.
+uname() found.
+gettimeofday() found.
+mktime() found.
+setsid() found.
+putenv() found.
+setlocale() and <locale.h> found.
+dlopen() found in -ldl.
+Dynamic loading of shared libraries is supported.
+mmap() found.
+pwrite() found
+gethostbyname_r() found (with 6 arguments).
+gethostbyaddr_r() found (with 8 arguments).
+mkstemp() found
+Replay debugger supported.
+System stack overflow can be detected.
+POSIX threads library supported.
+Options for linking with POSIX threads: -lpthread
+sigwait() found
+Bytecode threads library supported.
+[WARNING] Cannot compile X11 program.
+[WARNING] X11 not found, the "graph" library will not be supported.
+[WARNING] BFD library not found, 'objinfo' will be unable to display info on .cmxs files.
+Assembler supports CFI
+
+** Configuration summary **
+
+Directories where OCaml will be installed:
+        binaries.................. /usr/local/bin
+        standard library.......... /usr/local/lib/ocaml
+        manual pages.............. /usr/local/man (with extension .1)
+Configuration for the bytecode compiler:
+        C compiler used........... gcc
+        options for compiling..... -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+        options for linking.......  -Wl,-E  -lm  -ldl  -lpthread
+        shared libraries are supported
+        options for compiling..... -fPIC -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+        command for building...... gcc -shared -o lib.so -Wl,-rpath,/a/path objs
+Configuration for the native-code compiler:
+        hardware architecture..... amd64
+        OS variant................ linux
+        C compiler used........... gcc
+        options for compiling..... -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+        options for linking.......   -lm
+        assembler ................ as
+        preprocessed assembler ... gcc -c
+        assembler supports CFI ... yes
+        with frame pointers....... no
+        naked pointers forbidden.. no
+        native dynlink ........... true
+        profiling with gprof ..... supported
+Source-level replay debugger: supported
+Additional libraries supported:
+        unix str num dynlink bigarray systhreads threads
+Configuration for the "num" library:
+        target architecture ...... amd64 (asm level 1)
+The "graph" library: not supported
+
+** OCaml configuration completed successfully **
+
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o interp.o interp.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o misc.o misc.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o stacks.o stacks.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o fix_code.o fix_code.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o startup.o startup.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o freelist.o freelist.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o major_gc.o major_gc.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o minor_gc.o minor_gc.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o memory.o memory.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o alloc.o alloc.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o roots.o roots.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o globroots.o globroots.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o fail.o fail.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o signals.o signals.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o signals_byt.o signals_byt.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o printexc.o printexc.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o backtrace.o backtrace.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o compare.o compare.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o ints.o ints.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o floats.o floats.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o str.o str.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o array.o array.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o io.o io.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o extern.o extern.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o intern.o intern.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o hash.o hash.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o sys.o sys.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o meta.o meta.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o parsing.o parsing.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o gc_ctrl.o gc_ctrl.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o terminfo.o terminfo.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o md5.o md5.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o obj.o obj.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o lexing.o lexing.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o callback.o callback.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o debugger.o debugger.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o weak.o weak.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o compact.o compact.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o finalise.o finalise.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o custom.o custom.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o dynlink.o dynlink.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o bytecompat.o bytecompat.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o unix.o unix.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o main.o main.c
+ar rc libbyterun402.a interp.o misc.o stacks.o fix_code.o startup.o freelist.o major_gc.o minor_gc.o memory.o alloc.o roots.o globroots.o fail.o signals.o signals_byt.o printexc.o backtrace.o compare.o ints.o floats.o str.o array.o io.o extern.o intern.o hash.o sys.o meta.o parsing.o gc_ctrl.o terminfo.o md5.o obj.o lexing.o callback.o debugger.o weak.o compact.o finalise.o custom.o dynlink.o bytecompat.o unix.o main.o
+ranlib libbyterun402.a
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o prims.o prims.c
+gcc -Wl,-E -o ocamlrun \
+		  prims.o libbyterun402.a -lm  -ldl  -lpthread
+echo "/usr/local/lib/ocaml/stublibs" > ld.conf
+echo "/usr/local/lib/ocaml" >> ld.conf
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix -I ocamlrun-4.02/byterun -cclib -lbyterun402
+cat ocp-build.run ocp-build.boot > ocp-build
+chmod +x ocp-build
+./ocp-build -help >/dev/null 2>&1
+make[1]: *** [ocp-build] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+make: *** [boot/ocp-build] Error 2
+[ERROR] The compilation of ocp-build.1.99.8-beta failed.
+Removing ocp-build.1.99.8-beta.
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build.byte
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-bundle
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-bundle
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-win32
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-win32
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-misc
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-misc
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build
+Building pipebang.110.01.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2391, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ pipebang
+Package version: ..................................... 110.01.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -modules lib/pa_pipebang.ml > lib/pa_pipebang.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmo lib/pa_pipebang.ml
+ocamlfind ocamlc -a lib/pa_pipebang.cmo -o lib/pa_pipebang.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.quotations -package camlp4.lib -package camlp4.extend -I lib -o lib/pa_pipebang.cmx lib/pa_pipebang.ml
+ocamlfind ocamlopt -a lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxa
+ocamlfind ocamlopt -shared lib/pa_pipebang.cmx -o lib/pa_pipebang.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/META
+Installing pipebang.110.01.00.
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2391, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ type_conv
+Package version: ..................................... 111.13.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
++ ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+File "lib/pa_type_conv.ml", line 291, characters 6-20:
+Warning 3: deprecated: Format.bprintf
+File "lib/pa_type_conv.ml", line 1027, characters 24-253:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+MeAtt (_, _, _, _)
+File "lib/pa_type_conv.ml", line 1045, characters 30-458:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(MtAlias (_, _)|MtAtt (_, _, _, _))
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
++ ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+File "lib/pa_type_conv.ml", line 291, characters 6-20:
+Warning 3: deprecated: Format.bprintf
+File "lib/pa_type_conv.ml", line 1027, characters 24-253:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+MeAtt (_, _, _, _)
+File "lib/pa_type_conv.ml", line 1045, characters 30-458:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(MtAlias (_, _)|MtAtt (_, _, _, _))
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/type_conv/META
+Installing type_conv.111.13.00.
+Building bin_prot.111.03.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2391, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ bin_prot
+Package version: ..................................... 111.03.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_unix: ............................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_bigarray: ........................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.02.0+trunk/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'bin_prot' in library bin_prot
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 74, characters 26-29:
+Warning: the tag "mlh" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlc -c lib/blit_stubs.c
+mv blit_stubs.o lib/blit_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/bin_prot_stubs lib/blit_stubs.o
+ocamlfind ocamldep -package bigarray -package unix -modules lib/binable.ml > lib/binable.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/read.mli > lib/read.mli.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/common.mli > lib/common.mli.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/nat0.mli > lib/nat0.mli.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/common.cmi lib/common.mli
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/nat0.cmi lib/nat0.mli
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/size.mli > lib/size.mli.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/type_class.mli > lib/type_class.mli.depends
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/read.cmi lib/read.mli
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/size.cmi lib/size.mli
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/write.mli > lib/write.mli.depends
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/write.cmi lib/write.mli
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/type_class.cmi lib/type_class.mli
+ocamlfind ocamldep -package bigarray -package unix -modules lib/nat0.ml > lib/nat0.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/common.ml > lib/common.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/size.ml > lib/size.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/write.ml > lib/write.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/read.ml > lib/read.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/std.ml > lib/std.ml.depends
+ocamlfind ocamldep -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -modules lib/type_class.ml > lib/type_class.ml.depends
+ocamlfind ocamldep -package bigarray -package unix -modules lib/utils.mli > lib/utils.mli.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/binable.cmo lib/binable.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/utils.cmi lib/utils.mli
+ocamlfind ocamldep -package bigarray -package unix -modules lib/utils.ml > lib/utils.ml.depends
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/nat0.cmo lib/nat0.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/common.cmo lib/common.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/size.cmo lib/size.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/write.cmo lib/write.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/read.cmo lib/read.ml
++ ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/read.cmo lib/read.ml
+File "lib/read.ml", line 325, characters 12-25:
+Warning 3: deprecated: String.create
+File "lib/read.ml", line 427, characters 2-20:
+Warning 3: deprecated: Lazy.lazy_from_val
+File "lib/read.ml", line 499, characters 14-26:
+Warning 3: deprecated: Array.create
+File "lib/read.ml", line 597, characters 12-24:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -I lib -o lib/type_class.cmo lib/type_class.ml
+ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/utils.cmo lib/utils.ml
+ocamlfind ocamlc -pack -g lib/common.cmo lib/nat0.cmo lib/read.cmo lib/size.cmo lib/write.cmo lib/type_class.cmo lib/binable.cmo lib/std.cmo lib/utils.cmo -o lib/bin_prot.cmo
+ocamlfind ocamlc -a -dllib -lbin_prot_stubs -cclib -lbin_prot_stubs lib/bin_prot.cmo -o lib/bin_prot.cma
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/common.cmx lib/common.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/nat0.cmx lib/nat0.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/read.cmx lib/read.ml
++ ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/read.cmx lib/read.ml
+File "lib/read.ml", line 325, characters 12-25:
+Warning 3: deprecated: String.create
+File "lib/read.ml", line 427, characters 2-20:
+Warning 3: deprecated: Lazy.lazy_from_val
+File "lib/read.ml", line 499, characters 14-26:
+Warning 3: deprecated: Array.create
+File "lib/read.ml", line 597, characters 12-24:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/size.cmx lib/size.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/write.cmx lib/write.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/type_class.cmx lib/type_class.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/binable.cmx lib/binable.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/std.cmx lib/std.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/utils.cmx lib/utils.ml
+touch lib/bin_prot.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/common.cmx lib/nat0.cmx lib/read.cmx lib/size.cmx lib/write.cmx lib/type_class.cmx lib/binable.cmx lib/std.cmx lib/utils.cmx -o lib/bin_prot.cmx  ; then  rm -f lib/bin_prot.mli  ; else  rm -f lib/bin_prot.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lbin_prot_stubs lib/bin_prot.cmx -o lib/bin_prot.cmxa
+ocamlfind ocamlopt -shared -I lib lib/bin_prot.cmx -o lib/bin_prot.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.mli > syntax/pa_bin_prot.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmi syntax/pa_bin_prot.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.ml > syntax/pa_bin_prot.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmo syntax/pa_bin_prot.ml
