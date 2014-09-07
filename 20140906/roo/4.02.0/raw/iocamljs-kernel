@@ -3013,3 +3013,65 @@ jsoo_mktop \
 findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
 Effective set of compiler predicates: pkg_compiler-libs,pkg_compiler-libs.common,pkg_compiler-libs.bytecomp,pkg_compiler-libs.toplevel,pkg_js_of_ocaml.syntax,pkg_lwt,pkg_js_of_ocaml,pkg_findlib,pkg_js_of_ocaml.compiler,pkg_js_of_ocaml.toplevel,autolink,byte
 + ocamlc.opt -linkall -verbose -o iocaml.byte.tmp -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs -I /home/opam/.opam/4.02.0+trunk/lib/lwt -I /home/opam/.opam/4.02.0+trunk/lib/findlib -I /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamlcommon.cma /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamlbytecomp.cma /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamltoplevel.cma /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js_of_ocaml.cma /home/opam/.opam/4.02.0+trunk/lib/findlib/findlib.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmo iocamljs.cma
++ jsoo_mkcmis stdlib
++ ocamlfind ocamlc -linkall -linkpkg -package js_of_ocaml.toplevel -verbose iocamljs.cma -o iocaml.byte.tmp
++ ocamlfind stdlib/expunge iocaml.byte.tmp iocaml.byte stdLabels moreLabels stringLabels bytesLabels listLabels arrayLabels complex filename weak genlex camlinternalMod oo camlinternalOO callback scanf format hashtbl random digest printexc arg printf camlinternalFormat buffer stream lazy camlinternalLazy queue stack map set parsing lexing nativeint int64 int32 obj marshal sort sys string bytes char list array pervasives camlinternalFormatBasics outcometree topdirs toploop iocaml
++ js_of_ocaml -toplevel -no-cmis -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -file outcometree.cmi:/cmis -file topdirs.cmi:/cmis -file toploop.cmi:/cmis -file iocaml.cmi:/cmis +weak.js +toplevel.js -I ./ iocaml.byte
+cat *.cmis.js kernel.js iocaml.js > static/services/kernels/js/kernel.min.js
+rm -f *.cmis.js
+rm -f *.cm[ioa] iocaml_full.byte iocaml.byte iocaml.js 
+rm -fr *~
+ocamlfind ocamlc -c exec.mli
+ocamlfind ocamlc -c \
+		-syntax camlp4o -package js_of_ocaml.syntax,optcomp \
+		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler,js_of_ocaml.toplevel \
+		-I /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs \
+		exec.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamlfind ocamlc -c iocaml.mli
+ocamlfind ocamlc -c \
+		-syntax camlp4o -package js_of_ocaml.syntax \
+		-package str,dynlink,js_of_ocaml,js_of_ocaml.compiler,js_of_ocaml.toplevel \
+		-I /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs \
+		iocaml.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0+trunk/lib/ocaml
+File "iocaml.ml", line 137, characters 8-26:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 138, characters 46-64:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 139, characters 46-64:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 158, characters 8-26:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 159, characters 8-26:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 160, characters 8-26:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 161, characters 8-26:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 164, characters 8-41:
+Warning 3: deprecated: String.set
+File "iocaml.ml", line 220, characters 18-31:
+Warning 3: deprecated: String.create
+File "iocaml.ml", line 222, characters 12-19:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c iocaml_main.ml
+ocamlfind ocamlc -a -o iocamljs.cma exec.cmo iocaml.cmo iocaml_main.cmo
+jsoo_mktop \
+		-verbose \
+		-dont-export-unit gc \
+		-top-syntax lwt.syntax \
+		-top-syntax js_of_ocaml.syntax \
+		-export-package lwt \
+		-export-package js_of_ocaml \
+		-export-unit iocaml \
+		iocamljs.cma \
+		-jsopt +weak.js -jsopt +toplevel.js \
+		-jsopt -I -jsopt ./ \
+		-o iocaml.byte
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+Effective set of compiler predicates: pkg_compiler-libs,pkg_compiler-libs.common,pkg_compiler-libs.bytecomp,pkg_compiler-libs.toplevel,pkg_js_of_ocaml.syntax,pkg_lwt,pkg_js_of_ocaml,pkg_findlib,pkg_js_of_ocaml.compiler,pkg_js_of_ocaml.toplevel,autolink,byte
++ ocamlc.opt -linkall -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4 -I /home/opam/.opam/4.02.0+trunk/lib/lwt -I /home/opam/.opam/4.02.0+trunk/lib/lwt -I /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml -verbose -o iocaml.byte.tmp -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs -I /home/opam/.opam/4.02.0+trunk/lib/lwt -I /home/opam/.opam/4.02.0+trunk/lib/findlib -I /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamlcommon.cma /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamlbytecomp.cma /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/ocamltoplevel.cma /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js_of_ocaml.cma /home/opam/.opam/4.02.0+trunk/lib/findlib/findlib.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cma /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmo dynlink.cma camlp4lib.cma Camlp4Parsers/Camlp4OCamlRevisedParser.cmo Camlp4Parsers/Camlp4OCamlParser.cmo camlp4_flush_1.cmo lwt-syntax-options.cma camlp4_flush_2.cmo lwt-syntax.cma camlp4_flush_3.cmo pa_js.cmo Camlp4Top/Top.cmo iocamljs.cma
