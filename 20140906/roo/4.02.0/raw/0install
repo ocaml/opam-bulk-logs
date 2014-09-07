@@ -1454,3 +1454,590 @@ File "bi_outbuf.ml", line 116, characters 13-26:
 Warning 3: deprecated: String.create
 File "bi_inbuf.ml", line 99, characters 8-21:
 Warning 3: deprecated: String.create
+File "bi_io.ml", line 86, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 88, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 90, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 92, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 216, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 220, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 231, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 235, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 562, characters 12-25:
+Warning 3: deprecated: String.create
+File "bi_stream.ml", line 56, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
+ocamlfind ocamlopt -o test_biniou -dtypes -g \
+		-package "easy-format unix" -linkpkg \
+		biniou.cmxa test_biniou.ml
+sed -e 's:@@VERSION@@:1.0.9:' META.in > META
+test ! -f bdump || cp bdump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f bdump.exe || cp bdump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install biniou META \
+          $(ls bi_util.mli bi_share.mli bi_outbuf.mli bi_inbuf.mli bi_vint.mli bi_io.mli bi_stream.mli bi_util.cmi bi_share.cmi bi_outbuf.cmi bi_inbuf.cmi bi_vint.cmi bi_io.cmi bi_dump.cmi bi_stream.cmi bi_util.cmo bi_share.cmo bi_outbuf.cmo bi_inbuf.cmo bi_vint.cmo bi_io.cmo bi_dump.cmo bi_stream.cmo bi_util.cmx bi_share.cmx bi_outbuf.cmx bi_inbuf.cmx bi_vint.cmx bi_io.cmx bi_dump.cmx bi_stream.cmx bi_util.o bi_share.o bi_outbuf.o bi_inbuf.o bi_vint.o bi_io.o bi_dump.o bi_stream.o biniou.cma biniou.cmxa biniou.cmxs biniou.a)
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/META
+Installing biniou.1.0.9.
+Building extlib.1.6.1:
+  make minimal=1 build install
+ocamlc -g -c enum.mli enum.ml
+ocamlc -g -c bitSet.mli bitSet.ml
+File "bitSet.ml", line 23, characters 40-53:
+Warning 3: deprecated: String.create
+File "bitSet.ml", line 28, characters 64-75:
+Warning 3: deprecated: String.fill
+ocamlc -g -c dynArray.mli dynArray.ml
+ocamlc -g -c extArray.mli extArray.ml
+camlp4of pr_o.cmo -D OCAML4 -impl extHashtbl.mlpp -o extHashtbl.ml
+ocamlc -g -c extHashtbl.mli extHashtbl.ml
+ocamlc -g -c extList.mli extList.ml
+ocamlc -g -c extString.mli extString.ml
+File "extString.ml", line 28, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 30, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 126, characters 2-8:
+Warning 3: deprecated: create
+File "extString.ml", line 173, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 175, characters 21-31:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 180, characters 10-16:
+Warning 3: deprecated: create
+File "extString.ml", line 182, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 212, characters 12-25:
+Warning 3: deprecated: String.create
+File "extString.ml", line 215, characters 14-26:
+Warning 3: deprecated: String.set
+File "extString.ml", line 231, characters 12-18:
+Warning 3: deprecated: create
+File "extString.ml", line 250, characters 28-39:
+Warning 3: deprecated: String.copy
+ocamlc -g -c global.mli global.ml
+ocamlc -g -c IO.mli IO.ml
+File "IO.ml", line 65, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 119, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 180, characters 13-26:
+Warning 3: deprecated: String.create
+File "IO.ml", line 324, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 752, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 769, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 771, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 788, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlc -g -c option.mli option.ml
+ocamlc -g -c pMap.mli pMap.ml
+ocamlc -g -c std.mli std.ml
+File "std.ml", line 52, characters 16-29:
+Warning 3: deprecated: String.create
+File "std.ml", line 65, characters 37-50:
+Warning 3: deprecated: String.create
+File "std.ml", line 67, characters 13-26:
+Warning 3: deprecated: String.create
+File "std.ml", line 162, characters 14-27:
+Warning 3: deprecated: Obj.final_tag
+ocamlc -g -c base64.mli base64.ml
+File "base64.ml", line 98, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlc -g -c refList.mli refList.ml
+ocamlc -g -c optParse.mli optParse.ml
+ocamlc -g -c dllist.mli dllist.ml
+ocamlc -g -c extLib.ml
+ocamlc -g -a -o extLib.cma enum.cmo bitSet.cmo dynArray.cmo extArray.cmo extHashtbl.cmo extList.cmo extString.cmo global.cmo IO.cmo option.cmo pMap.cmo std.cmo base64.cmo refList.cmo optParse.cmo dllist.cmo extLib.cmo
+ocamlopt -g -c enum.mli enum.ml
+ocamlopt -g -c bitSet.mli bitSet.ml
+File "bitSet.ml", line 23, characters 40-53:
+Warning 3: deprecated: String.create
+File "bitSet.ml", line 28, characters 64-75:
+Warning 3: deprecated: String.fill
+ocamlopt -g -c dynArray.mli dynArray.ml
+ocamlopt -g -c extArray.mli extArray.ml
+ocamlopt -g -c extHashtbl.mli extHashtbl.ml
+ocamlopt -g -c extList.mli extList.ml
+ocamlopt -g -c extString.mli extString.ml
+File "extString.ml", line 28, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 30, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 126, characters 2-8:
+Warning 3: deprecated: create
+File "extString.ml", line 173, characters 9-15:
+Warning 3: deprecated: create
+File "extString.ml", line 175, characters 21-31:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 180, characters 10-16:
+Warning 3: deprecated: create
+File "extString.ml", line 182, characters 2-12:
+Warning 3: deprecated: unsafe_set
+File "extString.ml", line 212, characters 12-25:
+Warning 3: deprecated: String.create
+File "extString.ml", line 215, characters 14-26:
+Warning 3: deprecated: String.set
+File "extString.ml", line 231, characters 12-18:
+Warning 3: deprecated: create
+File "extString.ml", line 250, characters 28-39:
+Warning 3: deprecated: String.copy
+ocamlopt -g -c global.mli global.ml
+ocamlopt -g -c IO.mli IO.ml
+File "IO.ml", line 65, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 119, characters 9-22:
+Warning 3: deprecated: String.create
+File "IO.ml", line 180, characters 13-26:
+Warning 3: deprecated: String.create
+File "IO.ml", line 324, characters 6-23:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 752, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 769, characters 12-25:
+Warning 3: deprecated: String.create
+File "IO.ml", line 771, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "IO.ml", line 788, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlopt -g -c option.mli option.ml
+ocamlopt -g -c pMap.mli pMap.ml
+ocamlopt -g -c std.mli std.ml
+File "std.ml", line 52, characters 16-29:
+Warning 3: deprecated: String.create
+File "std.ml", line 65, characters 37-50:
+Warning 3: deprecated: String.create
+File "std.ml", line 67, characters 13-26:
+Warning 3: deprecated: String.create
+File "std.ml", line 162, characters 14-27:
+Warning 3: deprecated: Obj.final_tag
+ocamlopt -g -c base64.mli base64.ml
+File "base64.ml", line 98, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+ocamlopt -g -c refList.mli refList.ml
+ocamlopt -g -c optParse.mli optParse.ml
+ocamlopt -g -c dllist.mli dllist.ml
+ocamlopt -g -c extLib.ml
+ocamlopt -g -a -o extLib.cmxa enum.cmx bitSet.cmx dynArray.cmx extArray.cmx extHashtbl.cmx extList.cmx extString.cmx global.cmx IO.cmx option.cmx pMap.cmx std.cmx base64.cmx refList.cmx optParse.cmx dllist.cmx extLib.cmx
+ocamlopt -g -shared -linkall extLib.cmxa -o extLib.cmxs
+ocamlfind install -patch-version 1.6.1 extlib META extLib.cma enum.mli bitSet.mli dynArray.mli extArray.mli extHashtbl.mli extList.mli extString.mli global.mli IO.mli option.mli pMap.mli std.mli base64.mli refList.mli optParse.mli dllist.mli enum.cmi bitSet.cmi dynArray.cmi extArray.cmi extHashtbl.cmi extList.cmi extString.cmi global.cmi IO.cmi option.cmi pMap.cmi std.cmi base64.cmi refList.cmi optParse.cmi dllist.cmi extLib.cmi -optional extLib.cmxa enum.cmx bitSet.cmx dynArray.cmx extArray.cmx extHashtbl.cmx extList.cmx extString.cmx global.cmx IO.cmx option.cmx pMap.cmx std.cmx base64.cmx refList.cmx optParse.cmx dllist.cmx extLib.cmx extLib.cmxs extLib.a extLib.lib
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dllist.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/optParse.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/refList.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/base64.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/std.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/pMap.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/option.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/IO.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/global.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extString.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extList.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extHashtbl.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extArray.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dynArray.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/bitSet.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/enum.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dllist.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/optParse.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/refList.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/base64.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/std.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/pMap.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/option.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/IO.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/global.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extString.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extList.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extHashtbl.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extArray.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dynArray.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/bitSet.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/enum.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dllist.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/optParse.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/refList.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/base64.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/std.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/pMap.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/option.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/IO.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/global.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extString.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extList.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extHashtbl.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extArray.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/dynArray.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/bitSet.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/enum.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/extlib/META
+Installing extlib.1.6.1.
+Building lwt.2.4.5:
+  ./configure --disable-libev --enable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib --disable-text
+  make build
+  make install
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2419, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux): ....... available
+testing for credentials getting (NetBSD): ...... unavailable
+testing for credentials getting (OpenBSD): ..... unavailable
+testing for credentials getting (FreeBSD): ..... unavailable
+testing for credentials getting (getpeereid): .. unavailable
+testing for fdatasync: ......................... available
+testing for netdb_reentrant: ................... available
+Generating C stubs...
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ lwt
+Package version: ..................................... 2.4.5
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Compiles for Android: ................................ false
+build and install everything: ........................ false
+Build the syntax extension: .......................... true
+Unix support: ........................................ true
+React helpers: ....................................... true
+Glib integration: .................................... false
+SSL support: ......................................... true
+Text mode utilities (deprecated): .................... false
+Preemptive threads support: .......................... true
+Asynchronous unix functions: ......................... true
+Enhanced toplevel: ................................... false
+Compile with libev support: .......................... false
+Use the libev backend by default: .................... true
+Use pthread: ......................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_camlp4: .......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations_o: ............................. /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_unix: ............................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_bigarray: ........................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_react: ........................................... /home/opam/.opam/4.02.0+trunk/lib/react
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_ssl: ............................................. /home/opam/.opam/4.02.0+trunk/lib/ssl
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2419, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux): ....... available
+testing for credentials getting (NetBSD): ...... unavailable
+testing for credentials getting (OpenBSD): ..... unavailable
+testing for credentials getting (FreeBSD): ..... unavailable
+testing for credentials getting (getpeereid): .. unavailable
+testing for fdatasync: ......................... available
+testing for netdb_reentrant: ................... available
+Generating C stubs...
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ lwt
+Package version: ..................................... 2.4.5
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Compiles for Android: ................................ false
+build and install everything: ........................ false
+Build the syntax extension: .......................... true
+Unix support: ........................................ true
+React helpers: ....................................... true
+Glib integration: .................................... false
+SSL support: ......................................... true
+Text mode utilities (deprecated): .................... false
+Preemptive threads support: .......................... true
+Asynchronous unix functions: ......................... true
+Enhanced toplevel: ................................... false
+Compile with libev support: .......................... false
+Use the libev backend by default: .................... true
+Use pthread: ......................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_camlp4: .......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations_o: ............................. /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_unix: ............................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_bigarray: ........................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_react: ........................................... /home/opam/.opam/4.02.0+trunk/lib/react
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_ssl: ............................................. /home/opam/.opam/4.02.0+trunk/lib/ssl
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+./setup.exe -build 
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind: Package `wikidoc' not found
+File "_tags", line 13, characters 84-101:
+Warning: the tag "pkg_text.bigarray" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 13, characters 74-82:
+Warning: the tag "pkg_text" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 18, characters 14-25:
+Warning: the tag "use_C_libev" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 19, characters 14-24:
+Warning: the tag "use_C_glib" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 220, characters 21-29:
+Warning: the tag "pkg_text" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 221, characters 21-38:
+Warning: the tag "pkg_text.bigarray" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 229, characters 29-37:
+Warning: the tag "pkg_text" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 230, characters 29-46:
+Warning: the tag "pkg_text.bigarray" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 251, characters 29-37:
+Warning: the tag "pkg_text" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 252, characters 29-46:
+Warning: the tag "pkg_text.bigarray" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 263, characters 20-28:
+Warning: the tag "pkg_text" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 264, characters 20-37:
+Warning: the tag "pkg_text.bigarray" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -modules syntax/pa_optcomp.ml > syntax/pa_optcomp.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_optcomp.cmo syntax/pa_optcomp.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_optcomp.cmo syntax/pa_optcomp.ml
+File "syntax/pa_optcomp.ml", line 217, characters 50-52:
+Warning 3: deprecated: Pervasives.or
+File "syntax/pa_optcomp.ml", line 217, characters 50-52:
+Warning 3: deprecated: operator (or); you should use (||) instead
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a syntax/pa_optcomp.cmo -o syntax/optcomp.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_optcomp.cmx syntax/pa_optcomp.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_optcomp.cmx syntax/pa_optcomp.ml
+File "syntax/pa_optcomp.ml", line 217, characters 50-52:
+Warning 3: deprecated: Pervasives.or
+File "syntax/pa_optcomp.ml", line 217, characters 50-52:
+Warning 3: deprecated: operator (or); you should use (||) instead
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a syntax/pa_optcomp.cmx -o syntax/optcomp.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared syntax/optcomp.cmxa syntax/pa_optcomp.cmx -o syntax/optcomp.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_condition.mli > src/core/lwt_condition.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt.mli > src/core/lwt.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_sequence.mli > src/core/lwt_sequence.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_sequence.cmi src/core/lwt_sequence.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_mutex.mli > src/core/lwt_mutex.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt.cmi src/core/lwt.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_mutex.cmi src/core/lwt_mutex.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_condition.cmi src/core/lwt_condition.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_condition.ml > src/core/lwt_condition.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_list.mli > src/core/lwt_list.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_list.cmi src/core/lwt_list.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_list.ml > src/core/lwt_list.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt.ml > src/core/lwt.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_mutex.ml > src/core/lwt_mutex.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_mvar.mli > src/core/lwt_mvar.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_mvar.cmi src/core/lwt_mvar.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_mvar.ml > src/core/lwt_mvar.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_pool.mli > src/core/lwt_pool.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_pool.cmi src/core/lwt_pool.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_pool.ml > src/core/lwt_pool.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_sequence.ml > src/core/lwt_sequence.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_stream.mli > src/core/lwt_stream.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_stream.cmi src/core/lwt_stream.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_stream.ml > src/core/lwt_stream.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_switch.mli > src/core/lwt_switch.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_switch.cmi src/core/lwt_switch.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_switch.ml > src/core/lwt_switch.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_util.mli > src/core/lwt_util.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_util.cmi src/core/lwt_util.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_util.ml > src/core/lwt_util.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_pqueue.mli > src/core/lwt_pqueue.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_pqueue.cmi src/core/lwt_pqueue.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/core/lwt_pqueue.ml > src/core/lwt_pqueue.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_condition.cmo src/core/lwt_condition.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_list.cmo src/core/lwt_list.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt.cmo src/core/lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_mutex.cmo src/core/lwt_mutex.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_mvar.cmo src/core/lwt_mvar.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_pool.cmo src/core/lwt_pool.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_sequence.cmo src/core/lwt_sequence.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_stream.cmo src/core/lwt_stream.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_switch.cmo src/core/lwt_switch.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_util.cmo src/core/lwt_util.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -o src/core/lwt_pqueue.cmo src/core/lwt_pqueue.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a src/core/lwt_sequence.cmo src/core/lwt.cmo src/core/lwt_mutex.cmo src/core/lwt_condition.cmo src/core/lwt_list.cmo src/core/lwt_mvar.cmo src/core/lwt_pool.cmo src/core/lwt_stream.cmo src/core/lwt_switch.cmo src/core/lwt_util.cmo src/core/lwt_pqueue.cmo -o src/core/lwt.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_sequence.cmx src/core/lwt_sequence.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt.cmx src/core/lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_mutex.cmx src/core/lwt_mutex.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_list.cmx src/core/lwt_list.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_condition.cmx src/core/lwt_condition.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_mvar.cmx src/core/lwt_mvar.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_pool.cmx src/core/lwt_pool.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_stream.cmx src/core/lwt_stream.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_switch.cmx src/core/lwt_switch.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_util.cmx src/core/lwt_util.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -o src/core/lwt_pqueue.cmx src/core/lwt_pqueue.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a src/core/lwt_sequence.cmx src/core/lwt.cmx src/core/lwt_mutex.cmx src/core/lwt_condition.cmx src/core/lwt_list.cmx src/core/lwt_mvar.cmx src/core/lwt_pool.cmx src/core/lwt_stream.cmx src/core/lwt_switch.cmx src/core/lwt_util.cmx src/core/lwt_pqueue.cmx -o src/core/lwt.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared src/core/lwt.cmxa src/core/lwt_sequence.cmx src/core/lwt.cmx src/core/lwt_mutex.cmx src/core/lwt_condition.cmx src/core/lwt_list.cmx src/core/lwt_mvar.cmx src/core/lwt_pool.cmx src/core/lwt_stream.cmx src/core/lwt_switch.cmx src/core/lwt_util.cmx src/core/lwt_pqueue.cmx -o src/core/lwt.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -modules src/logger/lwt_log_core.mli > src/logger/lwt_log_core.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/core -o src/logger/lwt_log_core.cmi src/logger/lwt_log_core.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -modules syntax/pa_lwt_options.ml > syntax/pa_lwt_options.ml.depends
