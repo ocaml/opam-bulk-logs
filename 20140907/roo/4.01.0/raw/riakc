@@ -647,3 +647,158 @@ checking for string.h... yes
 checking for memory.h... yes
 checking for strings.h... yes
 checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking byteswap.h usability... yes
+checking byteswap.h presence... yes
+checking for byteswap.h... yes
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for ocamlfind... ocamlfind
+checking for camlp4of.opt... camlp4of.opt
+checking for OCaml findlib package extlib... not found
+checking for OCaml findlib package cil... not found
+checking for time... /usr/bin/time
+checking for diff... /usr/bin/diff
+checking for gprof... gprof
+checking for bisect-report... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating META
+config.status: creating bitstring_config.ml
+config.status: creating cil-tools/Makefile
+config.status: creating config.h
+ocamlfind ocamlc -g  -c bitstring_types.ml
+ocamlfind ocamlc -g  -c bitstring_config.ml
+gcc -g -O2 -Wall -Werror -fPIC -I. -I/home/opam/.opam/4.01.0/lib/ocaml   -c -o bitstring_c.o bitstring_c.c
+ocamlfind ocamlc -g  -c bitstring.mli
+ocamlfind ocamlc -g  -c bitstring.ml
+ocamlfind ocamlc -g  -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+Building herelib.109.35.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ herelib
+Package version: ..................................... 109.35.02
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -modules lib/here.ml > lib/here.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package camlp4.lib -I lib -o lib/here.cmo lib/here.ml
