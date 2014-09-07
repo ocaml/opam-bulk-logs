@@ -174,3 +174,83 @@ In file included from /home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/mlvalues.h:18
 comerror.c:171:16: note: in expansion of macro 'format_caml_exception'
    char * msg = format_caml_exception(exn_bucket);
                 ^
+rm -f libcamlidl.a
+ar rc libcamlidl.a idlalloc.o comintf.o comerror.o
+ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/runtime'
+cd lib; make all
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/lib'
+ocamlc -g -c com.mli
+ocamlc -g -c com.ml
+ocamlc -g -a -o com.cma com.cmo
+ocamlopt -c com.ml
+ocamlopt -a -o com.cmxa com.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/lib'
+cd tools; make all
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/tools'
+cd compiler; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/compiler'
+cp camlidl /home/opam/.opam/4.02.0+trunk/bin
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/compiler'
+cd runtime; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/runtime'
+cp camlidlruntime.h /home/opam/.opam/4.02.0+trunk/lib/camlidl/caml/camlidlruntime.h
+cp libcamlidl.a /home/opam/.opam/4.02.0+trunk/lib/camlidl/libcamlidl.a
+cd /home/opam/.opam/4.02.0+trunk/lib/camlidl; ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/runtime'
+cd lib; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/lib'
+cp com.cmi com.cma com.cmxa com.a /home/opam/.opam/4.02.0+trunk/lib/camlidl
+cd /home/opam/.opam/4.02.0+trunk/lib/camlidl; ranlib com.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/lib'
+cd tools; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/camlidl.1.05/tools'
+Installing camlidl.1.05.
+Copying ~/.opam/repo/default/packages/conf-gmp/conf-gmp.1/files/test.c to ~/.opam/4.02.0+trunk/build/conf-gmp.1/
+Building conf-gmp.1:
+  cc -c test.c
+Installing conf-gmp.1.
+Copying ~/.opam/repo/default/packages/conf-mpfr/conf-mpfr.1/files/test.c to ~/.opam/4.02.0+trunk/build/conf-mpfr.1/
+Building conf-mpfr.1:
+  cc test.c -lgmp -lmpfr
+Installing conf-mpfr.1.
+Applying opam.patch.
+patching file apron/Makefile
+patching file apron/box/Makefile
+patching file apron/examples/Makefile
+patching file apron/mlapronidl/Makefile
+patching file apron/newpolka/Makefile
+patching file apron/octagons/Makefile
+patching file apron/ppl/Makefile
+patching file apron/products/Makefile
+patching file apron/taylor1plus/Makefile
+patching file apron/test/Makefile
+patching file mlgmpidl/Makefile
+Building apron.0.9.10:
+  make rebuild
+  make
+  make install
+sed  -e '1 aHAS_MPFR=1\n' Makefile.config >mlgmpidl/Makefile.config
+cp -f Makefile.config apron/Makefile.config 
+(cd mlgmpidl; make depend all install)
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/mlgmpidl'
+mkdir -p tmp
+for i in mpz mpq mpf mpfr gmp_random; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -prepro cpp -I /home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/mlgmpidl tmp/${i}.idl; \
+		sed  -f sedscript_c tmp/${i}_stubs.c >${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module mpz
+tmp/mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
