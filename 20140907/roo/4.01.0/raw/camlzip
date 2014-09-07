@@ -15,3 +15,43 @@ dpkg-preconfigure: unable to re-open stdin:
 Selecting previously unselected package zlib1g-dev:amd64.
 (Reading database ... 20147 files and directories currently installed.)
 Preparing to unpack .../zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb ...
+Unpacking zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
+Setting up zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
+++ opam install camlzip -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install camlzip
+The following actions will be performed:
+ - install   camlzip.1.05
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+sending incremental file list
+camlzip.1.05+opam.tar.gz
+
+sent 26,593 bytes  received 35 bytes  53,256.00 bytes/sec
+total size is 26,460  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
