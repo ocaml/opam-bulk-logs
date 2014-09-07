@@ -1220,3 +1220,29 @@ Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxs
 Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxa
 Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cma
 Installing ctypes.0.3.3.
+Building sodium.0.2.1:
+  make
+  make PREFIX=/home/opam/.opam/4.01.0 install
+mkdir -p $(dirname _build/lib/dllsodium.so)
+cc -shared -lsodium -o _build/lib/dllsodium.so
+ocamlbuild -use-ocamlfind lib/sodium.cma lib/sodium.cmxa
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package bytes -package bigarray -package ctypes.foreign -modules lib/sodium.mli > lib/sodium.mli.depends
+ocamlfind ocamlc -c -package bytes -package bigarray -package ctypes.foreign -w @5@8@10@11@12@14@23@24@26@29 -I lib -o lib/sodium.cmi lib/sodium.mli
+ocamlfind ocamldep -package bytes -package bigarray -package ctypes.foreign -modules lib/sodium.ml > lib/sodium.ml.depends
+ocamlfind ocamlc -c -package bytes -package bigarray -package ctypes.foreign -w @5@8@10@11@12@14@23@24@26@29 -I lib -o lib/sodium.cmo lib/sodium.ml
+ocamlfind ocamlc -a -dllib -lsodium -cclib -lsodium lib/sodium.cmo -o lib/sodium.cma
+ocamlfind ocamlopt -c -package bytes -package bigarray -package ctypes.foreign -w @5@8@10@11@12@14@23@24@26@29 -I lib -o lib/sodium.cmx lib/sodium.ml
+ocamlfind ocamlopt -a -cclib -lsodium lib/sodium.cmx -o lib/sodium.cmxa
+ocamlbuild -use-ocamlfind lib/sodium.cma lib/sodium.cmxa
+ocamlfind install sodium lib/META \
+		_build/lib/*.cmi _build/lib/*.cma _build/lib/*.cmxa _build/lib/*.a _build/lib/*.so
+Installed /home/opam/.opam/4.01.0/lib/sodium/sodium.a
+Installed /home/opam/.opam/4.01.0/lib/sodium/sodium.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sodium/sodium.cma
+Installed /home/opam/.opam/4.01.0/lib/sodium/sodium.cmi
+Installed /home/opam/.opam/4.01.0/lib/sodium/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsodium.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsodium.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing sodium.0.2.1.
