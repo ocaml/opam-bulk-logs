@@ -742,3 +742,178 @@ ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
 ocamlfind ocamldep -modules convert.mli > convert.mli.depends
 ocamlfind ocamlc -c -o convert.cmi convert.mli
 ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx rowDisplacement.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableFormat.cmx tableFormat.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableInterpreter.cmx tableInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o convert.cmx convert.ml
+touch menhirLib.mli  ; if  ocamlfind ocamlopt -pack -g infiniteArray.cmx packedIntArray.cmx rowDisplacement.cmx engineTypes.cmx engine.cmx tableFormat.cmx tableInterpreter.cmx convert.cmx -o menhirLib.cmx  ; then  rm -f menhirLib.mli  ; else  rm -f menhirLib.mli  ; exit 1; fi
+ocamlfind ocamldep -modules lr1.ml > lr1.ml.depends
+ocamlfind ocamldep -modules breadth.ml > breadth.ml.depends
+ocamlfind ocamldep -modules breadth.mli > breadth.mli.depends
+ocamlfind ocamlc -c -o breadth.cmi breadth.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr0.cmx lr0.ml
+ocamlfind ocamldep -modules slr.ml > slr.ml.depends
+ocamlfind ocamldep -modules slr.mli > slr.mli.depends
+ocamlfind ocamlc -c -o slr.cmi slr.mli
+ocamlfind ocamldep -modules Fix.ml > Fix.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o breadth.cmx breadth.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o slr.cmx slr.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o Fix.cmx Fix.ml
+ocamlfind ocamldep -modules lr1partial.ml > lr1partial.ml.depends
+ocamlfind ocamldep -modules lr1partial.mli > lr1partial.mli.depends
+ocamlfind ocamlc -c -o lr1partial.cmi lr1partial.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1.cmx lr1.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o derivation.cmx derivation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1partial.cmx lr1partial.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o conflict.cmx conflict.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o codePieces.cmx codePieces.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o invariant.cmx invariant.ml
+ocamlfind ocamldep -modules coqBackend.ml > coqBackend.ml.depends
+ocamlfind ocamldep -modules coqBackend.mli > coqBackend.mli.depends
+ocamlfind ocamlc -c -o coqBackend.cmi coqBackend.mli
+ocamlfind ocamldep -modules inliner.ml > inliner.ml.depends
+ocamlfind ocamldep -modules inliner.mli > inliner.mli.depends
+ocamlfind ocamlc -c -o inliner.cmi inliner.mli
+ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
+ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sentenceParser.mly > sentenceParser.mly.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
++ /home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
+Grammar has 2 nonterminal symbols, among which 1 start symbols.
+Grammar has 5 terminal symbols.
+Grammar has 5 productions.
+Built an LR(0) automaton with 11 states.
+The grammar is SLR(1).
+Built an LR(1) automaton with 11 states.
+3 out of 11 states are represented.
+0 out of 10 symbols keep track of their start position.
+0 out of 10 symbols keep track of their end position.
+5 out of 11 states have a default reduction.
+4 out of 6 productions exploit shiftreduce optimization.
+0 out of 11 states can peek at an error.
+0 out of 11 states can do error recovery.
+42 functions before inlining, 7 functions after inlining.
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
+ocamlfind ocamldep -modules tableBackend.ml > tableBackend.ml.depends
+ocamlfind ocamldep -modules tableBackend.mli > tableBackend.mli.depends
+ocamlfind ocamlc -c -o tableBackend.cmi tableBackend.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBackend.cmx codeBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o back.cmx back.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o menhir.cmx menhir.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa -g Fix.cmx IO.cmx installation.cmx keyword.cmx lineCount.cmx positions.cmx stringSet.cmx version.cmx settings.cmx printer.cmx action.cmx mark.cmx stringMap.cmx misc.cmx breadth.cmx codeBits.cmx gSet.cmx compressedBitSet.cmx option.cmx dot.cmx error.cmx parameters.cmx parserAux.cmx parser.cmx lexer.cmx tarjan.cmx unionFind.cmx parameterizedGrammar.cmx partialGrammar.cmx time.cmx preFront.cmx tokenType.cmx interface.cmx lexdep.cmx lexmli.cmx infer.cmx listMonad.cmx nonTerminalDefinitionInlining.cmx reachability.cmx unparameterizedPrinter.cmx front.cmx gMap.cmx patricia.cmx grammar.cmx codePieces.cmx item.cmx derivation.cmx menhirLib.cmx lr0.cmx slr.cmx lr1.cmx lr1partial.cmx conflict.cmx invariant.cmx codeBackend.cmx coqBackend.cmx pprint.cmx cst.cmx traverse.cmx inliner.cmx referenceInterpreter.cmx sentenceParser.cmx sentenceLexer.cmx interpret.cmx tableBackend.cmx back.cmx menhir.cmx -o menhir.native
+# Parallel statistics: { count(total): 19(281), max: 6, min: 2, average(total): 2.895(1.128) }
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+cp fancy-parser.mly parser.mly
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamldep -modules error.mli > error.mli.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamldep -modules stringMap.mli > stringMap.mli.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamlc -c -o stringMap.cmi stringMap.mli
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o error.cmi error.mli
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
++ /home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
+Grammar has 31 nonterminal symbols, among which 1 start symbols.
+Grammar has 26 terminal symbols.
+Grammar has 83 productions.
+Built an LR(0) automaton with 115 states.
+The grammar is not SLR(1) -- 5 states have a conflict.
+Built an LR(1) automaton with 129 states.
+5 shift/reduce conflicts were silently solved.
+38 out of 129 states are represented.
+25 out of 60 symbols keep track of their start position.
+20 out of 60 symbols keep track of their end position.
+56 out of 129 states have a default reduction.
+33 out of 84 productions exploit shiftreduce optimization.
+20 out of 129 states can peek at an error.
+13 out of 129 states can do error recovery.
+452 functions before inlining, 116 functions after inlining.
+# Parallel statistics: { count(total): 2(28), max: 4, min: 2, average(total): 3.000(1.143) }
+Bootstrap successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+mkdir -p /home/opam/.opam/4.01.0/bin
+mkdir -p /home/opam/.opam/4.01.0/lib/menhir
+mkdir -p /home/opam/.opam/4.01.0/doc/menhir
+mkdir -p /home/opam/.opam/4.01.0/man/man1
+install src/_stage2/menhir.native /home/opam/.opam/4.01.0/bin/menhir
+install -m 644 src/standard.mly /home/opam/.opam/4.01.0/lib/menhir
+cp -r manual.pdf demos /home/opam/.opam/4.01.0/doc/menhir
+cp -r menhir.1 /home/opam/.opam/4.01.0/man/man1
+Installing MenhirLib via ocamlfind.
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.o
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmx
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmo
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmi
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/META
+Installing menhir.20130912.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
