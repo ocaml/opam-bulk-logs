@@ -964,3 +964,7 @@ ln -f -s _build/main.native furypuyo
 ocamlbuild -no-links -Is bin,net,server server.native
 ocamlfind ocamldep -package unix -modules server/server.ml > server/server.ml.depends
 ocamlfind ocamlc -c -dtypes -package unix -I server -I bin -I net -o server/server.cmo server/server.ml
+ocamlfind ocamlopt -c -dtypes -package unix -I server -I bin -I net -o server/server.cmx server/server.ml
+ocamlfind ocamlopt -linkpkg -package unix bin/bin.cmx action.cmx puyo.cmx cell.cmx matrix.cmx block.cmx configlex.cmx config.cmx rand.cmx generator.cmx misc.cmx highscores.cmx net/time.cmx net/udp.cmx net/connect.cmx net/channel.cmx net/netmisc.cmx net/frame.cmx net/order.cmx net/resend.cmx net/net.cmx score.cmx protocol.cmx server/server.cmx -o server/server.native
+ln -f -s _build/server/server.native furypuyo_srv
+Installing fury-puyo.0.5.
