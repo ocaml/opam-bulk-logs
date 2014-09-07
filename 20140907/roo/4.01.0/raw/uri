@@ -113,3 +113,22 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/re.mli > lib/re.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/re.cmi lib/re.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/re.ml > lib/re.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/automata.mli > lib/automata.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/cset.mli > lib/cset.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/cset.cmi lib/cset.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/automata.cmi lib/automata.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/cset.ml > lib/cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/automata.ml > lib/automata.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/re.cmo lib/re.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/cset.cmo lib/cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -I lib -I lib -o lib/automata.cmo lib/automata.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/cset.cmo lib/automata.cmo lib/re.cmo -o lib/re.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -I lib -I lib -o lib/cset.cmx lib/cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -I lib -I lib -o lib/automata.cmx lib/automata.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -I lib -I lib -o lib/re.cmx lib/re.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/cset.cmx lib/automata.cmx lib/re.cmx -o lib/re.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/re.cmxa lib/cset.cmx lib/automata.cmx lib/re.cmx -o lib/re.cmxs
