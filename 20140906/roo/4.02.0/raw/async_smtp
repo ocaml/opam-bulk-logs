@@ -8040,3 +8040,26 @@ ocamlfind ocamlc -c -g -package threads -package email_message -package core_ext
 ocamlfind ocamldep -package threads -package email_message -package core_extended -package core -package async -modules lib/smtp.ml > lib/smtp.ml.depends
 ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/comm.cmo lib/comm.ml
 ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/lexer.cmo lib/lexer.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/send_mail.cmo lib/send_mail.ml
+ocamlfind ocamlc -c -g -package threads -package email_message -package core_extended -package core -package async -thread -I lib -o lib/smtp.cmo lib/smtp.ml
+ocamlfind ocamlc -pack -g lib/comm.cmo lib/lexer.cmo lib/smtp.cmo lib/send_mail.cmo -o lib/async_smtp.cmo
+ocamlfind ocamlc -a lib/async_smtp.cmo -o lib/async_smtp.cma
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/comm.cmx lib/comm.ml
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/lexer.cmx lib/lexer.ml
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/smtp.cmx lib/smtp.ml
+ocamlfind ocamlopt -c -g -package threads -package email_message -package core_extended -package core -package async -thread -for-pack Async_smtp -I lib -o lib/send_mail.cmx lib/send_mail.ml
+touch lib/async_smtp.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/comm.cmx lib/lexer.cmx lib/smtp.cmx lib/send_mail.cmx -o lib/async_smtp.cmx  ; then  rm -f lib/async_smtp.mli  ; else  rm -f lib/async_smtp.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/async_smtp.cmx -o lib/async_smtp.cmxa
+ocamlfind ocamlopt -shared lib/async_smtp.cmx -o lib/async_smtp.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/comm.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/lexer.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/send_mail.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/smtp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/async_smtp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/async_smtp.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/async_smtp.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/async_smtp.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/async_smtp.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/async_smtp/META
+Installing async_smtp.109.38.alpha1.
