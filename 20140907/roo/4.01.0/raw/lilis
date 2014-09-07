@@ -1776,3 +1776,53 @@ ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_stream.cmx lilis/ls_stream.ml
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_utils.cmx lilis/ls_utils.ml
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_parser.cmx lilis/ls_parser.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_lexer.cmx lilis/ls_lexer.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_engine.cmx lilis/ls_engine.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_syntax.cmx lilis/ls_syntax.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/lilis.cmx lilis/lilis.ml
+ocamlfind ocamlopt -a lilis/ls_stream.cmx lilis/ls_type.cmx lilis/ls_utils.cmx lilis/ls_engine.cmx lilis/ls_parser.cmx lilis/ls_lexer.cmx lilis/ls_syntax.cmx lilis/lilis.cmx -o lilis/lilis.cmxa
+ocamlfind ocamlopt -shared lilis/lilis.cmx -o lilis/lilis.cmxs
+ocamlfind ocamldep -package batteries -modules glilis/glilis.mli > glilis/glilis.mli.depends
+ocamlfind ocamlc -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmi glilis/glilis.mli
+ocamlfind ocamldep -package batteries -modules glilis/glilis.ml > glilis/glilis.ml.depends
+ocamlfind ocamlc -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmo glilis/glilis.ml
+ocamlfind ocamlc -a glilis/glilis.cmo -o glilis/glilis.cma
+ocamlfind ocamlopt -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmx glilis/glilis.ml
+ocamlfind ocamlopt -a glilis/glilis.cmx -o glilis/glilis.cmxa
+ocamlfind ocamlopt -shared glilis/glilis.cmx -o glilis/glilis.cmxs
+Installed /home/opam/.opam/4.01.0/lib/minicalc/mini_calc.mli
+Installed /home/opam/.opam/4.01.0/lib/minicalc/minicalc.cma
+Installed /home/opam/.opam/4.01.0/lib/minicalc/minicalc.cmxa
+Installed /home/opam/.opam/4.01.0/lib/minicalc/minicalc.a
+Installed /home/opam/.opam/4.01.0/lib/minicalc/minicalc.cmxs
+Installed /home/opam/.opam/4.01.0/lib/minicalc/mini_calc.cmi
+Installed /home/opam/.opam/4.01.0/lib/minicalc/mini_calc.cmx
+Installed /home/opam/.opam/4.01.0/lib/minicalc/calc_type.cmx
+Installed /home/opam/.opam/4.01.0/lib/minicalc/calc_eval.cmx
+Installed /home/opam/.opam/4.01.0/lib/minicalc/calc_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/minicalc/calc_parser.cmx
+Installed /home/opam/.opam/4.01.0/lib/minicalc/META
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.mli
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.cma
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.cmxa
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.a
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.cmxs
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.cmi
+Installed /home/opam/.opam/4.01.0/lib/lilis/lilis.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_type.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_stream.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_utils.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_engine.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_syntax.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/ls_parser.cmx
+Installed /home/opam/.opam/4.01.0/lib/lilis/META
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.mli
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.cma
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.cmxa
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.a
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.cmxs
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.cmi
+Installed /home/opam/.opam/4.01.0/lib/glilis/glilis.cmx
+Installed /home/opam/.opam/4.01.0/lib/glilis/META
+Installing lilis.0.1.3.
