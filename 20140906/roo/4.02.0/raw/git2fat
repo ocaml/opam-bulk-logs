@@ -912,3 +912,58 @@ Warning 3: deprecated: String.create
 File "zip.ml", line 510, characters 18-31:
 Warning 3: deprecated: String.create
 ocamlopt -c gzip.ml
+File "gzip.ml", line 68, characters 16-29:
+Warning 3: deprecated: String.create
+File "gzip.ml", line 149, characters 18-31:
+Warning 3: deprecated: String.create
+File "gzip.ml", line 185, characters 17-30:
+Warning 3: deprecated: String.create
+File "gzip.ml", line 218, characters 2-22:
+Warning 3: deprecated: String.set
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
+ocamlfind install zip META *.mli *.a *.cmi *.cma gzip.cmx zip.cmx zlib.cmx zip.cmxa zip.cmxs dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/libcamlzip.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zlib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/zip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/gzip.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zip/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllcamlzip.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+echo 'directory="../zip"' >> META && ocamlfind install camlzip META
+Installed /home/opam/.opam/4.02.0+trunk/lib/camlzip/META
+Installing camlzip.1.05.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+File "pkg/topkg-ext.ml", line 42, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building dolog.0.5:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2387, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
