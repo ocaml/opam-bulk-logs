@@ -80,4 +80,76 @@ Checking for POSIX functions like openat... found
 Checking for fchdir... found
 Checking for fdopendir... found
 Checking for realpath... found
-Checking for grantpt (System V style PTYs)... 
+Checking for grantpt (System V style PTYs)... found
+Checking for posix_openpt (System V style PTYs)... found
+Checking for initgroups...found
+Checking for POSIX clocks...found
+Checking for POSIX timers...found
+Checking for eventfd (Linux)...found
+Checking for timerfd (Linux)...found
+Checking for epoll (Linux)...found
+Checking for compare_and_swap (GCC)...found
+Checking for GPROF... found
+Checking for O_SHARE_DELETE... yes
+Checking for O_CLOEXEC... yes
+Checking for getpeereid... not found
+Checking for getpeerucred... not found
+Checking whether netcamlbox and netmulticore are supported... yes
+Preprocessor for ocamlrpcgen: cpp
+
+Effective options:
+    -disable-pcre
+    -disable-full-pcre
+    -disable-gtk
+    -disable-gtk2
+    -disable-tcl
+    -disable-ssl
+    -disable-zip
+    -disable-crypto
+    -disable-apache
+    -with-nethttpd
+    -without-rpc-auth-dh
+    -bindir /home/opam/.opam/4.02.0+trunk/bin
+    -datadir /home/opam/.opam/4.02.0+trunk/lib/netstring
+    -cpp cpp
+
+Writing Makefile.conf
+
+Please check Makefile.conf.
+
+You can now compile Ocamlnet by invoking
+   make all
+for the bytecode compiler, and optionally by invoking
+   make opt
+for the native-code compiler (if supported on your architecture).
+Finally, a
+   make install
+will install the package(s).
+( cd tools/cppo-0.9.4 && make all )
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+352 states, 13139 transitions, table size 54668 bytes
+3450 additional bytes used for bindings
+ocamlc -o cppo -dtypes unix.cma cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cp cppo cppo-ocamlnet
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+for pkg in netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make all ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/src/netsys'
+sed -e 's/@VERSION@/3.7.5/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocamlnet.3.7.5/src/netsys'
+ocamlfind ocamldep -pp "../../tools/cppo-0.9.4/cppo  "  *.ml *.mli >depend || { rm -f depend; exit 1; }
