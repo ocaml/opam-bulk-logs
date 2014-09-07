@@ -2049,3 +2049,129 @@ Warning 3: deprecated: String.create
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pcre/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+Applying opam.patch.
+patching file Makefile
+Building pgocaml.1.6:
+  make .depend
+  make
+  ocamlopt -shared -linkall pgocaml.cmxa -o pgocaml.cmxs
+  make findlib_install
+< pGOCaml_config.ml.in sed -e "s|@DEFAULT_UNIX_DOMAIN_SOCKET_DIR@|"/tmp"|" > pGOCaml_config.ml
+rm -f .depend
+ocamlfind ocamldep -syntax camlp4o -package camlp4.macro pGOCaml*.ml >.depend
+ocamldep pGOCaml*.mli >> .depend
+ocamldep -pp "camlp4o -I +unix /home/opam/.opam/4.02.0+trunk/lib/ocaml/unix.cma -I +str /home/opam/.opam/4.02.0+trunk/lib/ocaml/str.cma -I +pcre /home/opam/.opam/4.02.0+trunk/lib/pcre/pcre.cma -I +extlib /home/opam/.opam/4.02.0+trunk/lib/extlib/extLib.cma -I +calendar /home/opam/.opam/4.02.0+trunk/lib/calendar/calendarLib.cma -I +csv /home/opam/.opam/4.02.0+trunk/lib/csv/csv.cma ./pgocaml.cma ./pa_pgsql.cmo" >> .depend
+sed  -e 's/@PACKAGE@/pgocaml/' \
+		-e 's/@VERSION@/1.6/' \
+		-e 's/@EXTLIB@/extlib/' \
+		< META.in > META
+ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_config.ml
+ocamlfind ocamlc -g  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.mli
+ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.ml
+ocamlfind ocamlc -g  -package unix,extlib,pcre,calendar,csv -c pGOCaml.mli
+ocamlfind ocamlc -g -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml.ml
+ocamlfind ocamlc -g -package unix,extlib,pcre,calendar,csv -a -o pgocaml.cma pGOCaml_config.cmo pGOCaml_generic.cmo pGOCaml.cmo
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_config.ml
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml_generic.ml
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pGOCaml.ml
+ocamlfind ocamlopt  -package unix,extlib,pcre,calendar,csv -a -o pgocaml.cmxa pGOCaml_config.cmx pGOCaml_generic.cmx pGOCaml.cmx
+ocamlfind ocamlc -g -package unix,extlib,pcre,calendar,csv \
+	  -pp "camlp4o pa_extend.cmo q_MLast.cmo -parser Camlp4MacroParser -impl" \
+	  -I +camlp4 -c -impl pa_pgsql.ml4
+ocamlfind ocamlopt  -syntax camlp4o -package camlp4.macro  -package unix,extlib,pcre,calendar,csv -c pgocaml_prof.ml
+ocamlfind ocamlopt  -package unix,extlib,pcre,calendar,csv -linkpkg -o pgocaml_prof pgocaml_prof.cmx
+ocamlfind install pgocaml META pgocaml.cmxs pgocaml.a pgocaml.cma pgocaml.cmxa pGOCaml_generic.cm[ix] pGOCaml.cm[ix] pa_pgsql.cmo pGOCaml_generic.mli pGOCaml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml_generic.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pa_pgsql.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml_generic.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pGOCaml_generic.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pgocaml.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pgocaml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pgocaml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/pgocaml.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/pgocaml/META
+Installing pgocaml.1.6.
+Building macaque.0.6.1:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/src'
+ocamlbuild -tag annot pa_macaque.cmo
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "myocamlbuild.ml", line 18, characters 6-78:
+Error: This expression has type Lexing.lexbuf
+       but an expression was expected of type
+         Ocamlbuild_pack.Loc.source = string
+Command exited with code 2.
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/src'
+make: *** [pa_macaque.cmo] Error 10
+Removing macaque.0.6.1.
+[ERROR] The compilation of macaque.0.6.1 failed.
+  ocamlfind remove macaque
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/macaque
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   csv.1.3.3
+ - install   extlib.1.5.3
+ - install   lwt.2.4.5
+ - install   pgocaml.1.6
+ - install   conf-libpcre.1
+ - install   pcre-ocaml.7.1.1
+ - install   calendar.2.03.2
+ - install   camlp4.4.02.0+1
+The following failed
+ - install   macaque.0.6.1
+Due to the errors, the following have been cancelled
+ - install   macaque_lwt.0.1
+
+#=== ERROR while installing macaque.0.6.1 =====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make -C src
+# path                 /home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/macaque-5231-dc6e87.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/macaque-5231-dc6e87.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/macaque-5231-dc6e87.err
+### stdout ###
+# ...[truncated]
+# make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/src'
+# ocamlbuild -tag annot pa_macaque.cmo
+# /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# + /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# File "myocamlbuild.ml", line 18, characters 6-78:
+# Error: This expression has type Lexing.lexbuf
+#        but an expression was expected of type
+#          Ocamlbuild_pack.Loc.source = string
+# Command exited with code 2.
+# make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/macaque.0.6.1/src'
+### stderr ###
+# make: *** [pa_macaque.cmo] Error 10
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807150455.export"
+'opam install macaque_lwt' failed.
