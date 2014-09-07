@@ -783,3 +783,50 @@ File "lib/tests.ml", line 1, characters 0-13:
 Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
 ocamlfind ocamlc -pack -g lib/internal.cmo lib/base.cmo lib/algebra.cmo lib/sample.cmo lib/distributions.cmo lib/resampling.cmo lib/tests.cmo -o lib/pareto.cmo
 ocamlfind ocamlc -a -dllib -lpareto_stubs -cclib -lpareto_stubs -w @a -warn-error -a lib/pareto.cmo -o lib/pareto.cma
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/internal.cmx lib/internal.ml
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/base.cmx lib/base.ml
++ ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/base.cmx lib/base.ml
+File "lib/base.ml", line 3, characters 0-13:
+Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/algebra.cmx lib/algebra.ml
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/sample.cmx lib/sample.ml
++ ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/sample.cmx lib/sample.ml
+File "lib/sample.ml", line 1, characters 0-13:
+Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
+File "lib/sample.ml", line 189, characters 28-56:
+Warning 44: this open statement shadows the value identifier min (which is later used)
+File "lib/sample.ml", line 189, characters 28-56:
+Warning 44: this open statement shadows the value identifier max (which is later used)
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/distributions.cmx lib/distributions.ml
++ ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/distributions.cmx lib/distributions.ml
+File "lib/distributions.ml", line 1, characters 0-13:
+Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/resampling.cmx lib/resampling.ml
++ ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/resampling.cmx lib/resampling.ml
+File "lib/resampling.ml", line 1, characters 0-13:
+Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
+ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/tests.cmx lib/tests.ml
++ ocamlfind ocamlopt -c -g -ccopt -O2 -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -w @a -warn-error -a -package gsl -for-pack Pareto -I lib -o lib/tests.cmx lib/tests.ml
+File "lib/tests.ml", line 1, characters 0-13:
+Warning 44: this open statement shadows the value identifier invalid_arg (which is later used)
+touch lib/pareto.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/internal.cmx lib/base.cmx lib/algebra.cmx lib/sample.cmx lib/distributions.cmx lib/resampling.cmx lib/tests.cmx -o lib/pareto.cmx  ; then  rm -f lib/pareto.mli  ; else  rm -f lib/pareto.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lpareto_stubs -w @a -warn-error -a lib/pareto.cmx -o lib/pareto.cmxa
+ocamlfind ocamlopt -shared -I lib lib/pareto.cmx -o lib/pareto.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pareto/base.mli
+Installed /home/opam/.opam/4.01.0/lib/pareto/algebra.ml
+Installed /home/opam/.opam/4.01.0/lib/pareto/distributions.mli
+Installed /home/opam/.opam/4.01.0/lib/pareto/resampling.mli
+Installed /home/opam/.opam/4.01.0/lib/pareto/sample.mli
+Installed /home/opam/.opam/4.01.0/lib/pareto/tests.mli
+Installed /home/opam/.opam/4.01.0/lib/pareto/libpareto_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/pareto/pareto.cmi
+Installed /home/opam/.opam/4.01.0/lib/pareto/pareto.cma
+Installed /home/opam/.opam/4.01.0/lib/pareto/pareto.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pareto/pareto.a
+Installed /home/opam/.opam/4.01.0/lib/pareto/pareto.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pareto/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpareto_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpareto_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing pareto.0.2.
