@@ -1533,3 +1533,255 @@ Warning 3: deprecated: String.set
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package threads -package unix -modules src/preemptive/lwt_preemptive.mli > src/preemptive/lwt_preemptive.mli.depends
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -package bigarray -package threads -package unix -thread -I src/preemptive -I src/core -I src/unix -o src/preemptive/lwt_preemptive.cmi src/preemptive/lwt_preemptive.mli
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules src/preemptive/lwt_preemptive.ml > src/preemptive/lwt_preemptive.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -thread -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/preemptive -I src/core -I src/unix -o src/preemptive/lwt_preemptive.cmo src/preemptive/lwt_preemptive.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a src/preemptive/lwt_preemptive.cmo -o src/preemptive/lwt-preemptive.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -I src/logger -I src/unix -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -thread -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/preemptive -I src/core -I src/unix -o src/preemptive/lwt_preemptive.cmx src/preemptive/lwt_preemptive.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a src/preemptive/lwt_preemptive.cmx -o src/preemptive/lwt-preemptive.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared src/preemptive/lwt-preemptive.cmxa src/preemptive/lwt_preemptive.cmx -o src/preemptive/lwt-preemptive.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package threads -package unix -modules src/extra/lwt_lib.mli > src/extra/lwt_lib.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -I src/preemptive -package bigarray -package threads -package unix -thread -I src/extra -I src/core -I src/preemptive -o src/extra/lwt_lib.cmi src/extra/lwt_lib.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules src/extra/lwt_lib.ml > src/extra/lwt_lib.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -I src/preemptive -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -thread -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/extra -I src/core -I src/preemptive -o src/extra/lwt_lib.cmo src/extra/lwt_lib.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a src/extra/lwt_lib.cmo -o src/extra/lwt-extra.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -I src/logger -I src/unix -I src/preemptive -package bigarray -package camlp4 -package threads -package unix -syntax camlp4o -thread -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/extra -I src/core -I src/preemptive -o src/extra/lwt_lib.cmx src/extra/lwt_lib.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a src/extra/lwt_lib.cmx -o src/extra/lwt-extra.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared src/extra/lwt-extra.cmxa src/extra/lwt_lib.cmx -o src/extra/lwt-extra.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a syntax/pa_lwt.cmo -o syntax/lwt-syntax.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_options.cmx syntax/pa_lwt_options.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt.cmx syntax/pa_lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a syntax/pa_lwt.cmx -o syntax/lwt-syntax.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared syntax/lwt-syntax.cmxa syntax/pa_lwt.cmx -o syntax/lwt-syntax.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a syntax/pa_lwt_options.cmo -o syntax/lwt-syntax-options.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a syntax/pa_lwt_options.cmx -o syntax/lwt-syntax-options.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared syntax/lwt-syntax-options.cmxa syntax/pa_lwt_options.cmx -o syntax/lwt-syntax-options.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a syntax/pa_lwt_log.cmo -o syntax/lwt-syntax-log.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_log.cmx syntax/pa_lwt_log.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a syntax/pa_lwt_log.cmx -o syntax/lwt-syntax-log.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared syntax/lwt-syntax-log.cmxa syntax/pa_lwt_log.cmx -o syntax/lwt-syntax-log.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules examples/unix/logging.ml > examples/unix/logging.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/logging.cmo examples/unix/logging.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/logging.cmx examples/unix/logging.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I src/unix -linkpkg -package bigarray -package camlp4 -package camlp4.extend -package camlp4.quotations.o -package unix syntax/lwt-syntax.cmxa src/core/lwt.cmxa src/logger/lwt-log.cmxa src/unix/lwt-unix.cmxa examples/unix/logging.cmx -o examples/unix/logging.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules examples/unix/relay.ml > examples/unix/relay.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/relay.cmo examples/unix/relay.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/relay.cmx examples/unix/relay.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I src/unix -linkpkg -package bigarray -package camlp4 -package camlp4.extend -package camlp4.quotations.o -package unix syntax/lwt-syntax.cmxa src/core/lwt.cmxa src/logger/lwt-log.cmxa src/unix/lwt-unix.cmxa examples/unix/relay.cmx -o examples/unix/relay.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules examples/unix/parallelize.ml > examples/unix/parallelize.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/parallelize.cmo examples/unix/parallelize.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/core -I src/logger -I src/unix -I syntax -package bigarray -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I examples/unix -I src/unix -I syntax -o examples/unix/parallelize.cmx examples/unix/parallelize.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -I src/unix -linkpkg -package bigarray -package camlp4 -package camlp4.extend -package camlp4.quotations.o -package unix syntax/lwt-syntax.cmxa src/core/lwt.cmxa src/logger/lwt-log.cmxa src/unix/lwt-unix.cmxa examples/unix/parallelize.cmx -o examples/unix/parallelize.native
+./setup.exe -install 
+W: Nothing to install for findlib library 'test'
+W: Nothing to install for findlib library 'optcomp'
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_condition.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_list.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mutex.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mvar.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pool.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sequence.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_stream.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_switch.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_util.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pqueue.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pqueue.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_util.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_switch.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_stream.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sequence.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pool.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mvar.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mutex.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_list.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_condition.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pqueue.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_util.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_switch.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_stream.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sequence.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_pool.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mvar.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_mutex.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_list.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_condition.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_config.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_config.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_unix.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_chan.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_daemon.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_gc.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_main.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_process.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_throttle.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_timeout.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_unix.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sys.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_engine.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_bytes.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/liblwt-unix_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_bytes.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_engine.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sys.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_unix.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_timeout.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_throttle.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_process.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_main.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_io.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_gc.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_daemon.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_chan.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_unix_jobs_generated.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_bytes.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_engine.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_sys.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_unix.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_timeout.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_throttle.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_process.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_main.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_io.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_gc.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_daemon.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_chan.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-options.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-options.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-options.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-options.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt_options.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt_log.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-log.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-log.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-log.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-syntax-log.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt_log.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/pa_lwt_log.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-simple-top.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-simple-top.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-simple-top.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-simple-top.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_simple_top.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_preemptive.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-preemptive.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-preemptive.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-preemptive.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-preemptive.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_preemptive.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_preemptive.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_core.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_rules.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-log.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-log.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-log.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-log.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_rules.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_core.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_rules.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_log_core.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-extra.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-extra.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-extra.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt-extra.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/lwt_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lwt/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllwt-unix_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllwt-unix_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing lwt.2.4.5.
+Building optcomp.1.6:
+  ./configure --prefix /home/opam/.opam/4.02.0+trunk
+  make
+  make install
+File "setup.ml", line 252, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2507, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ optcomp
+Package version: ..................................... 1.6
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Build binaries: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_camlp4: .......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_quotations_o: ............................. /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 252, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2507, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
