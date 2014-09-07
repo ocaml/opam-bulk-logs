@@ -102,3 +102,60 @@ configure: creating kernel/caml/makefile
 configure: creating kernel/ocaml/makefile
 configure: creating kernel/pascal/makefile
 configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating kernel/config.h
+
+Configure summary
+-----------------
+machine word size           64 bits
+processor                   x86-64
+use alloca                  yes
+use longlong                no
+shared libraries            no
+languages selected          Ocaml
+modules selected            Clong Dlong Slong Gmp Big(ocaml)
+bin directory               /home/opam/.opam/4.02.0+trunk/bin
+lib directory               /home/opam/.opam/4.02.0+trunk/lib
+include directory           /home/opam/.opam/4.02.0+trunk/include
+
+To build Numerix            make lib
+To compile the examples     make examples
+To test Numerix             make test
+To build,compile and test   make all
+To install Numerix          make install
+rm -f kernel/n/o/*
+rm -f kernel/ocaml/o/*
+gcc -O2 -Wall -fpic -Duse_clong -c -o kernel/n/o/numerix-c.o kernel/n/c/numerix.c
+In file included from kernel/n/c/numerix.c:64:0:
+kernel/n/c/gcd.c: In function 'divise':
+kernel/n/c/gcd.c:127:17: warning: operation on '*la' may be undefined [-Wsequence-point]
+         aa[(*la)++] = xn(shift_up)(a,*la,aa,n);
+                 ^
+In file included from kernel/n/c/numerix.c:67:0:
+kernel/n/c/numerix.c: At top level:
+kernel/n/c/prime.c:43:11: warning: 'crible' is static but used in inline function 'small_prime' which is not static [enabled by default]
+   return((crible[p>>7] >> ((p>>1) & 63)) & 1);
+           ^
+gcc -O2 -Wall -fpic -Duse_dlong -c -o kernel/n/o/numerix-d.o kernel/n/c/numerix.c
+In file included from kernel/n/c/numerix.c:64:0:
+kernel/n/c/gcd.c: In function 'divise':
+kernel/n/c/gcd.c:127:17: warning: operation on '*la' may be undefined [-Wsequence-point]
+         aa[(*la)++] = xn(shift_up)(a,*la,aa,n);
+                 ^
+In file included from kernel/n/c/numerix.c:67:0:
+kernel/n/c/numerix.c: At top level:
+kernel/n/c/prime.c:43:11: warning: 'crible' is static but used in inline function 'small_prime' which is not static [enabled by default]
+   return((crible[p>>7] >> ((p>>1) & 63)) & 1);
+           ^
+gcc -O2 -Wall -fpic -Duse_slong -c -o kernel/n/o/numerix-s.o kernel/n/c/numerix.c
+In file included from kernel/n/c/numerix.c:64:0:
+kernel/n/c/gcd.c: In function 'divise':
+kernel/n/c/gcd.c:127:17: warning: operation on '*la' may be undefined [-Wsequence-point]
+         aa[(*la)++] = xn(shift_up)(a,*la,aa,n);
+                 ^
+In file included from kernel/n/c/numerix.c:67:0:
+kernel/n/c/numerix.c: At top level:
+kernel/n/c/prime.c:43:11: warning: 'crible' is static but used in inline function 'small_prime' which is not static [enabled by default]
+   return((crible[p>>7] >> ((p>>1) & 63)) & 1);
+           ^
+gcc -O2 -Wall -fpic -Duse_slong -c -o kernel/n/o/numerix-t.o kernel/n/x86-64/numerix.S
