@@ -554,3 +554,45 @@ ocamlc -g -c omake_builtin_fun.ml
 ocamlc -g -c omake_builtin_io.mli
 ocamlc -g -c omake_builtin_io.ml
 ocamlc -g -c omake_builtin_io_fun.ml
+ocamlc -g -c omake_builtin_sys.mli
+ocamlc -g -c omake_builtin_sys.ml
+ocamlc -g -c omake_builtin_target.mli
+ocamlc -g -c omake_builtin_target.ml
+ocamlc -g -c omake_builtin_shell.mli
+ocamlc -g -c omake_builtin_shell.ml
+ocamlc -g -c omake_builtin_rule.mli
+ocamlc -g -c omake_builtin_rule.ml
+ocamlc -g -c omake_builtin_test.mli
+ocamlc -g -c omake_builtin_test.ml
+ocamlc -g -c omake_builtin_object.mli
+ocamlc -g -c omake_builtin_object.ml
+ocamlc -g -linkall -a -o builtin.cma omake_builtin_base.cmo omake_builtin_arith.cmo omake_builtin_file.cmo omake_builtin_fun.cmo omake_builtin_io.cmo omake_builtin_io_fun.cmo omake_builtin_sys.cmo omake_builtin_target.cmo omake_builtin_shell.cmo omake_builtin_rule.cmo omake_builtin_test.cmo omake_builtin_object.cmo
+cc  -I"`ocamlc -where`" -c lm_heap.c
+cc  -I"`ocamlc -where`" -c lm_channel.c
+cc  -I"`ocamlc -where`" -c lm_printf.c
+cc  -I"`ocamlc -where`" -c lm_ctype.c
+cc  -I"`ocamlc -where`" -c lm_uname_ext.c
+cc  -I"`ocamlc -where`" -c lm_unix_cutil.c
+cc  -I"`ocamlc -where`" -c lm_compat_win32.c
+cc  -I"`ocamlc -where`" -c readline.c
+cc  -I"`ocamlc -where`" -c omake_shell_sys.c
+cc  -I"`ocamlc -where`" -c fam_win32.c
+cc  -I"`ocamlc -where`" -c fam_kqueue.c
+cc  -I"`ocamlc -where`" -c fam_inotify.c
+cc  -I"`ocamlc -where`" -c lm_notify.c
+cc  -I"`ocamlc -where`" -c lm_termsize.c
+cc  -I"`ocamlc -where`" -c lm_terminfo.c
+cc  -I"`ocamlc -where`" -c lm_fs_case_sensitive.c
+rm -f clib.a
+ar cq clib.a lm_heap.o lm_channel.o lm_printf.o lm_ctype.o lm_uname_ext.o lm_unix_cutil.o lm_compat_win32.o readline.o omake_shell_sys.o fam_win32.o fam_kqueue.o fam_inotify.o lm_notify.o lm_termsize.o lm_terminfo.o lm_fs_case_sensitive.o
+ocamlc -g -custom -o omake -cclib clib.a unix.cma  lm.cma util.cma magic.cma ast.cma ir.cma env.cma exec.cma eval.cma shell.cma build.cma builtin.cma omake_shell.cmo omake_main.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+make[1]: `Makefile.dep' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+make[1]: `omake' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+touch .config
+OMAKEFLAGS= OMAKEPATH=lib ./omake-boot --dotomake .omake --force-dotomake -j2 main
+*** omake: reading OMakefiles
