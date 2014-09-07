@@ -940,3 +940,57 @@ ocamlfind ocamlc -c -g -package bigarray -package unix -I lib -o lib/utils.cmo l
 ocamlfind ocamlc -pack -g lib/common.cmo lib/nat0.cmo lib/read.cmo lib/size.cmo lib/write.cmo lib/type_class.cmo lib/binable.cmo lib/std.cmo lib/utils.cmo -o lib/bin_prot.cmo
 ocamlfind ocamlc -a -dllib -lbin_prot_stubs -cclib -lbin_prot_stubs lib/bin_prot.cmo -o lib/bin_prot.cma
 ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/common.cmx lib/common.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/nat0.cmx lib/nat0.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/read.cmx lib/read.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/size.cmx lib/size.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/write.cmx lib/write.ml
+ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/type_class.cmx lib/type_class.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/binable.cmx lib/binable.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/std.cmx lib/std.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/utils.cmx lib/utils.ml
+touch lib/bin_prot.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/common.cmx lib/nat0.cmx lib/read.cmx lib/size.cmx lib/write.cmx lib/type_class.cmx lib/binable.cmx lib/std.cmx lib/utils.cmx -o lib/bin_prot.cmx  ; then  rm -f lib/bin_prot.mli  ; else  rm -f lib/bin_prot.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lbin_prot_stubs lib/bin_prot.cmx -o lib/bin_prot.cmxa
+ocamlfind ocamlopt -shared -I lib lib/bin_prot.cmx -o lib/bin_prot.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.mli > syntax/pa_bin_prot.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmi syntax/pa_bin_prot.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -modules syntax/pa_bin_prot.ml > syntax/pa_bin_prot.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmo syntax/pa_bin_prot.ml
+ocamlfind ocamlc -a syntax/pa_bin_prot.cmo -o syntax/pa_bin_prot.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.extend -package camlp4.quotations -I syntax -o syntax/pa_bin_prot.cmx syntax/pa_bin_prot.ml
+ocamlfind ocamlopt -a syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxa
+ocamlfind ocamlopt -shared syntax/pa_bin_prot.cmx -o syntax/pa_bin_prot.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/binable.ml
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/nat0.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/common.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/size.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/write.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/read.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/std.ml
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/type_class.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/utils.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/libbin_prot_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.cmi
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.cma
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.a
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.cmxs
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/bin_prot.cmx
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.mli
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.cma
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.a
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.cmxs
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.cmi
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/pa_bin_prot.cmx
+Installed /home/opam/.opam/4.01.0/lib/bin_prot/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbin_prot_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbin_prot_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing bin_prot.111.03.00.
+Building comparelib.109.60.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
