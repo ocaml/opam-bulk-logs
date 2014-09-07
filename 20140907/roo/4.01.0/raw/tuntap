@@ -1554,3 +1554,29 @@ mv tuntap_stubs.o lib/tuntap_stubs.o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -ltuntap_stubs -cclib -ltuntap_stubs -bin-annot lib/tuntap.cmo -o lib/tuntap.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -ccopt -O3 -bin-annot -package ipaddr -I lib -o lib/tuntap.cmx lib/tuntap.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -ltuntap_stubs -bin-annot lib/tuntap.cmx -o lib/tuntap.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -I lib lib/tuntap.cmxa lib/tuntap.cmx -o lib/tuntap.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cmdliner -package ipaddr -modules bin/otunctl.ml > bin/otunctl.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmo bin/otunctl.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package cmdliner -package ipaddr -I bin -I lib -o bin/otunctl.cmx bin/otunctl.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package cmdliner -package ipaddr lib/tuntap.cmxa bin/otunctl.cmx -o bin/otunctl.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/sendfd_test.ml > test/sendfd_test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmo test/sendfd_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/sendfd_test.cmx test/sendfd_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/sendfd_test.cmx -o test/sendfd_test.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/nonblock_test.ml > test/nonblock_test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmo test/nonblock_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_test.cmx test/nonblock_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/nonblock_test.cmx -o test/nonblock_test.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/nonblock_read.ml > test/nonblock_read.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_read.cmo test/nonblock_read.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/nonblock_read.cmx test/nonblock_read.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr -package lwt.unix lib/tuntap.cmxa test/nonblock_read.cmx -o test/nonblock_read.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/getifaddrs_test.ml > test/getifaddrs_test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/getifaddrs_test.cmo test/getifaddrs_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/getifaddrs_test.cmx test/getifaddrs_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr lib/tuntap.cmxa test/getifaddrs_test.cmx -o test/getifaddrs_test.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ipaddr -package lwt.unix -package oUnit -modules test/set_ipv4_test.ml > test/set_ipv4_test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/set_ipv4_test.cmo test/set_ipv4_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -I lib -package ipaddr -package lwt.unix -package oUnit -I test -I lib -o test/set_ipv4_test.cmx test/set_ipv4_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg -package ipaddr -package oUnit lib/tuntap.cmxa test/set_ipv4_test.cmx -o test/set_ipv4_test.native
+ocaml setup.ml -install 
