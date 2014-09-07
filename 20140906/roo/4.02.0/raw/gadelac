@@ -938,3 +938,255 @@ ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o back.cmx back.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o menhir.cmx menhir.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa -g Fix.cmx IO.cmx installation.cmx keyword.cmx lineCount.cmx positions.cmx stringSet.cmx version.cmx settings.cmx printer.cmx action.cmx mark.cmx stringMap.cmx misc.cmx breadth.cmx codeBits.cmx gSet.cmx compressedBitSet.cmx option.cmx dot.cmx error.cmx parameters.cmx parserAux.cmx parser.cmx lexer.cmx tarjan.cmx unionFind.cmx parameterizedGrammar.cmx partialGrammar.cmx time.cmx preFront.cmx tokenType.cmx interface.cmx lexdep.cmx lexmli.cmx infer.cmx listMonad.cmx nonTerminalDefinitionInlining.cmx reachability.cmx unparameterizedPrinter.cmx front.cmx gMap.cmx patricia.cmx grammar.cmx codePieces.cmx item.cmx derivation.cmx menhirLib.cmx lr0.cmx slr.cmx lr1.cmx lr1partial.cmx conflict.cmx invariant.cmx codeBackend.cmx coqBackend.cmx pprint.cmx cst.cmx traverse.cmx inliner.cmx referenceInterpreter.cmx sentenceParser.cmx sentenceLexer.cmx interpret.cmx tableBackend.cmx back.cmx menhir.cmx -o menhir.native
+# Parallel statistics: { count(total): 19(281), max: 6, min: 2, average(total): 2.895(1.128) }
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 10, characters 27-40:
+Warning: the tag "use_ocamlyacc" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp fancy-parser.mly parser.mly
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamldep -modules error.mli > error.mli.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamldep -modules stringMap.mli > stringMap.mli.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamlc -c -o stringMap.cmi stringMap.mli
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o error.cmi error.mli
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
++ /home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
+Grammar has 31 nonterminal symbols, among which 1 start symbols.
+Grammar has 26 terminal symbols.
+Grammar has 83 productions.
+Built an LR(0) automaton with 115 states.
+The grammar is not SLR(1) -- 5 states have a conflict.
+Built an LR(1) automaton with 129 states.
+5 shift/reduce conflicts were silently solved.
+38 out of 129 states are represented.
+25 out of 60 symbols keep track of their start position.
+20 out of 60 symbols keep track of their end position.
+56 out of 129 states have a default reduction.
+33 out of 84 productions exploit shiftreduce optimization.
+20 out of 129 states can peek at an error.
+13 out of 129 states can do error recovery.
+452 functions before inlining, 116 functions after inlining.
+# Parallel statistics: { count(total): 2(28), max: 4, min: 2, average(total): 3.000(1.143) }
+Bootstrap successful.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src'
+mkdir -p /home/opam/.opam/4.02.0+trunk/bin
+mkdir -p /home/opam/.opam/4.02.0+trunk/lib/menhir
+mkdir -p /home/opam/.opam/4.02.0+trunk/doc/menhir
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1
+install src/_stage2/menhir.native /home/opam/.opam/4.02.0+trunk/bin/menhir
+install -m 644 src/standard.mly /home/opam/.opam/4.02.0+trunk/lib/menhir
+cp -r manual.pdf demos /home/opam/.opam/4.02.0+trunk/doc/menhir
+cp -r menhir.1 /home/opam/.opam/4.02.0+trunk/man/man1
+Installing MenhirLib via ocamlfind.
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/META
+Installing menhir.20130912.
+Building gadelac.0.6.1:
+  make gadelac
+cd Src; ocamlbuild -j 4 -use-menhir -libs str,unix -no-links Main.native; cd ..
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Main.ml > Main.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules ASP.mli > ASP.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Desugared.mli > Desugared.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Ast.mli > Ast.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Logic.mli > Logic.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Logic.cmi Logic.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Unification.mli > Unification.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Ast.cmi Ast.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Variable.ml > Variable.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Bool.ml > Utils/Bool.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Choice.mli > Utils/Choice.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Choice.cmi Utils/Choice.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Choice.ml > Utils/Choice.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/DataStructure.mli > Utils/DataStructure.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/DataStructure.cmi Utils/DataStructure.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/DataStructure.ml > Utils/DataStructure.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/MStack.ml > Utils/MStack.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/PList.mli > Utils/PList.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Print.mli > Utils/Print.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/MStack.cmo Utils/MStack.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/PList.cmi Utils/PList.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Print.cmi Utils/Print.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Function.mli > Utils/Function.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Function.cmi Utils/Function.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Function.ml > Utils/Function.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Int.ml > Utils/Int.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Matrix.ml > Utils/Matrix.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/MString.mli > Utils/MString.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/MString.cmi Utils/MString.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/MString.ml > Utils/MString.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Option.mli > Utils/Option.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Option.cmi Utils/Option.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Option.ml > Utils/Option.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/PList.ml > Utils/PList.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Print.ml > Utils/Print.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Rand.mli > Utils/Rand.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Rand.cmi Utils/Rand.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Rand.ml > Utils/Rand.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Read.ml > Utils/Read.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Time.mli > Utils/Time.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Time.cmi Utils/Time.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Utils/Time.ml > Utils/Time.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Bool.cmo Utils/Bool.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Choice.cmo Utils/Choice.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/DataStructure.cmo Utils/DataStructure.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Function.cmo Utils/Function.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Int.cmo Utils/Int.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Matrix.cmo Utils/Matrix.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/MString.cmo Utils/MString.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Option.cmo Utils/Option.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/PList.cmo Utils/PList.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Print.cmo Utils/Print.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/MString.cmo Utils/MString.ml
+File "Utils/MString.ml", line 19, characters 20-31:
+Warning 3: deprecated: String.copy
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Rand.cmo Utils/Rand.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Read.cmo Utils/Read.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I Utils -o Utils/Time.cmo Utils/Time.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -pack Utils/Bool.cmo Utils/Choice.cmo Utils/MStack.cmo Utils/Function.cmo Utils/PList.cmo Utils/Print.cmo Utils/DataStructure.cmo Utils/Int.cmo Utils/Matrix.cmo Utils/MString.cmo Utils/Option.cmo Utils/Rand.cmo Utils/Read.cmo Utils/Time.cmo -o Utils.cmo
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Variable.cmo Variable.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Unification.cmi Unification.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Desugared.cmi Desugared.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules C.ml > C.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Instructions.mli > Instructions.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules PreInstruction.mli > PreInstruction.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Annotations.mli > Annotations.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Frequency.mli > Frequency.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Pred.ml > Pred.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Pred.cmo Pred.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules GAtomic.ml > GAtomic.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules GTerm.ml > GTerm.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Symbol.ml > Symbol.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Frequency.cmi Frequency.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o GAtomic.cmo GAtomic.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o GTerm.cmo GTerm.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Symbol.cmo Symbol.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Grouping.mli > Grouping.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Annotations.cmi Annotations.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Inversion.mli > Inversion.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Normal.mli > Normal.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Stratify.mli > Stratify.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Stratify.cmi Stratify.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Normal.cmi Normal.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Inversion.cmi Inversion.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Scope.mli > Scope.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Grouping.cmi Grouping.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Scope.cmi Scope.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o PreInstruction.cmi PreInstruction.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Instructions.cmi Instructions.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules CLIPS.mli > CLIPS.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules CommandLine.ml > CommandLine.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Optimization.mli > Optimization.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Reachability.mli > Reachability.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Domain.mli > Domain.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Domain.cmi Domain.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Reachability.cmi Reachability.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Optimization.cmi Optimization.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules OCaml.mli > OCaml.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Prolog.mli > Prolog.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Transformations.ml > Transformations.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o CommandLine.cmo CommandLine.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o ASP.cmi ASP.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o C.cmo C.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o CLIPS.cmi CLIPS.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o OCaml.cmi OCaml.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Prolog.cmi Prolog.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Transformations.cmo Transformations.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o C.cmo C.ml
+File "C.ml", line 84, characters 90-94:
+Warning 10: this expression should have type unit.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Main.cmo Main.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules ASP.ml > ASP.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Ast.ml > Ast.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Logic.ml > Logic.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Function.cmx Utils/Function.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/PList.cmx Utils/PList.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/MStack.cmx Utils/MStack.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Print.cmx Utils/Print.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/DataStructure.cmx Utils/DataStructure.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Bool.cmx Utils/Bool.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Choice.cmx Utils/Choice.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Int.cmx Utils/Int.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Matrix.cmx Utils/Matrix.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/MString.cmx Utils/MString.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Option.cmx Utils/Option.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Rand.cmx Utils/Rand.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/MString.cmx Utils/MString.ml
+File "Utils/MString.ml", line 19, characters 20-31:
+Warning 3: deprecated: String.copy
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Read.cmx Utils/Read.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Utils -I Utils -o Utils/Time.cmx Utils/Time.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Logic.cmx Logic.ml
+touch Utils.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -pack -I Utils Utils/Bool.cmx Utils/Choice.cmx Utils/Function.cmx Utils/MStack.cmx Utils/PList.cmx Utils/Print.cmx Utils/DataStructure.cmx Utils/Int.cmx Utils/Matrix.cmx Utils/MString.cmx Utils/Option.cmx Utils/Rand.cmx Utils/Read.cmx Utils/Time.cmx -o Utils.cmx  ; then  rm -f Utils.mli  ; else  rm -f Utils.mli  ; exit 1; fi
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Desugared.ml > Desugared.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Ast.cmx Ast.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q Lexer.mll
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Lexer.ml > Lexer.ml.depends
+menhir --raw-depend --ocamldep '/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules' Parser.mly > Parser.mly.depends
+menhir --ocamlc /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt --infer Parser.mly
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Parser.mli > Parser.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Parser.cmi Parser.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Lexer.cmo Lexer.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Parser.ml > Parser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Parser.cmx Parser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Unification.ml > Unification.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Variable.cmx Variable.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Lexer.cmx Lexer.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Unification.cmx Unification.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Temporize.ml > Temporize.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Temporize.mli > Temporize.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Temporize.cmi Temporize.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Analysis.ml > Analysis.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Analysis.mli > Analysis.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Analysis.cmi Analysis.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Desugared.cmx Desugared.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Pred.cmx Pred.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Symbol.cmx Symbol.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Frequency.ml > Frequency.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Analysis.cmx Analysis.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Frequency.cmx Frequency.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Temporize.cmx Temporize.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Instructions.ml > Instructions.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Annotations.ml > Annotations.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules ComputeRigids.ml > ComputeRigids.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules ComputeRigids.mli > ComputeRigids.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o ComputeRigids.cmi ComputeRigids.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Domain.ml > Domain.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Reachability.ml > Reachability.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Domain.cmx Domain.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Safety.ml > Safety.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules Safety.mli > Safety.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -o Safety.cmi Safety.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Safety.cmx Safety.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o Reachability.cmx Reachability.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o ComputeRigids.cmx ComputeRigids.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o GAtomic.cmx GAtomic.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -o GTerm.cmx GTerm.ml
