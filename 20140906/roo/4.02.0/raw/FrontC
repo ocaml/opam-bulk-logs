@@ -22,3 +22,97 @@ sent 52,727 bytes  received 35 bytes  105,524.00 bytes/sec
 total size is 52,592  speedup is 1.00
 
 =-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying opam.patch.
+patching file Makefile.head
+Building FrontC.3.4:
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk/lib OCAML_SITE=/home/opam/.opam/4.02.0+trunk/lib
+  cp META /home/opam/.opam/4.02.0+trunk/lib/FrontC
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+ocamllex  -o clexer.ml clexer.mll
+140 states, 1484 transitions, table size 6776 bytes
+ocamlyacc -v cparser.mly
+8 shift/reduce conflicts.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+ocamlc  -o cabs.cmo -c cabs.ml
+ocamlc  -o cxml.cmo -c cxml.ml
+ocamlc  -o cprint.cmo -c cprint.ml
+ocamlc  -o cparser.cmi -c cparser.mli
+ocamlc  -o clexer.cmo -c clexer.ml
+ocamlc  -o cparser.cmo -c cparser.ml
+ocamlc  -o ctoxml.cmo -c ctoxml.ml
+ocamlc  -o frontc.cmo -c frontc.ml
+ocamlc -a    -o frontc.cma cabs.cmo cxml.cmo cprint.cmo clexer.cmo cparser.cmo ctoxml.cmo frontc.cmo 
+ocamlopt  -o cabs.cmx -c cabs.ml
+ocamlopt  -o cxml.cmx -c cxml.ml
+ocamlopt  -o cprint.cmx -c cprint.ml
+make[1]: Circular cparser.cmx <- clexer.cmx dependency dropped.
+make[1]: Circular cparser.cmx <- clexer.cmx dependency dropped.
+ocamlopt  -o cparser.cmx -c cparser.ml
+ocamlopt  -o clexer.cmx -c clexer.ml
+ocamlopt  -o ctoxml.cmx -c ctoxml.ml
+ocamlopt  -o frontc.cmx -c frontc.ml
+ocamlopt -a   -o frontc.cmxa cabs.cmx cxml.cmx cprint.cmx clexer.cmx cparser.cmx ctoxml.cmx frontc.cmx 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+ocamlc -I ../frontc -o ctoxml_bin.cmo -c ctoxml_bin.ml
+ctoxml_bin.ml
+ctoxml_bin.cmo
+ocamlc   unix.cma ../frontc/frontc.cma -o ctoxml ctoxml_bin.cmo 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+ocamlc -I ../frontc -o printc_bin.cmo -c printc_bin.ml
+printc_bin.ml
+printc_bin.cmo
+ocamlc   unix.cma ../frontc/frontc.cma -o printc printc_bin.cmo 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+ocamlc -I ../frontc -o gen.cmo -c gen.ml
+ocamlc -I ../frontc -o reduce.cmo -c reduce.ml
+ocamlc -I ../frontc -o label.cmo -c label.ml
+File "label.ml", line 17, characters 28-40:
+Warning 3: deprecated: Array.create
+ocamlc -I ../frontc -o algo.cmo -c algo.ml
+File "algo.ml", line 306, characters 14-26:
+Warning 3: deprecated: Array.create
+ocamlc -I ../frontc -o calipso.cmo -c calipso.ml
+gen.ml reduce.ml label.ml algo.ml calipso.ml
+gen.cmo reduce.cmo label.cmo algo.cmo calipso.cmo
+ocamlc   unix.cma ../frontc/frontc.cma -o calipso gen.cmo reduce.cmo label.cmo algo.cmo calipso.cmo 
+gen.ml reduce.ml
+gen.cmo reduce.cmo
+ocamlc   unix.cma ../frontc/frontc.cma -o calipso_stat gen.cmo reduce.cmo 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+make[1]: Circular cparser.cmx <- clexer.cmx dependency dropped.
+make[1]: Circular cparser.cmx <- clexer.cmx dependency dropped.
+install -d /home/opam/.opam/4.02.0+trunk/lib/FrontC
+install frontc.cma cabs.cmi cxml.cmi cprint.cmi clexer.cmi cparser.cmi ctoxml.cmi frontc.cmi /home/opam/.opam/4.02.0+trunk/lib/FrontC
+install -d /home/opam/.opam/4.02.0+trunk/lib/FrontC
+install frontc.cmxa frontc.a cabs.cmi cxml.cmi cprint.cmi clexer.cmi cparser.cmi ctoxml.cmi frontc.cmi /home/opam/.opam/4.02.0+trunk/lib/FrontC
+ocamldoc -html -d ../autodoc  -t "FrontC" cabs.ml cxml.ml cprint.ml ctoxml.ml frontc.ml
+../autodoc/style.css: No such file or directory
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/frontc'
+Fatal error: exception Failure("../autodoc/Cabs.html: No such file or directory")
+make[1]: *** [doc] Error 2
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+install -d /home/opam/.opam/4.02.0+trunk/lib/bin
+install ctoxml /home/opam/.opam/4.02.0+trunk/lib/bin
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/ctoxml'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+install printc /home/opam/.opam/4.02.0+trunk/lib/bin
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/printc'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
+install calipso /home/opam/.opam/4.02.0+trunk/lib/bin
+install calipso_stat /home/opam/.opam/4.02.0+trunk/lib/bin
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/FrontC.3.4/calipso'
