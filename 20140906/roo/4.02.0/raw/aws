@@ -8426,3 +8426,279 @@ Warning 3: deprecated: operator (or); you should use (||) instead
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c userconf.ml
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c outputfilter.ml
 ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c authbasic.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c rewritemod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extendconfiguration.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c ocsigen_comet.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cors.ml
+ocamlfind ocamlopt  -shared -linkall -o staticmod.cmxs staticmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o cgimod.cmxs cgimod.cmx
+ocamlfind ocamlopt  -shared -linkall -o redirectmod.cmxs redirectmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o revproxy.cmxs revproxy.cmx
+ocamlfind ocamlopt  -shared -linkall -o extensiontemplate.cmxs extensiontemplate.cmx
+ocamlfind ocamlopt  -shared -linkall -o accesscontrol.cmxs accesscontrol.cmx
+ocamlfind ocamlopt  -shared -linkall -o userconf.cmxs userconf.cmx
+ocamlfind ocamlopt  -shared -linkall -o outputfilter.cmxs outputfilter.cmx
+ocamlfind ocamlopt  -shared -linkall -o authbasic.cmxs authbasic.cmx
+ocamlfind ocamlopt  -shared -linkall -o rewritemod.cmxs rewritemod.cmx
+ocamlfind ocamlopt  -shared -linkall -o extendconfiguration.cmxs extendconfiguration.cmx
+ocamlfind ocamlopt  -shared -linkall -o ocsigen_comet.cmxs ocsigen_comet.cmx
+ocamlfind ocamlopt  -shared -linkall -o cors.cmxs cors.cmx
+make -C ocsipersist-dbm opt
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm'
+ocamlfind ocamlopt   -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsipersist.ml
+ocamlfind ocamlopt   -thread -a -o ocsipersist-dbm.cmxa ocsipersist.cmx
+cp ocsipersist.cmi ..
+cp ocsipersist-dbm.cmxa ocsipersist-dbm.a ..
+ocamlfind ocamlopt   -thread -shared -linkall -o ocsipersist-dbm.cmxs ocsipersist-dbm.cmxa
+cp ocsipersist-dbm.cmxs ..
+ocamlfind ocamlopt   -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsidbm.ml
+ocamlfind ocamlopt   -thread -linkpkg -o ocsidbm.opt -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm ocsidbm.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm'
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src/extensions'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src'
+# Server binaries
+install -m 755 -d /home/opam/.opam/4.02.0+trunk/bin
+install -m 755 server/ocsigenserver server/ocsigenserver.opt /home/opam/.opam/4.02.0+trunk/bin/
+# Server libraries
+install -m 755 -d /home/opam/.opam/4.02.0+trunk/lib
+ocamlfind install ocsigenserver \
+	   -destdir /home/opam/.opam/4.02.0+trunk/lib \
+	   -patch-version 2.4.0 \
+	   baselib/ocsigen_cache.cmi baselib/ocsigen_lib_base.cmi baselib/ocsigen_lib.cmi baselib/ocsigen_config.cmi baselib/ocsigen_getcommandline.cmi baselib/ocsigen_messages.cmi baselib/ocsigen_stream.cmi baselib/ocsigen_loader.cmi baselib/polytables.cmi http/http_headers.cmi http/ocsigen_http_frame.cmi http/ocsigen_headers.cmi http/framepp.cmi http/ocsigen_http_com.cmi http/ocsigen_charset_mime.cmi http/ocsigen_senders.cmi http/ocsigen_cookies.cmi server/ocsigen_extensions.cmi server/ocsigen_parseconfig.cmi server/ocsigen_http_client.cmi server/ocsigen_local_files.cmi server/ocsigen_server.cmi  baselib/ocsigen_lib_base.cmo baselib/baselib.cma baselib/parsecommandline.cma baselib/donotparsecommandline.cma baselib/polytables.cmo http/ocsigen_cookies.cmo http/http.cma server/ocsigenserver.cma server/server_main.cmo  baselib/ocsigen_lib_base.cmx baselib/polytables.cmx http/ocsigen_cookies.cmx server/server_main.cmx baselib/ocsigen_lib_base.o   baselib/polytables.o   http/ocsigen_cookies.o   server/server_main.o   baselib/baselib.cmxa baselib/parsecommandline.cmxa baselib/donotparsecommandline.cmxa http/http.cmxa server/ocsigenserver.cmxa baselib/baselib.a baselib/parsecommandline.a baselib/donotparsecommandline.a http/http.a server/ocsigenserver.a  baselib/parsecommandline.cmxs baselib/donotparsecommandline.cmxs baselib/polytables.cmxs baselib/ocsigen_cache.mli baselib/ocsigen_lib_base.mli baselib/ocsigen_lib.mli baselib/ocsigen_config.mli baselib/ocsigen_getcommandline.mli baselib/ocsigen_messages.mli baselib/ocsigen_stream.mli baselib/ocsigen_loader.mli baselib/polytables.mli http/http_headers.mli http/ocsigen_http_frame.mli http/ocsigen_headers.mli http/framepp.mli http/ocsigen_http_com.mli http/ocsigen_charset_mime.mli http/ocsigen_senders.mli http/ocsigen_cookies.mli server/ocsigen_extensions.mli server/ocsigen_parseconfig.mli server/ocsigen_http_client.mli server/ocsigen_local_files.mli server/ocsigen_server.mli files/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_server.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_local_files.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_client.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_parseconfig.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_extensions.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cookies.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_senders.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_charset_mime.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_com.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/framepp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_headers.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_frame.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/http_headers.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_loader.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_stream.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_messages.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_getcommandline.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_config.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib_base.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cache.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/donotparsecommandline.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/parsecommandline.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigenserver.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/http.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/donotparsecommandline.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/parsecommandline.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/baselib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigenserver.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/http.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/donotparsecommandline.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/parsecommandline.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/baselib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/server_main.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cookies.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib_base.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/server_main.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cookies.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib_base.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/server_main.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigenserver.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/http.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cookies.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/donotparsecommandline.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/parsecommandline.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/baselib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib_base.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_server.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_local_files.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_client.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_parseconfig.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_extensions.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cookies.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_senders.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_charset_mime.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_com.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/framepp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_headers.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_http_frame.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/http_headers.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/polytables.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_loader.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_stream.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_messages.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_getcommandline.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_config.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_lib_base.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/ocsigen_cache.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/META
+# Extensions
+install -m 755 -d /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/extensions/
+install -m 644 \
+	  extensions/ocsigen_comet.cmi extensions/accesscontrol.cmi extensions/authbasic.cmi extensions/ocsipersist.cmi  extensions/staticmod.cmo extensions/cgimod.cmo extensions/redirectmod.cmo extensions/revproxy.cmo extensions/extensiontemplate.cmo extensions/accesscontrol.cmo extensions/userconf.cmo extensions/outputfilter.cmo extensions/authbasic.cmo extensions/rewritemod.cmo extensions/extendconfiguration.cmo extensions/ocsigen_comet.cmo extensions/cors.cmo  extensions/ocsipersist-dbm.cma extensions/staticmod.cmx extensions/cgimod.cmx extensions/redirectmod.cmx extensions/revproxy.cmx extensions/extensiontemplate.cmx extensions/accesscontrol.cmx extensions/userconf.cmx extensions/outputfilter.cmx extensions/authbasic.cmx extensions/rewritemod.cmx extensions/extendconfiguration.cmx extensions/ocsigen_comet.cmx extensions/cors.cmx extensions/staticmod.o   extensions/cgimod.o   extensions/redirectmod.o   extensions/revproxy.o   extensions/extensiontemplate.o   extensions/accesscontrol.o   extensions/userconf.o   extensions/outputfilter.o   extensions/authbasic.o   extensions/rewritemod.o   extensions/extendconfiguration.o   extensions/ocsigen_comet.o   extensions/cors.o   extensions/ocsipersist-dbm.cmxa extensions/ocsipersist-dbm.a  extensions/staticmod.cmxs extensions/cgimod.cmxs extensions/redirectmod.cmxs extensions/revproxy.cmxs extensions/extensiontemplate.cmxs extensions/accesscontrol.cmxs extensions/userconf.cmxs extensions/outputfilter.cmxs extensions/authbasic.cmxs extensions/rewritemod.cmxs extensions/extendconfiguration.cmxs extensions/ocsigen_comet.cmxs extensions/cors.cmxs extensions/ocsipersist-dbm.cmxs extensions/ocsigen_comet.mli extensions/accesscontrol.mli extensions/authbasic.mli extensions/ocsipersist.mli \
+	  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/extensions/
+[ -z "extensions/ocsipersist-dbm/ocsidbm extensions/ocsipersist-dbm/ocsidbm.opt" ] || \
+	  install -m 755  extensions/ocsipersist-dbm/ocsidbm extensions/ocsipersist-dbm/ocsidbm.opt \
+	  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/extensions/
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocsigenserver.2.4.0/src'
+INSTALL_CAN_PUT_PERMISSIONS: no
+## Command pipe
+install -m 777 -d /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/
+[ -p /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command ] || \
+	 { mkfifo -m 666 /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command; \
+	   if [ "no" = yes ]; \
+	     then chown -R opam:opam /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command; \
+	   fi; }
+## Configuration files
+install -m 777 -d /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/conf.d
+install -m 666 ocsigenserver.conf.sample /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/
+[ -f /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/ocsigenserver.conf ] || \
+	  { install -m 666 ocsigenserver.conf.sample \
+                /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/ocsigenserver.conf;  }
+mv /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/mime.types /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/mime.types.old
+mv: cannot stat '/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver/mime.types': No such file or directory
+make: ## Log directory
+[install.files] Error 1 (ignored)
+install -m 666 src/files/mime.types /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver
+install -d -m 777  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/log/ocsigenserver
+## Static files
+install -d -m 777  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www
+install -d -m 777  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/lib/ocsigenserver
+install -m 666  \
+	  local/var/www/*.html /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www
+install -d -m 777  \
+	  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www/ocsigenstuff
+install -m 666  \
+	  local/var/www/ocsigenstuff/*.png local/var/www/ocsigenstuff/*.css \
+	  /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www/ocsigenstuff
+install -d -m 777 /home/opam/.opam/4.02.0+trunk/man/man1
+install -m 666 src/files/ocsigenserver.1 /home/opam/.opam/4.02.0+trunk/man/man1
+
+## Run "make doc" and "make install.doc" to build and install the ocamldoc.
+Installing ocsigenserver.2.4.0.
+Building aws.0.0.3:
+  oasis setup
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ aws
+Package version: ..................................... 0.0.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+all: ................................................. false
+tools: ............................................... false
+cohttp: .............................................. false
+ocsigen: ............................................. true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt: ............................................. /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_lwt_syntax: ...................................... /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_netstring: ....................................... /home/opam/.opam/4.02.0+trunk/lib/netstring
+pkg_pcre: ............................................ /home/opam/.opam/4.02.0+trunk/lib/pcre
+pkg_cryptokit: ....................................... /home/opam/.opam/4.02.0+trunk/lib/cryptokit
+pkg_calendar: ........................................ /home/opam/.opam/4.02.0+trunk/lib/calendar
+pkg_xmlm: ............................................ /home/opam/.opam/4.02.0+trunk/lib/xmlm
+pkg_yojson: .......................................... /home/opam/.opam/4.02.0+trunk/lib/yojson
+pkg_ocsigenserver: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocsigenserver
+
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "test/_tags", line 1, characters 110-120:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 30, characters 23-33:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 63, characters 21-31:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 78, characters 18-28:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 93, characters 20-30:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 108, characters 25-35:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 123, characters 21-31:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 140, characters 34-44:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 152, characters 18-28:
+Warning: the tag "pkg_cohttp" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/creds.ml > src/creds.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/aws_sigs.ml > src/aws_sigs.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/aws_util.ml > src/aws_util.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -I src -o src/creds.cmo src/creds.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/policy.mli > src/policy.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -I src -o src/policy.cmi src/policy.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/policy.ml > src/policy.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/eC2_factory.ml > src/eC2_factory.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -I src -o src/aws_sigs.cmo src/aws_sigs.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -I src -o src/aws_util.cmo src/aws_util.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/my_xml.ml > src/my_xml.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -I src -o src/my_xml.cmo src/my_xml.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/sDB_factory.ml > src/sDB_factory.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package calendar -package cryptokit -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package netstring -package pcre -package xmlm -package yojson -syntax camlp4o -modules src/s3_factory.ml > src/s3_factory.ml.depends
