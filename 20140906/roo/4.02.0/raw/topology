@@ -621,3 +621,222 @@ Installing Camlp4Top...
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top/Top.o
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.cma
   install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.cmxa
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.cmxa
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4o.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4of.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4oof.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4orf.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4r.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4rf.cma
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.cmx
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Bin.o
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Top.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4_config.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmi
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmo
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.cmx
+  install /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4prof.o
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4lib.a
+  install library /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/camlp4fulllib.a
+sed -e s/@@VERSION@@/"4.02.1+dev0-2014-08-29"/g camlp4/META.in > camlp4/META
+mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
+Installing camlp4.4.02.0+1.
+Building ocamlgraph.1.8.5:
+  ./configure
+  make
+  make install-findlib
+checking for ocamlc... ocamlc
+ocaml version is 4.02.1+dev0-2014-08-29
+ocaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for ocamldoc... ocamldoc
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamlweb... true
+checking for ocamlfind... ocamlfind
+OCamlfind detected and enabled
+ocamlfind: Package `lablgtk2' not found
+checking for /home/opam/.opam/4.02.0+trunk/lib/ocaml/lablgtk2/lablgtk.cmxa... no
+checking Win32 platform... no
+configure: WARNING: lablgnomecanvas not found: the graph editor and view_graph will not be compiled
+configure: creating ./config.status
+config.status: creating Makefile
+sed -e s/VERSION/1.8.5/ -e s/CMA/graph.cma/ -e s/CMXA/graph.cmxa/ \
+		META.in > META
+ocamllex.opt src/gml.mll
+26 states, 827 transitions, table size 3464 bytes
+2623 additional bytes used for bindings
+rm -f src/version.ml
+echo "let version = \""1.8.5"\"" > src/version.ml
+echo "let date = \""`date`"\"" >> src/version.ml
+rm -f .depend
+ocamldep -slash -I src -I lib -I editor -I view_graph -I dgraph\
+		lib/*.ml lib/*.mli \
+		src/*.ml src/*.mli \
+		editor/*.mli editor/*.ml \
+		view_graph/*.mli view_graph/*.ml \
+		dgraph/*.mli dgraph/*.ml > .depend
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig_pack.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_ast.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.ml
+File "lib/heap.ml", line 54, characters 13-25:
+Warning 3: deprecated: Array.create
+File "lib/heap.ml", line 61, characters 16-28:
+Warning 3: deprecated: Array.create
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.ml
+File "lib/bitv.ml", line 51, characters 15-27:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 68, characters 25-37:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 71, characters 12-24:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 368, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 380, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 392, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 401, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 464, characters 27-39:
+Warning 3: deprecated: String.set
+ocamlc.opt -c -I src -I lib -g -dtypes src/version.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/blocks.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/persistent.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/persistent.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/imperative.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/imperative.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/delaunay.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/delaunay.ml
+File "src/delaunay.ml", line 260, characters 19-31:
+Warning 3: deprecated: Array.create
+ocamlc.opt -c -I src -I lib -g -dtypes src/builder.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/builder.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/classic.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/classic.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/rand.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/rand.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/oper.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/oper.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/components.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/components.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/path.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/path.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/nonnegative.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/nonnegative.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/traverse.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/traverse.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/coloring.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/coloring.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/topological.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/topological.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/kruskal.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/kruskal.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/flow.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/flow.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/prim.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/prim.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/dominator.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dominator.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/graphviz.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/graphviz.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/gml.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/gml.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_parser.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_parser.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_lexer.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/pack.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/pack.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/gmap.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/gmap.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/minsep.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/minsep.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/cliquetree.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/cliquetree.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/mcs_m.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/mcs_m.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/md.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/md.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/strat.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/strat.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/fixpoint.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/fixpoint.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/leaderlist.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/leaderlist.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/contraction.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/contraction.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/graphml.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/graphml.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/merge.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/merge.ml
+ocamlc.opt -I src -I lib -pack -g -o graph.cmo src/sig.cmi src/sig_pack.cmi src/dot_ast.cmi lib/unionfind.cmo lib/heap.cmo lib/bitv.cmo src/version.cmo src/util.cmo src/blocks.cmo src/persistent.cmo src/imperative.cmo src/delaunay.cmo src/builder.cmo src/classic.cmo src/rand.cmo src/oper.cmo src/components.cmo src/path.cmo src/nonnegative.cmo src/traverse.cmo src/coloring.cmo src/topological.cmo src/kruskal.cmo src/flow.cmo src/prim.cmo src/dominator.cmo src/graphviz.cmo src/gml.cmo src/dot_parser.cmo src/dot_lexer.cmo src/dot.cmo src/pack.cmo src/gmap.cmo src/minsep.cmo src/cliquetree.cmo src/mcs_m.cmo src/md.cmo src/strat.cmo src/fixpoint.cmo src/leaderlist.cmo src/contraction.cmo src/graphml.cmo src/merge.cmo
+ocamlc.opt -I src -I lib -a -g -o graph.cma graph.cmo
+ocamlopt.opt -c -I src -I lib -for-pack Graph lib/unionfind.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph lib/heap.ml
+File "lib/heap.ml", line 54, characters 13-25:
+Warning 3: deprecated: Array.create
+File "lib/heap.ml", line 61, characters 16-28:
+Warning 3: deprecated: Array.create
+ocamlopt.opt -c -I src -I lib -for-pack Graph lib/bitv.ml
+File "lib/bitv.ml", line 51, characters 15-27:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 68, characters 25-37:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 71, characters 12-24:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 368, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 380, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 392, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 401, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 464, characters 27-39:
+Warning 3: deprecated: String.set
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/version.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/util.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/blocks.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/persistent.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/imperative.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/delaunay.ml
+File "src/delaunay.ml", line 260, characters 19-31:
+Warning 3: deprecated: Array.create
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/builder.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/classic.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/rand.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/oper.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/components.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/path.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/nonnegative.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/traverse.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/coloring.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/topological.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/kruskal.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/flow.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/prim.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/dominator.ml
+ocamlopt.opt -c -I src -I lib -for-pack Graph src/graphviz.ml

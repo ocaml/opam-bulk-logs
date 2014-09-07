@@ -1343,4 +1343,330 @@ checking for inttypes.h... yes
 checking for stdint.h... yes
 checking for unistd.h... yes
 checking openssl/ssl.h usability... yes
-checking openssl/ssl.h presence... 
+checking openssl/ssl.h presence... yes
+checking for openssl/ssl.h... yes
+checking for TLSv1_1_method in -lssl... yes
+checking for TLSv1_2_method in -lssl... yes
+checking for ocamlfind... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+checking for ocamlcp... /home/opam/.opam/4.02.0+trunk/bin/ocamlcp
+checking for latex... no
+checking for dvips... no
+checking for ps2pdf... no
+configure: creating ./config.status
+config.status: creating src/Makefile
+config.status: creating src/META
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+making ._bcdi/ssl.di from ssl.mli
+making ._d/ssl.d from ssl.ml
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+ocamlc -c -cc "gcc" -ccopt "-fPIC -g -O2 -DHAVE_TLS11 -DHAVE_TLS12 -ansi -DCAML_NAME_SPACE -Wall \
+				-DPIC   \
+				    -o ssl_stubs.o " ssl_stubs.c 
+ar rcs libssl_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl.mli
+ocamlc -c -thread ssl.ml
+File "ssl.ml", line 233, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 234, characters 4-16:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 238, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 239, characters 4-37:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 240, characters 4-49:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 241, characters 4-48:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 242, characters 4-40:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 247, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 258, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 266, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlmklib                     \
+				-o ssl_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_stubs.so              \
+				-cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  -o ssl.cma  ssl.cmo
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+making ._d/ssl_threads.d from ssl_threads.ml
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+ar rcs libssl_threads_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl_threads.mli
+ocamlc -c -thread ssl_threads.ml
+ocamlmklib                     \
+				-o ssl_threads_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_threads_stubs.so              \
+				-cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  -o ssl_threads.cma  ssl.cmo ssl_threads.cmo
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+making ._ncdi/ssl.di from ssl.mli
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: `libssl_stubs.a' is up to date.
+ocamlopt -c -thread ssl.ml
+File "ssl.ml", line 233, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 234, characters 4-16:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 238, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 239, characters 4-37:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 240, characters 4-49:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 241, characters 4-48:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 242, characters 4-40:
+Warning 3: deprecated: String.set
+File "ssl.ml", line 247, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 258, characters 12-25:
+Warning 3: deprecated: String.create
+File "ssl.ml", line 266, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlopt -a -thread              -cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl.cmxa ssl.cmx
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[4]: `libssl_threads_stubs.a' is up to date.
+ocamlopt -c -thread ssl_threads.ml
+ocamlopt -a -thread              -cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl_threads.cmxa ssl.cmx ssl_threads.cmx
+make[4]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind install  ssl META ssl.mli ssl_threads.mli ssl.cmi ssl_threads.cmi ssl.cma ssl_threads.cma ssl.cmxa ssl_threads.cmxa ssl.cmx ssl_threads.cmx libssl_stubs.a libssl_threads_stubs.a ssl.a ssl_threads.a dllssl_stubs.so dllssl_threads_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/libssl_threads_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/libssl_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl_threads.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/ssl.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ssl/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllssl_threads_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllssl_threads_stubs.so.owner
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllssl_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllssl_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ssl.0.4.7/src'
+Installing ssl.0.4.7.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+File "bi_util.ml", line 11, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 13, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 18, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 20, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 36, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 41, characters 6-64:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 43, characters 4-54:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 24, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 40, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 86, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 90, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 96, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 97, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 102, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 103, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 104, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 105, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 116, characters 13-26:
+Warning 3: deprecated: String.create
+File "bi_inbuf.ml", line 99, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_io.ml", line 86, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 88, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 90, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 92, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 216, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 220, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 231, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 235, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 562, characters 12-25:
+Warning 3: deprecated: String.create
+File "bi_stream.ml", line 56, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+File "bi_util.ml", line 11, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 13, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 18, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 20, characters 4-51:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 36, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_util.ml", line 41, characters 6-64:
+Warning 3: deprecated: String.set
+File "bi_util.ml", line 43, characters 4-54:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 24, characters 10-23:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 40, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_outbuf.ml", line 86, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 90, characters 2-18:
+Warning 3: deprecated: String.set
+File "bi_outbuf.ml", line 96, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 97, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 102, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 103, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 104, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 105, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_outbuf.ml", line 116, characters 13-26:
+Warning 3: deprecated: String.create
+File "bi_inbuf.ml", line 99, characters 8-21:
+Warning 3: deprecated: String.create
+File "bi_io.ml", line 86, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 88, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 90, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 92, characters 2-19:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 216, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 220, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 231, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 235, characters 4-21:
+Warning 3: deprecated: String.unsafe_set
+File "bi_io.ml", line 562, characters 12-25:
+Warning 3: deprecated: String.create
+File "bi_stream.ml", line 56, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
+ocamlfind ocamlopt -o test_biniou -dtypes -g \
+		-package "easy-format unix" -linkpkg \
+		biniou.cmxa test_biniou.ml
+sed -e 's:@@VERSION@@:1.0.9:' META.in > META
+test ! -f bdump || cp bdump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f bdump.exe || cp bdump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install biniou META \
+          $(ls bi_util.mli bi_share.mli bi_outbuf.mli bi_inbuf.mli bi_vint.mli bi_io.mli bi_stream.mli bi_util.cmi bi_share.cmi bi_outbuf.cmi bi_inbuf.cmi bi_vint.cmi bi_io.cmi bi_dump.cmi bi_stream.cmi bi_util.cmo bi_share.cmo bi_outbuf.cmo bi_inbuf.cmo bi_vint.cmo bi_io.cmo bi_dump.cmo bi_stream.cmo bi_util.cmx bi_share.cmx bi_outbuf.cmx bi_inbuf.cmx bi_vint.cmx bi_io.cmx bi_dump.cmx bi_stream.cmx bi_util.o bi_share.o bi_outbuf.o bi_inbuf.o bi_vint.o bi_io.o bi_dump.o bi_stream.o biniou.cma biniou.cmxa biniou.cmxs biniou.a)
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/biniou.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_vint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_util.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_stream.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_share.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_outbuf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_io.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_inbuf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/bi_dump.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/biniou/META
+Installing biniou.1.0.9.
+Building lwt.2.4.5:
+  ./configure --disable-libev --enable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib --disable-text
+  make build
+  make install
+File "setup.ml", line 254, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2419, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
