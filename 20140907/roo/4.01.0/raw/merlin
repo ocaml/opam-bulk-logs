@@ -1276,3 +1276,76 @@ ocamlfind ocamldep -modules src/ocaml/typing/typetexp.ml > src/ocaml/typing/type
 ocamlfind ocamldep -modules src/ocaml/typing/typetexp.mli > src/ocaml/typing/typetexp.mli.depends
 ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typetexp.cmi src/ocaml/typing/typetexp.mli
 ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typetexp.cmx src/ocaml/typing/typetexp.ml
+ocamlfind ocamldep -modules src/ocaml/typing/typedecl.ml > src/ocaml/typing/typedecl.ml.depends
+ocamlfind ocamldep -modules src/ocaml/typing/typedecl.mli > src/ocaml/typing/typedecl.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typedecl.cmi src/ocaml/typing/typedecl.mli
+ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typecore.cmx src/ocaml/typing/typecore.ml
+ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typedecl.cmx src/ocaml/typing/typedecl.ml
+ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/includemod.cmx src/ocaml/typing/includemod.ml
+ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typeclass.cmx src/ocaml/typing/typeclass.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/extensions.cmx src/extensions.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/lexer.cmx src/lexer.ml
+ocamlfind ocamlopt -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typemod.cmx src/ocaml/typing/typemod.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/IO.ml > src/IO.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/error_report.ml > src/ocaml/error_report.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/error_report.mli > src/ocaml/error_report.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/error_report.cmi src/ocaml/error_report.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline.ml > src/outline.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/chunk_parser_utils.ml > src/chunk_parser_utils.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/chunk_parser_utils.mli > src/chunk_parser_utils.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/chunk_parser_utils.cmi src/chunk_parser_utils.mli
+menhir --external-tokens Chunk_parser --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/outline_parser.mly > src/ocaml/outline_parser.mly.depends
++ menhir --external-tokens Chunk_parser --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/outline_parser.mly > src/ocaml/outline_parser.mly.depends
+File "src/ocaml/outline_parser.mly", line 132, characters 29-36:
+Warning: the token COMMENT is unused.
+File "src/ocaml/outline_parser.mly", line 59, characters 7-22:
+Warning: the token GREATERRBRACKET is unused.
+menhir --ocamlc 'ocamlfind ocamlc -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils' --table --external-tokens Chunk_parser --infer src/ocaml/outline_parser.mly
++ menhir --ocamlc 'ocamlfind ocamlc -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils' --table --external-tokens Chunk_parser --infer src/ocaml/outline_parser.mly
+File "src/ocaml/outline_parser.mly", line 132, characters 29-36:
+Warning: the token COMMENT is unused.
+File "src/ocaml/outline_parser.mly", line 59, characters 7-22:
+Warning: the token GREATERRBRACKET is unused.
+File "src/ocaml/outline_parser.mly", line 173, characters 0-9:
+Warning: the precedence level assigned to IN is never useful.
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/outline_parser.ml > src/ocaml/outline_parser.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocaml/outline_parser.mli > src/ocaml/outline_parser.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/outline_parser.cmi src/ocaml/outline_parser.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/spine.ml > src/spine.ml.depends
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/chunk_parser_utils.cmx src/chunk_parser_utils.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/fake_lexer.cmx src/fake_lexer.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/outline_parser.cmx src/ocaml/outline_parser.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/spine.cmx src/spine.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/outline.cmx src/outline.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/error_report.cmx src/ocaml/error_report.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/extensions_utils.cmx src/extensions_utils.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/IO.cmx src/IO.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/chunk.ml > src/chunk.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/dot_merlin.ml > src/dot_merlin.ml.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/dot_merlin.cmo src/dot_merlin.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/global_state.ml > src/global_state.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/global_state.mli > src/global_state.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/global_state.cmi src/global_state.mli
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/dot_merlin.cmx src/dot_merlin.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/top_options.ml > src/top_options.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/main_args.mli > src/main_args.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/main_args.cmi src/main_args.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/top_options.cmo src/top_options.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/main_args.ml > src/main_args.ml.depends
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/IO_sexp.cmx src/IO_sexp.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/main_args.cmx src/main_args.ml
+ocamlfind ocamlopt -c -I src/config -I src -I src/ocaml -I src/utils -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/config/my_config.cmx src/config/my_config.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/top_options.cmx src/top_options.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/history.ml > src/history.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/state.ml > src/state.ml.depends
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/browse_misc.cmx src/browse_misc.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/chunk.cmx src/chunk.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/global_state.cmx src/global_state.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/history.cmx src/history.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/typer.ml > src/typer.ml.depends
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/typer.cmx src/typer.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/track_definition.ml > src/track_definition.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/track_definition.mli > src/track_definition.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/track_definition.cmi src/track_definition.mli
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/state.cmx src/state.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/track_definition.cmx src/track_definition.ml
