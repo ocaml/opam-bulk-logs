@@ -8454,3 +8454,60 @@ File "ocsigen_lib.ml", line 146, characters 6-11:
 Warning 3: deprecated: String.set
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.mli
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
+cat ocsigen_config.ml.in \
+	| sed s%0000000000000000%2.4.0% \
+	| sed s%_WARNING_%"Warning: this file has been generated from ocsigen_config.ml.in - DO NOT MODIFY MANUALLY!"% \
+	| sed s%_LOGDIR_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/log/ocsigenserver% \
+	| sed s%_DATADIR_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/lib/ocsigenserver%g \
+	| sed s%_BINDIR_%/home/opam/.opam/4.02.0+trunk/bin%g \
+	| sed s%_EXTDIR_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/extensions%g \
+	| sed s%_STATICPAGESDIR_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/www% \
+	| sed s%_UP_%/tmp%g \
+	| sed s%_OCSIGENUSER_%opam%g \
+	| sed s%_OCSIGENGROUP_%opam%g \
+	| sed s%_PROJECTNAME_%ocsigenserver%g \
+	| sed s%_COMMANDPIPE_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/var/run/ocsigenserver_command%g \
+	| sed s%_CONFIGDIR_%/home/opam/.opam/4.02.0+trunk/lib/ocsigenserver/etc/ocsigenserver% \
+	| sed s%_PREEMTIMPLEM_%Lwt_preemptive% \
+	| sed s%_ISNATIVE_%Dynlink.is_native%g \
+	| sed "s%_DEPS_%\"unix\";\"ssl\";\"lwt\";\"lwt.log\";\"bigarray\";\"lwt.unix\";\"lwt.ssl\";\"threads\";\"lwt.preemptive\";\"lwt.extra\";\"sexplib\";\"ipaddr\";\"str\";\"netsys\";\"netstring\";\"pcre\";\"netstring-pcre\";\"findlib\";\"num.core\";\"num\";\"cryptokit\";\"tyxml\";\"camlp4\";\"dynlink\";\"camlp4.lib\";\"tyxml.parser\"; \"ocsigenserver.commandline\"; \"ocsigenserver.polytables\"; \"ocsigenserver.cookies\"; \"ocsigenserver.baselib\"; \"ocsigenserver.http\"; \"ocsigenserver\"; %g" \
+	> ocsigen_config.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_getcommandline.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ln -s dynlink_wrapper.natdynlink.ml dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+File "ocsigen_stream.ml", line 43, characters 43-61:
+Warning 3: deprecated: Lazy.lazy_from_fun
+File "ocsigen_stream.ml", line 46, characters 26-44:
+Warning 3: deprecated: Lazy.lazy_from_fun
+File "ocsigen_stream.ml", line 49, characters 13-31:
+Warning 3: deprecated: Lazy.lazy_from_fun
+File "ocsigen_stream.ml", line 233, characters 12-25:
+Warning 3: deprecated: Ocsigen_lib.String.create
+ocamlfind ocamlc  -thread -a -o baselib.cma ocsigen_lib_base.cmo ocsigen_lib.cmo ocsigen_cache.cmo ocsigen_config.cmo ocsigen_commandline.cmo ocsigen_messages.cmo dynlink_wrapper.cmo ocsigen_loader.cmo ocsigen_stream.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o parsecommandline.cma commandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o donotparsecommandline.cma nocommandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
+ocamlfind ocamlc  -thread -a -o polytables.cma polytables.cmo
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib_base.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib.ml
+File "ocsigen_lib.ml", line 144, characters 14-27:
+Warning 3: deprecated: String.create
+File "ocsigen_lib.ml", line 145, characters 6-11:
+Warning 3: deprecated: String.set
+File "ocsigen_lib.ml", line 146, characters 6-11:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
