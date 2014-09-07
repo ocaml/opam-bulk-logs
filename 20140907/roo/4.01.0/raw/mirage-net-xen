@@ -2405,3 +2405,125 @@ Installing shared-memory-ring.1.1.0.
 Building xenstore.1.2.5:
   make all
   make install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ xenstore
+Package version: ..................................... 1.2.5
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... true
+pkg_cstruct: ......................................... /home/opam/.opam/4.01.0/lib/cstruct
+pkg_cstruct_syntax: .................................. /home/opam/.opam/4.01.0/lib/cstruct
+pkg_lwt: ............................................. /home/opam/.opam/4.01.0/lib/lwt
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_threads: ......................................... /home/opam/.opam/4.01.0/lib/ocaml
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.01.0/lib/lwt
+pkg_ounit: ........................................... /home/opam/.opam/4.01.0/lib/oUnit
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -modules core/xs_protocol.mli > core/xs_protocol.mli.depends
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmi core/xs_protocol.mli
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules core/xs_protocol.ml > core/xs_protocol.ml.depends
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -modules core/xs_handle.mli > core/xs_handle.mli.depends
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmi core/xs_handle.mli
+ocamlfind ocamldep -package cstruct.syntax -package cstruct -syntax camlp4o -modules core/xs_handle.ml > core/xs_handle.ml.depends
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmo core/xs_protocol.ml
+ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmo core/xs_handle.ml
++ ocamlfind ocamlc -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmo core/xs_protocol.ml
+File "core/xs_protocol.ml", line 595, characters 21-692:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+File "core/xs_protocol.ml", line 621, characters 23-873:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+ocamlfind ocamlc -a core/xs_protocol.cmo core/xs_handle.cmo -o core/xenstore.cma
+ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
+ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmx core/xs_handle.ml
++ ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
+File "core/xs_protocol.ml", line 595, characters 21-692:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+File "core/xs_protocol.ml", line 621, characters 23-873:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+ocamlfind ocamlopt -a core/xs_protocol.cmx core/xs_handle.cmx -o core/xenstore.cmxa
+ocamlfind ocamlopt -shared -linkall core/xenstore.cmxa -o core/xenstore.cmxs
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules client_lwt/xs_client_lwt.mli > client_lwt/xs_client_lwt.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmi client_lwt/xs_client_lwt.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules client_lwt/xs_client_lwt.ml > client_lwt/xs_client_lwt.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmo client_lwt/xs_client_lwt.ml
+ocamlfind ocamlc -a client_lwt/xs_client_lwt.cmo -o client_lwt/xenstore_client_lwt.cma
+ocamlfind ocamlopt -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmx client_lwt/xs_client_lwt.ml
+ocamlfind ocamlopt -a client_lwt/xs_client_lwt.cmx -o client_lwt/xenstore_client_lwt.cmxa
+ocamlfind ocamlopt -shared -linkall client_lwt/xenstore_client_lwt.cmxa -o client_lwt/xenstore_client_lwt.cmxs
+ocamlfind ocamldep -package unix -package threads -package cstruct.syntax -package cstruct -modules client_unix/xs_client_unix.mli > client_unix/xs_client_unix.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmi client_unix/xs_client_unix.mli
+ocamlfind ocamldep -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -modules client_unix/xs_client_unix.ml > client_unix/xs_client_unix.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmo client_unix/xs_client_unix.ml
+ocamlfind ocamlc -a client_unix/xs_client_unix.cmo -o client_unix/xenstore_client_unix.cma
+ocamlfind ocamlopt -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmx client_unix/xs_client_unix.ml
+ocamlfind ocamlopt -a client_unix/xs_client_unix.cmx -o client_unix/xenstore_client_unix.cmxa
+ocamlfind ocamlopt -shared -linkall client_unix/xenstore_client_unix.cmxa -o client_unix/xenstore_client_unix.cmxs
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/logging.ml > server/logging.ml.depends
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/logging_interface.ml > server/logging_interface.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/logging.cmo server/logging.ml
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/namespace.ml > server/namespace.ml.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/perms.mli > server/perms.mli.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/store.mli > server/store.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/perms.cmi server/perms.mli
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/quota.mli > server/quota.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/quota.cmi server/quota.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/transaction.ml > server/transaction.ml.depends
