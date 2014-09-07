@@ -1,0 +1,399 @@
+++ opam install lastfm -e ubuntu
++ depext=libpcre3-dev
++ echo Ubuntu depexts: libpcre3-dev
+Ubuntu depexts: libpcre3-dev
++ '[' libpcre3-dev '!=' '' ']'
++ sudo apt-get install -qq -y build-essential m4
++ sudo apt-get install -qq -y libpcre3-dev
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin: 
+Selecting previously unselected package libpcrecpp0:amd64.
+(Reading database ... 20147 files and directories currently installed.)
+Preparing to unpack .../libpcrecpp0_1%3a8.31-2ubuntu2_amd64.deb ...
+Unpacking libpcrecpp0:amd64 (1:8.31-2ubuntu2) ...
+Selecting previously unselected package libpcre3-dev:amd64.
+Preparing to unpack .../libpcre3-dev_1%3a8.31-2ubuntu2_amd64.deb ...
+Unpacking libpcre3-dev:amd64 (1:8.31-2ubuntu2) ...
+Setting up libpcrecpp0:amd64 (1:8.31-2ubuntu2) ...
+Setting up libpcre3-dev:amd64 (1:8.31-2ubuntu2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install lastfm -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lastfm
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   xmlm.1.2.0                            [required by xmlplaylist]
+ - install   conf-libpcre.1                        [required by pcre-ocaml]
+ - install   xmlplaylist.0.1.3                     [required by lastfm]
+ - install   pcre-ocaml.7.1.1                      [required by lastfm]
+ - install   lastfm.0.3.0
+=== 5 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/lastfm.0.3.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/pcre-ocaml.7.1.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+sending incremental file list
+lastfm.0.3.0+opam.tar.gz
+sending incremental file list
+pcre-ocaml.7.1.1+opam.tar.gz
+xmlm.1.2.0+opam.tar.gz
+
+sent 78,910 bytes  received 35 bytes  157,890.00 bytes/sec
+total size is 78,765  speedup is 1.00
+
+sent 86,695 bytes  received 35 bytes  173,460.00 bytes/sec
+total size is 86,546  speedup is 1.00
+
+sent 51,864 bytes  received 35 bytes  103,798.00 bytes/sec
+total size is 51,729  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlplaylist.0.1.3+opam.tar.gz
+sending incremental file list
+xmlplaylist.0.1.3+opam.tar.gz
+
+sent 64,893 bytes  received 35 bytes  129,856.00 bytes/sec
+total size is 64,751  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building conf-libpcre.1:
+  pkg-config libpcre
+Installing conf-libpcre.1.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -ccopt '' -c lib/pcre_stubs.c
+lib/pcre_stubs.c: In function 'pcre_exec_stub':
+lib/pcre_stubs.c:556:9: warning: initializer element is not computable at load time [enabled by default]
+         { subj_start, (value *) NULL, (value *) NULL, (value) NULL };
+         ^
+mv pcre_stubs.o lib/pcre_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o lib/pcre_stubs -lpcre lib/pcre_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/pcre.mli > lib/pcre.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmi lib/pcre.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/pcre.ml > lib/pcre.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmo lib/pcre.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -lpcre_stubs -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmo -o lib/pcre.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -ccopt -g -ccopt -O2 -ccopt -fPIC -ccopt -DPIC -ccopt -Wall -ccopt -pedantic -ccopt -Wextra -ccopt -Wunused -ccopt -Wno-long-long -w Aer-44 -I lib -o lib/pcre.cmx lib/pcre.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -lpcre_stubs -cclib -lpcre -cclib -lpcre lib/pcre.cmx -o lib/pcre.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -cclib -lpcre_stubs -I lib -cclib -lpcre lib/pcre.cmxa lib/pcre.cmx -o lib/pcre.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/cloc/cloc.ml > examples/cloc/cloc.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmo examples/cloc/cloc.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/cloc -I lib -o examples/cloc/cloc.cmx examples/cloc/cloc.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/cloc/cloc.cmx -o examples/cloc/cloc.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/count_hash/count_hash.ml > examples/count_hash/count_hash.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmo examples/count_hash/count_hash.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/count_hash -I lib -o examples/count_hash/count_hash.cmx examples/count_hash/count_hash.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/count_hash/count_hash.cmx -o examples/count_hash/count_hash.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/pcregrep/pcregrep.ml > examples/pcregrep/pcregrep.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmo examples/pcregrep/pcregrep.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.mli
+Installed /home/opam/.opam/4.01.0/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cma
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.a
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/4.01.0/lib/pcre/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+Building xmlplaylist.0.1.3:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
+configuring ocaml-xmlplaylist 0.1.3
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+checking if ocaml compiler supports first-class modules... yes
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlidl... no
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for ocamlfind... ocamlfind
+checking for caml/threads.h... no
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for xmlm... ok
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/META
+config.status: creating src/Makefile
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+making ._bcdi/xmlplaylist.di from xmlplaylist.mli
+making ._d/xmlplaylist.d from xmlplaylist.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+ocamlc.opt -c -I /home/opam/.opam/4.01.0/lib/xmlm xmlplaylist.mli
+ocamlc.opt -c -I /home/opam/.opam/4.01.0/lib/xmlm xmlplaylist.ml
+ocamlc.opt -a    -I /home/opam/.opam/4.01.0/lib/xmlm          \
+				  -o xmlplaylist.cma  xmlplaylist.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+making ._ncdi/xmlplaylist.di from xmlplaylist.mli
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+ocamlopt.opt -c -I /home/opam/.opam/4.01.0/lib/xmlm xmlplaylist.ml
+ocamlopt.opt -a     -I /home/opam/.opam/4.01.0/lib/xmlm           \
+				 -o xmlplaylist.cmxa xmlplaylist.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: `xmlplaylist.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+make[2]: `xmlplaylist.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+
+Installing library with ocamlfind
+ocamlfind install  xmlplaylist META xmlplaylist.mli xmlplaylist.cmi xmlplaylist.cma xmlplaylist.cmxa xmlplaylist.cmx xmlplaylist.a
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.a
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.cmx
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.cma
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.cmi
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/xmlplaylist.mli
+Installed /home/opam/.opam/4.01.0/lib/xmlplaylist/META
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/xmlplaylist.0.1.3/src'
+Installing xmlplaylist.0.1.3.
+Building lastfm.0.3.0:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
+configuring ocaml-lastfm 0.3.0
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlidl... no
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for ocamlfind... ocamlfind
+checking for caml/threads.h... no
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for ocaml-pcre... ok
+checking for ocaml-xmlplaylist... ok
+checking for netclient from ocamlnet... Not found, will only build generic modules.
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/META
+config.status: creating src/Makefile
+config.status: creating src/lastfm_constants.ml
+config.status: creating examples/Makefile.request
+config.status: creating examples/Makefile.submit
+config.status: creating examples/Makefile.download
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+making ._bcdi/lastfm_generic.di from lastfm_generic.mli
+making ._d/lastfm_generic.d from lastfm_generic.ml
+making ._d/lastfm_constants.d from lastfm_constants.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+ocamlc.opt -c -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist lastfm_constants.ml
+ocamlc.opt -c -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist lastfm_generic.mli
+ocamlc.opt -c -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist lastfm_generic.ml
+ocamlc.opt -a    -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist          \
+				  -o lastfm.cma  lastfm_constants.cmo lastfm_generic.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+making ._ncdi/lastfm_generic.di from lastfm_generic.mli
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+ocamlopt.opt -c -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist lastfm_constants.ml
+ocamlopt.opt -c -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist lastfm_generic.ml
+ocamlopt.opt -a     -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist           \
+				 -o lastfm.cmxa lastfm_constants.cmx lastfm_generic.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+ocamlc.opt -a    -I /home/opam/.opam/4.01.0/lib/pcre -I /home/opam/.opam/4.01.0/lib/xmlplaylist          \
+				  -o lastfm.cma  lastfm_constants.cmo lastfm_generic.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+make[2]: `lastfm.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  lastfm META lastfm.mli lastfm_generic.mli lastfm_constants.cmi lastfm_generic.cmi lastfm.cma lastfm.cmxa lastfm_constants.cmx lastfm_generic.cmx lastfm.a
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm.a
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm_generic.cmx
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm_constants.cmx
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm.cma
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm_generic.cmi
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm_constants.cmi
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm_generic.mli
+Installed /home/opam/.opam/4.01.0/lib/lastfm/lastfm.mli
+Installed /home/opam/.opam/4.01.0/lib/lastfm/META
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lastfm.0.3.0/src'
+Installing lastfm.0.3.0.
