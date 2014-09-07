@@ -17,3 +17,107 @@ Selecting previously unselected package libffi-dev:amd64.
 Preparing to unpack .../libffi-dev_3.1~rc1+r3.0.13-12_amd64.deb ...
 Unpacking libffi-dev:amd64 (3.1~rc1+r3.0.13-12) ...
 Setting up libffi-dev:amd64 (3.1~rc1+r3.0.13-12) ...
+++ opam install lz4 -e source,linux
++ srcext=https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh
++ echo Ubuntu srcexts: https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh
++ '[' https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh '!=' '' ']'
+Ubuntu srcexts: https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh
+++ mktemp
++ t=/tmp/tmp.S0kPgZW4pD
++ curl -sL https://gist.githubusercontent.com/whitequark/eef074a8daa14602e447/raw/c151d3ab2f35f6cac54c7ef7459e2bbfff852938/install.sh
++ bash -ex /tmp/tmp.S0kPgZW4pD
++ V=r119
++ curl -OJL https://github.com/Cyan4973/lz4/archive/r119.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   118    0   118    0     0    187      0 --:--:-- --:--:-- --:--:--   187
+  0     0    0   869    0     0    675      0 --:--:--  0:00:01 --:--:--   675  0     0    0 33749    0     0  15395      0 --:--:--  0:00:02 --:--:-- 36251curl: Saved to filename 'lz4-r119.tar.gz'
+  0     0    0  155k    0     0  72669      0 --:--:--  0:00:02 --:--:--  170k
++ tar -zxvf lz4-r119.tar.gz
+lz4-r119/
+lz4-r119/.travis.yml
+lz4-r119/LICENSE
+lz4-r119/LZ4_Streaming_Format.odt
+lz4-r119/Makefile
+lz4-r119/NEWS
+lz4-r119/README.md
+lz4-r119/cmake_unofficial/
+lz4-r119/cmake_unofficial/CMakeLists.txt
+lz4-r119/lz4.c
+lz4-r119/lz4.h
+lz4-r119/lz4_format_description.txt
+lz4-r119/lz4hc.c
+lz4-r119/lz4hc.h
+lz4-r119/programs/
+lz4-r119/programs/COPYING
+lz4-r119/programs/Makefile
+lz4-r119/programs/bench.c
+lz4-r119/programs/bench.h
+lz4-r119/programs/datagen.c
+lz4-r119/programs/fullbench.c
+lz4-r119/programs/fuzzer.c
+lz4-r119/programs/lz4.1
+lz4-r119/programs/lz4c.1
+lz4-r119/programs/lz4cat.1
+lz4-r119/programs/lz4cli.c
+lz4-r119/programs/lz4io.c
+lz4-r119/programs/lz4io.h
+lz4-r119/programs/xxhash.c
+lz4-r119/programs/xxhash.h
++ cd lz4-r119
++ make
+compiling static library
+compiling dynamic library
+creating versioned links
+make[1]: Entering directory `/home/opam/opam-repository/lz4-r119/programs'
+cc      -I.. -std=c99 -O3 -Wall -W -Wundef -DLZ4_VERSION=\"r119\" -DDISABLE_LZ4C_LEGACY_OPTIONS ../lz4.c ../lz4hc.c bench.c xxhash.c lz4io.c lz4cli.c -o lz4
+cc      -I.. -std=c99 -O3 -Wall -W -Wundef -DLZ4_VERSION=\"r119\" ../lz4.c ../lz4hc.c bench.c xxhash.c lz4io.c lz4cli.c -o lz4c
+make[1]: Leaving directory `/home/opam/opam-repository/lz4-r119/programs'
++ sudo make install
+compiling static library
+compiling dynamic library
+creating versioned links
+lz4 static and shared library installed
+make[1]: Entering directory `/home/opam/opam-repository/lz4-r119/programs'
+Installing binaries
+Installing man pages
+lz4 installation completed
+make[1]: Leaving directory `/home/opam/opam-repository/lz4-r119/programs'
++ opam install lz4
+The following actions will be performed:
+ - install   base-bytes.base                       [required by lz4]
+ - install   ctypes.0.3.3                          [required by lz4]
+ - install   lz4.1.0.0
+=== 3 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lz4.1.0.0+opam.tar.gz
+sending incremental file list
+ctypes.0.3.3+opam.tar.gz
+sending incremental file list
+lz4.1.0.0+opam.tar.gz
+
+
+sent 48,133 bytes  received 35 bytes  96,336.00 bytes/sec
+sent 132,062 bytes  received 35 bytes  264,194.00 bytes/sec
+total size is 131,901  speedup is 1.00
+total size is 47,999  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing base-bytes.base.
+Building ctypes.0.3.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed: ...................... available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx        -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o make_primitive_details_stubs.o  /home/opam/.opam/4.02.0+trunk/build/ctypes.0.3.3/src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o  
+ocamlfind opt -c -o _build/src/libffi-abigen/libffi_abigen.cmx -package unix    -package unix   -I _build/src/libffi-abigen  src/libffi-abigen/libffi_abigen.ml
+ocamlfind opt -I _build -linkpkg   -package unix   -o _build/libffi-abigen.native _build/src/libffi-abigen/libffi_abigen.cmx  
+_build/configure.native > src/ctypes/ctypes_primitives.ml
+_build/libffi-abigen.native > src/ctypes-foreign-base/libffi_abi.ml
