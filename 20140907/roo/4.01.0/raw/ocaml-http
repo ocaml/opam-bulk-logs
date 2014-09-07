@@ -2915,3 +2915,43 @@ ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_commo
 cp http_threaded_tcp_server.{cmi,mli} non_mt/
 ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c non_mt/http_threaded_tcp_server.ml
 ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_tcp_server.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c cookie_lexer.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_parser.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_message.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_request.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_daemon.ml
+File "http_daemon.ml", line 457, characters 2-250:
+Warning 23: all the fields are explicitly listed in this record:
+the 'with' clause is useless.
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_response.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -c http_user_agent.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -a -o http.cmxa http_constants.cmx http_types.cmx http_parser_sanity.cmx http_misc.cmx http_common.cmx non_mt/http_threaded_tcp_server.cmx http_tcp_server.cmx cookie_lexer.cmx http_parser.cmx http_message.cmx http_request.cmx http_daemon.cmx http_response.cmx http_user_agent.cmx
+cp http_threaded_tcp_server.{cmi,mli} mt/
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -package threads -thread -c mt/http_threaded_tcp_server.ml
+ocamlfind ocamlopt  -pp camlp4o -package "unix str pcre netstring" -a -o http_mt.cmxa http_constants.cmx http_types.cmx http_parser_sanity.cmx http_misc.cmx http_common.cmx mt/http_threaded_tcp_server.cmx http_tcp_server.cmx cookie_lexer.cmx http_parser.cmx http_message.cmx http_request.cmx http_daemon.cmx http_response.cmx http_user_agent.cmx
+ocamlfind install -destdir /home/opam/.opam/4.01.0/lib  http	\
+		 http_types.mli  http_common.mli  http_message.mli  http_request.mli  http_daemon.mli  http_response.mli  http_user_agent.mli	\
+		 http_types.cmi  http_common.cmi  http_message.cmi  http_request.cmi  http_daemon.cmi  http_response.cmi  http_user_agent.cmi	\
+		http.cma http_mt.cma http.cmxa http_mt.cmxa http.a http_mt.a META
+Installed /home/opam/.opam/4.01.0/lib/http/http_mt.a
+Installed /home/opam/.opam/4.01.0/lib/http/http.a
+Installed /home/opam/.opam/4.01.0/lib/http/http_mt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/http/http.cmxa
+Installed /home/opam/.opam/4.01.0/lib/http/http_mt.cma
+Installed /home/opam/.opam/4.01.0/lib/http/http.cma
+Installed /home/opam/.opam/4.01.0/lib/http/http_user_agent.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_response.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_daemon.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_request.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_message.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_common.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_types.cmi
+Installed /home/opam/.opam/4.01.0/lib/http/http_user_agent.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_response.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_daemon.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_request.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_message.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_common.mli
+Installed /home/opam/.opam/4.01.0/lib/http/http_types.mli
+Installed /home/opam/.opam/4.01.0/lib/http/META
+Installing ocaml-http.0.1.5.
