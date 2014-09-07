@@ -862,3 +862,150 @@ Warning: the tag "src_library_version_ml" is not used in any flag declaration, s
 /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/extensions/kaputtBigarray.mli > src/extensions/kaputtBigarray.mli.depends
 cp /tmp/version1c673d.ml src/library/version.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmi src/extensions/kaputtBigarray.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/extensions/kaputtBigarray.ml > src/extensions/kaputtBigarray.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmo src/extensions/kaputtBigarray.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputtNums.cmo
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/extensions/kaputtNums.mli > src/extensions/kaputtNums.mli.depends
+cp /tmp/version9a7c5c.ml src/library/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtNums.cmi src/extensions/kaputtNums.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules src/extensions/kaputtNums.ml > src/extensions/kaputtNums.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtNums.cmo src/extensions/kaputtNums.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputtBigarray.cmx
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/version25dd93.ml src/library/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Kaputt -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtBigarray.cmx src/extensions/kaputtBigarray.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlbuild -classic-display -no-links kaputtNums.cmx
+File "_tags", line 25, characters 19-27:
+Warning: the tag "warnings" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 28, characters 27-49:
+Warning: the tag "src_library_version_ml" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp /tmp/version4d365d.ml src/library/version.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -for-pack Kaputt -I src/extensions -I src -I src/syntax -I src/library -o src/extensions/kaputtNums.cmx src/extensions/kaputtNums.ml
+if [ -x "/home/opam/.opam/4.02.0+trunk/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind query kaputt && /home/opam/.opam/4.02.0+trunk/bin/ocamlfind remove kaputt || true; \
+	  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind install kaputt META -optional \
+	    `pwd`/_build/src/syntax/kaputt_pp.byte \
+	    `pwd`/_build/src/extensions/kaputtBigarray.cm* \
+	    `pwd`/_build/src/extensions/kaputtBigarray.o \
+	    `pwd`/_build/src/extensions/kaputtBigarray.jo \
+	    `pwd`/_build/src/extensions/kaputtNums.cm* \
+	    `pwd`/_build/src/extensions/kaputtNums.o \
+	    `pwd`/_build/src/extensions/kaputtNums.jo \
+	    `pwd`/_build/kaputt.a \
+	    `pwd`/_build/kaputt.cma \
+	    `pwd`/_build/kaputt.cmi \
+	    `pwd`/_build/kaputt.cmo \
+	    `pwd`/_build/kaputt.cmx \
+	    `pwd`/_build/kaputt.cmxa \
+	    `pwd`/_build/kaputt.cmja \
+	    `pwd`/_build/kaputt.ja; \
+	else \
+	  mkdir -p /home/opam/.opam/4.02.0+trunk/lib/ocaml/kaputt; \
+	  cp `pwd`/_build/src/syntax/kaputt_pp.byte /home/opam/.opam/4.02.0+trunk/bin; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/extensions/kaputtBigarray.$ext && cp `pwd`/_build/src/extensions/kaputtBigarray.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/kaputt || true; \
+	    test -f `pwd`/_build/src/extensions/kaputtNums.$ext && cp `pwd`/_build/src/extensions/kaputtNums.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/kaputt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmx cmxa cmja ja; do \
+	    test -f `pwd`/_build/kaputt.$ext && cp `pwd`/_build/kaputt.$ext /home/opam/.opam/4.02.0+trunk/lib/ocaml/kaputt || true; \
+	  done \
+	fi
+ocamlfind: Package `kaputt' not found
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtNums.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtNums.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtNums.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtNums.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtBigarray.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtBigarray.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtBigarray.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputtBigarray.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/kaputt_pp.byte
+Installed /home/opam/.opam/4.02.0+trunk/lib/kaputt/META
+Installing kaputt.1.2.
+Building ounit.2.0.0:
+  make build
+  make install
+ocaml setup.ml -configure 
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISFindlib.ml", line 256, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ ounit
+Package version: ..................................... 2.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_unix: ............................................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+pkg_threads: ......................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+ocamldoc: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamldoc
+
+ocaml setup.ml -build 
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISFindlib.ml", line 256, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
+W: Cannot find source file matching module 'OUnitLoggerHTMLData' in library oUnitAdvanced
