@@ -739,3 +739,39 @@ ocamlfind ocamldep -modules Fix.ml > Fix.ml.depends
 ocamlfind ocamlopt -c -g -inline 1000 -o breadth.cmx breadth.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o slr.cmx slr.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o Fix.cmx Fix.ml
+ocamlfind ocamldep -modules lr1partial.ml > lr1partial.ml.depends
+ocamlfind ocamldep -modules lr1partial.mli > lr1partial.mli.depends
+ocamlfind ocamlc -c -o lr1partial.cmi lr1partial.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1.cmx lr1.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o derivation.cmx derivation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lr1partial.cmx lr1partial.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o conflict.cmx conflict.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o codePieces.cmx codePieces.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o invariant.cmx invariant.ml
+ocamlfind ocamldep -modules coqBackend.ml > coqBackend.ml.depends
+ocamlfind ocamldep -modules coqBackend.mli > coqBackend.mli.depends
+ocamlfind ocamlc -c -o coqBackend.cmi coqBackend.mli
+ocamlfind ocamldep -modules inliner.ml > inliner.ml.depends
+ocamlfind ocamldep -modules inliner.mli > inliner.mli.depends
+ocamlfind ocamlc -c -o inliner.cmi inliner.mli
+ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
+ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sentenceParser.mly > sentenceParser.mly.depends
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
