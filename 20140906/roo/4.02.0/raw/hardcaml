@@ -2651,3 +2651,243 @@ findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/op
 File "toplevel/jsooTop.ml", line 111, characters 12-30:
 Warning 3: deprecated: Lazy.lazy_from_fun
 ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/ocamlbuild'
+ocamlbuild -use-ocamlfind ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
+ocamlfind ocamlopt -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmx ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlopt -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxs
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/ocamlbuild'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/runtime'
+echo "//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js" > runtime.js
+for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js ; do \
+		 echo "//# 1 \"$f\"" >> runtime.js; \
+	   cat $f >> runtime.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/runtime'
+make -C jsoo_tools
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_common.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+File "jsoo_common.ml", line 25, characters 21-34:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mktop.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mktop.cmx -o jsoo_mktop.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+mv -f jsoo_mktop.opt jsoo_mktop
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mkcmis.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mkcmis.cmx -o jsoo_mkcmis.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0+trunk/lib/ocaml, /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs
+mv -f jsoo_mkcmis.opt jsoo_mkcmis
+rm jsoo_common.cmx jsoo_mkcmis.cmx jsoo_mktop.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind install -patch-version 2.4.1 js_of_ocaml lib/META lib/*.cmi lib/log/*.cmi lib/toplevel/jsooTop.cmi ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmi lib/js_of_ocaml.cma lib/syntax/pa_js.cmo lib/dlljs_of_ocaml.so lib/libjs_of_ocaml.a lib/log/logger.cma lib/syntax/pa_js.cmx lib/syntax/pa_js.cmxs lib/toplevel/jsooTop.cmo ocamlbuild/_build/ocamlbuild_js_of_ocaml.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxa ocamlbuild/_build/ocamlbuild_js_of_ocaml.a ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxs runtime/runtime.js runtime/weak.js runtime/polyfill/classlist.js runtime/polyfill/array.js runtime/toplevel.js runtime/graphics.js runtime/nat.js  lib/*.mli lib/log/*.mli lib/toplevel/jsooTop.mli ocamlbuild/_build/ocamlbuild_js_of_ocaml.mli compiler/compiler.cmi compiler/compiler.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/compiler.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_log_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/xmlHttpRequest.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webSockets.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webGL.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/url.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/typed_array.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/sys_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/regexp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js_events.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/keycode.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsonp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/json.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/form.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/firebug.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/file.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/eventSource.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_svg.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_html.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_events.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/cSS.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/nat.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/graphics.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/toplevel.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/array.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/classlist.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/weak.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/runtime.js
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/logger.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/libjs_of_ocaml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/pa_js.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js_of_ocaml.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsooTop.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_log_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/xmlHttpRequest.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webSockets.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/webGL.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/url.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/typed_array.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/sys_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/regexp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js_events.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/lwt_js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/keycode.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/jsonp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/json.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/js.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/form.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/firebug.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/file.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/eventSource.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_svg.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_html.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom_events.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/dom.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/cSS.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/js_of_ocaml/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlljs_of_ocaml.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlljs_of_ocaml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing js_of_ocaml.2.4.1.
+Building hardcaml.1.0.0:
+  make all
+  make install
+ocamlbuild -use-ocamlfind  HardCaml.cma HardCaml.cmxa
+ocamlfind ocamldep -modules src/utils.mli > src/utils.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/utils.cmi src/utils.mli
+ocamlfind ocamldep -modules src/utils.ml > src/utils.ml.depends
+ocamlfind ocamldep -modules src/comb.mli > src/comb.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/comb.cmi src/comb.mli
+ocamlfind ocamldep -modules src/comb.ml > src/comb.ml.depends
+ocamlfind ocamldep -modules src/bits.mli > src/bits.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/bits.cmi src/bits.mli
+ocamlfind ocamldep -modules src/bits.ml > src/bits.ml.depends
+ocamlfind ocamldep -modules src/bits_raw.mli > src/bits_raw.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/bits_raw.cmi src/bits_raw.mli
+ocamlfind ocamldep -modules src/bits_raw.ml > src/bits_raw.ml.depends
+ocamlfind ocamldep -modules src/signal.mli > src/signal.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/signal.cmi src/signal.mli
+ocamlfind ocamldep -modules src/signal.ml > src/signal.ml.depends
+ocamlfind ocamldep -modules src/syntax.mli > src/syntax.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/syntax.cmi src/syntax.mli
+ocamlfind ocamldep -modules src/syntax.ml > src/syntax.ml.depends
+ocamlfind ocamldep -modules src/circuit.mli > src/circuit.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/circuit.cmi src/circuit.mli
+ocamlfind ocamldep -modules src/circuit.ml > src/circuit.ml.depends
+ocamlfind ocamldep -modules src/rtl.mli > src/rtl.mli.depends
+ocamlfind ocamldep -modules src/transform.mli > src/transform.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/transform.cmi src/transform.mli
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/rtl.cmi src/rtl.mli
+ocamlfind ocamldep -modules src/rtl.ml > src/rtl.ml.depends
+ocamlfind ocamldep -modules src/fixed.mli > src/fixed.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/fixed.cmi src/fixed.mli
+ocamlfind ocamldep -modules src/fixed.ml > src/fixed.ml.depends
+ocamlfind ocamldep -modules src/const_prop.mli > src/const_prop.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/const_prop.cmi src/const_prop.mli
+ocamlfind ocamldep -modules src/const_prop.ml > src/const_prop.ml.depends
+ocamlfind ocamldep -modules src/transform.ml > src/transform.ml.depends
+ocamlfind ocamldep -modules src/cyclesim.mli > src/cyclesim.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/cyclesim.cmi src/cyclesim.mli
+ocamlfind ocamldep -modules src/cyclesim.ml > src/cyclesim.ml.depends
+ocamlfind ocamldep -modules src/vcd.mli > src/vcd.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/vcd.cmi src/vcd.mli
+ocamlfind ocamldep -modules src/vcd.ml > src/vcd.ml.depends
+ocamlfind ocamldep -modules src/vcd_ext.mli > src/vcd_ext.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/vcd_ext.cmi src/vcd_ext.mli
+ocamlfind ocamldep -modules src/vcd_ext.ml > src/vcd_ext.ml.depends
+ocamlfind ocamldep -modules src/interface.mli > src/interface.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/interface.cmi src/interface.mli
+ocamlfind ocamldep -modules src/interface.ml > src/interface.ml.depends
+ocamlfind ocamldep -modules src/xilinx.mli > src/xilinx.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/xilinx.cmi src/xilinx.mli
+ocamlfind ocamldep -modules src/xilinx.ml > src/xilinx.ml.depends
+ocamlfind ocamldep -modules src/c.mli > src/c.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/c.cmi src/c.mli
+ocamlfind ocamldep -modules src/c.ml > src/c.ml.depends
+ocamlfind ocamldep -modules src/structural.mli > src/structural.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/structural.cmi src/structural.mli
+ocamlfind ocamldep -modules src/structural.ml > src/structural.ml.depends
+ocamlfind ocamldep -modules src/structural_lib.mli > src/structural_lib.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/structural_lib.cmi src/structural_lib.mli
+ocamlfind ocamldep -modules src/structural_lib.ml > src/structural_lib.ml.depends
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/utils.cmo src/utils.ml
++ ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/utils.cmo src/utils.ml
+File "src/utils.ml", line 192, characters 16-40:
+Warning 3: deprecated: String.set
+File "src/utils.ml", line 203, characters 4-16:
+Warning 3: deprecated: Array.create
+File "src/utils.ml", line 210, characters 4-16:
+Warning 3: deprecated: Array.create
+File "src/utils.ml", line 217, characters 4-16:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/comb.cmo src/comb.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/bits.cmo src/bits.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/bits_raw.cmo src/bits_raw.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/signal.cmo src/signal.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/syntax.cmo src/syntax.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/circuit.cmo src/circuit.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/rtl.cmo src/rtl.ml
++ ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/rtl.cmo src/rtl.ml
+File "src/rtl.ml", line 49, characters 12-25:
+Warning 3: deprecated: String.create
+File "src/rtl.ml", line 51, characters 8-24:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/fixed.cmo src/fixed.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/const_prop.cmo src/const_prop.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/transform.cmo src/transform.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/cyclesim.cmo src/cyclesim.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/vcd.cmo src/vcd.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/vcd_ext.cmo src/vcd_ext.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/interface.cmo src/interface.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/xilinx.cmo src/xilinx.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/c.cmo src/c.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/structural.cmo src/structural.ml
+ocamlfind ocamlc -c -g -bin-annot -I src -I js -o src/structural_lib.cmo src/structural_lib.ml
+ocamlfind ocamlc -pack -g src/utils.cmo src/comb.cmo src/bits.cmo src/bits_raw.cmo src/signal.cmo src/syntax.cmo src/circuit.cmo src/const_prop.cmo src/transform.cmo src/rtl.cmo src/fixed.cmo src/cyclesim.cmo src/vcd.cmo src/vcd_ext.cmo src/interface.cmo src/xilinx.cmo src/c.cmo src/structural.cmo src/structural_lib.cmo -o HardCaml.cmo
+ocamlfind ocamlc -a HardCaml.cmo -o HardCaml.cma
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/utils.cmx src/utils.ml
++ ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/utils.cmx src/utils.ml
+File "src/utils.ml", line 192, characters 16-40:
+Warning 3: deprecated: String.set
+File "src/utils.ml", line 203, characters 4-16:
+Warning 3: deprecated: Array.create
+File "src/utils.ml", line 210, characters 4-16:
+Warning 3: deprecated: Array.create
+File "src/utils.ml", line 217, characters 4-16:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/comb.cmx src/comb.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/bits.cmx src/bits.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/signal.cmx src/signal.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/circuit.cmx src/circuit.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/const_prop.cmx src/const_prop.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/transform.cmx src/transform.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/cyclesim.cmx src/cyclesim.ml
+ocamlfind ocamlopt -c -g -bin-annot -for-pack HardCaml -I src -I js -o src/vcd.cmx src/vcd.ml
