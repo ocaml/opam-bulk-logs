@@ -124,3 +124,23 @@ ocamlfind ocamlopt -c -g -annot -warn-error A -ccopt -Wall -ccopt -Werror -I lib
 ocamlfind ocamlopt -a -cclib -lspf_stubs -cclib -lspf2 lib/SPF.cmx -o lib/spf.cmxa
 ocamlfind ocamlopt -shared -linkall -I lib lib/spf.cmxa -o lib/spf.cmxs
 ocamlfind ocamldep -package unix -modules lib_test/test.ml > lib_test/test.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib -package unix -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib -package unix -I lib_test -I lib -o lib_test/test.cmx lib_test/test.ml
+ocamlfind ocamlopt -g -I lib -linkpkg -package unix lib/spf.cmxa lib_test/test.cmx -o lib_test/test.native
+File "/home/andre/src/oasis-0.3.0/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/andre/src/oasis-0.3.0/src/oasis/OASISLibrary.ml", line 402, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/SPF.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/libspf_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/spf.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/spf.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/spf.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/spf.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/SPF.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/SPF.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/spf/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllspf_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllspf_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing spf.1.0.1.
