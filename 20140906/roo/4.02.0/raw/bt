@@ -4390,3 +4390,379 @@ Warning 3: deprecated: String.set
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/header.cmx cohttp/header.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/code.cmx cohttp/code.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/transfer_io.cmx cohttp/transfer_io.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/header_io.cmx cohttp/header_io.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/response.cmx cohttp/response.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/cookie.cmx cohttp/cookie.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/request.cmx cohttp/request.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/client.cmx cohttp/client.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/connection.cmx cohttp/connection.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -for-pack Cohttp -I cohttp -o cohttp/body.cmx cohttp/body.ml
+touch cohttp/cohttp.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -pack -g -I cohttp cohttp/IO.cmi cohttp/code.cmx cohttp/accept_types.cmx cohttp/accept_parser.cmx cohttp/accept_lexer.cmx cohttp/accept.cmx cohttp/base64.cmx cohttp/auth.cmx cohttp/transfer.cmx cohttp/header.cmx cohttp/cookie.cmx cohttp/transfer_io.cmx cohttp/header_io.cmx cohttp/request.cmx cohttp/response.cmx cohttp/client.cmx cohttp/connection.cmx cohttp/body.cmx -o cohttp/cohttp.cmx  ; then  rm -f cohttp/cohttp.mli  ; else  rm -f cohttp/cohttp.mli  ; exit 1; fi
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a cohttp/cohttp.cmx -o cohttp/cohttp.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared cohttp/cohttp.cmxa cohttp/cohttp.cmx -o cohttp/cohttp.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_body.mli > lwt/cohttp_lwt_body.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmi lwt/cohttp_lwt_body.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_body.ml > lwt/cohttp_lwt_body.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt.mli > lwt/cohttp_lwt.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmi lwt/cohttp_lwt.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt.ml > lwt/cohttp_lwt.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt_body.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmo lwt/cohttp_lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt.cmo -o lwt/cohttp_lwt.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt_body.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt.cmx lwt/cohttp_lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt.cmx -o lwt/cohttp_lwt.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared lwt/cohttp_lwt.cmxa lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt.cmx -o lwt/cohttp_lwt.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_unix_io.mli > lwt/cohttp_lwt_unix_io.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_io.cmi lwt/cohttp_lwt_unix_io.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_unix_io.ml > lwt/cohttp_lwt_unix_io.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_unix.mli > lwt/cohttp_lwt_unix.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix.cmi lwt/cohttp_lwt_unix.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_unix.ml > lwt/cohttp_lwt_unix.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -modules lwt/cohttp_lwt_unix_net.ml > lwt/cohttp_lwt_unix_net.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_net.cmo lwt/cohttp_lwt_unix_net.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_io.cmo lwt/cohttp_lwt_unix_io.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_io.cmo lwt/cohttp_lwt_unix_io.ml
+File "lwt/cohttp_lwt_unix_io.ml", line 71, characters 12-25:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix.cmo lwt/cohttp_lwt_unix.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a lwt/cohttp_lwt_unix_io.cmo lwt/cohttp_lwt_unix_net.cmo lwt/cohttp_lwt_unix.cmo -o lwt/cohttp_lwt_unix.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_io.cmx lwt/cohttp_lwt_unix_io.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_io.cmx lwt/cohttp_lwt_unix_io.ml
+File "lwt/cohttp_lwt_unix_io.ml", line 71, characters 12-25:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix_net.cmx lwt/cohttp_lwt_unix_net.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I lwt -I cohttp -o lwt/cohttp_lwt_unix.cmx lwt/cohttp_lwt_unix.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lwt/cohttp_lwt_unix_io.cmx lwt/cohttp_lwt_unix_net.cmx lwt/cohttp_lwt_unix.cmx -o lwt/cohttp_lwt_unix.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared lwt/cohttp_lwt_unix.cmxa lwt/cohttp_lwt_unix_io.cmx lwt/cohttp_lwt_unix_net.cmx lwt/cohttp_lwt_unix.cmx -o lwt/cohttp_lwt_unix.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package threads -package unix -package uri -package uri.services -modules bin/cohttp_server_lwt.ml > bin/cohttp_server_lwt.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -I lwt -I async -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package threads -package unix -package uri -package uri.services -thread -I bin -I async -I cohttp -I lwt -o bin/cohttp_server_lwt.cmo bin/cohttp_server_lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -I lwt -I async -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package threads -package unix -package uri -package uri.services -thread -I bin -I async -I cohttp -I lwt -o bin/cohttp_server_lwt.cmx bin/cohttp_server_lwt.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -linkpkg -package conduit.lwt -package fieldslib -package fieldslib.syntax -package lwt -package lwt.ssl -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -package sexplib.syntax -package stringext -package unix -package uri -package uri.services cohttp/cohttp.cmxa lwt/cohttp_lwt.cmxa lwt/cohttp_lwt_unix.cmxa bin/cohttp_server_lwt.cmx -o bin/cohttp_server_lwt.native
+./setup.bin -test
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+./setup.bin -doc
+File "_tags", line 66, characters 18-27:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 67, characters 18-35:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 246, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 247, characters 41-58:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 262, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 263, characters 48-65:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 278, characters 51-60:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 279, characters 51-68:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 294, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 295, characters 48-65:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 308, characters 21-30:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 309, characters 21-38:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 324, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 325, characters 41-58:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 337, characters 16-25:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 338, characters 16-33:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 379, characters 44-53:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 380, characters 44-61:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 392, characters 27-36:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 393, characters 27-44:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/IO.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/IO.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/code.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/code.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/header.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/header.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/cookie.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/cookie.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/request.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/request.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/request.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/request.mli
+Warning: Element Core.Std.Sexp.t not found
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/response.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/response.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/response.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/response.mli
+Warning: Element Core.Std.Sexp.t not found
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/transfer.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/transfer.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/accept.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/accept.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/accept_parser.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/accept_parser.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/accept_lexer.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/accept_lexer.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/accept_types.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/accept_types.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/base64.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/base64.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/auth.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/auth.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/header_io.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/header_io.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/transfer_io.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/transfer_io.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/client.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/client.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/client.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/client.mli
+Warning: Module type IO.S not found
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/connection.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/connection.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump cohttp/body.odoc -package fieldslib -syntax camlp4o -package fieldslib.syntax -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package uri -package uri.services -I cohttp cohttp/body.mli
+rm -rf cohttp/cohttp.docdir
+mkdir -p cohttp/cohttp.docdir
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load cohttp/IO.odoc -load cohttp/code.odoc -load cohttp/header.odoc -load cohttp/cookie.odoc -load cohttp/request.odoc -load cohttp/response.odoc -load cohttp/transfer.odoc -load cohttp/accept.odoc -load cohttp/accept_parser.odoc -load cohttp/accept_lexer.odoc -load cohttp/accept_types.odoc -load cohttp/base64.odoc -load cohttp/auth.odoc -load cohttp/header_io.odoc -load cohttp/transfer_io.odoc -load cohttp/client.odoc -load cohttp/connection.odoc -load cohttp/body.odoc -html -d cohttp/cohttp.docdir
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load cohttp/IO.odoc -load cohttp/code.odoc -load cohttp/header.odoc -load cohttp/cookie.odoc -load cohttp/request.odoc -load cohttp/response.odoc -load cohttp/transfer.odoc -load cohttp/accept.odoc -load cohttp/accept_parser.odoc -load cohttp/accept_lexer.odoc -load cohttp/accept_types.odoc -load cohttp/base64.odoc -load cohttp/auth.odoc -load cohttp/header_io.odoc -load cohttp/transfer_io.odoc -load cohttp/client.odoc -load cohttp/connection.odoc -load cohttp/body.odoc -html -d cohttp/cohttp.docdir
+Warning: Element Core.Std.Sexp.t not found
+Warning: Element Core.Std.Sexp.t not found
+File "_tags", line 66, characters 18-27:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 67, characters 18-35:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 246, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 247, characters 41-58:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 262, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 263, characters 48-65:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 278, characters 51-60:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 279, characters 51-68:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 294, characters 48-57:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 295, characters 48-65:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 308, characters 21-30:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 309, characters 21-38:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 324, characters 41-50:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 325, characters 41-58:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 337, characters 16-25:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 338, characters 16-33:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 379, characters 44-53:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 380, characters 44-61:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 392, characters 27-36:
+Warning: the tag "pkg_async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 393, characters 27-44:
+Warning: the tag "pkg_conduit.async" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt -o lwt/cohttp_lwt_body.cmi lwt/cohttp_lwt_body.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt -o lwt/cohttp_lwt.cmi lwt/cohttp_lwt.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt -o lwt/cohttp_lwt_unix_io.cmi lwt/cohttp_lwt_unix_io.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix_io.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix_io.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix_io.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix_io.mli
+Warning: Module or module type Cohttp.IO.S not found
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix.mli
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix.mli
+Warning: Module or module type Cohttp_lwt.Server not found
+Warning: Module type Cohttp_lwt.Client not found
+Warning: Module type Cohttp_lwt.Response not found
+Warning: Module type Cohttp_lwt.Request not found
+Warning: Element Cohttp_lwt_unix_io not found
+Warning: Element Cohttp_lwt_unix_io not found
+Warning: Element Cohttp_lwt.Server not found
+Warning: Element Cohttp_lwt_unix_io not found
+Warning: Element Cohttp_lwt_unix_io not found
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix_net.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix_net.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -dump lwt/cohttp_lwt_unix_net.odoc -I cohttp -I lwt -package conduit.lwt -package fieldslib -syntax camlp4o -package fieldslib.syntax -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package lwt.unix -package re.emacs -package sexplib -syntax camlp4o -package sexplib.syntax -package stringext -package unix -package uri -package uri.services -I cohttp -I lwt lwt/cohttp_lwt_unix_net.ml
+Warning: Module or module type Cohttp_lwt_unix_io not found
+Warning: Module or module type Cohttp_lwt_unix_io not found
+rm -rf lwt/cohttp_lwt_unix.docdir
+mkdir -p lwt/cohttp_lwt_unix.docdir
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load lwt/cohttp_lwt_unix_io.odoc -load lwt/cohttp_lwt_unix.odoc -load lwt/cohttp_lwt_unix_net.odoc -html -d lwt/cohttp_lwt_unix.docdir
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldoc -load lwt/cohttp_lwt_unix_io.odoc -load lwt/cohttp_lwt_unix.odoc -load lwt/cohttp_lwt_unix_net.odoc -html -d lwt/cohttp_lwt_unix.docdir
+Warning: Module or module type Cohttp_lwt.Server not found
+Warning: Module type Cohttp_lwt.Client not found
+Warning: Module type Cohttp_lwt.Response not found
+Warning: Module type Cohttp_lwt.Request not found
+Warning: Module or module type Cohttp.IO.S not found
+Warning: Element Cohttp_lwt.Server not found
+./setup.bin -install
+W: Cannot find source header for module Accept_parser in library cohttp
+W: Cannot find source header for module Accept_lexer in library cohttp
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/IO.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/code.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/header.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cookie.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/request.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/response.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/transfer.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/accept.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/accept_types.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/base64.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/auth.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/header_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/transfer_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/client.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/connection.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/body.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_body.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_body.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_body.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_io.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_net.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_net.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_io.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_net.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/cohttp_lwt_unix_io.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cohttp/META
+Installing cohttp.0.11.2.
+Building bt.0.2:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ bt
+Package version: ..................................... 0.2
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.02.0+trunk
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_lwt: ............................................. /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_uri: ............................................. /home/opam/.opam/4.02.0+trunk/lib/uri
+pkg_cohttp: .......................................... /home/opam/.opam/4.02.0+trunk/lib/cohttp
+pkg_cohttp_lwt: ...................................... /home/opam/.opam/4.02.0+trunk/lib/cohttp
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.02.0+trunk/lib/lwt
+pkg_cryptokit: ....................................... /home/opam/.opam/4.02.0+trunk/lib/cryptokit
+pkg_zarith: .......................................... /home/opam/.opam/4.02.0+trunk/lib/zarith
+pkg_qcheck: .......................................... /home/opam/.opam/4.02.0+trunk/lib/qcheck
+pkg_bitstring: ....................................... /home/opam/.opam/4.02.0+trunk/lib/bitstring
+pkg_bitstring_syntax: ................................ /home/opam/.opam/4.02.0+trunk/lib/bitstring
+pkg_cmdliner: ........................................ /home/opam/.opam/4.02.0+trunk/lib/cmdliner
+
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+W: Cannot find source file matching module 'bt' in library bt
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/bcode.mli > bt/bcode.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/bcode.cmi bt/bcode.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/bcode.ml > bt/bcode.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/SHA1.mli > bt/SHA1.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/SHA1.cmi bt/SHA1.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/SHA1.ml > bt/SHA1.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/bits.mli > bt/bits.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/bits.cmi bt/bits.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/bits.ml > bt/bits.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/incompleteMetadata.mli > bt/incompleteMetadata.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/incompleteMetadata.cmi bt/incompleteMetadata.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/incompleteMetadata.ml > bt/incompleteMetadata.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/metadata.mli > bt/metadata.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/metadata.cmi bt/metadata.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/metadata.ml > bt/metadata.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/util.ml > bt/util.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/util.cmo bt/util.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/util.cmo bt/util.ml
+File "bt/util.ml", line 51, characters 10-23:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/stats.mli > bt/stats.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/stats.cmi bt/stats.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/magnet.mli > bt/magnet.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/magnet.cmi bt/magnet.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/magnet.ml > bt/magnet.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/peer.mli > bt/peer.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/addr.mli > bt/addr.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/IO.mli > bt/IO.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/addr.cmi bt/addr.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/IO.cmi bt/IO.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/peer.cmi bt/peer.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/peer.ml > bt/peer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/log.mli > bt/log.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/rate.mli > bt/rate.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/wire.mli > bt/wire.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/log.cmi bt/log.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/rate.cmi bt/rate.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/wire.cmi bt/wire.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/store.mli > bt/store.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/store.cmi bt/store.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/store.ml > bt/store.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/tracker.mli > bt/tracker.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/tracker.cmi bt/tracker.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/tracker.ml > bt/tracker.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/udp.mli > bt/udp.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/udp.cmi bt/udp.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/torrent.mli > bt/torrent.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/torrent.cmi bt/torrent.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/torrent.ml > bt/torrent.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/peerMgr.mli > bt/peerMgr.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -I bt -o bt/peerMgr.cmi bt/peerMgr.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package bitstring -syntax camlp4o -package bitstring.syntax -package cohttp -package cohttp.lwt -package cryptokit -package lwt -package lwt.unix -package qcheck -package uri -package zarith -modules bt/peerMgr.ml > bt/peerMgr.ml.depends
