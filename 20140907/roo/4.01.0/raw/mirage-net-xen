@@ -3565,3 +3565,18 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package ipaddr -syntax camlp4o -package lwt.syntax -package mirage-xen -package xen-evtchn -package xen-gnt -modules lib/netif.mli > lib/netif.mli.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package ipaddr -syntax camlp4o -package lwt.syntax -package mirage-xen -package xen-evtchn -package xen-gnt -I lib -o lib/netif.cmi lib/netif.mli
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package ipaddr -syntax camlp4o -package lwt.syntax -package mirage-xen -package xen-evtchn -package xen-gnt -modules lib/netif.ml > lib/netif.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package ipaddr -syntax camlp4o -package lwt.syntax -package mirage-xen -package xen-evtchn -package xen-gnt -I lib -o lib/netif.cmo lib/netif.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/netif.cmo -o lib/mirage-net-xen.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -bin-annot -principal -package cstruct -syntax camlp4o -package cstruct.syntax -package ipaddr -syntax camlp4o -package lwt.syntax -package mirage-xen -package xen-evtchn -package xen-gnt -I lib -o lib/netif.cmx lib/netif.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/netif.cmx -o lib/mirage-net-xen.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/mirage-net-xen.cmxa lib/netif.cmx -o lib/mirage-net-xen.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/netif.mli
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/mirage-net-xen.cma
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/mirage-net-xen.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/mirage-net-xen.a
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/mirage-net-xen.cmxs
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/netif.cmi
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/netif.cmx
+Installed /home/opam/.opam/4.01.0/lib/mirage-net-xen/META
+Installing mirage-net-xen.1.1.3.
