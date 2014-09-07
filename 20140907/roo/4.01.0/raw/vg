@@ -1,1 +1,40 @@
 ++ opam install vg -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install vg -e source,linux
+Ubuntu srcexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install vg
+The following actions will be performed:
+ - install   gg.0.9.0                              [required by vg]
+ - install   vg.0.8.1
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/gg.0.9.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/vg.0.8.1+opam.tar.gz
+sending incremental file list
+sending incremental file list
+gg.0.9.0+opam.tar.gz
+vg.0.8.1+opam.tar.gz
+
+sent 207,782 bytes  received 35 bytes  415,634.00 bytes/sec
+total size is 207,609  speedup is 1.00
+
+sent 540,576 bytes  received 35 bytes  1,081,222.00 bytes/sec
+total size is 540,323  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building gg.0.9.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -package bigarray -modules src/gg.ml > src/gg.ml.depends
+ocamlfind ocamldep -package bigarray -modules src/gg.mli > src/gg.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -package bigarray -I src -I test -o src/gg.cmi src/gg.mli
+ocamlfind ocamlopt -c -annot -bin-annot -package bigarray -I src -I test -o src/gg.cmx src/gg.ml
+ocamlfind ocamlopt -a -package bigarray src/gg.cmx -o src/gg.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -package bigarray -I src -I test -o src/gg.cmo src/gg.ml
