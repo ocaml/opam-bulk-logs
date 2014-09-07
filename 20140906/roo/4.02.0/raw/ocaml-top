@@ -2660,3 +2660,76 @@ gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENT
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o bytecompat.o bytecompat.c
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o unix.o unix.c
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o main.o main.c
+ar rc libbyterun402.a interp.o misc.o stacks.o fix_code.o startup.o freelist.o major_gc.o minor_gc.o memory.o alloc.o roots.o globroots.o fail.o signals.o signals_byt.o printexc.o backtrace.o compare.o ints.o floats.o str.o array.o io.o extern.o intern.o hash.o sys.o meta.o parsing.o gc_ctrl.o terminfo.o md5.o obj.o lexing.o callback.o debugger.o weak.o compact.o finalise.o custom.o dynlink.o bytecompat.o unix.o main.o
+ranlib libbyterun402.a
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o prims.o prims.c
+gcc -Wl,-E -o ocamlrun \
+		  prims.o libbyterun402.a -lm  -ldl  -lpthread
+echo "/usr/local/lib/ocaml/stublibs" > ld.conf
+echo "/usr/local/lib/ocaml" >> ld.conf
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix -I ocamlrun-4.02/byterun -cclib -lbyterun402
+cat ocp-build.run ocp-build.boot > ocp-build
+chmod +x ocp-build
+./ocp-build -help >/dev/null 2>&1
+make[1]: *** [ocp-build] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+make: *** [boot/ocp-build] Error 2
+Removing ocp-build.1.99.8-beta.
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build.byte
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-bundle
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-bundle
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-win32
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-win32
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-misc
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-misc
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build
+[ERROR] The compilation of ocp-build.1.99.8-beta failed.
+
+
+#=== ERROR while installing ocp-build.1.99.8-beta =============================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-21878-2dea01.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-21878-2dea01.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/ocp-build-21878-2dea01.err
+### stdout ###
+# ...[truncated]
+# gcc -Wl,-E -o ocamlrun \
+# 		  prims.o libbyterun402.a -lm  -ldl  -lpthread
+# echo "/usr/local/lib/ocaml/stublibs" > ld.conf
+# echo "/usr/local/lib/ocaml" >> ld.conf
+# make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+# ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix -I ocamlrun-4.02/byterun -cclib -lbyterun402
+# cat ocp-build.run ocp-build.boot > ocp-build
+# chmod +x ocp-build
+# ./ocp-build -help >/dev/null 2>&1
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+### stderr ###
+# config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+# make[1]: *** [ocp-build] Error 2
+# make: *** [boot/ocp-build] Error 2
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   lablgtk.2.16.0
+ - install   cmdliner.0.9.5
+ - install   conf-gtksourceview.2
+ - install   re.1.2.2
+ - install   camlp4.4.02.0+1
+The following failed
+ - install   ocp-build.1.99.8-beta
+Due to the errors, the following have been cancelled
+ - install   ocp-index.1.0.3
+ - install   ocaml-top.1.1.2
+ - install   ocp-indent.1.4.2
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807174835.export"
+'opam install ocaml-top' failed.
