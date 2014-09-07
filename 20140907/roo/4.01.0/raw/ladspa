@@ -118,3 +118,49 @@ make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
 ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -Wall -DCAML_NAME_SPACE \
 				-DPIC -fPIC -I/home/opam/.opam/4.01.0/include  \
 				    -o ladspa_stubs.o " ladspa_stubs.c
+ar rcs libladspa_stubs.a  ladspa_stubs.o
+ocamlc.opt -c ladspa.mli
+ocamlc.opt -c ladspa.ml
+ocamlmklib      -L/home/opam/.opam/4.01.0/lib   \
+				-o ladspa_stubs  ladspa_stubs.o   \
+				
+ocamlc.opt -a -dllib dllladspa_stubs.so       -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib    -cclib -lladspa_stubs    -o ladspa.cma ladspa.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+ocamldep -native ladspa.mli > ._ncdi/ladspa.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: `libladspa_stubs.a' is up to date.
+ocamlopt.opt -c ladspa.ml
+ocamlopt.opt -a        -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib   -cclib -lladspa_stubs    -o ladspa.cmxa ladspa.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: `libladspa_stubs.a' is up to date.
+make[2]: `ladspa.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+make[2]: `libladspa_stubs.a' is up to date.
+make[2]: `ladspa.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+
+Installing library with ocamlfind
+ocamlfind install  ladspa META ladspa.mli ladspa.cmi ladspa.cma ladspa.cmxa ladspa.cmx ladspa.a libladspa_stubs.a dllladspa_stubs.so ocaml_ladspa.h
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ocaml_ladspa.h
+Installed /home/opam/.opam/4.01.0/lib/ladspa/libladspa_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.a
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.cmx
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.cma
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.cmi
+Installed /home/opam/.opam/4.01.0/lib/ladspa/ladspa.mli
+Installed /home/opam/.opam/4.01.0/lib/ladspa/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllladspa_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllladspa_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ladspa.0.1.4/src'
+Installing ladspa.0.1.4.
