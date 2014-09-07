@@ -966,3 +966,100 @@ pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/l
 
 ./setup.exe -build 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/type_conv/META
+Installing type_conv.111.13.00.
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Building dyntype.0.9.0:
+  make
+  make install
+ocamlbuild dyntype.cmxa dyntype.cma
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package type_conv -modules lib/type.mli > lib/type.mli.depends
+ocamlfind ocamlc -c -annot -package type_conv -I lib -I pa_lib -I lib_test -o lib/type.cmi lib/type.mli
+ocamlfind ocamldep -package type_conv -modules lib/type.ml > lib/type.ml.depends
+ocamlfind ocamldep -package type_conv -modules lib/value.mli > lib/value.mli.depends
+ocamlfind ocamlc -c -annot -package type_conv -I lib -I pa_lib -I lib_test -o lib/value.cmi lib/value.mli
+ocamlfind ocamldep -package type_conv -modules lib/value.ml > lib/value.ml.depends
+ocamlfind ocamlc -c -annot -package type_conv -I lib -I pa_lib -I lib_test -o lib/type.cmo lib/type.ml
+ocamlfind ocamlc -c -annot -package type_conv -I lib -I pa_lib -I lib_test -o lib/value.cmo lib/value.ml
+ocamlfind ocamlc -pack lib/type.cmo lib/value.cmo -o lib/dyntype.cmo
+ocamlfind ocamlopt -c -annot -package type_conv -for-pack Dyntype -I lib -I pa_lib -I lib_test -o lib/type.cmx lib/type.ml
+ocamlfind ocamlopt -c -annot -package type_conv -for-pack Dyntype -I lib -I pa_lib -I lib_test -o lib/value.cmx lib/value.ml
+touch lib/dyntype.mli  ; if  ocamlfind ocamlopt -pack -I lib lib/type.cmx lib/value.cmx -o lib/dyntype.cmx  ; then  rm -f lib/dyntype.mli  ; else  rm -f lib/dyntype.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -package type_conv lib/dyntype.cmx -o lib/dyntype.cmxa
+ocamlfind ocamlc -a -package type_conv lib/dyntype.cmo -o lib/dyntype.cma
+ocamlbuild pa_dyntype.cma pa_dyntype.cmxs
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_helpers.ml > pa_lib/p4_helpers.ml.depends
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_type.ml > pa_lib/p4_type.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmo pa_lib/p4_helpers.ml
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_value.ml > pa_lib/p4_value.ml.depends
