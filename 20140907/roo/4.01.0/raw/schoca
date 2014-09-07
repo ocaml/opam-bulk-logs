@@ -1,0 +1,154 @@
+++ opam install schoca -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install schoca -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install schoca
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by schoca]
+ - install   schoca.0.2.3
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/schoca.0.2.3+opam.tar.gz
+sending incremental file list
+schoca.0.2.3+opam.tar.gz
+
+sent 40,498 bytes  received 35 bytes  81,066.00 bytes/sec
+total size is 40,361  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building schoca.0.2.3:
+  make
+  make install DESTPREF=/home/opam/.opam/4.01.0
+for dir in lib shell examples ;\
+	do \
+	  make -C ${dir} ; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+ocamlfind ocamldep   -package camlp4  -syntax camlp4o \
+	   scmConfig.ml scmUtil.ml scmUtil.mli scmDynnum.ml scmDynnum.mli scmTypes.ml scmTypes.mli scmParser.mli scmParser.ml scmLexer.ml scmEval.ml scmSchoca.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmUtil.mli
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmDynnum.mli
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmTypes.mli
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmConfig.ml
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmTypes.ml
+ocamlyacc -v scmParser.mly
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmParser.mli
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmUtil.ml
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmDynnum.ml
+File "scmDynnum.ml", line 321, characters 7-17:
+Warning 26: unused variable i.
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmParser.ml
+ocamllex scmLexer.mll
+240 states, 7043 transitions, table size 29612 bytes
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmLexer.ml
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmEval.ml
+File "scmEval.ml", line 202, characters 6-17:
+Warning 26: unused variable l.
+File "scmEval.ml", line 553, characters 8-19:
+Warning 26: unused variable l.
+File "scmEval.ml", line 1312, characters 10-12:
+Warning 26: unused variable vs.
+File "scmEval.ml", line 1312, characters 6-8:
+Warning 26: unused variable ks.
+ocamlfind ocamlc  -package camlp4   -g  -syntax camlp4o -c scmSchoca.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmConfig.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmUtil.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmDynnum.ml
+File "scmDynnum.ml", line 321, characters 7-17:
+Warning 26: unused variable i.
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmTypes.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmParser.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmLexer.ml
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmEval.ml
+File "scmEval.ml", line 202, characters 6-17:
+Warning 26: unused variable l.
+File "scmEval.ml", line 553, characters 8-19:
+Warning 26: unused variable l.
+File "scmEval.ml", line 1312, characters 10-12:
+Warning 26: unused variable vs.
+File "scmEval.ml", line 1312, characters 6-8:
+Warning 26: unused variable ks.
+ocamlfind ocamlopt  -package camlp4     -syntax camlp4o  -c scmSchoca.ml
+ocamlfind ocamlc -a -linkpkg -o schoca.cma -package camlp4   \
+		    \
+		scmConfig.cmo scmUtil.cmo scmDynnum.cmo scmTypes.cmo scmParser.cmo scmLexer.cmo scmEval.cmo scmSchoca.cmo -g  
+ocamlfind ocamlopt -a -o schoca.cmxa -package camlp4   \
+		      \
+		scmConfig.cmx scmUtil.cmx scmDynnum.cmx scmTypes.cmx scmParser.cmx scmLexer.cmx scmEval.cmx scmSchoca.cmx  
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+	   scmMain.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+ocamlfind ocamlc -I ../lib -package camlp4  -I ../lib -g  -syntax camlp4o -c scmMain.ml
+ocamlfind ocamlopt -I ../lib -package camlp4     -syntax camlp4o  -c scmMain.ml
+ocamlfind ocamlc -linkpkg -o schoca -package camlp4 -I ../lib  \
+		   schoca.cma  \
+	 	scmMain.cmo -g 
+ocamlfind ocamlopt -linkpkg -o schoca.opt -package camlp4 -I ../lib  \
+		   schoca.cmxa   \
+		 scmMain.cmx 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+ocamlfind ocamldep  -I ../lib -package camlp4  -syntax camlp4o \
+	   read_ini_file.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+ocamlfind ocamlc -I ../lib -package camlp4  -I ../lib -g  -syntax camlp4o -c read_ini_file.ml
+ocamlfind ocamlopt -I ../lib -package camlp4     -syntax camlp4o  -c read_ini_file.ml
+ocamlfind ocamlc -linkpkg -o read_ini_file -package camlp4 -I ../lib  \
+		   schoca.cma  \
+	 	read_ini_file.cmo -g 
+ocamlfind ocamlopt -linkpkg -o read_ini_file.opt -package camlp4 -I ../lib  \
+		   schoca.cmxa   \
+		 read_ini_file.cmx 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+for dir in lib shell examples ;\
+	do \
+	  make -C ${dir} install; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+ocamlfind remove  schoca
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/schoca
+ocamlfind install  schoca META schoca.cma schoca.cmxa schoca.a  scmConfig.cmi scmUtil.cmi scmDynnum.cmi scmTypes.cmi scmParser.cmi scmLexer.cmi scmEval.cmi scmSchoca.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmSchoca.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmEval.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmLexer.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmParser.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmTypes.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmDynnum.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmUtil.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/scmConfig.cmi
+Installed /home/opam/.opam/4.01.0/lib/schoca/schoca.a
+Installed /home/opam/.opam/4.01.0/lib/schoca/schoca.cmxa
+Installed /home/opam/.opam/4.01.0/lib/schoca/schoca.cma
+Installed /home/opam/.opam/4.01.0/lib/schoca/META
+echo done
+done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/lib'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+mkdir -p /home/opam/.opam/4.01.0/bin
+install schoca.opt /home/opam/.opam/4.01.0/bin/schoca
+echo done
+done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/shell'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+mkdir -p /home/opam/.opam/4.01.0/bin
+install read_ini_file.opt /home/opam/.opam/4.01.0/bin/read_ini_file
+echo done
+done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/schoca.0.2.3/examples'
+echo done
+done
+Installing schoca.0.2.3.
