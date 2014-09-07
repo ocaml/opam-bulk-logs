@@ -2246,3 +2246,81 @@ File OMakefile: line 32, characters 1-22:
 --- Checking whether ocamlc understands the "z" warnings... (yes)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+- build runtime msg_buffer.cmo
++ ocamlfind ocamlc -package dynlink,camlp4,extlib,camlp4.macro -bin-annot -w +a-4-6-9-27..29-32..99 -warn-error +a-4-6-7-9-18-27..29-32..99 -syntax camlp4o -ppopt -DLITTLE_ENDIAN -for-pack Extprot -g -g -I . -c msg_buffer.ml
+File "msg_buffer.ml", line 32, characters 9-22:
+Warning 3: deprecated: String.create
+File "msg_buffer.ml", line 45, characters 12-25:
+Warning 3: deprecated: String.create
+File "msg_buffer.ml", line 72, characters 19-32:
+Warning 3: deprecated: String.create
+File "msg_buffer.ml", line 80, characters 2-16:
+Warning 3: deprecated: String.set
+File "msg_buffer.ml", line 1:
+Error: Some fatal warnings were triggered (4 occurrences)
+*** omake: 57/156 targets are up to date
+*** omake: failed (8.87 sec, 10/10 scans, 5/14 rules, 37/147 digests)
+*** omake: targets were not rebuilt because of errors:
+   runtime/msg_buffer.cmi
+      depends on: runtime/msg_buffer.ml
+   runtime/msg_buffer.cmo
+      depends on: runtime/msg_buffer.ml
+   runtime/msg_buffer.cmx
+      depends on: runtime/msg_buffer.ml
+   runtime/msg_buffer.o
+      depends on: runtime/msg_buffer.ml
+Removing extprot.1.1.1.
+[ERROR] The compilation of extprot.1.1.1 failed.
+  ocamlfind remove extprot
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/extprotc /home/opam/.opam/4.02.0+trunk/bin/extprotc.exe
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/extprot
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   extlib-compat.1.6.1
+ - install   sexplib.111.25.00
+ - install   type_conv.111.13.00
+ - install   camlp4.4.02.0+1
+ - install   omake.0.9.8.6-0.rc1
+The following failed
+ - install   extprot.1.1.1
+
+#=== ERROR while installing extprot.1.1.1 =====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              omake
+# path                 /home/opam/.opam/4.02.0+trunk/build/extprot.1.1.1
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/extprot.1.1.1/extprot-5783-0a5907.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/extprot.1.1.1/extprot-5783-0a5907.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/extprot.1.1.1/extprot-5783-0a5907.err
+### stdout ###
+# ...[truncated]
+# *** omake: finished reading OMakefiles (0.28 sec)
+# --- Checking if ocamldep understands -modules... (yes)
+# --- Checking for ocamlfind... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlfind)
+# --- Checking for ocamlc.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt)
+# --- Checking for ocamlopt.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt)
+# --- Checking whether ocamlc understands the "z" warnings... (yes)
+# - build runtime msg_buffer.cmo
+# + ocamlfind ocamlc -package dynlink,camlp4,extlib,camlp4.macro -bin-annot -w +a-4-6-9-27..29-32..99 -warn-error +a-4-6-7-9-18-27..29-32..99 -syntax camlp4o -ppopt -DLITTLE_ENDIAN -for-pack Extprot -g -g -I . -c msg_buffer.ml
+# *** omake: 57/156 targets are up to date
+# *** omake: failed (8.87 sec, 10/10 scans, 5/14 rules, 37/147 digests)
+### stderr ###
+# ...[truncated]
+# Error: Some fatal warnings were triggered (4 occurrences)
+# *** omake: targets were not rebuilt because of errors:
+#    runtime/msg_buffer.cmi
+#       depends on: runtime/msg_buffer.ml
+#    runtime/msg_buffer.cmo
+#       depends on: runtime/msg_buffer.ml
+#    runtime/msg_buffer.cmx
+#       depends on: runtime/msg_buffer.ml
+#    runtime/msg_buffer.o
+#       depends on: runtime/msg_buffer.ml
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807165249.export"
+'opam install extprot' failed.
