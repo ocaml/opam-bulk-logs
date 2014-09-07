@@ -329,3 +329,130 @@ ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/c
 ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
 ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
 ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building ocurl.0.7.1:
+  ./configure
+  make
+  make install
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for libcurl cflags...  
+checking for libcurl libs... -lcurl  
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for ocamlfind... ocamlfind
+checking for OCaml findlib package lwt... not found
+checking for prefix by checking for ocamlc... /home/opam/.opam/4.01.0/bin/ocamlc
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking curl/curl.h usability... yes
+checking curl/curl.h presence... yes
+checking for curl/curl.h... yes
+checking whether CURLOPT_FILE is declared... yes
+checking whether CURLOPT_URL is declared... yes
+checking whether CURLOPT_PORT is declared... yes
+checking whether CURLOPT_PROXY is declared... yes
+checking whether CURLOPT_USERPWD is declared... yes
+checking whether CURLOPT_PROXYUSERPWD is declared... yes
+checking whether CURLOPT_RANGE is declared... yes
+checking whether CURLOPT_INFILE is declared... yes
+checking whether CURLOPT_ERRORBUFFER is declared... yes
+checking whether CURLOPT_WRITEFUNCTION is declared... yes
+checking whether CURLOPT_READFUNCTION is declared... yes
+checking whether CURLOPT_TIMEOUT is declared... yes
+checking whether CURLOPT_INFILESIZE is declared... yes
+checking whether CURLOPT_POSTFIELDS is declared... yes
+checking whether CURLOPT_REFERER is declared... yes
+checking whether CURLOPT_FTPPORT is declared... yes
+checking whether CURLOPT_USERAGENT is declared... yes
+checking whether CURLOPT_LOW_SPEED_LIMIT is declared... yes
+checking whether CURLOPT_LOW_SPEED_TIME is declared... yes
+checking whether CURLOPT_RESUME_FROM is declared... yes
+checking whether CURLOPT_COOKIE is declared... yes
+checking whether CURLOPT_HTTPHEADER is declared... yes
+checking whether CURLOPT_HTTPPOST is declared... yes
+checking whether CURLOPT_SSLCERT is declared... yes
+checking whether CURLOPT_SSLCERTPASSWD is declared... yes
+checking whether CURLOPT_SSLKEYPASSWD is declared... yes
+checking whether CURLOPT_CRLF is declared... yes
+checking whether CURLOPT_QUOTE is declared... yes
+checking whether CURLOPT_WRITEHEADER is declared... 
