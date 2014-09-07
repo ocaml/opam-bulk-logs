@@ -125,3 +125,68 @@ make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
 ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.02.0+trunk/include  -Wall -DCAML_NAME_SPACE \
 				-DPIC -fPIC -I/home/opam/.opam/4.02.0+trunk/include   \
 				    -o lame_stubs.o " lame_stubs.c 
+ar rcs liblame_stubs.a  lame_stubs.o
+ocamlc.opt -c lame.mli
+ocamlc.opt -c lame.ml
+ocamlmklib      -L/home/opam/.opam/4.02.0+trunk/lib    \
+				-o lame_stubs  lame_stubs.o -lmp3lame -lm \
+				
+ocamlc.opt -a -dllib dlllame_stubs.so       -ccopt -L/home/opam/.opam/4.02.0+trunk/lib  -ccopt -L/home/opam/.opam/4.02.0+trunk/lib     \
+				-cclib -llame_stubs -cclib -lmp3lame -cclib -lm  -o lame.cma  lame.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+making ._ncdi/lame.di from lame.mli
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: `liblame_stubs.a' is up to date.
+ocamlopt.opt -c lame.ml
+ocamlopt.opt -a        -ccopt -L/home/opam/.opam/4.02.0+trunk/lib  -ccopt -L/home/opam/.opam/4.02.0+trunk/lib    -cclib -llame_stubs -cclib -lmp3lame -cclib -lm  \
+				 -o lame.cmxa lame.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+ocamlc.opt -i -intf lame_dynlink.mli.in > lame_dynlink.mli 2>/dev/null
+ocamlc.opt -a  lame_dynlink.mli lame_loader.ml -o lame_loader.cma
+[ ! -f lame.cmx ] || mv lame.cmx lame.cmx.old
+ocamlopt.opt  -cclib -lmp3lame -cclib -lm -shared lame.ml lame_stubs.o -o lame.cmxs
+[ ! -f lame.cmx.old ] || mv lame.cmx.old lame.cmx
+[ ! -f lame.cmx ] || mv lame.cmx lame.cmx.old
+[ ! -f lame.cmxa ] || mv lame.cmxa lame.cmxa.old
+ocamlopt.opt  -shared lame_dynlink.mli lame_loader.ml -o lame_loader.cmxs
+[ ! -f lame.cmx.old ] || mv lame.cmx.old lame.cmx
+[ ! -f lame.cmxa.old ] || mv lame.cmxa.old lame.cmxa
+rm -f lame_dynlink.cmi
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: `liblame_stubs.a' is up to date.
+make[2]: `lame.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+make[2]: `liblame_stubs.a' is up to date.
+make[2]: `lame.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+rm -f lame_dynlink.cmi
+
+Installing library with ocamlfind
+ocamlfind install  lame META lame.mli lame_dynlink.mli lame.cmi lame_loader.cmi lame.cma lame_loader.cma lame.cmxa lame.cmx lame_loader.cmx lame.a liblame_stubs.a dlllame_stubs.so lame.cmxs lame_loader.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame_loader.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/liblame_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame_loader.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame_loader.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame_loader.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame_dynlink.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/lame.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/lame/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllame_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlllame_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lame.0.3.1/src'
+Installing lame.0.3.1.
