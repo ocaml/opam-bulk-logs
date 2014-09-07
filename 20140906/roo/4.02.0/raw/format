@@ -589,3 +589,22 @@ sed -e s/@@VERSION@@/"4.02.1+dev0-2014-08-29"/g camlp4/META.in > camlp4/META
 mkdir -p "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 cp -f camlp4/META "/home/opam/.opam/4.02.0+trunk/lib"/camlp4/
 Installing camlp4.4.02.0+1.
+Building format.0.1:
+  make
+  make install
+ocamllex formatLexer.mll
+23 states, 271 transitions, table size 1222 bytes
+1219 additional bytes used for bindings
+ocamlyacc formatParser.mly
+rm -f formatParser.mli
+ocamlc -I +camlp4 -c formatParser.ml
+ocamlc -I +camlp4 -c formatLexer.ml
+ocamlc -I +camlp4 -pp camlp4of -c pa_format.ml
+ocamlc -I +camlp4 -pp camlp4of -c pa_format_short.ml
+ocamlfind install format META formatLexer.cmo formatParser.cmo pa_format.cmo pa_format_short.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/format/pa_format_short.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/format/pa_format.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/format/formatParser.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/format/formatLexer.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/format/META
+Installing format.0.1.
