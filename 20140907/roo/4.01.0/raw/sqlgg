@@ -1775,3 +1775,53 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /ho
 fatal: Not a git repository (or any of the parent directories): .git
 ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules sqlgg.ml > sqlgg.ml.depends
 ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules error.ml > error.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen.ml > gen.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules prelude.ml > prelude.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules props.ml > props.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules rA.ml > rA.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules listMore.ml > listMore.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o prelude.cmo prelude.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules sql.ml > sql.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o listMore.cmo listMore.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o sql.cmo sql.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules sqlgg_config.ml > sqlgg_config.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o version.cmo version.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules stmt.ml > stmt.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o props.cmo props.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o rA.cmo rA.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o sqlgg_config.cmo sqlgg_config.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o stmt.cmo stmt.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen_caml.ml > gen_caml.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o gen.cmo gen.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen_csharp.ml > gen_csharp.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o gen_caml.cmo gen_caml.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen_cxx.ml > gen_cxx.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen_java.ml > gen_java.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o gen_cxx.cmo gen_cxx.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o gen_java.cmo gen_java.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules gen_xml.ml > gen_xml.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules main.ml > main.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o error.cmo error.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules parser.ml > parser.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules parser_utils.ml > parser_utils.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q sql_lexer.mll
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules sql_lexer.ml > sql_lexer.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules parser_state.ml > parser_state.ml.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sql_parser.mly > sql_parser.mly.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o parser_state.cmo parser_state.ml
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules syntax.ml > syntax.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package deriving.syntax,extlib -modules tables.ml > tables.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o tables.cmo tables.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o syntax.cmo syntax.ml
+menhir --ocamlc 'ocamlfind ocamlc -annot -w A -w e -w -44' --infer sql_parser.mly
++ menhir --ocamlc 'ocamlfind ocamlc -annot -w A -w e -w -44' --infer sql_parser.mly
+Warning: 16 states have shift/reduce conflicts.
+Warning: 106 shift/reduce conflicts were arbitrarily resolved.
+ocamlfind ocamldep -modules sql_parser.mli > sql_parser.mli.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -o sql_parser.cmi sql_parser.mli
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o sql_lexer.cmo sql_lexer.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o parser_utils.cmo parser_utils.ml
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o parser.cmo parser.ml
+ocamlfind ocamldep -package oUnit -syntax camlp4o -package deriving.syntax,extlib -modules test.ml > test.ml.depends
+ocamlfind ocamlc -c -annot -w A -w e -w -44 -syntax camlp4o -package deriving.syntax,extlib -o main.cmo main.ml
