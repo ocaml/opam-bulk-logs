@@ -4,3 +4,228 @@
 + '[' '' '!=' '' ']'
 ++ opam install bisect -e source,linux
 Ubuntu depexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install bisect
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by bisect]
+ - install   bisect.1.3
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/bisect.1.3+opam.tar.gz
+sending incremental file list
+bisect.1.3+opam.tar.gz
+
+sent 342,637 bytes  received 35 bytes  685,344.00 bytes/sec
+total size is 342,430  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Applying install-thread.patch.
+patching file Makefile
+Applying opam.patch.
+patching file Makefile
+patching file myocamlbuild.ml
+Building bisect.1.3:
+  sh configure -ocaml-prefix /home/opam/.opam/4.01.0 -ocamlfind /home/opam/.opam/4.01.0/bin/ocamlfind
+  make all
+  make install
+Makefile.config successfully created
+echo 'bisect.cma' > bisect.itarget
+(which ocamlopt && echo 'bisect.cmxa' >> bisect.itarget) || true
+/home/opam/.opam/4.01.0/bin/ocamlopt
+(which ocamljava && echo 'bisect.cmja' >> bisect.itarget) || true
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links bisect.otarget
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/common.mli > src/library/common.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/common.cmi src/library/common.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/common.ml > src/library/common.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/runtime.mli > src/library/runtime.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/runtime.cmi src/library/runtime.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/runtime.ml > src/library/runtime.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/common.cmo src/library/common.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/runtime.cmo src/library/runtime.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -pack src/library/common.cmo src/library/runtime.cmo -o bisect.cmo
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/common.cmx src/library/common.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/runtime.cmx src/library/runtime.ml
+touch bisect.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlopt.opt -pack -I src/library src/library/common.cmx src/library/runtime.cmx -o bisect.cmx  ; then  rm -f bisect.mli  ; else  rm -f bisect.mli  ; exit 1; fi
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a bisect.cmo -o bisect.cma
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a bisect.cmx -o bisect.cmxa
+if [ "FALSE" = "FALSE" ]; then \
+	  WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links bisect_pp.cmo; \
+	fi
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/exclusions.mli > src/syntax/exclusions.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclusions.cmi src/syntax/exclusions.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/exclusions.ml > src/syntax/exclusions.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/exclude.mli > src/syntax/exclude.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/syntax/excludeLexer.mll
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/excludeLexer.ml > src/syntax/excludeLexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclude.cmi src/syntax/exclude.mli
+/home/opam/.opam/4.01.0/bin/ocamlyacc src/syntax/excludeParser.mly
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/excludeParser.mli > src/syntax/excludeParser.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmi src/syntax/excludeParser.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeLexer.cmo src/syntax/excludeLexer.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/instrumentState.mli > src/syntax/instrumentState.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmi src/syntax/instrumentState.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/instrumentState.ml > src/syntax/instrumentState.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/instrumentArgs.mli > src/syntax/instrumentArgs.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmi src/syntax/instrumentArgs.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/instrumentArgs.ml > src/syntax/instrumentArgs.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/commentsCamlp4.mli > src/syntax/commentsCamlp4.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmi src/syntax/commentsCamlp4.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/commentsCamlp4.ml > src/syntax/commentsCamlp4.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4of -modules src/syntax/instrumentCamlp4.ml > src/syntax/instrumentCamlp4.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/exclude.ml > src/syntax/exclude.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/syntax/excludeParser.ml > src/syntax/excludeParser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclusions.cmo src/syntax/exclusions.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentState.cmo src/syntax/instrumentState.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentArgs.cmo src/syntax/instrumentArgs.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/commentsCamlp4.cmo src/syntax/commentsCamlp4.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4of -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/instrumentCamlp4.cmo src/syntax/instrumentCamlp4.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/exclude.cmo src/syntax/exclude.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/syntax -I src -I src/report -I src/threads -I src/library -o src/syntax/excludeParser.cmo src/syntax/excludeParser.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -pack src/library/common.cmo src/syntax/exclude.cmo src/syntax/excludeParser.cmo src/syntax/excludeLexer.cmo src/syntax/exclusions.cmo src/syntax/instrumentState.cmo src/syntax/instrumentArgs.cmo src/syntax/commentsCamlp4.cmo src/syntax/instrumentCamlp4.cmo -o bisect_pp.cmo
+if [ "FALSE" = "TRUE" ]; then \
+	  WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links bisect_ppx.byte; \
+	fi
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links bisectThread.cmo
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/threads/bisectThread.mli > src/threads/bisectThread.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmi src/threads/bisectThread.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/threads/bisectThread.ml > src/threads/bisectThread.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -thread -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmo src/threads/bisectThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links bisectThread.cmx
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -thread -for-pack Bisect -I src/threads -I src -I src/syntax -I src/report -I src/library -o src/threads/bisectThread.cmx src/threads/bisectThread.ml
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links report.byte
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/report.ml > src/report/report.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combine.mli > src/report/combine.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportArgs.mli > src/report/reportArgs.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportCSV.mli > src/report/reportCSV.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportGeneric.mli > src/report/reportGeneric.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportStat.mli > src/report/reportStat.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportStat.cmi src/report/reportStat.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportGeneric.cmi src/report/reportGeneric.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportDump.mli > src/report/reportDump.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportHTML.mli > src/report/reportHTML.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportText.mli > src/report/reportText.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportUtils.mli > src/report/reportUtils.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportXML.mli > src/report/reportXML.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportXMLEmma.mli > src/report/reportXMLEmma.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combine.cmi src/report/combine.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportArgs.cmi src/report/reportArgs.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportCSV.cmi src/report/reportCSV.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportDump.cmi src/report/reportDump.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportHTML.cmi src/report/reportHTML.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportText.cmi src/report/reportText.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportUtils.cmi src/report/reportUtils.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXML.cmi src/report/reportXML.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXMLEmma.cmi src/report/reportXMLEmma.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/report.cmo src/report/report.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combine.ml > src/report/combine.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combineAST.mli > src/report/combineAST.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/report/combineLexer.mll
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combineLexer.ml > src/report/combineLexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc src/report/combineParser.mly
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combineParser.mli > src/report/combineParser.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineAST.cmi src/report/combineAST.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineParser.cmi src/report/combineParser.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineLexer.cmo src/report/combineLexer.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportArgs.ml > src/report/reportArgs.ml.depends
+cp /tmp/versione12631.ml src/library/version.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/version.mli > src/library/version.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/version.cmi src/library/version.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportCSV.ml > src/report/reportCSV.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportDump.ml > src/report/reportDump.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportGeneric.ml > src/report/reportGeneric.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportHTML.ml > src/report/reportHTML.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportText.ml > src/report/reportText.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportUtils.ml > src/report/reportUtils.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportXML.ml > src/report/reportXML.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportXMLEmma.ml > src/report/reportXMLEmma.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combine.cmo src/report/combine.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportArgs.cmo src/report/reportArgs.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportCSV.cmo src/report/reportCSV.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportDump.cmo src/report/reportDump.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportGeneric.cmo src/report/reportGeneric.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportHTML.cmo src/report/reportHTML.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportText.cmo src/report/reportText.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportUtils.cmo src/report/reportUtils.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXML.cmo src/report/reportXML.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXMLEmma.cmo src/report/reportXMLEmma.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combineAST.ml > src/report/combineAST.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/combineParser.ml > src/report/combineParser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineAST.cmo src/report/combineAST.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineParser.cmo src/report/combineParser.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/library/version.ml > src/library/version.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/version.cmo src/library/version.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/report/reportStat.ml > src/report/reportStat.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportStat.cmo src/report/reportStat.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma str.cma src/library/common.cmo src/report/combineAST.cmo src/report/combineParser.cmo src/report/combineLexer.cmo src/report/reportUtils.cmo src/report/combine.cmo src/library/version.cmo src/report/reportStat.cmo src/report/reportGeneric.cmo src/report/reportXML.cmo src/report/reportArgs.cmo src/report/reportCSV.cmo src/report/reportDump.cmo src/report/reportHTML.cmo src/report/reportText.cmo src/report/reportXMLEmma.cmo src/report/report.cmo -o src/report/report.byte
+WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links report.native
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineAST.cmx src/report/combineAST.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineParser.cmx src/report/combineParser.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combineLexer.cmx src/report/combineLexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportUtils.cmx src/report/reportUtils.ml
+cp /tmp/version588023.ml src/library/version.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportStat.cmx src/report/reportStat.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/library -I src -I src/syntax -I src/report -I src/threads -o src/library/version.cmx src/library/version.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportGeneric.cmx src/report/reportGeneric.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXML.cmx src/report/reportXML.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/combine.cmx src/report/combine.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportArgs.cmx src/report/reportArgs.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportCSV.cmx src/report/reportCSV.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportDump.cmx src/report/reportDump.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportHTML.cmx src/report/reportHTML.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportText.cmx src/report/reportText.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/reportXMLEmma.cmx src/report/reportXMLEmma.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -for-pack Bisect -I src/report -I src -I src/syntax -I src/threads -I src/library -o src/report/report.cmx src/report/report.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa str.cmxa src/library/common.cmx src/library/version.cmx src/report/combineAST.cmx src/report/combineParser.cmx src/report/combineLexer.cmx src/report/reportUtils.cmx src/report/combine.cmx src/report/reportStat.cmx src/report/reportGeneric.cmx src/report/reportXML.cmx src/report/reportArgs.cmx src/report/reportCSV.cmx src/report/reportDump.cmx src/report/reportHTML.cmx src/report/reportText.cmx src/report/reportXMLEmma.cmx src/report/report.cmx -o src/report/report.native
+cp `pwd`/_build/src/report/report.byte /home/opam/.opam/4.01.0/bin/bisect-report; \
+	if [ "FALSE" = "TRUE" ]; then \
+	  cp `pwd`/_build/src/syntax/bisect_ppx.byte /home/opam/.opam/4.01.0/bin; \
+	fi; \
+	(which ocamlopt && cp `pwd`/_build/src/report/report.native /home/opam/.opam/4.01.0/bin/bisect-report.opt || true); \
+	if [ -x "/home/opam/.opam/4.01.0/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind query bisect && /home/opam/.opam/4.01.0/bin/ocamlfind remove bisect || true; \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind install bisect META -optional \
+	    `pwd`/_build/bisect_pp.cmo \
+	    `pwd`/_build/src/threads/bisectThread.cm* \
+	    `pwd`/_build/src/threads/bisectThread.o \
+	    `pwd`/_build/src/threads/bisectThread.jo \
+	    `pwd`/_build/bisect.a \
+	    `pwd`/_build/bisect.cma \
+	    `pwd`/_build/bisect.cmi \
+	    `pwd`/_build/bisect.cmo \
+	    `pwd`/_build/bisect.cmx \
+	    `pwd`/_build/bisect.cmxa \
+	    `pwd`/_build/bisect.cmja \
+	    `pwd`/_build/bisect.ja; \
+	else \
+	  mkdir -p /home/opam/.opam/4.01.0/lib/ocaml/bisect; \
+	  if [ "FALSE" = "FALSE" ]; then \
+	    cp `pwd`/_build/bisect_pp.cmo /home/opam/.opam/4.01.0/lib/ocaml/bisect; \
+	  fi; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/bisectThread.$ext && cp `pwd`/_build/src/threads/bisectThread.$ext /home/opam/.opam/4.01.0/lib/ocaml/bisect || true; \
+	  done; \
+	  for ext in a cmi cmo cmx cma cmxa cmja ja; do \
+	    test -f `pwd`/_build/bisect.$ext && cp `pwd`/_build/bisect.$ext /home/opam/.opam/4.01.0/lib/ocaml/bisect || true; \
+	  done \
+	fi
+/home/opam/.opam/4.01.0/bin/ocamlopt
+ocamlfind: Package `bisect' not found
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.cmx
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.cmo
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.cmi
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.cma
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect.a
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisectThread.o
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisectThread.cmx
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisectThread.cmo
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisectThread.cmi
+Installed /home/opam/.opam/4.01.0/lib/bisect/bisect_pp.cmo
+Installed /home/opam/.opam/4.01.0/lib/bisect/META
+Installing bisect.1.3.
