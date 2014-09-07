@@ -5509,3 +5509,14 @@ ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_
 ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_exc.cmo lib/beanstalk_exc.ml
 ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_raw.cmi lib/beanstalk_raw.mli
 ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk.cmo lib/beanstalk.ml
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk_cmd.ml > lib/beanstalk_cmd.ml.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk_raw.ml > lib/beanstalk_raw.ml.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/yaml.mli > lib/yaml.mli.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/yaml.cmi lib/yaml.mli
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_cmd.cmo lib/beanstalk_cmd.ml
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_raw.cmo lib/beanstalk_raw.ml
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/yaml.ml > lib/yaml.ml.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/yaml.cmo lib/yaml.ml
+ocamlfind ocamlc -a -thread -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads lib/beanstalk_exc.cmo lib/beanstalk_cmd.cmo lib/yaml.cmo lib/beanstalk_raw.cmo lib/beanstalk.cmo -o lib/beanstalk.cma
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_exc.cmx lib/beanstalk_exc.ml
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_cmd.cmx lib/beanstalk_cmd.ml
