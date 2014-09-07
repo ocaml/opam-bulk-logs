@@ -2569,3 +2569,18 @@ ocamlfind ocamlc -a -o compiler.cma compiler.cmo
 ocamlfind ocamlopt -pack -g -o compiler.cmx compiler_version.cmx pretty_print.cmx util.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx annot_parser.cmx annot_lexer.cmx instr.cmx primitive.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx generate.cmx parse_bytecode.cmx driver.cmx pseudoFs.cmx
 ocamlfind ocamlopt -a -o compiler.cmxa compiler.cmx
 ocamlfind ocamlopt -shared -g -o compiler.cmxs compiler.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/compiler'
+make -C lib
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/js_of_ocaml.2.4.1/lib'
+ocamlfind ocamlc -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c typed_array.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g typed_array.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c file.mli
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_html.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_html.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_svg.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_svg.ml
