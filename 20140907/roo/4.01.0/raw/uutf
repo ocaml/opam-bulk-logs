@@ -1,1 +1,40 @@
 ++ opam install uutf -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install uutf -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install uutf
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   uutf.0.9.3
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/uutf.0.9.3+opam.tar.gz
+sending incremental file list
+uutf.0.9.3+opam.tar.gz
+
+sent 39,198 bytes  received 35 bytes  78,466.00 bytes/sec
+total size is 39,063  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building uutf.0.9.3:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/uutf.mli > src/uutf.mli.depends
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmi src/uutf.mli
+ocamlfind ocamldep -modules src/uutf.ml > src/uutf.ml.depends
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
+ocamlfind ocamlc -a src/uutf.cmo -o src/uutf.cma
+ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
+ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
+ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+Installing uutf.0.9.3.
