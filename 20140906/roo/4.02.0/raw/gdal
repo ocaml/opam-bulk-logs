@@ -885,3 +885,51 @@ touch src/ogr/ogr.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlop
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a src/gdal/gdal.cmo -o src/gdal/gdal.cma
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/lib.cmx src/gdal/lib.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/t.cmx src/gdal/t.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/band.cmx src/gdal/band.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/driver.cmx src/gdal/driver.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/data_set.cmx src/gdal/data_set.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/warp.cmx src/gdal/warp.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/alg.cmx src/gdal/alg.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/geo_transform.cmx src/gdal/geo_transform.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -package bigarray -package ctypes.foreign -for-pack Gdal -I src/gdal -o src/gdal/transform.cmx src/gdal/transform.ml
+touch src/gdal/gdal.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -pack -g -I src/gdal src/gdal/lib.cmx src/gdal/t.cmx src/gdal/band.cmx src/gdal/driver.cmx src/gdal/data_set.cmx src/gdal/warp.cmx src/gdal/alg.cmx src/gdal/geo_transform.cmx src/gdal/transform.cmx -o src/gdal/gdal.cmx  ; then  rm -f src/gdal/gdal.mli  ; else  rm -f src/gdal/gdal.mli  ; exit 1; fi
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a src/gdal/gdal.cmx -o src/gdal/gdal.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared src/gdal/gdal.cmxa src/gdal/gdal.cmx -o src/gdal/gdal.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes.foreign -modules examples/sanity.ml > examples/sanity.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I src/ogr -package ctypes.foreign -I examples -I src/ogr -o examples/sanity.cmo examples/sanity.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I src/ogr -package ctypes.foreign -I examples -I src/ogr -o examples/sanity.cmx examples/sanity.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -g -linkpkg -package ctypes.foreign src/ogr/ogr.cmxa examples/sanity.cmx -o examples/sanity.native
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/data_source.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/driver.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/feature.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/field.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/geometry.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/layer.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/spatial_reference.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/ogr.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ogr/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/alg.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/band.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/data_set.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/driver.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/geo_transform.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/lib.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/transform.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/gdal.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gdal/META
+Installing gdal.0.6.1.
