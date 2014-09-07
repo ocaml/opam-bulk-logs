@@ -9269,3 +9269,107 @@ touch tenacious/lifetime-lib/tenacious_lifetime_lib.mli  ; if  /home/opam/.opam/
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -syntax camlp4o -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -for-pack Jenga_lib -I lib -I tenacious/lib -o lib/command_line.cmx lib/command_line.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -syntax camlp4o -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -for-pack Jenga_lib -I lib -I tenacious/lib -o lib/jem_command_line.cmx lib/jem_command_line.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -syntax camlp4o -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -for-pack Jenga_lib -I lib -I tenacious/lib -o lib/offline.cmx lib/offline.ml
+touch lib/jenga_lib.mli  ; if  /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -pack -g -I lib lib/misc.cmx lib/path.cmx lib/alias.cmx lib/config.cmx lib/effort.cmx lib/file_access.cmx lib/message.cmx lib/forker.cmx lib/glob_to_re.cmx lib/pattern.cmx lib/system.cmx lib/fs.cmx lib/gen_key.cmx lib/error_reason_type.cmx lib/exit_code.cmx lib/finish_time_estimator.cmx lib/goal.cmx lib/quit.cmx lib/job.cmx lib/reason.cmx lib/progress.cmx lib/save_description.cmx lib/action.cmx lib/reflected.cmx lib/dep_type.cmx lib/dep.cmx lib/rule.cmx lib/description.cmx lib/env.cmx lib/reflect.cmx lib/api.cmx lib/monomorphic_mutable_graph.cmx lib/discovered_graph.cmx lib/jenga_root_interface.cmx lib/load_root.cmx lib/build.cmx lib/persist.cmx lib/rpc_intf.cmx lib/server_lock.cmx lib/rpc_server.cmx lib/run.cmx lib/command_line.cmx lib/jem_command_line.cmx lib/offline.cmx -o lib/jenga_lib.cmx  ; then  rm -f lib/jenga_lib.mli  ; else  rm -f lib/jenga_lib.mli  ; exit 1; fi
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a lib/jenga_lib.cmx -o lib/jenga_lib.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared lib/jenga_lib.cmxa lib/jenga_lib.cmx -o lib/jenga_lib.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocaml-embed-compiler -pp /home/opam/.opam/4.02.0+trunk/bin/camlp4o.opt -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/ocaml/bigarray.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/type_conv/pa_type_conv.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/sexplib/sexplib.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/sexplib/pa_sexp_conv.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/bin_prot/pa_bin_prot.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/fieldslib/pa_fields_conv.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/variantslib/pa_variants_conv.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/comparelib/pa_compare.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/pa_pipebang/pa_pipebang.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/herelib/pa_herelib.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/custom_printf/pa_custom_printf.cmxs -pa-cmxs /home/opam/.opam/4.02.0+trunk/lib/pa_test/pa_test_lib.cmxs -cc /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt /home/opam/.opam/4.02.0+trunk/lib/ocaml/pervasives.cmi lib/jenga_lib.cmi /home/opam/.opam/4.02.0+trunk/lib/core/core.cmi /home/opam/.opam/4.02.0+trunk/lib/core_kernel/core_kernel.cmi /home/opam/.opam/4.02.0+trunk/lib/async/async.cmi /home/opam/.opam/4.02.0+trunk/lib/async_kernel/async_kernel.cmi /home/opam/.opam/4.02.0+trunk/lib/async_unix/async_unix.cmi /home/opam/.opam/4.02.0+trunk/lib/sexplib/sexplib.cmi /home/opam/.opam/4.02.0+trunk/lib/fieldslib/fieldslib.cmi /home/opam/.opam/4.02.0+trunk/lib/ocaml_plugin/ocaml_plugin.cmi -o bin/jenga_archive.c
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c bin/jenga_archive.c
+mv jenga_archive.o bin/jenga_archive.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o bin/jenga_archive_stubs bin/jenga_archive.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -modules bin/jenga_archive_dummy.ml > bin/jenga_archive_dummy.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga_archive_dummy.cmo bin/jenga_archive_dummy.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -ljenga_archive_stubs -cclib -ljenga_archive_stubs bin/jenga_archive_dummy.cmo -o bin/jenga_archive.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga_archive_dummy.cmx bin/jenga_archive_dummy.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -ljenga_archive_stubs bin/jenga_archive_dummy.cmx -o bin/jenga_archive.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -I bin bin/jenga_archive.cmxa bin/jenga_archive_dummy.cmx -o bin/jenga_archive.cmxs
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -modules bin/jenga.ml > bin/jenga.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga.cmo bin/jenga.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga.cmx bin/jenga.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I bin -linkpkg -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async bin/jenga_archive.cmxa tenacious/lifetime-lib/tenacious_lifetime_lib.cmxa tenacious/sample-lib/tenacious_sample_lib.cmxa tenacious/lib/tenacious_lib.cmxa lib/jenga_lib.cmxa bin/jenga.cmx -o bin/jenga.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -modules bin/jenga_offline.ml > bin/jenga_offline.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga_offline.cmo bin/jenga_offline.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jenga_offline.cmx bin/jenga_offline.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -I bin -linkpkg -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async bin/jenga_archive.cmxa tenacious/lifetime-lib/tenacious_lifetime_lib.cmxa tenacious/sample-lib/tenacious_sample_lib.cmxa tenacious/lib/tenacious_lib.cmxa lib/jenga_lib.cmxa bin/jenga_offline.cmx -o bin/jenga_offline.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -modules bin/jem.ml > bin/jem.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jem.cmo bin/jem.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -I tenacious/sample-lib -I tenacious/lifetime-lib -I tenacious/lib -I lib -I bin -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async -I bin -I lib -o bin/jem.cmx bin/jem.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -linkpkg -g -linkpkg -thread -package type_conv -package threads -package str -package sexplib.syntax -package sexplib -package pcre -package ocaml_plugin.fake -package ocaml_plugin -package fieldslib.syntax -package fieldslib -package core_extended -package core -package comparelib.syntax -package comparelib -package bin_prot.syntax -package bin_prot -package async_shell -package async_parallel -package async_inotify -package async tenacious/lifetime-lib/tenacious_lifetime_lib.cmxa tenacious/sample-lib/tenacious_sample_lib.cmxa tenacious/lib/tenacious_lib.cmxa lib/jenga_lib.cmxa bin/jem.cmx -o bin/jem.native
+./setup.exe -install 
+W: Nothing to install for findlib library 'jenga_archive'
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/action.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/alias.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/api.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/build.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/command_line.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/config.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/dep.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/dep_type.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/description.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/discovered_graph.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/effort.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/env.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/error_reason_type.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/exit_code.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/file_access.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/finish_time_estimator.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/forker.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/fs.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/gen_key.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/glob_to_re.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/goal.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jem_command_line.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_root_interface.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/job.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/load_root.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/message.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/misc.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/monomorphic_mutable_graph.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/offline.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/path.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/pattern.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/persist.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/progress.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/quit.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/reason.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/reflect.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/reflected.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/rpc_intf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/rpc_server.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/rule.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/run.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/save_description.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/server_lock.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/system.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/jenga_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_intf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_intf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_intf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/heart.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_sample_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/ten.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/tenacious_lifetime_lib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/jenga/META
+Installing jenga.111.28.00.
