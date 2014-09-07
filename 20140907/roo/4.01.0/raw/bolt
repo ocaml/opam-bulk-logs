@@ -160,3 +160,40 @@ cp /tmp/versionc8d1be.ml src/library/version.ml
 WARNINGS=FALSE PATH_OCAML_PREFIX=/home/opam/.opam/4.01.0 ocamlbuild -classic-display -no-links boltThread.cmx
 cp /tmp/version658362.ml src/library/version.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -thread -for-pack Bolt -I src/threads -I src -I src/syntax -I src/support -I src/library -o src/threads/boltThread.cmx src/threads/boltThread.ml
+if [ -x "/home/opam/.opam/4.01.0/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind query bolt && /home/opam/.opam/4.01.0/bin/ocamlfind remove bolt || true; \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind install bolt META -optional \
+	    `pwd`/_build/src/syntax/bolt_pp.cmo \
+	    `pwd`/_build/src/threads/boltThread.cm* \
+	    `pwd`/_build/src/threads/boltThread.o \
+	    `pwd`/_build/src/threads/boltThread.jo \
+	    `pwd`/_build/bolt.a \
+	    `pwd`/_build/bolt.cma \
+	    `pwd`/_build/bolt.cmi \
+	    `pwd`/_build/bolt.cmo \
+	    `pwd`/_build/bolt.cmxa \
+	    `pwd`/_build/bolt.cmja \
+	    `pwd`/_build/bolt.ja; \
+	else \
+	  mkdir -p /home/opam/.opam/4.01.0/lib/ocaml/bolt; \
+	  cp `pwd`/_build/src/syntax/bolt_pp.cmo /home/opam/.opam/4.01.0/lib/ocaml/bolt; \
+	  for ext in cmi cmo cmx o cmj jo; do \
+	    test -f `pwd`/_build/src/threads/boltThread.$ext && cp `pwd`/_build/src/threads/boltThread.$ext /home/opam/.opam/4.01.0/lib/ocaml/bolt || true; \
+	  done; \
+	  for ext in a cma cmi cmo cmxa cmja ja; do \
+	    test -f `pwd`/_build/bolt.$ext && cp `pwd`/_build/bolt.$ext /home/opam/.opam/4.01.0/lib/ocaml/bolt || true; \
+	  done \
+	fi
+ocamlfind: Package `bolt' not found
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt.cmo
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt.cmi
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt.cma
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt.a
+Installed /home/opam/.opam/4.01.0/lib/bolt/boltThread.o
+Installed /home/opam/.opam/4.01.0/lib/bolt/boltThread.cmx
+Installed /home/opam/.opam/4.01.0/lib/bolt/boltThread.cmo
+Installed /home/opam/.opam/4.01.0/lib/bolt/boltThread.cmi
+Installed /home/opam/.opam/4.01.0/lib/bolt/bolt_pp.cmo
+Installed /home/opam/.opam/4.01.0/lib/bolt/META
+Installing bolt.1.4.
