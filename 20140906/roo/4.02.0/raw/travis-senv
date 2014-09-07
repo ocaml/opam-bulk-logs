@@ -40,3 +40,35 @@ ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
 ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
 ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
 ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building travis-senv.1.0.0:
+  make
+ocamlbuild -use-ocamlfind -pkg cmdliner main.native
+ocamlfind ocamldep -package cmdliner -modules main.ml > main.ml.depends
+ocamlfind ocamldep -package cmdliner -modules base64.mli > base64.mli.depends
+ocamlfind ocamlc -c -package cmdliner -o base64.cmi base64.mli
+ocamlfind ocamlc -c -package cmdliner -o main.cmo main.ml
+ocamlfind ocamldep -package cmdliner -modules base64.ml > base64.ml.depends
+ocamlfind ocamlopt -c -package cmdliner -o base64.cmx base64.ml
++ ocamlfind ocamlopt -c -package cmdliner -o base64.cmx base64.ml
+File "base64.ml", line 39, characters 4-39:
+Warning 3: deprecated: String.set
+File "base64.ml", line 40, characters 42-77:
+Warning 3: deprecated: String.set
+File "base64.ml", line 41, characters 42-77:
+Warning 3: deprecated: String.set
+File "base64.ml", line 60, characters 4-35:
+Warning 3: deprecated: String.set
+File "base64.ml", line 61, characters 4-35:
+Warning 3: deprecated: String.set
+File "base64.ml", line 62, characters 4-35:
+Warning 3: deprecated: String.set
+File "base64.ml", line 63, characters 4-35:
+Warning 3: deprecated: String.set
+File "base64.ml", line 66, characters 4-44:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -package cmdliner -o main.cmx main.ml
+ocamlfind ocamlopt -linkpkg -package cmdliner base64.cmx main.cmx -o main.native
+Installing travis-senv.1.0.0.
