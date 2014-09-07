@@ -121,3 +121,22 @@ cp /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/oprint.cmi camlp4/impor
 cp /home/opam/.opam/4.02.0+trunk/lib/ocaml/compiler-libs/toploop.cmi camlp4/import/toploop.cmi
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/Camlp4_config.cmi camlp4/config/Camlp4_config.mli
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w a -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4/boot -o camlp4/boot/Camlp4.cmo camlp4/boot/Camlp4.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w a -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4/boot -o camlp4/boot/camlp4boot.cmo camlp4/boot/camlp4boot.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules camlp4/config/Camlp4_config.ml > camlp4/config/Camlp4_config.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules camlp4/config/gen_import.ml > camlp4/config/gen_import.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I +compiler-libs -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/gen_import.cmo camlp4/config/gen_import.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt dynlink.cma -g -I +compiler-libs ocamlcommon.cma ocamlbytecomp.cma camlp4/config/gen_import.cmo -o camlp4/config/gen_import.byte
+camlp4/config/gen_import.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -modules camlp4/config/Camlp4_import.ml > camlp4/config/Camlp4_import.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/Camlp4_import.cmo camlp4/config/Camlp4_import.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -g -w Z -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/Camlp4_import.cmx camlp4/config/Camlp4_import.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -g -w Z -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/Camlp4_config.cmx camlp4/config/Camlp4_config.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -g -w a -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4/boot -o camlp4/boot/Camlp4.cmx camlp4/boot/Camlp4.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -c -g -w a -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4/boot -o camlp4/boot/camlp4boot.cmx camlp4/boot/camlp4boot.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt dynlink.cmxa -g -I +compiler-libs ocamlcommon.cmxa ocamlbytecomp.cmxa camlp4/config/Camlp4_import.cmx camlp4/config/Camlp4_config.cmx camlp4/boot/Camlp4.cmx camlp4/boot/camlp4boot.cmx -o camlp4/boot/camlp4boot.native
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4/Debug.mli > camlp4/Camlp4/Debug.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4 -I camlp4/config -I camlp4 -o camlp4/Camlp4/Debug.cmi camlp4/Camlp4/Debug.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4/Debug.ml > camlp4/Camlp4/Debug.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4/ErrorHandler.mli > camlp4/Camlp4/ErrorHandler.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4/Sig.ml > camlp4/Camlp4/Sig.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4 -I camlp4/config -I camlp4 -o camlp4/Camlp4/Sig.cmo camlp4/Camlp4/Sig.ml
