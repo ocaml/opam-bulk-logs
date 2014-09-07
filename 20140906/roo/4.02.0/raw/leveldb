@@ -1256,3 +1256,84 @@ Warning 3: deprecated: String.set
 File "test_00util.ml", line 1:
 Error: Some fatal warnings were triggered (2 occurrences)
  -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -g -I . -I ../src -c test_00util.ml
+- build src levelDB.cmo
++ ocamlfind ocamlc -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -gFile "levelDB.ml", line 253, characters 15-28:
+Warning 3: deprecated: String.create
+ -I . -c levelDB.ml
+- build src levelDB.cmx
++ ocamlfind ocamlopt -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -inline 100 -I . -c levelDB.ml
+File "levelDB.ml", line 253, characters 15-28:
+Warning 3: deprecated: String.create
+File "levelDB.ml", line 1:
+Error: Some fatal warnings were triggered (1 occurrences)
+File "levelDB.ml", line 1:
+Error: Some fatal warnings were triggered (1 occurrences)
+*** omake: 34/71 targets are up to date
+*** omake: failed (0.74 sec, 6/6 scans, 4/4 rules, 18/100 digests)
+*** omake: targets were not rebuilt because of errors:
+   src/levelDB.cmo
+      depends on: src/levelDB.ml
+   src/levelDB.cmx
+      depends on: src/levelDB.ml
+   src/levelDB.o
+      depends on: src/levelDB.ml
+   test/test_00util.cmi
+      depends on: test/test_00util.ml
+   test/test_00util.cmo
+      depends on: test/test_00util.ml
+   test/test_00util.cmx
+      depends on: test/test_00util.ml
+   test/test_00util.o
+      depends on: test/test_00util.ml
+[ERROR] The compilation of leveldb.1.0.3 failed.
+Removing leveldb.1.0.3.
+  ocamlfind remove leveldb
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/leveldb
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   conf-leveldb.1
+ - install   ounit.2.0.0
+ - install   omake.0.9.8.6-0.rc1
+The following failed
+ - install   leveldb.1.0.3
+
+#=== ERROR while installing leveldb.1.0.3 =====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              omake -j9
+# path                 /home/opam/.opam/4.02.0+trunk/build/leveldb.1.0.3
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/leveldb.1.0.3/leveldb-3507-60459a.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/leveldb.1.0.3/leveldb-3507-60459a.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/leveldb.1.0.3/leveldb-3507-60459a.err
+### stdout ###
+# ...[truncated]
+# --- Checking for g++... (found /usr/bin/g++)
+# --- Checking if ocamldep understands -modules... (yes)
+# - build test test_00util.o
+# + ocamlfind ocamlc -package unix,threads,oUnit -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -g -I . -I ../src -c test_00util.ml
+# - build src levelDB.cmo
+# + ocamlfind ocamlc -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -g -I . -c levelDB.ml
+# - build src levelDB.cmx
+# + ocamlfind ocamlopt -w +a-4-6-9-27-28-30..99 -warn-error +a-4-6-9-18-27-28-30..99 -annot -thread -inline 100 -I . -c levelDB.ml
+# *** omake: 34/71 targets are up to date
+# *** omake: failed (0.74 sec, 6/6 scans, 4/4 rules, 18/100 digests)
+### stderr ###
+# ...[truncated]
+#    src/levelDB.o
+#       depends on: src/levelDB.ml
+#    test/test_00util.cmi
+#       depends on: test/test_00util.ml
+#    test/test_00util.cmo
+#       depends on: test/test_00util.ml
+#    test/test_00util.cmx
+#       depends on: test/test_00util.ml
+#    test/test_00util.o
+#       depends on: test/test_00util.ml
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807150107.export"
+'opam install leveldb' failed.
