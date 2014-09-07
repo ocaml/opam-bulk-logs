@@ -8671,3 +8671,37 @@ touch src/endpoints/endpoints.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -for-pack Facebook -I src -I src/endpoints -o src/auth.cmx src/auth.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -for-pack Facebook -I src -I src/endpoints -o src/request.cmx src/request.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -for-pack Facebook -I src -I src/endpoints -o src/api.cmx src/api.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -for-pack Facebook -I src -I src/endpoints -o src/request_cohttp.cmx src/request_cohttp.ml
+touch src/facebook.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I src src/util.cmx src/auth.cmx src/request.cmx src/api.cmx src/request_cohttp.cmx -o src/facebook.cmx  ; then  rm -f src/facebook.mli  ; else  rm -f src/facebook.mli  ; exit 1; fi
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/facebook.cmx -o src/facebook.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/facebook.cmxa src/facebook.cmx -o src/facebook.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -modules examples/feed_example.ml > examples/feed_example.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src/endpoints -I src -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -I examples -I src -o examples/feed_example.cmo examples/feed_example.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -I src -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -I examples -I src -o examples/feed_example.cmx examples/feed_example.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -thread threads.cmxa -linkpkg -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -package lwt.syntax -package meta_conv -package meta_conv.syntax -package tiny_json_conv -package uri src/facebook.cmxa src/util.cmx src/auth.cmx src/endpoints/endpoints.cmxa src/request.cmx src/api.cmx src/request_cohttp.cmx examples/feed_example.cmx -o examples/feed_example.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -modules examples/friend_list_example.ml > examples/friend_list_example.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src/endpoints -I src -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -I examples -I src -o examples/friend_list_example.cmo examples/friend_list_example.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src/endpoints -I src -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -syntax camlp4o -package lwt.syntax -package meta_conv -syntax camlp4o -package meta_conv.syntax -package tiny_json_conv -package uri -syntax camlp4o -I examples -I src -o examples/friend_list_example.cmx examples/friend_list_example.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -thread threads.cmxa -linkpkg -package calendar -package cohttp -package cohttp.lwt -package core -package csv -package lwt -package lwt.syntax -package meta_conv -package meta_conv.syntax -package tiny_json_conv -package uri src/facebook.cmxa src/util.cmx src/auth.cmx src/endpoints/endpoints.cmxa src/request.cmx src/api.cmx src/request_cohttp.cmx examples/friend_list_example.cmx -o examples/friend_list_example.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/facebook/api.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/auth.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/request.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/request_cohttp.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/util.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.cmi
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.cma
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.cmxa
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.a
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.cmxs
+Installed /home/opam/.opam/4.01.0/lib/facebook/facebook.cmx
+Installed /home/opam/.opam/4.01.0/lib/facebook/common.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/user.mli
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.cmi
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.cma
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.cmxa
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.a
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.cmxs
+Installed /home/opam/.opam/4.01.0/lib/facebook/endpoints.cmx
+Installed /home/opam/.opam/4.01.0/lib/facebook/META
+Installing facebook-sdk.0.3.5.
