@@ -1086,3 +1086,51 @@ File "gluNurbs.ml", line 57, characters 23-25:
 Warning 3: deprecated: Pervasives.or
 File "gluNurbs.ml", line 57, characters 23-25:
 Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk gluQuadric.ml
+ocamlopt -c -I +labltk gluTess.ml
+ocamlopt -c -I +labltk gluMat.ml
+ocamlopt -c -I +labltk glArray.ml
+ocamlopt -c -I +labltk glShader.ml
+ocamlmklib -o lablgl ml_gl.o	ml_glu.o	ml_raw.o ml_glarray.o ml_glutess.o	ml_shader.o raw.cmx gl.cmx glLight.cmx glList.cmx glMap.cmx glMat.cmx glMisc.cmx glPix.cmx glClear.cmx glTex.cmx glDraw.cmx glFunc.cmx gluMisc.cmx gluNurbs.cmx gluQuadric.cmx gluTess.cmx gluMat.cmx glArray.cmx glShader.cmx -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+cd LablGlut/src && make opt
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+ocamlopt -c  glut.ml
+ocamlmklib -o lablglut wrap_glut.o glut.cmx -lglut -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+sed -e "s|@LABLGL_MLS@|raw gl glLight glList glMap glMat glMisc glPix glClear glTex glDraw glFunc gluMisc gluNurbs gluQuadric gluTess gluMat glArray glShader|" \
+	    -e "s|@TOGL_MLS@|togl|" \
+	    -e "s|@GLUT_MLS@|glut|" \
+	    -e "s|@GLLIBS@||" \
+	    -e "s|@TKLIBS@||" \
+	    -e "s|@GLUTLIBS@||" < build.ml.in > build.ml
+if test -d "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; then : ; else mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; fi
+cp build.ml raw.ml gl.ml glLight.ml glList.ml glMap.ml glMat.ml glMisc.ml glPix.ml glClear.ml glTex.ml glDraw.ml glFunc.ml gluMisc.ml gluNurbs.ml gluQuadric.ml gluTess.ml gluMat.ml glArray.ml glShader.ml raw.mli gl.mli glLight.mli glList.mli glMap.mli glMat.mli glMisc.mli glPix.mli glClear.mli glTex.mli glDraw.mli glFunc.mli gluMisc.mli gluNurbs.mli gluQuadric.mli gluTess.mli gluMat.mli glArray.mli glShader.mli "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cp liblablgl.a "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : liblablgl.a
+if test -f dlllablgl.so; then cp dlllablgl.so "/home/opam/.opam/4.02.0+trunk/lib/stublibs"; fi
+cp raw.cmi gl.cmi glLight.cmi glList.cmi glMap.cmi glMat.cmi glMisc.cmi glPix.cmi glClear.cmi glTex.cmi glDraw.cmi glFunc.cmi gluMisc.cmi gluNurbs.cmi gluQuadric.cmi gluTess.cmi gluMat.cmi glArray.cmi glShader.cmi lablgl.cma "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+cp lablgl.cmxa lablgl.a raw.cmx gl.cmx glLight.cmx glList.cmx glMap.cmx glMat.cmx glMisc.cmx glPix.cmx glClear.cmx glTex.cmx glDraw.cmx glFunc.cmx gluMisc.cmx gluNurbs.cmx gluQuadric.cmx gluTess.cmx gluMat.cmx glArray.cmx glShader.cmx "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : lablgl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+if test -d "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; then : ; else mkdir -p "/home/opam/.opam/4.02.0+trunk/lib/lablgl"; fi
+cp glut.ml glut.mli "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cp liblablglut.a "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : liblablglut.a
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp dlllablglut.so "/home/opam/.opam/4.02.0+trunk/lib/stublibs"
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp lablglut "/home/opam/.opam/4.02.0+trunk/bin"
+cp glut.cmi lablglut.cma "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+cp lablglut.cmxa lablglut.a glut.cmx "/home/opam/.opam/4.02.0+trunk/lib/lablgl"
+cd "/home/opam/.opam/4.02.0+trunk/lib/lablgl" && : lablglut.a
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/lablgl.20120306/LablGlut/src'
+Installing lablgl.20120306.
