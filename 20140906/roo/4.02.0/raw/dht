@@ -1962,3 +1962,110 @@ library dynlink.cmxa: found
 binary ocamlfind: found in /home/opam/.opam/4.02.0+trunk/bin
 OCaml's word size is 64
 binary uname: found in /bin
+include gmp.h: found
+library gmp: found
+OCaml extended comparison supported
+OCaml new hash functions available
+
+detected configuration:
+
+  native-code:          yes
+  dynamic linking:      yes
+  asm path:             x86_64
+  defines:              -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX 
+  libraries:             -lgmp
+  C options:            -O3 -Wall -Wextra 
+  asm options           
+  installation path:    /home/opam/.opam/4.02.0+trunk/lib
+  installation method   findlib
+
+configuration successful!
+now type "make" to build
+then type "make install" or "sudo make install" to install
+project.mak:150: depend: No such file or directory
+./z_pp.pl x86_64
+found assembly file caml_z_x86_64.S
+  found abs
+  found add
+  found div
+  found logand
+  found lognot
+  found logor
+  found logxor
+  found mul
+  found neg
+  found pred
+  found rem
+  found shift_left
+  found shift_right
+  found sub
+  found succ
+ocamldep -native  *.ml *.mli > depend
+ocamlc   -c z.mli
+ocamlc   -c z.ml
+ocamlc   -c q.mli
+ocamlc   -c q.ml
+ocamlc   -c big_int_Z.mli
+ocamlc   -c big_int_Z.ml
+ocamlmklib -failsafe -o zarith z.cmo q.cmo big_int_Z.cmo -lgmp
+gcc -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX     -c -o caml_z_x86_64.o caml_z_x86_64.S
+ocamlc -ccopt "-I/home/opam/.opam/4.02.0+trunk/lib/ocaml  -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX  -O3 -Wall -Wextra " -c caml_z.c
+caml_z.c: In function 'ml_z_to_bits':
+caml_z.c:337:10: warning: variable 'sign_arg' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:901:3: note: in expansion of macro 'Z_DECL'
+   Z_DECL(arg);
+   ^
+caml_z.c: In function 'ml_z_abs':
+caml_z.c:337:10: warning: variable 'sign_arg' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1208:5: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg);
+     ^
+caml_z.c: In function 'ml_z_gcd':
+caml_z.c:337:10: warning: variable 'sign_arg2' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1712:19: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg1); Z_DECL(arg2);
+                   ^
+caml_z.c:337:10: warning: variable 'sign_arg1' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1712:5: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg1); Z_DECL(arg2);
+     ^
+ocamlmklib -failsafe -o zarith caml_z_x86_64.o caml_z.o -lgmp
+ocamlopt   -c z.ml
+ocamlopt   -c q.ml
+ocamlopt   -c big_int_Z.ml
+ocamlmklib -failsafe -o zarith z.cmx q.cmx big_int_Z.cmx -lgmp
+ocamlopt -shared -o zarith.cmxs -I . zarith.cmxa
+ocamlfind install -destdir "/home/opam/.opam/4.02.0+trunk/lib" zarith META zarith.h zarith.cma libzarith.a z.mli q.mli big_int_Z.mli z.cmi q.cmi big_int_Z.cmi zarith.a zarith.cmxa zarith.cmxs dllzarith.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/zarith.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/zarith.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/zarith.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/big_int_Z.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/q.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/z.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/big_int_Z.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/q.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/z.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/libzarith.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/zarith.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/zarith.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/zarith/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllzarith.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllzarith.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing zarith.1.2.
+Building dht.0.1.3:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.02.0+trunk
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
