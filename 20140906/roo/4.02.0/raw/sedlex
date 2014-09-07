@@ -1,1 +1,51 @@
 ++ opam install sedlex -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install sedlex -e source,linux
+Ubuntu srcexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install sedlex
+The following actions will be performed:
+ - install   ppx_tools.0.99.1                      [required by sedlex]
+ - install   sedlex.1.99.2
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ppx_tools.0.99.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/sedlex.1.99.2+opam.tar.gz
+sending incremental file list
+sending incremental file list
+ppx_tools.0.99.1+opam.tar.gz
+sedlex.1.99.2+opam.tar.gz
+
+sent 14,941 bytes  received 35 bytes  29,952.00 bytes/sec
+total size is 14,804  speedup is 0.99
+
+sent 57,793 bytes  received 35 bytes  115,656.00 bytes/sec
+total size is 57,655  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building ppx_tools.0.99.1:
+  make all
+  make install
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlc -a -o ppx_tools.cma ast_convenience.cmo ast_mapper_class.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c genlifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o genlifter ocamlcommon.cma ppx_tools.cma genlifter.cmo
+./genlifter -I +compiler-libs Parsetree.expression > ast_lifter.ml || rm -rf ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c dumpast.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o dumpast ocamlcommon.cma ocamlbytecomp.cma ast_lifter.cmo dumpast.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ppx_metaquot.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o ppx_metaquot ocamlcommon.cma ppx_tools.cma ast_lifter.cmo ppx_metaquot.cmo
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlopt -a -o ppx_tools.cmxa ast_convenience.cmx ast_mapper_class.cmx
+ocamlopt -shared -o ppx_tools.cmxs -linkall ppx_tools.cmxa
