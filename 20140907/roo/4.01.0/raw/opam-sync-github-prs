@@ -4903,3 +4903,120 @@ ocamllex read.mll
 433 states, 2020 transitions, table size 10678 bytes
 cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building zed.1.3:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ zed
+Package version: ..................................... 1.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_react: ........................................... /home/opam/.opam/4.01.0/lib/react
+pkg_camomile: ........................................ /home/opam/.opam/4.01.0/lib/camomile
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_utf8.mli > src/zed_utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_utf8.cmi src/zed_utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_utf8.ml > src/zed_utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_rope.mli > src/zed_rope.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_rope.cmi src/zed_rope.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_rope.ml > src/zed_rope.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_edit.mli > src/zed_edit.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_cursor.mli > src/zed_cursor.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_lines.mli > src/zed_lines.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_lines.cmi src/zed_lines.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_re.mli > src/zed_re.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_cursor.cmi src/zed_cursor.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_re.cmi src/zed_re.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_edit.cmi src/zed_edit.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_edit.ml > src/zed_edit.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_cursor.ml > src/zed_cursor.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_lines.ml > src/zed_lines.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_re.ml > src/zed_re.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_input.mli > src/zed_input.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_input.cmi src/zed_input.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_input.ml > src/zed_input.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_macro.mli > src/zed_macro.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_macro.cmi src/zed_macro.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camomile -package react -modules src/zed_macro.ml > src/zed_macro.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_utf8.cmo src/zed_utf8.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_rope.cmo src/zed_rope.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camomile -package react -I src -o src/zed_edit.cmo src/zed_edit.ml
