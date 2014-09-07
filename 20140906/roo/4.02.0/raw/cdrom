@@ -251,3 +251,125 @@ package deps: [unix]
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -o dist/build/lib-cdrom/cdrom.cma -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -dllib -lstubs_cdrom cdrom.cmo
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -shared -o dist/build/lib-cdrom/cdrom.cmxs -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
   [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -o dist/build/lib-cdrom/cdrom.cmxa -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
+[5 of 8] Checking dist/build/lib-cdrom
+[6 of 8] Compiling Query
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/query -I dist/build/autogen -I query -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/query/query.cmx -c query/query.ml
+  compilation order: Query
+  self deps: cdrom
+package deps: [unix,cdrom]
+[7 of 8] Linking executable dist/build/query/query
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/query/query -I dist/build/query -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I dist/build/lib-cdrom unix.cmxa cdrom.cmxa -cclib -Ldist/build/lib-cdrom query.cmx
+[8 of 8] Checking dist/build/query
+schedule finished: #processes=9 max_concurrency=2
+obuild --debug+ configure 
+  [CMD]: ocamlfind printconf conf
+Configuring cdrom-0.9.1...
+  configure flag: []
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: cdrom
+  getting dependencies for target lib-cdrom
+  getting dependencies for target exe-query
+  library cdrom depends on unix
+configuration changed, deleting dist
+auto-generating configuration files
+Writing new setup
+obuild --debug+ build
+  [CMD]: ocamlfind printconf conf
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: cdrom
+  getting dependencies for target lib-cdrom
+  getting dependencies for target exe-query
+  library cdrom depends on unix
+preparing target lib-cdrom
+preparing compilation for lib-cdrom
+Analysing Cdrom
+  Cdrom has mtime 1369774086.000000
+  Cdrom has interface (mtime=1369774086.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib -I dist/build/autogen -modules lib/cdrom.ml lib/cdrom.mli
+  Cdrom depends on Unix
+  Cdrom internally depends on 
+  [CMD]: /usr/bin/gcc -MM lib/cdrom_stubs.c
+preparing target exe-query
+preparing compilation for exe-query
+Analysing Query
+  Query has mtime 1369774086.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I query -I dist/build/autogen -modules query/query.ml query/query.mli
+  Query depends on Array,Cdrom,Printf,Sys
+  Query internally depends on 
+[1 of 8] Intfing Cdrom
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmi -c lib/cdrom.mli
+[2 of 8] Compiling C cdrom_stubs.c
+  [CMD]: gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I dist/build/autogen -o dist/build/lib-cdrom/cdrom_stubs.c.o -c lib/cdrom_stubs.c
+[3 of 8] Compiling Cdrom
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmx -c lib/cdrom.ml
+lib/cdrom_stubs.c: In function 'stub_CDROM_DRIVE_STATUS':
+lib/cdrom_stubs.c:47:6: warning: variable 'ok' set but not used [-Wunused-but-set-variable]
+  int ok = 0;                                                                     \
+      ^
+lib/cdrom_stubs.c:81:1: note: in expansion of macro 'make_ioctl_stub'
+ make_ioctl_stub(CDROM_DRIVE_STATUS);
+ ^
+lib/cdrom_stubs.c: In function 'stub_CDROM_DISC_STATUS':
+lib/cdrom_stubs.c:47:6: warning: variable 'ok' set but not used [-Wunused-but-set-variable]
+  int ok = 0;                                                                     \
+      ^
+lib/cdrom_stubs.c:82:1: note: in expansion of macro 'make_ioctl_stub'
+ make_ioctl_stub(CDROM_DISC_STATUS);
+ ^
+
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-cdrom -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/lib-cdrom/cdrom.cmo -c lib/cdrom.ml
+  compilation order: Cdrom
+  self deps: 
+package deps: [unix]
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxa
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cmxs
+[4 of 8] Linking library dist/build/lib-cdrom/cdrom.cma
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o dist/build/lib-cdrom/stubs_cdrom dist/build/lib-cdrom/cdrom_stubs.c.o
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -o dist/build/lib-cdrom/cdrom.cma -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -dllib -lstubs_cdrom cdrom.cmo
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -shared -o dist/build/lib-cdrom/cdrom.cmxs -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -o dist/build/lib-cdrom/cdrom.cmxa -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -cclib -lstubs_cdrom cdrom.cmx
+[5 of 8] Checking dist/build/lib-cdrom
+[6 of 8] Compiling Query
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/query -I dist/build/autogen -I query -I dist/build/lib-cdrom -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -bin-annot -o dist/build/query/query.cmx -c query/query.ml
+  compilation order: Query
+  self deps: cdrom
+package deps: [unix,cdrom]
+[7 of 8] Linking executable dist/build/query/query
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/query/query -I dist/build/query -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I dist/build/lib-cdrom unix.cmxa cdrom.cmxa -cclib -Ldist/build/lib-cdrom query.cmx
+[8 of 8] Checking dist/build/query
+schedule finished: #processes=9 max_concurrency=2
+ocamlfind remove cdrom
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/cdrom
+ocamlfind install cdrom dist/build/lib-cdrom/cdrom.a dist/build/lib-cdrom/cdrom.cmi dist/build/lib-cdrom/cdrom.cmx dist/build/lib-cdrom/cdrom.o dist/build/lib-cdrom/dllstubs_cdrom.so dist/build/lib-cdrom/cdrom.cma dist/build/lib-cdrom/cdrom.cmo dist/build/lib-cdrom/cdrom.cmxa dist/build/lib-cdrom/cdrom_stubs.c.o dist/build/lib-cdrom/libstubs_cdrom.a lib/META lib/cdrom.mli 
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/libstubs_cdrom.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom_stubs.c.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/cdrom.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cdrom/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllstubs_cdrom.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllstubs_cdrom.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing cdrom.0.9.1.
