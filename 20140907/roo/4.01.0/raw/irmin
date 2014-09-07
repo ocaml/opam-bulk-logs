@@ -299,3 +299,203 @@ total size is 59,816  speedup is 1.00
 
 =-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Installing base-bytes.legacy.
+Installing camlp4.4.01.0.
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+ocamlopt -c zip.ml
+ocamlopt -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
+ocamlfind install zip META *.mli *.a *.cmi *.cma gzip.cmx zip.cmx zlib.cmx zip.cmxa zip.cmxs dllcamlzip.so
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.cmxs
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.cmxa
+Installed /home/opam/.opam/4.01.0/lib/zip/zlib.cmx
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.cmx
+Installed /home/opam/.opam/4.01.0/lib/zip/gzip.cmx
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.cma
+Installed /home/opam/.opam/4.01.0/lib/zip/zlib.cmi
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.cmi
+Installed /home/opam/.opam/4.01.0/lib/zip/gzip.cmi
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.a
+Installed /home/opam/.opam/4.01.0/lib/zip/libcamlzip.a
+Installed /home/opam/.opam/4.01.0/lib/zip/zlib.mli
+Installed /home/opam/.opam/4.01.0/lib/zip/zip.mli
+Installed /home/opam/.opam/4.01.0/lib/zip/gzip.mli
+Installed /home/opam/.opam/4.01.0/lib/zip/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcamlzip.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcamlzip.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+echo 'directory="../zip"' >> META && ocamlfind install camlzip META
+Installed /home/opam/.opam/4.01.0/lib/camlzip/META
+Installing camlzip.1.05.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building dolog.0.5:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ dolog
+Package version: ..................................... 0.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package unix -modules lib/log.mli > lib/log.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmi lib/log.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package unix -modules lib/log.ml > lib/log.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package unix -I lib -o lib/log.cmo lib/log.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/log.cmo -o lib/dolog.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package unix -I lib -o lib/log.cmx lib/log.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/log.cmx -o lib/dolog.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -linkall lib/dolog.cmxa -o lib/dolog.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package unix -modules lib_test/example.ml > lib_test/example.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/example.cmo lib_test/example.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -linkpkg -package unix lib/dolog.cma lib_test/example.cmo -o lib_test/example.byte
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package unix -modules lib_test/test.ml > lib_test/test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -package unix -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -linkpkg -package unix lib/dolog.cma lib_test/test.cmo -o lib_test/test.byte
+Installed /home/opam/.opam/4.01.0/lib/dolog/log.mli
+Installed /home/opam/.opam/4.01.0/lib/dolog/dolog.cma
+Installed /home/opam/.opam/4.01.0/lib/dolog/dolog.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dolog/dolog.a
+Installed /home/opam/.opam/4.01.0/lib/dolog/dolog.cmxs
+Installed /home/opam/.opam/4.01.0/lib/dolog/log.cmi
+Installed /home/opam/.opam/4.01.0/lib/dolog/log.cmx
+Installed /home/opam/.opam/4.01.0/lib/dolog/META
+Installing dolog.0.5.
+Building ocamlgraph.1.8.5:
+  ./configure
+  make
+  make install-findlib
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for ocamldoc... ocamldoc
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamlweb... true
+checking for ocamlfind... ocamlfind
+OCamlfind detected and enabled
+ocamlfind: Package `lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2/lablgtk.cmxa... no
+checking Win32 platform... no
+configure: WARNING: lablgnomecanvas not found: the graph editor and view_graph will not be compiled
+configure: creating ./config.status
+config.status: creating Makefile
+sed -e s/VERSION/1.8.5/ -e s/CMA/graph.cma/ -e s/CMXA/graph.cmxa/ \
+		META.in > META
+ocamllex.opt src/gml.mll
+26 states, 827 transitions, table size 3464 bytes
+2623 additional bytes used for bindings
+rm -f src/version.ml
+echo "let version = \""1.8.5"\"" > src/version.ml
+echo "let date = \""`date`"\"" >> src/version.ml
+rm -f .depend
+ocamldep -slash -I src -I lib -I editor -I view_graph -I dgraph\
+		lib/*.ml lib/*.mli \
+		src/*.ml src/*.mli \
+		editor/*.mli editor/*.ml \
+		view_graph/*.mli view_graph/*.ml \
+		dgraph/*.mli dgraph/*.ml > .depend
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig_pack.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_ast.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/version.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/blocks.ml
