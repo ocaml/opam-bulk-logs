@@ -2858,3 +2858,125 @@ File "setup.ml", line 213, characters 8-26:
 Warning 3: deprecated: String.set
 File "setup.ml", line 1793, characters 6-24:
 Warning 3: deprecated: Lazy.lazy_from_fun
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 26, characters 22-34:
+Warning: the tag "pkg_cmdliner" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 27, characters 17-29:
+Warning: the tag "pkg_cmdliner" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlc -ccopt -O3 -c lib/tuntap_stubs.c
+mv tuntap_stubs.o lib/tuntap_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlmklib -o lib/tuntap_stubs lib/tuntap_stubs.o
+ocamlfind ocamldep -package ipaddr -modules lib/tuntap.mli > lib/tuntap.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmi lib/tuntap.mli
+ocamlfind ocamldep -package ipaddr -modules lib/tuntap.ml > lib/tuntap.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmo lib/tuntap.ml
+ocamlfind ocamlc -a -dllib -ltuntap_stubs -cclib -ltuntap_stubs lib/tuntap.cmo -o lib/tuntap.cma
+ocamlfind ocamlopt -c -g -ccopt -O3 -package ipaddr -I lib -o lib/tuntap.cmx lib/tuntap.ml
+ocamlfind ocamlopt -a -cclib -ltuntap_stubs lib/tuntap.cmx -o lib/tuntap.cmxa
+ocamlfind ocamlopt -shared -I lib lib/tuntap.cmx -o lib/tuntap.cmxs
+ocaml setup.ml -install 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/libtuntap_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/tuntap.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/tuntap/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlltuntap_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dlltuntap_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing tuntap.0.7.0.
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2391, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlbuild
+Package name: ........................................ type_conv
+Package version: ..................................... 111.13.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.02.1
+standard_library_default: ............................ /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.02.0+trunk/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.02.0+trunk/bin/camlp4o
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
++ ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+File "lib/pa_type_conv.ml", line 291, characters 6-20:
+Warning 3: deprecated: Format.bprintf
+File "lib/pa_type_conv.ml", line 1027, characters 24-253:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+MeAtt (_, _, _, _)
+File "lib/pa_type_conv.ml", line 1045, characters 30-458:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(MtAlias (_, _)|MtAtt (_, _, _, _))
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
