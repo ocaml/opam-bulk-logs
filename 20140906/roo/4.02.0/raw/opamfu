@@ -1796,3 +1796,55 @@ gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENT
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o sys.o sys.c
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o meta.o meta.c
 gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o parsing.o parsing.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o gc_ctrl.o gc_ctrl.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o terminfo.o terminfo.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o md5.o md5.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o obj.o obj.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o lexing.o lexing.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o callback.o callback.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o debugger.o debugger.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o weak.o weak.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o compact.o compact.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o finalise.o finalise.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o custom.o custom.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o dynlink.o dynlink.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o bytecompat.o bytecompat.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o unix.o unix.c
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o main.o main.c
+ar rc libbyterun402.a interp.o misc.o stacks.o fix_code.o startup.o freelist.o major_gc.o minor_gc.o memory.o alloc.o roots.o globroots.o fail.o signals.o signals_byt.o printexc.o backtrace.o compare.o ints.o floats.o str.o array.o io.o extern.o intern.o hash.o sys.o meta.o parsing.o gc_ctrl.o terminfo.o md5.o obj.o lexing.o callback.o debugger.o weak.o compact.o finalise.o custom.o dynlink.o bytecompat.o unix.o main.o
+ranlib libbyterun402.a
+gcc -DCAML_NAME_SPACE -g -O -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT    -c -o prims.o prims.c
+gcc -Wl,-E -o ocamlrun \
+		  prims.o libbyterun402.a -lm  -ldl  -lpthread
+echo "/usr/local/lib/ocaml/stublibs" > ld.conf
+echo "/usr/local/lib/ocaml" >> ld.conf
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot/ocamlrun-4.02/byterun'
+ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix -I ocamlrun-4.02/byterun -cclib -lbyterun402
+cat ocp-build.run ocp-build.boot > ocp-build
+chmod +x ocp-build
+./ocp-build -help >/dev/null 2>&1
+make[1]: *** [ocp-build] Error 2
+make: *** [boot/ocp-build] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/ocp-build.1.99.8-beta/boot'
+[ERROR] The compilation of ocp-build.1.99.8-beta failed.
+Removing ocp-build.1.99.8-beta.
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build
+  rm -f /home/opam/.opam/4.02.0+trunk/bin/ocp-build.byte
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-bundle
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-bundle
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-win32
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-win32
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build-misc
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build-misc
+  rm -f /home/opam/.opam/4.02.0+trunk/lib/META.ocp-build
+  rm -rf /home/opam/.opam/4.02.0+trunk/lib/ocaml/typerex/ocp-build
+Building type_conv.111.13.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+File "setup.ml", line 232, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2391, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
