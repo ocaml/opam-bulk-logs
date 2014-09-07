@@ -928,3 +928,272 @@ ocamlfind ocamlc -c -o inliner.cmi inliner.mli
 ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
 ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' sentenceParser.mly > sentenceParser.mly.depends
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
++ /home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage1/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer sentenceParser.mly
+Grammar has 2 nonterminal symbols, among which 1 start symbols.
+Grammar has 5 terminal symbols.
+Grammar has 5 productions.
+Built an LR(0) automaton with 11 states.
+The grammar is SLR(1).
+Built an LR(1) automaton with 11 states.
+3 out of 11 states are represented.
+0 out of 10 symbols keep track of their start position.
+0 out of 10 symbols keep track of their end position.
+5 out of 11 states have a default reduction.
+4 out of 6 productions exploit shiftreduce optimization.
+0 out of 11 states can peek at an error.
+0 out of 11 states can do error recovery.
+42 functions before inlining, 7 functions after inlining.
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
+ocamlfind ocamldep -modules tableBackend.ml > tableBackend.ml.depends
+ocamlfind ocamldep -modules tableBackend.mli > tableBackend.mli.depends
+ocamlfind ocamlc -c -o tableBackend.cmi tableBackend.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBackend.cmx codeBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o back.cmx back.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o menhir.cmx menhir.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa -g Fix.cmx IO.cmx installation.cmx keyword.cmx lineCount.cmx positions.cmx stringSet.cmx version.cmx settings.cmx printer.cmx action.cmx mark.cmx stringMap.cmx misc.cmx breadth.cmx codeBits.cmx gSet.cmx compressedBitSet.cmx option.cmx dot.cmx error.cmx parameters.cmx parserAux.cmx parser.cmx lexer.cmx tarjan.cmx unionFind.cmx parameterizedGrammar.cmx partialGrammar.cmx time.cmx preFront.cmx tokenType.cmx interface.cmx lexdep.cmx lexmli.cmx infer.cmx listMonad.cmx nonTerminalDefinitionInlining.cmx reachability.cmx unparameterizedPrinter.cmx front.cmx gMap.cmx patricia.cmx grammar.cmx codePieces.cmx item.cmx derivation.cmx menhirLib.cmx lr0.cmx slr.cmx lr1.cmx lr1partial.cmx conflict.cmx invariant.cmx codeBackend.cmx coqBackend.cmx pprint.cmx cst.cmx traverse.cmx inliner.cmx referenceInterpreter.cmx sentenceParser.cmx sentenceLexer.cmx interpret.cmx tableBackend.cmx back.cmx menhir.cmx -o menhir.native
+# Parallel statistics: { count(total): 19(281), max: 6, min: 2, average(total): 2.895(1.128) }
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 10, characters 27-40:
+Warning: the tag "use_ocamlyacc" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+cp fancy-parser.mly parser.mly
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamldep -modules error.mli > error.mli.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamldep -modules stringMap.mli > stringMap.mli.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamlc -c -o stringMap.cmi stringMap.mli
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o error.cmi error.mli
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
++ /home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
+Grammar has 31 nonterminal symbols, among which 1 start symbols.
+Grammar has 26 terminal symbols.
+Grammar has 83 productions.
+Built an LR(0) automaton with 115 states.
+The grammar is not SLR(1) -- 5 states have a conflict.
+Built an LR(1) automaton with 129 states.
+5 shift/reduce conflicts were silently solved.
+38 out of 129 states are represented.
+25 out of 60 symbols keep track of their start position.
+20 out of 60 symbols keep track of their end position.
+56 out of 129 states have a default reduction.
+33 out of 84 productions exploit shiftreduce optimization.
+20 out of 129 states can peek at an error.
+13 out of 129 states can do error recovery.
+452 functions before inlining, 116 functions after inlining.
+# Parallel statistics: { count(total): 2(28), max: 4, min: 2, average(total): 3.000(1.143) }
+Bootstrap successful.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src'
+mkdir -p /home/opam/.opam/4.02.0+trunk/bin
+mkdir -p /home/opam/.opam/4.02.0+trunk/lib/menhir
+mkdir -p /home/opam/.opam/4.02.0+trunk/doc/menhir
+mkdir -p /home/opam/.opam/4.02.0+trunk/man/man1
+install src/_stage2/menhir.native /home/opam/.opam/4.02.0+trunk/bin/menhir
+install -m 644 src/standard.mly /home/opam/.opam/4.02.0+trunk/lib/menhir
+cp -r manual.pdf demos /home/opam/.opam/4.02.0+trunk/doc/menhir
+cp -r menhir.1 /home/opam/.opam/4.02.0+trunk/man/man1
+Installing MenhirLib via ocamlfind.
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/menhirLib.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/menhirLib/META
+Installing menhir.20130912.
+Building pprint.20140424:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind ocamldep -modules PPrint.ml > PPrint.ml.depends
+ocamlfind ocamldep -modules PPrintCombinators.mli > PPrintCombinators.mli.depends
+ocamlfind ocamldep -modules PPrintEngine.mli > PPrintEngine.mli.depends
+ocamlfind ocamldep -modules PPrintRenderer.ml > PPrintRenderer.ml.depends
+ocamlfind ocamlc -c -g -o PPrintRenderer.cmo PPrintRenderer.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmi PPrintEngine.mli
+ocamlfind ocamldep -modules PPrintOCaml.mli > PPrintOCaml.mli.depends
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmi PPrintCombinators.mli
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmi PPrintOCaml.mli
+ocamlfind ocamldep -modules PPrintCombinators.ml > PPrintCombinators.ml.depends
+ocamlfind ocamldep -modules PPrintEngine.ml > PPrintEngine.ml.depends
+ocamlfind ocamldep -modules PPrintOCaml.ml > PPrintOCaml.ml.depends
+ocamlfind ocamlc -c -g -o PPrint.cmo PPrint.ml
+ocamlfind ocamlc -c -g -o PPrintCombinators.cmo PPrintCombinators.ml
+ocamlfind ocamlc -c -g -o PPrintEngine.cmo PPrintEngine.ml
+ocamlfind ocamlc -c -g -o PPrintOCaml.cmo PPrintOCaml.ml
+ocamlfind ocamlc -a -g PPrintRenderer.cmo PPrintEngine.cmo PPrintCombinators.cmo PPrintOCaml.cmo PPrint.cmo -o PPrintLib.cma
+ocamlfind ocamlopt -c -g -o PPrintRenderer.cmx PPrintRenderer.ml
+ocamlfind ocamlopt -c -g -o PPrintEngine.cmx PPrintEngine.ml
+ocamlfind ocamlopt -c -g -o PPrintCombinators.cmx PPrintCombinators.ml
+ocamlfind ocamlopt -c -g -o PPrintOCaml.cmx PPrintOCaml.ml
+ocamlfind ocamlopt -c -g -o PPrint.cmx PPrint.ml
+ocamlfind ocamlopt -a -g PPrintRenderer.cmx PPrintEngine.cmx PPrintCombinators.cmx PPrintOCaml.cmx PPrint.cmx -o PPrintLib.cmxa
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+make: Entering directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+ocamlbuild -use-ocamlfind -cflags "-g" -lflags "-g" -classic-display PPrintLib.cma PPrintLib.cmxa
+ocamlfind install pprint META \
+		_build/PPrintLib.cma _build/PPrintLib.cmxa \
+		_build/PPrintLib.a _build/*.cmx _build/*.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintRenderer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintOCaml.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintEngine.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintCombinators.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrint.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/PPrintLib.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/pprint/META
+make: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/pprint.20140424/src'
+Installing pprint.20140424.
+Applying install_fix.patch.
+patching file Changes
+patching file META
+patching file configure
+patching file project.mak
+Building zarith.1.2:
+  ./configure
+  make
+  make install
+binary ocaml: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamlc: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamldep: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamlmklib: found in /home/opam/.opam/4.02.0+trunk/bin
+binary ocamldoc: found in /home/opam/.opam/4.02.0+trunk/bin
+binary gcc: found in /usr/bin
+binary ar: found in /usr/bin
+binary perl: found in /usr/bin
+binary ocamlopt: found in /home/opam/.opam/4.02.0+trunk/bin
+checking compilation with gcc -O3 -Wall -Wextra : working
+include caml/mlvalues.h: found
+library dynlink.cmxa: found
+binary ocamlfind: found in /home/opam/.opam/4.02.0+trunk/bin
+OCaml's word size is 64
+binary uname: found in /bin
+include gmp.h: found
+library gmp: found
+OCaml extended comparison supported
+OCaml new hash functions available
+
+detected configuration:
+
+  native-code:          yes
+  dynamic linking:      yes
+  asm path:             x86_64
+  defines:              -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX 
+  libraries:             -lgmp
+  C options:            -O3 -Wall -Wextra 
+  asm options           
+  installation path:    /home/opam/.opam/4.02.0+trunk/lib
+  installation method   findlib
+
+configuration successful!
+now type "make" to build
+then type "make install" or "sudo make install" to install
+project.mak:150: depend: No such file or directory./z_pp.pl x86_64
+
+found assembly file caml_z_x86_64.S
+  found abs
+  found add
+  found div
+  found logand
+  found lognot
+  found logor
+  found logxor
+  found mul
+  found neg
+  found pred
+  found rem
+  found shift_left
+  found shift_right
+  found sub
+  found succ
+ocamldep -native  *.ml *.mli > depend
+ocamlc   -c z.mli
+ocamlc   -c z.ml
+ocamlc   -c q.mli
+ocamlc   -c q.ml
+ocamlc   -c big_int_Z.mli
+ocamlc   -c big_int_Z.ml
+ocamlmklib -failsafe -o zarith z.cmo q.cmo big_int_Z.cmo -lgmp
+gcc -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX     -c -o caml_z_x86_64.o caml_z_x86_64.S
+ocamlc -ccopt "-I/home/opam/.opam/4.02.0+trunk/lib/ocaml  -DZ_OCAML_HASH -DZ_OCAML_COMPARE_EXT -DHAS_GMP -DZ_ELF -DZ_DOT_LABEL_PREFIX  -O3 -Wall -Wextra " -c caml_z.c
+caml_z.c: In function 'ml_z_to_bits':
+caml_z.c:337:10: warning: variable 'sign_arg' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:901:3: note: in expansion of macro 'Z_DECL'
+   Z_DECL(arg);
+   ^
+caml_z.c: In function 'ml_z_abs':
+caml_z.c:337:10: warning: variable 'sign_arg' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1208:5: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg);
+     ^
+caml_z.c: In function 'ml_z_gcd':
+caml_z.c:337:10: warning: variable 'sign_arg2' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1712:19: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg1); Z_DECL(arg2);
+                   ^
+caml_z.c:337:10: warning: variable 'sign_arg1' set but not used [-Wunused-but-set-variable]
+   intnat sign_##arg
+          ^
+caml_z.c:1712:5: note: in expansion of macro 'Z_DECL'
+     Z_DECL(arg1); Z_DECL(arg2);
+     ^
