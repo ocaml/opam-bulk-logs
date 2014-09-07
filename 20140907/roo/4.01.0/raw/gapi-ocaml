@@ -698,3 +698,279 @@ make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1'
 make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1'
 ocamlc.opt -c  curl.mli -o curl.cmi
 ocamlc.opt -c  curl.ml -o curl.cmo
+ocamlc.opt -c -ccopt "-g -O2   -DHAVE_CONFIG_H -Wall" curl-helper.c
+ocamlmklib -oc curl-helper curl-helper.o -lcurl  
+ocamlmklib -o curl curl.cmo -oc curl-helper -lcurl  
+ocamlopt.opt -c  curl.ml -o curl.cmx
+ocamlmklib -o curl curl.cmx -oc curl-helper -lcurl  
+(cd examples; make)
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1/examples'
+ocamlc.opt -thread -c -I ..  ocurl.ml -o ocurl.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ocurl.cmo -o ocurl
+ocamlc.opt -thread -c -I ..  oput.ml -o oput.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma oput.cmo -o oput
+ocamlc.opt -thread -c -I ..  ominimal.ml -o ominimal.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ominimal.cmo -o ominimal
+ocamlc.opt -thread -c -I ..  ossl.ml -o ossl.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ossl.cmo -o ossl
+ocamlc.opt -thread -c -I ..  ocurl_test_threads.ml -o ocurl_test_threads.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma ocurl_test_threads.cmo -o ocurl_test_threads
+ocamlc.opt -thread -c -I ..  opar.ml -o opar.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma opar.cmo -o opar
+ocamlc.opt -thread -c -I ..  test_cb_exn.ml -o test_cb_exn.cmo
+ocamlc.opt -thread -custom -I .. -ccopt -L.. curl.cma unix.cma threads.cma test_cb_exn.cmo -o test_cb_exn
+ocamlopt.opt -thread -c -I ..  ocurl.ml -o ocurl.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ocurl.cmx -o ocurl.opt
+ocamlopt.opt -thread -c -I ..  oput.ml -o oput.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa oput.cmx -o oput.opt
+ocamlopt.opt -thread -c -I ..  ominimal.ml -o ominimal.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ominimal.cmx -o ominimal.opt
+ocamlopt.opt -thread -c -I ..  ossl.ml -o ossl.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ossl.cmx -o ossl.opt
+ocamlopt.opt -thread -c -I ..  ocurl_test_threads.ml -o ocurl_test_threads.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa ocurl_test_threads.cmx -o ocurl_test_threads.opt
+ocamlopt.opt -thread -c -I ..  opar.ml -o opar.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa opar.cmx -o opar.opt
+ocamlopt.opt -thread -c -I ..  test_cb_exn.ml -o test_cb_exn.cmx
+ocamlopt.opt -thread -I .. -ccopt -L.. curl.cmxa unix.cmxa threads.cmxa test_cb_exn.cmx -o test_cb_exn.opt
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1/examples'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.1'
+ocamlfind install -patch-version 0.7.1 -ldconf ignore curl META curl.a curl.cmi curl.mli curl.cma libcurl-helper.a dllcurl-helper.so curl.cmxa
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cmxa
+Installed /home/opam/.opam/4.01.0/lib/curl/libcurl-helper.a
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cma
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.mli
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.cmi
+Installed /home/opam/.opam/4.01.0/lib/curl/curl.a
+Installed /home/opam/.opam/4.01.0/lib/curl/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurl-helper.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurl-helper.so.owner
+Installing ocurl.0.7.1.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
+ocamlfind ocamlopt -o test_biniou -dtypes -g \
+		-package "easy-format unix" -linkpkg \
+		biniou.cmxa test_biniou.ml
+sed -e 's:@@VERSION@@:1.0.9:' META.in > META
+test ! -f bdump || cp bdump /home/opam/.opam/4.01.0/bin/
+test ! -f bdump.exe || cp bdump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install biniou META \
+          $(ls bi_util.mli bi_share.mli bi_outbuf.mli bi_inbuf.mli bi_vint.mli bi_io.mli bi_stream.mli bi_util.cmi bi_share.cmi bi_outbuf.cmi bi_inbuf.cmi bi_vint.cmi bi_io.cmi bi_dump.cmi bi_stream.cmi bi_util.cmo bi_share.cmo bi_outbuf.cmo bi_inbuf.cmo bi_vint.cmo bi_io.cmo bi_dump.cmo bi_stream.cmo bi_util.cmx bi_share.cmx bi_outbuf.cmx bi_inbuf.cmx bi_vint.cmx bi_io.cmx bi_dump.cmx bi_stream.cmx bi_util.o bi_share.o bi_outbuf.o bi_inbuf.o bi_vint.o bi_io.o bi_dump.o bi_stream.o biniou.cma biniou.cmxa biniou.cmxs biniou.a)
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cmxa
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cma
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.a
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/META
+Installing biniou.1.0.9.
+Building extlib-compat.1.6.1:
+  make build install
+ocamlc -g -c enum.mli enum.ml
+ocamlc -g -c bitSet.mli bitSet.ml
+ocamlc -g -c dynArray.mli dynArray.ml
+ocamlc -g -c extArray.mli extArray.ml
+camlp4of pr_o.cmo -D OCAML4 -impl extHashtbl.mlpp -o extHashtbl.ml
+ocamlc -g -c extHashtbl.mli extHashtbl.ml
+ocamlc -g -c extList.mli extList.ml
+ocamlc -g -c extString.mli extString.ml
+ocamlc -g -c global.mli global.ml
+ocamlc -g -c IO.mli IO.ml
+ocamlc -g -c option.mli option.ml
+ocamlc -g -c pMap.mli pMap.ml
+ocamlc -g -c std.mli std.ml
+ocamlc -g -c uChar.mli uChar.ml
+ocamlc -g -c uTF8.mli uTF8.ml
+ocamlc -g -c base64.mli base64.ml
+ocamlc -g -c unzip.mli unzip.ml
+ocamlc -g -c refList.mli refList.ml
+ocamlc -g -c optParse.mli optParse.ml
+ocamlc -g -c dllist.mli dllist.ml
+ocamlc -g -c extLib.ml
+ocamlc -g -a -o extLib.cma enum.cmo bitSet.cmo dynArray.cmo extArray.cmo extHashtbl.cmo extList.cmo extString.cmo global.cmo IO.cmo option.cmo pMap.cmo std.cmo uChar.cmo uTF8.cmo base64.cmo unzip.cmo refList.cmo optParse.cmo dllist.cmo extLib.cmo
+ocamlopt -g -c enum.mli enum.ml
+ocamlopt -g -c bitSet.mli bitSet.ml
+ocamlopt -g -c dynArray.mli dynArray.ml
+ocamlopt -g -c extArray.mli extArray.ml
+ocamlopt -g -c extHashtbl.mli extHashtbl.ml
+ocamlopt -g -c extList.mli extList.ml
+ocamlopt -g -c extString.mli extString.ml
+ocamlopt -g -c global.mli global.ml
+ocamlopt -g -c IO.mli IO.ml
+ocamlopt -g -c option.mli option.ml
+ocamlopt -g -c pMap.mli pMap.ml
+ocamlopt -g -c std.mli std.ml
+ocamlopt -g -c uChar.mli uChar.ml
+ocamlopt -g -c uTF8.mli uTF8.ml
+ocamlopt -g -c base64.mli base64.ml
+ocamlopt -g -c unzip.mli unzip.ml
+ocamlopt -g -c refList.mli refList.ml
+ocamlopt -g -c optParse.mli optParse.ml
+ocamlopt -g -c dllist.mli dllist.ml
+ocamlopt -g -c extLib.ml
+ocamlopt -g -a -o extLib.cmxa enum.cmx bitSet.cmx dynArray.cmx extArray.cmx extHashtbl.cmx extList.cmx extString.cmx global.cmx IO.cmx option.cmx pMap.cmx std.cmx uChar.cmx uTF8.cmx base64.cmx unzip.cmx refList.cmx optParse.cmx dllist.cmx extLib.cmx
+ocamlopt -g -shared -linkall extLib.cmxa -o extLib.cmxs
+ocamlfind install -patch-version 1.6.1 extlib META extLib.cma enum.mli bitSet.mli dynArray.mli extArray.mli extHashtbl.mli extList.mli extString.mli global.mli IO.mli option.mli pMap.mli std.mli uChar.mli uTF8.mli base64.mli unzip.mli refList.mli optParse.mli dllist.mli enum.cmi bitSet.cmi dynArray.cmi extArray.cmi extHashtbl.cmi extList.cmi extString.cmi global.cmi IO.cmi option.cmi pMap.cmi std.cmi uChar.cmi uTF8.cmi base64.cmi unzip.cmi refList.cmi optParse.cmi dllist.cmi extLib.cmi -optional extLib.cmxa enum.cmx bitSet.cmx dynArray.cmx extArray.cmx extHashtbl.cmx extList.cmx extString.cmx global.cmx IO.cmx option.cmx pMap.cmx std.cmx uChar.cmx uTF8.cmx base64.cmx unzip.cmx refList.cmx optParse.cmx dllist.cmx extLib.cmx extLib.cmxs extLib.a extLib.lib
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.a
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/dllist.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/optParse.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/refList.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/unzip.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/base64.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/uTF8.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/uChar.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/std.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/pMap.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/option.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/IO.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/global.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/extString.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/extList.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/extHashtbl.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/extArray.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/dynArray.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/bitSet.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/enum.cmx
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/dllist.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/optParse.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/refList.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/unzip.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/base64.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/uTF8.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/uChar.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/std.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/pMap.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/option.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/IO.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/global.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/extString.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/extList.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/extHashtbl.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/extArray.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/dynArray.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/bitSet.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/enum.cmi
+Installed /home/opam/.opam/4.01.0/lib/extlib/dllist.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/optParse.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/refList.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/unzip.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/base64.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/uTF8.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/uChar.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/std.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/pMap.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/option.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/IO.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/global.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/extString.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/extList.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/extHashtbl.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/extArray.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/dynArray.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/bitSet.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/enum.mli
+Installed /home/opam/.opam/4.01.0/lib/extlib/extLib.cma
+Installed /home/opam/.opam/4.01.0/lib/extlib/META
+Installing extlib-compat.1.6.1.
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+Hunk #3 succeeded at 3570 (offset -8 lines).
+Hunk #4 succeeded at 3585 (offset -8 lines).
+Hunk #5 succeeded at 3602 (offset -8 lines).
+Hunk #6 succeeded at 3746 (offset -8 lines).
+Hunk #7 succeeded at 4532 (offset -8 lines).
+Hunk #8 succeeded at 4678 (offset -8 lines).
+Hunk #9 succeeded at 4910 (offset -8 lines).
+Hunk #10 succeeded at 5143 (offset -8 lines).
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.5:
+  ./configure -bindir /home/opam/.opam/4.01.0/bin -disable-pcre -disable-gtk2 -disable-ssl -disable-zip -enable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.5
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... found
+Checking whether out-of-heap values are supported and mutable... yes
+Checking for POSIX shared memory... 
