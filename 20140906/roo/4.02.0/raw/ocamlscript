@@ -645,3 +645,18 @@ touch nc.done
 ocamlfind ocamlopt -o ocamlscript -pp 'camlp4o -I . -parser pa_tryfinally.cmo -parser pa_opt.cmo' \
 	  -package 'unix str' -linkpkg -dtypes \
 	  ocamlscript.cmx main.ml
+test -f ocamlscript && \
+	  install -m 0755 ocamlscript /home/opam/.opam/4.02.0+trunk/bin/ocamlscript || :
+test -f ocamlscript.byte && \
+	  install -m 0755 ocamlscript.byte \
+		/home/opam/.opam/4.02.0+trunk/bin/ocamlscript.byte || :
+ocamlfind install ocamlscript META \
+		ocamlscript.cmi \
+		`test -f bc.done && echo ocamlscript.cmo` \
+		`test -f nc.done && echo ocamlscript.cmx ocamlscript.o`
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocamlscript/ocamlscript.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocamlscript/ocamlscript.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocamlscript/ocamlscript.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocamlscript/ocamlscript.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/ocamlscript/META
+Installing ocamlscript.2.0.2.
