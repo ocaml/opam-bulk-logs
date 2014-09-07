@@ -4304,3 +4304,45 @@ make -C Patoline patoline
 make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/Patoline'
 ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Language.cmx Language.ml
 ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Config.cmx Config.ml
+ocamlfind ocamlc -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -o UnicodeScripts -package bigarray -package camomile -linkpkg UnicodeScripts.ml
+./UnicodeScripts
+cat  Parser.dyp SubSuper.dyp > tmp.dyp
+dypgen --no-mli --merge-warning tmp.dyp
+Warning: non terminal `accent' is never in a left-hand side.
+Warning: non terminal `limits_operator' is never in a left-hand side.
+Warning: non terminal `operator' is never in a left-hand side.
+Warning: non terminal `symbol' is never in a left-hand side.
+Warning: non terminal `var_or_symbol' is never in a right-hand side.
+mv tmp.ml Parser.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Util.cmx Util.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -thread -c -o Build.cmx Build.ml
+File "Build.ml", line 125, characters 12-25:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -rectypes -c -o Parser.cmx Parser.ml
+File "tmp.dyp", line 158, characters 12-30:
+Warning 3: deprecated: Lazy.lazy_from_fun
+File "tmp.dyp", line 690, characters 42-44:
+Warning 3: deprecated: Pervasives.or
+File "tmp.dyp", line 690, characters 42-44:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -rectypes -c -o Generateur.cmx Generateur.ml
+File "Generateur.ml", line 407, characters 10-47:
+Warning 3: deprecated: String.set
+File "Generateur.ml", line 449, characters 13-26:
+Warning 3: deprecated: String.create
+File "Generateur.ml", line 684, characters 16-29:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o SimpleGenerateur.cmx SimpleGenerateur.ml
+ocamlopt -thread -rectypes -I +threads -c -o Main.cmx Main.ml
+File "Main.ml", line 330, characters 8-21:
+Warning 3: deprecated: String.create
+File "Main.ml", line 481, characters 14-55:
+Warning 3: deprecated: String.set
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -linkpkg -o patoline -I +threads str.cmxa threads.cmxa rbuffer.cmxa dynlink.cmxa Util.cmx Language.cmx Config.cmx Build.cmx Parser.cmx Generateur.cmx SimpleGenerateur.cmx Main.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/Patoline'
+make -C cesure cesure
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/cesure'
+ocamlfind ocamlopt -package camomile,zip,camlimages.all_formats -I ../Typography/_build -I ../Rbuffer -o cesure rbuffer.cmxa Typography.cmxa str.cmxa -linkpkg cesure.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/patoline.0.1/src/cesure'
+Patoline/patoline --main-ml --driver Pdf -o DefaultGrammar_.tml DefaultGrammar.txp
+Patoline/patoline --ml --driver Pdf -o DefaultGrammar.ttml DefaultGrammar.txp
