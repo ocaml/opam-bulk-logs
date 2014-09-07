@@ -166,4 +166,116 @@ checking for virStorageVolLookupByName... yes
 checking for virStorageVolLookupByKey... yes
 checking for virStorageVolLookupByPath... yes
 checking for virStorageVolGetName... yes
-checking for virStorageVolGetKey... 
+checking for virStorageVolGetKey... yes
+checking for virStorageVolCreateXML... yes
+checking for virStorageVolDelete... yes
+checking for virStorageVolFree... yes
+checking for virStorageVolGetInfo... yes
+checking for virStorageVolGetXMLDesc... yes
+checking for virStorageVolGetPath... yes
+checking for virDomainBlockPeek... yes
+checking for virDomainMemoryPeek... yes
+checking for virDomainGetCPUStats... yes
+checking for virStoragePoolPtr... yes
+checking for virStorageVolPtr... yes
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlfind... ocamlfind
+checking findlib package unix... found
+------------------------------------------------------------
+Thanks for downloading ocaml-libvirt 0.6.1.2
+------------------------------------------------------------
+configure: creating ./config.status
+config.status: creating META
+config.status: creating libvirt/libvirt_version.ml
+config.status: creating Makefile
+config.status: creating Make.rules
+config.status: creating libvirt/Makefile
+config.status: creating examples/Makefile
+config.status: creating config.h
+for d in libvirt examples; do \
+	  make -C $d all; \
+	  if [ $? -ne 0 ]; then exit 1; fi; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+rm -f .depend
+ocamlfind ocamldep -package unix  libvirt.mli libvirt_version.mli libvirt.ml libvirt_version.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+cc -g -O2 -I.. -I"/home/opam/.opam/4.01.0/lib/ocaml" -g -Wall -Werror -fPIC   -c -o libvirt_c.o libvirt_c.c
+ocamlfind ocamlc -g -package unix -c libvirt.mli
+ocamlfind ocamlc -g -package unix -c libvirt.ml
+ocamlfind ocamlc -g -package unix -c libvirt_version.mli
+ocamlfind ocamlc -g -package unix -c libvirt_version.ml
+ocamlmklib -o mllibvirt libvirt_c.o libvirt.cmo libvirt_version.cmo  -lvirt
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+ocamlfind ocamlc -g -package unix -I ../libvirt -c list_domains.ml
+ocamlfind ocamlc \
+	  -package unix -I ../libvirt -g -linkpkg \
+	  ../libvirt/mllibvirt.cma -o list_domains list_domains.cmo
+ocamlfind ocamlc -g -package unix -I ../libvirt -c node_info.ml
+ocamlfind ocamlc \
+	  -package unix -I ../libvirt -g -linkpkg \
+	  ../libvirt/mllibvirt.cma -o node_info node_info.cmo
+ocamlfind ocamlc -g -package unix -I ../libvirt -c get_cpu_stats.ml
+ocamlfind ocamlc \
+	  -package unix -I ../libvirt -g -linkpkg \
+	  ../libvirt/mllibvirt.cma -o get_cpu_stats get_cpu_stats.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+for d in libvirt examples; do \
+	  make -C $d opt; \
+	  if [ $? -ne 0 ]; then exit 1; fi; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+ocamlfind ocamlopt  -package unix -c libvirt.ml
+ocamlfind ocamlopt  -package unix -c libvirt_version.ml
+ocamlmklib -o mllibvirt libvirt_c.o libvirt.cmx libvirt_version.cmx  -lvirt
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+ocamlfind ocamlopt  -package unix -I ../libvirt -c list_domains.ml
+ocamlfind ocamlopt \
+	  -package unix -I ../libvirt  -linkpkg \
+	  ../libvirt/mllibvirt.cmxa -o list_domains.opt list_domains.cmx
+ocamlfind ocamlopt  -package unix -I ../libvirt -c node_info.ml
+ocamlfind ocamlopt \
+	  -package unix -I ../libvirt  -linkpkg \
+	  ../libvirt/mllibvirt.cmxa -o node_info.opt node_info.cmx
+ocamlfind ocamlopt  -package unix -I ../libvirt -c get_cpu_stats.ml
+ocamlfind ocamlopt \
+	  -package unix -I ../libvirt  -linkpkg \
+	  ../libvirt/mllibvirt.cmxa -o get_cpu_stats.opt get_cpu_stats.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+for d in libvirt examples; do \
+	  make -C $d install-opt; \
+	  if [ $? -ne 0 ]; then exit 1; fi; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+ocamlfind install  -ldconf ignore libvirt \
+	  ../META *.so *.a *.cma *.cmx *.cmxa *.cmi *.mli
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt_version.mli
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt.mli
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt_version.cmi
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt.cmi
+Installed /home/opam/.opam/4.01.0/lib/libvirt/mllibvirt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt_version.cmx
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libvirt.cmx
+Installed /home/opam/.opam/4.01.0/lib/libvirt/mllibvirt.cma
+Installed /home/opam/.opam/4.01.0/lib/libvirt/mllibvirt.a
+Installed /home/opam/.opam/4.01.0/lib/libvirt/libmllibvirt.a
+Installed /home/opam/.opam/4.01.0/lib/libvirt/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmllibvirt.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmllibvirt.so.owner
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/libvirt'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+make[1]: Nothing to be done for `install-opt'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/libvirt.0.6.1.2/examples'
+Installing libvirt.0.6.1.2.
