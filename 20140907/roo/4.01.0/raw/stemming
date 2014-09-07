@@ -1,0 +1,130 @@
+++ opam install stemming -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install stemming -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install stemming
+The following actions will be performed:
+ - install   stemming.0.2.0
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/stemming.0.2.0+opam.tar.gz
+sending incremental file list
+stemming.0.2.0+opam.tar.gz
+
+sent 535,256 bytes  received 35 bytes  1,070,582.00 bytes/sec
+total size is 534,997  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building stemming.0.2.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ stemming
+Package version: ..................................... 0.2.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c src/porter2_c.c
++ ocamlfind ocamlc -c src/porter2_c.c
+src/porter2_c.c: In function 'step5':
+src/porter2_c.c:325:28: warning: suggest parentheses around '&&' within '||' [-Wparentheses]
+         if (R2(z) || R1(z) && !shortv(z)) setto(z, "\00");
+                            ^
+src/porter2_c.c: In function 'stem':
+src/porter2_c.c:443:9: warning: implicit declaration of function 'tolower' [-Wimplicit-function-declaration]
+         ch = tolower(ch);
+         ^
+src/porter2_c.c:452:33: warning: suggest parentheses around '&&' within '||' [-Wparentheses]
+             if (i == 0 && j > 1 && vowel(b[1]) || i > 0 && vowel(b[i - 1])) {
+                                 ^
+mv porter2_c.o src/porter2_c.o
+ocamlfind ocamlc -c src/porter2_stubs.c
+mv porter2_stubs.o src/porter2_stubs.o
+ocamlfind ocamlc -c src/fuzzyrus.c
+mv fuzzyrus.o src/fuzzyrus.o
+ocamlfind ocamlc -c src/fuzzyukr.c
+mv fuzzyukr.o src/fuzzyukr.o
+ocamlfind ocamlc -c src/keva_stemmers.c
+mv keva_stemmers.o src/keva_stemmers.o
+ocamlfind ocamlc -c src/keva_stubs.c
+mv keva_stubs.o src/keva_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/stemming_stubs src/porter2_c.o src/porter2_stubs.o src/fuzzyrus.o src/fuzzyukr.o src/keva_stemmers.o src/keva_stubs.o
+ocamlfind ocamldep -modules src/stemmer.ml > src/stemmer.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/stemmer.cmo src/stemmer.ml
+ocamlfind ocamlc -a -dllib -lstemming_stubs -cclib -lstemming_stubs src/stemmer.cmo -o src/stemming.cma
+ocamlfind ocamlopt -c -g -I src -o src/stemmer.cmx src/stemmer.ml
+ocamlfind ocamlopt -a -cclib -lstemming_stubs src/stemmer.cmx -o src/stemming.cmxa
+ocamlfind ocamlopt -shared -linkall -I src src/stemming.cmxa -o src/stemming.cmxs
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemmer.ml
+Installed /home/opam/.opam/4.01.0/lib/stemming/libstemming_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemming.cma
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemming.cmxa
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemming.a
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemming.cmxs
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemmer.cmi
+Installed /home/opam/.opam/4.01.0/lib/stemming/stemmer.cmx
+Installed /home/opam/.opam/4.01.0/lib/stemming/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllstemming_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllstemming_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing stemming.0.2.0.
