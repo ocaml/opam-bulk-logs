@@ -1194,3 +1194,83 @@ ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/net
 ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -pp ../../tools/cppo-0.9.4/cppo -w -3-25 -c  nethttpd_reactor.ml
 ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -w -3-25 -c  nethttpd_engine.mli
 ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -pp ../../tools/cppo-0.9.4/cppo -w -3-25 -c  nethttpd_engine.ml
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -w -3-25 -c  nethttpd_services.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -pp ../../tools/cppo-0.9.4/cppo -w -3-25 -c  nethttpd_services.ml
+File "nethttpd_services.ml", line 1118, characters 4-5:
+Warning 11: this match case is unused.
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -w -3-25 -c  nethttpd_plex.mli
+ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -pp ../../tools/cppo-0.9.4/cppo -w -3-25 -c  nethttpd_plex.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlc -g  -I ../../src/equeue -I ../../src/netstring -I ../../src/netcgi2 -I ../../src/netplex -I ../../src/netsys -package "unix" -pp ../../tools/cppo-0.9.4/cppo -w -3-25 -a -o nethttpd.cma  nethttpd_types.cmo nethttpd_util.cmo nethttpd_kernel.cmo nethttpd_reactor.cmo nethttpd_engine.cmo nethttpd_services.cmo nethttpd_plex.cmo; \
+	else \
+		../../tools/mkstublib -o nethttpd nethttpd_types.cmo nethttpd_util.cmo nethttpd_kernel.cmo nethttpd_reactor.cmo nethttpd_engine.cmo nethttpd_services.cmo nethttpd_plex.cmo  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+sed -e 's/@VERSION@/3.7.5/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+ocamlfind ocamldep   *.ml *.mli >depend || { rm -f depend; exit 1; }
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/nethttpd-for-netcgi2'
+( cd tools/cppo-0.9.4 && make opt )
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+for pkg in netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make opt ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[2]: Nothing to be done for `realgenerate'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: `depend' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_conf.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_conf.cmx .cmx`.p.cmx  netsys_conf.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_types.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_types.cmx .cmx`.p.cmx  netsys_types.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_oothr.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_oothr.cmx .cmx`.p.cmx  netsys_oothr.ml
+make[1]: Circular netsys_signal.cmx <- netlog.cmx dependency dropped.
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_signal.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_signal.cmx .cmx`.p.cmx  netsys_signal.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_impl_util.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_impl_util.cmx .cmx`.p.cmx  netsys_impl_util.ml
+make[1]: Circular netsys_posix.cmx <- netlog.cmx dependency dropped.
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netexn.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netexn.cmx .cmx`.p.cmx  netexn.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -pp "../../tools/cppo-0.9.4/cppo -D HAVE_O_SHARE_DELETE -D HAVE_O_CLOEXEC" netsys_posix.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_posix.cmx .cmx`.p.cmx -pp "../../tools/cppo-0.9.4/cppo -D HAVE_O_SHARE_DELETE -D HAVE_O_CLOEXEC" netsys_posix.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netlog.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netlog.cmx .cmx`.p.cmx  netlog.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_win32.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_win32.cmx .cmx`.p.cmx  netsys_win32.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys.cmx .cmx`.p.cmx  netsys.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_rng.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_rng.cmx .cmx`.p.cmx  netsys_rng.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset.cmx .cmx`.p.cmx  netsys_pollset.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_posix.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_posix.cmx .cmx`.p.cmx  netsys_pollset_posix.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_win32.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_win32.cmx .cmx`.p.cmx  netsys_pollset_win32.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_generic.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_generic.cmx .cmx`.p.cmx  netsys_pollset_generic.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_mem.ml
