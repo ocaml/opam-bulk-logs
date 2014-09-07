@@ -455,3 +455,88 @@ File "setup.ml", line 2502, characters 6-24:
 Warning 3: deprecated: Lazy.lazy_from_fun
 W: Cannot find source file matching module 'Gsasl_generated' in library gsasl
 /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes -package ctypes.foreign -package ctypes.stubs -modules lib/gsasl_genstubs.ml > lib/gsasl_genstubs.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes -package ctypes.foreign -package ctypes.stubs -modules lib/gsasl_bindings.ml > lib/gsasl_bindings.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl_bindings.cmo lib/gsasl_bindings.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl_genstubs.cmo lib/gsasl_genstubs.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -g -linkpkg -package ctypes -package ctypes.foreign -package ctypes.stubs lib/gsasl_bindings.cmo lib/gsasl_genstubs.cmo -o lib/gsasl_genstubs.byte
+lib/gsasl_genstubs.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -c lib/gsasl_stubs.c
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -c lib/gsasl_stubs.c
+lib/gsasl_stubs.c: In function 'libgsasl__3_gsasl_strerror':
+lib/gsasl_stubs.c:19:16: warning: initialization discards 'const' qualifier from pointer target type [enabled by default]
+    char* x11 = gsasl_strerror(x8);
+                ^
+lib/gsasl_stubs.c: In function 'libgsasl__5_gsasl_check_version':
+lib/gsasl_stubs.c:31:16: warning: initialization discards 'const' qualifier from pointer target type [enabled by default]
+    void* x17 = gsasl_check_version(x16);
+                ^
+lib/gsasl_stubs.c: In function 'libgsasl__10_gsasl_client_suggest_mechanism':
+lib/gsasl_stubs.c:65:16: warning: initialization discards 'const' qualifier from pointer target type [enabled by default]
+    void* x40 = gsasl_client_suggest_mechanism(x38, x39);
+                ^
+lib/gsasl_stubs.c: In function 'libgsasl__15_gsasl_mechanism_name':
+lib/gsasl_stubs.c:109:16: warning: initialization discards 'const' qualifier from pointer target type [enabled by default]
+    void* x83 = gsasl_mechanism_name(x82);
+                ^
+lib/gsasl_stubs.c: In function 'libgsasl__17_gsasl_property_get':
+lib/gsasl_stubs.c:126:17: warning: initialization discards 'const' qualifier from pointer target type [enabled by default]
+    void* x103 = gsasl_property_get(x99, x100);
+                 ^
+lib/gsasl_stubs.c: In function 'libgsasl__18_gsasl_step':
+lib/gsasl_stubs.c:137:4: warning: passing argument 4 of 'gsasl_step' from incompatible pointer type [enabled by default]
+    int x116 = gsasl_step(x109, x110, x111, x114, x115);
+    ^
+In file included from lib/gsasl_stubs.c:1:0:
+/usr/include/gsasl.h:439:24: note: expected 'char **' but argument is of type 'void **'
+   extern GSASL_API int gsasl_step (Gsasl_session * sctx,
+                        ^
+lib/gsasl_stubs.c: In function 'libgsasl__19_gsasl_step64':
+lib/gsasl_stubs.c:145:4: warning: passing argument 3 of 'gsasl_step64' from incompatible pointer type [enabled by default]
+    int x123 = gsasl_step64(x120, x121, x122);
+    ^
+In file included from lib/gsasl_stubs.c:1:0:
+/usr/include/gsasl.h:442:24: note: expected 'char **' but argument is of type 'void **'
+   extern GSASL_API int gsasl_step64 (Gsasl_session * sctx,
+                        ^
+lib/gsasl_stubs.c: In function 'libgsasl__20_gsasl_callback_set':
+lib/gsasl_stubs.c:153:4: warning: passing argument 2 of 'gsasl_callback_set' from incompatible pointer type [enabled by default]
+    gsasl_callback_set(x126, x127);
+    ^
+In file included from lib/gsasl_stubs.c:1:0:
+/usr/include/gsasl.h:400:25: note: expected 'Gsasl_callback_function' but argument is of type 'int (*)(struct Gsasl *, struct Gsasl_session *, int)'
+   extern GSASL_API void gsasl_callback_set (Gsasl * ctx,
+                         ^
+mv gsasl_stubs.o lib/gsasl_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlmklib -o lib/gsasl_stubs -lgsasl lib/gsasl_stubs.o
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes -package ctypes.foreign -package ctypes.stubs -modules lib/gsasl.mli > lib/gsasl.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl.cmi lib/gsasl.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes -package ctypes.foreign -package ctypes.stubs -modules lib/gsasl.ml > lib/gsasl.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamldep -package ctypes -package ctypes.foreign -package ctypes.stubs -modules lib/gsasl_generated.ml > lib/gsasl_generated.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl_generated.cmo lib/gsasl_generated.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl.cmo lib/gsasl.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlc -a -dllib -lgsasl_stubs -cclib -lgsasl_stubs -cclib -lgsasl lib/gsasl_bindings.cmo lib/gsasl_generated.cmo lib/gsasl.cmo -o lib/gsasl.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl_bindings.cmx lib/gsasl_bindings.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl_generated.cmx lib/gsasl_generated.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.02.0+trunk/lib/ctypes/.. -package ctypes -package ctypes.foreign -package ctypes.stubs -I lib -o lib/gsasl.cmx lib/gsasl.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -a -cclib -lgsasl_stubs -cclib -lgsasl lib/gsasl_bindings.cmx lib/gsasl_generated.cmx lib/gsasl.cmx -o lib/gsasl.cmxa
+/home/opam/.opam/4.02.0+trunk/bin/ocamlfind ocamlopt -shared -I lib lib/gsasl.cmxa lib/gsasl_bindings.cmx lib/gsasl_generated.cmx lib/gsasl.cmx -o lib/gsasl.cmxs
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/libgsasl_stubs.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl_generated.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl_bindings.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/gsasl.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gsasl/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllgsasl_stubs.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllgsasl_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+Installing gsasl.0.10.0.
