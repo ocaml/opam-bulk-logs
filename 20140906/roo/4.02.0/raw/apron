@@ -634,3 +634,184 @@ gmp_random_caml.c: In function 'camlidl_gmp_random_gmp_randinit_default':
 gmp_random_caml.c:93:53: warning: unused parameter '_unit' [-Wunused-parameter]
  value camlidl_gmp_random_gmp_randinit_default(value _unit)
                                                      ^
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99 -fPIC -O3 -DNDEBUG -g -pg -I/usr/include -I/usr/include -I/home/opam/.opam/4.02.0+trunk/lib/ocaml -I/home/opam/.opam/4.02.0+trunk/lib/camlidl -c -o gmp_caml.p.o gmp_caml.c
+gmp_caml.c:61:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:123:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:195:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:267:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:304:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:363:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:422:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+gmp_caml.c:458:1: warning: missing initializer for field 'compare_ext' of 'struct custom_operations' [-Wmissing-field-initializers]
+ };
+ ^
+In file included from gmp_caml.c:14:0:
+/home/opam/.opam/4.02.0+trunk/lib/ocaml/caml/custom.h:32:9: note: 'compare_ext' declared here
+   int (*compare_ext)(value v1, value v2);
+         ^
+ar rc libgmp_caml.p.a mpz_caml.p.o mpq_caml.p.o mpf_caml.p.o mpfr_caml.p.o gmp_random_caml.p.o gmp_caml.p.o
+ranlib libgmp_caml.p.a
+cc -Wcast-qual -Wswitch -Werror-implicit-function-declaration -Wall -Wextra -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wno-unused -std=c99  -U__STRICT_ANSI__ -fPIC -g -O0 -UNDEBUG -L/usr/lib -L/usr/lib -L/home/opam/.opam/4.02.0+trunk/lib/ocaml -L/home/opam/.opam/4.02.0+trunk/lib/ocaml/stublibs -L/home/opam/.opam/4.02.0+trunk/lib/camlidl -shared -o dllgmp_caml.so mpz_caml.o mpq_caml.o mpf_caml.o mpfr_caml.o gmp_random_caml.o gmp_caml.o -lmpfr -lgmp -lcamlidl
+ocamlfind ocamlc -g -package bigarray -a -o gmp.cma \
+	mpz.cmo mpq.cmo mpf.cmo mpfr.cmo gmp_random.cmo mpzf.cmo mpqf.cmo mpfrf.cmo \
+	-dllib -lgmp_caml \
+	-ccopt -L/home/opam/.opam/4.02.0+trunk/lib/stublibs -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/gmp -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/camlidl -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/ocaml -ccopt -L/usr/lib -ccopt -L/usr/lib \
+	-cclib -lgmp_caml -cclib -lmpfr -cclib -lgmp -cclib -lcamlidl
+ocamlopt.opt -inline 20 -c mpz.ml
+ocamlopt.opt -inline 20 -c mpq.ml
+ocamlopt.opt -inline 20 -c mpf.ml
+ocamlopt.opt -inline 20 -c mpfr.ml
+File "mpfr.ml", line 552, characters 2-14:
+Warning 3: deprecated: String.set
+ocamlopt.opt -inline 20 -c gmp_random.ml
+ocamlopt.opt -inline 20 -c mpzf.ml
+ocamlopt.opt -inline 20 -c mpqf.ml
+ocamlopt.opt -inline 20 -c mpfrf.ml
+ocamlfind ocamlopt -inline 20 -package bigarray -a -o gmp.cmxa \
+	mpz.cmx mpq.cmx mpf.cmx mpfr.cmx gmp_random.cmx mpzf.cmx mpqf.cmx mpfrf.cmx \
+	-ccopt -L/home/opam/.opam/4.02.0+trunk/lib/stublibs -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/gmp -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/camlidl -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/ocaml -ccopt -L/usr/lib -ccopt -L/usr/lib \
+	-cclib -lgmp_caml -cclib -lmpfr -cclib -lgmp -cclib -lcamlidl
+ocamlopt.opt -p -inline 20  -c -o mpz.p.cmx mpz.ml
+ocamlopt.opt -p -inline 20  -c -o mpq.p.cmx mpq.ml
+ocamlopt.opt -p -inline 20  -c -o mpf.p.cmx mpf.ml
+ocamlopt.opt -p -inline 20  -c -o mpfr.p.cmx mpfr.ml
+File "mpfr.ml", line 552, characters 2-14:
+Warning 3: deprecated: String.set
+ocamlopt.opt -p -inline 20  -c -o gmp_random.p.cmx gmp_random.ml
+ocamlopt.opt -p -inline 20  -c -o mpzf.p.cmx mpzf.ml
+ocamlopt.opt -p -inline 20  -c -o mpqf.p.cmx mpqf.ml
+ocamlopt.opt -p -inline 20  -c -o mpfrf.p.cmx mpfrf.ml
+ocamlfind ocamlopt -p -inline 20 -package bigarray -a -o gmp.p.cmxa \
+	mpz.p.cmx mpq.p.cmx mpf.p.cmx mpfr.p.cmx gmp_random.p.cmx mpzf.p.cmx mpqf.p.cmx mpfrf.p.cmx \
+	-ccopt -L/home/opam/.opam/4.02.0+trunk/lib/stublibs -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/gmp -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/camlidl -ccopt -L/home/opam/.opam/4.02.0+trunk/lib/ocaml -ccopt -L/usr/lib -ccopt -L/usr/lib \
+	-cclib -lgmp_caml -cclib -lmpfr -cclib -lgmp -cclib -lcamlidl
+/bin/rm -f META
+echo "description = \"OCaml Interface to GMP and MPFR libraries\"" >META
+echo "version = \"1.2.1\"" >>META
+echo "requires = \"bigarray\"" >>META
+echo "archive(byte) = \"gmp.cma\"" >>META
+echo "archive(native) = \"gmp.cmxa\"" >>META
+echo "archive(native,gprof) = \"gmp.p.cmxa\"" >>META
+ocamlfind remove gmp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/gmp
+ocamlfind install gmp META gmp_caml.h mpz.idl mpq.idl mpf.idl mpfr.idl gmp_random.idl mpz.ml mpq.ml mpf.ml mpfr.ml gmp_random.ml mpzf.ml mpqf.ml mpfrf.ml mpz.mli mpq.mli mpf.mli mpfr.mli gmp_random.mli mpzf.mli mpqf.mli mpfrf.mli mpz.cmi mpq.cmi mpf.cmi mpfr.cmi gmp_random.cmi mpzf.cmi mpqf.cmi mpfrf.cmi gmp.cma mpz.cmx mpq.cmx mpf.cmx mpfr.cmx gmp_random.cmx mpzf.cmx mpqf.cmx mpfrf.cmx gmp.cmxa gmp.a mpz.p.cmx mpq.p.cmx mpf.p.cmx mpfr.p.cmx gmp_random.p.cmx mpzf.p.cmx mpqf.p.cmx mpfrf.p.cmx gmp.p.cmxa gmp.p.a libgmp_caml.a libgmp_caml.p.a dllgmp_caml.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/libgmp_caml.p.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/libgmp_caml.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp.p.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp.p.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfrf.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpqf.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpzf.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.p.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfrf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpqf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpzf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfrf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpqf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpzf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfrf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpqf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpzf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfrf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpqf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpzf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.ml
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_random.idl
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpfr.idl
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpf.idl
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.idl
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.idl
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/gmp_caml.h
+Installed /home/opam/.opam/4.02.0+trunk/lib/gmp/META
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllgmp_caml.so
+Installed /home/opam/.opam/4.02.0+trunk/lib/stublibs/dllgmp_caml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0+trunk/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/mlgmpidl'
+(cd apron; make rebuild)
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron'
+(cd mlapronidl; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/mlapronidl'
+ln -sf /home/opam/.opam/4.02.0+trunk/lib/gmp/mpz.idl mpz.idl
+ln -sf /home/opam/.opam/4.02.0+trunk/lib/gmp/mpq.idl mpq.idl
+mkdir -p tmp
+for i in scalar interval coeff dim linexpr0 lincons0 generator0 texpr0 tcons0 manager abstract0 var environment linexpr1 lincons1 generator1 texpr1 tcons1 abstract1 policy disjunction; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -prepro "m4 --prefix-builtins macros.m4" -I /home/opam/.opam/4.02.0+trunk/build/apron.0.9.10/apron/mlapronidl tmp/${i}.idl; \
+		sed  -f sedscript_c tmp/${i}_stubs.c >${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module scalar
+module interval
+module coeff
+module dim
+module linexpr0
