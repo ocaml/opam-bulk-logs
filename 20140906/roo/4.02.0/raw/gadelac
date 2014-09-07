@@ -1,0 +1,44 @@
+++ opam install gadelac -e ubuntu
++ depext=
+Ubuntu depexts:
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+++ opam install gadelac -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install gadelac
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   menhir.20130912                       [required by gadelac]
+ - install   gadelac.0.6.1
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/gadelac.0.6.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/menhir.20130912+opam.tar.gz
+sending incremental file list
+sending incremental file list
+gadelac.0.6.1+opam.tar.gz
+menhir.20130912+opam.tar.gz
+
+sent 105,678 bytes  received 35 bytes  211,426.00 bytes/sec
+total size is 105,524  speedup is 1.00
+
+sent 547,369 bytes  received 35 bytes  1,094,808.00 bytes/sec
+total size is 547,109  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.02.0+trunk docdir=/home/opam/.opam/4.02.0+trunk/doc/menhir libdir=/home/opam/.opam/4.02.0+trunk/lib/menhir mandir=/home/opam/.opam/4.02.0+trunk/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.02.0+trunk/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.02.0+trunk/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
