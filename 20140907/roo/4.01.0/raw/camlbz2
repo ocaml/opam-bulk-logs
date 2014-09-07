@@ -84,3 +84,25 @@ checking for BZ2_bzReadOpen in -lbz2... yes
 configure: creating ./config.status
 config.status: creating Makefile
 ocamlc.opt -ccopt "-D BZ_PREFIX  " -c c_bz.c
+ocamlmklib -oc camlbz2 c_bz.o -lbz2 
+ocamlc.opt -c bz2.mli
+ocamlc.opt -c bz2.ml
+ocamlmklib -oc camlbz2 -o bz2 bz2.cmo -lbz2 
+ocamlopt.opt -c bz2.ml
+ocamlmklib -oc camlbz2 -o bz2 bz2.cmx -lbz2 
+ocamlfind remove  bz2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/bz2
+ocamlfind install  \
+		-patch-version 0.6.0 -ldconf ignore \
+		bz2 META bz2.cmi bz2.cmx bz2.mli bz2.a bz2.cma bz2.cmxa dllcamlbz2.so libcamlbz2.a
+Installed /home/opam/.opam/4.01.0/lib/bz2/libcamlbz2.a
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.cma
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.a
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.mli
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.cmx
+Installed /home/opam/.opam/4.01.0/lib/bz2/bz2.cmi
+Installed /home/opam/.opam/4.01.0/lib/bz2/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcamlbz2.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcamlbz2.so.owner
+Installing camlbz2.0.6.0.
