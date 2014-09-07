@@ -1516,3 +1516,329 @@ Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will hav
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_types.cmx cudf_types.ml
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_type_parser.cmx cudf_type_parser.ml
 ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_type_lexer.cmx cudf_type_lexer.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_822_parser.cmx cudf_822_parser.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_conf.cmx cudf_conf.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_types_pp.cmx cudf_types_pp.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf.cmx cudf.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_822_lexer.cmx cudf_822_lexer.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_parser.cmx cudf_parser.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_checker.cmx cudf_checker.ml
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_printer.cmx cudf_printer.ml
+ocamlfind ocamlopt -a -linkpkg cudf_types.cmx cudf_conf.cmx cudf_822_parser.cmx cudf_type_parser.cmx cudf_type_lexer.cmx cudf_types_pp.cmx cudf_822_lexer.cmx cudf.cmx cudf_parser.cmx cudf_checker.cmx cudf_printer.cmx -o cudf.cmxa
+ocamlbuild  main_cudf_check.native
+File "examples/_tags", line 1, characters 25-33:
+Warning: the tag "pkg_cudf" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 1, characters 26-35:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 2, characters 31-40:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o main_cudf_check.cmx main_cudf_check.ml
+ocamlfind ocamlopt -linkpkg -package extlib cudf_types.cmx cudf_conf.cmx cudf_type_parser.cmx cudf_type_lexer.cmx cudf_types_pp.cmx cudf.cmx cudf_822_parser.cmx cudf_822_lexer.cmx cudf_checker.cmx cudf_parser.cmx cudf_printer.cmx main_cudf_check.cmx -o main_cudf_check.native
+ocamlbuild  main_cudf_parse_822.native
+File "examples/_tags", line 1, characters 25-33:
+Warning: the tag "pkg_cudf" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 1, characters 26-35:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 2, characters 31-40:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o main_cudf_parse_822.cmx main_cudf_parse_822.ml
+ocamlfind ocamlopt -linkpkg -package extlib cudf_types.cmx cudf_822_parser.cmx cudf_822_lexer.cmx main_cudf_parse_822.cmx -o main_cudf_parse_822.native
+ocamlbuild  cudf_c.cmx
+File "examples/_tags", line 1, characters 25-33:
+Warning: the tag "pkg_cudf" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 1, characters 26-35:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 2, characters 31-40:
+Warning: the tag "pkg_oUnit" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamlopt -c -package extlib -pp camlp4o -o cudf_c.cmx cudf_c.ml
+test -d /home/opam/.opam/4.02.0+trunk/lib || mkdir -p /home/opam/.opam/4.02.0+trunk/lib
+ocamlfind install -destdir /home/opam/.opam/4.02.0+trunk/lib -patch-version 0.7 cudf META _build/cudf.cma _build/cudf.cmxa _build/cudf.a _build/cudf_822_lexer.cmi _build/cudf_822_parser.cmi _build/cudf_c.cmi _build/cudf_checker.cmi _build/cudf_conf.cmi _build/cudf_parser.cmi _build/cudf_printer.cmi _build/cudf_type_lexer.cmi _build/cudf_type_parser.cmi _build/cudf_types.cmi _build/cudf_types_pp.cmi _build/cudf.mli _build/cudf_822_parser.mli _build/cudf_checker.mli _build/cudf_conf.mli _build/cudf_parser.mli _build/cudf_printer.mli _build/cudf_type_parser.mli _build/cudf_types.mli _build/cudf_types_pp.mli _build/cudf_822_lexer.cmx _build/cudf_822_parser.cmx _build/cudf_c.cmx _build/cudf_checker.cmx _build/cudf_conf.cmx _build/cudf_parser.cmx _build/cudf_printer.cmx _build/cudf_type_lexer.cmx _build/cudf_type_parser.cmx _build/cudf_types.cmx _build/cudf_types_pp.cmx _build/cudf_822_lexer.o _build/cudf_822_parser.o _build/cudf_c.o _build/cudf_checker.o _build/cudf_conf.o _build/cudf_parser.o _build/cudf_printer.o _build/cudf_type_lexer.o _build/cudf_type_parser.o _build/cudf_types.o _build/cudf_types_pp.o _build/cudf.o _build/cudf.cmx _build/cudf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types_pp.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_parser.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_lexer.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_printer.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_parser.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_conf.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_checker.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_c.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_parser.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_lexer.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types_pp.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_parser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_lexer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_printer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_parser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_conf.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_checker.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_c.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_parser.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_lexer.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types_pp.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_parser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_printer.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_parser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_conf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_checker.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_parser.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types_pp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_types.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_parser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_type_lexer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_printer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_parser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_conf.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_checker.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_c.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_parser.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf_822_lexer.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/cudf.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/cudf/META
+test -d /home/opam/.opam/4.02.0+trunk/bin || mkdir -p /home/opam/.opam/4.02.0+trunk/bin
+for p in main_cudf_check main_cudf_parse_822 ; do \
+		tgt=`echo $p | sed -e 's/^main.//' -e 's/_/-/g'` ; \
+		if [ -f _build/$p.native ] ; then \
+			cp _build/$p.native /home/opam/.opam/4.02.0+trunk/bin/$tgt ; \
+		else \
+			cp _build/$p.byte /home/opam/.opam/4.02.0+trunk/bin/$tgt ; \
+		fi ; \
+		echo "Installed /home/opam/.opam/4.02.0+trunk/bin/$tgt" ; \
+	done
+Installed /home/opam/.opam/4.02.0+trunk/bin/cudf-check
+Installed /home/opam/.opam/4.02.0+trunk/bin/cudf-parse-822
+if [ -f c-lib/cudf.o ] ; then \
+		make -C c-lib/ -e install ; \
+	fi
+Installing cudf.0.7.
+Applying 0003-Removed-hard-failure-cases-in-favor-of-finer-diagnos.patch.
+patching file algo/depsolver.ml
+Applying 0004-Remove-broken-assert.patch.
+patching file common/util.ml
+Applying 0005-Add-a-check_request-function-allowing-more-control-o.patch.
+patching file algo/depsolver.ml
+Hunk #1 succeeded at 364 (offset -5 lines).
+Hunk #2 succeeded at 406 (offset -5 lines).
+patching file algo/depsolver.mli
+Building dose.3.2.2+opam:
+  ./configure --with-ocamlgraph --bindir=/home/opam/.opam/4.02.0+trunk/bin
+  make TARGETS=
+  make install
+checking for ocamlc... ocamlc
+OCaml version is 4.02.1+dev0-2014-08-29
+OCaml library path is /home/opam/.opam/4.02.0+trunk/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for dynlink.cmxa... yes
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4o.opt... camlp4o.opt
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for ocamlfind... ocamlfind
+checking for OCaml findlib package cudf... found
+checking for OCaml findlib package extlib... found
+checking for OCaml findlib package re.pcre... found
+checking for OCaml findlib package ocamlgraph... found
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+configure: creating ./config.status
+config.status: creating Makefile.config
+config.status: creating _tags
+config.status: creating META
+config.status: creating dose3.odocl
+config.status: creating algo/algo.mlpack
+config.status: creating common/versionInfo.ml
+mkdir -p _build
+ocamlopt -shared /home/opam/.opam/4.02.0+trunk/lib/ocaml/camlp4/Camlp4Parsers/Camlp4MacroParser.cmx -o _build/Camlp4MacroParser.cmxs
+rm -Rf _build/doselibs
+ocamlbuild  -j 10 -classic-display common/common.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0+trunk/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 18, characters 27-31:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 21, characters 25-29:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 21, characters 19-23:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 27, characters 74-78:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 31, characters 19-23:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 32, characters 16-21:
+Warning: the tag "link_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 43, characters 75-79:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 43, characters 69-73:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 48, characters 28-32:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 49, characters 23-27:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 50, characters 29-33:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 51, characters 79-83:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 51, characters 24-28:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 52, characters 30-34:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 53, characters 35-39:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 54, characters 61-65:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 56, characters 32-36:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 58, characters 35-39:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 64, characters 30-34:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 158-162:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 152-156:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 146-150:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 140-144:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/edosSolver.mli > common/edosSolver.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/edosSolver.cmi common/edosSolver.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/edosSolver.ml > common/edosSolver.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/util.mli > common/util.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/util.cmi common/util.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfSolver.ml > common/cudfSolver.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/input.mli > common/input.mli.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/url.mli > common/url.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/url.cmi common/url.mli
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/input.cmi common/input.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/input.ml > common/input.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/util.ml > common/util.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfAdd.mli > common/cudfAdd.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmi common/cudfAdd.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfAdd.ml > common/cudfAdd.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfDiff.ml > common/cudfDiff.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/versionInfo.ml > common/versionInfo.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/url.ml > common/url.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/edosSolver.cmo common/edosSolver.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfSolver.cmo common/cudfSolver.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/input.cmo common/input.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/util.cmo common/util.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmo common/cudfAdd.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfDiff.cmo common/cudfDiff.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/versionInfo.cmo common/versionInfo.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/url.cmo common/url.ml
+ocamlfind ocamlc -pack common/util.cmo common/edosSolver.cmo common/cudfSolver.cmo common/url.cmo common/input.cmo common/cudfAdd.cmo common/cudfDiff.cmo common/versionInfo.cmo -o common/common.cmo
+ocamlfind ocamlc -a common/common.cmo -o common/common.cma
+# Parallel statistics: { count(total): 1(22), max: 8, min: 8, average(total): 8.000(1.318) }
+ocamlbuild  -j 10 -classic-display deb/debian.cma
+File "_tags", line 18, characters 27-31:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 21, characters 25-29:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 21, characters 19-23:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 27, characters 74-78:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 31, characters 19-23:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 32, characters 16-21:
+Warning: the tag "link_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 43, characters 75-79:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 43, characters 69-73:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 48, characters 28-32:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 49, characters 23-27:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 50, characters 29-33:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 51, characters 79-83:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 51, characters 24-28:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 52, characters 30-34:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 53, characters 35-39:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 54, characters 61-65:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 56, characters 32-36:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 58, characters 35-39:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 64, characters 30-34:
+Warning: the tag "use_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 158-162:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 152-156:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 146-150:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+File "_tags", line 73, characters 140-144:
+Warning: the tag "pkg_" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q deb/format822_lexer.mll
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_lexer.ml > deb/format822_lexer.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822.ml > deb/format822.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc deb/format822_parser.mly
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_parser.mli > deb/format822_parser.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822.cmo deb/format822.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_parser.cmi deb/format822_parser.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_parser.ml > deb/format822_parser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q deb/packages_lexer.mll
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_lexer.ml > deb/packages_lexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc deb/packages_parser.mly
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_parser.mli > deb/packages_parser.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_parser.cmi deb/packages_parser.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_parser.ml > deb/packages_parser.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages.ml > deb/packages.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_lexer.cmo deb/format822_lexer.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_lexer.cmo deb/packages_lexer.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/apt.ml > deb/apt.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages.cmo deb/packages.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/sources.ml > deb/sources.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/architecture.mli > deb/architecture.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/architecture.cmi deb/architecture.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/version.mli > deb/version.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/version.cmi deb/version.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/version.ml > deb/version.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debcudf.mli > deb/debcudf.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debcudf.cmi deb/debcudf.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debcudf.ml > deb/debcudf.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/sources.cmo deb/sources.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/release.mli > deb/release.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/release.cmi deb/release.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/release.ml > deb/release.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/architecture.ml > deb/architecture.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debutil.ml > deb/debutil.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/evolution.ml > deb/evolution.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/edsp.ml > deb/edsp.ml.depends
