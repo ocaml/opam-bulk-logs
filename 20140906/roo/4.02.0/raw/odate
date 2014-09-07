@@ -1057,3 +1057,53 @@ File "lr1.ml", line 244, characters 2-14:
 Warning 3: deprecated: Array.create
 ocamlfind ocamlopt -c -g -inline 1000 -o derivation.cmx derivation.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o lr1partial.cmx lr1partial.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o lr1partial.cmx lr1partial.ml
+File "lr1partial.ml", line 77, characters 4-16:
+Warning 3: deprecated: Array.create
+ocamlfind ocamlopt -c -g -inline 1000 -o conflict.cmx conflict.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o codePieces.cmx codePieces.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o invariant.cmx invariant.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o invariant.cmx invariant.ml
+File "invariant.ml", line 46, characters 4-16:
+Warning 3: deprecated: Array.create
+ocamlfind ocamldep -modules coqBackend.ml > coqBackend.ml.depends
+ocamlfind ocamldep -modules coqBackend.mli > coqBackend.mli.depends
+ocamlfind ocamlc -c -o coqBackend.cmi coqBackend.mli
+ocamlfind ocamldep -modules inliner.ml > inliner.ml.depends
+ocamlfind ocamldep -modules inliner.mli > inliner.mli.depends
+ocamlfind ocamlc -c -o inliner.cmi inliner.mli
+ocamlfind ocamldep -modules traverse.ml > traverse.ml.depends
+ocamlfind ocamlc -c -g -o traverse.cmo traverse.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o traverse.cmx traverse.ml
+ocamlfind ocamldep -modules interpret.ml > interpret.ml.depends
+ocamlfind ocamldep -modules interpret.mli > interpret.mli.depends
+ocamlfind ocamlc -c -o interpret.cmi interpret.mli
+ocamlfind ocamldep -modules cst.ml > cst.ml.depends
+ocamlfind ocamldep -modules cst.mli > cst.mli.depends
+ocamlfind ocamlc -c -o cst.cmi cst.mli
+ocamlfind ocamldep -modules pprint.ml > pprint.ml.depends
+ocamlfind ocamldep -modules pprint.mli > pprint.mli.depends
+ocamlfind ocamlc -c -o pprint.cmi pprint.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o pprint.cmx pprint.ml
+ocamlfind ocamldep -modules referenceInterpreter.ml > referenceInterpreter.ml.depends
+ocamlfind ocamldep -modules referenceInterpreter.mli > referenceInterpreter.mli.depends
+ocamlfind ocamlc -c -o referenceInterpreter.cmi referenceInterpreter.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o cst.cmx cst.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q sentenceLexer.mll
+ocamlfind ocamldep -modules sentenceLexer.ml > sentenceLexer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc sentenceParser.mly
+ocamlfind ocamldep -modules sentenceParser.mli > sentenceParser.mli.depends
+ocamlfind ocamlc -c -o sentenceParser.cmi sentenceParser.mli
+ocamlfind ocamlc -c -g -o sentenceLexer.cmo sentenceLexer.ml
+ocamlfind ocamldep -modules sentenceParser.ml > sentenceParser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceParser.cmx sentenceParser.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o referenceInterpreter.cmx referenceInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o sentenceLexer.cmx sentenceLexer.ml
+ocamlfind ocamldep -modules tableBackend.ml > tableBackend.ml.depends
+ocamlfind ocamldep -modules tableBackend.mli > tableBackend.mli.depends
+ocamlfind ocamlc -c -o tableBackend.cmi tableBackend.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBackend.cmx codeBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o coqBackend.cmx coqBackend.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
