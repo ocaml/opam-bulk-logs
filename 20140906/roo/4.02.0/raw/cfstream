@@ -318,3 +318,58 @@ Warning 3: deprecated: Sort.list
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4 -I camlp4/config -I camlp4 -o camlp4/Camlp4/Register.cmo camlp4/Camlp4/Register.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4 -I camlp4/config -I camlp4 -o camlp4/Camlp4/Utils.cmo camlp4/Camlp4/Utils.ml
 /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -pack -g camlp4/Camlp4/Debug.cmo camlp4/Camlp4/Sig.cmo camlp4/Camlp4/Utils.cmo camlp4/Camlp4/ErrorHandler.cmo camlp4/Camlp4/OCamlInitSyntax.cmo camlp4/Camlp4/Options.cmo camlp4/Camlp4/Struct.cmo camlp4/Camlp4/Printers.cmo camlp4/Camlp4/PreCast.cmo camlp4/Camlp4/Register.cmo -o camlp4/Camlp4.cmo
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Top/Top.ml > camlp4/Camlp4Top/Top.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Top/Rprint.ml > camlp4/Camlp4Top/Rprint.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -I camlp4/Camlp4Top -o camlp4/Camlp4Top/Top.cmo camlp4/Camlp4Top/Top.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -I camlp4/Camlp4Top -o camlp4/Camlp4Top/Rprint.cmo camlp4/Camlp4Top/Rprint.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -pack -g camlp4/Camlp4Top/Top.cmo camlp4/Camlp4Top/Rprint.cmo -o camlp4/Camlp4Top.cmo
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/camlp4prof.mli > camlp4/camlp4prof.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -o camlp4/camlp4prof.cmi camlp4/camlp4prof.mli
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/camlp4prof.ml > camlp4/camlp4prof.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -o camlp4/camlp4prof.cmo camlp4/camlp4prof.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt dynlink.cma unix.cma -g -I +compiler-libs ocamlcommon.cma ocamlbytecomp.cma camlp4/camlp4prof.cmo -o camlp4/camlp4prof.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/mkcamlp4.ml > camlp4/mkcamlp4.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -o camlp4/mkcamlp4.cmo camlp4/mkcamlp4.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -I camlp4/config -I camlp4 -o camlp4/config/Camlp4_config.cmo camlp4/config/Camlp4_config.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a camlp4/config/Camlp4_import.cmo camlp4/config/Camlp4_config.cmo camlp4/Camlp4.cmo -o camlp4/camlp4lib.cma
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt dynlink.cma unix.cma -g -I +compiler-libs ocamlcommon.cma ocamlbytecomp.cma camlp4/camlp4lib.cma camlp4/mkcamlp4.cmo -o camlp4/mkcamlp4.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Bin.ml > camlp4/Camlp4Bin.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4 -I camlp4/config -o camlp4/Camlp4Bin.cmo camlp4/Camlp4Bin.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt dynlink.cma unix.cma -I +compiler-libs ocamlcommon.cma ocamlbytecomp.cma camlp4/camlp4lib.cma -linkall camlp4/Camlp4Bin.cmo -o camlp4/camlp4.byte
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4AstLoader.ml > camlp4/Camlp4Parsers/Camlp4AstLoader.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4DebugParser.ml > camlp4/Camlp4Parsers/Camlp4DebugParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4GrammarParser.ml > camlp4/Camlp4Parsers/Camlp4GrammarParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4ListComprehension.ml > camlp4/Camlp4Parsers/Camlp4ListComprehension.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4MacroParser.ml > camlp4/Camlp4Parsers/Camlp4MacroParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlOriginalQuotationExpander.ml > camlp4/Camlp4Parsers/Camlp4OCamlOriginalQuotationExpander.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlParser.ml > camlp4/Camlp4Parsers/Camlp4OCamlParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.ml > camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4QuotationCommon.ml > camlp4/Camlp4Parsers/Camlp4QuotationCommon.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4OCamlParser.cmo camlp4/Camlp4Parsers/Camlp4OCamlParser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.cmo camlp4/Camlp4Parsers/Camlp4OCamlRevisedParser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4QuotationCommon.cmo camlp4/Camlp4Parsers/Camlp4QuotationCommon.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlParserParser.ml > camlp4/Camlp4Parsers/Camlp4OCamlParserParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlRevisedParserParser.ml > camlp4/Camlp4Parsers/Camlp4OCamlRevisedParserParser.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4OCamlRevisedParserParser.cmo camlp4/Camlp4Parsers/Camlp4OCamlRevisedParserParser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4OCamlRevisedQuotationExpander.ml > camlp4/Camlp4Parsers/Camlp4OCamlRevisedQuotationExpander.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Parsers/Camlp4QuotationExpander.ml > camlp4/Camlp4Parsers/Camlp4QuotationExpander.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4AstDumper.ml > camlp4/Camlp4Printers/Camlp4AstDumper.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4AutoPrinter.ml > camlp4/Camlp4Printers/Camlp4AutoPrinter.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4NullDumper.ml > camlp4/Camlp4Printers/Camlp4NullDumper.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4OCamlAstDumper.ml > camlp4/Camlp4Printers/Camlp4OCamlAstDumper.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4OCamlPrinter.ml > camlp4/Camlp4Printers/Camlp4OCamlPrinter.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Printers/Camlp4OCamlRevisedPrinter.ml > camlp4/Camlp4Printers/Camlp4OCamlRevisedPrinter.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4AstLifter.ml > camlp4/Camlp4Filters/Camlp4AstLifter.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4ExceptionTracer.ml > camlp4/Camlp4Filters/Camlp4ExceptionTracer.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4FoldGenerator.ml > camlp4/Camlp4Filters/Camlp4FoldGenerator.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4LocationStripper.ml > camlp4/Camlp4Filters/Camlp4LocationStripper.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4MapGenerator.ml > camlp4/Camlp4Filters/Camlp4MapGenerator.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4MetaGenerator.ml > camlp4/Camlp4Filters/Camlp4MetaGenerator.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4Profiler.ml > camlp4/Camlp4Filters/Camlp4Profiler.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -pp 'camlp4/boot/camlp4boot.native -D OPT' -modules camlp4/Camlp4Filters/Camlp4TrashRemover.ml > camlp4/Camlp4Filters/Camlp4TrashRemover.ml.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4AstLoader.cmo camlp4/Camlp4Parsers/Camlp4AstLoader.ml
++ /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4AstLoader.cmo camlp4/Camlp4Parsers/Camlp4AstLoader.ml
+File "camlp4/Camlp4Parsers/Camlp4AstLoader.ml", line 35, characters 17-30:
+Warning 3: deprecated: String.create
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4DebugParser.cmo camlp4/Camlp4Parsers/Camlp4DebugParser.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -c -g -w Z -I camlp4/import -warn-error A-3 -pp camlp4/boot/camlp4boot.native -I camlp4/Camlp4Parsers -I camlp4 -I camlp4/config -o camlp4/Camlp4Parsers/Camlp4GrammarParser.cmo camlp4/Camlp4Parsers/Camlp4GrammarParser.ml
