@@ -888,3 +888,334 @@ File "read.mll", line 367, characters 12-25:
 Warning 3: deprecated: String.create
 File "read.mll", line 368, characters 4-16:
 Warning 3: deprecated: String.set
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.02.0+trunk/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.02.0+trunk/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/yojson/META
+Installing yojson.1.1.8.
+Building qmp.0.9.1:
+  make
+  make install BINDIR=/home/opam/.opam/4.02.0+trunk/bin
+obuild --debug+ configure 
+  [CMD]: ocamlfind printconf conf
+Configuring qmp-0.9.1...
+  configure flag: []
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: qmp
+  internal depends: qmp
+  getting dependencies for target lib-qmp
+  fetching META yojson
+  library yojson depends on biniou
+  fetching META biniou
+  library biniou depends on easy-format
+  fetching META easy-format
+  library yojson depends on easy-format
+  getting dependencies for target exe-cli
+  library qmp depends on yojson
+  fetching META cmdliner
+  getting dependencies for target exe-messages
+  fetching META oUnit
+  library oUnit depends on oUnit.advanced
+  library oUnit depends on unix
+configuration changed, deleting dist
+auto-generating configuration files
+Writing new setup
+obuild --debug+ build
+  [CMD]: ocamlfind printconf conf
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: qmp
+  internal depends: qmp
+  getting dependencies for target lib-qmp
+  fetching META yojson
+  library yojson depends on biniou
+  fetching META biniou
+  library biniou depends on easy-format
+  fetching META easy-format
+  library yojson depends on easy-format
+  getting dependencies for target exe-cli
+  library qmp depends on yojson
+  fetching META cmdliner
+  getting dependencies for target exe-messages
+  fetching META oUnit
+  library oUnit depends on oUnit.advanced
+  library oUnit depends on unix
+preparing target lib-qmp
+preparing compilation for lib-qmp
+Analysing Qmp
+  Qmp has mtime 1376061979.000000
+  Qmp has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib -I dist/build/autogen -modules lib/qmp.ml lib/qmp.mli
+  Qmp depends on List,Printf,Yojson
+  Qmp internally depends on 
+Analysing Qmp_protocol
+  Qmp_protocol has mtime 1376061979.000000
+  Qmp_protocol has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib -I dist/build/autogen -modules lib/qmp_protocol.ml lib/qmp_protocol.mli
+  Qmp_protocol depends on Printf,Qmp,Unix
+  Qmp_protocol internally depends on Qmp
+preparing target exe-messages
+preparing compilation for exe-messages
+Analysing Messages
+  Messages has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib_test -I dist/build/autogen -modules lib_test/messages.ml lib_test/messages.mli
+  Messages depends on Arg,Filename,List,OUnit,Printf,Qmp,String
+  Messages internally depends on 
+preparing target exe-cli
+preparing compilation for exe-cli
+Analysing Cli
+  Cli has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/cli.ml cli/cli.mli
+  Cli depends on Arg,Client,Cmdliner,Common,Printf,Term
+  Cli internally depends on Client,Common
+Analysing Client
+  Client has mtime 1376061979.000000
+  Client has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/client.ml cli/client.mli
+  Client depends on Printf,Qmp,Qmp_protocol,Common
+  Client internally depends on Common
+Analysing Common
+  Common has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/common.ml cli/common.mli
+  Common depends on Printf
+  Common internally depends on 
+[ 1 of 15] Intfing Qmp
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmi -c lib/qmp.mli
+[ 2 of 15] Compiling Qmp
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmx -c lib/qmp.ml
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmo -c lib/qmp.ml
+[ 3 of 15] Intfing Qmp_protocol
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmi -c lib/qmp_protocol.mli
+[ 4 of 15] Compiling Qmp_protocol
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmx -c lib/qmp_protocol.ml
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmo -c lib/qmp_protocol.ml
+  compilation order: Qmp,Qmp_protocol
+  self deps: 
+package deps: [easy-format,biniou,yojson]
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cmxa
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cmxs
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cma
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -o dist/build/lib-qmp/qmp.cma -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmo qmp_protocol.cmo
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -shared -o dist/build/lib-qmp/qmp.cmxs -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmx qmp_protocol.cmx
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -o dist/build/lib-qmp/qmp.cmxa -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmx qmp_protocol.cmx
+[ 6 of 15] Checking dist/build/lib-qmp
+[ 7 of 15] Compiling Common
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/common.cmx -c cli/common.ml
+[ 8 of 15] Compiling Messages
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/messages -I dist/build/autogen -I lib_test -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -bin-annot -o dist/build/messages/messages.cmx -c lib_test/messages.ml
+[ 9 of 15] Intfing Client
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/client.cmi -c cli/client.mli
+[10 of 15] Compiling Client
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/client.cmx -c cli/client.ml
+  compilation order: Messages
+  self deps: qmp
+package deps: [easy-format,biniou,yojson,qmp,unix,oUnit.advanced,oUnit]
+[11 of 15] Linking executable dist/build/messages/messages
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/messages/messages -I dist/build/messages -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -I /home/opam/.opam/4.02.0+trunk/lib/oUnit easy_format.cmx biniou.cmxa yojson.cmx qmp.cmxa unix.cmxa oUnitAdvanced.cmxa oUnit.cmxa -cclib -Ldist/build/lib-qmp messages.cmx
+[12 of 15] Compiling Cli
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/cli.cmx -c cli/cli.ml
+  compilation order: Common,Client,Cli
+  self deps: qmp
+package deps: [cmdliner,unix,easy-format,biniou,yojson,qmp]
+[13 of 15] Linking executable dist/build/cli/cli
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/cli/cli -I dist/build/cli -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I dist/build/lib-qmp cmdliner.cmxa unix.cmxa easy_format.cmx biniou.cmxa yojson.cmx qmp.cmxa -cclib -Ldist/build/lib-qmp common.cmx client.cmx cli.cmx
+[14 of 15] Checking dist/build/messages
+[15 of 15] Checking dist/build/cli
+schedule finished: #processes=16 max_concurrency=2
+obuild --debug+ configure 
+  [CMD]: ocamlfind printconf conf
+Configuring qmp-0.9.1...
+  configure flag: []
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: qmp
+  internal depends: qmp
+  getting dependencies for target lib-qmp
+  fetching META yojson
+  library yojson depends on biniou
+  fetching META biniou
+  library biniou depends on easy-format
+  fetching META easy-format
+  library yojson depends on easy-format
+  getting dependencies for target exe-cli
+  library qmp depends on yojson
+  fetching META cmdliner
+  getting dependencies for target exe-messages
+  fetching META oUnit
+  library oUnit depends on oUnit.advanced
+  library oUnit depends on unix
+configuration changed, deleting dist
+auto-generating configuration files
+Writing new setup
+obuild --debug+ build
+  [CMD]: ocamlfind printconf conf
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+analyzing project
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -config
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -vnum
+initializing standard library : package bigarray
+initializing standard library : package stdlib
+initializing standard library : package unix
+initializing standard library : package str
+initializing standard library : package nums
+initializing standard library : package dynlink
+  internal depends: qmp
+  internal depends: qmp
+  getting dependencies for target lib-qmp
+  fetching META yojson
+  library yojson depends on biniou
+  fetching META biniou
+  library biniou depends on easy-format
+  fetching META easy-format
+  library yojson depends on easy-format
+  getting dependencies for target exe-cli
+  library qmp depends on yojson
+  fetching META cmdliner
+  getting dependencies for target exe-messages
+  fetching META oUnit
+  library oUnit depends on oUnit.advanced
+  library oUnit depends on unix
+preparing target lib-qmp
+preparing compilation for lib-qmp
+Analysing Qmp
+  Qmp has mtime 1376061979.000000
+  Qmp has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib -I dist/build/autogen -modules lib/qmp.ml lib/qmp.mli
+  Qmp depends on List,Printf,Yojson
+  Qmp internally depends on 
+Analysing Qmp_protocol
+  Qmp_protocol has mtime 1376061979.000000
+  Qmp_protocol has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib -I dist/build/autogen -modules lib/qmp_protocol.ml lib/qmp_protocol.mli
+  Qmp_protocol depends on Printf,Qmp,Unix
+  Qmp_protocol internally depends on Qmp
+preparing target exe-messages
+preparing compilation for exe-messages
+Analysing Messages
+  Messages has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I lib_test -I dist/build/autogen -modules lib_test/messages.ml lib_test/messages.mli
+  Messages depends on Arg,Filename,List,OUnit,Printf,Qmp,String
+  Messages internally depends on 
+preparing target exe-cli
+preparing compilation for exe-cli
+Analysing Cli
+  Cli has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/cli.ml cli/cli.mli
+  Cli depends on Arg,Client,Cmdliner,Common,Printf,Term
+  Cli internally depends on Client,Common
+Analysing Client
+  Client has mtime 1376061979.000000
+  Client has interface (mtime=1376061979.000000)
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/client.ml cli/client.mli
+  Client depends on Printf,Qmp,Qmp_protocol,Common
+  Client internally depends on Common
+Analysing Common
+  Common has mtime 1376061979.000000
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamldep.opt -I cli -I dist/build/autogen -modules cli/common.ml cli/common.mli
+  Common depends on Printf
+  Common internally depends on 
+[ 1 of 15] Intfing Qmp
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmi -c lib/qmp.mli
+[ 2 of 15] Compiling Qmp
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmx -c lib/qmp.ml
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp.cmo -c lib/qmp.ml
+[ 3 of 15] Intfing Qmp_protocol
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmi -c lib/qmp_protocol.mli
+[ 4 of 15] Compiling Qmp_protocol
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmx -c lib/qmp_protocol.ml
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/lib-qmp -I dist/build/autogen -I lib -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/lib-qmp/qmp_protocol.cmo -c lib/qmp_protocol.ml
+  compilation order: Qmp,Qmp_protocol
+  self deps: 
+package deps: [easy-format,biniou,yojson]
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cmxa
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cmxs
+[ 5 of 15] Linking library dist/build/lib-qmp/qmp.cma
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -a -o dist/build/lib-qmp/qmp.cma -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmo qmp_protocol.cmo
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -shared -o dist/build/lib-qmp/qmp.cmxs -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmx qmp_protocol.cmx
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -a -o dist/build/lib-qmp/qmp.cmxa -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson qmp.cmx qmp_protocol.cmx
+[ 6 of 15] Checking dist/build/lib-qmp
+[ 7 of 15] Compiling Common
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/common.cmx -c cli/common.ml
+[ 8 of 15] Compiling Messages
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/messages -I dist/build/autogen -I lib_test -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -bin-annot -o dist/build/messages/messages.cmx -c lib_test/messages.ml
+[ 9 of 15] Intfing Client
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/client.cmi -c cli/client.mli
+[10 of 15] Compiling Client
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/client.cmx -c cli/client.ml
+  compilation order: Messages
+  self deps: qmp
+package deps: [easy-format,biniou,yojson,qmp,unix,oUnit.advanced,oUnit]
+[11 of 15] Linking executable dist/build/messages/messages
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/messages/messages -I dist/build/messages -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/oUnit -I /home/opam/.opam/4.02.0+trunk/lib/oUnit easy_format.cmx biniou.cmxa yojson.cmx qmp.cmxa unix.cmxa oUnitAdvanced.cmxa oUnit.cmxa -cclib -Ldist/build/lib-qmp messages.cmx
+[12 of 15] Compiling Cli
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -I dist/build/cli -I dist/build/autogen -I cli -I dist/build/lib-qmp -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -bin-annot -o dist/build/cli/cli.cmx -c cli/cli.ml
+  compilation order: Common,Client,Cli
+  self deps: qmp
+package deps: [cmdliner,unix,easy-format,biniou,yojson,qmp]
+[13 of 15] Linking executable dist/build/cli/cli
+  [CMD]: /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt -o dist/build/cli/cli -I dist/build/cli -I /home/opam/.opam/4.02.0+trunk/lib/cmdliner -I /home/opam/.opam/4.02.0+trunk/lib/ocaml -I /home/opam/.opam/4.02.0+trunk/lib/easy-format -I /home/opam/.opam/4.02.0+trunk/lib/biniou -I /home/opam/.opam/4.02.0+trunk/lib/yojson -I dist/build/lib-qmp cmdliner.cmxa unix.cmxa easy_format.cmx biniou.cmxa yojson.cmx qmp.cmxa -cclib -Ldist/build/lib-qmp common.cmx client.cmx cli.cmx
+[14 of 15] Checking dist/build/messages
+[15 of 15] Checking dist/build/cli
+schedule finished: #processes=16 max_concurrency=2
+ocamlfind remove qmp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/qmp
+ocamlfind install qmp dist/build/lib-qmp/qmp_protocol.cmo dist/build/lib-qmp/qmp.cmti dist/build/lib-qmp/qmp_protocol.cmx dist/build/lib-qmp/qmp.cmx dist/build/lib-qmp/qmp.cmt dist/build/lib-qmp/qmp_protocol.o dist/build/lib-qmp/qmp_protocol.cmti dist/build/lib-qmp/qmp_protocol.cmi dist/build/lib-qmp/qmp.cmxa dist/build/lib-qmp/qmp.cmi dist/build/lib-qmp/qmp.o dist/build/lib-qmp/qmp_protocol.cmt dist/build/lib-qmp/qmp.cmo dist/build/lib-qmp/qmp.cmxs dist/build/lib-qmp/qmp.a dist/build/lib-qmp/qmp.cma lib/META 
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cma
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.a
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmxs
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmxa
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.cmi
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.o
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmt
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.cmx
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp.cmti
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/qmp_protocol.cmo
+Installed /home/opam/.opam/4.02.0+trunk/lib/qmp/META
+Installing qmp.0.9.1.
