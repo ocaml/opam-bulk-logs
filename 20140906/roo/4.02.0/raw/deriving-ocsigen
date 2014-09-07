@@ -791,3 +791,33 @@ sed -e s/%%NAME%%/deriving-ocsigen/ -e s/%%VERSION%%/0.5-ocsigen/ id.mlp > id.ml
 chmod -w id.ml
 ocamlfind ocamlc -package camlp4 -c id.ml
 ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.ml
+File "utils.ml", line 104, characters 17-2347:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(TyExt (_, _, _, _)|TyOpn _|TyAtt (_, _, _, _))
+File "utils.ml", line 210, characters 10-23:
+Warning 3: deprecated: String.create
+File "utils.ml", line 212, characters 6-11:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.ml
+ocamlfind ocamlc -package camlp4 -c defs.mli
+ocamlfind ocamlc -package camlp4 -c defs.ml
+ocamlfind ocamlc -package camlp4 -c clusters.mli
+ocamlfind ocamlc -package camlp4 -c clusters.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.ml
+File "base.ml", line 145, characters 10-12:
+Warning 26: unused variable ty.
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.ml
+ocamlfind ocamlc -o pa_deriving_common.cmo -pack id.cmo utils.cmo type.cmo defs.cmo clusters.cmo base.cmo extend.cmo
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c pa_deriving.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/show_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/dump_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/enum_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/bounded_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/eq_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/typeable_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/pickle_class.ml
