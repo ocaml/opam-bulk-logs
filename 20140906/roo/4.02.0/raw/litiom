@@ -8256,3 +8256,25 @@ ocamlfind ocamlc -package lwt -I deriving_json -c form.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g form.ml
 ocamlfind ocamlc -package lwt -I deriving_json -c xmlHttpRequest.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g xmlHttpRequest.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c event_arrows.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g event_arrows.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c json.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
+(echo "#include <stdlib.h>"; \
+	 echo "#include <stdio.h>"; \
+	 echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+	 (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml file.ml dom_events.ml firebug.ml lwt_js.ml sys_js.ml regexp.ml cSS.ml url.ml form.ml xmlHttpRequest.ml event_arrows.ml lwt_js_events.ml json.ml webGL.ml webSockets.ml keycode.ml | \
+	  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
+ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo event_arrows.cmo lwt_js_events.cmo json.cmo webGL.cmo webSockets.cmo keycode.cmo stubs.o
+ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
