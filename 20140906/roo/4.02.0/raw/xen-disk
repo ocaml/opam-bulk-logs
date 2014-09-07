@@ -3942,3 +3942,73 @@ Here is an example of a value that is not matched:
 ocamlfind ocamlc -a core/xs_protocol.cmo core/xs_handle.cmo -o core/xenstore.cma
 ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
 ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_handle.cmx core/xs_handle.ml
++ ocamlfind ocamlopt -c -g -annot -package cstruct.syntax -package cstruct -syntax camlp4o -I core -I client_lwt -I server -I client_unix -o core/xs_protocol.cmx core/xs_protocol.ml
+File "core/xs_protocol.ml", line 595, characters 21-692:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+File "core/xs_protocol.ml", line 621, characters 23-873:
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+(Error _|Watchevent _)
+ocamlfind ocamlopt -a core/xs_protocol.cmx core/xs_handle.cmx -o core/xenstore.cmxa
+ocamlfind ocamlopt -shared -linkall core/xenstore.cmxa -o core/xenstore.cmxs
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules client_lwt/xs_client_lwt.mli > client_lwt/xs_client_lwt.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmi client_lwt/xs_client_lwt.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules client_lwt/xs_client_lwt.ml > client_lwt/xs_client_lwt.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmo client_lwt/xs_client_lwt.ml
+ocamlfind ocamlc -a client_lwt/xs_client_lwt.cmo -o client_lwt/xenstore_client_lwt.cma
+ocamlfind ocamlopt -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I client_lwt -I core -I server -I client_unix -o client_lwt/xs_client_lwt.cmx client_lwt/xs_client_lwt.ml
+ocamlfind ocamlopt -a client_lwt/xs_client_lwt.cmx -o client_lwt/xenstore_client_lwt.cmxa
+ocamlfind ocamlopt -shared -linkall client_lwt/xenstore_client_lwt.cmxa -o client_lwt/xenstore_client_lwt.cmxs
+ocamlfind ocamldep -package unix -package threads -package cstruct.syntax -package cstruct -modules client_unix/xs_client_unix.mli > client_unix/xs_client_unix.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmi client_unix/xs_client_unix.mli
+ocamlfind ocamldep -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -modules client_unix/xs_client_unix.ml > client_unix/xs_client_unix.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmo client_unix/xs_client_unix.ml
+ocamlfind ocamlc -a client_unix/xs_client_unix.cmo -o client_unix/xenstore_client_unix.cma
+ocamlfind ocamlopt -c -g -annot -I core -package unix -package threads -package cstruct.syntax -package cstruct -syntax camlp4o -thread -I client_unix -I core -I client_lwt -I server -o client_unix/xs_client_unix.cmx client_unix/xs_client_unix.ml
+ocamlfind ocamlopt -a client_unix/xs_client_unix.cmx -o client_unix/xenstore_client_unix.cmxa
+ocamlfind ocamlopt -shared -linkall client_unix/xenstore_client_unix.cmxa -o client_unix/xenstore_client_unix.cmxs
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/logging.ml > server/logging.ml.depends
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/logging_interface.ml > server/logging_interface.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/logging.cmo server/logging.ml
++ ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/logging.cmo server/logging.ml
+File "server/logging.ml", line 159, characters 12-23:
+Warning 3: deprecated: String.copy
+File "server/logging.ml", line 163, characters 3-11:
+Warning 3: deprecated: String.set
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/namespace.ml > server/namespace.ml.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/perms.mli > server/perms.mli.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/store.mli > server/store.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/perms.cmi server/perms.mli
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/quota.mli > server/quota.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/quota.cmi server/quota.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/transaction.ml > server/transaction.ml.depends
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/junk.ml > server/junk.ml.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/store.cmi server/store.mli
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/junk.cmo server/junk.ml
++ ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/junk.cmo server/junk.ml
+File "server/junk.ml", line 92, characters 10-23:
+Warning 3: deprecated: String.create
+File "server/junk.ml", line 96, characters 2-12:
+Warning 3: deprecated: String.set
+File "server/junk.ml", line 97, characters 2-16:
+Warning 3: deprecated: String.set
+File "server/junk.ml", line 103, characters 9-22:
+Warning 3: deprecated: String.create
+File "server/junk.ml", line 106, characters 2-7:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/transaction.cmo server/transaction.ml
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/namespace.cmo server/namespace.ml
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/connection.ml > server/connection.ml.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/trie.mli > server/trie.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/trie.cmi server/trie.mli
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/call.mli > server/call.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/connection.cmo server/connection.ml
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/call.cmi server/call.mli
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/call.ml > server/call.ml.depends
+ocamlfind ocamldep -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -modules server/heap_debug_interface.ml > server/heap_debug_interface.ml.depends
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/symbol.mli > server/symbol.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt -package cstruct.syntax -package cstruct -I server -I core -I client_lwt -I client_unix -o server/symbol.cmi server/symbol.mli
+ocamlfind ocamldep -package lwt -package cstruct.syntax -package cstruct -modules server/introduce.mli > server/introduce.mli.depends
+ocamlfind ocamlc -c -g -annot -I core -package lwt.syntax -package lwt -package cstruct.syntax -package cstruct -syntax camlp4o -I server -I core -I client_lwt -I client_unix -o server/logging_interface.cmo server/logging_interface.ml
