@@ -1243,3 +1243,119 @@ ocamlfind ocamldep -modules infer.mli > infer.mli.depends
 ocamlfind ocamlc -c -o infer.cmi infer.mli
 ocamlfind ocamldep -modules IO.ml > IO.ml.depends
 ocamlfind ocamldep -modules IO.mli > IO.mli.depends
+ocamlfind ocamlc -c -o IO.cmi IO.mli
+ocamlfind ocamldep -modules interface.ml > interface.ml.depends
+ocamlfind ocamldep -modules interface.mli > interface.mli.depends
+ocamlfind ocamlc -c -o interface.cmi interface.mli
+ocamlfind ocamldep -modules misc.ml > misc.ml.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules stringMap.ml > stringMap.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o stringMap.cmx stringMap.ml
+ocamlfind ocamldep -modules preFront.ml > preFront.ml.depends
+ocamlfind ocamldep -modules preFront.mli > preFront.mli.depends
+ocamlfind ocamlc -c -o preFront.cmi preFront.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lexer.mll
+ocamlfind ocamldep -modules lexer.ml > lexer.ml.depends
+cp yacc-parser.mly parser.mly
+/home/opam/.opam/4.02.0+trunk/bin/ocamlyacc parser.mly
+ocamlfind ocamldep -modules parser.mli > parser.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o parser.cmi parser.mli
+ocamlfind ocamlc -c -g -o lexer.cmo lexer.ml
++ ocamlfind ocamlc -c -g -o lexer.cmo lexer.ml
+File "lexer.mll", line 60, characters 4-26:
+Warning 3: deprecated: String.set
+File "lexer.mll", line 68, characters 18-29:
+Warning 3: deprecated: String.copy
+ocamlfind ocamldep -modules parser.ml > parser.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o misc.cmx misc.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o misc.cmx misc.ml
+File "misc.ml", line 53, characters 10-22:
+Warning 3: deprecated: Array.create
+File "misc.ml", line 121, characters 10-22:
+Warning 3: deprecated: Array.create
+File "misc.ml", line 245, characters 10-21:
+Warning 3: deprecated: String.copy
+File "misc.ml", line 252, characters 1-13:
+Warning 3: deprecated: String.set
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamldep -modules parserAux.ml > parserAux.ml.depends
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o parameters.cmx parameters.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o parserAux.cmx parserAux.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o parser.cmx parser.ml
+ocamlfind ocamldep -modules parameterizedGrammar.ml > parameterizedGrammar.ml.depends
+ocamlfind ocamldep -modules parameterizedGrammar.mli > parameterizedGrammar.mli.depends
+ocamlfind ocamldep -modules internalSyntax.mli > internalSyntax.mli.depends
+ocamlfind ocamlc -c -o internalSyntax.cmi internalSyntax.mli
+ocamlfind ocamlc -c -o parameterizedGrammar.cmi parameterizedGrammar.mli
+ocamlfind ocamldep -modules tarjan.ml > tarjan.ml.depends
+ocamlfind ocamldep -modules tarjan.mli > tarjan.mli.depends
+ocamlfind ocamlc -c -o tarjan.cmi tarjan.mli
+ocamlfind ocamldep -modules unionFind.ml > unionFind.ml.depends
+ocamlfind ocamldep -modules unionFind.mli > unionFind.mli.depends
+ocamlfind ocamlc -c -o unionFind.cmi unionFind.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o tarjan.cmx tarjan.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o unionFind.cmx unionFind.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o tarjan.cmx tarjan.ml
+File "tarjan.ml", line 84, characters 16-28:
+Warning 3: deprecated: Array.create
+File "tarjan.ml", line 168, characters 29-30:
+Warning 3: deprecated: Pervasives.&
+File "tarjan.ml", line 168, characters 29-30:
+Warning 3: deprecated: operator (&); you should use (&&) instead
+ocamlfind ocamldep -modules partialGrammar.ml > partialGrammar.ml.depends
+ocamlfind ocamldep -modules partialGrammar.mli > partialGrammar.mli.depends
+ocamlfind ocamlc -c -o partialGrammar.cmi partialGrammar.mli
+ocamlfind ocamldep -modules time.ml > time.ml.depends
+ocamlfind ocamldep -modules time.mli > time.mli.depends
+ocamlfind ocamlc -c -o time.cmi time.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o time.cmx time.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o lexer.cmx lexer.ml
+File "lexer.mll", line 60, characters 4-26:
+Warning 3: deprecated: String.set
+File "lexer.mll", line 68, characters 18-29:
+Warning 3: deprecated: String.copy
++ ocamlfind ocamlopt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
+File "partialGrammar.ml", line 259, characters 10-21:
+Warning 3: deprecated: String.copy
+File "partialGrammar.ml", line 262, characters 6-18:
+Warning 3: deprecated: String.set
++ ocamlfind ocamlopt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
+File "parameterizedGrammar.ml", line 340, characters 26-38:
+Warning 3: deprecated: Array.create
+ocamlfind ocamldep -modules tokenType.ml > tokenType.ml.depends
+ocamlfind ocamldep -modules tokenType.mli > tokenType.mli.depends
+ocamlfind ocamlc -c -o tokenType.cmi tokenType.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o preFront.cmx preFront.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o preFront.cmx preFront.ml
+File "preFront.ml", line 38, characters 10-23:
+Warning 3: deprecated: String.create
+ocamlfind ocamlopt -c -g -inline 1000 -o tokenType.cmx tokenType.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lexdep.mll
+ocamlfind ocamldep -modules lexdep.ml > lexdep.ml.depends
+ocamlfind ocamlc -c -g -o lexdep.cmo lexdep.ml
+/home/opam/.opam/4.02.0+trunk/bin/ocamllex.opt -q lexmli.mll
+ocamlfind ocamldep -modules lexmli.ml > lexmli.ml.depends
+ocamlfind ocamlc -c -g -o lexmli.cmo lexmli.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o IO.cmx IO.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o interface.cmx interface.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lexdep.cmx lexdep.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lexmli.cmx lexmli.ml
++ ocamlfind ocamlopt -c -g -inline 1000 -o IO.cmx IO.ml
+File "IO.ml", line 25, characters 14-27:
+Warning 3: deprecated: String.create
+ocamlfind ocamldep -modules nonTerminalDefinitionInlining.ml > nonTerminalDefinitionInlining.ml.depends
+ocamlfind ocamldep -modules nonTerminalDefinitionInlining.mli > nonTerminalDefinitionInlining.mli.depends
+ocamlfind ocamlc -c -o nonTerminalDefinitionInlining.cmi nonTerminalDefinitionInlining.mli
+ocamlfind ocamldep -modules listMonad.ml > listMonad.ml.depends
+ocamlfind ocamldep -modules listMonad.mli > listMonad.mli.depends
+ocamlfind ocamlc -c -o listMonad.cmi listMonad.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o listMonad.cmx listMonad.ml
