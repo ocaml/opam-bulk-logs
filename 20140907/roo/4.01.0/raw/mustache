@@ -2355,3 +2355,19 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package ezjsonm -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/mustache.cmo lib/mustache.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/mustache.cmo -o lib/mustache.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package ezjsonm -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -o lib/mustache.cmx lib/mustache.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/mustache.cmx -o lib/mustache.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/mustache.cmxa lib/mustache.cmx -o lib/mustache.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ezjsonm -package oUnit -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib_test/test_mustache.ml > lib_test/test_mustache.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -package ezjsonm -package oUnit -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib_test -I lib -o lib_test/test_mustache.cmo lib_test/test_mustache.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -package ezjsonm -package oUnit -package re.str -package sexplib -syntax camlp4o -package sexplib.syntax -I lib_test -I lib -o lib_test/test_mustache.cmx lib_test/test_mustache.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg -package ezjsonm -package oUnit -package re.str -package sexplib -package sexplib.syntax lib/mustache.cmxa lib_test/test_mustache.cmx -o lib_test/test_mustache.native
+ocaml setup.ml -install
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.mli
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.cma
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.a
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.cmxs
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.cmi
+Installed /home/opam/.opam/4.01.0/lib/mustache/mustache.cmx
+Installed /home/opam/.opam/4.01.0/lib/mustache/META
+Installing mustache.0.0.2.
