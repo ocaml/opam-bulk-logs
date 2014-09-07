@@ -3514,3 +3514,100 @@ OMAKEFLAGS= OMAKEPATH=lib ./omake-boot --dotomake .omake --force-dotomake -j2 ma
 *** omake: finished reading OMakefiles (0.52 sec)
 *** omake: warning: stdout is not a tty, disabling the progress bar
    (use --progress to override).
+*** omake: done (5.44 sec, 0/234 scans, 0/505 rules, 1/1762 digests)
+OMAKEFLAGS= OMAKEPATH=lib src/main/omake --dotomake .omake --force-dotomake -j2 all
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.22 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (1.29 sec, 0/235 scans, 0/534 rules, 0/1821 digests)
+OMAKEFLAGS= OMAKEPATH=lib src/main/omake --dotomake .omake --force-dotomake -j2 install
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.21 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (1.07 sec, 0/235 scans, 2/536 rules, 0/1821 digests)
+Installing omake.0.9.8.6-0.rc1.
+Building cache.1.0:
+  make all
+  make opt
+  make install
+omake NATIVE_ENABLED=false
+*** omake: reading OMakefiles
+--- Checking if ocamldep understands -modules... (yes)
+*** omake: finished reading OMakefiles (0.15 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+--- Checking for ocamlfind... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlfind)
+--- Checking for ocamlc.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt)
+--- Checking for ocamlopt.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt)
+--- Checking whether ocamlc understands the "z" warnings... (yes)
+- build . cache_server.cmo
++ ocamlfind ocamlc -package rpc,netplex -warn-error A -g -I . -c cache_server.ml
+File "cache_server.ml", line 981, characters 10-23:
+Warning 3: deprecated: String.create
+File "cache_server.ml", line 1004, characters 10-23:
+Warning 3: deprecated: String.create
+File "cache_server.ml", line 1008, characters 13-26:
+Warning 3: deprecated: String.create
+File "cache_server.ml", line 1058, characters 14-27:
+Warning 3: deprecated: String.create
+File "cache_server.ml", line 1:
+Error: Some fatal warnings were triggered (4 occurrences)
+*** omake: 52/61 targets are up to date
+*** omake: failed (2.02 sec, 13/13 scans, 16/19 rules, 36/125 digests)
+*** omake: targets were not rebuilt because of errors:
+   cache_server.cmo
+      depends on: cache_server.ml
+make: *** [all] Error 2
+Removing cache.1.0.
+[ERROR] The compilation of cache.1.0 failed.
+  ocamlfind remove cache
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0+trunk/lib/cache
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   ocamlnet.3.7.5
+ - install   omake.0.9.8.6-0.rc1
+The following failed
+ - install   cache.1.0
+
+#=== ERROR while installing cache.1.0 =========================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make all
+# path                 /home/opam/.opam/4.02.0+trunk/build/cache.1.0
+# compiler             4.02.0+trunk
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0+trunk/build/cache.1.0/cache-8346-d0f245.env
+# stdout-file          /home/opam/.opam/4.02.0+trunk/build/cache.1.0/cache-8346-d0f245.out
+# stderr-file          /home/opam/.opam/4.02.0+trunk/build/cache.1.0/cache-8346-d0f245.err
+### stdout ###
+# ...[truncated]
+# --- Checking if ocamldep understands -modules... (yes)
+# *** omake: finished reading OMakefiles (0.15 sec)
+# --- Checking for ocamlfind... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlfind)
+# --- Checking for ocamlc.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlc.opt)
+# --- Checking for ocamlopt.opt... (found /home/opam/.opam/4.02.0+trunk/bin/ocamlopt.opt)
+# --- Checking whether ocamlc understands the "z" warnings... (yes)
+# - build . cache_server.cmo
+# + ocamlfind ocamlc -package rpc,netplex -warn-error A -g -I . -c cache_server.ml
+# *** omake: 52/61 targets are up to date
+# *** omake: failed (2.02 sec, 13/13 scans, 16/19 rules, 36/125 digests)
+### stderr ###
+# ...[truncated]
+# File "cache_server.ml", line 1008, characters 13-26:
+# Warning 3: deprecated: String.create
+# File "cache_server.ml", line 1058, characters 14-27:
+# Warning 3: deprecated: String.create
+# File "cache_server.ml", line 1:
+# Error: Some fatal warnings were triggered (4 occurrences)
+# *** omake: targets were not rebuilt because of errors:
+#    cache_server.cmo
+#       depends on: cache_server.ml
+# make: *** [all] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0+trunk/backup/state-20140807141055.export"
+'opam install cache' failed.
