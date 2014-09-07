@@ -7869,3 +7869,15 @@ ocamlfind ocamlopt -shared -thread -syntax camlp4o -package async -package sexpl
 ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmo lib/conduit.ml
 ocamlfind ocamlc -a -thread -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmo -o lib/conduit.cma
 ocamlfind ocamlopt -a -thread -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxa
+ocamlfind ocamldep -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/async_conduit.ml > lib/async_conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/async_conduit.mli > lib/async_conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/async_conduit.cmi lib/async_conduit.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/async_conduit.cmx lib/async_conduit.ml
++ ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/async_conduit.cmx lib/async_conduit.ml
+File "lib/async_conduit.ml", line 63, characters 29-37:
+Warning 27: unused variable crt_file.
+File "lib/async_conduit.ml", line 63, characters 54-62:
+Warning 27: unused variable key_file.
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro lib/async_conduit.cmx -o lib/conduit-async.cmxa
+ocamlfind ocamlopt -shared -linkall -thread -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit-async.cmxa -o lib/conduit-async.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package async -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/async_conduit.cmo lib/async_conduit.ml
