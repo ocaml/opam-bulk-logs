@@ -1018,3 +1018,13 @@ ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmx src/oUnit.ml
 ocamlfind ocamlopt -a src/oUnit2.cmx src/oUnit.cmx -o src/oUnit.cmxa
 ocamlfind ocamlopt -shared src/oUnit.cmx -o src/oUnit.cmxs
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitThreads.ml > src/oUnitThreads.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitRunnerThreads.ml > src/oUnitRunnerThreads.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmo src/oUnitRunnerThreads.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmo src/oUnitThreads.ml
+ocamlfind ocamlc -a src/oUnitRunnerThreads.cmo src/oUnitThreads.cmo -o src/oUnitThreads.cma
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmx src/oUnitRunnerThreads.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmx src/oUnitThreads.ml
+ocamlfind ocamlopt -a src/oUnitRunnerThreads.cmx src/oUnitThreads.cmx -o src/oUnitThreads.cmxa
+ocamlfind ocamlopt -shared src/oUnitThreads.cmx -o src/oUnitThreads.cmxs
+ocaml setup.ml -install 
