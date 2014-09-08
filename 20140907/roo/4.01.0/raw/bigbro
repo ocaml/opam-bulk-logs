@@ -1848,3 +1848,23 @@ Warning 3: deprecated feature: operator (&); you should use (&&) instead
 File "check_http.ml", line 19, characters 34-99:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlfind ocamlc -thread -g -pp "camlp5o -loc _loc" -package "unix threads pcre" -c main.ml
+File "main.ml", line 76, characters 3-53:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlfind ocamlc -o bigbro -thread -custom -linkpkg -package "unix threads pcre" thread_utils.cmo misc.cmo settings.cmo string_utils.cmo io_utils.cmo sysmagic.cmo base64.cmo url_syntax.cmo url.cmo media_type.cmo timer.cmo agency.cmo linear_connection.cmo http_connection.cmo stats.cmo link_info.cmo stripper.cmo skimmer.cmo fragment_skimmer.cmo link_skimmer.cmo cache.cmo check_file.cmo check_master.cmo check_http.cmo main.cmo
+ocamlfind ocamlc -pp "camlp5o -loc _loc" -I /home/opam/.opam/4.01.0/lib/camlp5 -c pcreg.ml
+File "pcreg.ml", line 110, characters 43-51:
+Warning: syntax deprecated since version 6.00
+rm -rf .generated-dependencies
+for i in *.mli *.ml ; do \
+		camlp5o pr_depend.cmo -loc _loc $i >> .generated-dependencies; \
+	done
+File "pcreg.ml", line 110, characters 43-51:
+Warning: syntax deprecated since version 6.00
+install -d /home/opam/.opam/4.01.0/bin
+install -m 755 bigbro /home/opam/.opam/4.01.0/bin/bigbro
+install -d /home/opam/.opam/4.01.0/man/man1
+install -m 644 doc/bigbro.1 /home/opam/.opam/4.01.0/man/man1/bigbro.1
+install -d /home/opam/.opam/4.01.0/doc/apps-bigbro
+cp -r doc/README doc/doc.ps doc/doc.pdf doc/html /home/opam/.opam/4.01.0/doc/apps-bigbro
+chmod -R a=rX,u+w /home/opam/.opam/4.01.0/doc/apps-bigbro
+Installing bigbro.2.0.4-rev3.
