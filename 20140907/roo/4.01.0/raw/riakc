@@ -2196,3 +2196,33 @@ ocamlfind ocamlc -a kernel/lib/typerep_kernel.cmo -o kernel/lib/typerep_kernel.c
 ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/named_intf.cmx kernel/lib/named_intf.ml
 ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/type_equal.cmx kernel/lib/type_equal.ml
 ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/typename.cmx kernel/lib/typename.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/variant_and_record_intf.cmx kernel/lib/variant_and_record_intf.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/std_internal.cmx kernel/lib/std_internal.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/make_typename.cmx kernel/lib/make_typename.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/typerepable.cmx kernel/lib/typerepable.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/type_generic_intf.cmx kernel/lib/type_generic_intf.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/type_abstract.cmx kernel/lib/type_abstract.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/type_generic.cmx kernel/lib/type_generic.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/typerep_obj.cmx kernel/lib/typerep_obj.ml
+ocamlfind ocamlopt -c -g -for-pack Typerep_kernel -I kernel/lib -o kernel/lib/std.cmx kernel/lib/std.ml
+touch kernel/lib/typerep_kernel.mli  ; if  ocamlfind ocamlopt -pack -g -I kernel/lib kernel/lib/named_intf.cmx kernel/lib/type_equal.cmx kernel/lib/typename.cmx kernel/lib/variant_and_record_intf.cmx kernel/lib/std_internal.cmx kernel/lib/make_typename.cmx kernel/lib/typerepable.cmx kernel/lib/type_abstract.cmx kernel/lib/type_generic_intf.cmx kernel/lib/type_generic.cmx kernel/lib/typerep_obj.cmx kernel/lib/std.cmx -o kernel/lib/typerep_kernel.cmx  ; then  rm -f kernel/lib/typerep_kernel.mli  ; else  rm -f kernel/lib/typerep_kernel.mli  ; exit 1; fi
+ocamlfind ocamlopt -a kernel/lib/typerep_kernel.cmx -o kernel/lib/typerep_kernel.cmxa
+ocamlfind ocamlopt -shared kernel/lib/typerep_kernel.cmx -o kernel/lib/typerep_kernel.cmxs
+ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -package camlp4.lib -modules syntax/with_typerep/pa_typerep_conv.mli > syntax/with_typerep/pa_typerep_conv.mli.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -package camlp4.lib -I syntax/with_typerep -o syntax/with_typerep/pa_typerep_conv.cmi syntax/with_typerep/pa_typerep_conv.mli
+ocamlfind ocamldep -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -package camlp4.lib -modules syntax/with_typerep/pa_typerep_conv.ml > syntax/with_typerep/pa_typerep_conv.ml.depends
+ocamlfind ocamlc -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -package camlp4.lib -I syntax/with_typerep -o syntax/with_typerep/pa_typerep_conv.cmo syntax/with_typerep/pa_typerep_conv.ml
+ocamlfind ocamlc -a syntax/with_typerep/pa_typerep_conv.cmo -o syntax/with_typerep/typerep_kernel_syntax.cma
+ocamlfind ocamlopt -c -g -ppopt -locloc -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -package camlp4.lib -I syntax/with_typerep -o syntax/with_typerep/pa_typerep_conv.cmx syntax/with_typerep/pa_typerep_conv.ml
+ocamlfind ocamlopt -a syntax/with_typerep/pa_typerep_conv.cmx -o syntax/with_typerep/typerep_kernel_syntax.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/with_typerep/typerep_kernel_syntax.cmxa -o syntax/with_typerep/typerep_kernel_syntax.cmxs
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/flat_map_intf.ml > core/lib/flat_map_intf.ml.depends
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/flat_map.mli > core/lib/flat_map.mli.depends
+ocamlfind ocamlc -c -g -ppopt syntax/with_typerep/pa_typerep_conv.cmo -I kernel/lib -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -I core/lib -I kernel/lib -o core/lib/flat_map_intf.cmo core/lib/flat_map_intf.ml
+ocamlfind ocamlc -c -g -ppopt syntax/with_typerep/pa_typerep_conv.cmo -I kernel/lib -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -I core/lib -I kernel/lib -o core/lib/flat_map.cmi core/lib/flat_map.mli
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/flat_map.ml > core/lib/flat_map.ml.depends
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/pre_core.ml > core/lib/pre_core.ml.depends
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/std.ml > core/lib/std.ml.depends
+ocamlfind ocamlc -c -g -ppopt syntax/with_typerep/pa_typerep_conv.cmo -I kernel/lib -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -I core/lib -I kernel/lib -o core/lib/pre_core.cmo core/lib/pre_core.ml
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/tagged.mli > core/lib/tagged.mli.depends
+ocamlfind ocamldep -ppopt syntax/with_typerep/pa_typerep_conv.cmo -syntax camlp4o -package bin_prot.syntax -package bin_prot -package sexplib.syntax -package sexplib -modules core/lib/type_struct.mli > core/lib/type_struct.mli.depends
