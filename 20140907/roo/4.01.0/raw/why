@@ -5584,3 +5584,57 @@ OCAMLOPT  tactics/class_tactics.ml
 OCAMLC    tactics/rewrite.ml
 OCAMLOPT  tactics/rewrite.ml
 OCAMLC    tactics/tauto.ml
+OCAMLOPT  tactics/tauto.ml
+OCAMLC    tactics/eqdecide.ml
+OCAMLOPT  tactics/eqdecide.ml
+OCAMLOPT -a -o tactics/hightactics.cmxa
+OCAMLC    kernel/byterun/coq_fix_code.c
+OCAMLC    kernel/byterun/coq_memory.c
+OCAMLC    kernel/byterun/coq_values.c
+OCAMLC    kernel/byterun/coq_interp.c
+cd kernel/byterun/ && \
+	"ocamlmklib" -oc coqrun coq_fix_code.o coq_memory.o coq_values.o coq_interp.o
+COQMKTOP -o bin/coqtop.opt
+strip bin/coqtop.opt
+COQC -nois theories/Init/Notations.v
+COQC -nois theories/Init/Logic.v
+Identifier 'IF' now a keyword
+Identifier 'exists2' now a keyword
+Identifier 'rew' now a keyword
+OCAMLC    plugins/syntax/nat_syntax.ml
+OCAMLC    plugins/syntax/nat_syntax_plugin_mod.ml
+OCAMLC -a -o plugins/syntax/nat_syntax_plugin.cma
+OCAMLOPT  plugins/syntax/nat_syntax.ml
+OCAMLOPT  plugins/syntax/nat_syntax_plugin_mod.ml
+OCAMLOPT -a -o plugins/syntax/nat_syntax_plugin.cmxa
+OCAMLOPT -shared -o plugins/syntax/nat_syntax_plugin.cmxs
+COQC -nois theories/Init/Datatypes.v
+COQC -nois theories/Init/Logic_Type.v
+COQC -nois theories/Init/Peano.v
+COQC -nois theories/Init/Specif.v
+COQC -nois theories/Init/Wf.v
+COQC -nois theories/Init/Tactics.v
+OCAMLC    plugins/extraction/miniml.mli
+OCAMLC    plugins/extraction/table.mli
+OCAMLC    plugins/extraction/table.ml
+OCAMLC    plugins/extraction/mlutil.mli
+OCAMLC    plugins/extraction/mlutil.ml
+OCAMLC    plugins/extraction/modutil.mli
+OCAMLC    plugins/extraction/modutil.ml
+OCAMLC    plugins/extraction/extraction.mli
+OCAMLC    plugins/extraction/extraction.ml
+OCAMLC    plugins/extraction/common.mli
+OCAMLC    plugins/extraction/common.ml
+OCAMLC    plugins/extraction/ocaml.mli
+OCAMLC    plugins/extraction/ocaml.ml
+OCAMLC    plugins/extraction/haskell.mli
+OCAMLC    plugins/extraction/haskell.ml
+OCAMLC    plugins/extraction/scheme.mli
+OCAMLC    plugins/extraction/scheme.ml
+OCAMLC    plugins/extraction/extract_env.mli
+OCAMLC    plugins/extraction/extract_env.ml
+OCAMLC    plugins/extraction/g_extraction.ml
+OCAMLC    plugins/extraction/extraction_plugin_mod.ml
+OCAMLC -a -o plugins/extraction/extraction_plugin.cma
+OCAMLOPT  plugins/extraction/table.ml
+OCAMLOPT  plugins/extraction/mlutil.ml
