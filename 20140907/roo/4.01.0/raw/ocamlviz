@@ -1547,3 +1547,135 @@ ocamlfind ocamlc -a -dllib -lcairo2_stubs -cclib -lcairo2_stubs -cclib -lcairo s
 ocamlfind ocamlopt -c -g -annot -I src -package lablgtk2 -package bigarray -I src -o src/cairo.cmx src/cairo.ml
 ocamlfind ocamlopt -a -cclib -lcairo2_stubs -cclib -lcairo src/cairo.cmx -o src/cairo2.cmxa
 ocamlfind ocamlopt -shared -linkall -I src -cclib -Lsrc/ -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -cclib -lcairo src/cairo2.cmxa -o src/cairo2.cmxs
+ocamlfind ocamlc -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -ccopt '-I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz  ' -ccopt -I/home/opam/.opam/4.01.0/lib/lablgtk2 -c src/cairo_gtk_stubs.c
+mv cairo_gtk_stubs.o src/cairo_gtk_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cairo_gtk_stubs -lcairo src/cairo_gtk_stubs.o
+ocamlfind ocamldep -package lablgtk2 -package bigarray -modules src/cairo_gtk.mli > src/cairo_gtk.mli.depends
+ocamlfind ocamlc -c -g -I src -package lablgtk2 -package bigarray -I src -o src/cairo_gtk.cmi src/cairo_gtk.mli
+ocamlfind ocamldep -package lablgtk2 -package bigarray -modules src/cairo_gtk.ml > src/cairo_gtk.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package lablgtk2 -package bigarray -I src -o src/cairo_gtk.cmo src/cairo_gtk.ml
+ocamlfind ocamlc -a -dllib -lcairo_gtk_stubs -cclib -lcairo_gtk_stubs src/cairo_gtk.cmo -o src/cairo_gtk.cma
+ocamlfind ocamlopt -c -g -annot -I src -package lablgtk2 -package bigarray -I src -o src/cairo_gtk.cmx src/cairo_gtk.ml
+ocamlfind ocamlopt -a -cclib -lcairo_gtk_stubs src/cairo_gtk.cmx -o src/cairo_gtk.cmxa
+ocamlfind ocamlopt -shared -I src/ src/cairo_gtk.cmx -o src/cairo_gtk.cmxs
+ocamlfind ocamldep -package bigarray -modules tests/image_create.ml > tests/image_create.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/image_create.cmo tests/image_create.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma tests/image_create.cmo -o tests/image_create.byte
+ocamlfind ocamldep -package bigarray -modules tests/matrix_set.ml > tests/matrix_set.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/matrix_set.cmo tests/matrix_set.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma tests/matrix_set.cmo -o tests/matrix_set.byte
+ocamlfind ocamldep -package bigarray -modules tests/surface_gc.ml > tests/surface_gc.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/surface_gc.cmo tests/surface_gc.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma tests/surface_gc.cmo -o tests/surface_gc.byte
+ocamlfind ocamldep -package bigarray -modules tests/test_for_stream.ml > tests/test_for_stream.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/test_for_stream.cmo tests/test_for_stream.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma tests/test_for_stream.cmo -o tests/test_for_stream.byte
+ocamlfind ocamldep -package bigarray -modules tests/test_finish.ml > tests/test_finish.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I tests -I src -o tests/test_finish.cmo tests/test_finish.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma tests/test_finish.cmo -o tests/test_finish.byte
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/arcs.ml > examples/arcs.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/arcs.cmo examples/arcs.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/arcs.cmx examples/arcs.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/arcs.cmx -o examples/arcs.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/clip.ml > examples/clip.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/clip.cmo examples/clip.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/clip.cmx examples/clip.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/clip.cmx -o examples/clip.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/curve_to.ml > examples/curve_to.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/curve_to.cmo examples/curve_to.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/curve_to.cmx examples/curve_to.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/curve_to.cmx -o examples/curve_to.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/dash.ml > examples/dash.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/dash.cmo examples/dash.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/dash.cmx examples/dash.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/dash.cmx -o examples/dash.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/fill_stroke.ml > examples/fill_stroke.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/fill_stroke.cmo examples/fill_stroke.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/fill_stroke.cmx examples/fill_stroke.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/fill_stroke.cmx -o examples/fill_stroke.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/fill_style.ml > examples/fill_style.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/fill_style.cmo examples/fill_style.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/fill_style.cmx examples/fill_style.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/fill_style.cmx -o examples/fill_style.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/gradient.ml > examples/gradient.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gradient.cmo examples/gradient.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gradient.cmx examples/gradient.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/gradient.cmx -o examples/gradient.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/set_line_cap.ml > examples/set_line_cap.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/set_line_cap.cmo examples/set_line_cap.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/set_line_cap.cmx examples/set_line_cap.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/set_line_cap.cmx -o examples/set_line_cap.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/set_line_join.ml > examples/set_line_join.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/set_line_join.cmo examples/set_line_join.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/set_line_join.cmx examples/set_line_join.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/set_line_join.cmx -o examples/set_line_join.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/text.ml > examples/text.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text.cmo examples/text.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text.cmx examples/text.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/text.cmx -o examples/text.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/text_align_center.ml > examples/text_align_center.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_align_center.cmo examples/text_align_center.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_align_center.cmx examples/text_align_center.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/text_align_center.cmx -o examples/text_align_center.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/text_extents.ml > examples/text_extents.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_extents.cmo examples/text_extents.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_extents.cmx examples/text_extents.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/text_extents.cmx -o examples/text_extents.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/text_rotate.ml > examples/text_rotate.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_rotate.cmo examples/text_rotate.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/text_rotate.cmx examples/text_rotate.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/text_rotate.cmx -o examples/text_rotate.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/gtk_demo.ml > examples/gtk_demo.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmo examples/gtk_demo.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmx examples/gtk_demo.ml
+ocamlfind ocamlopt -g -I src -I src/ -linkpkg -package lablgtk2 -package bigarray src/cairo2.cmxa src/cairo_gtk.cmxa examples/gtk_demo.cmx -o examples/gtk_demo.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/graphics_demo.ml > examples/graphics_demo.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
++ ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+File "examples/graphics_demo.ml", line 41, characters 11-26:
+Error: Unbound module Graphics
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libcairo2_stubs.a src/dllcairo2_stubs.so src/cairo2.cma src/cairo2.cmxa src/cairo2.a src/cairo2.cmxs src/libcairo_gtk_stubs.a src/dllcairo_gtk_stubs.so src/cairo_gtk.cma src/cairo_gtk.cmxa src/cairo_gtk.a src/cairo_gtk.cmxs tests/image_create.byte tests/matrix_set.byte tests/surface_gc.byte tests/test_for_stream.byte tests/test_finish.byte examples/arcs.native examples/clip.native examples/curve_to.native examples/dash.native examples/fill_stroke.native examples/fill_style.native examples/gradient.native examples/set_line_cap.native examples/set_line_join.native examples/text.native examples/text_align_center.native examples/text_extents.native examples/text_rotate.native examples/gtk_demo.native examples/graphics_demo.native examples/word_cloud/run.native examples/recording.native examples/stroke.byte examples/fill.byte examples/showtext.byte examples/paint.byte examples/mask.byte examples/setsourcergba.byte examples/setsourcegradient.byte examples/path_close.byte examples/textextents.byte examples/diagram.byte examples/draw.byte examples/tips_ellipse.byte examples/tips_letter.byte examples/tips_font.byte -tag debug' terminated with error code 10")
+Removing cairo2.0.4.6.
+[ERROR] The compilation of cairo2.0.4.6 failed.
+  ocamlfind remove cairo2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/cairo2
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   lablgtk.2.16.0
+ - install   camlp4.4.01.0
+The following failed
+ - install   cairo2.0.4.6
+Due to the errors, the following have been cancelled
+ - install   ocamlviz.1.01
+
+#=== ERROR while installing cairo2.0.4.6 ======================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.01.0/build/cairo2.0.4.6
+# compiler             4.01.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.env
+# stdout-file          /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.out
+# stderr-file          /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/gtk_demo.ml > examples/gtk_demo.ml.depends
+# ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmo examples/gtk_demo.ml
+# ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmx examples/gtk_demo.ml
+# ocamlfind ocamlopt -g -I src -I src/ -linkpkg -package lablgtk2 -package bigarray src/cairo2.cmxa src/cairo_gtk.cmxa examples/gtk_demo.cmx -o examples/gtk_demo.native
+# ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/graphics_demo.ml > examples/graphics_demo.ml.depends
+# ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+# + ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+# File "examples/graphics_demo.ml", line 41, characters 11-26:
+# Error: Unbound module Graphics
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libcairo2_stubs.a src/dllcairo2_stubs.so src/cairo2.cma src/cairo2.cmxa src/cairo2.a src/cairo2.cmxs src/libcairo_gtk_stubs.a src/dllcairo_gtk_stubs.so src/cairo_gtk.cma src/cairo_gtk.cmxa src/cairo_gtk.a src/cairo_gtk.cmxs tests/image_create.byte tests/matrix_set.byte tests/surface_gc.byte tests/test_for_stream.byte tests/test_fini...[truncated]
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140808005806.export"
+'opam install ocamlviz' failed.
