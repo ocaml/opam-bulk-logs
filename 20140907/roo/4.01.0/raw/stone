@@ -219,3 +219,13 @@ pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/l
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_utils.cmx src/omd_utils.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_representation.cmx src/omd_representation.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_backend.cmx src/omd_backend.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_lexer.cmx src/omd_lexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_parser.cmx src/omd_parser.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd.cmx src/omd.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/omd_utils.cmx src/omd_representation.cmx src/omd_backend.cmx src/omd_lexer.cmx src/omd_parser.cmx src/omd.cmx -o src/omd.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/omd.cmxa src/omd_utils.cmx src/omd_representation.cmx src/omd_backend.cmx src/omd_lexer.cmx src/omd_parser.cmx src/omd.cmx -o src/omd.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -modules src/omd_main.ml > src/omd_main.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -modules src/omd_main.mli > src/omd_main.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package bigarray -I src -o src/omd_main.cmi src/omd_main.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package bigarray -I src -o src/omd_main.cmx src/omd_main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg -package bigarray src/omd.cmxa src/omd_main.cmx -o src/omd_main.native
