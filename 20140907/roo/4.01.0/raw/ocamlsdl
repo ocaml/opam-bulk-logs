@@ -510,3 +510,73 @@ ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdl_s
 ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlcdrom_stub.c
 ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdltimer_stub.c
 ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdljoystick_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlkey_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlmouse_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlevent_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlvideo_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlwm_stub.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " common.c
+ocamlc.opt -ccopt "-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -g -O " sdlrwops_stub.c
+ocamlmklib -v -o sdl -oc sdlstub sdl_stub.o sdlcdrom_stub.o sdltimer_stub.o sdljoystick_stub.o sdlkey_stub.o sdlmouse_stub.o sdlevent_stub.o sdlvideo_stub.o sdlwm_stub.o common.o sdlrwops_stub.o -L/usr/lib/x86_64-linux-gnu -lSDL
++ gcc -shared -o ./dllsdlstub.so sdl_stub.o sdlcdrom_stub.o sdltimer_stub.o sdljoystick_stub.o sdlkey_stub.o sdlmouse_stub.o sdlevent_stub.o sdlvideo_stub.o sdlwm_stub.o common.o sdlrwops_stub.o   -Wl,-rpath,/usr/lib/x86_64-linux-gnu -L/usr/lib/x86_64-linux-gnu -lSDL
++ ar rc ./libsdlstub.a  sdl_stub.o sdlcdrom_stub.o sdltimer_stub.o sdljoystick_stub.o sdlkey_stub.o sdlmouse_stub.o sdlevent_stub.o sdlvideo_stub.o sdlwm_stub.o common.o sdlrwops_stub.o; ranlib ./libsdlstub.a
+ocamlopt.opt -c  -unsafe sdl.ml
+ocamlopt.opt -c  -unsafe sdlcdrom.ml
+ocamlopt.opt -c  -unsafe sdltimer.ml
+ocamlopt.opt -c  -unsafe sdljoystick.ml
+ocamlopt.opt -c  -unsafe sdlkey.ml
+ocamlopt.opt -c  -unsafe sdlmouse.ml
+ocamlopt.opt -c  -unsafe sdlevent.ml
+ocamlopt.opt -c  -unsafe sdlvideo.ml
+ocamlopt.opt -c  -unsafe sdlwm.ml
+ocamlmklib -v -o sdl -oc sdlstub sdl.cmx sdlcdrom.cmx sdltimer.cmx sdljoystick.cmx sdlkey.cmx sdlmouse.cmx sdlevent.cmx sdlvideo.cmx sdlwm.cmx -L/usr/lib/x86_64-linux-gnu -lSDL
++ /home/opam/.opam/4.01.0/bin/ocamlopt -a -o sdl.cmxa  sdl.cmx sdlcdrom.cmx sdltimer.cmx sdljoystick.cmx sdlkey.cmx sdlmouse.cmx sdlevent.cmx sdlvideo.cmx sdlwm.cmx -cclib -lsdlstub  -ccopt -Wl,-rpath,/usr/lib/x86_64-linux-gnu -cclib -L/usr/lib/x86_64-linux-gnu -cclib -lSDL 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlsdl.0.9.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlsdl.0.9.1/src'
+ocamlfind install sdl ../META \
+          *.cma lib*.a *.cmi *.mli \
+          *.cmxa sdl*.a *.cmx \
+          dll*.so
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlwm.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlvideo.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdltimer.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlmouse.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlkey.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdljoystick.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlevent.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlcdrom.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.cmx
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.a
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlwm.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlvideo.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlttf.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdltimer.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlmouse.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlmixer.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlloader.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlkey.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdljoystick.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlgl.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlgfx.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlevent.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlcdrom.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.mli
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlwm.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlvideo.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdltimer.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlmouse.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlkey.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdljoystick.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlevent.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdlcdrom.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.cmi
+Installed /home/opam/.opam/4.01.0/lib/sdl/libsdlstub.a
+Installed /home/opam/.opam/4.01.0/lib/sdl/sdl.cma
+Installed /home/opam/.opam/4.01.0/lib/sdl/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsdlstub.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsdlstub.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlsdl.0.9.1/src'
+Installing ocamlsdl.0.9.1.
