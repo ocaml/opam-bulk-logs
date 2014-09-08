@@ -2371,3 +2371,33 @@ ocamllex -o obj_lexer.ml obj_lexer.mll
 23 states, 595 transitions, table size 2518 bytes
 ocamlfind ocamlopt -package camlzip -I ../Typography/_build -c -o obj_lexer.cmx obj_lexer.ml
 ocamlfind ocamlopt -package camlzip -I ../Typography/_build -c -o obj_parser.cmx obj_parser.ml
+ocamlfind ocamlopt -package camlzip -I ../Typography/_build -c -o pdf_parser.cmx pdf_parser.ml
+File "pdf_parser.ml", line 217, characters 12-15:
+Warning 26: unused variable obj.
+File "pdf_parser.ml", line 225, characters 12-16:
+Warning 26: unused variable pos0.
+File "pdf_parser.ml", line 239, characters 12-18:
+Warning 26: unused variable strend.
+ocamlfind ocamlopt -package camlzip -I ../Typography/_build -a -o pdf_parser.cmxa pdfutil.cmx obj_lexer.cmx obj_parser.cmx pdf_parser.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Pdf'
+make -C plot plot.cmxa
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/plot'
+ocamlfind ocamlopt -package camomile -I ../Typography/_build -I ../Format -a -o plot.cmxa plot.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/plot'
+make -C Patoline patoline
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Patoline'
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Language.cmx Language.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Config.cmx Config.ml
+ocamlfind ocamlc -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -o UnicodeScripts -package bigarray -package camomile -linkpkg UnicodeScripts.ml
+./UnicodeScripts
+cat  Parser.dyp SubSuper.dyp > tmp.dyp
+dypgen --no-mli --merge-warning tmp.dyp
+Warning: non terminal `accent' is never in a left-hand side.
+Warning: non terminal `limits_operator' is never in a left-hand side.
+Warning: non terminal `operator' is never in a left-hand side.
+Warning: non terminal `symbol' is never in a left-hand side.
+Warning: non terminal `var_or_symbol' is never in a right-hand side.
+mv tmp.ml Parser.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -c -o Util.cmx Util.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -thread -c -o Build.cmx Build.ml
+ocamlfind ocamlopt -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package dyp -package camomile -I ../Rbuffer -rectypes -c -o Parser.cmx Parser.ml
