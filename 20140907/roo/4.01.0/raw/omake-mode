@@ -2425,3 +2425,272 @@ findlib: [WARNING] Interface std.cmi occurs in several directories: num/lib, lib
 touch num/lib/sexplib_num.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I num/lib num/lib/sexplib_num_conv.cmx num/lib/std.cmx -o num/lib/sexplib_num.cmx  ; then  rm -f num/lib/sexplib_num.mli  ; else  rm -f num/lib/sexplib_num.mli  ; exit 1; fi
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxa
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared num/lib/sexplib_num.cmxa num/lib/sexplib_num.cmx -o num/lib/sexplib_num.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package unix -modules unix/lib/sexplib_unix_conv.ml > unix/lib/sexplib_unix_conv.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -package bigarray -package unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmo unix/lib/sexplib_unix_conv.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -pack -g unix/lib/sexplib_unix_conv.cmo -o unix/lib/sexplib_unix.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a unix/lib/sexplib_unix.cmo -o unix/lib/sexplib_unix.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -package bigarray -package unix -for-pack Sexplib_unix -I unix/lib -I lib -o unix/lib/sexplib_unix_conv.cmx unix/lib/sexplib_unix_conv.ml
+touch unix/lib/sexplib_unix.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I unix/lib unix/lib/sexplib_unix_conv.cmx -o unix/lib/sexplib_unix.cmx  ; then  rm -f unix/lib/sexplib_unix.mli  ; else  rm -f unix/lib/sexplib_unix.mli  ; exit 1; fi
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared unix/lib/sexplib_unix.cmxa unix/lib/sexplib_unix.cmx -o unix/lib/sexplib_unix.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmxa syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules top/sexplib_install_printers.ml > top/sexplib_install_printers.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmo top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a top/sexplib_install_printers.cmo -o top/sexplib_top.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I +compiler-libs -I top -o top/sexplib_install_printers.cmx top/sexplib_install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a top/sexplib_install_printers.cmx -o top/sexplib_top.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared top/sexplib_top.cmxa top/sexplib_install_printers.cmx -o top/sexplib_top.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix_conv.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.cmi
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.cma
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.a
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/sexplib_unix.cmx
+Installed /home/opam/.opam/4.01.0/lib/sexplib_unix/META
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/std.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.cmi
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.cma
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.a
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/sexplib_num.cmx
+Installed /home/opam/.opam/4.01.0/lib/sexplib_num/META
+W: Cannot find source header for module Parser in library sexplib
+W: Cannot find source header for module Parser_with_layout in library sexplib
+Installed /home/opam/.opam/4.01.0/lib/sexplib/conv.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/conv_error.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/exn_magic.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/macro.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/path.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pre_sexp.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexp.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexp_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexp_with_layout.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/src_pos.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/std.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/type.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/type_with_layout.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/lexer.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.cmi
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.cma
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.a
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib.cmx
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_install_printers.ml
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_top.cma
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_top.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_top.a
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_top.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_install_printers.cmi
+Installed /home/opam/.opam/4.01.0/lib/sexplib/sexplib_install_printers.cmx
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.a
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/sexplib/pa_sexp_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/sexplib/META
+Installing sexplib.111.25.00.
+Building variantslib.109.15.03:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ variantslib
+Package version: ..................................... 109.15.03
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'variantslib' in library variantslib
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/variant.mli > lib/variant.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/variant.cmi lib/variant.mli
+ocamlfind ocamldep -modules lib/variant.ml > lib/variant.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/variant.cmo lib/variant.ml
+ocamlfind ocamlc -pack -g lib/variant.cmo -o lib/variantslib.cmo
+ocamlfind ocamlc -a lib/variantslib.cmo -o lib/variantslib.cma
+ocamlfind ocamlopt -c -g -for-pack Variantslib -I lib -o lib/variant.cmx lib/variant.ml
+touch lib/variantslib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/variant.cmx -o lib/variantslib.cmx  ; then  rm -f lib/variantslib.mli  ; else  rm -f lib/variantslib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/variantslib.cmx -o lib/variantslib.cmxa
+ocamlfind ocamlopt -shared lib/variantslib.cmx -o lib/variantslib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.mli > syntax/pa_variants_conv.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmi syntax/pa_variants_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.ml > syntax/pa_variants_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmo syntax/pa_variants_conv.ml
+ocamlfind ocamlc -a syntax/pa_variants_conv.cmo -o syntax/pa_variants_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmx syntax/pa_variants_conv.ml
+ocamlfind ocamlopt -a syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variant.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/META
+Installing variantslib.109.15.03.
+Building custom_printf.111.25.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ custom_printf
+Package version: ..................................... 111.25.00
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_macro: .................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+pkg_sexplib: ......................................... /home/opam/.opam/4.01.0/lib/sexplib
+pkg_sexplib_syntax: .................................. /home/opam/.opam/4.01.0/lib/sexplib
+pkg_pa_ounit: ........................................ /home/opam/.opam/4.01.0/lib/pa_ounit
+pkg_pa_ounit_syntax: ................................. /home/opam/.opam/4.01.0/lib/pa_ounit
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/custom_printf_dummy.ml > lib/custom_printf_dummy.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/custom_printf_dummy.cmo lib/custom_printf_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/custom_printf_dummy.cmo -o lib/custom_printf.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -o lib/custom_printf_dummy.cmx lib/custom_printf_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/custom_printf.cmxa lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -modules syntax/pa_custom_printf.mli > syntax/pa_custom_printf.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmi syntax/pa_custom_printf.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -modules syntax/pa_custom_printf.ml > syntax/pa_custom_printf.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
