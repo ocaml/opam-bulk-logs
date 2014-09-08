@@ -94,3 +94,29 @@ cp /tmp/version65bcd7.ml src/version.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/icons.cmx src/icons.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/args.cmx src/args.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/base64.cmx src/base64.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/licenses.cmx src/licenses.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/search.cmx src/search.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/search_js.cmx src/search_js.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/tables.cmx src/tables.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +ocamldoc -w Ae -warn-error A -for-pack Argot -I src -o src/main.cmx src/main.ml
+touch argot.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlopt.opt -pack -I src src/icons.cmx src/definitionParser.cmx src/definitionLexer.cmx src/utils.cmx src/definitions.cmx src/version.cmx src/args.cmx src/base64.cmx src/licenses.cmx src/search.cmx src/search_js.cmx src/tables.cmx src/main.cmx -o argot.cmx  ; then  rm -f argot.mli  ; else  rm -f argot.mli  ; exit 1; fi
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -shared argot.cmx -o argot.cmxs
+echo 'argot.cmo' > argot.itarget
+(test -x /home/opam/.opam/4.01.0/bin/ocamlopt && test TRUE = TRUE && echo 'argot.cmxs' >> argot.itarget) || true
+(test -x /home/opam/.opam/4.01.0/bin/ocamljava && echo 'argot.cmjs' >> argot.itarget) || true
+/home/opam/.opam/4.01.0/bin/ocamlbuild -classic-display -no-links argot.otarget
+cp /tmp/version495ee6.ml src/version.ml
+if [ -x "/home/opam/.opam/4.01.0/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind query argot && /home/opam/.opam/4.01.0/bin/ocamlfind remove argot || true; \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind install argot META `pwd`/_build/*.cmo `pwd`/_build/*.cm?s; \
+	else \
+	  mkdir -p `/home/opam/.opam/4.01.0/bin/ocamldoc -customdir`; \
+	  for ext in cmo cmxs cmjs; do \
+	    test -f `pwd`/_build/argot.$ext && cp `pwd`/_build/argot.$ext `/home/opam/.opam/4.01.0/bin/ocamldoc -customdir` || true; \
+	  done \
+	fi
+ocamlfind: Package `argot' not found
+Installed /home/opam/.opam/4.01.0/lib/argot/argot.cmxs
+Installed /home/opam/.opam/4.01.0/lib/argot/argot.cmo
+Installed /home/opam/.opam/4.01.0/lib/argot/META
+Installing argot.1.1.
