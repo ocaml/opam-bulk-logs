@@ -74,3 +74,15 @@ ocamlc.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g parser_factory.mli
 ocamlopt.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g parser_factory.ml
 ocamlc.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g parser_hints.mli
 ocamlopt.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g parser_hints.ml
+ocamlc.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g tags.mli
+ocamlopt.opt -c -pp camlp4orf -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g tags.ml
+ocamlopt.opt -c -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g otags.ml
+ocamlopt.opt -w Ae -I +camlp4 -I +camlp4/Camlp4Parsers -g -o otags \
+		unix.cmxa dynlink.cmxa camlp4fulllib.cmxa monitor_line_directive.cmx conf.cmx global.cmx misc.cmx add_quotation.cmx types.cmx source_channel.cmx translate_location.cmx reparse.cmx camlp4_names.cmx emacs.cmx vi.cmx parser_factory.cmx parser_hints.cmx tags.cmx otags.cmx
+mkdir -p /home/opam/.opam/4.01.0/bin
+mkdir -p /home/opam/.opam/4.01.0/share/man/man1
+mkdir -p /home/opam/.opam/4.01.0/lib/ocaml/otags
+install -m 755 otags /home/opam/.opam/4.01.0/bin
+install -m 644 doc/otags.1 /home/opam/.opam/4.01.0/share/man/man1/otags.1
+install -m 644 otags_dump_ast.cma /home/opam/.opam/4.01.0/lib/ocaml/otags
+Installing otags.4.01.1.
