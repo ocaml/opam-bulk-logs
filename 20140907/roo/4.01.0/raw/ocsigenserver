@@ -1501,3 +1501,30 @@ ocamlfind: Package `wikidoc' not found
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/xhtml_f.cmx lib/xhtml_f.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/xml_wrap.cmx lib/xml_wrap.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/svg_f.cmx lib/svg_f.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/svg.cmx lib/svg.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/html5_f.cmx lib/html5_f.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/xhtml.cmx lib/xhtml.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package str -I lib -o lib/html5.cmx lib/html5.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/xml_iter.cmx lib/xml_print.cmx lib/xml.cmx lib/xhtml_f.cmx lib/xhtml.cmx lib/xml_wrap.cmx lib/svg_f.cmx lib/svg.cmx lib/html5_f.cmx lib/html5.cmx -o lib/tyxml.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/tyxml.cmxa lib/xml_iter.cmx lib/xml_print.cmx lib/xml.cmx lib/xhtml_f.cmx lib/xhtml.cmx lib/xml_wrap.cmx lib/svg_f.cmx lib/svg.cmx lib/html5_f.cmx lib/html5.cmx -o lib/tyxml.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/xml_iter.cmo lib/xml_wrap.cmo lib/xml_print.cmo lib/xhtml_f.cmo lib/svg_f.cmo lib/html5_f.cmo -o lib/tyxml_f.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/xml_iter.cmx lib/xml_wrap.cmx lib/xml_print.cmx lib/xhtml_f.cmx lib/svg_f.cmx lib/html5_f.cmx -o lib/tyxml_f.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/tyxml_f.cmxa lib/xml_iter.cmx lib/xml_wrap.cmx lib/xml_print.cmx lib/xhtml_f.cmx lib/svg_f.cmx lib/html5_f.cmx -o lib/tyxml_f.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -modules syntax/pa_tyxml.mli > syntax/pa_tyxml.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -I syntax -o syntax/pa_tyxml.cmi syntax/pa_tyxml.mli
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q syntax/xmllexer.mll
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -modules syntax/xmllexer.ml > syntax/xmllexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -pp camlp4rf -modules syntax/basic_types.ml > syntax/basic_types.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q syntax/camllexer.mll
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -modules syntax/camllexer.ml > syntax/camllexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -I syntax -o syntax/xmllexer.cmo syntax/xmllexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -pp camlp4rf -modules syntax/xhtmlparser.ml > syntax/xhtmlparser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -I syntax -o syntax/camllexer.cmo syntax/camllexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package camlp4.lib -pp camlp4rf -modules syntax/xhtmlsyntax.ml > syntax/xhtmlsyntax.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/xhtmlparser.cmo syntax/xhtmlparser.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/basic_types.cmo syntax/basic_types.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -package camlp4 -package camlp4.lib -pp camlp4rf -I syntax -o syntax/xhtmlsyntax.cmo syntax/xhtmlsyntax.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -pack -g syntax/xmllexer.cmo syntax/basic_types.cmo syntax/camllexer.cmo syntax/xhtmlparser.cmo syntax/xhtmlsyntax.cmo -o syntax/pa_tyxml.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a syntax/pa_tyxml.cmo -o syntax/pa_tyxml.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -I syntax -o syntax/xmllexer.cmx syntax/xmllexer.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -package camlp4 -package camlp4.lib -for-pack Pa_tyxml -I syntax -o syntax/camllexer.cmx syntax/camllexer.ml
