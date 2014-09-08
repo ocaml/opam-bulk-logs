@@ -19,3 +19,137 @@ The following actions will be performed:
 [default] Synchronizing with /home/opam/opam-repository/archives/json-static.0.9.8+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/json-wheel.1.0.6+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/ocamlnet.3.7.5+opam.tar.gz
+sending incremental file list
+sending incremental file list
+sending incremental file list
+json-static.0.9.8+opam.tar.gz
+json-wheel.1.0.6+opam.tar.gz
+ocamlnet.3.7.5+opam.tar.gz
+
+sent 32,735 bytes  received 35 bytes  65,540.00 bytes/sec
+total size is 32,598  speedup is 0.99
+
+sent 32,294 bytes  received 35 bytes  64,658.00 bytes/sec
+total size is 32,156  speedup is 0.99
+
+sent 3,417,752 bytes  received 35 bytes  6,835,574.00 bytes/sec
+total size is 3,416,789  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+Hunk #3 succeeded at 3570 (offset -8 lines).
+Hunk #4 succeeded at 3585 (offset -8 lines).
+Hunk #5 succeeded at 3602 (offset -8 lines).
+Hunk #6 succeeded at 3746 (offset -8 lines).
+Hunk #7 succeeded at 4532 (offset -8 lines).
+Hunk #8 succeeded at 4678 (offset -8 lines).
+Hunk #9 succeeded at 4910 (offset -8 lines).
+Hunk #10 succeeded at 5143 (offset -8 lines).
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.5:
+  ./configure -bindir /home/opam/.opam/4.01.0/bin -disable-pcre -disable-gtk2 -disable-ssl -disable-zip -disable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.5
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... found
+Checking whether out-of-heap values are supported and mutable... yes
+Checking for POSIX shared memory... found
+Checking for POSIX semaphores (anonymous)... found
+Checking for POSIX semaphores (named)... found
+Checking for POSIX spawn... found
+Checking for POSIX fadvise... found
+Checking for POSIX fallocate... found
+Checking for POSIX memalign... found
+Checking for syslog... found
+Checking for POSIX functions like openat... found
+Checking for fchdir... found
+Checking for fdopendir... found
+Checking for realpath... found
+Checking for grantpt (System V style PTYs)... found
+Checking for posix_openpt (System V style PTYs)... found
+Checking for initgroups...found
+Checking for POSIX clocks...found
+Checking for POSIX timers...found
+Checking for eventfd (Linux)...found
+Checking for timerfd (Linux)...found
+Checking for epoll (Linux)...found
+Checking for compare_and_swap (GCC)...found
+Checking for GPROF... found
+Checking for O_SHARE_DELETE... yes
+Checking for O_CLOEXEC... yes
+Checking for getpeereid... not found
+Checking for getpeerucred... not found
+Checking whether netcamlbox and netmulticore are supported... yes
+Preprocessor for ocamlrpcgen: cpp
+
+Effective options:
+    -disable-pcre
+    -disable-full-pcre
+    -disable-gtk
+    -disable-gtk2
+    -disable-tcl
+    -disable-ssl
+    -disable-zip
+    -disable-crypto
+    -disable-apache
+    -with-nethttpd
+    -without-rpc-auth-dh
+    -bindir /home/opam/.opam/4.01.0/bin
+    -datadir /home/opam/.opam/4.01.0/lib/netstring
+    -cpp cpp
+
+Writing Makefile.conf
+
+Please check Makefile.conf.
+
+You can now compile Ocamlnet by invoking
+   make all
+for the bytecode compiler, and optionally by invoking
+   make opt
+for the native-code compiler (if supported on your architecture).
+Finally, a
+   make install
+will install the package(s).
+( cd tools/cppo-0.9.4 && make all )
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+352 states, 13139 transitions, table size 54668 bytes
+3450 additional bytes used for bindings
+ocamlc -o cppo -dtypes unix.cma cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cp cppo cppo-ocamlnet
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/tools/cppo-0.9.4'
+for pkg in netsys netshm netstring equeue shell netgssapi rpc-generator rpc rpc-auth-local pop smtp netclient netcgi2 netplex netcgi2-plex netcamlbox netmulticore nethttpd nethttpd-for-netcgi2; do \
+		( cd src/$pkg && make -f Makefile.pre generate ) || exit; \
+		( cd src/$pkg && make -f Makefile.pre depend ) || exit; \
+		( cd src/$pkg && make all ) || exit; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+sed -e 's/@VERSION@/3.7.5/' \
+	    -e 's/@AUTHDHREQS@//' \
+	    -e 's/@PREFERRED_CGI_PKG@//' \
+	    -e 's/@REGEXP_PROVIDER@/str/' \
+	    -e 's/@COMPAT_PCRE_PROVIDER@//' \
+ 	    -e 's/@ZIP_PROVIDER@//' \
+		META.in >META
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+ocamlfind ocamldep -pp "../../tools/cppo-0.9.4/cppo  "  *.ml *.mli >depend || { rm -f depend; exit 1; }

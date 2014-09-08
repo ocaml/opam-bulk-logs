@@ -1758,3 +1758,169 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules src/uuidm.mli > src/uuidm.mli.depends
+ocamlfind ocamlc -c -g -I src -o src/uuidm.cmi src/uuidm.mli
+ocamlfind ocamldep -modules src/uuidm.ml > src/uuidm.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/uuidm.cmo src/uuidm.ml
+ocamlfind ocamlc -a src/uuidm.cmo -o src/uuidm.cma
+ocamlfind ocamlopt -c -g -I src -o src/uuidm.cmx src/uuidm.ml
+ocamlfind ocamlopt -a src/uuidm.cmx -o src/uuidm.cmxa
+ocamlfind ocamlopt -shared src/uuidm.cmx -o src/uuidm.cmxs
+ocamlfind ocamldep -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/test.cmx -o test/test.native
+ocamlfind ocamldep -modules test/perf.ml > test/perf.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/perf.cmo test/perf.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/perf.cmx test/perf.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/perf.cmx -o test/perf.native
+ocamlfind ocamldep -modules test/uuidtrip.ml > test/uuidtrip.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/uuidtrip.cmo test/uuidtrip.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/uuidtrip.cmx test/uuidtrip.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/uuidtrip.cmx -o test/uuidtrip.native
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.mli
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cma
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.a
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmxs
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmi
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmx
+Installed /home/opam/.opam/4.01.0/lib/uuidm/META
+Installing uuidm.0.9.5.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building config-file.1.2:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make all
+  make install
+checking for ocamlfind... /home/opam/.opam/4.01.0/bin/ocamlfind
+checking for camlp4... /home/opam/.opam/4.01.0/bin/camlp4
+configure: creating ./config.status
+config.status: creating master.Makefile
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -o config_file.cmxs -shared config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmxs
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.o
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmo
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmi
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.mli
+Installed /home/opam/.opam/4.01.0/lib/config-file/META
+Installing config-file.1.2.
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2 and /home/opam/.opam/4.01.0/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+checking for GTK+ - version >= 2.0.0... yes (version 2.24.23)
+checking pkg-config is at least version 0.9.0... yes
+checking for GTKGL... no
+checking for GLADE... yes
+checking for RSVG... no
+checking for GNOMECANVAS... yes
+checking for GNOMEUI... no
+checking for PANEL... no
+checking for GTKSPELL... no
+checking for GTKSOURCEVIEW... no
+checking for GTKSOURCEVIEW2... yes
+checking for GTKQUARTZ... no
+checking for GTKALL... yes
+configure: creating ./config.status
+config.status: creating config.make
+
+LablGTK configuration:
+	threads  	system
+	native dynlink 	yes
+	GtkGLArea 	not found
+	libglade 	yes
+	librsvg  	not found
+	libgnomecanvas 	yes
+	libgnomeui 	not found
+	libpanelapplet 	not found
+	gtkspell 	not found
+	gtksourceview 1 	not found
+	gtksourceview 2 	yes
+	quartz    	not found
+
+	debug   	no
+	C compiler	gcc
+make -C src world
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+ocamlc.opt -c -pp "camlp4o -impl" -impl varcc.ml4
+ocamlc.opt   -o varcc varcc.cmo
+rm -f *_tags.h *_tags.c
+./varcc gdkpixbuf_tags.var
+./varcc gdk_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O' -verbose ml_gdkpixbuf.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gdkpixbuf.c'
+./varcc pango_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O' -verbose ml_gdk.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gdk.c'
+./varcc glib_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O' -verbose ml_glib.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_glib.c'
+<command-line>: In function 'ml_poll':
+<command-line>:303:5: warning: implicit declaration of function 'caml_enter_blocking_section' [-Wimplicit-function-declaration]
+<command-line>:305:5: warning: implicit declaration of function 'caml_leave_blocking_section' [-Wimplicit-function-declaration]
+<command-line>: In function 'ml_g_io_channel_read':
+<command-line>:367:3: warning: 'g_io_channel_read' is deprecated (declared at /usr/include/glib-2.0/glib/giochannel.h:166): Use 'g_io_channel_read_chars' instead [-Wdeprecated-declarations]
+./varcc gobject_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O' -verbose ml_gobject.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz -I/usr/include/libglade-2.0 -I/usr/include/libxml2 -I/usr/include/libgnomecanvas-2.0 -I/usr/include/gail-1.0 -I/usr/include/libart-2.0 -I/usr/include/gtksourceview-2.0   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gobject.c'
+<command-line>: In function 'ml_g_type_init':
+<command-line>:102:1: warning: 'g_type_init' is deprecated (declared at /usr/include/glib-2.0/gobject/gtype.h:667) [-Wdeprecated-declarations]
