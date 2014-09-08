@@ -151,3 +151,98 @@ Building cppo.0.9.4:
 echo 'let cppo_version = "0.9.4"' > cppo_version.ml
 ocamlyacc cppo_parser.mly
 ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
+cd ocamlbuild_plugin && ocamlbuild -use-ocamlfind ocamlbuild_cppo.cma ocamlbuild_cppo.cmxa ocamlbuild_cppo.a ocamlbuild_cppo.cmxs
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.mli > ocamlbuild_cppo.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmi ocamlbuild_cppo.mli
+ocamlfind ocamldep -package ocamlbuild -modules ocamlbuild_cppo.ml > ocamlbuild_cppo.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -o ocamlbuild_cppo.cmo ocamlbuild_cppo.ml
+ocamlfind ocamlc -a -package ocamlbuild ocamlbuild_cppo.cmo -o ocamlbuild_cppo.cma
+ocamlfind ocamlopt -c -package ocamlbuild -o ocamlbuild_cppo.cmx ocamlbuild_cppo.ml
+ocamlfind ocamlopt -a -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild ocamlbuild_cppo.cmx -o ocamlbuild_cppo.cmxs
+ocamlfind install -patch-version 0.9.4 "cppo_ocamlbuild" \
+		META ocamlbuild_plugin/_build/ocamlbuild_cppo.cmi ocamlbuild_plugin/_build/ocamlbuild_cppo.cma ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxa ocamlbuild_plugin/_build/ocamlbuild_cppo.a ocamlbuild_plugin/_build/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.a
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cma
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/ocamlbuild_cppo.cmi
+Installed /home/opam/.opam/4.01.0/lib/cppo_ocamlbuild/META
+Installing cppo.0.9.4.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx rowDisplacement.ml
