@@ -3145,3 +3145,119 @@ ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
 ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
 ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
 ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building ocamlrss.2.2.2:
+  make
+  make install
+ocamlfind ocamlc -package xmlm,netstring -annot -c -annot rss_types.ml
+ocamlfind ocamlc -package xmlm,netstring -annot -c -annot rss_io.ml
+ocamlfind ocamlc -package xmlm,netstring -annot -c -annot rss.mli
+ocamlfind ocamlc -package xmlm,netstring -annot -c -annot rss.ml
+ocamlfind ocamlc -package xmlm,netstring -annot -o rss.cma -a rss_types.cmo rss_io.cmo rss.cmo
+ocamlfind ocamlopt -package xmlm,netstring  -c -annot rss_types.ml
+ocamlfind ocamlopt -package xmlm,netstring  -c -annot rss_io.ml
+ocamlfind ocamlopt -package xmlm,netstring  -c -annot rss.ml
+ocamlfind ocamlopt -package xmlm,netstring  -o rss.cmxa -a rss_types.cmx rss_io.cmx rss.cmx
+ocamlfind ocamlopt -package xmlm,netstring  -I . -shared -linkall -o rss.cmxs rss.cmxa
+ocamlfind install rss META LICENSE rss.cmi rss.cma rss.cmxa rss.a rss.cmxs rss.mli rss.cmx
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.cmx
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.mli
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.cmxs
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.a
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.cmxa
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.cma
+Installed /home/opam/.opam/4.01.0/lib/rss/rss.cmi
+Installed /home/opam/.opam/4.01.0/lib/rss/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/rss/META
+Installing ocamlrss.2.2.2.
+Building xtmpl.0.5:
+  make all
+  make install
+ocamlc.opt -g -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.mli
+ocamlc.opt -g -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlfind install xtmpl META LICENSE xtmpl.cmi xtmpl.mli xtmpl.cmo xtmpl.cmx xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmx
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmo
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.mli
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmi
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/META
+Installing xtmpl.0.5.
+Building erssical.0.1:
+  make
+  make BINDIR=/home/opam/.opam/4.01.0/bin install
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_types.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_curl.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_io.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_ical.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_filter.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_cache.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_auth.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_log.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_xtmpl.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_do.mli
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_types.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_curl.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_io.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_ical.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_filter.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_cache.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_auth.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_log.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_xtmpl.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_do.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -o erssical.cma -a ers_types.cmo ers_curl.cmo ers_io.cmo ers_ical.cmo ers_filter.cmo ers_cache.cmo ers_auth.cmo ers_log.cmo ers_xtmpl.cmo ers_do.cmo
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_main.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -o erssical.byte -package rss,str,curl,xtmpl -linkpkg erssical.cma ers_main.cmo
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -c -annot -rectypes ers_http.ml
+ocamlfind ocamlc -package rss,str,curl,xtmpl,nethttpd -annot -rectypes -o erssical-httpd.byte -package rss,str,curl,xtmpl,nethttpd -linkpkg erssical.cma ers_http.cmo
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_types.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_curl.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_io.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_ical.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_filter.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_cache.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_auth.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_log.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_xtmpl.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_do.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -o erssical.cmxa -a ers_types.cmx ers_curl.cmx ers_io.cmx ers_ical.cmx ers_filter.cmx ers_cache.cmx ers_auth.cmx ers_log.cmx ers_xtmpl.cmx ers_do.cmx
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -I . -shared -linkall -o erssical.cmxs erssical.cmxa
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_main.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -o erssical -package rss,str,curl,xtmpl -linkpkg erssical.cmxa ers_main.cmx
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -c -annot -rectypes ers_http.ml
+ocamlfind ocamlopt -package rss,str,curl,xtmpl,nethttpd  -o erssical-httpd -package rss,str,curl,xtmpl,nethttpd -linkpkg erssical.cmxa ers_http.cmx
+ocamlfind install erssical META LICENSE ers*.mli \
+	erssical.cma erssical.cmxa erssical.a erssical.cmxs
+Installed /home/opam/.opam/4.01.0/lib/erssical/erssical.cmxs
+Installed /home/opam/.opam/4.01.0/lib/erssical/erssical.a
+Installed /home/opam/.opam/4.01.0/lib/erssical/erssical.cmxa
+Installed /home/opam/.opam/4.01.0/lib/erssical/erssical.cma
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_xtmpl.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_types.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_log.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_io.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_ical.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_filter.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_do.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_curl.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_cache.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/ers_auth.mli
+Installed /home/opam/.opam/4.01.0/lib/erssical/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/erssical/META
+for i in erssical erssical.byte erssical-httpd erssical-httpd.byte; do \
+		if test -f $i; then cp -f $i /home/opam/.opam/4.01.0/bin/; fi; \
+	done
+Installing erssical.0.1.
