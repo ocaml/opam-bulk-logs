@@ -3428,3 +3428,37 @@ g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o ParseTree2.o
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o ParseTree3.o -c ParseTree3.cpp
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o Parser.o -c Parser.cpp
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o XmlEncode.o -c XmlEncode.cpp
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahtexcore'
+make lib -C src/unicodeconverter
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+g++ -Wall -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o UnicodeConverter.o -c UnicodeConverter.cpp
+UnicodeConverter.cpp: In member function 'std::wstring UnicodeConverter::ConvertIn(const string&)':
+UnicodeConverter.cpp:147:11: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     ) == -1)
+           ^
+UnicodeConverter.cpp: In member function 'std::string UnicodeConverter::ConvertOut(const wstring&)':
+UnicodeConverter.cpp:199:11: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     ) == -1)
+           ^
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+make lib -C src/messages
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+g++ -Wall -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o Messages.o -c Messages.cpp
+Messages.cpp: In function 'std::wstring GetErrorMessage(const blahtex::Exception&)':
+Messages.cpp:296:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (n >= 0 && n < e.GetArgs().size())
+                                                ^
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+make lib -C src/mathml2dtd
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -o mathml2dtd.cmi -c mathml2dtd.mli
+ocamlfind ocamlc -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmo -c mathml2dtd.ml
+ocamlfind ocamlc -o mathml2dtd.cma -a mathml2dtd.cmo
+ocamlfind ocamlopt -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmx -c mathml2dtd.ml
+ocamlfind ocamlopt -o mathml2dtd.cmxa -a mathml2dtd.cmx
+ocamlopt -shared -linkall -I . -o mathml2dtd.cmxs mathml2dtd.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+make lib -C src/blahcaml
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahcaml'
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmi -c blahcaml.mli
+g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -I /home/opam/.opam/4.01.0/lib/ocaml -I ../blahtexcore -I ../unicodeconverter -I ../messages -o blahtex_stubs.o -c blahtex_stubs.cpp
