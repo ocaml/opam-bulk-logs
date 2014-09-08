@@ -837,3 +837,256 @@ ocamlfind ocamlopt -c -g -inline 1000 -o inliner.cmx inliner.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o interpret.cmx interpret.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o tableBackend.cmx tableBackend.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o back.cmx back.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o menhir.cmx menhir.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa -g Fix.cmx IO.cmx installation.cmx keyword.cmx lineCount.cmx positions.cmx stringSet.cmx version.cmx settings.cmx printer.cmx action.cmx mark.cmx stringMap.cmx misc.cmx breadth.cmx codeBits.cmx gSet.cmx compressedBitSet.cmx option.cmx dot.cmx error.cmx parameters.cmx parserAux.cmx parser.cmx lexer.cmx tarjan.cmx unionFind.cmx parameterizedGrammar.cmx partialGrammar.cmx time.cmx preFront.cmx tokenType.cmx interface.cmx lexdep.cmx lexmli.cmx infer.cmx listMonad.cmx nonTerminalDefinitionInlining.cmx reachability.cmx unparameterizedPrinter.cmx front.cmx gMap.cmx patricia.cmx grammar.cmx codePieces.cmx item.cmx derivation.cmx menhirLib.cmx lr0.cmx slr.cmx lr1.cmx lr1partial.cmx conflict.cmx invariant.cmx codeBackend.cmx coqBackend.cmx pprint.cmx cst.cmx traverse.cmx inliner.cmx referenceInterpreter.cmx sentenceParser.cmx sentenceLexer.cmx interpret.cmx tableBackend.cmx back.cmx menhir.cmx -o menhir.native
+# Parallel statistics: { count(total): 19(281), max: 6, min: 2, average(total): 2.895(1.128) }
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+cp fancy-parser.mly parser.mly
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamldep -modules concreteSyntax.mli > concreteSyntax.mli.depends
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamldep -modules error.mli > error.mli.depends
+ocamlfind ocamldep -modules misc.mli > misc.mli.depends
+ocamlfind ocamldep -modules stringMap.mli > stringMap.mli.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamlc -c -o stringMap.cmi stringMap.mli
+ocamlfind ocamldep -modules parameters.ml > parameters.ml.depends
+ocamlfind ocamlc -c -o misc.cmi misc.mli
+ocamlfind ocamldep -modules parserAux.mli > parserAux.mli.depends
+ocamlfind ocamlc -c -o concreteSyntax.cmi concreteSyntax.mli
+ocamlfind ocamlc -c -o error.cmi error.mli
+ocamlfind ocamlc -c -g -o parameters.cmo parameters.ml
+ocamlfind ocamlc -c -o parserAux.cmi parserAux.mli
+/home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
++ /home/opam/.opam/4.01.0/build/menhir.20130912/src/_stage2/menhir.native -v -lg 1 -la 1 -lc 1 --comment --infer --error-recovery --stdlib . --strict --fixed-exception --ocamlc 'ocamlfind ocamlc' --infer parser.mly
+Grammar has 31 nonterminal symbols, among which 1 start symbols.
+Grammar has 26 terminal symbols.
+Grammar has 83 productions.
+Built an LR(0) automaton with 115 states.
+The grammar is not SLR(1) -- 5 states have a conflict.
+Built an LR(1) automaton with 129 states.
+5 shift/reduce conflicts were silently solved.
+38 out of 129 states are represented.
+25 out of 60 symbols keep track of their start position.
+20 out of 60 symbols keep track of their end position.
+56 out of 129 states have a default reduction.
+33 out of 84 productions exploit shiftreduce optimization.
+20 out of 129 states can peek at an error.
+13 out of 129 states can do error recovery.
+452 functions before inlining, 116 functions after inlining.
+# Parallel statistics: { count(total): 2(28), max: 4, min: 2, average(total): 3.000(1.143) }
+Bootstrap successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+mkdir -p /home/opam/.opam/4.01.0/bin
+mkdir -p /home/opam/.opam/4.01.0/lib/menhir
+mkdir -p /home/opam/.opam/4.01.0/doc/menhir
+mkdir -p /home/opam/.opam/4.01.0/man/man1
+install src/_stage2/menhir.native /home/opam/.opam/4.01.0/bin/menhir
+install -m 644 src/standard.mly /home/opam/.opam/4.01.0/lib/menhir
+cp -r manual.pdf demos /home/opam/.opam/4.01.0/doc/menhir
+cp -r menhir.1 /home/opam/.opam/4.01.0/man/man1
+Installing MenhirLib via ocamlfind.
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.o
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmx
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmo
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/menhirLib.cmi
+Installed /home/opam/.opam/4.01.0/lib/menhirLib/META
+Installing menhir.20130912.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlopt -shared -linkall -I . -o biniou.cmxs biniou.cmxa
+ocamlfind ocamlopt -o bdump -dtypes -g \
+		-package easy-format -linkpkg \
+		biniou.cmxa bdump.ml
+ocamlfind ocamlopt -o test_biniou -dtypes -g \
+		-package "easy-format unix" -linkpkg \
+		biniou.cmxa test_biniou.ml
+sed -e 's:@@VERSION@@:1.0.9:' META.in > META
+test ! -f bdump || cp bdump /home/opam/.opam/4.01.0/bin/
+test ! -f bdump.exe || cp bdump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install biniou META \
+          $(ls bi_util.mli bi_share.mli bi_outbuf.mli bi_inbuf.mli bi_vint.mli bi_io.mli bi_stream.mli bi_util.cmi bi_share.cmi bi_outbuf.cmi bi_inbuf.cmi bi_vint.cmi bi_io.cmi bi_dump.cmi bi_stream.cmi bi_util.cmo bi_share.cmo bi_outbuf.cmo bi_inbuf.cmo bi_vint.cmo bi_io.cmo bi_dump.cmo bi_stream.cmo bi_util.cmx bi_share.cmx bi_outbuf.cmx bi_inbuf.cmx bi_vint.cmx bi_io.cmx bi_dump.cmx bi_stream.cmx bi_util.o bi_share.o bi_outbuf.o bi_inbuf.o bi_vint.o bi_io.o bi_dump.o bi_stream.o biniou.cma biniou.cmxa biniou.cmxs biniou.a)
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cmxa
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.cma
+Installed /home/opam/.opam/4.01.0/lib/biniou/biniou.a
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_vint.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_util.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_stream.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_share.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_outbuf.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_io.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.mli
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_inbuf.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.o
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmx
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmo
+Installed /home/opam/.opam/4.01.0/lib/biniou/bi_dump.cmi
+Installed /home/opam/.opam/4.01.0/lib/biniou/META
+Installing biniou.1.0.9.
+Building yojson.1.1.8:
+  make
+  make install
+sed -e 's:@@VERSION@@:1.1.8:' META.in > META
+cppo -n yojson.mli.cppo -o yojson.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
+ocamllex read.mll
+433 states, 2020 transitions, table size 10678 bytes
+cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building merlin.1.7.1:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  rm -rf /home/opam/.opam/4.01.0/share/ocamlmerlin
+  make
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+Merlin configuration
+--------------------
+Found findlib	GOOD
+Found yojson	GOOD
+Found menhirLib	GOOD
+
+System config:
+  OCaml standard library: /home/opam/.opam/4.01.0/lib/ocaml
+  Ocaml ABI version: Ocaml 4.01.0
+
+Will install:
+  ocamlmerlin binary in: /home/opam/.opam/4.01.0/bin
+  vim mode in: /home/opam/.opam/4.01.0/share/ocamlmerlin/vim
+  
+To customize directories, use:
+  ./configure [--prefix <dir>] [--bindir <dir>] [--sharedir <dir>] [--stdlib <stdlibdir>] [--vimdir <vimdir>] [--with-vimbufsync | --without-vimbufsync]
+
+For more informations rerun with --help.
+Now, type 'make' to compile then 'make install'.
+ocamlbuild -Is src,src/config,src/utils,src/ocaml,src/ocaml/utils,src/ocaml/typing,src/ocaml/parsing   -use-ocamlfind ocamlmerlin.native
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/ocamlmerlin.ml > src/ocamlmerlin.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/command.mli > src/command.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/IO.mli > src/IO.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/location.mli > src/ocaml/parsing/location.mli.depends
+ocamlfind ocamldep -modules src/ocaml/utils/warnings.mli > src/ocaml/utils/warnings.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/utils -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -o src/ocaml/utils/warnings.cmi src/ocaml/utils/warnings.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/protocol.mli > src/protocol.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/location.cmi src/ocaml/parsing/location.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/std.ml > src/std.ml.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/std.cmo src/std.ml
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/protocol.cmi src/protocol.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/state.mli > src/state.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/asttypes.mli > src/ocaml/parsing/asttypes.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/browse.mli > src/browse.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/env.mli > src/ocaml/typing/env.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/asttypes.cmi src/ocaml/parsing/asttypes.mli
+ocamlfind ocamldep -modules src/utils/consistbl.mli > src/utils/consistbl.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/ident.mli > src/ocaml/typing/ident.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/longident.mli > src/ocaml/parsing/longident.mli.depends
+ocamlfind ocamldep -modules src/ocaml/typing/path.mli > src/ocaml/typing/path.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/ident.cmi src/ocaml/typing/ident.mli
+ocamlfind ocamldep -modules src/ocaml/typing/subst.mli > src/ocaml/typing/subst.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/path.cmi src/ocaml/typing/path.mli
+ocamlfind ocamldep -modules src/ocaml/typing/types.mli > src/ocaml/typing/types.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/longident.cmi src/ocaml/parsing/longident.mli
+ocamlfind ocamldep -modules src/ocaml/typing/primitive.mli > src/ocaml/typing/primitive.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/primitive.cmi src/ocaml/typing/primitive.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/types.cmi src/ocaml/typing/types.mli
+ocamlfind ocamlc -c -I src/utils -I src -I src/ocaml -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/utils/consistbl.cmi src/utils/consistbl.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/subst.cmi src/ocaml/typing/subst.mli
+ocamlfind ocamldep -modules src/ocaml/typing/typedtree.mli > src/ocaml/typing/typedtree.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/env.cmi src/ocaml/typing/env.mli
+ocamlfind ocamlc -c -I src/ocaml/typing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/utils -o src/ocaml/typing/typedtree.cmi src/ocaml/typing/typedtree.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/chunk.mli > src/chunk.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline.mli > src/outline.mli.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/chunk_parser.mly > src/ocaml/chunk_parser.mly.depends
++ menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' src/ocaml/chunk_parser.mly > src/ocaml/chunk_parser.mly.depends
+File "src/ocaml/chunk_parser.mly", line 448, characters 29-36:
+Warning: the token COMMENT is unused.
+File "src/ocaml/chunk_parser.mly", line 375, characters 7-22:
+Warning: the token GREATERRBRACKET is unused.
+ocamlfind ocamldep -modules src/utils/clflags.mli > src/utils/clflags.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/fake.mli > src/fake.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/parsetree.mli > src/ocaml/parsing/parsetree.mli.depends
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/parsetree.cmi src/ocaml/parsing/parsetree.mli
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/logger.mli > src/logger.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/merlin_parsing.mli > src/merlin_parsing.mli.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/outline_utils.mli > src/outline_utils.mli.depends
+ocamlfind ocamldep -modules src/ocaml/parsing/syntaxerr.mli > src/ocaml/parsing/syntaxerr.mli.depends
+ocamlfind ocamlc -c -I src/utils -I src -I src/ocaml -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/utils/clflags.cmi src/utils/clflags.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/fake.cmi src/fake.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/logger.cmi src/logger.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/merlin_parsing.cmi src/merlin_parsing.mli
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/outline_utils.cmi src/outline_utils.mli
+ocamlfind ocamlc -c -I src/ocaml/parsing -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/typing -I src/ocaml/utils -o src/ocaml/parsing/syntaxerr.cmi src/ocaml/parsing/syntaxerr.mli
+menhir --ocamlc 'ocamlfind ocamlc -package menhirLib -package yojson -package unix -package findlib -I src/ocaml -I src -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils' --table --infer src/ocaml/chunk_parser.mly
