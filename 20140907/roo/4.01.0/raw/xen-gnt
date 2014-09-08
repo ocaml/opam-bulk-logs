@@ -2004,3 +2004,47 @@ ocaml setup.ml -build -j 4
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/xen_gnt.cmxa lib/gnt.cmx -o lib/xen_gnt.cmxs
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gnttab_stubs.c
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
+lib/gntshr_stubs.c: In function 'stub_gntshr_munmap_batched':
+lib/gntshr_stubs.c:160:6: warning: unused variable 'pages' [-Wunused-variable]
+  int pages = size >> XC_PAGE_SHIFT;
+      ^
+mv gntshr_stubs.o lib/gntshr_stubs.o
+mv gnttab_stubs.o lib/gnttab_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o lib/xen_gnt_unix_stubs -L/usr/lib/xen-4.2/lib -lxenctrl lib/gntshr_stubs.o lib/gnttab_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib/gnt_dummy.ml > lib/gnt_dummy.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmo lib/gnt_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -lxen_gnt_unix_stubs -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmo -o lib/xen_gnt_unix.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmx lib/gnt_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmx -o lib/xen_gnt_unix.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -I lib lib/xen_gnt_unix.cmxa lib/gnt_dummy.cmx -o lib/xen_gnt_unix.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules test/test_gntshr.ml > test/test_gntshr.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmo test/test_gntshr.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmx test/test_gntshr.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -bin-annot -linkpkg -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix lib/xen_gnt_unix.cmxa lib/xen_gnt.cmxa test/test_gntshr.cmx -o test/test_gntshr.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib_test/main.ml > lib_test/main.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib_test -I lib -o lib_test/main.cmo lib_test/main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -dontlink unix -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib_test -I lib -o lib_test/main.cmx lib_test/main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -dontlink unix -linkpkg -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix lib/xen_gnt_unix.cmxa lib/xen_gnt.cmxa lib_test/main.cmx -o lib_test/main.native
+# Parallel statistics: { count(total): 1(25), max: 2, min: 2, average(total): 2.000(1.040) }
+ocaml setup.ml -install
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt.mli
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt.cma
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt.a
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt.cmi
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt.cmx
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt_dummy.ml
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/libxen_gnt_unix_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt_unix.cma
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt_unix.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt_unix.a
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/xen_gnt_unix.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt_dummy.cmi
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/gnt_dummy.cmx
+Installed /home/opam/.opam/4.01.0/lib/xen-gnt/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllxen_gnt_unix_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllxen_gnt_unix_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing xen-gnt.1.0.3.
