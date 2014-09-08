@@ -1286,3 +1286,97 @@ pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/l
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
 ocaml setup.ml -build 
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/pgocaml.1.7'
+echo "let default_unix_domain_socket_dir = \""/tmp"\"" > src/PGOCaml_config.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/pgocaml.1.7'
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml.mli > src/PGOCaml.mli.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml_generic.mli > src/PGOCaml_generic.mli.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_generic.cmi src/PGOCaml_generic.mli
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmi src/PGOCaml.mli
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml.ml > src/PGOCaml.ml.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -modules src/PGOCaml_generic.ml > src/PGOCaml_generic.ml.depends
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -modules src/PGOCaml_config.ml > src/PGOCaml_config.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_config.cmo src/PGOCaml_config.ml
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmo src/PGOCaml.ml
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/PGOCaml_generic.cmo src/PGOCaml_generic.ml
+ocamlfind ocamlc -a -ppopt -DUSE_BATTERIES src/PGOCaml_generic.cmo src/PGOCaml.cmo -o src/pgocaml.cma
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml_config.cmx src/PGOCaml_config.ml
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/PGOCaml_generic.cmx src/PGOCaml_generic.ml
+ocamlfind ocamlopt -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -I src -o src/PGOCaml.cmx src/PGOCaml.ml
+ocamlfind ocamlopt -a -ppopt -DUSE_BATTERIES src/PGOCaml_generic.cmx src/PGOCaml.cmx -o src/pgocaml.cmxa
+ocamlfind ocamlopt -shared -linkall src/pgocaml.cmxa -o src/pgocaml.cmxs
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -modules src/pa_pgsql.ml > src/pa_pgsql.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.quotations -package camlp4.macro -package camlp4.extend -package calendar -package batteries -syntax camlp4o -I src -o src/pa_pgsql.cmo src/pa_pgsql.ml
+ocamlfind ocamlc -a -ppopt -DUSE_BATTERIES src/pa_pgsql.cmo -o src/pa_pgsql.cma
+ocamlfind ocamldep -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries -syntax camlp4o -modules utils/pgocaml_prof.ml > utils/pgocaml_prof.ml.depends
+ocamlfind ocamlc -c -g -I src -ppopt -DUSE_BATTERIES -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries -syntax camlp4o -I utils -I src -o utils/pgocaml_prof.cmo utils/pgocaml_prof.ml
+ocamlfind ocamlc -g -ppopt -DUSE_BATTERIES -linkpkg -package unix -package pcre -package csv -package camlp4.macro -package calendar -package batteries src/pgocaml.cma utils/pgocaml_prof.cmo -o utils/pgocaml_prof.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml.mli
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml_generic.mli
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pgocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pgocaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pgocaml.a
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pgocaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml_generic.cmi
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml.cmx
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/PGOCaml_generic.cmx
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pa_pgsql.ml
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pa_pgsql.cma
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/pa_pgsql.cmi
+Installed /home/opam/.opam/4.01.0/lib/pgocaml/META
+Installing pgocaml.1.7.
+Building macaque.0.6.1:
+  make -C src
+  make -C src install
+make: Entering directory `/home/opam/.opam/4.01.0/build/macaque.0.6.1/src'
+ocamlbuild -tag annot pa_macaque.cmo
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4 -package pgocaml -pp camlp4orf -modules pa_macaque.ml > pa_macaque.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4 -package pgocaml -pp camlp4orf -o pa_macaque.cmo pa_macaque.ml
+ocamlbuild -tag annot pa_bananas.cmo
+ocamlfind ocamldep -package camlp4 -package pgocaml -pp camlp4orf -modules pa_bananas.ml > pa_bananas.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4 -package pgocaml -pp camlp4orf -o pa_bananas.cmo pa_bananas.ml
+ocamlbuild -tag annot macaque.cma
+ocamlfind ocamldep -package pgocaml -modules sql_base.ml > sql_base.ml.depends
+ocamlfind ocamldep -package pgocaml -modules sql_internals.ml > sql_internals.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_base.cmo sql_base.ml
+ocamlfind ocamldep -package pgocaml -modules sql_parsers.ml > sql_parsers.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_internals.cmo sql_internals.ml
+ocamlfind ocamldep -package pgocaml -modules sql_keywords.ml > sql_keywords.ml.depends
+ocamlfind ocamldep -package pgocaml -modules sql_printers.ml > sql_printers.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_keywords.cmo sql_keywords.ml
+ocamlfind ocamldep -package pgocaml -modules sql_flatten.ml > sql_flatten.ml.depends
+ocamlfind ocamldep -package pgocaml -modules sql_types.ml > sql_types.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_parsers.cmo sql_parsers.ml
+ocamlfind ocamldep -package pgocaml -modules sql_builders.ml > sql_builders.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_types.cmo sql_types.ml
+ocamlfind ocamldep -package pgocaml -modules sql_public.ml > sql_public.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_builders.cmo sql_builders.ml
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_flatten.cmo sql_flatten.ml
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_printers.cmo sql_printers.ml
+ocamlfind ocamldep -package pgocaml -modules inner_sql.ml > inner_sql.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql_public.cmo sql_public.ml
+ocamlfind ocamldep -package pgocaml -modules sql.mli > sql.mli.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql.cmi sql.mli
+ocamlfind ocamldep -package pgocaml -modules sql.ml > sql.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o inner_sql.cmo inner_sql.ml
+ocamlfind ocamldep -package pgocaml -modules query.mli > query.mli.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o query.cmi query.mli
+ocamlfind ocamldep -package pgocaml -modules query.ml > query.ml.depends
+ocamlfind ocamldep -package pgocaml -pp 'camlp4o pa_macaque.cmo pa_bananas.cmo' -modules check.ml > check.ml.depends
+ocamlfind ocamlc -c -annot -package pgocaml -o sql.cmo sql.ml
+ocamlfind ocamlc -c -annot -package pgocaml -o query.cmo query.ml
+ocamlfind ocamlc -c -annot -package pgocaml -pp 'camlp4o pa_macaque.cmo pa_bananas.cmo' -o check.cmo check.ml
+ocamlfind ocamlc -a -package pgocaml sql_base.cmo sql_internals.cmo sql_parsers.cmo sql_keywords.cmo sql_printers.cmo sql_flatten.cmo sql_types.cmo sql_builders.cmo sql_public.cmo inner_sql.cmo sql.cmo query.cmo check.cmo -o macaque.cma
+ocamlbuild -tag annot macaque.cmxa
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_base.cmx sql_base.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_internals.cmx sql_internals.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_keywords.cmx sql_keywords.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_parsers.cmx sql_parsers.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_types.cmx sql_types.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_builders.cmx sql_builders.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_flatten.cmx sql_flatten.ml
+ocamlfind ocamlopt -c -annot -package pgocaml -o sql_printers.cmx sql_printers.ml
