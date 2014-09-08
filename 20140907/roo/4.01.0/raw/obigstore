@@ -3205,3 +3205,9 @@ File OMakefile: line 120, characters 1-29:
 - build src/repl obs_repl_gram.ml
 + ocamlyacc obs_repl_gram.mly
 1 shift/reduce conflict.
+- build src/core obigstore_core.cmxa
++ ocamlmklib -verbose -oc camlobigstore_core -o obigstore_core obigstore_stubs.o obs_bytea.cmo obs_pp.cmo obs_bson.cmo obs_conn.cmo obs_crc32c.cmo obs_weak_ref.cmo obs_load_stats.cmo obs_data_model.cmo obs_request.cmo obs_string_util.cmo obs_protocol.cmo obs_protocol_bin.cmo obs_replication.cmo obs_structured.cmo obs_ternary.cmo obs_bytea.cmx obs_pp.cmx obs_bson.cmx obs_conn.cmx obs_crc32c.cmx obs_weak_ref.cmx obs_load_stats.cmx obs_data_model.cmx obs_request.cmx obs_string_util.cmx obs_protocol.cmx obs_protocol_bin.cmx obs_replication.cmx obs_structured.cmx obs_ternary.cmx -lstdc++
++ gcc -shared -o ./dllcamlobigstore_core.so obigstore_stubs.o    -lstdc++
++ ar rc ./libcamlobigstore_core.a  obigstore_stubs.o; ranlib ./libcamlobigstore_core.a
++ /home/opam/.opam/4.01.0/bin/ocamlc -a  -o obigstore_core.cma  obs_bytea.cmo obs_pp.cmo obs_bson.cmo obs_conn.cmo obs_crc32c.cmo obs_weak_ref.cmo obs_load_stats.cmo obs_data_model.cmo obs_request.cmo obs_string_util.cmo obs_protocol.cmo obs_protocol_bin.cmo obs_replication.cmo obs_structured.cmo obs_ternary.cmo -dllib -lcamlobigstore_core -cclib -lcamlobigstore_core   -cclib -lstdc++ 
++ /home/opam/.opam/4.01.0/bin/ocamlopt -a -o obigstore_core.cmxa  obs_bytea.cmx obs_pp.cmx obs_bson.cmx obs_conn.cmx obs_crc32c.cmx obs_weak_ref.cmx obs_load_stats.cmx obs_data_model.cmx obs_request.cmx obs_string_util.cmx obs_protocol.cmx obs_protocol_bin.cmx obs_replication.cmx obs_structured.cmx obs_ternary.cmx -cclib -lcamlobigstore_core   -cclib -lstdc++ 
