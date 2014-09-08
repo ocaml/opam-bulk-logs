@@ -265,3 +265,147 @@ Building ulex.1.1:
 ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
 /home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
 /home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Building piqilib.0.6.8:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make ocaml
+  make install
+  make ocaml-install
+found ocamlfind: /home/opam/.opam/4.01.0/bin/ocamlfind
+detected linux OCaml toolchain
+checking whether necessary dependencies are already installed...
+xmlm is installed in /home/opam/.opam/4.01.0/lib/xmlm
+ulex is installed in /home/opam/.opam/4.01.0/lib/ulex
+easy-format is installed in /home/opam/.opam/4.01.0/lib/easy-format
+optcomp is installed in /home/opam/.opam/4.01.0/lib/optcomp
+set -e; \
+	for dir in piqilib src; do \
+		make -C $dir ; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/piqilib.0.6.8/piqilib'
+echo "let version = \"`head -1 ../VERSION`\"" >piqi_version.ml
+echo "version = \"`head -1 ../VERSION`\"" >META
+cat META.in >>META
+ocamllex  piqi_json_parser.mll
+91 states, 1087 transitions, table size 4894 bytes
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqilib.0.6.8/piqilib'
+ocamlfind ocamldep -native piqi_xml_type.mli > ._ncdi/piqi_xml_type.di
+ocamlfind ocamldep -native piqi_json_type.mli > ._ncdi/piqi_json_type.di
+ocamlfind ocamldep -native piqi_c.mli > ._ncdi/piqi_c.di
+ocamlfind ocamldep piqi_json_parser.ml > ._d/piqi_json_parser.d
+ocamlfind ocamldep piqi_getopt.ml > ._d/piqi_getopt.d
+ocamlfind ocamldep piqi_light.ml > ._d/piqi_light.d
+ocamlfind ocamldep piqi_compile.ml > ._d/piqi_compile.d
+ocamlfind ocamldep piqi_convert.ml > ._d/piqi_convert.d
+ocamlfind ocamldep piqobj_of_xml.ml > ._d/piqobj_of_xml.d
+ocamlfind ocamldep piqobj_to_xml.ml > ._d/piqobj_to_xml.d
+ocamlfind ocamldep piqi_xml.ml > ._d/piqi_xml.d
+ocamlfind ocamldep piqobj_of_json.ml > ._d/piqobj_of_json.d
+ocamlfind ocamldep piqobj_to_json.ml > ._d/piqobj_to_json.d
+ocamlfind ocamldep piqi_base64.ml > ._d/piqi_base64.d
+ocamlfind ocamldep piqi_json.ml > ._d/piqi_json.d
+ocamlfind ocamldep piqi_json_gen.ml > ._d/piqi_json_gen.d
+ocamlfind ocamldep piqi_pp.ml > ._d/piqi_pp.d
+ocamlfind ocamldep piqi.ml > ._d/piqi.d
+ocamlfind ocamldep piq.ml > ._d/piq.d
+ocamlfind ocamldep piqobj_of_piq.ml > ._d/piqobj_of_piq.d
+ocamlfind ocamldep piqobj_to_piq.ml > ._d/piqobj_to_piq.d
+ocamlfind ocamldep piqobj_of_protobuf.ml > ._d/piqobj_of_protobuf.d
+ocamlfind ocamldep piqobj_to_protobuf.ml > ._d/piqobj_to_protobuf.d
+ocamlfind ocamldep piqobj_common.ml > ._d/piqobj_common.d
+ocamlfind ocamldep piqobj.ml > ._d/piqobj.d
+ocamlfind ocamldep piqi_objstore.ml > ._d/piqi_objstore.d
+ocamlfind ocamldep piq_gen.ml > ._d/piq_gen.d
+ocamlfind ocamldep piq_parser.ml > ._d/piq_parser.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/lib/ulex pa_ulex.cma " piq_lexer.ml > ._d/piq_lexer.d
+ocamlfind ocamldep piqi_db.ml > ._d/piqi_db.d
+ocamlfind ocamldep piqi_protobuf.ml > ._d/piqi_protobuf.d
+ocamlfind ocamldep piqi_command.ml > ._d/piqi_command.d
+ocamlfind ocamldep piqi_file.ml > ._d/piqi_file.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/lib/optcomp optcomp.cma " piqi_common.ml > ._d/piqi_common.d
+ocamlfind ocamldep piqi_name.ml > ._d/piqi_name.d
+ocamlfind ocamldep piqi_iolist.ml > ._d/piqi_iolist.d
+ocamlfind ocamldep piqi_config.ml > ._d/piqi_config.d
+ocamlfind ocamldep piqi_c.ml > ._d/piqi_c.d
+ocamlfind ocamldep piqi_boot.ml > ._d/piqi_boot.d
+ocamlfind ocamldep piqi_impl_piqi.ml > ._d/piqi_impl_piqi.d
+ocamlfind ocamldep piq_ast.ml > ._d/piq_ast.d
+ocamlfind ocamldep piqi_util.ml > ._d/piqi_util.d
+ocamlfind ocamldep piqloc.ml > ._d/piqloc.d
+ocamlfind ocamldep piqi_piqi.ml > ._d/piqi_piqi.d
+ocamlfind ocamldep piqi_piqirun.ml > ._d/piqi_piqirun.d
+ocamlfind ocamldep piqi_version.ml > ._d/piqi_version.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqilib.0.6.8/piqilib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqilib.0.6.8/piqilib'
+ocamlfind ocamlc -c -ccopt "-fPIC  \
+				-DPIC -DNATIVE_CODE   \
+				    -o piqi_c_impl.o " piqi_c_impl.c
+ar rcs libpiqilib_stubs.a  piqi_c_impl.o
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_version.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_piqirun.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_piqi.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqloc.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_util.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piq_ast.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_impl_piqi.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_boot.ml
+ocamlfind ocamlc -package ulex,easy-format,xmlm -c piqi_c.mli
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_c.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_config.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_iolist.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_name.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c -pp "camlp4o -I /home/opam/.opam/4.01.0/lib/optcomp optcomp.cma " piqi_common.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_file.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_command.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_protobuf.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piqi_db.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c -pp "camlp4o -I /home/opam/.opam/4.01.0/lib/ulex pa_ulex.cma " piq_lexer.ml
+ocamlfind ocamlopt -package ulex,easy-format,xmlm -c piq_parser.ml
