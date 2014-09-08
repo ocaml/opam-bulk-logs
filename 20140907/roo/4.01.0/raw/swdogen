@@ -1755,3 +1755,62 @@ ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/codeg
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/parser.cmo swdogen/parser.ml
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/semantic.cmo swdogen/semantic.ml
 ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/ast.cmo swdogen/ast.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config.cmo swdogen/config.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/msgpool.cmo swdogen/msgpool.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/deployer.cmo swdogen/deployer.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/discover.cmo swdogen/discover.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/som.cmo swdogen/som.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/swgparser.cmo swdogen/swgparser.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config_t.cmo swdogen/config_t.ml
+ocamlfind ocamlc -c -g -package unix -package atdgen -I swdogen -o swdogen/config_j.cmo swdogen/config_j.ml
+ocamlfind ocamlc -pack -g swdogen/ast.cmo swdogen/deployer.cmo swdogen/msgpool.cmo swdogen/som.cmo swdogen/semantic.cmo swdogen/codegen.cmo swdogen/swgparser.cmo swdogen/swglexer.cmo swdogen/parser.cmo swdogen/config_t.cmo swdogen/config_j.cmo swdogen/config.cmo swdogen/discover.cmo -o swdogen/swdogen.cmo
+ocamlfind ocamlc -a swdogen/swdogen.cmo -o swdogen/swdogen.cma
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/ast.cmx swdogen/ast.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/msgpool.cmx swdogen/msgpool.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/som.cmx swdogen/som.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/deployer.cmx swdogen/deployer.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/semantic.cmx swdogen/semantic.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/swgparser.cmx swdogen/swgparser.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/swglexer.cmx swdogen/swglexer.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/config_t.cmx swdogen/config_t.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/config_j.cmx swdogen/config_j.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/codegen.cmx swdogen/codegen.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/parser.cmx swdogen/parser.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/config.cmx swdogen/config.ml
+ocamlfind ocamlopt -c -g -package unix -package atdgen -for-pack Swdogen -I swdogen -o swdogen/discover.cmx swdogen/discover.ml
+touch swdogen/swdogen.mli  ; if  ocamlfind ocamlopt -pack -g -I swdogen swdogen/ast.cmx swdogen/deployer.cmx swdogen/msgpool.cmx swdogen/som.cmx swdogen/semantic.cmx swdogen/codegen.cmx swdogen/swgparser.cmx swdogen/swglexer.cmx swdogen/parser.cmx swdogen/config_t.cmx swdogen/config_j.cmx swdogen/config.cmx swdogen/discover.cmx -o swdogen/swdogen.cmx  ; then  rm -f swdogen/swdogen.mli  ; else  rm -f swdogen/swdogen.mli  ; exit 1; fi
+ocamlfind ocamlopt -a swdogen/swdogen.cmx -o swdogen/swdogen.cmxa
+ocamlfind ocamlopt -shared swdogen/swdogen.cmx -o swdogen/swdogen.cmxs
+ocamlfind ocamldep -package unix -package atdgen -modules src/main.ml > src/main.ml.depends
+ocamlfind ocamlc -c -g -I swdogen -package unix -package atdgen -I src -I swdogen -o src/main.cmo src/main.ml
+ocamlfind ocamlopt -c -g -I swdogen -package unix -package atdgen -I src -I swdogen -o src/main.cmx src/main.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package atdgen swdogen/swdogen.cmxa swdogen/swdogen.cmx src/main.cmx -o src/main.native
+ocamlfind ocamldep -package unix -package oUnit -package atdgen -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamldep -package unix -package oUnit -package atdgen -modules test/TestParser.ml > test/TestParser.ml.depends
+ocamlfind ocamldep -package unix -package oUnit -package atdgen -modules test/TestSom.ml > test/TestSom.ml.depends
+ocamlfind ocamldep -package unix -package oUnit -package atdgen -modules test/TestSwdogen.ml > test/TestSwdogen.ml.depends
+ocamlfind ocamlc -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestParser.cmo test/TestParser.ml
+ocamlfind ocamlc -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestSom.cmo test/TestSom.ml
+ocamlfind ocamlc -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestSwdogen.cmo test/TestSwdogen.ml
+ocamlfind ocamlc -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestParser.cmx test/TestParser.ml
+ocamlfind ocamlopt -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestSom.cmx test/TestSom.ml
+ocamlfind ocamlopt -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/TestSwdogen.cmx test/TestSwdogen.ml
+ocamlfind ocamlopt -c -g -I swdogen -package unix -package oUnit -package atdgen -I test -I swdogen -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package oUnit -package atdgen swdogen/swdogen.cmxa swdogen/swdogen.cmx test/TestParser.cmx test/TestSom.cmx test/TestSwdogen.cmx test/test.cmx -o test/test.native
+Installed /home/opam/.opam/4.01.0/lib/swdogen/codegen.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/parser.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/semantic.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/ast.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/config.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/msgpool.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/deployer.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/discover.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/som.mli
+Installed /home/opam/.opam/4.01.0/lib/swdogen/swdogen.cmi
+Installed /home/opam/.opam/4.01.0/lib/swdogen/swdogen.cma
+Installed /home/opam/.opam/4.01.0/lib/swdogen/swdogen.cmxa
+Installed /home/opam/.opam/4.01.0/lib/swdogen/swdogen.a
+Installed /home/opam/.opam/4.01.0/lib/swdogen/swdogen.cmxs
+Installed /home/opam/.opam/4.01.0/lib/swdogen/META
+Installing swdogen.0.1.0.
