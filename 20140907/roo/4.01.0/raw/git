@@ -3350,3 +3350,252 @@ Building variantslib.109.15.03:
   make
   make install
 ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ variantslib
+Package version: ..................................... 109.15.03
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+
+./setup.exe -build 
+W: Cannot find source file matching module 'variantslib' in library variantslib
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/variant.mli > lib/variant.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/variant.cmi lib/variant.mli
+ocamlfind ocamldep -modules lib/variant.ml > lib/variant.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/variant.cmo lib/variant.ml
+ocamlfind ocamlc -pack -g lib/variant.cmo -o lib/variantslib.cmo
+ocamlfind ocamlc -a lib/variantslib.cmo -o lib/variantslib.cma
+ocamlfind ocamlopt -c -g -for-pack Variantslib -I lib -o lib/variant.cmx lib/variant.ml
+touch lib/variantslib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/variant.cmx -o lib/variantslib.cmx  ; then  rm -f lib/variantslib.mli  ; else  rm -f lib/variantslib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/variantslib.cmx -o lib/variantslib.cmxa
+ocamlfind ocamlopt -shared lib/variantslib.cmx -o lib/variantslib.cmxs
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.mli > syntax/pa_variants_conv.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmi syntax/pa_variants_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_variants_conv.ml > syntax/pa_variants_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmo syntax/pa_variants_conv.ml
+ocamlfind ocamlc -a syntax/pa_variants_conv.cmo -o syntax/pa_variants_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmx syntax/pa_variants_conv.ml
+ocamlfind ocamlopt -a syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variant.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/META
+Installing variantslib.109.15.03.
+Building conduit.0.5.1:
+  make
+  make install
+Building with Lwt support.
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.ml > lib/conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/conduit.mli > lib/conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmi lib/conduit.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmx lib/conduit.ml
+ocamlfind ocamlopt -shared -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/conduit.cmo lib/conduit.ml
+ocamlfind ocamlc -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmo -o lib/conduit.cma
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit.cmx -o lib/conduit.cmxa
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_conduit.ml > lib/lwt_unix_conduit.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_conduit.mli > lib/lwt_unix_conduit.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmi lib/lwt_unix_conduit.mli
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_net.ml > lib/lwt_unix_net.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -modules lib/lwt_unix_net.mli > lib/lwt_unix_net.mli.depends
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmi lib/lwt_unix_net.mli
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmx lib/lwt_unix_net.ml
+ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmx lib/lwt_unix_conduit.ml
++ ocamlfind ocamlopt -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmx lib/lwt_unix_conduit.ml
+File "lib/lwt_unix_conduit.ml", line 53, characters 25-33:
+Warning 27: unused variable certfile.
+File "lib/lwt_unix_conduit.ml", line 53, characters 50-57:
+Warning 27: unused variable keyfile.
+ocamlfind ocamlopt -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/lwt_unix_net.cmx lib/lwt_unix_conduit.cmx -o lib/conduit-lwt.cmxa
+ocamlfind ocamlopt -shared -linkall -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit-lwt.cmxa -o lib/conduit-lwt.cmxs
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmo lib/lwt_unix_conduit.ml
+ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_net.cmo lib/lwt_unix_net.ml
++ ocamlfind ocamlc -c -w A-4-33-40-41-42-43-34-44 -annot -bin-annot -short-paths -principal -thread -strict-sequence -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro -I lib -o lib/lwt_unix_conduit.cmo lib/lwt_unix_conduit.ml
+File "lib/lwt_unix_conduit.ml", line 53, characters 25-33:
+Warning 27: unused variable certfile.
+File "lib/lwt_unix_conduit.ml", line 53, characters 50-57:
+Warning 27: unused variable keyfile.
+ocamlfind ocamlc -a -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/lwt_unix_net.cmo lib/lwt_unix_conduit.cmo -o lib/conduit-lwt.cma
+# Parallel statistics: { count(total): 1(21), max: 2, min: 2, average(total): 2.000(1.048) }
+Building with Lwt support.
+ocamlfind ocamlopt -shared -linkall -thread -syntax camlp4o -package lwt.syntax -package lwt.unix -package sexplib -package sexplib.syntax -package camlp4.macro lib/conduit-lwt.cmxa -o lib/conduit-lwt.cmxs
+# No parallelism done
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/conduit
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_net.cmx
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_net.cmti
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_net.cmt
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_net.cmi
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_conduit.cmx
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_conduit.cmti
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_conduit.cmt
+Installed /home/opam/.opam/4.01.0/lib/conduit/lwt_unix_conduit.cmi
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmx
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmti
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmt
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cmi
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.cma
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit.a
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit-lwt.cmxs
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit-lwt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit-lwt.cma
+Installed /home/opam/.opam/4.01.0/lib/conduit/conduit-lwt.a
+Installed /home/opam/.opam/4.01.0/lib/conduit/META
+Installing conduit.0.5.1.
+Building cstruct.1.4.0:
+  make
+  make install
+ocaml setup.ml -configure --enable-lwt --enable-unix --disable-async --enable-tests
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ cstruct
+Package version: ..................................... 1.4.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build the Lwt library: ............................... true
+build the Async_unix library: ........................ false
+build the UNIX library: .............................. true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... true
+pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_ocplib_endian: ................................... /home/opam/.opam/4.01.0/lib/ocplib-endian
+pkg_ocplib_endian_bigstring: ......................... /home/opam/.opam/4.01.0/lib/ocplib-endian
+pkg_sexplib: ......................................... /home/opam/.opam/4.01.0/lib/sexplib
+pkg_sexplib_syntax: .................................. /home/opam/.opam/4.01.0/lib/sexplib
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.01.0/lib/lwt
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations_r: ............................. /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_ounit: ........................................... /home/opam/.opam/4.01.0/lib/oUnit
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+ocaml setup.ml -build -j 4
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -O3 -ccopt -Wall -c lib/cstruct_stubs.c
+mv cstruct_stubs.o lib/cstruct_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o lib/cstruct_stubs lib/cstruct_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/cstruct.mli > lib/cstruct.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -I lwt -I unix -I async -o lib/cstruct.cmi lib/cstruct.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -package sexplib -syntax camlp4o -package sexplib.syntax -modules lib/cstruct.ml > lib/cstruct.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -package sexplib -syntax camlp4o -package sexplib.syntax -I lib -I lwt -I unix -I async -o lib/cstruct.cmo lib/cstruct.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -lcstruct_stubs -cclib -lcstruct_stubs lib/cstruct.cmo -o lib/cstruct.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -ccopt -O3 -ccopt -Wall -package bigarray -package ocplib-endian -package ocplib-endian.bigstring -package sexplib -syntax camlp4o -package sexplib.syntax -inline 10 -I lib -I lwt -I unix -I async -o lib/cstruct.cmx lib/cstruct.ml
