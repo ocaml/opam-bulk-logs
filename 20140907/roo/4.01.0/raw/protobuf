@@ -4730,3 +4730,89 @@ ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -sy
 ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
 	builder.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	parser.ml
+File "parser.ml", line 44, characters 21-543:
+Error: Signature mismatch:
+       ...
+       Values do not match:
+         val map : 'a t -> f:('a -> 'b) -> 'b t
+       is not included in
+         val map :
+           [ `Custom of 'a t -> f:('a -> 'b) -> 'b t | `Define_using_bind ]
+       File "parser.ml", line 69, characters 6-9: Actual declaration
+make[3]: *** [parser.cmx] Error 2
+make[2]: *** [protobuf] Error 2
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib/protobuf'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib'
+make[1]: *** [all_trampoline] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0'
+make: *** [all] Error 2
+Removing protobuf.1.0.0.
+[ERROR] The compilation of protobuf.1.0.0 failed.
+  ocamlfind remove protobuf
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/protobuf
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   bitstring.2.0.4
+ - install   core_kernel.111.28.00
+ - install   sexplib.111.25.00
+ - install   pa_test.111.08.00
+ - install   enumerate.111.08.00
+ - install   custom_printf.111.25.00
+ - install   camlp4.4.01.0
+ - install   ounit.2.0.0
+ - install   comparelib.109.60.00
+ - install   pa_ounit.111.28.00
+ - install   core.111.28.00
+ - install   variantslib.109.15.03
+ - install   pipebang.110.01.00
+ - install   typerep.111.17.00
+ - install   type_conv.111.13.00
+ - install   herelib.109.35.02
+ - install   pa_bench.111.28.00
+ - install   fieldslib.109.20.03
+ - install   bin_prot.111.03.00
+The following failed
+ - install   protobuf.1.0.0
+
+#=== ERROR while installing protobuf.1.0.0 ====================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.01.0/build/protobuf.1.0.0
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/protobuf.1.0.0/protobuf-14107-4f1270.env
+# stdout-file          /home/opam/.opam/4.01.0/build/protobuf.1.0.0/protobuf-14107-4f1270.out
+# stderr-file          /home/opam/.opam/4.01.0/build/protobuf.1.0.0/protobuf-14107-4f1270.err
+### stdout ###
+# ...[truncated]
+# 	protocol.ml
+# ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c builder.mli
+# ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+# 	builder.ml
+# ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+# ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+# 	parser.ml
+# make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib/protobuf'
+# make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib'
+# make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0'
+### stderr ###
+# ...[truncated]
+#        Values do not match:
+#          val map : 'a t -> f:('a -> 'b) -> 'b t
+#        is not included in
+#          val map :
+#            [ `Custom of 'a t -> f:('a -> 'b) -> 'b t | `Define_using_bind ]
+#        File "parser.ml", line 69, characters 6-9: Actual declaration
+# make[3]: *** [parser.cmx] Error 2
+# make[2]: *** [protobuf] Error 2
+# make[1]: *** [all_trampoline] Error 2
+# make: *** [all] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140808005855.export"
+'opam install protobuf' failed.
