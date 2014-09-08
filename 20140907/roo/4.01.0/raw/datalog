@@ -203,3 +203,80 @@ ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 
 ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpAst.cmx src/bottomUpAst.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpParser.cmx src/bottomUpParser.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDown.cmx src/topDown.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/default.cmx src/default.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/bottomUpLexer.cmx src/bottomUpLexer.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/version.cmx src/version.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/topDownUnix.cmx src/topDownUnix.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -for-pack Datalog -I src -o src/camlInterface.cmx src/camlInterface.ml
+touch src/datalog.mli  ; if  ocamlfind ocamlopt -pack -g -I src src/bottomUp.cmx src/topDownAst.cmx src/topDownParser.cmx src/topDownLexer.cmx src/topDown.cmx src/bottomUpAst.cmx src/default.cmx src/bottomUpParser.cmx src/bottomUpLexer.cmx src/version.cmx src/topDownUnix.cmx src/camlInterface.cmx -o src/datalog.cmx  ; then  rm -f src/datalog.mli  ; else  rm -f src/datalog.mli  ; exit 1; fi
+ocamlfind ocamlopt -a src/datalog.cmx -o src/datalog.cmxa
+ocamlfind ocamlopt -shared src/datalog.cmx -o src/datalog.cmxs
+ocamlfind ocamldep -package unix -package str -package num -modules src/datalog_cli.ml > src/datalog_cli.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -package num -I src -o src/datalog_cli.cmo src/datalog_cli.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -I src -o src/datalog_cli.cmx src/datalog_cli.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package str -package num src/datalog.cmxa src/datalog.cmx src/datalog_cli.cmx -o src/datalog_cli.native
+ocamlfind ocamldep -package unix -package str -package num -modules src/topDownCli.ml > src/topDownCli.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -package num -I src -o src/topDownCli.cmo src/topDownCli.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -package num -inline 10 -I src -o src/topDownCli.cmx src/topDownCli.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package str -package num src/datalog.cmxa src/datalog.cmx src/topDownCli.cmx -o src/topDownCli.native
+ocamlfind ocamldoc -dump src/bottomUp.odoc -I src -package unix -package str -package num -I src src/bottomUp.mli
++ ocamlfind ocamldoc -dump src/bottomUp.odoc -I src -package unix -package str -package num -I src src/bottomUp.mli
+Warning: Module or module type Hashtbl.HashedType not found
+Warning: Element Datalog_cli not found
+ocamlfind ocamldoc -dump src/topDown.odoc -I src -package unix -package str -package num -I src src/topDown.mli
+ocamlfind ocamldoc -dump src/default.odoc -I src -package unix -package str -package num -I src src/default.mli
++ ocamlfind ocamldoc -dump src/default.odoc -I src -package unix -package str -package num -I src src/default.mli
+Warning: Module type BottomUp.SymbolType not found
+Warning: Module or module type BottomUp.S not found
+Warning: Module type BottomUp.SymbolType not found
+Warning: Element BottomUp.Make not found
+Warning: Element BottomUpBottomUpAst not found
+ocamlfind ocamldoc -dump src/bottomUpAst.odoc -I src -package unix -package str -package num -I src src/bottomUpAst.mli
+ocamlfind ocamldoc -dump src/bottomUpParser.odoc -I src -package unix -package str -package num -I src src/bottomUpParser.mli
+ocamlfind ocamldoc -dump src/bottomUpLexer.odoc -I src -package unix -package str -package num -I src src/bottomUpLexer.ml
+ocamlfind ocamldoc -dump src/topDownParser.odoc -I src -package unix -package str -package num -I src src/topDownParser.mli
+ocamlfind ocamldoc -dump src/topDownLexer.odoc -I src -package unix -package str -package num -I src src/topDownLexer.ml
+ocamlfind ocamldoc -dump src/topDownAst.odoc -I src -package unix -package str -package num -I src src/topDownAst.ml
+ocamlfind ocamldoc -dump src/version.odoc -I src -package unix -package str -package num -I src src/version.ml
+ocamlfind ocamldoc -dump src/topDownUnix.odoc -I src -package unix -package str -package num -I src src/topDownUnix.mli
+ocamlfind ocamldoc -dump src/camlInterface.odoc -I src -package unix -package str -package num -I src src/camlInterface.mli
++ ocamlfind ocamldoc -dump src/camlInterface.odoc -I src -package unix -package str -package num -I src src/camlInterface.mli
+Warning: Module or module type TopDown.PARSE not found
+Warning: Module type TopDown.S not found
+Warning: Module or module type TopDown.PARSE not found
+Warning: Module type TopDown.S not found
+rm -rf datalog.docdir
+mkdir -p datalog.docdir
+ocamlfind ocamldoc -load src/bottomUp.odoc -load src/topDown.odoc -load src/default.odoc -load src/bottomUpAst.odoc -load src/bottomUpParser.odoc -load src/bottomUpLexer.odoc -load src/topDownParser.odoc -load src/topDownLexer.odoc -load src/topDownAst.odoc -load src/version.odoc -load src/topDownUnix.odoc -load src/camlInterface.odoc -html -d datalog.docdir
++ ocamlfind ocamldoc -load src/bottomUp.odoc -load src/topDown.odoc -load src/default.odoc -load src/bottomUpAst.odoc -load src/bottomUpParser.odoc -load src/bottomUpLexer.odoc -load src/topDownParser.odoc -load src/topDownLexer.odoc -load src/topDownAst.odoc -load src/version.odoc -load src/topDownUnix.odoc -load src/camlInterface.odoc -html -d datalog.docdir
+Warning: Module or module type Hashtbl.HashedType not found
+Warning: Element Datalog_cli not found
+Warning: Element BottomUpBottomUpAst not found
+Warning: Tag @hash not handled by this generator
+Warning: Tag @eq not handled by this generator
+ocaml setup.ml -build 
+ocaml setup.ml -doc 
+mkdir -p man/man3/
+ocamlfind ocamldoc -I _build/ -man -d man/man3 
+rm: cannot remove 'datalog.install': No such file or directory
+make: Nothing to be done for `doc'.
+make: Nothing to be done for `man'.
+ocaml setup.ml -install 
+W: Cannot find source header for module BottomUpParser in library datalog
+W: Cannot find source header for module BottomUpLexer in library datalog
+W: Cannot find source header for module TopDownParser in library datalog
+W: Cannot find source header for module TopDownLexer in library datalog
+Installed /home/opam/.opam/4.01.0/lib/datalog/bottomUp.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/topDown.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/default.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/bottomUpAst.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/topDownAst.ml
+Installed /home/opam/.opam/4.01.0/lib/datalog/version.ml
+Installed /home/opam/.opam/4.01.0/lib/datalog/topDownUnix.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/camlInterface.mli
+Installed /home/opam/.opam/4.01.0/lib/datalog/datalog.cmi
+Installed /home/opam/.opam/4.01.0/lib/datalog/datalog.cma
+Installed /home/opam/.opam/4.01.0/lib/datalog/datalog.cmxa
+Installed /home/opam/.opam/4.01.0/lib/datalog/datalog.a
+Installed /home/opam/.opam/4.01.0/lib/datalog/datalog.cmxs
+Installed /home/opam/.opam/4.01.0/lib/datalog/META
