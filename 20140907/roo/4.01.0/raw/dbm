@@ -23,3 +23,65 @@ Setting up libgdbm-dev (1.8.3-12build1) ...
 + '[' '' '!=' '' ']'
 + opam install dbm
 Ubuntu srcexts:
+The following actions will be performed:
+ - install   dbm.1.0
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/dbm.1.0+opam.tar.gz
+sending incremental file list
+dbm.1.0+opam.tar.gz
+
+sent 14,693 bytes  received 35 bytes  29,456.00 bytes/sec
+total size is 14,565  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Applying hasgotfix.patch.
+patching file configure
+Applying include_fix.patch.
+patching file Makefile
+Building dbm.1.0:
+  mkdir -p /home/opam/.opam/4.01.0/lib/dbm
+  ./configure
+  make all
+  make test
+  make install STUBLIBDIR=/home/opam/.opam/4.01.0/lib/stublibs LIBDIR=/home/opam/.opam/4.01.0/lib/dbm
+  cp META /home/opam/.opam/4.01.0/lib/dbm
+Configuring for OCaml version 4.01.0
+
+Configuration for the "camldbm" library:
+        headers found in ......... /usr/include
+        options for compiling .... -DDBM_USES_GDBM_NDBM
+        options for linking ...... -lgdbm_compat -lgdbm
+
+Configuration successful
+
+ocamlc -c -ccopt "" -ccopt "-DDBM_USES_GDBM_NDBM" cldbm.c
+ocamlmklib -oc camldbm cldbm.o -lgdbm_compat -lgdbm
+ocamlc -c  dbm.mli
+ocamlc -c  dbm.ml
+ocamlmklib -o dbm -oc camldbm -linkall dbm.cmo -lgdbm_compat -lgdbm
+ocamlopt -c  dbm.ml
+ocamlmklib -o dbm -oc camldbm -linkall dbm.cmx -lgdbm_compat -lgdbm
+ocamlopt -shared -o dbm.cmxs -I . dbm.cmxa
+ocamlc -o testdbm.byte dbm.cma testdbm.ml
+ocamlopt -ccopt -L. -o testdbm.opt dbm.cmxa testdbm.ml
+rm -f testdatabase.*
+ocamlrun -I . ./testdbm.byte
+key 'one' -> data 'un'
+key 'three' -> data 'trois'
+key 'two' -> data 'deux'
+rm -f testdatabase.*
+./testdbm.opt
+key 'one' -> data 'un'
+key 'three' -> data 'trois'
+key 'two' -> data 'deux'
+rm -f testdatabase.*
+if test -f dllcamldbm.so; then cp dllcamldbm.so /home/opam/.opam/4.01.0/lib/stublibs/; fi 
+cp libcamldbm.a /home/opam/.opam/4.01.0/lib/dbm/
+cd /home/opam/.opam/4.01.0/lib/dbm && ranlib libcamldbm.a
+cp dbm.cma dbm.cmxa dbm.cmi dbm.mli /home/opam/.opam/4.01.0/lib/dbm/
+cp dbm.a /home/opam/.opam/4.01.0/lib/dbm/
+cd /home/opam/.opam/4.01.0/lib/dbm && ranlib dbm.a
+if test -f dbm.cmxs; then cp dbm.cmxs /home/opam/.opam/4.01.0/lib/dbm/; fi
+Installing dbm.1.0.
