@@ -316,3 +316,114 @@ Setting up libxt-dev:amd64 (1:1.1.4-1) ...
 Setting up freeglut3-dev:amd64 (2.8.1-1) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
 ++ opam install lablgl -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lablgl
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgl]
+ - install   lablgl.20120306
+=== 2 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgl.20120306+opam.tar.gz
+sending incremental file list
+lablgl.20120306+opam.tar.gz
+
+sent 451,731 bytes  received 35 bytes  903,532.00 bytes/sec
+total size is 451,495  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building lablgl.20120306:
+  cp Makefile.config.ex Makefile.config
+  mkdir -p /home/opam/.opam/4.01.0/bin
+  make glut
+  make glutopt
+  make install -C src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+  make install -C LablGlut/src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+cd src && make all LIBDIR="`ocamlc -where`"
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/src'
+ocamlc -pp camlp4o var2def.ml -o var2def
+ocamlc -pp camlp4o var2switch.ml -o var2switch
+ocamlrun ../src/var2def < gl_tags.var > gl_tags.h
+ocamlrun ../src/var2switch -table GL_ < gl_tags.var > gl_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_gl.c
+ml_gl.c: In function 'ml_glGetString':
+ml_gl.c:225:1: warning: pointer targets in passing argument 1 of 'lablgl_copy_string_check' differ in signedness [-Wpointer-sign]
+ ML_1_ (glGetString, GLenum_val, copy_string_check)
+ ^
+In file included from ml_gl.c:24:0:
+ml_gl.h:9:27: note: expected 'const char *' but argument is of type 'const GLubyte *'
+ #define copy_string_check lablgl_copy_string_check
+                           ^
+ml_gl.c:40:7: note: in expansion of macro 'copy_string_check'
+ value copy_string_check (const char *str)
+       ^
+ml_gl.c: In function 'ml_glGenTextures':
+ml_gl.c:674:1: warning: pointer targets in passing argument 2 of 'glGenTextures' differ in signedness [-Wpointer-sign]
+ ML_2 (glGenTextures, Int_val, Int_raw)
+ ^
+In file included from ml_gl.c:10:0:
+/usr/include/GL/gl.h:1311:23: note: expected 'GLuint *' but argument is of type 'int *'
+ GLAPI void GLAPIENTRY glGenTextures( GLsizei n, GLuint *textures );
+                       ^
+ocamlrun ../src/var2def < glu_tags.var > glu_tags.h
+ocamlrun ../src/var2switch GLU_ < glu_tags.var > glu_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glu.c
+ml_glu.c: In function 'ml_gluGetString':
+ml_glu.c:96:1: warning: pointer targets in passing argument 1 of 'lablgl_copy_string_check' differ in signedness [-Wpointer-sign]
+ ML_1_ (gluGetString, GLUenum_val, copy_string_check)
+ ^
+In file included from ml_glu.c:19:0:
+ml_gl.h:9:27: note: expected 'const char *' but argument is of type 'const GLubyte *'
+ #define copy_string_check lablgl_copy_string_check
+                           ^
+ml_gl.h:10:7: note: in expansion of macro 'copy_string_check'
+ value copy_string_check (const char *str);
+       ^
+ocamlrun ../src/var2def < raw_tags.var > raw_tags.h
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_raw.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glarray.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glutess.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_shader.c
+ocamlc -c -w s -I +labltk raw.mli
+ocamlc -c -w s -I +labltk raw.ml
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk gl.mli
+ocamlc -c -w s -I +labltk gl.ml
+ocamlc -c -w s -I +labltk glLight.mli
+ocamlc -c -w s -I +labltk glLight.ml
+ocamlc -c -w s -I +labltk glList.mli
+ocamlc -c -w s -I +labltk glList.ml
+ocamlc -c -w s -I +labltk glMap.mli
+ocamlc -c -w s -I +labltk glMap.ml
+ocamlc -c -w s -I +labltk glMat.mli
+ocamlc -c -w s -I +labltk glMat.ml
+ocamlc -c -w s -I +labltk glMisc.mli
+ocamlc -c -w s -I +labltk glMisc.ml
+File "glMisc.ml", line 26, characters 15-17:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk glPix.mli
+ocamlc -c -w s -I +labltk glPix.ml
+ocamlc -c -w s -I +labltk glClear.mli
+ocamlc -c -w s -I +labltk glClear.ml
+ocamlc -c -w s -I +labltk glTex.mli
+ocamlc -c -w s -I +labltk glTex.ml
+ocamlc -c -w s -I +labltk glDraw.mli
+ocamlc -c -w s -I +labltk glDraw.ml
+File "glDraw.ml", line 30, characters 28-30:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk glFunc.mli
+ocamlc -c -w s -I +labltk glFunc.ml
+ocamlc -c -w s -I +labltk gluMisc.mli
+ocamlc -c -w s -I +labltk gluMisc.ml
+ocamlc -c -w s -I +labltk gluNurbs.mli
+ocamlc -c -w s -I +labltk gluNurbs.ml
+File "gluNurbs.ml", line 57, characters 23-25:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk gluQuadric.mli
+ocamlc -c -w s -I +labltk gluQuadric.ml
+ocamlc -c -w s -I +labltk gluTess.mli
