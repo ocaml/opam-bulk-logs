@@ -89,3 +89,12 @@ Recreating "src/version.ml"
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/accumulate.cmx src/accumulate.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/depend.cmx src/depend.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/version.cmx src/version.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/abella.cmx src/abella.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa str.cmxa -g src/debug.cmx src/extensions.cmx src/graph.cmx src/term.cmx src/subordination.cmx src/unify.cmx src/context.cmx src/metaterm.cmx src/typing.cmx src/abella_types.cmx src/parser.cmx src/lexer.cmx src/tactics.cmx src/prover.cmx src/accumulate.cmx src/depend.cmx src/version.cmx src/abella.cmx -o src/abella.native
+ocamlbuild -classic-display -no-links src/copy_exe.native
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules src/copy_exe.ml > src/copy_exe.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -I src -o src/copy_exe.cmo src/copy_exe.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -I src -o src/copy_exe.cmx src/copy_exe.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa str.cmxa -g src/copy_exe.cmx -o src/copy_exe.native
+_build/src/copy_exe.native _build/src/abella.native abella
+Installing abella.2.0.1.
