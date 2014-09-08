@@ -642,3 +642,72 @@ more information, such as the ld(1) and ld.so(8) manual pages.
   ./doltlibtool   --mode=install /usr/bin/install -c nanocat '/usr/local/bin'
 libtool: install: /usr/bin/install -c .libs/nanocat /usr/local/bin/nanocat
 make  install-exec-hook
+make[2]: Entering directory `/home/opam/opam-repository/nanomsg-0.3-beta'
+cd /usr/local/bin && \
+          ln -s -f nanocat nn_push && \
+          ln -s -f nanocat nn_pull && \
+          ln -s -f nanocat nn_pub && \
+          ln -s -f nanocat nn_sub && \
+          ln -s -f nanocat nn_req && \
+          ln -s -f nanocat nn_rep && \
+          ln -s -f nanocat nn_surveyor && \
+          ln -s -f nanocat nn_respondent && \
+          ln -s -f nanocat nn_bus && \
+          ln -s -f nanocat nn_pair
+make[2]: Leaving directory `/home/opam/opam-repository/nanomsg-0.3-beta'
+ /bin/mkdir -p '/usr/local/include/nanomsg'
+ /usr/bin/install -c -m 644 src/nn.h src/inproc.h src/ipc.h src/tcp.h src/pair.h src/pubsub.h src/reqrep.h src/pipeline.h src/survey.h src/bus.h '/usr/local/include/nanomsg'
+ /bin/mkdir -p '/usr/local/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libnanomsg.pc '/usr/local/lib/pkgconfig'
+make[1]: Leaving directory `/home/opam/opam-repository/nanomsg-0.3-beta'
++ opam install onanomsg
+The following actions will be performed:
+ - install   conf-nanomsg.0                        [required by onanomsg]
+ - install   camlp4.4.01.0                         [required by ocp-build]
+ - install   base-bytes.legacy                     [required by ctypes]
+ - install   ocp-build.1.99.8-beta                 [required by onanomsg]
+ - install   ctypes.0.3.3                          [required by onanomsg]
+ - install   onanomsg.0.1
+=== 6 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocp-build.1.99.8-beta+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/onanomsg.0.1+opam.tar.gz
+sending incremental file list
+sending incremental file list
+ocp-build.1.99.8-beta+opam.tar.gz
+ctypes.0.3.3+opam.tar.gz
+sending incremental file list
+onanomsg.0.1+opam.tar.gz
+
+sent 132,062 bytes  received 35 bytes  88,064.67 bytes/sec
+total size is 131,901  speedup is 1.00
+
+sent 899,755 bytes  received 35 bytes  599,860.00 bytes/sec
+total size is 899,401  speedup is 1.00
+
+sent 8,336 bytes  received 35 bytes  16,742.00 bytes/sec
+total size is 8,203  speedup is 0.98
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing base-bytes.legacy.
+Installing camlp4.4.01.0.
+Building conf-nanomsg.0:
+  pkg-config libnanomsg
+Installing conf-nanomsg.0.
+Building ctypes.0.3.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed: ...................... available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx        -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o make_primitive_details_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o  
+ocamlfind opt -c -o _build/src/libffi-abigen/libffi_abigen.cmx -package unix    -package unix   -I _build/src/libffi-abigen  src/libffi-abigen/libffi_abigen.ml
+ocamlfind opt -I _build -linkpkg   -package unix   -o _build/libffi-abigen.native _build/src/libffi-abigen/libffi_abigen.cmx  
+_build/configure.native > src/ctypes/ctypes_primitives.ml
+_build/libffi-abigen.native > src/ctypes-foreign-base/libffi_abi.ml
