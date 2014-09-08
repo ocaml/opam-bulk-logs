@@ -69,4 +69,92 @@ checking for ocamlbuild... ocamlbuild
 checking for ocamlfind... ocamlfind
 checking for OCaml compiler word size... 64
 checking for gcc... gcc
-checking whether the C compiler works... 
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for dbopen in -lsybdb... yes
+checking for ct_init in -lct... yes
+configure: creating ./config.status
+config.status: creating Makefile.ocaml
+config.status: creating src/META
+config.status: creating Makefile
+config.status: creating src/Makefile
+make -C src byte
+../Makefile.ocaml:52: .depend.ocaml: No such file or directorymake[1]: Entering directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+
+Building .depend.ocaml ... 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+ocamlc.opt  -dtypes -g   -c ct.mli
+ocamlc.opt  -dtypes -g   -c ct.ml
+ocamlc.opt  -dtypes -g   -c dblib.mli
+ocamlc.opt  -dtypes -g   -c dblib.ml
+File "dblib.ml", line 61, characters 10-14:
+Warning 43: the label user is not optional.
+File "dblib.ml", line 61, characters 16-24:
+Warning 43: the label password is not optional.
+File "dblib.ml", line 61, characters 26-33:
+Warning 43: the label charset is not optional.
+File "dblib.ml", line 61, characters 35-43:
+Warning 43: the label language is not optional.
+File "dblib.ml", line 61, characters 45-56:
+Warning 43: the label application is not optional.
+ocamlc.opt -pack -o freetds.cmo ct.cmo dblib.cmo
+cc -Wall -fPIC -DOCAML_WORD_SIZE=64 -I'/home/opam/.opam/4.01.0/lib/ocaml'   -c -o ct_c.o ct_c.c
+ct_c.c: In function 'mltds_ct_bind':
+ct_c.c:529:5: warning: missing braces around initializer [-Wmissing-braces]
+     CS_DATAFMT fmt = {0,0,0,0,0,0,0,0,0,0,0};
+     ^
+ct_c.c:529:5: warning: (near initialization for 'fmt.name') [-Wmissing-braces]
+cc -Wall -fPIC -DOCAML_WORD_SIZE=64 -I'/home/opam/.opam/4.01.0/lib/ocaml'   -c -o dblib_stubs.o dblib_stubs.c
+dblib_stubs.c: In function 'ocaml_freetds_dbcoltype':
+dblib_stubs.c:302:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+dblib_stubs.c: In function 'ocaml_freetds_dbnextrow':
+dblib_stubs.c:499:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+ocamlmklib -ocamlc ocamlc.opt -o freetds -oc freetds_stubs \
+	freetds.cmo ct_c.o dblib_stubs.o -lct -lsybdb 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+make -C src native
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+ocamlopt.opt  -dtypes -inline 3 -w DEFPSVYZX  -for-pack Freetds  -c ct.ml
+ocamlopt.opt  -dtypes -inline 3 -w DEFPSVYZX  -for-pack Freetds  -c dblib.ml
+File "dblib.ml", line 61, characters 10-14:
+Warning 43: the label user is not optional.
+File "dblib.ml", line 61, characters 16-24:
+Warning 43: the label password is not optional.
+File "dblib.ml", line 61, characters 26-33:
+Warning 43: the label charset is not optional.
+File "dblib.ml", line 61, characters 35-43:
+Warning 43: the label language is not optional.
+File "dblib.ml", line 61, characters 45-56:
+Warning 43: the label application is not optional.
+ocamlopt.opt -pack -o freetds.cmx ct.cmx dblib.cmx
+ocamlmklib -ocamlopt ocamlopt.opt -o freetds -oc freetds_stubs \
+	freetds.cmx ct_c.o dblib_stubs.o -lct -lsybdb 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+ocamlfind install "freetds" META ct.mli dblib.mli freetds.cmi freetds.cma freetds.cmx freetds.a freetds.cmxa dllfreetds_stubs.so libfreetds_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/freetds/libfreetds_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/freetds/freetds.cmxa
+Installed /home/opam/.opam/4.01.0/lib/freetds/freetds.a
+Installed /home/opam/.opam/4.01.0/lib/freetds/freetds.cmx
+Installed /home/opam/.opam/4.01.0/lib/freetds/freetds.cma
+Installed /home/opam/.opam/4.01.0/lib/freetds/freetds.cmi
+Installed /home/opam/.opam/4.01.0/lib/freetds/dblib.mli
+Installed /home/opam/.opam/4.01.0/lib/freetds/ct.mli
+Installed /home/opam/.opam/4.01.0/lib/freetds/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllfreetds_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllfreetds_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/freetds.0.5.1/src'
+Installing freetds.0.5.1.
