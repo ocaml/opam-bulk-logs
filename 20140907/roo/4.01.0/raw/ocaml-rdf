@@ -2690,3 +2690,13 @@ make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/ne
 ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm.ml
 [ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm.cmx .cmx`.p.cmx  netshm.ml
 ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_data.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_data.cmx .cmx`.p.cmx  netshm_data.ml
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_hashtbl.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_hashtbl.cmx .cmx`.p.cmx  netshm_hashtbl.ml
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_array.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_array.cmx .cmx`.p.cmx  netshm_array.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -a -o netshm.cmxa  netshm.cmx netshm_data.cmx netshm_hashtbl.cmx netshm_array.cmx; \
+	else \
+		../../tools/mkstublib -o netshm netshm.cmx netshm_data.cmx netshm_hashtbl.cmx netshm_array.cmx  ; \
+	fi
