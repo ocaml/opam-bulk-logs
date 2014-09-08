@@ -1100,3 +1100,180 @@ sha1_stubs.c:128:2: warning: incompatible implicit declaration of built-in funct
 ocamlc -c -o sha1.cmo sha1.ml
 ocamlmklib -o sha1 sha1.lib.o sha1_stubs.o sha1.cmo
 ocamlopt  -c -o sha1.cmx sha1.ml
+ocamlmklib -o sha1 sha1.lib.o sha1_stubs.o sha1.cmx
+ocamlc -c -o sha256.cmi sha256.mli
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha256.o sha256.c
+mv sha256.o sha256.lib.o
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha256_stubs.o sha256_stubs.c
+sha256_stubs.c: In function 'stub_sha256_file':
+sha256_stubs.c:116:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+sha256_stubs.c:108:20: warning: incompatible implicit declaration of built-in function 'strcpy' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                    ^
+sha256_stubs.c:116:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha256_stubs.c:116:2: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+In file included from /usr/include/stdlib.h:492:0,
+                 from /home/opam/.opam/4.01.0/lib/ocaml/caml/misc.h:27,
+                 from /home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:21,
+                 from sha256_stubs.c:42:
+sha256_stubs.c:108:34: warning: incompatible implicit declaration of built-in function 'strlen' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                                  ^
+sha256_stubs.c:116:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha256_stubs.c:126:2: warning: implicit declaration of function 'memcpy' [-Wimplicit-function-declaration]
+  memcpy((sha256_digest *)result, &digest, sizeof(sha256_digest));
+  ^
+sha256_stubs.c:126:2: warning: incompatible implicit declaration of built-in function 'memcpy' [enabled by default]
+ocamlc -c -o sha256.cmo sha256.ml
+ocamlmklib -o sha256 sha256.lib.o sha256_stubs.o sha256.cmo
+ocamlopt  -c -o sha256.cmx sha256.ml
+ocamlmklib -o sha256 sha256.lib.o sha256_stubs.o sha256.cmx
+ocamlc -c -o sha512.cmi sha512.mli
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha512.o sha512.c
+mv sha512.o sha512.lib.o
+ocamlc -ccopt "-Wall -O3 -funroll-loops -I/usr/include" -c -o sha512_stubs.o sha512_stubs.c
+sha512_stubs.c: In function 'stub_sha512_file':
+sha512_stubs.c:116:2: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+sha512_stubs.c:108:20: warning: incompatible implicit declaration of built-in function 'strcpy' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                    ^
+sha512_stubs.c:116:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha512_stubs.c:116:2: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  char *name_dup = strdupa(String_val(name));
+  ^
+In file included from /usr/include/stdlib.h:492:0,
+                 from /home/opam/.opam/4.01.0/lib/ocaml/caml/misc.h:27,
+                 from /home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:21,
+                 from sha512_stubs.c:42:
+sha512_stubs.c:108:34: warning: incompatible implicit declaration of built-in function 'strlen' [enabled by default]
+ #define strdupa(s) strcpy(alloca(strlen(s)+1),s)
+                                  ^
+sha512_stubs.c:116:19: note: in expansion of macro 'strdupa'
+  char *name_dup = strdupa(String_val(name));
+                   ^
+sha512_stubs.c:126:2: warning: implicit declaration of function 'memcpy' [-Wimplicit-function-declaration]
+  memcpy((sha512_digest *)result, &digest, sizeof(sha512_digest));
+  ^
+sha512_stubs.c:126:2: warning: incompatible implicit declaration of built-in function 'memcpy' [enabled by default]
+ocamlc -c -o sha512.cmo sha512.ml
+ocamlmklib -o sha512 sha512.lib.o sha512_stubs.o sha512.cmo
+ocamlopt  -c -o sha512.cmx sha512.ml
+ocamlmklib -o sha512 sha512.lib.o sha512_stubs.o sha512.cmx
+ocamlmklib -o sha  sha1.lib.o sha1_stubs.o sha1.cmo  sha256.lib.o sha256_stubs.o sha256.cmo  sha512.lib.o sha512_stubs.o sha512.cmo
+ocamlmklib -o sha  sha1.lib.o sha1_stubs.o sha1.cmx  sha256.lib.o sha256_stubs.o sha256.cmx  sha512.lib.o sha512_stubs.o sha512.cmx
+rm sha1.o sha256.o sha512.o
+ocamlfind install sha META *.cmx sha1.cmi sha1.cma sha1.cmxa sha256.cmi sha256.cma sha256.cmxa sha512.cmi sha512.cma sha512.cmxa sha.cma sha.cmxa *.a *.so
+Installed /home/opam/.opam/4.01.0/lib/sha/sha512.a
+Installed /home/opam/.opam/4.01.0/lib/sha/sha256.a
+Installed /home/opam/.opam/4.01.0/lib/sha/sha1.a
+Installed /home/opam/.opam/4.01.0/lib/sha/sha.a
+Installed /home/opam/.opam/4.01.0/lib/sha/libsha512.a
+Installed /home/opam/.opam/4.01.0/lib/sha/libsha256.a
+Installed /home/opam/.opam/4.01.0/lib/sha/libsha1.a
+Installed /home/opam/.opam/4.01.0/lib/sha/libsha.a
+Installed /home/opam/.opam/4.01.0/lib/sha/sha.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sha/sha.cma
+Installed /home/opam/.opam/4.01.0/lib/sha/sha512.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sha/sha512.cma
+Installed /home/opam/.opam/4.01.0/lib/sha/sha512.cmi
+Installed /home/opam/.opam/4.01.0/lib/sha/sha256.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sha/sha256.cma
+Installed /home/opam/.opam/4.01.0/lib/sha/sha256.cmi
+Installed /home/opam/.opam/4.01.0/lib/sha/sha1.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sha/sha1.cma
+Installed /home/opam/.opam/4.01.0/lib/sha/sha1.cmi
+Installed /home/opam/.opam/4.01.0/lib/sha/sha512.cmx
+Installed /home/opam/.opam/4.01.0/lib/sha/sha256.cmx
+Installed /home/opam/.opam/4.01.0/lib/sha/sha1.cmx
+Installed /home/opam/.opam/4.01.0/lib/sha/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha512.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha512.so.owner
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha256.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha256.so.owner
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha1.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha1.so.owner
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllsha.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing sha.1.9.
+Building stringext.1.0.0:
+  ocaml setup.ml -configure
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ Stringext
+Package version: ..................................... 1.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/stringext.mli > lib/stringext.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/stringext.cmi lib/stringext.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/stringext.ml > lib/stringext.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/stringext.cmo lib/stringext.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/stringext.cmo -o lib/stringext.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -o lib/stringext.cmx lib/stringext.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/stringext.cmx -o lib/stringext.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/stringext.cmxa lib/stringext.cmx -o lib/stringext.cmxs

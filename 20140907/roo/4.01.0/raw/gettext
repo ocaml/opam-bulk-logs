@@ -1839,3 +1839,45 @@ ocamlfind ocamlopt -o ocaml-gettext -pp 'camlp4o -I +camlp4 pa_macro.cmo -DCAMOM
 	-predicates ""  OCamlGettext.cmx
 findlib: [WARNING] Package gettext-camomile has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext-camomile/META, /home/opam/.opam/4.01.0/lib/gettext-camomile/META
 findlib: [WARNING] Package gettext has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext/META, /home/opam/.opam/4.01.0/lib/gettext/META
+/usr/bin/install -c -d /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin 
+/usr/bin/install -c -t /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin ocaml-gettext 
+ocamlfind ocamlc                                                             \
+           -I +camlp4 dynlink.cma camlp4lib.cma                              \
+           unix.cma                                                          \
+          `ocamlfind query -r -predicates byte gettext.extract -i-format` \
+          `ocamlfind query -r -predicates byte gettext.extract -a-format` \
+          `ocamlfind query -r -predicates byte gettext.extract -o-format` \
+           Camlp4Bin.cmo                                                     \
+          -o ocaml-xgettext
+File "/home/opam/.opam/4.01.0/lib/ocaml/unix.cma(Unix)", line 1:
+Warning 31: files /home/opam/.opam/4.01.0/lib/ocaml/unix.cma(Unix) and /home/opam/.opam/4.01.0/lib/ocaml/unix.cma(Unix) both define a module named Unix
+File "/home/opam/.opam/4.01.0/lib/ocaml/unix.cma(UnixLabels)", line 1:
+Warning 31: files /home/opam/.opam/4.01.0/lib/ocaml/unix.cma(UnixLabels) and /home/opam/.opam/4.01.0/lib/ocaml/unix.cma(UnixLabels) both define a module named UnixLabels
+/usr/bin/install -c -t /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin ocaml-xgettext
+ocamlfind ocamlc  -pp 'camlp4o -I +camlp4 pa_macro.cmo -DCAMOMILE' -package "gettext.extension fileutils gettext-camomile"   -c OCamlGettext.ml
+findlib: [WARNING] Package gettext-camomile has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext-camomile/META, /home/opam/.opam/4.01.0/lib/gettext-camomile/META
+findlib: [WARNING] Package gettext has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext/META, /home/opam/.opam/4.01.0/lib/gettext/META
+ocamlfind ocamlc  -o ocaml-gettext -pp 'camlp4o -I +camlp4 pa_macro.cmo -DCAMOMILE' -package "gettext.extension fileutils gettext-camomile" -linkpkg \
+	-predicates ""  OCamlGettext.cmo      
+findlib: [WARNING] Package gettext-camomile has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext-camomile/META, /home/opam/.opam/4.01.0/lib/gettext-camomile/META
+findlib: [WARNING] Package gettext has multiple definitions in /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/lib/gettext/META, /home/opam/.opam/4.01.0/lib/gettext/META
+/usr/bin/install -c -d /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin
+/usr/bin/install -c -t /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin ocaml-gettext
+/usr/bin/install -c -d /home/opam/.opam/4.01.0/bin
+/usr/bin/install -c -t /home/opam/.opam/4.01.0/bin ocaml-gettext 
+/usr/bin/install -c -t /home/opam/.opam/4.01.0/bin ocaml-xgettext 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/gettext.0.3.5/ocaml-gettext'
+cd po                        && make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/gettext.0.3.5/po'
+/home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin/ocaml-gettext --action install     \
+	--install-textdomain ocaml-gettext                         \
+	--install-destdir /home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/share/locale fr.mo
+/home/opam/.opam/4.01.0/build/gettext.0.3.5/_build/bin/ocaml-gettext --action install     \
+	--install-textdomain ocaml-gettext                         \
+	--install-destdir /home/opam/.opam/4.01.0/lib/gettext/share/locale fr.mo
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/gettext.0.3.5/po'
+cd doc                       && make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/gettext.0.3.5/doc'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/gettext.0.3.5/doc'
+Installing gettext.0.3.5.
