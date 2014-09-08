@@ -135,3 +135,223 @@ ocamlfind ocamlopt   -c bitstring_config.ml
 ocamlfind ocamlopt   -c bitstring.ml
 ocamlfind ocamlopt   -c bitmatch.ml
 ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+Applying opam.patch.
+patching file configure.in
+Building mlpost.0.8.1:
+  ./configure --prefix /home/opam/.opam/4.01.0 --mandir /home/opam/.opam/4.01.0/man
+  make
+  make install
+  make contrib
+  make install-contrib
+checking for ocamlc... /home/opam/.opam/4.01.0/bin/ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... /home/opam/.opam/4.01.0/bin/ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... /home/opam/.opam/4.01.0/bin/ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for camlp4o... /home/opam/.opam/4.01.0/bin/camlp4o
+checking camlp4o version... ok
+checking for ocamldoc... /home/opam/.opam/4.01.0/bin/ocamldoc
+checking for ocamldep... /home/opam/.opam/4.01.0/bin/ocamldep
+checking for ocamllex... /home/opam/.opam/4.01.0/bin/ocamllex
+checking for ocamllex.opt... /home/opam/.opam/4.01.0/bin/ocamllex.opt
+checking for ocamlyacc... /home/opam/.opam/4.01.0/bin/ocamlyacc
+checking for ocamlbuild... /home/opam/.opam/4.01.0/bin/ocamlbuild
+checking ocamlbuild version... ok
+checking ocamlbuild place... ok
+checking for ocamlweb... true
+checking platform... not Win32
+checking for ocamlfind... yes
+Mlpost library will be installed in: /home/opam/.opam/4.01.0/lib/mlpost
+ocamlfind: Package `cairo' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/cairo/cairo.cma... no
+ocamlfind found bitstring in /home/opam/.opam/4.01.0/lib/bitstring
+ocamlfind: Package `lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2/lablgtk.cma... no
+ocamlfind: Package `cairo.lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/cairo/cairo_lablgtk.cma... no
+checking for gv... no
+checking for evince... no
+checking for xpdf... no
+checking for acroread... no
+checking for evince... no
+---------------------------------------------------
+  Mlpost library will be installed in: /home/opam/.opam/4.01.0/lib/mlpost
+  native code compilation: yes
+  Support for concrete computations in mlpost: yes
+  Cairo support in mlpost: no
+  Contrib mlpost_lablgtk : no
+---------------------------------------------------
+configure: creating ./config.status
+config.status: creating META
+config.status: creating version.ml
+config.status: creating Makefile
+config.status: creating myocamlbuild.ml
+autoconf
+./config.status --recheck
+running CONFIG_SHELL=/bin/bash /bin/bash ./configure --prefix /home/opam/.opam/4.01.0 --mandir /home/opam/.opam/4.01.0/man --no-create --no-recursion
+checking for ocamlc... /home/opam/.opam/4.01.0/bin/ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... /home/opam/.opam/4.01.0/bin/ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... /home/opam/.opam/4.01.0/bin/ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for camlp4o... /home/opam/.opam/4.01.0/bin/camlp4o
+checking camlp4o version... ok
+checking for ocamldoc... /home/opam/.opam/4.01.0/bin/ocamldoc
+checking for ocamldep... /home/opam/.opam/4.01.0/bin/ocamldep
+checking for ocamllex... /home/opam/.opam/4.01.0/bin/ocamllex
+checking for ocamllex.opt... /home/opam/.opam/4.01.0/bin/ocamllex.opt
+checking for ocamlyacc... /home/opam/.opam/4.01.0/bin/ocamlyacc
+checking for ocamlbuild... /home/opam/.opam/4.01.0/bin/ocamlbuild
+checking ocamlbuild version... ok
+checking ocamlbuild place... ok
+checking for ocamlweb... true
+checking platform... not Win32
+checking for ocamlfind... yes
+Mlpost library will be installed in: /home/opam/.opam/4.01.0/lib/mlpost
+ocamlfind: Package `cairo' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/cairo/cairo.cma... no
+ocamlfind found bitstring in /home/opam/.opam/4.01.0/lib/bitstring
+ocamlfind: Package `lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/lablgtk2/lablgtk.cma... no
+ocamlfind: Package `cairo.lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/cairo/cairo_lablgtk.cma... no
+checking for gv... no
+checking for evince... no
+checking for xpdf... no
+checking for acroread... no
+checking for evince... no
+---------------------------------------------------
+  Mlpost library will be installed in: /home/opam/.opam/4.01.0/lib/mlpost
+  native code compilation: yes
+  Support for concrete computations in mlpost: yes
+  Cairo support in mlpost: no
+  Contrib mlpost_lablgtk : no
+---------------------------------------------------
+configure: creating ./config.status
+./config.status
+config.status: creating META
+config.status: creating version.ml
+config.status: creating Makefile
+config.status: creating myocamlbuild.ml
+chmod a-w myocamlbuild.ml META Makefile version.ml
+/home/opam/.opam/4.01.0/bin/ocamlbuild  -no-links -tag dtypes -tag concrete_yes  -classic-display -log "build.log" mlpost.cma mlpost_desc_options.cma mlpost_options.cma mlpost.cmxa mlpost_desc_options.cmxa mlpost_options.cmxa tool.native
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q myocamlmacroparser.mll
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules myocamlmacroparser.ml > myocamlmacroparser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o myocamlmacroparser.cmo myocamlmacroparser.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -dtypes -for-pack Mlpost -I concrete -I gui -I dvi -I backend -o myocamlmacroparser.cmx myocamlmacroparser.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt myocamlmacroparser.cmx -o myocamlmacroparser.native
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp '/home/opam/.opam/4.01.0/bin/camlp4o Camlp4MacroParser.cmo  -D CONCRETE' -modules mlpost.mli > mlpost.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -pp '/home/opam/.opam/4.01.0/bin/camlp4o Camlp4MacroParser.cmo  -D CONCRETE' -I concrete -I gui -I dvi -I backend -o mlpost.cmi mlpost.mli
+cp mlpost_concrete.mlpack mlpost.mlpack
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules signature.ml > signature.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules types.mli > types.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules concrete/concrete_types.ml > concrete/concrete_types.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules hashcons.mli > hashcons.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/concrete_types.cmo concrete/concrete_types.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o hashcons.cmi hashcons.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o types.cmi types.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules num.ml > num.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules point.ml > point.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o num.cmo num.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules metaPath.ml > metaPath.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o point.cmo point.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules path.ml > path.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o metaPath.cmo metaPath.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules transform.ml > transform.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o transform.cmo transform.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules pen.ml > pen.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dash.ml > dash.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules color.ml > color.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules brush.ml > brush.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o color.cmo color.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o dash.cmo dash.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o pen.cmo pen.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules box.ml > box.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules command.ml > command.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules misc.ml > misc.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o misc.cmo misc.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o path.cmo path.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules picture.ml > picture.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules shapes.ml > shapes.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o command.cmo command.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o picture.cmo picture.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o shapes.cmo shapes.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules arrow.ml > arrow.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o box.cmo box.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules helpers.ml > helpers.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o arrow.cmo arrow.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tree.ml > tree.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o helpers.cmo helpers.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tree_adv.ml > tree_adv.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o signature.cmo signature.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules diag.ml > diag.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules plot.ml > plot.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules real_plot.ml > real_plot.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o brush.cmo brush.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp '/home/opam/.opam/4.01.0/bin/camlp4o Camlp4MacroParser.cmo  -D CONCRETE' -modules concrete.ml > concrete.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules backend/compute.ml > backend/compute.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp '/home/opam/.opam/4.01.0/bin/camlp4o Camlp4MacroParser.cmo  -D CONCRETE' -modules concrete/ctypes.mli > concrete/ctypes.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules backend/gentex.mli > backend/gentex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/dev_save.mli > dvi/dev_save.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/dviinterp.mli > dvi/dviinterp.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/dvi.mli > dvi/dvi.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/dvi_util.ml > dvi/dvi_util.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/fonts.mli > dvi/fonts.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules dvi/tfm.mli > dvi/tfm.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/tfm.cmi dvi/tfm.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dvi_util.cmo dvi/dvi_util.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/fonts.cmi dvi/fonts.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dvi.cmi dvi/dvi.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dviinterp.cmi dvi/dviinterp.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules concrete/matrix.mli > concrete/matrix.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -pp '/home/opam/.opam/4.01.0/bin/camlp4o Camlp4MacroParser.cmo  -D CONCRETE' -I concrete -I gui -I dvi -I backend -o concrete/ctypes.cmi concrete/ctypes.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules concrete/point_lib.mli > concrete/point_lib.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I dvi -I concrete -I gui -I backend -o dvi/dev_save.cmi dvi/dev_save.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/matrix.cmi concrete/matrix.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -dtypes -I concrete -I gui -I dvi -I backend -o concrete/point_lib.cmi concrete/point_lib.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules concrete/metapath_lib.mli > concrete/metapath_lib.mli.depends
