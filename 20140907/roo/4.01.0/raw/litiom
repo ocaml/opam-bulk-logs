@@ -6689,3 +6689,235 @@ ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_le
 ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
 ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
 ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+ocamlfind ocamlc -package lwt,graphics -I ./ graphics/graphics_js.mli -o graphics/graphics_js.cmi
+File "graphics/graphics_js.mli", line 22, characters 23-31:
+Error: Unbound module Graphics
+make[1]: *** [graphics/graphics_js.cmi] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.2/lib'
+make: *** [library] Error 2
+Removing js_of_ocaml.2.2.
+[ERROR] The compilation of js_of_ocaml.2.2 failed.
+  ocamlfind remove js_of_ocaml
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/js_of_ocaml
+Building ocsigenserver.2.4.0:
+  sh configure --prefix /home/opam/.opam/4.01.0 --ocsigen-user opam --ocsigen-group opam --commandpipe /home/opam/.opam/4.01.0/lib/ocsigenserver/var/run/ocsigenserver_command --logdir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/log/ocsigenserver --mandir /home/opam/.opam/4.01.0/man/man1 --docdir /home/opam/.opam/4.01.0/lib/ocsigenserver/share/doc/ocsigenserver --commandpipe /home/opam/.opam/4.01.0/lib/ocsigenserver/var/run/ocsigenserver_command --staticpagesdir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/www --datadir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/lib/ocsigenserver --sysconfdir /home/opam/.opam/4.01.0/lib/ocsigenserver/etc/ocsigenserver
+  make
+  make install
+
+	Welcome to Ocsigen server, version 2.4.0.
+
+Checking for ocamlc ... found
+Checking for OCaml version... 4.01.0
+Checking for ocamlfind ... found
+Checking for react ... found
+Checking for ssl ... found
+Checking for lwt ... found
+Checking for lwt.unix ... found
+Checking for lwt.react ... found
+Checking for lwt.ssl ... found
+Checking for netstring ... found
+Checking for netstring-pcre ... found
+Checking for netsys ... found
+Checking for pcre ... found
+Checking for cryptokit ... found
+Checking for tyxml ... found
+Checking for sqlite3 ... not found
+Checking for dbm ... found
+Checking for camlzip ... not found
+Checking for zip ... not found
+Checking for lwt.extra ... found
+Checking for rlwrap ... not found
+Checking for ledit ... not found
+
+Effective options:
+    --disable-debug
+    --disable-annot
+    --enable-natdynlink
+    --without-sqlite
+    --with-dbm
+    --without-camlzip
+    --with-preempt
+    --name ocsigenserver
+    --root 
+    --temproot 
+    --prefix /home/opam/.opam/4.01.0
+    --ocsigen-user opam
+    --ocsigen-group opam
+    --bindir /home/opam/.opam/4.01.0/bin
+    --libdir $(shell ${OCAMLFIND} printconf destdir)
+    --sysconfdir /home/opam/.opam/4.01.0/lib/ocsigenserver/etc/ocsigenserver
+    --mandir /home/opam/.opam/4.01.0/man/man1
+    --docdir /home/opam/.opam/4.01.0/lib/ocsigenserver/share/doc/ocsigenserver
+    --logdir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/log/ocsigenserver
+    --staticpagesdir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/www
+    --uploaddir /tmp
+    --datadir /home/opam/.opam/4.01.0/lib/ocsigenserver/var/lib/ocsigenserver
+    --commandpipe /home/opam/.opam/4.01.0/lib/ocsigenserver/var/run/ocsigenserver_command
+
+Writing Makefile.config
+
+
+Please check Makefile.config.
+
+You can now compile Ocsigen Server by invoking:
+
+   make
+   make doc
+
+You may want to test the server before installation:
+
+   make run.local
+   make run.opt.local
+
+Finally, if you want system-wide install, (become root if needed and) do:
+
+   make install
+   make install.doc
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src'
+cat files/META.in \
+	  | sed s/%%CAMLZIPNAME%%// \
+	  | sed s/%%NAME%%/ocsigenserver/g \
+	  | sed s/%%DEPS%%/lwt.ssl,lwt.extra,ipaddr,netstring,netstring-pcre,findlib,cryptokit,tyxml,tyxml.parser,dynlink/g \
+	  | sed s/%%BASEDEPS%%/lwt,ipaddr/g \
+	  > files/META
+echo directory = \"../server\" > files/META.ocsigenserver
+cat files/META.in \
+	  | sed s/%%CAMLZIPNAME%%// \
+	  | sed s/%%NAME%%/ocsigenserver/g \
+	  | sed s/%%DEPS%%/lwt.ssl,lwt.extra,ipaddr,netstring,netstring-pcre,findlib,cryptokit,tyxml,tyxml.parser,dynlink/g \
+	  | sed s/%%BASEDEPS%%/lwt,ipaddr/g \
+	  | sed "s%package \"\(polytables\|commandline\|baselib\)\" (%package \"\1\" (\n  directory = \"../baselib\"%" \
+	  | sed "s%package \"\(http\|cookies\)\" (%package \"\1\" (\n  directory = \"../http\"%" \
+	  | sed "s%directory = \"extensions\"%directory = \"../extensions\"%" \
+	  >> files/META.ocsigenserver
+cat files/ocsigenserver.conf.in \
+	  | sed s%_LOGDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/log/ocsigenserver%g \
+	  | sed s%_DATADIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/lib/ocsigenserver%g \
+	  | sed s%_OCSIGENUSER_%opam%g \
+	  | sed s%_OCSIGENGROUP_%opam%g \
+	  | sed s%_COMMANDPIPE_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/run/ocsigenserver_command%g \
+	  | sed s%_MIMEFILE_%/home/opam/.opam/4.01.0/lib/ocsigenserver/etc/ocsigenserver/mime.types%g \
+	  | sed s%_METADIR_%/home/opam/.opam/4.01.0/lib%g \
+	  | sed s%_PROJECTNAME_%ocsigenserver%g \
+	  | sed s%_LIBDIR_%/home/opam/.opam/4.01.0/lib%g \
+	  | sed s%_EXTDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/extensions%g \
+	  | sed s%_CONFIGDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/etc/ocsigenserver%g \
+	  | sed s%_STATICPAGESDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/www%g \
+	  | sed s%_EXTPACKAGENAME_%ocsigenserver.ext%g \
+	  > ../ocsigenserver.conf.sample
+mkdir -p ../local/etc ../local/var/log ../local/var/run
+cat files/ocsigenserver.conf.in \
+	  | sed s%80\</port\>%8080\</port\>%g \
+	  | sed s%_LOGDIR_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/var/log%g \
+	  | sed s%_DATADIR_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/var/lib%g \
+	  | sed s%\<user\>_OCSIGENUSER_\</user\>%%g \
+	  | sed s%\<group\>_OCSIGENGROUP_\</group\>%%g \
+	  | sed s%_COMMANDPIPE_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/var/run/ocsigenserver_command%g \
+	  | sed s%_MIMEFILE_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/files/mime.types%g \
+	  | sed s%_METADIR_%/home/opam/.opam/4.01.0/lib\"/\>\<findlib\ path=\"/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/files/\"/\>\<findlib\ path=\"/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions/files/%g \
+	  | sed s%_PROJECTNAME_%ocsigenserver%g \
+	  | sed s%_EXTLIBDIR_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm%g \
+	  | sed s%_CONFIGDIR_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/etc/%g \
+	  | sed s%_STATICPAGESDIR_%/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/var/www%g \
+	  | sed s%_EXTPACKAGENAME_%ocsigenserver.ext%g \
+	  | sed s%\<\!--\ \<commandpipe%\<commandpipe%g \
+	  | sed s%\</commandpipe\>\ --\>%\</commandpipe\>%g \
+	  | sed s%\<\!--\ \<mimefile%\<mimefile%g \
+	  | sed s%\</mimefile\>\ --\>%\</mimefile\>%g \
+	  | sed s%store\ dir=\"/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/var/lib\"%store\ dir=\"/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/local/var/lib/ocsipersist\"%g \
+	  > ../local/etc/ocsigenserver.conf
+make -C baselib all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/baselib'
+ocamlfind ocamlc  -thread -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib_base.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib_base.ml
+ocamlfind ocamlc  -thread -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
+cat ocsigen_config.ml.in \
+	| sed s%0000000000000000%2.4.0% \
+	| sed s%_WARNING_%"Warning: this file has been generated from ocsigen_config.ml.in - DO NOT MODIFY MANUALLY!"% \
+	| sed s%_LOGDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/log/ocsigenserver% \
+	| sed s%_DATADIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/lib/ocsigenserver%g \
+	| sed s%_BINDIR_%/home/opam/.opam/4.01.0/bin%g \
+	| sed s%_EXTDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/extensions%g \
+	| sed s%_STATICPAGESDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/www% \
+	| sed s%_UP_%/tmp%g \
+	| sed s%_OCSIGENUSER_%opam%g \
+	| sed s%_OCSIGENGROUP_%opam%g \
+	| sed s%_PROJECTNAME_%ocsigenserver%g \
+	| sed s%_COMMANDPIPE_%/home/opam/.opam/4.01.0/lib/ocsigenserver/var/run/ocsigenserver_command%g \
+	| sed s%_CONFIGDIR_%/home/opam/.opam/4.01.0/lib/ocsigenserver/etc/ocsigenserver% \
+	| sed s%_PREEMTIMPLEM_%Lwt_preemptive% \
+	| sed s%_ISNATIVE_%Dynlink.is_native%g \
+	| sed "s%_DEPS_%\"unix\";\"ssl\";\"lwt\";\"lwt.log\";\"bigarray\";\"lwt.unix\";\"lwt.ssl\";\"threads\";\"lwt.preemptive\";\"lwt.extra\";\"sexplib\";\"ipaddr\";\"str\";\"netsys\";\"netstring\";\"pcre\";\"netstring-pcre\";\"findlib\";\"num.core\";\"num\";\"cryptokit\";\"tyxml\";\"camlp4\";\"dynlink\";\"camlp4.lib\";\"tyxml.parser\"; \"ocsigenserver.commandline\"; \"ocsigenserver.polytables\"; \"ocsigenserver.cookies\"; \"ocsigenserver.baselib\"; \"ocsigenserver.http\"; \"ocsigenserver\"; %g" \
+	> ocsigen_config.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_getcommandline.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ln -s dynlink_wrapper.natdynlink.ml dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+ocamlfind ocamlc  -thread -a -o baselib.cma ocsigen_lib_base.cmo ocsigen_lib.cmo ocsigen_cache.cmo ocsigen_config.cmo ocsigen_commandline.cmo ocsigen_messages.cmo dynlink_wrapper.cmo ocsigen_loader.cmo ocsigen_stream.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o parsecommandline.cma commandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o donotparsecommandline.cma nocommandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
+ocamlfind ocamlc  -thread -a -o polytables.cma polytables.cmo
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib_base.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+ocamlfind ocamlopt   -thread -a -o baselib.cmxa ocsigen_lib_base.cmx ocsigen_lib.cmx ocsigen_cache.cmx ocsigen_config.cmx ocsigen_commandline.cmx ocsigen_messages.cmx dynlink_wrapper.cmx ocsigen_loader.cmx ocsigen_stream.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o parsecommandline.cmxa commandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o donotparsecommandline.cmxa nocommandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -shared -linkall -o parsecommandline.cmxs parsecommandline.cmxa
+ocamlfind ocamlopt   -thread -shared -linkall -o donotparsecommandline.cmxs donotparsecommandline.cmxa
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
+ocamlfind ocamlopt   -thread -a -o polytables.cmxa polytables.cmx
+ocamlfind ocamlopt   -thread -shared -linkall -o polytables.cmxs polytables.cmxa
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/baselib'
+make -C http all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/http'
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c multipart.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c multipart.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_headers.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_headers.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_cookies.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_cookies.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_frame.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_frame.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_com.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_charset_mime.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_senders.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_headers.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_headers.ml
+ocamllex http_lexer.mll
+64 states, 3199 transitions, table size 13180 bytes
+8057 additional bytes used for bindings
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_lexer.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c framepp.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c framepp.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_com.ml
