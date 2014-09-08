@@ -263,3 +263,867 @@ checking for time... /usr/bin/time
 checking for diff... /usr/bin/diff
 checking for gprof... gprof
 checking for bisect-report... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating META
+config.status: creating bitstring_config.ml
+config.status: creating cil-tools/Makefile
+config.status: creating config.h
+ocamlfind ocamlc -g  -c bitstring_types.ml
+ocamlfind ocamlc -g  -c bitstring_config.ml
+gcc -g -O2 -Wall -Werror -fPIC -I. -I/home/opam/.opam/4.01.0/lib/ocaml   -c -o bitstring_c.o bitstring_c.c
+ocamlfind ocamlc -g  -c bitstring.mli
+ocamlfind ocamlc -g  -c bitstring.ml
+ocamlfind ocamlc -g  -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+Building mysql_protocol.0.9:
+  make all
+  make install
+ocamlbuild -use-ocamlfind -verbose 9 src.otarget
+Doing sanity checks
+include directories are: [ "." ]
+==> src.otarget
+====> src.itarget
+src.itarget exists in source dir -> import it
+start rule target files (%=src )
+====> src/mysql_protocol.cmo
+======> src/mysql_protocol.mli
+========> src/mysql_protocol.mly
+======> src/mysql_protocol.mlpack
+src/mysql_protocol.mlpack exists in source dir -> import it
+start rule ocaml: mlpack & cmo* -> cmo & cmi (%=src/mysql_protocol )
+prepare_libs: "src/mysql_protocol.cmo" -> [  ]
+======> src/mp_authentication.cmo
+========> src/mp_authentication.mli
+==========> src/mp_authentication.mly
+========> src/mp_authentication.mlpack
+========> src/mp_authentication.mli
+==========> src/mp_authentication.mly
+src/mp_authentication.mly already failed
+========> src/mp_authentication.ml
+src/mp_authentication.ml exists in source dir -> import it
+========> src/mp_authentication.ml.depends
+==========> src/mp_authentication.ml
+src/mp_authentication.ml already built
+start rule ocaml dependencies ml (%=src/mp_authentication )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_authentication ): cache miss: a product is not in build dir (src/mp_authentication.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_authentication.ml > src/mp_authentication.ml.depends
+resource_changed: src/mp_authentication.ml.depends
+end rule ocaml dependencies ml (%=src/mp_authentication )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_authentication )
+========> src/bitstring.cmi
+==========> src/bitstring.mli
+============> src/bitstring.mly
+==========> src/bitstring.mlpack
+==========> src/bitstring.ml
+============> src/bitstring.mll
+============> src/bitstring.mly
+src/bitstring.mly already failed
+========> src/Bitstring.cmi
+==========> src/Bitstring.mli
+============> src/Bitstring.mly
+==========> src/Bitstring.mlpack
+==========> src/Bitstring.ml
+============> src/Bitstring.mll
+============> src/Bitstring.mly
+src/Bitstring.mly already failed
+========> bitstring.cmi
+==========> bitstring.mli
+============> bitstring.mly
+==========> bitstring.mlpack
+==========> bitstring.ml
+============> bitstring.mll
+============> bitstring.mly
+bitstring.mly already failed
+========> Bitstring.cmi
+==========> Bitstring.mli
+============> Bitstring.mly
+==========> Bitstring.mlpack
+==========> Bitstring.ml
+============> Bitstring.mll
+============> Bitstring.mly
+Bitstring.mly already failed
+========> src/char.cmi
+==========> src/char.mli
+============> src/char.mly
+==========> src/char.mlpack
+==========> src/char.ml
+============> src/char.mll
+============> src/char.mly
+src/char.mly already failed
+========> src/Char.cmi
+==========> src/Char.mli
+============> src/Char.mly
+==========> src/Char.mlpack
+==========> src/Char.ml
+============> src/Char.mll
+============> src/Char.mly
+src/Char.mly already failed
+========> char.cmi
+==========> char.mli
+============> char.mly
+==========> char.mlpack
+==========> char.ml
+============> char.mll
+============> char.mly
+char.mly already failed
+========> Char.cmi
+==========> Char.mli
+============> Char.mly
+==========> Char.mlpack
+==========> Char.ml
+============> Char.mll
+============> Char.mly
+Char.mly already failed
+========> src/cryptokit.cmi
+==========> src/cryptokit.mli
+============> src/cryptokit.mly
+==========> src/cryptokit.mlpack
+==========> src/cryptokit.ml
+============> src/cryptokit.mll
+============> src/cryptokit.mly
+src/cryptokit.mly already failed
+========> src/Cryptokit.cmi
+==========> src/Cryptokit.mli
+============> src/Cryptokit.mly
+==========> src/Cryptokit.mlpack
+==========> src/Cryptokit.ml
+============> src/Cryptokit.mll
+============> src/Cryptokit.mly
+src/Cryptokit.mly already failed
+========> cryptokit.cmi
+==========> cryptokit.mli
+============> cryptokit.mly
+==========> cryptokit.mlpack
+==========> cryptokit.ml
+============> cryptokit.mll
+============> cryptokit.mly
+cryptokit.mly already failed
+========> Cryptokit.cmi
+==========> Cryptokit.mli
+============> Cryptokit.mly
+==========> Cryptokit.mlpack
+==========> Cryptokit.ml
+============> Cryptokit.mll
+============> Cryptokit.mly
+Cryptokit.mly already failed
+========> src/int64.cmi
+==========> src/int64.mli
+============> src/int64.mly
+==========> src/int64.mlpack
+==========> src/int64.ml
+============> src/int64.mll
+============> src/int64.mly
+src/int64.mly already failed
+========> src/Int64.cmi
+==========> src/Int64.mli
+============> src/Int64.mly
+==========> src/Int64.mlpack
+==========> src/Int64.ml
+============> src/Int64.mll
+============> src/Int64.mly
+src/Int64.mly already failed
+========> int64.cmi
+==========> int64.mli
+============> int64.mly
+==========> int64.mlpack
+==========> int64.ml
+============> int64.mll
+============> int64.mly
+int64.mly already failed
+========> Int64.cmi
+==========> Int64.mli
+============> Int64.mly
+==========> Int64.mlpack
+==========> Int64.ml
+============> Int64.mll
+============> Int64.mly
+Int64.mly already failed
+========> src/mp_bitstring.cmi
+==========> src/mp_bitstring.mli
+============> src/mp_bitstring.mly
+==========> src/mp_bitstring.mlpack
+==========> src/mp_bitstring.ml
+src/mp_bitstring.ml exists in source dir -> import it
+==========> src/mp_bitstring.ml.depends
+============> src/mp_bitstring.ml
+src/mp_bitstring.ml already built
+start rule ocaml dependencies ml (%=src/mp_bitstring )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_bitstring ): cache miss: a product is not in build dir (src/mp_bitstring.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_bitstring.ml > src/mp_bitstring.ml.depends
+resource_changed: src/mp_bitstring.ml.depends
+end rule ocaml dependencies ml (%=src/mp_bitstring )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_bitstring )
+dyndeps: {.  .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_bitstring ): cache miss: a product is not in build dir (src/mp_bitstring.cmo)
+========> src/mp_capabilities.cmi
+==========> src/mp_capabilities.mli
+============> src/mp_capabilities.mly
+==========> src/mp_capabilities.mlpack
+==========> src/mp_capabilities.ml
+src/mp_capabilities.ml exists in source dir -> import it
+==========> src/mp_capabilities.ml.depends
+============> src/mp_capabilities.ml
+src/mp_capabilities.ml already built
+start rule ocaml dependencies ml (%=src/mp_capabilities )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_capabilities ): cache miss: a product is not in build dir (src/mp_capabilities.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_capabilities.ml > src/mp_capabilities.ml.depends
+resource_changed: src/mp_capabilities.ml.depends
+end rule ocaml dependencies ml (%=src/mp_capabilities )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_capabilities )
+==========> src/bitstring.cmi
+src/bitstring.cmi already failed
+==========> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+==========> bitstring.cmi
+bitstring.cmi already failed
+==========> Bitstring.cmi
+Bitstring.cmi already failed
+==========> src/list.cmi
+============> src/list.mli
+==============> src/list.mly
+============> src/list.mlpack
+============> src/list.ml
+==============> src/list.mll
+==============> src/list.mly
+src/list.mly already failed
+==========> src/List.cmi
+============> src/List.mli
+==============> src/List.mly
+============> src/List.mlpack
+============> src/List.ml
+==============> src/List.mll
+==============> src/List.mly
+src/List.mly already failed
+==========> list.cmi
+============> list.mli
+==============> list.mly
+============> list.mlpack
+============> list.ml
+==============> list.mll
+==============> list.mly
+list.mly already failed
+==========> List.cmi
+============> List.mli
+==============> List.mly
+============> List.mlpack
+============> List.ml
+==============> List.mll
+==============> List.mly
+List.mly already failed
+==========> src/string.cmi
+============> src/string.mli
+==============> src/string.mly
+============> src/string.mlpack
+============> src/string.ml
+==============> src/string.mll
+==============> src/string.mly
+src/string.mly already failed
+==========> src/String.cmi
+============> src/String.mli
+==============> src/String.mly
+============> src/String.mlpack
+============> src/String.ml
+==============> src/String.mll
+==============> src/String.mly
+src/String.mly already failed
+==========> string.cmi
+============> string.mli
+==============> string.mly
+============> string.mlpack
+============> string.ml
+==============> string.mll
+==============> string.mly
+string.mly already failed
+==========> String.cmi
+============> String.mli
+==============> String.mly
+============> String.mlpack
+============> String.ml
+==============> String.mll
+==============> String.mly
+String.mly already failed
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {.  .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_capabilities ): cache miss: a product is not in build dir (src/mp_capabilities.cmo)
+========> src/mp_handshake.cmi
+==========> src/mp_handshake.mli
+============> src/mp_handshake.mly
+==========> src/mp_handshake.mlpack
+==========> src/mp_handshake.ml
+src/mp_handshake.ml exists in source dir -> import it
+==========> src/mp_handshake.ml.depends
+============> src/mp_handshake.ml
+src/mp_handshake.ml already built
+start rule ocaml dependencies ml (%=src/mp_handshake )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_handshake ): cache miss: a product is not in build dir (src/mp_handshake.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_handshake.ml > src/mp_handshake.ml.depends
+resource_changed: src/mp_handshake.ml.depends
+end rule ocaml dependencies ml (%=src/mp_handshake )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_handshake )
+==========> src/bitstring.cmi
+src/bitstring.cmi already failed
+==========> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+==========> bitstring.cmi
+bitstring.cmi already failed
+==========> Bitstring.cmi
+Bitstring.cmi already failed
+==========> src/char.cmi
+src/char.cmi already failed
+==========> src/Char.cmi
+src/Char.cmi already failed
+==========> char.cmi
+char.cmi already failed
+==========> Char.cmi
+Char.cmi already failed
+==========> src/int32.cmi
+============> src/int32.mli
+==============> src/int32.mly
+============> src/int32.mlpack
+============> src/int32.ml
+==============> src/int32.mll
+==============> src/int32.mly
+src/int32.mly already failed
+==========> src/Int32.cmi
+============> src/Int32.mli
+==============> src/Int32.mly
+============> src/Int32.mlpack
+============> src/Int32.ml
+==============> src/Int32.mll
+==============> src/Int32.mly
+src/Int32.mly already failed
+==========> int32.cmi
+============> int32.mli
+==============> int32.mly
+============> int32.mlpack
+============> int32.ml
+==============> int32.mll
+==============> int32.mly
+int32.mly already failed
+==========> Int32.cmi
+============> Int32.mli
+==============> Int32.mly
+============> Int32.mlpack
+============> Int32.ml
+==============> Int32.mll
+==============> Int32.mly
+Int32.mly already failed
+==========> src/int64.cmi
+src/int64.cmi already failed
+==========> src/Int64.cmi
+src/Int64.cmi already failed
+==========> int64.cmi
+int64.cmi already failed
+==========> Int64.cmi
+Int64.cmi already failed
+==========> src/mp_capabilities.cmi
+src/mp_capabilities.cmi was suspended -> resuming
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_capabilities.cmo src/mp_capabilities.ml
+resource_changed: src/mp_capabilities.cmo
+resource_changed: src/mp_capabilities.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_capabilities )
+==========> src/mp_charset.cmi
+============> src/mp_charset.mli
+src/mp_charset.mli exists in source dir -> import it
+============> src/mp_charset.mli.depends
+==============> src/mp_charset.mli
+src/mp_charset.mli already built
+start rule ocaml dependencies mli (%=src/mp_charset )
+dyndeps: {.  .}
+mid rule ocaml dependencies mli (%=src/mp_charset ): cache miss: a product is not in build dir (src/mp_charset.mli.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_charset.mli > src/mp_charset.mli.depends
+resource_changed: src/mp_charset.mli.depends
+end rule ocaml dependencies mli (%=src/mp_charset )
+start rule ocaml: mli -> cmi (%=src/mp_charset )
+dyndeps: {.  .}
+mid rule ocaml: mli -> cmi (%=src/mp_charset ): cache miss: a product is not in build dir (src/mp_charset.cmi)
+==========> src/mp_packet.cmi
+============> src/mp_packet.mli
+==============> src/mp_packet.mly
+============> src/mp_packet.mlpack
+============> src/mp_packet.ml
+src/mp_packet.ml exists in source dir -> import it
+============> src/mp_packet.ml.depends
+==============> src/mp_packet.ml
+src/mp_packet.ml already built
+start rule ocaml dependencies ml (%=src/mp_packet )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_packet ): cache miss: a product is not in build dir (src/mp_packet.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_packet.ml > src/mp_packet.ml.depends
+resource_changed: src/mp_packet.ml.depends
+end rule ocaml dependencies ml (%=src/mp_packet )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_packet )
+============> src/bitstring.cmi
+src/bitstring.cmi already failed
+============> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+============> bitstring.cmi
+bitstring.cmi already failed
+============> Bitstring.cmi
+Bitstring.cmi already failed
+============> src/char.cmi
+src/char.cmi already failed
+============> src/Char.cmi
+src/Char.cmi already failed
+============> char.cmi
+char.cmi already failed
+============> Char.cmi
+Char.cmi already failed
+============> src/string.cmi
+src/string.cmi already failed
+============> src/String.cmi
+src/String.cmi already failed
+============> string.cmi
+string.cmi already failed
+============> String.cmi
+String.cmi already failed
+============> src/sys.cmi
+==============> src/sys.mli
+================> src/sys.mly
+==============> src/sys.mlpack
+==============> src/sys.ml
+================> src/sys.mll
+================> src/sys.mly
+src/sys.mly already failed
+============> src/Sys.cmi
+==============> src/Sys.mli
+================> src/Sys.mly
+==============> src/Sys.mlpack
+==============> src/Sys.ml
+================> src/Sys.mll
+================> src/Sys.mly
+src/Sys.mly already failed
+============> sys.cmi
+==============> sys.mli
+================> sys.mly
+==============> sys.mlpack
+==============> sys.ml
+================> sys.mll
+================> sys.mly
+sys.mly already failed
+============> Sys.cmi
+==============> Sys.mli
+================> Sys.mly
+==============> Sys.mlpack
+==============> Sys.ml
+================> Sys.mll
+================> Sys.mly
+Sys.mly already failed
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {.  .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_packet ): cache miss: a product is not in build dir (src/mp_packet.cmo)
+==========> src/mp_string.cmi
+============> src/mp_string.mli
+==============> src/mp_string.mly
+============> src/mp_string.mlpack
+============> src/mp_string.ml
+src/mp_string.ml exists in source dir -> import it
+============> src/mp_string.ml.depends
+==============> src/mp_string.ml
+src/mp_string.ml already built
+start rule ocaml dependencies ml (%=src/mp_string )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_string ): cache miss: a product is not in build dir (src/mp_string.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_string.ml > src/mp_string.ml.depends
+resource_changed: src/mp_string.ml.depends
+end rule ocaml dependencies ml (%=src/mp_string )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_string )
+============> src/bitstring.cmi
+src/bitstring.cmi already failed
+============> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+============> bitstring.cmi
+bitstring.cmi already failed
+============> Bitstring.cmi
+Bitstring.cmi already failed
+============> src/char.cmi
+src/char.cmi already failed
+============> src/Char.cmi
+src/Char.cmi already failed
+============> char.cmi
+char.cmi already failed
+============> Char.cmi
+Char.cmi already failed
+============> src/int64.cmi
+src/int64.cmi already failed
+============> src/Int64.cmi
+src/Int64.cmi already failed
+============> int64.cmi
+int64.cmi already failed
+============> Int64.cmi
+Int64.cmi already failed
+============> src/mp_binary.cmi
+==============> src/mp_binary.mli
+================> src/mp_binary.mly
+==============> src/mp_binary.mlpack
+==============> src/mp_binary.ml
+src/mp_binary.ml exists in source dir -> import it
+==============> src/mp_binary.ml.depends
+================> src/mp_binary.ml
+src/mp_binary.ml already built
+start rule ocaml dependencies ml (%=src/mp_binary )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_binary ): cache miss: a product is not in build dir (src/mp_binary.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_binary.ml > src/mp_binary.ml.depends
+resource_changed: src/mp_binary.ml.depends
+end rule ocaml dependencies ml (%=src/mp_binary )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_binary )
+==============> src/bitstring.cmi
+src/bitstring.cmi already failed
+==============> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+==============> bitstring.cmi
+bitstring.cmi already failed
+==============> Bitstring.cmi
+Bitstring.cmi already failed
+==============> src/char.cmi
+src/char.cmi already failed
+==============> src/Char.cmi
+src/Char.cmi already failed
+==============> char.cmi
+char.cmi already failed
+==============> Char.cmi
+Char.cmi already failed
+==============> src/int64.cmi
+src/int64.cmi already failed
+==============> src/Int64.cmi
+src/Int64.cmi already failed
+==============> int64.cmi
+int64.cmi already failed
+==============> Int64.cmi
+Int64.cmi already failed
+==============> src/printf.cmi
+================> src/printf.mli
+==================> src/printf.mly
+================> src/printf.mlpack
+================> src/printf.ml
+==================> src/printf.mll
+==================> src/printf.mly
+src/printf.mly already failed
+==============> src/Printf.cmi
+================> src/Printf.mli
+==================> src/Printf.mly
+================> src/Printf.mlpack
+================> src/Printf.ml
+==================> src/Printf.mll
+==================> src/Printf.mly
+src/Printf.mly already failed
+==============> printf.cmi
+================> printf.mli
+==================> printf.mly
+================> printf.mlpack
+================> printf.ml
+==================> printf.mll
+==================> printf.mly
+printf.mly already failed
+==============> Printf.cmi
+================> Printf.mli
+==================> Printf.mly
+================> Printf.mlpack
+================> Printf.ml
+==================> Printf.mll
+==================> Printf.mly
+Printf.mly already failed
+==============> src/string.cmi
+src/string.cmi already failed
+==============> src/String.cmi
+src/String.cmi already failed
+==============> string.cmi
+string.cmi already failed
+==============> String.cmi
+String.cmi already failed
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {.  .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_binary ): cache miss: a product is not in build dir (src/mp_binary.cmo)
+============> src/string.cmi
+src/string.cmi already failed
+============> src/String.cmi
+src/String.cmi already failed
+============> string.cmi
+string.cmi already failed
+============> String.cmi
+String.cmi already failed
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_binary.cmo src/mp_binary.ml
+resource_changed: src/mp_binary.cmo
+resource_changed: src/mp_binary.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_binary )
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_string )"([
+                                                             src/mp_string.cmo;
+                                                             src/mp_string.cmi
+                                                             ]): "src/mp_binary.cmi"
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {. src/mp_binary.cmi .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_string ): cache miss: a product is not in build dir (src/mp_string.cmo)
+==========> src/printf.cmi
+src/printf.cmi already failed
+==========> src/Printf.cmi
+src/Printf.cmi already failed
+==========> printf.cmi
+printf.cmi already failed
+==========> Printf.cmi
+Printf.cmi already failed
+==========> src/string.cmi
+src/string.cmi already failed
+==========> src/String.cmi
+src/String.cmi already failed
+==========> string.cmi
+string.cmi already failed
+==========> String.cmi
+String.cmi already failed
+>>> PARALLEL: 3
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_charset.cmi src/mp_charset.mli
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_packet.cmo src/mp_packet.ml
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_string.cmo src/mp_string.ml
+<<< PARALLEL
+resource_changed: src/mp_charset.cmi
+end rule ocaml: mli -> cmi (%=src/mp_charset )
+resource_changed: src/mp_packet.cmo
+resource_changed: src/mp_packet.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_packet )
+resource_changed: src/mp_string.cmo
+resource_changed: src/mp_string.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_string )
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_handshake )"([
+                                                                src/mp_handshake.cmo;
+                                                                src/mp_handshake.cmi
+                                                                ]): "src/mp_capabilities.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_handshake )"([
+                                                                src/mp_handshake.cmo;
+                                                                src/mp_handshake.cmi
+                                                                ]): "src/mp_charset.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_handshake )"([
+                                                                src/mp_handshake.cmo;
+                                                                src/mp_handshake.cmi
+                                                                ]): "src/mp_packet.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_handshake )"([
+                                                                src/mp_handshake.cmo;
+                                                                src/mp_handshake.cmi
+                                                                ]): "src/mp_string.cmi"
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {.
+           src/mp_capabilities.cmi,
+           src/mp_charset.cmi,
+           src/mp_packet.cmi,
+           src/mp_string.cmi
+         .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_handshake ): cache miss: a product is not in build dir (src/mp_handshake.cmo)
+========> src/mp_packet.cmi
+src/mp_packet.cmi already built
+========> src/mp_string.cmi
+src/mp_string.cmi already built
+========> src/string.cmi
+src/string.cmi already failed
+========> src/String.cmi
+src/String.cmi already failed
+========> string.cmi
+string.cmi already failed
+========> String.cmi
+String.cmi already failed
+>>> PARALLEL: 2
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_bitstring.cmo src/mp_bitstring.ml
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_handshake.cmo src/mp_handshake.ml
+<<< PARALLEL
+resource_changed: src/mp_bitstring.cmo
+resource_changed: src/mp_bitstring.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_bitstring )
+resource_changed: src/mp_handshake.cmo
+resource_changed: src/mp_handshake.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_handshake )
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_authentication )"([
+                                                                    src/mp_authentication.cmo;
+                                                                    src/mp_authentication.cmi
+                                                                    ]): "src/mp_bitstring.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_authentication )"([
+                                                                    src/mp_authentication.cmo;
+                                                                    src/mp_authentication.cmi
+                                                                    ]): "src/mp_capabilities.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_authentication )"([
+                                                                    src/mp_authentication.cmo;
+                                                                    src/mp_authentication.cmi
+                                                                    ]): "src/mp_handshake.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_authentication )"([
+                                                                    src/mp_authentication.cmo;
+                                                                    src/mp_authentication.cmi
+                                                                    ]): "src/mp_packet.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_authentication )"([
+                                                                    src/mp_authentication.cmo;
+                                                                    src/mp_authentication.cmi
+                                                                    ]): "src/mp_string.cmi"
+Warning: Failed to build the module Bitstring requested by ocamldep
+Warning: Failed to build the module Cryptokit requested by ocamldep
+dyndeps: {.
+           src/mp_bitstring.cmi,
+           src/mp_capabilities.cmi,
+           src/mp_handshake.cmi,
+           src/mp_packet.cmi,
+           src/mp_string.cmi
+         .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_authentication ): cache miss: a product is not in build dir (src/mp_authentication.cmo)
+======> src/mp_binary.cmo
+src/mp_binary.cmo already built
+======> src/mp_bitstring.cmo
+src/mp_bitstring.cmo already built
+======> src/mp_capabilities.cmo
+src/mp_capabilities.cmo already built
+======> src/mp_change_user.cmo
+========> src/mp_change_user.mli
+==========> src/mp_change_user.mly
+========> src/mp_change_user.mlpack
+========> src/mp_change_user.mli
+==========> src/mp_change_user.mly
+src/mp_change_user.mly already failed
+========> src/mp_change_user.ml
+src/mp_change_user.ml exists in source dir -> import it
+========> src/mp_change_user.ml.depends
+==========> src/mp_change_user.ml
+src/mp_change_user.ml already built
+start rule ocaml dependencies ml (%=src/mp_change_user )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_change_user ): cache miss: a product is not in build dir (src/mp_change_user.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_change_user.ml > src/mp_change_user.ml.depends
+resource_changed: src/mp_change_user.ml.depends
+end rule ocaml dependencies ml (%=src/mp_change_user )
+start rule ocaml: ml -> cmo & cmi (%=src/mp_change_user )
+========> src/bitstring.cmi
+src/bitstring.cmi already failed
+========> src/Bitstring.cmi
+src/Bitstring.cmi already failed
+========> bitstring.cmi
+bitstring.cmi already failed
+========> Bitstring.cmi
+Bitstring.cmi already failed
+========> src/char.cmi
+src/char.cmi already failed
+========> src/Char.cmi
+src/Char.cmi already failed
+========> char.cmi
+char.cmi already failed
+========> Char.cmi
+Char.cmi already failed
+========> src/mp_authentication.cmi
+src/mp_authentication.cmi was suspended -> resuming
+ocamlfind ocamlc -c -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -I src -o src/mp_authentication.cmo src/mp_authentication.ml
+resource_changed: src/mp_authentication.cmo
+resource_changed: src/mp_authentication.cmi
+end rule ocaml: ml -> cmo & cmi (%=src/mp_authentication )
+========> src/mp_handshake.cmi
+src/mp_handshake.cmi already built
+========> src/mp_string.cmi
+src/mp_string.cmi already built
+========> src/string.cmi
+src/string.cmi already failed
+========> src/String.cmi
+src/String.cmi already failed
+========> string.cmi
+string.cmi already failed
+========> String.cmi
+String.cmi already failed
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_change_user )"([
+                                                                  src/mp_change_user.cmo;
+                                                                  src/mp_change_user.cmi
+                                                                  ]): "src/mp_authentication.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_change_user )"([
+                                                                  src/mp_change_user.cmo;
+                                                                  src/mp_change_user.cmi
+                                                                  ]): "src/mp_handshake.cmi"
+new dyndep for "ocaml: ml -> cmo & cmi (%=src/mp_change_user )"([
+                                                                  src/mp_change_user.cmo;
+                                                                  src/mp_change_user.cmi
+                                                                  ]): "src/mp_string.cmi"
+Warning: Failed to build the module Bitstring requested by ocamldep
+dyndeps: {.
+           src/mp_authentication.cmi,
+           src/mp_handshake.cmi,
+           src/mp_string.cmi
+         .}
+mid rule ocaml: ml -> cmo & cmi (%=src/mp_change_user ): cache miss: a product is not in build dir (src/mp_change_user.cmo)
+======> src/mp_charset.cmo
+========> src/mp_charset.mli
+src/mp_charset.mli already built
+========> src/mp_charset.cmi
+src/mp_charset.cmi already built
+========> src/mp_charset.mlpack
+========> src/mp_charset.mlpack
+src/mp_charset.mlpack already failed
+========> src/mp_charset.mli
+src/mp_charset.mli already built
+========> src/mp_charset.ml
+src/mp_charset.ml exists in source dir -> import it
+========> src/mp_charset.ml.depends
+==========> src/mp_charset.ml
+src/mp_charset.ml already built
+start rule ocaml dependencies ml (%=src/mp_charset )
+dyndeps: {.  .}
+mid rule ocaml dependencies ml (%=src/mp_charset ): cache miss: a product is not in build dir (src/mp_charset.ml.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_charset.ml > src/mp_charset.ml.depends
+resource_changed: src/mp_charset.ml.depends
+end rule ocaml dependencies ml (%=src/mp_charset )
+========> src/mp_charset.cmi
+src/mp_charset.cmi already built
+start rule ocaml: ml & cmi -> cmo (%=src/mp_charset )
+dyndeps: {.  .}
+mid rule ocaml: ml & cmi -> cmo (%=src/mp_charset ): cache miss: a product is not in build dir (src/mp_charset.cmo)
+======> src/mp_client.cmo
+========> src/mp_client.mli
+src/mp_client.mli exists in source dir -> import it
+========> src/mp_client.cmi
+==========> src/mp_client.mli
+src/mp_client.mli already built
+==========> src/mp_client.mli.depends
+============> src/mp_client.mli
+src/mp_client.mli already built
+start rule ocaml dependencies mli (%=src/mp_client )
+dyndeps: {.  .}
+mid rule ocaml dependencies mli (%=src/mp_client ): cache miss: a product is not in build dir (src/mp_client.mli.depends)
+ocamlfind ocamldep -syntax camlp4o -package num -package cryptokit -package bitstring -package bitstring.syntax -syntax bitstring.syntax -package unix -modules src/mp_client.mli > src/mp_client.mli.depends
