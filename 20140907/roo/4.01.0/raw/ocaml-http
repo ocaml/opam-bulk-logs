@@ -1453,3 +1453,27 @@ ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_win32.ml
 ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys.ml
 [ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys.cmx .cmx`.p.cmx  netsys.ml
 ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_rng.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_rng.cmx .cmx`.p.cmx  netsys_rng.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset.cmx .cmx`.p.cmx  netsys_pollset.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_posix.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_posix.cmx .cmx`.p.cmx  netsys_pollset_posix.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_win32.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_win32.cmx .cmx`.p.cmx  netsys_pollset_win32.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_generic.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_generic.cmx .cmx`.p.cmx  netsys_pollset_generic.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_mem.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_mem.cmx .cmx`.p.cmx  netsys_mem.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_xdr.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_xdr.cmx .cmx`.p.cmx  netsys_xdr.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_tmp.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_tmp.cmx .cmx`.p.cmx  netsys_tmp.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_sem.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_sem.cmx .cmx`.p.cmx  netsys_sem.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pmanage.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pmanage.cmx .cmx`.p.cmx  netsys_pmanage.ml
+if [ "Xnetsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o" = "X" ]; then \
+		ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -a -o netsys.cmxa  netsys_conf.cmx netsys_types.cmx netlog.cmx netexn.cmx netsys_impl_util.cmx netsys_signal.cmx netsys_posix.cmx netsys_win32.cmx netsys.cmx netsys_rng.cmx netsys_pollset.cmx netsys_pollset_posix.cmx netsys_pollset_win32.cmx netsys_pollset_generic.cmx netsys_mem.cmx netsys_xdr.cmx netsys_tmp.cmx netsys_sem.cmx netsys_pmanage.cmx; \
+	else \
+		../../tools/mkstublib -o netsys netsys_conf.cmx netsys_types.cmx netlog.cmx netexn.cmx netsys_impl_util.cmx netsys_signal.cmx netsys_posix.cmx netsys_win32.cmx netsys.cmx netsys_rng.cmx netsys_pollset.cmx netsys_pollset_posix.cmx netsys_pollset_win32.cmx netsys_pollset_generic.cmx netsys_mem.cmx netsys_xdr.cmx netsys_tmp.cmx netsys_sem.cmx netsys_pmanage.cmx netsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o -lrt -lpthread ; \
+	fi
