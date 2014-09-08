@@ -2680,3 +2680,102 @@ rm -f configure.c* configure.o
 ./configure
 Looking for xenctrl.h: ok
 ocaml setup.ml -configure --enable-tests --enable-xenctrl
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ gnt
+Package version: ..................................... 1.0.3
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+build Unix userspace bindings: ....................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... true
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_io_page: ......................................... /home/opam/.opam/4.01.0/lib/io-page
+pkg_lwt: ............................................. /home/opam/.opam/4.01.0/lib/lwt
+pkg_lwt_unix: ........................................ /home/opam/.opam/4.01.0/lib/lwt
+pkg_io_page_unix: .................................... /home/opam/.opam/4.01.0/lib/io-page
+pkg_cstruct: ......................................... /home/opam/.opam/4.01.0/lib/cstruct
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+ocaml setup.ml -build -j 4
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib/gnt.mli > lib/gnt.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt.cmi lib/gnt.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package unix -syntax camlp4o -modules lib/gnt.ml > lib/gnt.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package unix -syntax camlp4o -I lib -o lib/gnt.cmo lib/gnt.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -bin-annot lib/gnt.cmo -o lib/xen_gnt.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -syntax camlp4o -package lwt.syntax -package lwt.unix -package unix -syntax camlp4o -I lib -o lib/gnt.cmx lib/gnt.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -bin-annot lib/gnt.cmx -o lib/xen_gnt.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/xen_gnt.cmxa lib/gnt.cmx -o lib/xen_gnt.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gnttab_stubs.c
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -c lib/gntshr_stubs.c
+lib/gntshr_stubs.c: In function 'stub_gntshr_munmap_batched':
+lib/gntshr_stubs.c:160:6: warning: unused variable 'pages' [-Wunused-variable]
+  int pages = size >> XC_PAGE_SHIFT;
+      ^
+mv gntshr_stubs.o lib/gntshr_stubs.o
+mv gnttab_stubs.o lib/gnttab_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o lib/xen_gnt_unix_stubs -L/usr/lib/xen-4.2/lib -lxenctrl lib/gntshr_stubs.o lib/gnttab_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib/gnt_dummy.ml > lib/gnt_dummy.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmo lib/gnt_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -lxen_gnt_unix_stubs -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmo -o lib/xen_gnt_unix.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -bin-annot -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib -o lib/gnt_dummy.cmx lib/gnt_dummy.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -lxen_gnt_unix_stubs -cclib -L/usr/lib/xen-4.2/lib -cclib -lxenctrl lib/gnt_dummy.cmx -o lib/xen_gnt_unix.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -I lib lib/xen_gnt_unix.cmxa lib/gnt_dummy.cmx -o lib/xen_gnt_unix.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules test/test_gntshr.ml > test/test_gntshr.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmo test/test_gntshr.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -bin-annot -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I test -I lib -o test/test_gntshr.cmx test/test_gntshr.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -bin-annot -linkpkg -package bigarray -package cstruct -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix lib/xen_gnt_unix.cmxa lib/xen_gnt.cmxa test/test_gntshr.cmx -o test/test_gntshr.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -modules lib_test/main.ml > lib_test/main.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib_test -I lib -o lib_test/main.cmo lib_test/main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -I lib -dontlink unix -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix -I lib_test -I lib -o lib_test/main.cmx lib_test/main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -dontlink unix -linkpkg -package bigarray -package io-page -package io-page.unix -package lwt -package lwt.unix -package unix lib/xen_gnt_unix.cmxa lib/xen_gnt.cmxa lib_test/main.cmx -o lib_test/main.native
