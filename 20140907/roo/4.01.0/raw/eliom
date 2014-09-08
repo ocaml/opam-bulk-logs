@@ -749,3 +749,45 @@ ocamlfind ocamldep -modules lr0.mli > lr0.mli.depends
 ocamlfind ocamlc -c -o item.cmi item.mli
 ocamlfind ocamlc -c -o Fix.cmi Fix.mli
 ocamlfind ocamlc -c -o lr0.cmi lr0.mli
+ocamlfind ocamlc -c -o lr1.cmi lr1.mli
+ocamlfind ocamlc -c -o invariant.cmi invariant.mli
+ocamlfind ocamldep -modules conflict.ml > conflict.ml.depends
+ocamlfind ocamldep -modules conflict.mli > conflict.mli.depends
+ocamlfind ocamlc -c -o conflict.cmi conflict.mli
+ocamlfind ocamldep -modules derivation.ml > derivation.ml.depends
+ocamlfind ocamldep -modules derivation.mli > derivation.mli.depends
+ocamlfind ocamlc -c -o derivation.cmi derivation.mli
+ocamlfind ocamldep -modules item.ml > item.ml.depends
+ocamlfind ocamlopt -c -g -inline 1000 -o item.cmx item.ml
+ocamlfind ocamldep -modules lr0.ml > lr0.ml.depends
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
