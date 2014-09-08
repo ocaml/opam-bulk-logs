@@ -1,14 +1,14 @@
 ++ opam install xstr -e ubuntu
 + depext=
 + echo Ubuntu depexts:
-+ '[' '' '!=' '' ']'
 Ubuntu depexts:
++ '[' '' '!=' '' ']'
 ++ opam install xstr -e source,linux
 + srcext=
-Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install xstr
+Ubuntu srcexts:
 The following actions will be performed:
  - install   xstr.0.2.1
 === 1 to install ===
@@ -26,8 +26,8 @@ Building xstr.0.2.1:
   make all
   make opt
   make install
-Makefile:95: depend: No such file or directory
 ocamldep  *.ml *.mli >depend
+Makefile:95: depend: No such file or directory
 ocamlc -g    -c xstr_split.mli
 ocamlc -g    -c xstr_split.ml
 File "xstr_split.ml", line 88, characters 29-30:
@@ -55,6 +55,8 @@ File "xstr_search.ml", line 171, characters 18-19:
 Warning 3: deprecated feature: operator (&); you should use (&&) instead
 ocamlopt    -c xstr_match.ml
 ocamlopt    -a -o xstr.cmxa xstr_split.cmx xstr_search.cmx xstr_match.cmx
+{ test ! -f xstr.cmxa || extra="*.cmxa *.a"; }; \
+	ocamlfind install xstr *.mli *.cmi *.cma META $extra
 Installed /home/opam/.opam/4.01.0/lib/xstr/xstr.a
 Installed /home/opam/.opam/4.01.0/lib/xstr/xstr.cmxa
 Installed /home/opam/.opam/4.01.0/lib/xstr/xstr.cma
@@ -65,6 +67,4 @@ Installed /home/opam/.opam/4.01.0/lib/xstr/xstr_split.mli
 Installed /home/opam/.opam/4.01.0/lib/xstr/xstr_search.mli
 Installed /home/opam/.opam/4.01.0/lib/xstr/xstr_match.mli
 Installed /home/opam/.opam/4.01.0/lib/xstr/META
-{ test ! -f xstr.cmxa || extra="*.cmxa *.a"; }; \
-	ocamlfind install xstr *.mli *.cmi *.cma META $extra
 Installing xstr.0.2.1.
