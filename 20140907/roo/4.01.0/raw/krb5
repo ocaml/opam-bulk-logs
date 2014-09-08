@@ -1489,3 +1489,23 @@ ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack 
 ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/parser.cmx lib/parser.ml
 ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/parser_with_layout.cmx lib/parser_with_layout.ml
 ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/lexer.cmx lib/lexer.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -pp 'cpp -undef -traditional -I/mnt/local/sda1/jdimino/git/sexplib/syntax' -for-pack Sexplib -I lib -o lib/pre_sexp.cmx lib/pre_sexp.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/sexp_with_layout.cmx lib/sexp_with_layout.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/sexp_intf.cmx lib/sexp_intf.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/sexp.cmx lib/sexp.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/conv.cmx lib/conv.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/conv_error.cmx lib/conv_error.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/exn_magic.cmx lib/exn_magic.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/path.cmx lib/path.ml
+ocamlfind ocamlopt -c -g -package unix -package num -package bigarray -for-pack Sexplib -I lib -o lib/std.cmx lib/std.ml
+touch lib/sexplib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/type.cmx lib/parser.cmx lib/src_pos.cmx lib/type_with_layout.cmx lib/parser_with_layout.cmx lib/lexer.cmx lib/pre_sexp.cmx lib/sexp_intf.cmx lib/sexp_with_layout.cmx lib/sexp.cmx lib/conv.cmx lib/conv_error.cmx lib/exn_magic.cmx lib/path.cmx lib/std.cmx -o lib/sexplib.cmx  ; then  rm -f lib/sexplib.mli  ; else  rm -f lib/sexplib.mli  ; exit 1; fi
+ocamlfind ocamlopt -a lib/sexplib.cmx -o lib/sexplib.cmxa
+ocamlfind ocamlopt -shared lib/sexplib.cmx -o lib/sexplib.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -modules syntax/pa_sexp_conv.mli > syntax/pa_sexp_conv.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -I syntax -o syntax/pa_sexp_conv.cmi syntax/pa_sexp_conv.mli
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -modules syntax/pa_sexp_conv.ml > syntax/pa_sexp_conv.ml.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_sexp_conv.cmo syntax/pa_sexp_conv.ml
+ocamlfind ocamlc -a syntax/pa_sexp_conv.cmo -o syntax/pa_sexp_conv.cma
+ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.extend -syntax camlp4o -I syntax -o syntax/pa_sexp_conv.cmx syntax/pa_sexp_conv.ml
+ocamlfind ocamlopt -a syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_sexp_conv.cmx -o syntax/pa_sexp_conv.cmxs
