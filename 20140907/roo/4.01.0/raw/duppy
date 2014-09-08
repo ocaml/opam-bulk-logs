@@ -221,3 +221,69 @@ configure: creating ./config.status
 config.status: creating Makefile
 config.status: creating src/META
 config.status: creating src/Makefile
+config.status: creating examples/Makefile.telnet
+config.status: creating examples/Makefile.http
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+ocamlfind ocamlc -c -package camlp4 -package camlp4.quotations.o -package camlp4.extend -syntax camlp4o pa_duppy.mli
+ocamlfind ocamlc -c -package camlp4 -package camlp4.quotations.o -package camlp4.extend -syntax camlp4o pa_duppy.ml
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+making ._bcdi/duppy.di from duppy.mli
+making ._d/duppy.d from duppy.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+ocamlc.opt -thread -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -Wall -DCAML_NAME_SPACE \
+				-DPIC -fPIC -I/home/opam/.opam/4.01.0/include  \
+				  -I/home/opam/.opam/4.01.0/lib/pcre  -o duppy_stubs.o " duppy_stubs.c 
+ar rcs libduppy_stubs.a  duppy_stubs.o
+ocamlc.opt -thread -c -I /home/opam/.opam/4.01.0/lib/pcre duppy.mli
+ocamlc.opt -thread -c -I /home/opam/.opam/4.01.0/lib/pcre duppy.ml
+ocamlmklib    -I /home/opam/.opam/4.01.0/lib/pcre      \
+				-o duppy_stubs  duppy_stubs.o  \
+				
+ocamlc.opt -thread -a -dllib dllduppy_stubs.so    -I /home/opam/.opam/4.01.0/lib/pcre   -ccopt -L/home/opam/.opam/4.01.0/lib       \
+				-cclib -lduppy_stubs   -o duppy.cma  duppy.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+making ._ncdi/duppy.di from duppy.mli
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: `libduppy_stubs.a' is up to date.
+ocamlopt.opt -thread -c -I /home/opam/.opam/4.01.0/lib/pcre duppy.ml
+ocamlopt.opt -thread -a     -I /home/opam/.opam/4.01.0/lib/pcre   -ccopt -L/home/opam/.opam/4.01.0/lib      -cclib -lduppy_stubs   \
+				 -o duppy.cmxa duppy.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: `libduppy_stubs.a' is up to date.
+make[2]: `duppy.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+make[2]: `libduppy_stubs.a' is up to date.
+make[2]: `duppy.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  duppy META pa_duppy.cmi pa_duppy.cmo duppy.mli pa_duppy.mli duppy.cmi pa_duppy.cmi duppy.cma duppy.cmxa duppy.cmx duppy.a libduppy_stubs.a dllduppy_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/duppy/libduppy_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.a
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.cmx
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.cmxa
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.cma
+Installed /home/opam/.opam/4.01.0/lib/duppy/pa_duppy.cmi
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.cmi
+Installed /home/opam/.opam/4.01.0/lib/duppy/pa_duppy.mli
+Installed /home/opam/.opam/4.01.0/lib/duppy/duppy.mli
+Installed /home/opam/.opam/4.01.0/lib/duppy/pa_duppy.cmo
+ocamlfind: [WARNING] Overwriting file /home/opam/.opam/4.01.0/lib/duppy/pa_duppy.cmi
+Installed /home/opam/.opam/4.01.0/lib/duppy/pa_duppy.cmi
+Installed /home/opam/.opam/4.01.0/lib/duppy/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllduppy_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllduppy_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/duppy.0.5.0/src'
+Installing duppy.0.5.0.
