@@ -5528,3 +5528,10 @@ ocamlbuild -use-ocamlfind -package threads -lflags -thread lib/obean.native lib_
 ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/obean.ml > lib/obean.ml.depends
 ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/obean.cmo lib/obean.ml
 ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/obean.cmx lib/obean.ml
+ocamlfind ocamlopt -thread -linkpkg -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads lib/beanstalk_exc.cmx lib/beanstalk_cmd.cmx lib/yaml.cmx lib/beanstalk_raw.cmx lib/beanstalk.cmx lib/obean.cmx -o lib/obean.native
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib_test/test_pure.ml > lib_test/test_pure.ml.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib_test -I lib -o lib_test/test_pure.cmo lib_test/test_pure.ml
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib_test -I lib -o lib_test/test_pure.cmx lib_test/test_pure.ml
+ocamlfind ocamlopt -thread -linkpkg -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads lib/beanstalk_exc.cmx lib/beanstalk_cmd.cmx lib/yaml.cmx lib_test/test_pure.cmx -o lib_test/test_pure.native
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib_test/test_obs.ml > lib_test/test_obs.ml.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib_test -I lib -o lib_test/test_obs.cmo lib_test/test_obs.ml
