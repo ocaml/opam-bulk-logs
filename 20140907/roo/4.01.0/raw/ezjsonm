@@ -9,3 +9,50 @@ Ubuntu depexts:
 + '[' '' '!=' '' ']'
 + opam install ezjsonm
 Ubuntu srcexts:
+The following actions will be performed:
+ - install   uutf.0.9.3                            [required by jsonm]
+ - install   jsonm.0.9.1                           [required by ezjsonm]
+ - install   ezjsonm.0.2.0
+=== 3 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ezjsonm.0.2.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/jsonm.0.9.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/uutf.0.9.3+opam.tar.gz
+sending incremental file list
+sending incremental file list
+ezjsonm.0.2.0+opam.tar.gz
+sending incremental file list
+uutf.0.9.3+opam.tar.gz
+jsonm.0.9.1+opam.tar.gz
+
+sent 42,971 bytes  received 35 bytes  86,012.00 bytes/sec
+total size is 42,833  speedup is 1.00
+
+sent 39,198 bytes  received 35 bytes  78,466.00 bytes/sec
+total size is 39,063  speedup is 1.00
+
+sent 78,741 bytes  received 35 bytes  157,552.00 bytes/sec
+total size is 78,597  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building uutf.0.9.3:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/uutf.mli > src/uutf.mli.depends
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmi src/uutf.mli
+ocamlfind ocamldep -modules src/uutf.ml > src/uutf.ml.depends
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
+ocamlfind ocamlc -a src/uutf.cmo -o src/uutf.cma
+ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
+ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
+ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+Installing uutf.0.9.3.
+Building jsonm.0.9.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
