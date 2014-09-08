@@ -115,3 +115,28 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -g -ccopt -x -ccopt c++ -c src/gperftools_stubs.c
+mv gperftools_stubs.o src/gperftools_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/gperftools_stubs -ltcmalloc src/gperftools_stubs.o
+ocamlfind ocamldep -modules src/gperftools.mli > src/gperftools.mli.depends
+ocamlfind ocamlc -c -g -ccopt -g -ccopt -x -ccopt c++ -I src -o src/gperftools.cmi src/gperftools.mli
+ocamlfind ocamldep -modules src/gperftools.ml > src/gperftools.ml.depends
+ocamlfind ocamlc -c -g -ccopt -g -ccopt -x -ccopt c++ -I src -o src/gperftools.cmo src/gperftools.ml
+ocamlfind ocamlc -a -dllib -lgperftools_stubs -cclib -lgperftools_stubs -cclib -ltcmalloc src/gperftools.cmo -o src/gperftools.cma
+ocamlfind ocamlopt -c -g -ccopt -g -ccopt -x -ccopt c++ -I src -o src/gperftools.cmx src/gperftools.ml
+ocamlfind ocamlopt -a -cclib -lgperftools_stubs -cclib -ltcmalloc src/gperftools.cmx -o src/gperftools.cmxa
+ocamlfind ocamlopt -shared -I src src/gperftools.cmx -o src/gperftools.cmxs
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.mli
+Installed /home/opam/.opam/4.01.0/lib/gperftools/libgperftools_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.cma
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.cmxa
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.a
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.cmxs
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.cmi
+Installed /home/opam/.opam/4.01.0/lib/gperftools/gperftools.cmx
+Installed /home/opam/.opam/4.01.0/lib/gperftools/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllgperftools_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllgperftools_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing gperftools.0.2.
