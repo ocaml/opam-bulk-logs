@@ -181,3 +181,55 @@ ocamldoc: ............................................ /home/opam/.opam/4.01.0/b
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -I +camlp4 -I +camlp4/Camlp4Parsers -I +camlp4/Camlp4Printers -I +camlp4/Camlp4Filters -g -I src -package camlp4 -package camlp4.lib -syntax camlp4o -package camlp4.quotations.o -I src -o src/optcomp_r.cmo src/optcomp_r.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -I +camlp4 -I +camlp4/Camlp4Parsers -I +camlp4/Camlp4Printers -I +camlp4/Camlp4Filters -g -I src -package camlp4 -package camlp4.lib -syntax camlp4o -package camlp4.quotations.o -I src -o src/optcomp_r.cmx src/optcomp_r.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -I +camlp4 camlp4fulllib.cmxa -g -linkpkg -package camlp4 -package camlp4.lib -package camlp4.quotations.o src/optcomp.cmxa src/optcomp.cmx src/optcomp_r.cmx -o src/optcomp_r.native
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/optcomp/pa_optcomp.mli
+Installed /home/opam/.opam/4.01.0/lib/optcomp/optcomp.cma
+Installed /home/opam/.opam/4.01.0/lib/optcomp/optcomp.cmxa
+Installed /home/opam/.opam/4.01.0/lib/optcomp/optcomp.a
+Installed /home/opam/.opam/4.01.0/lib/optcomp/optcomp.cmxs
+Installed /home/opam/.opam/4.01.0/lib/optcomp/pa_optcomp.cmi
+Installed /home/opam/.opam/4.01.0/lib/optcomp/pa_optcomp.cmx
+Installed /home/opam/.opam/4.01.0/lib/optcomp/META
+Installing optcomp.1.6.
+Building deriving-ocsigen.0.5:
+  make
+  make install
+sed -e "s%__NAME__%deriving-ocsigen%" \
+            -e "s%__LIBDIR__%%" \
+            -e "s%__SYNTAXDIR__%%" \
+            -e "s%__TCNAME__%%" \
+	  files/META.in > files/META
+sed -e "s%__NAME__%deriving-ocsigen%" \
+            -e "s%__LIBDIR__%directory = \"../lib\"%" \
+            -e "s%__SYNTAXDIR__%directory = \"../syntax\"%" \
+            -e "s%__TCNAME__%%" \
+	  files/META.in > files/META.deriving-ocsigen
+make -C syntax
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/deriving-ocsigen.0.5/syntax'
+ln -s defs.mli defs.ml
+[ ! -f id.ml ] || chmod u+w id.ml
+sed -e s/%%NAME%%/deriving-ocsigen/ -e s/%%VERSION%%/0.5-ocsigen/ id.mlp > id.ml
+chmod -w id.ml
+ocamlfind ocamlc -package camlp4 -c id.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package optcomp -c utils.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -c type.ml
+ocamlfind ocamlc -package camlp4 -c defs.mli
+ocamlfind ocamlc -package camlp4 -c defs.ml
+ocamlfind ocamlc -package camlp4 -c clusters.mli
+ocamlfind ocamlc -package camlp4 -c clusters.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -c base.ml
+File "base.ml", line 145, characters 10-12:
+Warning 26: unused variable ty.
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.mli
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c extend.ml
+ocamlfind ocamlc -o pa_deriving_common.cmo -pack id.cmo utils.cmo type.cmo defs.cmo clusters.cmo base.cmo extend.cmo
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -c pa_deriving.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/show_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/dump_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/enum_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/bounded_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/eq_class.ml
+ocamlfind ocamlc -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes -c classes/typeable_class.ml
