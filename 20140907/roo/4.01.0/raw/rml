@@ -284,3 +284,34 @@ make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interprete
 make -f Makefile-lco_rewrite all
 make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
 ocamlc -rectypes -c  lco_rewrite.ml
+ocamlc -rectypes -c  implem_lco_rewrite_record.ml
+../compiler/rmlc -I ../stdlib -d lco_rewrite -no_reactivity_warning -runtime Lco_rewrite ../stdlib/rml_list.rml
+ocamlc -rectypes -c  -I lco_rewrite -o lco_rewrite/rml_list.cmo lco_rewrite/rml_list.ml
+cp ../stdlib/thread/async_body.ml lco_rewrite/async_body.ml
+ocamlc -rectypes -thread -c  -I lco_rewrite -o lco_rewrite/async_body.cmo lco_rewrite/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lco_rewrite -no_reactivity_warning -runtime Lco_rewrite ../stdlib/thread/async.rml
+ocamlc -rectypes -c  -I lco_rewrite -o lco_rewrite/async.cmo lco_rewrite/async.ml
+ocamlc  -a -o lco_rewrite/rmllib.cma sig_env.cmo lco_rewrite.cmo rml_machine.cmo implem_lco_rewrite_record.cmo lco_rewrite/rml_list.cmo lco_rewrite/async_body.cmo lco_rewrite/async.cmo
+ocamlopt -rectypes -c  lco_rewrite.ml
+ocamlopt -rectypes -c  implem_lco_rewrite_record.ml
+ocamlopt -rectypes -c  -I lco_rewrite -o lco_rewrite/rml_list.cmx lco_rewrite/rml_list.ml
+ocamlopt -rectypes -thread -c  -I lco_rewrite -o lco_rewrite/async_body.cmx lco_rewrite/async_body.ml
+ocamlopt -rectypes -c  -I lco_rewrite -o lco_rewrite/async.cmx lco_rewrite/async.ml
+ocamlopt  -a -o lco_rewrite/rmllib.cmxa sig_env.cmx lco_rewrite.cmx rml_machine.cmx implem_lco_rewrite_record.cmx lco_rewrite/rml_list.cmx lco_rewrite/async_body.cmx lco_rewrite/async.cmx
+rm lco_rewrite/rml_list.ml lco_rewrite/async.ml lco_rewrite/async_body.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+make -f Makefile-lk all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+ocamlc  -c  lk_interpreter.mli
+ocamlc  -c  lk_implem.ml
+ocamlc  -c  implem_lk_record.ml
+../compiler/rmlc -I ../stdlib -d lk -no_reactivity_warning -runtime Lk ../stdlib/rml_list.rml
+ocamlc  -c  -I lk -o lk/rml_list.cmo lk/rml_list.ml
+cp ../stdlib/thread/async_body.ml lk/async_body.ml
+ocamlc -thread -c  -I lk -o lk/async_body.cmo lk/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lk -no_reactivity_warning -runtime Lk ../stdlib/thread/async.rml
+ocamlc  -c  -I lk -o lk/async.cmo lk/async.ml
+ocamlc  -a -o lk/rmllib.cma sig_env.cmo lk_implem.cmo rml_machine.cmo implem_lk_record.cmo lk/rml_list.cmo lk/async_body.cmo lk/async.cmo
+ocamlopt  -c  lk_implem.ml
+ocamlopt  -c  implem_lk_record.ml
+ocamlopt  -c  -I lk -o lk/rml_list.cmx lk/rml_list.ml
