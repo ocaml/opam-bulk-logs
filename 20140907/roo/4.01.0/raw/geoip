@@ -119,3 +119,22 @@ ocamlfind ocamldep -modules src/geoip.ml > src/geoip.ml.depends
 ocamlfind ocamlc -c -g -I src -o src/geoip.cmo src/geoip.ml
 ocamlfind ocamlc -a -dllib -lgeoip_stubs -cclib -lgeoip_stubs -cclib -lGeoIP src/geoip.cmo -o src/geoip.cma
 ocamlfind ocamlopt -c -g -I src -o src/geoip.cmx src/geoip.ml
+ocamlfind ocamlopt -a -cclib -lgeoip_stubs -cclib -lGeoIP src/geoip.cmx -o src/geoip.cmxa
+ocamlfind ocamlopt -shared -I src src/geoip.cmx -o src/geoip.cmxs
+ocamlfind ocamldep -package unix -modules test.ml > test.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I src -o test.cmo test.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I src -o test.cmx test.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package unix src/geoip.cmxa test.cmx -o test.native
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.mli
+Installed /home/opam/.opam/4.01.0/lib/geoip/libgeoip_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.cma
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.cmxa
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.a
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.cmxs
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.cmi
+Installed /home/opam/.opam/4.01.0/lib/geoip/geoip.cmx
+Installed /home/opam/.opam/4.01.0/lib/geoip/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllgeoip_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllgeoip_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing geoip.0.0.2.
