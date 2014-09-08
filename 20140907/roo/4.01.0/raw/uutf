@@ -35,3 +35,6 @@ ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
 ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
 ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
 ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+Installing uutf.0.9.3.
