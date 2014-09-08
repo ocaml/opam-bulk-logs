@@ -6956,3 +6956,74 @@ Warning 8: this pattern-matching is not exhaustive.
 Here is an example of a value that is not matched:
 ""
 ocamlfind ocamlopt   -thread -I ../baselib -I ../http -package lwt.ssl -package lwt.extra -package ipaddr -package netstring -package netstring-pcre -package findlib -package cryptokit -package tyxml -package tyxml.parser -package dynlink -package tyxml.syntax -I . -c ocsigen_http_client.ml
+ocamlfind ocamlopt   -thread -I ../baselib -I ../http -package lwt.ssl -package lwt.extra -package ipaddr -package netstring -package netstring-pcre -package findlib -package cryptokit -package tyxml -package tyxml.parser -package dynlink -package tyxml.syntax -I . -c ocsigen_local_files.ml
+ocamlfind ocamlopt   -thread -I ../baselib -I ../http -package lwt.ssl -package lwt.extra -package ipaddr -package netstring -package netstring-pcre -package findlib -package cryptokit -package tyxml -package tyxml.parser -package dynlink -package tyxml.syntax -I . -c ocsigen_server.ml
+ocamlfind ocamlopt   -thread -a -o ocsigenserver.cmxa ocsigen_extensions.cmx ocsigen_range.cmx ocsigen_parseconfig.cmx ocsigen_http_client.cmx ocsigen_local_files.cmx ocsigen_server.cmx
+ocamlfind ocamlopt   -thread -I ../baselib -I ../http -package lwt.ssl -package lwt.extra -package ipaddr -package netstring -package netstring-pcre -package findlib -package cryptokit -package tyxml -package tyxml.parser -package dynlink -package tyxml.syntax -I . -c server_main.ml
+ocamlfind ocamlopt   -thread -o ocsigenserver.opt -linkpkg -linkall  -thread -I ../baselib -I ../http -package lwt.ssl -package lwt.extra -package ipaddr -package netstring -package netstring-pcre -package findlib -package cryptokit -package tyxml -package tyxml.parser -package dynlink -package tyxml.syntax -I . ../baselib/parsecommandline.cmxa ../baselib/baselib.cmxa ../baselib/polytables.cmxa ../http/http.cmxa ocsigenserver.cmxa server_main.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/server'
+make -C extensions all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions'
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c staticmod.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cgimod.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c redirectmod.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c revproxy.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extensiontemplate.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c accesscontrol.mli
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c accesscontrol.ml
+File "accesscontrol.ml", line 326, characters 14-16:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c userconf.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c outputfilter.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c authbasic.mli
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c authbasic.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c rewritemod.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extendconfiguration.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c ocsigen_comet.mli
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c ocsigen_comet.ml
+ocamlfind ocamlc -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cors.ml
+make -C ocsipersist-dbm byte
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm'
+ocamlfind ocamlc  -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsidbmtypes.mli
+ln -s ../ocsipersist.mli .
+ocamlfind ocamlc  -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsipersist.mli
+ocamlfind ocamlc  -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsipersist.ml
+ocamlfind ocamlc  -thread -a -o ocsipersist-dbm.cma ocsipersist.cmo
+cp ocsipersist.cmi ..
+cp ocsipersist-dbm.cma ..
+ocamlfind ocamlc  -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsidbm.ml
+ocamlfind ocamlc  -thread -linkpkg -o ocsidbm -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm ocsidbm.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm'
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c staticmod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cgimod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c redirectmod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c revproxy.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extensiontemplate.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c accesscontrol.ml
+File "accesscontrol.ml", line 326, characters 14-16:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c userconf.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c outputfilter.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c authbasic.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c rewritemod.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c extendconfiguration.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c ocsigen_comet.ml
+ocamlfind ocamlopt  -I ../baselib -I ../http -I ../server -package lwt.unix -package ipaddr -package lwt.ssl -package lwt.react -package netstring -package netstring-pcre -package tyxml.parser -c cors.ml
+ocamlfind ocamlopt  -shared -linkall -o staticmod.cmxs staticmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o cgimod.cmxs cgimod.cmx
+ocamlfind ocamlopt  -shared -linkall -o redirectmod.cmxs redirectmod.cmx
+ocamlfind ocamlopt  -shared -linkall -o revproxy.cmxs revproxy.cmx
+ocamlfind ocamlopt  -shared -linkall -o extensiontemplate.cmxs extensiontemplate.cmx
+ocamlfind ocamlopt  -shared -linkall -o accesscontrol.cmxs accesscontrol.cmx
+ocamlfind ocamlopt  -shared -linkall -o userconf.cmxs userconf.cmx
+ocamlfind ocamlopt  -shared -linkall -o outputfilter.cmxs outputfilter.cmx
+ocamlfind ocamlopt  -shared -linkall -o authbasic.cmxs authbasic.cmx
+ocamlfind ocamlopt  -shared -linkall -o rewritemod.cmxs rewritemod.cmx
+ocamlfind ocamlopt  -shared -linkall -o extendconfiguration.cmxs extendconfiguration.cmx
+ocamlfind ocamlopt  -shared -linkall -o ocsigen_comet.cmxs ocsigen_comet.cmx
+ocamlfind ocamlopt  -shared -linkall -o cors.cmxs cors.cmx
+make -C ocsipersist-dbm opt
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/extensions/ocsipersist-dbm'
+ocamlfind ocamlopt   -thread -I ../../baselib -I ../../http -I ../../server -package lwt.extra -package lwt.unix -package tyxml.parser -package dbm -c ocsipersist.ml
+ocamlfind ocamlopt   -thread -a -o ocsipersist-dbm.cmxa ocsipersist.cmx
+cp ocsipersist.cmi ..
