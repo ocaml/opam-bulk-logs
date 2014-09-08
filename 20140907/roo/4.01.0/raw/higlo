@@ -9,3 +9,119 @@ Ubuntu depexts:
 + '[' '' '!=' '' ']'
 + opam install higlo
 Ubuntu srcexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ulex]
+ - install   xmlm.1.2.0                            [required by xtmpl]
+ - install   ulex.1.1                              [required by higlo]
+ - install   xtmpl.0.9                             [required by higlo]
+ - install   higlo.0.3
+=== 5 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/higlo.0.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ulex.1.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+higlo.0.3+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+ulex.1.1+opam.tar.gz
+
+sent 11,107 bytes  received 35 bytes  22,284.00 bytes/sec
+total size is 10,977  speedup is 0.99
+
+sent 51,864 bytes  received 35 bytes  103,798.00 bytes/sec
+total size is 51,729  speedup is 1.00
+
+sent 20,477 bytes  received 35 bytes  41,024.00 bytes/sec
+total size is 20,348  speedup is 0.99
+[default] Synchronizing with /home/opam/opam-repository/archives/xtmpl.0.9+opam.tar.gz
+sending incremental file list
+xtmpl.0.9+opam.tar.gz
+
+sent 14,173 bytes  received 35 bytes  28,416.00 bytes/sec
+total size is 14,043  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Building xtmpl.0.9:
+  make all
+  make install
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.mli
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
