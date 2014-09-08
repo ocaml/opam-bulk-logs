@@ -1303,3 +1303,65 @@ The following NEW packages will be installed:
   zlib1g-dev
 The following packages will be upgraded:
   libudev1 udev
+2 upgraded, 174 newly installed, 0 to remove and 5 not upgraded.
+Need to get 36.5 MB of archives.
+After this operation, 179 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Abort.
++ opam install tsdl
+The following actions will be performed:
+ - install   base-bytes.legacy                     [required by ctypes]
+ - install   ctypes.0.3.3                          [required by tsdl]
+ - install   tsdl.0.8.1
+=== 3 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/ctypes.0.3.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/tsdl.0.8.1+opam.tar.gz
+sending incremental file list
+sending incremental file list
+ctypes.0.3.3+opam.tar.gz
+tsdl.0.8.1+opam.tar.gz
+
+sent 132,062 bytes  received 35 bytes  264,194.00 bytes/sec
+total size is 131,901  speedup is 1.00
+
+sent 193,105 bytes  received 35 bytes  386,280.00 bytes/sec
+total size is 192,938  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing base-bytes.legacy.
+Building ctypes.0.3.3:
+  make
+  make install
+ocaml src/discover/discover.ml -ocamlc "ocamlfind ocamlc"
+testing for brew: .............................. unavailable
+testing for pkg-config: ........................ available
+testing for libffi: ............................ available
+testing for no_as_needed: ...................... available
+ocamlfind opt -c -o _build/src/configure/make_primitive_details.cmx        -I _build/src/configure  src/configure/make_primitive_details.ml
+cd _build/src/configure && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o make_primitive_details_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/configure/make_primitive_details_stubs.c
+ocamlfind opt -I _build -linkpkg      -o _build/configure.native _build/src/configure/make_primitive_details.cmx _build/src/configure/make_primitive_details_stubs.o  
+ocamlfind opt -c -o _build/src/libffi-abigen/libffi_abigen.cmx -package unix    -package unix   -I _build/src/libffi-abigen  src/libffi-abigen/libffi_abigen.ml
+ocamlfind opt -I _build -linkpkg   -package unix   -o _build/libffi-abigen.native _build/src/libffi-abigen/libffi_abigen.cmx  
+_build/configure.native > src/ctypes/ctypes_primitives.ml
+_build/libffi-abigen.native > src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/common.cmo -I _build/src/ctypes  src/ctypes/common.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/ctypes_path.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/ctypes_path.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/ctypes_path.cmo -I _build/src/ctypes  src/ctypes/ctypes_path.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/unsigned.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/unsigned.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/unsigned.cmo -I _build/src/ctypes  src/ctypes/unsigned.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/signed.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/signed.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/signed.cmo -I _build/src/ctypes  src/ctypes/signed.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/primitives.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/primitives.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/primitives.cmo -I _build/src/ctypes  src/ctypes/primitives.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/ctypes_primitives.cmo -I _build/src/ctypes  src/ctypes/ctypes_primitives.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/ctypes_raw.cmo -I _build/src/ctypes  src/ctypes/ctypes_raw.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/memory_stubs.cmo -I _build/src/ctypes  src/ctypes/memory_stubs.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/std_view_stubs.cmo -I _build/src/ctypes  src/ctypes/std_view_stubs.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/value_printing_stubs.cmo -I _build/src/ctypes  src/ctypes/value_printing_stubs.ml
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/bigarray_stubs.cmo -I _build/src/ctypes  src/ctypes/bigarray_stubs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/ctypes_bigarray.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/ctypes_bigarray.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/ctypes_bigarray.cmo -I _build/src/ctypes  src/ctypes/ctypes_bigarray.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/static.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/static.mli
+ocamlfind ocamlc -package str -package bigarray -package bytes     -c -o _build/src/ctypes/static.cmo -I _build/src/ctypes  src/ctypes/static.ml
+ocamlfind ocamlc -c -o _build/src/ctypes/structs.cmi -package str -package bigarray -package bytes   -I _build/src/ctypes  src/ctypes/structs.mli
