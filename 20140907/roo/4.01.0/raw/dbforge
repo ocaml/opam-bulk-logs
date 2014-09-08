@@ -680,3 +680,61 @@ ocamlopt  -c xml.ml
 ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
 ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
 ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/4.01.0/lib/xml-light/META
+Installing xml-light.2.4.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building config-file.1.2:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make all
+  make install
+checking for ocamlfind... /home/opam/.opam/4.01.0/bin/ocamlfind
+checking for camlp4... /home/opam/.opam/4.01.0/bin/camlp4
+configure: creating ./config.status
+config.status: creating master.Makefile
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -o config_file.cmxs -shared config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmxs
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.o
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmo
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmi
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.mli
+Installed /home/opam/.opam/4.01.0/lib/config-file/META
+Installing config-file.1.2.
