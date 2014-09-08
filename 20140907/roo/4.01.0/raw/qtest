@@ -1627,3 +1627,44 @@ pkg_ounit: ..................................... /home/opam/.opam/4.01.0/lib/oUn
 /home/opam/.opam/4.01.0/bin/ocamllex.opt -q misclex.mll
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules misclex.ml > misclex.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o misclex.cmo misclex.ml
+/home/opam/.opam/4.01.0/bin/ocamlyacc qparse.mly
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules qparse.mli > qparse.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o core.cmo core.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o qparse.cmi qparse.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o qtest.cmo qtest.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o misclex.cmx misclex.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules qparse.ml > qparse.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o core.cmx core.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o qparse.cmx qparse.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o qtest.cmx qtest.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg -package str misclex.cmx core.cmx qparse.cmx qtest.cmx -o qtest.native
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules quickcheck.mli > quickcheck.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmi quickcheck.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules quickcheck.ml > quickcheck.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package oUnit -package str -modules runner.ml > runner.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o quickcheck.cmo quickcheck.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package oUnit -package str -o runner.cmo runner.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a quickcheck.cmo runner.cmo -o QTest2Lib.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o quickcheck.cmx quickcheck.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package oUnit -package str -o runner.cmx runner.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a quickcheck.cmx runner.cmx -o QTest2Lib.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared QTest2Lib.cmxa quickcheck.cmx runner.cmx -o QTest2Lib.cmxs
+
+#### ocamlfind remove QTest2Lib ####
+
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/QTest2Lib
+
+#### ocaml setup.ml -install ####
+
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/quickcheck.mli
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/runner.ml
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/QTest2Lib.cma
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/QTest2Lib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/QTest2Lib.a
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/QTest2Lib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/runner.cmi
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/quickcheck.cmi
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/runner.cmx
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/quickcheck.cmx
+Installed /home/opam/.opam/4.01.0/lib/QTest2Lib/META
+Installing qtest.2.0.1.
