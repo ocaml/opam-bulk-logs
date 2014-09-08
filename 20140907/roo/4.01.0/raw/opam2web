@@ -1714,3 +1714,74 @@ Create documentations: ............................... true
 Compile tests executable and library and run them: ... false
 
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/stringext.mli > lib/stringext.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/stringext.cmi lib/stringext.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/stringext.ml > lib/stringext.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/stringext.cmo lib/stringext.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/stringext.cmo -o lib/stringext.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -o lib/stringext.cmx lib/stringext.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/stringext.cmx -o lib/stringext.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/stringext.cmxa lib/stringext.cmx -o lib/stringext.cmxs
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.mli
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.cma
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.cmxa
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.a
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.cmxs
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.cmi
+Installed /home/opam/.opam/4.01.0/lib/stringext/stringext.cmx
+Installed /home/opam/.opam/4.01.0/lib/stringext/META
+Installing stringext.1.0.0.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building extlib-compat.1.6.1:
+  make build install
+ocamlc -g -c enum.mli enum.ml
+ocamlc -g -c bitSet.mli bitSet.ml
+ocamlc -g -c dynArray.mli dynArray.ml
+ocamlc -g -c extArray.mli extArray.ml
+camlp4of pr_o.cmo -D OCAML4 -impl extHashtbl.mlpp -o extHashtbl.ml
+ocamlc -g -c extHashtbl.mli extHashtbl.ml
+ocamlc -g -c extList.mli extList.ml
+ocamlc -g -c extString.mli extString.ml
+ocamlc -g -c global.mli global.ml
+ocamlc -g -c IO.mli IO.ml
+ocamlc -g -c option.mli option.ml
+ocamlc -g -c pMap.mli pMap.ml
+ocamlc -g -c std.mli std.ml
+ocamlc -g -c uChar.mli uChar.ml
+ocamlc -g -c uTF8.mli uTF8.ml
+ocamlc -g -c base64.mli base64.ml
+ocamlc -g -c unzip.mli unzip.ml
+ocamlc -g -c refList.mli refList.ml
+ocamlc -g -c optParse.mli optParse.ml
+ocamlc -g -c dllist.mli dllist.ml
+ocamlc -g -c extLib.ml
+ocamlc -g -a -o extLib.cma enum.cmo bitSet.cmo dynArray.cmo extArray.cmo extHashtbl.cmo extList.cmo extString.cmo global.cmo IO.cmo option.cmo pMap.cmo std.cmo uChar.cmo uTF8.cmo base64.cmo unzip.cmo refList.cmo optParse.cmo dllist.cmo extLib.cmo
+ocamlopt -g -c enum.mli enum.ml
+ocamlopt -g -c bitSet.mli bitSet.ml
+ocamlopt -g -c dynArray.mli dynArray.ml
+ocamlopt -g -c extArray.mli extArray.ml
+ocamlopt -g -c extHashtbl.mli extHashtbl.ml
+ocamlopt -g -c extList.mli extList.ml
+ocamlopt -g -c extString.mli extString.ml
+ocamlopt -g -c global.mli global.ml
+ocamlopt -g -c IO.mli IO.ml
+ocamlopt -g -c option.mli option.ml
+ocamlopt -g -c pMap.mli pMap.ml
