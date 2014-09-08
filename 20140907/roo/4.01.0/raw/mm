@@ -109,3 +109,148 @@ checking for linux/videodev.h... no
 configure: creating ./config.status
 config.status: creating Makefile
 config.status: creating src/Makefile
+config.status: creating external/Makefile
+config.status: creating external/Makefile.defs
+config.status: creating src/META
+config.status: creating config.h
+
+
+Supported external libraries:
+  - Alsa      : no
+  - AO        : no
+  - FFmpeg    : no
+  - Gstreamer : no
+  - Mad       : no
+  - ogg       : no
+  - OSS       : yes
+  - Pulseaudio: no
+  - SDL       : no
+  - Theora    : no
+  - V4L       : no
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep synth.mli > ._bcdi/synth.di
+ocamldep MIDI.mli > ._bcdi/MIDI.di
+ocamldep video.mli > ._bcdi/video.di
+ocamldep image.mli > ._bcdi/image.di
+ocamldep audio.mli > ._bcdi/audio.di
+ocamldep ringbuffer.mli > ._bcdi/ringbuffer.di
+ocamldep synth.ml > ._d/synth.d
+ocamldep MIDI.ml > ._d/MIDI.d
+ocamldep video.ml > ._d/video.d
+ocamldep image.ml > ._d/image.d
+ocamldep audio.ml > ._d/audio.d
+ocamldep IO.ml > ._d/IO.d
+ocamldep ringbuffer.ml > ._d/ringbuffer.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I..  -o audio_c.o " audio_c.c
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I..  -o image_c.o " image_c.c
+image_c.c: In function 'caml_rgb_color_to_alpha':
+image_c.c:1319:10: warning: variable 'd' set but not used [-Wunused-but-set-variable]
+   double d;
+          ^
+image_c.c:1318:22: warning: variable 'aa' set but not used [-Wunused-but-set-variable]
+   double rr, gg, bb, aa;
+                      ^
+ar rcs libmm_stubs.a  audio_c.o image_c.o
+ocamlc.opt -c -dtypes -I .. ringbuffer.mli
+ocamlc.opt -c -dtypes -I .. ringbuffer.ml
+ocamlc.opt -c -dtypes -I .. IO.ml
+ocamlc.opt -c -dtypes -I .. audio.mli
+ocamlc.opt -c -dtypes -I .. audio.ml
+ocamlc.opt -c -dtypes -I .. image.mli
+ocamlc.opt -c -dtypes -I .. image.ml
+ocamlc.opt -c -dtypes -I .. video.mli
+ocamlc.opt -c -dtypes -I .. video.ml
+ocamlc.opt -c -dtypes -I .. MIDI.mli
+ocamlc.opt -c -dtypes -I .. MIDI.ml
+File "MIDI.ml", line 153, characters 51-52:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlc.opt -c -dtypes -I .. synth.mli
+ocamlc.opt -c -dtypes -I .. synth.ml
+ocamlmklib    -I ..     \
+				-o mm_stubs  audio_c.o image_c.o   \
+				
+ocamlc.opt -a -dllib dllmm_stubs.so    -I .. -linkall        -cclib -lmm_stubs    -o mm.cma ringbuffer.cmo IO.cmo audio.cmo image.cmo video.cmo MIDI.cmo synth.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep -native synth.mli > ._ncdi/synth.di
+ocamldep -native MIDI.mli > ._ncdi/MIDI.di
+ocamldep -native video.mli > ._ncdi/video.di
+ocamldep -native image.mli > ._ncdi/image.di
+ocamldep -native audio.mli > ._ncdi/audio.di
+ocamldep -native ringbuffer.mli > ._ncdi/ringbuffer.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+ocamlopt.opt -c -dtypes -I .. ringbuffer.ml
+ocamlopt.opt -c -dtypes -I .. IO.ml
+ocamlopt.opt -c -dtypes -I .. audio.ml
+ocamlopt.opt -c -dtypes -I .. image.ml
+ocamlopt.opt -c -dtypes -I .. video.ml
+ocamlopt.opt -c -dtypes -I .. MIDI.ml
+File "MIDI.ml", line 153, characters 51-52:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt.opt -c -dtypes -I .. synth.ml
+ocamlopt.opt -a     -I .. -linkall       -cclib -lmm_stubs    -o mm.cmxa ringbuffer.cmx IO.cmx audio.cmx image.cmx video.cmx MIDI.cmx synth.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+ocamlc.opt -a -dllib dllmm_stubs.so    -I .. -linkall        -cclib -lmm_stubs    -o mm.cma ringbuffer.cmo IO.cmo audio.cmo image.cmo video.cmo MIDI.cmo synth.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+make[2]: `mm.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+
+Installing library with ocamlfind
+ocamlfind install  mm META *.cm* *.mli *.so *.a
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.a
+Installed /home/opam/.opam/4.01.0/lib/mm/libmm_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/mm/video.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/image.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.cma
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmm_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmm_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+Installing mm.0.2.1.
