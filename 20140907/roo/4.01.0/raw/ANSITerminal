@@ -97,3 +97,26 @@ ocamlfind ocamlc -c -g -package unix -I src -o src/ANSITerminal.cmo src/ANSITerm
 ocamlfind ocamlc -a -dllib -lANSITerminal_stubs -cclib -lANSITerminal_stubs src/ANSITerminal_common.cmo src/ANSITerminal.cmo -o src/ANSITerminal.cma
 ocamlfind ocamlopt -c -g -package unix -I src -o src/ANSITerminal_common.cmx src/ANSITerminal_common.ml
 ocamlfind ocamlopt -c -g -package unix -I src -o src/ANSITerminal.cmx src/ANSITerminal.ml
+ocamlfind ocamlopt -a -cclib -lANSITerminal_stubs src/ANSITerminal_common.cmx src/ANSITerminal.cmx -o src/ANSITerminal.cmxa
+ocamlfind ocamlopt -shared -I src/ src/ANSITerminal.cmx -o src/ANSITerminal.cmxs
+ocamlfind ocamldep -package unix -modules showcolors.ml > showcolors.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I src -o showcolors.cmo showcolors.ml
+ocamlfind ocamlopt -c -g -I src -package unix -I src -o showcolors.cmx showcolors.ml
+ocamlfind ocamlopt -g -I src/ -linkpkg -package unix src/ANSITerminal.cmxa showcolors.cmx -o showcolors.native
+ocamlfind ocamldep -package unix -modules test.ml > test.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -I src -o test.cmo test.ml
+ocamlfind ocamlc -g -I src/ -linkpkg -package unix src/ANSITerminal.cma test.cmo -o test.byte
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.mli
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/libANSITerminal_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.cma
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.a
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.cmi
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal.cmx
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/ANSITerminal_common.cmx
+Installed /home/opam/.opam/4.01.0/lib/ANSITerminal/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllANSITerminal_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllANSITerminal_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing ANSITerminal.0.6.5.
