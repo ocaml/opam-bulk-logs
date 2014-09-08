@@ -2152,3 +2152,78 @@ Warning 43: the label name is not optional.
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c dbf/dbf_main_gtk.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade -linkpkg -o dbforge-gtk -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl \
 	xml-light.cmxa sqml/sqml.cmxa dbf/dbforge.cmxa dbf/dbforge_gtk.cmxa dbf/dbf_main_gtk.cmx
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c sqml/sqml_parser.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c sqml/sqml_pp.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -custom -o sqml/sqml.cma  sqml/sqml_sqlstx.cmo sqml/sqml_helper_lp.cmo sqml/sqml_parser.cmo sqml/sqml_lexer.cmo sqml/sqml_pp.cmo sqml/sqml.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c dbf/dbf_installation.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c dbf/dbf_sql_io.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade -a -o dbf/dbforge.cma dbf/dbf_installation.cmo dbf/dbf_misc.cmo dbf/dbf_sql.cmo dbf/dbf_sql_gen.cmo dbf/dbf_sql_vgen.cmo dbf/dbf_sql_qgen.cmo dbf/dbf_sql_io.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade  -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -c dbf/dbforge_gtk.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade -a -o dbf/dbforge_gtk.cma dbf/dbf_gtk2Misc.cmo dbf/dbf_gladeWidgets.cmo dbf/dbf_dbStores.cmo dbf/dbf_selectWidget.cmo dbf/dbf_dbWidget.cmo dbf/dbf_columnGUI.cmo dbf/dbf_indexGUI.cmo dbf/dbf_virtualTableGUI.cmo dbf/dbf_tableGUI.cmo dbf/dbf_queryGUI.cmo dbf/dbf_gtk.cmo dbf/dbforge_gtk.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -o dbf/dbf_sql.cma -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot dbf/dbf_sql_driver.cmo dbf/dbf_sql_misc.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot -package mysql dbf/dbf_mysql.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -o dbf/dbf_mysql.cma -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl -annot dbf/dbf_mysql.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm -linkpkg -o dbforge.byte -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl \
+	xml-light.cma sqml/sqml.cma dbf/dbforge.cma dbf/dbf_main.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -package str,config-file,xmlm,lablgtk2-extras.configwin,lablgtk2.glade -linkpkg -o dbforge-gtk.byte -I '/home/opam/.opam/4.01.0/lib/xml-light' -I sqml -I dbf -I tmpl \
+	xml-light.cma sqml/sqml.cma dbf/dbforge.cma dbf/dbforge_gtk.cma dbf/dbf_main_gtk.cmo
+rm sqml/sqml_parser.mli tmpl/tmplParser.mli sqml/sqml_lexer.ml tmpl/tmplLexer.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dbforge.2.0.1/src'
+cd src && make install-lib
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/dbforge.2.0.1/src'
+/home/opam/.opam/4.01.0/bin/ocamlfind install dbforge dbf/META \
+		dbf/dbforge.cmxa dbf/dbforge.a dbf/dbf_installation.cmi dbf/dbf_misc.cmi dbf/dbf_sql.cmi dbf/dbf_sql_gen.cmi dbf/dbf_sql_vgen.cmi dbf/dbf_sql_qgen.cmi dbf/dbf_sql_io.cmi \
+		dbf/dbf_sql.cmxa dbf/dbf_sql.a dbf/dbf_sql_driver.cmi dbf/dbf_sql_misc.cmi \
+		dbf/dbf_mysql.cmxa dbf/dbf_mysql.cmi dbf/dbf_mysql.a dbf/dbf_mysql.mli \
+		dbf/dbforge_gtk.cmxa dbf/dbforge_gtk.a dbf/dbforge_gtk.mli dbf/dbf_gtk2Misc.cmi dbf/dbf_gladeWidgets.cmi dbf/dbf_dbStores.cmi dbf/dbf_selectWidget.cmi dbf/dbf_dbWidget.cmi dbf/dbf_columnGUI.cmi dbf/dbf_indexGUI.cmi dbf/dbf_virtualTableGUI.cmi dbf/dbf_tableGUI.cmi dbf/dbf_queryGUI.cmi dbf/dbf_gtk.cmi dbf/dbforge_gtk.cmi \
+		dbf/dbforge.cma dbf/dbforge_gtk.cma dbf/dbf_sql.cma dbf/dbf_mysql.cma
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_mysql.cma
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql.cma
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge_gtk.cma
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge.cma
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge_gtk.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_gtk.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_queryGUI.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_tableGUI.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_virtualTableGUI.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_indexGUI.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_columnGUI.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_dbWidget.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_selectWidget.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_dbStores.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_gladeWidgets.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_gtk2Misc.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge_gtk.mli
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge_gtk.a
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge_gtk.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_mysql.mli
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_mysql.a
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_mysql.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_mysql.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_misc.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_driver.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql.a
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_io.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_qgen.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_vgen.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql_gen.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_sql.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_misc.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbf_installation.cmi
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge.a
+Installed /home/opam/.opam/4.01.0/lib/dbforge/dbforge.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dbforge/META
+/home/opam/.opam/4.01.0/bin/ocamlfind install sqml sqml/META \
+		sqml/sqml.cmxa sqml/sqml.cmi sqml/sqml.a  \
+		sqml/sqml.cma
+Installed /home/opam/.opam/4.01.0/lib/sqml/sqml.cma
+Installed /home/opam/.opam/4.01.0/lib/sqml/sqml.a
+Installed /home/opam/.opam/4.01.0/lib/sqml/sqml.cmi
+Installed /home/opam/.opam/4.01.0/lib/sqml/sqml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sqml/META
+mkdir -p /home/opam/.opam/4.01.0/share/dtds /home/opam/.opam/4.01.0/share/glade
+cp -f dbf/db.dtd /home/opam/.opam/4.01.0/share/dtds/
+cp -f dbf/dbforge.glade /home/opam/.opam/4.01.0/share/glade/
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dbforge.2.0.1/src'
+Installing dbforge.2.0.1.
