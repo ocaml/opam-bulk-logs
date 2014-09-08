@@ -1332,3 +1332,155 @@ Building ulex.1.1:
 ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
 /home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
 /home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Building xtmpl.0.9:
+  make all
+  make install
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.mli
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -shared -o xtmpl.cmxs `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.cmx
+ocamlfind install xtmpl META LICENSE \
+		xtmpl.cmi xtmpl.mli xtmpl.cmo xtmpl.cmx xtmpl.cmxs xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmx
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmo
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.mli
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmi
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/META
+Installing xtmpl.0.9.
+Building higlo.0.3:
+  make all
+  make install-lib
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo.mli
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
+camlp4o -printer Camlp4OCamlPrinter.cmo \
+	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_ocaml.mll > higlo_ocaml.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+camlp4o -printer Camlp4OCamlPrinter.cmo \
+	`ocamlfind query ulex`/pa_ulex.cma -impl higlo_xml.mll > higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlc -package ulex,xtmpl -c -annot -rectypes -g higlo_printers.mli
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlc -package ulex,xtmpl -annot -rectypes -g -o higlo.byte -package dynlink -linkpkg higlo.cmo higlo_ocaml.cmo higlo_xml.cmo higlo_printers.cmo higlo_main.ml
+ocamlfind ocamlopt -package ulex,xtmpl -c -annot -rectypes -g higlo.ml
+ocamlfind ocamlopt -package ulex,xtmpl -shared -o higlo.cmxs -annot -rectypes -g higlo.cmx
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_ocaml.cmxs higlo_ocaml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -shared -o higlo_xml.cmxs higlo_xml.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -c higlo_printers.ml
+ocamlfind ocamlopt -package ulex,xtmpl -annot -rectypes -g -o higlo -package dynlink -linkpkg higlo.cmx higlo_ocaml.cmx higlo_xml.cmx higlo_printers.cmx higlo_main.ml
+Creating mk-higlo... done
+rm higlo_ocaml.ml higlo_xml.ml
+ocamlfind install higlo META LICENSE \
+		higlo.cmi higlo.mli higlo.cmo higlo.cmx higlo.cmxs higlo.o \
+		higlo_ocaml.cmx higlo_xml.cmx higlo_ocaml.cmxs higlo_xml.cmxs higlo_ocaml.cmo higlo_xml.cmo higlo_ocaml.o higlo_xml.o higlo_ocaml.cmi higlo_xml.cmi \
+		higlo_main.cmi higlo_main.cmo higlo_main.cmx higlo_main.o \
+		higlo_printers.cmi higlo_printers.cmo higlo_printers.cmx higlo_printers.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_printers.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_printers.cmx
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_printers.cmo
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_printers.cmi
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_main.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_main.cmx
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_main.cmo
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_main.cmi
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_xml.cmi
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_ocaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_xml.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_ocaml.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_xml.cmo
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_ocaml.cmo
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_xml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_ocaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_xml.cmx
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo_ocaml.cmx
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.o
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.cmxs
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.cmx
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.cmo
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.mli
+Installed /home/opam/.opam/4.01.0/lib/higlo/higlo.cmi
+Installed /home/opam/.opam/4.01.0/lib/higlo/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/higlo/META
+Installing higlo.0.3.
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+Hunk #3 succeeded at 3570 (offset -8 lines).
+Hunk #4 succeeded at 3585 (offset -8 lines).
+Hunk #5 succeeded at 3602 (offset -8 lines).
+Hunk #6 succeeded at 3746 (offset -8 lines).
+Hunk #7 succeeded at 4532 (offset -8 lines).
+Hunk #8 succeeded at 4678 (offset -8 lines).
+Hunk #9 succeeded at 4910 (offset -8 lines).
+Hunk #10 succeeded at 5143 (offset -8 lines).
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.5:
+  ./configure -bindir /home/opam/.opam/4.01.0/bin -enable-pcre -disable-gtk2 -disable-ssl -disable-zip -enable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.5
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for PCRE... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... 
