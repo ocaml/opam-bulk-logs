@@ -277,3 +277,48 @@ ocamlfind ocamlc -c -o codeBackend.cmi codeBackend.mli
 ocamlfind ocamldep -modules action.ml > action.ml.depends
 ocamlfind ocamldep -modules action.mli > action.mli.depends
 ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules keyword.ml > keyword.ml.depends
+ocamlfind ocamldep -modules positions.ml > positions.ml.depends
+ocamlfind ocamldep -modules printer.ml > printer.ml.depends
+ocamlfind ocamldep -modules printer.mli > printer.mli.depends
+ocamlfind ocamlc -c -o printer.cmi printer.mli
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q lineCount.mll
+ocamlfind ocamldep -modules lineCount.ml > lineCount.ml.depends
+ocamlfind ocamlc -c -g -o lineCount.cmo lineCount.ml
+ocamlfind ocamldep -modules settings.ml > settings.ml.depends
+ocamlfind ocamldep -modules settings.mli > settings.mli.depends
+ocamlfind ocamlc -c -o settings.cmi settings.mli
+ocamlfind ocamldep -modules installation.ml > installation.ml.depends
+ocamlfind ocamldep -modules installation.mli > installation.mli.depends
+ocamlfind ocamlc -c -o installation.cmi installation.mli
+ocamlfind ocamldep -modules stringSet.ml > stringSet.ml.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamldep -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -g -o version.cmo version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o installation.cmx installation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o stringSet.cmx stringSet.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o version.cmx version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lineCount.cmx lineCount.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o settings.cmx settings.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o keyword.cmx keyword.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o positions.cmx positions.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o printer.cmx printer.ml
+ocamlfind ocamldep -modules codeBits.ml > codeBits.ml.depends
+ocamlfind ocamldep -modules codeBits.mli > codeBits.mli.depends
+ocamlfind ocamlc -c -o codeBits.cmi codeBits.mli
+ocamlfind ocamldep -modules codePieces.ml > codePieces.ml.depends
+ocamlfind ocamldep -modules codePieces.mli > codePieces.mli.depends
+ocamlfind ocamldep -modules grammar.mli > grammar.mli.depends
+ocamlfind ocamldep -modules gMap.ml > gMap.ml.depends
+ocamlfind ocamldep -modules gSet.ml > gSet.ml.depends
+ocamlfind ocamlc -c -g -o gSet.cmo gSet.ml
+ocamlfind ocamldep -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamldep -modules mark.mli > mark.mli.depends
+ocamlfind ocamlc -c -o mark.cmi mark.mli
+ocamlfind ocamlc -c -g -o gMap.cmo gMap.ml
+ocamlfind ocamlc -c -o syntax.cmi syntax.mli
+ocamlfind ocamlc -c -o grammar.cmi grammar.mli
+ocamlfind ocamlc -c -o codePieces.cmi codePieces.mli
+ocamlfind ocamlopt -c -g -inline 1000 -o action.cmx action.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o codeBits.cmx codeBits.ml
