@@ -904,3 +904,219 @@ ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package 
 ocamlfind ocamlc -pack eclipse/version.cmo eclipse/packages.cmo eclipse/eclipsecudf.cmo -o eclipse/eclipse.cmo
 ocamlfind ocamlc -a eclipse/eclipse.cmo -o eclipse/eclipse.cma
 # No parallelism done
+ocamlbuild  -j 10 -classic-display algo/algo.cma
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/defaultgraphs.ml > algo/defaultgraphs.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/statistics.ml > algo/statistics.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/dominators.ml > algo/dominators.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/defaultgraphs.cmo algo/defaultgraphs.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/strongdeps.mli > algo/strongdeps.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps.cmi algo/strongdeps.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/strongdeps.ml > algo/strongdeps.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/strongdeps_int.ml > algo/strongdeps_int.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/depsolver_int.ml > algo/depsolver_int.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/diagnostic_int.ml > algo/diagnostic_int.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic_int.cmo algo/diagnostic_int.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver_int.cmo algo/depsolver_int.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps_int.cmo algo/strongdeps_int.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/strongconflicts.ml > algo/strongconflicts.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/depsolver.mli > algo/depsolver.mli.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/diagnostic.mli > algo/diagnostic.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic.cmi algo/diagnostic.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/strongconflicts_int.ml > algo/strongconflicts_int.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver.cmi algo/depsolver.mli
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts_int.cmo algo/strongconflicts_int.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/diagnostic.ml > algo/diagnostic.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/depsolver.ml > algo/depsolver.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules algo/flatten.ml > algo/flatten.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/statistics.cmo algo/statistics.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/dominators.cmo algo/dominators.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps.cmo algo/strongdeps.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts.cmo algo/strongconflicts.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic.cmo algo/diagnostic.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver.cmo algo/depsolver.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/flatten.cmo algo/flatten.ml
+ocamlfind ocamlc -pack algo/defaultgraphs.cmo algo/statistics.cmo algo/dominators.cmo algo/diagnostic_int.cmo algo/depsolver_int.cmo algo/strongdeps_int.cmo algo/strongdeps.cmo algo/diagnostic.cmo algo/depsolver.cmo algo/strongconflicts_int.cmo algo/strongconflicts.cmo algo/flatten.cmo -o algo/algo.cmo
+ocamlfind ocamlc -a algo/algo.cmo -o algo/algo.cma
+# Parallel statistics: { count(total): 2(26), max: 7, min: 2, average(total): 4.500(1.269) }
+ocamlbuild  -j 10 -classic-display doseparse/boilerplateNoRpm.cma
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs   -DHASOCAMLGRAPH' -modules doseparse/boilerplateNoRpm.ml > doseparse/boilerplateNoRpm.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules doseparse/stdDebug.ml > doseparse/stdDebug.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules doseparse/stdLoaders.ml > doseparse/stdLoaders.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules doseparse/stdOptions.ml > doseparse/stdOptions.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules doseparse/stdDebian.ml > doseparse/stdDebian.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I doseparse -I doselibs -o doseparse/stdDebian.cmo doseparse/stdDebian.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules doseparse/stdUtils.ml > doseparse/stdUtils.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I doseparse -I doselibs -o doseparse/stdOptions.cmo doseparse/stdOptions.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I doseparse -I doselibs -o doseparse/stdUtils.cmo doseparse/stdUtils.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I doseparse -I doselibs -o doseparse/stdDebug.cmo doseparse/stdDebug.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I doseparse -I doselibs -o doseparse/stdLoaders.cmo doseparse/stdLoaders.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs   -DHASOCAMLGRAPH' -I doseparse -I doselibs -o doseparse/boilerplateNoRpm.cmo doseparse/boilerplateNoRpm.ml
+ocamlfind ocamlc -a doseparse/stdDebug.cmo doseparse/stdDebian.cmo doseparse/stdOptions.cmo doseparse/stdUtils.cmo doseparse/stdLoaders.cmo doseparse/boilerplateNoRpm.cmo -o doseparse/boilerplateNoRpm.cma
+# Parallel statistics: { count(total): 2(12), max: 2, min: 2, average(total): 2.000(1.167) }
+ocamlbuild  -j 10 -classic-display doseparse/boilerplate.cma
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules doseparse/boilerplate.ml > doseparse/boilerplate.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I doseparse -I doselibs -o doseparse/boilerplate.cmo doseparse/boilerplate.ml
++ ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I doseparse -I doselibs -o doseparse/boilerplate.cmo doseparse/boilerplate.ml
+findlib: [WARNING] Interface boilerplateNoRpm.cmi occurs in several directories: doselibs, doseparse
+ocamlfind ocamlc -a doseparse/stdDebug.cmo doseparse/stdDebian.cmo doseparse/stdOptions.cmo doseparse/stdUtils.cmo doseparse/stdLoaders.cmo doseparse/boilerplate.cmo -o doseparse/boilerplate.cma
+# No parallelism done
+ocamlbuild  -j 10 -classic-display common/common.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/util.cmx common/util.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/util.cmx common/util.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/url.cmx common/url.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/url.cmx common/url.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmx common/cudfAdd.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmx common/cudfAdd.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/edosSolver.cmx common/edosSolver.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfSolver.cmx common/cudfSolver.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/input.cmx common/input.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfDiff.cmx common/cudfDiff.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/versionInfo.cmx common/versionInfo.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/input.cmx common/input.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/versionInfo.cmx common/versionInfo.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfDiff.cmx common/cudfDiff.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfSolver.cmx common/cudfSolver.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Common -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/edosSolver.cmx common/edosSolver.ml
+findlib: [WARNING] Interface common.cmi occurs in several directories: doselibs, common
+touch common/common.mli  ; if  ocamlfind ocamlopt -pack -I common common/util.cmx common/edosSolver.cmx common/cudfSolver.cmx common/url.cmx common/input.cmx common/cudfAdd.cmx common/cudfDiff.cmx common/versionInfo.cmx -o common/common.cmx  ; then  rm -f common/common.mli  ; else  rm -f common/common.mli  ; exit 1; fi
+ocamlfind ocamlopt -a common/common.cmx -o common/common.cmxa
+# Parallel statistics: { count(total): 1(34), max: 5, min: 5, average(total): 5.000(1.118) }
+ocamlbuild  -j 10 -classic-display deb/debian.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822.cmx deb/format822.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822.cmx deb/format822.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_parser.cmx deb/format822_parser.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_parser.cmx deb/format822_parser.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_parser.cmx deb/packages_parser.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_parser.cmx deb/packages_parser.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_lexer.cmx deb/format822_lexer.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_lexer.cmx deb/format822_lexer.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_lexer.cmx deb/packages_lexer.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_lexer.cmx deb/packages_lexer.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages.cmx deb/packages.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages.cmx deb/packages.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/architecture.cmx deb/architecture.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/architecture.cmx deb/architecture.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/sources.cmx deb/sources.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/sources.cmx deb/sources.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/version.cmx deb/version.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/version.cmx deb/version.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/apt.cmx deb/apt.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/apt.cmx deb/apt.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debcudf.cmx deb/debcudf.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debcudf.cmx deb/debcudf.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debutil.cmx deb/debutil.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debutil.cmx deb/debutil.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/release.cmx deb/release.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/evolution.cmx deb/evolution.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/edsp.cmx deb/edsp.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/printer.cmx deb/printer.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/release.cmx deb/release.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/printer.cmx deb/printer.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/evolution.cmx deb/evolution.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Debian -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/edsp.cmx deb/edsp.ml
+findlib: [WARNING] Interface debian.cmi occurs in several directories: doselibs, deb
+touch deb/debian.mli  ; if  ocamlfind ocamlopt -pack -I deb deb/format822.cmx deb/format822_parser.cmx deb/format822_lexer.cmx deb/packages_parser.cmx deb/packages_lexer.cmx deb/packages.cmx deb/apt.cmx deb/architecture.cmx deb/sources.cmx deb/version.cmx deb/debcudf.cmx deb/release.cmx deb/debutil.cmx deb/evolution.cmx deb/edsp.cmx deb/printer.cmx -o deb/debian.cmx  ; then  rm -f deb/debian.mli  ; else  rm -f deb/debian.mli  ; exit 1; fi
+ocamlfind ocamlopt -a deb/debian.cmx -o deb/debian.cmxa
+# Parallel statistics: { count(total): 1(65), max: 4, min: 4, average(total): 4.000(1.046) }
+ocamlbuild  -j 10 -classic-display rpm/rpm.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/hdlists.cmx rpm/hdlists.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/hdlists.cmx rpm/hdlists.ml
+findlib: [WARNING] Interface rpm.cmi occurs in several directories: doselibs, rpm
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/packages.cmx rpm/packages.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/packages.cmx rpm/packages.ml
+findlib: [WARNING] Interface rpm.cmi occurs in several directories: doselibs, rpm
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/version.cmx rpm/version.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/version.cmx rpm/version.ml
+findlib: [WARNING] Interface rpm.cmi occurs in several directories: doselibs, rpm
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/rpmcudf.cmx rpm/rpmcudf.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Rpm -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/rpmcudf.cmx rpm/rpmcudf.ml
+findlib: [WARNING] Interface rpm.cmi occurs in several directories: doselibs, rpm
+touch rpm/rpm.mli  ; if  ocamlfind ocamlopt -pack -I rpm rpm/hdlists.cmx rpm/version.cmx rpm/packages.cmx rpm/rpmcudf.cmx -o rpm/rpm.cmx  ; then  rm -f rpm/rpm.mli  ; else  rm -f rpm/rpm.mli  ; exit 1; fi
+ocamlfind ocamlopt -a rpm/rpm.cmx -o rpm/rpm.cmxa
+# No parallelism done
+ocamlbuild  -j 10 -classic-display opencsw/csw.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/version.cmx opencsw/version.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/version.cmx opencsw/version.ml
+findlib: [WARNING] Interface csw.cmi occurs in several directories: doselibs, opencsw
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/packages.cmx opencsw/packages.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/packages.cmx opencsw/packages.ml
+findlib: [WARNING] Interface csw.cmi occurs in several directories: doselibs, opencsw
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/cswcudf.cmx opencsw/cswcudf.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Csw -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I opencsw -I doselibs -o opencsw/cswcudf.cmx opencsw/cswcudf.ml
+findlib: [WARNING] Interface csw.cmi occurs in several directories: doselibs, opencsw
+touch opencsw/csw.mli  ; if  ocamlfind ocamlopt -pack -I opencsw opencsw/version.cmx opencsw/packages.cmx opencsw/cswcudf.cmx -o opencsw/csw.cmx  ; then  rm -f opencsw/csw.mli  ; else  rm -f opencsw/csw.mli  ; exit 1; fi
+ocamlfind ocamlopt -a opencsw/csw.cmx -o opencsw/csw.cmxa
+# No parallelism done
+ocamlbuild  -j 10 -classic-display eclipse/eclipse.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/version.cmx eclipse/version.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/version.cmx eclipse/version.ml
+findlib: [WARNING] Interface eclipse.cmi occurs in several directories: doselibs, eclipse
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/packages.cmx eclipse/packages.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/packages.cmx eclipse/packages.ml
+findlib: [WARNING] Interface eclipse.cmi occurs in several directories: doselibs, eclipse
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/eclipsecudf.cmx eclipse/eclipsecudf.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -for-pack Eclipse -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I eclipse -I doselibs -o eclipse/eclipsecudf.cmx eclipse/eclipsecudf.ml
+findlib: [WARNING] Interface eclipse.cmi occurs in several directories: doselibs, eclipse
+touch eclipse/eclipse.mli  ; if  ocamlfind ocamlopt -pack -I eclipse eclipse/version.cmx eclipse/packages.cmx eclipse/eclipsecudf.cmx -o eclipse/eclipse.cmx  ; then  rm -f eclipse/eclipse.mli  ; else  rm -f eclipse/eclipse.mli  ; exit 1; fi
+ocamlfind ocamlopt -a eclipse/eclipse.cmx -o eclipse/eclipse.cmxa
+# No parallelism done
+ocamlbuild  -j 10 -classic-display algo/algo.a
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/defaultgraphs.cmx algo/defaultgraphs.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/defaultgraphs.cmx algo/defaultgraphs.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic_int.cmx algo/diagnostic_int.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic_int.cmx algo/diagnostic_int.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver_int.cmx algo/depsolver_int.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver_int.cmx algo/depsolver_int.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps_int.cmx algo/strongdeps_int.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps_int.cmx algo/strongdeps_int.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic.cmx algo/diagnostic.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/diagnostic.cmx algo/diagnostic.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver.cmx algo/depsolver.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts_int.cmx algo/strongconflicts_int.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts_int.cmx algo/strongconflicts_int.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/depsolver.cmx algo/depsolver.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/statistics.cmx algo/statistics.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/dominators.cmx algo/dominators.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps.cmx algo/strongdeps.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts.cmx algo/strongconflicts.ml
+ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/flatten.cmx algo/flatten.ml
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongdeps.cmx algo/strongdeps.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/strongconflicts.cmx algo/strongconflicts.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/flatten.cmx algo/flatten.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/statistics.cmx algo/statistics.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
++ ocamlfind ocamlopt -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -package ocamlgraph -for-pack Algo -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I algo -I doselibs -o algo/dominators.cmx algo/dominators.ml
+findlib: [WARNING] Interface algo.cmi occurs in several directories: doselibs, algo
+touch algo/algo.mli  ; if  ocamlfind ocamlopt -pack -I algo algo/defaultgraphs.cmx algo/statistics.cmx algo/dominators.cmx algo/diagnostic_int.cmx algo/depsolver_int.cmx algo/strongdeps_int.cmx algo/strongdeps.cmx algo/diagnostic.cmx algo/depsolver.cmx algo/strongconflicts_int.cmx algo/strongconflicts.cmx algo/flatten.cmx -o algo/algo.cmx  ; then  rm -f algo/algo.mli  ; else  rm -f algo/algo.mli  ; exit 1; fi
