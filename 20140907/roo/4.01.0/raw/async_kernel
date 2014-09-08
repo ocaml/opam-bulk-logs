@@ -792,3 +792,9 @@ ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bi
 ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/size.cmx lib/size.ml
 ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/write.cmx lib/write.ml
 ocamlfind ocamlopt -c -g -pp 'gcc -E -xc -undef -w -DARCH_SIXTYFOUR' -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/type_class.cmx lib/type_class.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/binable.cmx lib/binable.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/std.cmx lib/std.ml
+ocamlfind ocamlopt -c -g -package bigarray -package unix -for-pack Bin_prot -I lib -o lib/utils.cmx lib/utils.ml
+touch lib/bin_prot.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/common.cmx lib/nat0.cmx lib/read.cmx lib/size.cmx lib/write.cmx lib/type_class.cmx lib/binable.cmx lib/std.cmx lib/utils.cmx -o lib/bin_prot.cmx  ; then  rm -f lib/bin_prot.mli  ; else  rm -f lib/bin_prot.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lbin_prot_stubs lib/bin_prot.cmx -o lib/bin_prot.cmxa
+ocamlfind ocamlopt -shared -I lib lib/bin_prot.cmx -o lib/bin_prot.cmxs
