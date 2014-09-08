@@ -1809,3 +1809,10 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /ho
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/custom_printf_dummy.cmo -o lib/custom_printf.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -o lib/custom_printf_dummy.cmx lib/custom_printf_dummy.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/custom_printf.cmxa lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -modules syntax/pa_custom_printf.mli > syntax/pa_custom_printf.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmi syntax/pa_custom_printf.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -modules syntax/pa_custom_printf.ml > syntax/pa_custom_printf.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a syntax/pa_custom_printf.cmo -o syntax/pa_custom_printf.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.macro -package camlp4.lib -I syntax -o syntax/pa_custom_printf.cmx syntax/pa_custom_printf.ml
