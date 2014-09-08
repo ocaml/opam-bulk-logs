@@ -811,3 +811,83 @@ ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o action.cmo action.ml
 ocamlfind ocamldep -modules config.mli > config.mli.depends
 ocamlfind ocamldep -modules game.ml > game.ml.depends
 ocamlfind ocamldep -modules block.mli > block.mli.depends
+ocamlfind ocamldep -modules cell.ml > cell.ml.depends
+ocamlfind ocamldep -modules puyo.ml > puyo.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o puyo.cmo puyo.ml
+ocamlfind ocamldep -modules matrix.mli > matrix.mli.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o cell.cmo cell.ml
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o matrix.cmi matrix.mli
+ocamlfind ocamldep -modules generator.mli > generator.mli.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o block.cmi block.mli
+ocamlfind ocamldep -modules rand.mli > rand.mli.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o rand.cmi rand.mli
+ocamlfind ocamldep -modules gfx.mli > gfx.mli.depends
+ocamlfind ocamldep -modules misc.ml > misc.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o generator.cmi generator.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o gfx.cmi gfx.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o misc.cmo misc.ml
+ocamlfind ocamldep -modules highscores.mli > highscores.mli.depends
+ocamlfind ocamldep -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -modules IO.mli > IO.mli.depends
+ocamlfind ocamldep -modules replay.mli > replay.mli.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o game.cmo game.ml
+ocamlfind ocamldep -modules score.mli > score.mli.depends
+ocamlfind ocamldep -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o config.cmi config.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o highscores.cmi highscores.mli
+ocamlfind ocamlc -c -dtypes -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -I server -I bin -I net -o IO.cmi IO.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o replay.cmi replay.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o score.cmi score.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o version.cmo version.ml
+ocamlfind ocamldep -modules cpu.ml > cpu.ml.depends
+ocamlfind ocamldep -modules draw.ml > draw.ml.depends
+ocamlfind ocamldep -modules sprites.ml > sprites.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o common.cmo common.ml
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o sprites.cmo sprites.ml
+ocamlfind ocamldep -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -modules menu.mli > menu.mli.depends
+ocamlfind ocamldep -modules online.ml > online.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o draw.cmo draw.ml
+ocamlfind ocamlc -c -dtypes -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -I server -I bin -I net -o menu.cmi menu.mli
+ocamlfind ocamldep -modules net/net.mli > net/net.mli.depends
+ocamlfind ocamldep -modules protocol.ml > protocol.ml.depends
+ocamlfind ocamlc -c -dtypes -I net -I server -I bin -o net/net.cmi net/net.mli
+ocamlfind ocamldep -modules syncs.mli > syncs.mli.depends
+ocamlfind ocamldep -modules net/udp.mli > net/udp.mli.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o protocol.cmo protocol.ml
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o syncs.cmi syncs.mli
+ocamlfind ocamlc -c -dtypes -I net -I server -I bin -o net/udp.cmi net/udp.mli
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o cpu.cmo cpu.ml
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o online.cmo online.ml
+ocamlfind ocamlc -c -dtypes -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -I server -I bin -I net -o main.cmo main.ml
+ocamlfind ocamldep -modules bin/bin.ml > bin/bin.ml.depends
+ocamlfind ocamlopt -c -dtypes -I bin -I server -I net -o bin/bin.cmx bin/bin.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o action.cmx action.ml
+ocamlfind ocamldep -modules config.ml > config.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q configlex.mll
+ocamlfind ocamldep -modules configlex.ml > configlex.ml.depends
+ocamlfind ocamlc -c -dtypes -I server -I bin -I net -o configlex.cmo configlex.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o configlex.cmx configlex.ml
+ocamlfind ocamldep -modules block.ml > block.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o puyo.cmx puyo.ml
+ocamlfind ocamldep -modules matrix.ml > matrix.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o cell.cmx cell.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o matrix.cmx matrix.ml
+ocamlfind ocamldep -modules generator.ml > generator.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o block.cmx block.ml
+ocamlfind ocamldep -modules rand.ml > rand.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o rand.cmx rand.ml
+ocamlfind ocamldep -modules gfx.ml > gfx.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o misc.cmx misc.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o generator.cmx generator.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o gfx.cmx gfx.ml
+ocamlfind ocamldep -modules highscores.ml > highscores.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o config.cmx config.ml
+ocamlfind ocamldep -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -modules IO.ml > IO.ml.depends
+ocamlfind ocamldep -modules replay.ml > replay.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o game.cmx game.ml
+ocamlfind ocamldep -modules score.ml > score.ml.depends
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o highscores.cmx highscores.ml
+ocamlfind ocamlopt -c -dtypes -package unix -package sdl.sdlttf -package sdl.sdlimage -package sdl -I server -I bin -I net -o IO.cmx IO.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o replay.cmx replay.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o score.cmx score.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o version.cmx version.ml
+ocamlfind ocamlopt -c -dtypes -I server -I bin -I net -o common.cmx common.ml
