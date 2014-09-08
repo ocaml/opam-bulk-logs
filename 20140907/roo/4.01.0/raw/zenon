@@ -7355,3 +7355,29 @@ ocamlopt   -c ext_recfun.ml
 ocamlopt   -c ext_equiv.ml
 ocamlopt   -c ext_induct.ml
 ocamlopt   -c prove.ml
+ocamlopt   -c checksum.ml
+ocamlopt   -c versionnum.ml
+ocamlopt   -c main.ml
+ocamlopt   -o zenon.bin version.cmx config.cmx misc.cmx heap.cmx globals.cmx error.cmx progress.cmx namespace.cmx expr.cmx phrase.cmx llproof.cmx mlproof.cmx watch.cmx eqrel.cmx index.cmx print.cmx step.cmx node.cmx extension.cmx mltoll.cmx parsezen.cmx lexzen.cmx parsetptp.cmx lextptp.cmx parsecoq.cmx lexcoq.cmx tptp.cmx coqterm.cmx lltocoq.cmx enum.cmx isar_case.cmx lltoisar.cmx ext_focal.cmx ext_tla.cmx ext_recfun.cmx ext_equiv.cmx ext_induct.cmx prove.cmx checksum.cmx versionnum.cmx main.cmx
+if test -x zenon.bin; then \
+	  cp zenon.bin zenon; \
+        else \
+	  cp zenon.byt zenon; \
+	fi
+coqc -q zenon.v
+coqc -q zenon_coqbool.v
+coqc -q zenon_equiv.v
+coqc -q zenon_induct.v
+coqc -q zenon_focal.v
+mkdir -p "/home/opam/.opam/4.01.0/bin"
+cp zenon "/home/opam/.opam/4.01.0/bin"/"zenon-0.7.1"
+(cd "/home/opam/.opam/4.01.0/bin" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+mkdir -p "/home/opam/.opam/4.01.0/lib"/"zenon-0.7.1"
+(cd "/home/opam/.opam/4.01.0/lib" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+cp zenon.v zenon_coqbool.v zenon_equiv.v zenon_induct.v zenon_focal.v "/home/opam/.opam/4.01.0/lib"/"zenon-0.7.1"/
+for i in zenon.vo zenon_coqbool.vo zenon_equiv.vo zenon_induct.vo zenon_focal.vo; \
+	  do [ ! -f $i ] || cp $i "/home/opam/.opam/4.01.0/lib/"zenon-0.7.1""/; \
+	done
+Installing zenon.0.7.1.
