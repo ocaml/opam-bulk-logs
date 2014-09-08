@@ -1245,3 +1245,103 @@ ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -pp "../../tools/cppo-
 [ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_posix.cmx .cmx`.p.cmx -pp "../../tools/cppo-0.9.4/cppo -D HAVE_O_SHARE_DELETE -D HAVE_O_CLOEXEC" netsys_posix.ml
 ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netlog.ml
 [ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netlog.cmx .cmx`.p.cmx  netlog.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_win32.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_win32.cmx .cmx`.p.cmx  netsys_win32.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys.cmx .cmx`.p.cmx  netsys.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_rng.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_rng.cmx .cmx`.p.cmx  netsys_rng.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset.cmx .cmx`.p.cmx  netsys_pollset.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_posix.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_posix.cmx .cmx`.p.cmx  netsys_pollset_posix.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_win32.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_win32.cmx .cmx`.p.cmx  netsys_pollset_win32.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pollset_generic.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pollset_generic.cmx .cmx`.p.cmx  netsys_pollset_generic.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_mem.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_mem.cmx .cmx`.p.cmx  netsys_mem.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_xdr.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_xdr.cmx .cmx`.p.cmx  netsys_xdr.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_tmp.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_tmp.cmx .cmx`.p.cmx  netsys_tmp.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_sem.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_sem.cmx .cmx`.p.cmx  netsys_sem.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_pmanage.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_pmanage.cmx .cmx`.p.cmx  netsys_pmanage.ml
+if [ "Xnetsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o" = "X" ]; then \
+		ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -a -o netsys.cmxa  netsys_conf.cmx netsys_types.cmx netlog.cmx netexn.cmx netsys_impl_util.cmx netsys_signal.cmx netsys_posix.cmx netsys_win32.cmx netsys.cmx netsys_rng.cmx netsys_pollset.cmx netsys_pollset_posix.cmx netsys_pollset_win32.cmx netsys_pollset_generic.cmx netsys_mem.cmx netsys_xdr.cmx netsys_tmp.cmx netsys_sem.cmx netsys_pmanage.cmx; \
+	else \
+		../../tools/mkstublib -o netsys netsys_conf.cmx netsys_types.cmx netlog.cmx netexn.cmx netsys_impl_util.cmx netsys_signal.cmx netsys_posix.cmx netsys_win32.cmx netsys.cmx netsys_rng.cmx netsys_pollset.cmx netsys_pollset_posix.cmx netsys_pollset_win32.cmx netsys_pollset_generic.cmx netsys_mem.cmx netsys_xdr.cmx netsys_tmp.cmx netsys_sem.cmx netsys_pmanage.cmx netsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o -lrt -lpthread ; \
+	fi
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -o netsys_oothr.cmxa -a netsys_oothr.cmx
+../../tools/stubcc -ocamlc ocamlc -ccopt -O   netsys_c_gprof.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c  -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'netsys_c_gprof.c'
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -thread netsys_oothr_mt.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_oothr_mt.cmx .cmx`.p.cmx -thread netsys_oothr_mt.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -o netsys_oothr_mt.cmxa -a \
+		netsys_oothr.cmx netsys_oothr_mt.cmx
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -thread netsys_oothr_mt_init.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_oothr_mt_init.cmx .cmx`.p.cmx -thread netsys_oothr_mt_init.ml
+if [ "Xnetsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o" = "X" ]; then \
+		ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -a -o netsys.p.cmxa netsys_conf.p.cmx netsys_types.p.cmx netlog.p.cmx netexn.p.cmx netsys_impl_util.p.cmx netsys_signal.p.cmx netsys_posix.p.cmx netsys_win32.p.cmx netsys.p.cmx netsys_rng.p.cmx netsys_pollset.p.cmx netsys_pollset_posix.p.cmx netsys_pollset_win32.p.cmx netsys_pollset_generic.p.cmx netsys_mem.p.cmx netsys_xdr.p.cmx netsys_tmp.p.cmx netsys_sem.p.cmx netsys_pmanage.p.cmx; \
+	else \
+		../../tools/mkstublib -o netsys.p netsys_conf.p.cmx netsys_types.p.cmx netlog.p.cmx netexn.p.cmx netsys_impl_util.p.cmx netsys_signal.p.cmx netsys_posix.p.cmx netsys_win32.p.cmx netsys.p.cmx netsys_rng.p.cmx netsys_pollset.p.cmx netsys_pollset_posix.p.cmx netsys_pollset_win32.p.cmx netsys_pollset_generic.p.cmx netsys_mem.p.cmx netsys_xdr.p.cmx netsys_tmp.p.cmx netsys_sem.p.cmx netsys_pmanage.p.cmx netsys_c.o netsys_c_poll.o netsys_c_fadvise.o netsys_c_fallocate.o netsys_c_ioprio.o netsys_c_locale.o netsys_c_multicast.o netsys_c_sem.o netsys_c_shm.o netsys_c_spawn.o netsys_c_subprocess.o netsys_c_syslog.o netsys_c_clock.o netsys_c_event.o netsys_c_win32.o netsys_c_htab.o netsys_c_queue.o netsys_c_mem.o netsys_c_xdr.o -lrt -lpthread ; \
+	fi
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -o netsys_oothr.p.cmxa -a netsys_oothr.p.cmx
+ocamlfind ocamlc -g   -package "unix unix" -w -3-25 -c  netsys_gprof_init.mli
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c  netsys_gprof_init.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -c -p -o `basename netsys_gprof_init.cmx .cmx`.p.cmx  netsys_gprof_init.ml
+ocamlfind ocamlopt -g   -package "unix unix"  -w -3-25 -o netsys_oothr_mt.p.cmxa -a \
+		netsys_oothr.p.cmx netsys_oothr_mt.p.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netsys'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[2]: Nothing to be done for `realgenerate'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[1]: `depend' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm.cmx .cmx`.p.cmx  netshm.ml
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_data.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_data.cmx .cmx`.p.cmx  netshm_data.ml
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_hashtbl.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_hashtbl.cmx .cmx`.p.cmx  netshm_hashtbl.ml
+ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c  netshm_array.ml
+[ 1 -eq 0 ] || ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -c -p -o `basename netshm_array.cmx .cmx`.p.cmx  netshm_array.ml
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -a -o netshm.cmxa  netshm.cmx netshm_data.cmx netshm_hashtbl.cmx netshm_array.cmx; \
+	else \
+		../../tools/mkstublib -o netshm netshm.cmx netshm_data.cmx netshm_hashtbl.cmx netshm_array.cmx  ; \
+	fi
+if [ "X" = "X" ]; then \
+		ocamlfind ocamlopt -g  -I ../../src/netsys -package "unix"  -w -3-25 -a -o netshm.p.cmxa netshm.p.cmx netshm_data.p.cmx netshm_hashtbl.p.cmx netshm_array.p.cmx; \
+	else \
+		../../tools/mkstublib -o netshm.p netshm.p.cmx netshm_data.p.cmx netshm_hashtbl.p.cmx netshm_array.p.cmx  ; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netshm'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netstring'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netstring'
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_iso.pmap -pmap mappings/iso*.unimap
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_other.pmap -pmap mappings/cp*.unimap mappings/adobe*.unimap mappings/koi*.unimap mappings/mac*.unimap mappings/windows*.unimap
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_jp.pmap -pmap mappings/jis*.*map
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_kr.pmap -pmap mappings/ks*.*map
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netstring'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netstring'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocamlnet.3.7.5/src/netstring'
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_iso.pmap -pmap mappings/iso*.unimap
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_jp.pmap -pmap mappings/jis*.*map
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_kr.pmap -pmap mappings/ks*.*map
+test ! -d mappings || tools/unimap_to_ocaml/unimap_to_ocaml \
+		-o netmappings_other.pmap -pmap mappings/cp*.unimap mappings/adobe*.unimap mappings/koi*.unimap mappings/mac*.unimap mappings/windows*.unimap
+ocamlfind ocamldep  -pp "../../tools/cppo-0.9.4/cppo -D WORDSIZE_64 -D HOST_IS_LITTLE_ENDIAN -D USE_NETSYS_XDR -D ENABLE_STR_EXTERNALS" *.ml *.mli >depend || { rm -f depend; exit 1; }
