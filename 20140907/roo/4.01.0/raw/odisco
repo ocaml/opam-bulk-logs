@@ -449,3 +449,18 @@ ocamlfind ocamlopt -c -g -inline 1000 -o compressedBitSet.cmx compressedBitSet.m
 ocamlfind ocamlopt -c -g -inline 1000 -o dot.cmx dot.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o front.cmx front.ml
 ocamlfind ocamlopt -c -g -inline 1000 -o patricia.cmx patricia.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o grammar.cmx grammar.ml
+ocamlfind ocamldep -modules invariant.ml > invariant.ml.depends
+ocamlfind ocamldep -modules invariant.mli > invariant.mli.depends
+ocamlfind ocamldep -modules lr1.mli > lr1.mli.depends
+ocamlfind ocamldep -modules Fix.mli > Fix.mli.depends
+ocamlfind ocamldep -modules item.mli > item.mli.depends
+ocamlfind ocamldep -modules lookahead.mli > lookahead.mli.depends
+ocamlfind ocamlc -c -o lookahead.cmi lookahead.mli
+ocamlfind ocamldep -modules lr0.mli > lr0.mli.depends
+ocamlfind ocamlc -c -o item.cmi item.mli
+ocamlfind ocamlc -c -o Fix.cmi Fix.mli
+ocamlfind ocamlc -c -o lr0.cmi lr0.mli
+ocamlfind ocamlc -c -o lr1.cmi lr1.mli
+ocamlfind ocamlc -c -o invariant.cmi invariant.mli
+ocamlfind ocamldep -modules conflict.ml > conflict.ml.depends
