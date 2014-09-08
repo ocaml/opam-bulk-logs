@@ -1339,3 +1339,55 @@ ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package 
 ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/history.ml > src/history.ml.depends
 ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/state.ml > src/state.ml.depends
 ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/browse_misc.cmx src/browse_misc.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/chunk.cmx src/chunk.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/global_state.cmx src/global_state.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/history.cmx src/history.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/typer.ml > src/typer.ml.depends
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/typer.cmx src/typer.ml
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/track_definition.ml > src/track_definition.ml.depends
+ocamlfind ocamldep -package menhirLib -package yojson -package unix -package findlib -modules src/track_definition.mli > src/track_definition.mli.depends
+ocamlfind ocamlc -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/track_definition.cmi src/track_definition.mli
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/state.cmx src/state.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/track_definition.cmx src/track_definition.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/command.cmx src/command.ml
+ocamlfind ocamlopt -c -package menhirLib -package yojson -package unix -package findlib -I src -I src/ocaml -I src/utils -I src/config -I src/ocaml/parsing -I src/ocaml/typing -I src/ocaml/utils -o src/ocamlmerlin.cmx src/ocamlmerlin.ml
+ocamlfind ocamlopt -linkpkg -package menhirLib -package yojson -package unix -package findlib src/config/myocamlbuild_config.cmx src/ocaml/utils/warnings.cmx src/utils/terminfo.cmx src/ocaml/parsing/location.cmx src/std.cmx src/utils/misc.cmx src/ocaml/parsing/longident.cmx src/ocaml/typing/ident.cmx src/fake.cmx src/logger.cmx src/merlin_parsing.cmx src/ocaml/parsing/syntaxerr.cmx src/ocaml/utils/config.cmx src/outline_utils.cmx src/utils/clflags.cmx src/ocaml/chunk_parser.cmx src/chunk_parser_utils.cmx src/ocaml/typing/path.cmx src/ocaml/typing/primitive.cmx src/ocaml/typing/types.cmx src/ocaml/typing/cmi_format.cmx src/cmi_cache.cmx src/fake_lexer.cmx src/lexer.cmx src/ocaml/typing/btype.cmx src/ocaml/typing/predef.cmx src/ocaml/typing/datarepr.cmx src/utils/tbl.cmx src/ocaml/typing/subst.cmx src/utils/consistbl.cmx src/ocaml/typing/env.cmx src/ocaml/typing/typedtree.cmx src/ocaml/merlin_types_custom.cmx src/merlin_types.cmx src/ocaml/outline_parser.cmx src/ocaml/typing/typedtreeMap.cmx src/ocaml/typing/cmt_format.cmx src/ocaml/typing/ctype.cmx src/ocaml/typing/oprint.cmx src/ocaml/typing/printtyp.cmx src/ocaml/typing/includeclass.cmx src/ocaml/typing/includecore.cmx src/ocaml/typing/mtype.cmx src/ocaml/typing/includemod.cmx src/ocaml/typing/parmatch.cmx src/ocaml/typing/stypes.cmx src/ocaml/typing/typetexp.cmx src/ocaml/typing/typecore.cmx src/ocaml/typing/typedecl.cmx src/ocaml/typing/typeclass.cmx src/ocaml/typing/typemod.cmx src/spine.cmx src/outline.cmx src/ocaml/error_report.cmx src/IO.cmx src/IO_sexp.cmx src/browse.cmx src/extensions.cmx src/extensions_utils.cmx src/browse_misc.cmx src/chunk.cmx src/config/my_config.cmx src/dot_merlin.cmx src/main_args.cmx src/top_options.cmx src/global_state.cmx src/history.cmx src/typer.cmx src/state.cmx src/track_definition.cmx src/command.cmx src/ocamlmerlin.cmx -o src/ocamlmerlin.native
+emacs --batch --no-init-file -f batch-byte-compile emacs/merlin.el
+make: emacs: Command not found
+make: [emacs/merlin.elc] Error 127 (ignored)
+Installing merlin.1.7.1.
+
+=-=- merlin.1.7.1 information -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+merlin installed.
+
+Quick setup for VIM
+-------------------
+Append this to your .vimrc to add merlin to vim's runtime-path:
+  let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+  execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+Also run the following line in vim to index the documentation:
+  :execute "helptags " . g:opamshare . "/merlin/vim/doc"
+
+Quick setup for EMACS
+-------------------
+Add opam emacs directory to your load-path by appending this to your .emacs:
+  ;; Add opam emacs directory to the load-path
+  (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
+  (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+  
+  ;; Load merlin-mode
+  (require 'merlin)
+  
+  ;; Start merlin on ocaml files
+  (add-hook 'tuareg-mode-hook 'merlin-mode t)
+  (add-hook 'caml-mode-hook 'merlin-mode t)
+  
+  ;; Enable auto-complete
+  (setq merlin-use-auto-complete-mode 'easy)
+  
+  ;; Use opam switch to lookup ocamlmerlin binary
+  (setq merlin-command 'opam)
+
+Take a look at https://github.com/the-lambda-church/merlin for more information
+
