@@ -1284,3 +1284,40 @@ ocamlfind ocamlc -c -g -annot -w A -thread -package oUnit -package quickcheck -p
 ocamlfind ocamlc -c -g -annot -w A -thread -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -o rewrite_test.cmo rewrite_test.ml
 ocamlfind ocamlc -c -g -annot -w A -thread -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -o slab_test.cmo slab_test.ml
 ocamlfind ocamlc -c -g -annot -w A -thread -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -o tree_test.cmo tree_test.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package oUnit -package lwt.preemptive -package lwt.unix -package lwt -o hudson_xml.cmo hudson_xml.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o sync.cmo sync.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package oUnit -package lwt.preemptive -package lwt.unix -package lwt -o test.cmo test.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package unix -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -o bsmgr.cmo bsmgr.ml
+ocamlfind ocamlc -ccopt -Wall -ccopt -Wextra -ccopt -Werror -ccopt -O3 -ccopt -I.. -ccopt -msse4.2 -I /home/opam/.opam/4.01.0/lib/lwt -c posix.c
+ocamlfind ocamlc -ccopt -Wall -ccopt -Wextra -ccopt -Werror -ccopt -O3 -ccopt -I.. -ccopt -msse4.2 -I /home/opam/.opam/4.01.0/lib/lwt -c bsd_crc32c.c
+ocamlfind ocamlc -ccopt -Wall -ccopt -Wextra -ccopt -Werror -ccopt -O3 -ccopt -I.. -ccopt -msse4.2 -I /home/opam/.opam/4.01.0/lib/lwt -c arakoon_crc32c.c
+ocamlfind ocamlc -ccopt -Wall -ccopt -Wextra -ccopt -Werror -ccopt -O3 -ccopt -I.. -ccopt -msse4.2 -I /home/opam/.opam/4.01.0/lib/lwt -c cpudetect.c
+ocamlfind ocamlc -ccopt -Wall -ccopt -Wextra -ccopt -Werror -ccopt -O3 -ccopt -I.. -ccopt -msse4.2 -I /home/opam/.opam/4.01.0/lib/lwt -c baardskeerder_util.c
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o baardskeerder_c posix.o bsd_crc32c.o arakoon_crc32c.o cpudetect.o baardskeerder_util.o
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules flog.ml > flog.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules entrycache.ml > entrycache.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o entrycache.cmo entrycache.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules slab.ml > slab.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o flog.cmo flog.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o slab.cmo slab.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules crc32c.ml > crc32c.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o crc32c.cmo crc32c.ml
+ocamlfind ocamlc -linkpkg -g -custom -thread -package unix -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt pos.cmo base.cmo bs_internal.cmo pretty.cmo time.cmo commit.cmo index.cmo indexz.cmo leaf.cmo leafz.cmo entry.cmo slab.cmo log.cmo catchup.cmo prefix.cmo tree.cmo dbx.cmo crc32c.cmo binary.cmo entrycache.cmo flog.cmo monad.cmo pack.cmo lwt_unix_ext.cmo store.cmo flog0.cmo hudson_xml.cmo rewrite.cmo sync.cmo mlog.cmo catchup_test.cmo base_test.cmo dbx_test.cmo flog0_test.cmo flog_test.cmo index_test.cmo indexz_test.cmo key_count_test.cmo mlog_lwt.cmo mlog_lwt_test.cmo cpack.cmo pack_test.cmo prefix_test.cmo range_test.cmo rewrite_test.cmo slab_test.cmo tree_test.cmo test.cmo bsmgr.cmo libbaardskeerder_c.a -o bsmgr.byte
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o pos.cmx pos.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o base.cmx base.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o pretty.cmx pretty.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o time.cmx time.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o commit.cmx commit.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o index.cmx index.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o leaf.cmx leaf.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o indexz.cmx indexz.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o leafz.cmx leafz.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o entry.cmx entry.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o slab.cmx slab.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o log.cmx log.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o catchup.cmx catchup.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o prefix.cmx prefix.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o tree.cmx tree.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o crc32c.cmx crc32c.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o bs_internal.cmx bs_internal.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o binary.cmx binary.ml
