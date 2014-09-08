@@ -1599,3 +1599,85 @@ Warning 3: deprecated feature: operator (or); you should use (||) instead
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_options.cmo syntax/pa_lwt_options.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -modules syntax/pa_lwt.mli > syntax/pa_lwt.mli.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -I syntax -o syntax/pa_lwt.cmi syntax/pa_lwt.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -modules syntax/pa_lwt.ml > syntax/pa_lwt.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt_log.cmo syntax/pa_lwt_log.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package camlp4 -syntax camlp4o -package camlp4.extend -syntax camlp4o -package camlp4.quotations.o -syntax camlp4o -I syntax -o syntax/pa_lwt.cmo syntax/pa_lwt.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules src/logger/lwt_log_core.ml > src/logger/lwt_log_core.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/logger/lwt_log_rules.mli > src/logger/lwt_log_rules.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -I src/core -o src/logger/lwt_log_rules.cmi src/logger/lwt_log_rules.mli
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/logger/lwt_log_rules.mll
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules src/logger/lwt_log_rules.ml > src/logger/lwt_log_rules.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/logger -I src/core -o src/logger/lwt_log_core.cmo src/logger/lwt_log_core.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/logger -I src/core -o src/logger/lwt_log_rules.cmo src/logger/lwt_log_rules.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/logger/lwt_log_rules.cmo src/logger/lwt_log_core.cmo -o src/logger/lwt-log.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src/core -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/logger -I src/core -o src/logger/lwt_log_rules.cmx src/logger/lwt_log_rules.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src/core -package camlp4 -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -I src/logger -I src/core -o src/logger/lwt_log_core.cmx src/logger/lwt_log_core.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/logger/lwt_log_rules.cmx src/logger/lwt_log_core.cmx -o src/logger/lwt-log.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/logger/lwt-log.cmxa src/logger/lwt_log_rules.cmx src/logger/lwt_log_core.cmx -o src/logger/lwt-log.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -I/usr/include -ccopt -Isrc/unix -c src/unix/lwt_unix_stubs.c
+mv lwt_unix_stubs.o src/unix/lwt_unix_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -I/usr/include -ccopt -Isrc/unix -c src/unix/lwt_libev_stubs.c
+mv lwt_libev_stubs.o src/unix/lwt_libev_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -I/usr/include -ccopt -Isrc/unix -c src/unix/lwt_process_stubs.c
+mv lwt_process_stubs.o src/unix/lwt_process_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_access.c
+mv lwt_unix_job_access.o src/unix/jobs-unix/lwt_unix_job_access.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_chdir.c
+mv lwt_unix_job_chdir.o src/unix/jobs-unix/lwt_unix_job_chdir.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_chmod.c
+mv lwt_unix_job_chmod.o src/unix/jobs-unix/lwt_unix_job_chmod.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_chown.c
+mv lwt_unix_job_chown.o src/unix/jobs-unix/lwt_unix_job_chown.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_chroot.c
+mv lwt_unix_job_chroot.o src/unix/jobs-unix/lwt_unix_job_chroot.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_close.c
+mv lwt_unix_job_close.o src/unix/jobs-unix/lwt_unix_job_close.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_fchmod.c
+mv lwt_unix_job_fchmod.o src/unix/jobs-unix/lwt_unix_job_fchmod.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_fchown.c
+mv lwt_unix_job_fchown.o src/unix/jobs-unix/lwt_unix_job_fchown.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_fdatasync.c
+mv lwt_unix_job_fdatasync.o src/unix/jobs-unix/lwt_unix_job_fdatasync.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_fsync.c
+mv lwt_unix_job_fsync.o src/unix/jobs-unix/lwt_unix_job_fsync.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_ftruncate.c
+mv lwt_unix_job_ftruncate.o src/unix/jobs-unix/lwt_unix_job_ftruncate.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_link.c
+mv lwt_unix_job_link.o src/unix/jobs-unix/lwt_unix_job_link.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_lseek.c
+mv lwt_unix_job_lseek.o src/unix/jobs-unix/lwt_unix_job_lseek.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_mkdir.c
+mv lwt_unix_job_mkdir.o src/unix/jobs-unix/lwt_unix_job_mkdir.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_mkfifo.c
+mv lwt_unix_job_mkfifo.o src/unix/jobs-unix/lwt_unix_job_mkfifo.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_rename.c
+mv lwt_unix_job_rename.o src/unix/jobs-unix/lwt_unix_job_rename.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_rmdir.c
+mv lwt_unix_job_rmdir.o src/unix/jobs-unix/lwt_unix_job_rmdir.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_symlink.c
+mv lwt_unix_job_symlink.o src/unix/jobs-unix/lwt_unix_job_symlink.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_tcdrain.c
+mv lwt_unix_job_tcdrain.o src/unix/jobs-unix/lwt_unix_job_tcdrain.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_tcflow.c
+mv lwt_unix_job_tcflow.o src/unix/jobs-unix/lwt_unix_job_tcflow.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_tcflush.c
+mv lwt_unix_job_tcflush.o src/unix/jobs-unix/lwt_unix_job_tcflush.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_tcsendbreak.c
+mv lwt_unix_job_tcsendbreak.o src/unix/jobs-unix/lwt_unix_job_tcsendbreak.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_truncate.c
+mv lwt_unix_job_truncate.o src/unix/jobs-unix/lwt_unix_job_truncate.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -Isrc/unix -c src/unix/jobs-unix/lwt_unix_job_unlink.c
+mv lwt_unix_job_unlink.o src/unix/jobs-unix/lwt_unix_job_unlink.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o src/unix/lwt-unix_stubs -L/usr/lib -lpthread src/unix/lwt_unix_stubs.o src/unix/lwt_libev_stubs.o src/unix/lwt_process_stubs.o src/unix/jobs-unix/lwt_unix_job_access.o src/unix/jobs-unix/lwt_unix_job_chdir.o src/unix/jobs-unix/lwt_unix_job_chmod.o src/unix/jobs-unix/lwt_unix_job_chown.o src/unix/jobs-unix/lwt_unix_job_chroot.o src/unix/jobs-unix/lwt_unix_job_close.o src/unix/jobs-unix/lwt_unix_job_fchmod.o src/unix/jobs-unix/lwt_unix_job_fchown.o src/unix/jobs-unix/lwt_unix_job_fdatasync.o src/unix/jobs-unix/lwt_unix_job_fsync.o src/unix/jobs-unix/lwt_unix_job_ftruncate.o src/unix/jobs-unix/lwt_unix_job_link.o src/unix/jobs-unix/lwt_unix_job_lseek.o src/unix/jobs-unix/lwt_unix_job_mkdir.o src/unix/jobs-unix/lwt_unix_job_mkfifo.o src/unix/jobs-unix/lwt_unix_job_rename.o src/unix/jobs-unix/lwt_unix_job_rmdir.o src/unix/jobs-unix/lwt_unix_job_symlink.o src/unix/jobs-unix/lwt_unix_job_tcdrain.o src/unix/jobs-unix/lwt_unix_job_tcflow.o src/unix/jobs-unix/lwt_unix_job_tcflush.o src/unix/jobs-unix/lwt_unix_job_tcsendbreak.o src/unix/jobs-unix/lwt_unix_job_truncate.o src/unix/jobs-unix/lwt_unix_job_unlink.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package unix -modules src/unix/lwt_chan.mli > src/unix/lwt_chan.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package camlp4 -package unix -syntax camlp4o -ppopt syntax/pa_optcomp.cmo -modules src/unix/lwt_io.mli > src/unix/lwt_io.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package unix -modules src/unix/lwt_bytes.mli > src/unix/lwt_bytes.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package camlp4 -package unix -syntax camlp4o -ppopt syntax/pa_optcomp.cmo -modules src/unix/lwt_unix.mli > src/unix/lwt_unix.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -package bigarray -package camlp4 -package unix -syntax camlp4o -ppopt syntax/pa_optcomp.cmo -I src/unix -I src/core -I src/logger -o src/unix/lwt_unix.cmi src/unix/lwt_unix.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package unix -modules src/unix/lwt_sys.mli > src/unix/lwt_sys.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -package bigarray -package unix -I src/unix -I src/core -I src/logger -o src/unix/lwt_bytes.cmi src/unix/lwt_bytes.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -package bigarray -package unix -I src/unix -I src/core -I src/logger -o src/unix/lwt_sys.cmi src/unix/lwt_sys.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -package bigarray -package camlp4 -package unix -syntax camlp4o -ppopt syntax/pa_optcomp.cmo -I src/unix -I src/core -I src/logger -o src/unix/lwt_io.cmi src/unix/lwt_io.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src/core -I src/logger -package bigarray -package unix -I src/unix -I src/core -I src/logger -o src/unix/lwt_chan.cmi src/unix/lwt_chan.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package camlp4 -package unix -syntax camlp4o -ppopt syntax/pa_lwt_options.cmo -ppopt syntax/pa_lwt.cmo -ppopt syntax/pa_lwt_log.cmo -ppopt syntax/pa_optcomp.cmo -modules src/unix/lwt_chan.ml > src/unix/lwt_chan.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package unix -modules src/unix/lwt_daemon.mli > src/unix/lwt_daemon.mli.depends
