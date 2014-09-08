@@ -1629,3 +1629,53 @@ ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -module
 ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmo examples/gtk_demo.ml
 ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmx examples/gtk_demo.ml
 ocamlfind ocamlopt -g -I src -I src/ -linkpkg -package lablgtk2 -package bigarray src/cairo2.cmxa src/cairo_gtk.cmxa examples/gtk_demo.cmx -o examples/gtk_demo.native
+ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/graphics_demo.ml > examples/graphics_demo.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
++ ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+File "examples/graphics_demo.ml", line 41, characters 11-26:
+Error: Unbound module Graphics
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libcairo2_stubs.a src/dllcairo2_stubs.so src/cairo2.cma src/cairo2.cmxa src/cairo2.a src/cairo2.cmxs src/libcairo_gtk_stubs.a src/dllcairo_gtk_stubs.so src/cairo_gtk.cma src/cairo_gtk.cmxa src/cairo_gtk.a src/cairo_gtk.cmxs tests/image_create.byte tests/matrix_set.byte tests/surface_gc.byte tests/test_for_stream.byte tests/test_finish.byte examples/arcs.native examples/clip.native examples/curve_to.native examples/dash.native examples/fill_stroke.native examples/fill_style.native examples/gradient.native examples/set_line_cap.native examples/set_line_join.native examples/text.native examples/text_align_center.native examples/text_extents.native examples/text_rotate.native examples/gtk_demo.native examples/graphics_demo.native examples/word_cloud/run.native examples/recording.native examples/stroke.byte examples/fill.byte examples/showtext.byte examples/paint.byte examples/mask.byte examples/setsourcergba.byte examples/setsourcegradient.byte examples/path_close.byte examples/textextents.byte examples/diagram.byte examples/draw.byte examples/tips_ellipse.byte examples/tips_letter.byte examples/tips_font.byte -tag debug' terminated with error code 10")
+[ERROR] The compilation of cairo2.0.4.6 failed.
+Removing cairo2.0.4.6.
+  ocamlfind remove cairo2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/cairo2
+
+
+#=== ERROR while installing cairo2.0.4.6 ======================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.01.0/build/cairo2.0.4.6
+# compiler             4.01.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.env
+# stdout-file          /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.out
+# stderr-file          /home/opam/.opam/4.01.0/build/cairo2.0.4.6/cairo2-19304-a00279.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/gtk_demo.ml > examples/gtk_demo.ml.depends
+# ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmo examples/gtk_demo.ml
+# ocamlfind ocamlopt -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/gtk_demo.cmx examples/gtk_demo.ml
+# ocamlfind ocamlopt -g -I src -I src/ -linkpkg -package lablgtk2 -package bigarray src/cairo2.cmxa src/cairo_gtk.cmxa examples/gtk_demo.cmx -o examples/gtk_demo.native
+# ocamlfind ocamldep -package lablgtk2 -package graphics -package bigarray -modules examples/graphics_demo.ml > examples/graphics_demo.ml.depends
+# ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+# + ocamlfind ocamlc -c -g -annot -I src -I src -package lablgtk2 -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
+# File "examples/graphics_demo.ml", line 41, characters 11-26:
+# Error: Unbound module Graphics
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/libcairo2_stubs.a src/dllcairo2_stubs.so src/cairo2.cma src/cairo2.cmxa src/cairo2.a src/cairo2.cmxs src/libcairo_gtk_stubs.a src/dllcairo_gtk_stubs.so src/cairo_gtk.cma src/cairo_gtk.cmxa src/cairo_gtk.a src/cairo_gtk.cmxs tests/image_create.byte tests/matrix_set.byte tests/surface_gc.byte tests/test_for_stream.byte tests/test_fini...[truncated]
+
+
+=-=- Error report -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   lablgtk.2.16.0
+ - install   camlp4.4.01.0
+The following failed
+ - install   cairo2.0.4.6
+Due to the errors, the following have been cancelled
+ - install   ocamlviz.1.01
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140808024622.export"
+'opam install ocamlviz' failed.
