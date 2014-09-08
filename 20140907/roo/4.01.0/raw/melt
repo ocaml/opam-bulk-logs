@@ -679,3 +679,18 @@ ocamlfind ocamlc -g  -c bitstring.mli
 ocamlfind ocamlc -g  -c bitstring.ml
 ocamlfind ocamlc -g  -c bitmatch.ml
 ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
