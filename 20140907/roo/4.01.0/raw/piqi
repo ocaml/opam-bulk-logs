@@ -715,3 +715,64 @@ make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
 make[1]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
 echo "let version = \"`head -1 ../VERSION`\"" >piqic_ocaml_version.ml
 make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
+ocamlfind ocamldep piqic_ocaml.ml > ._d/piqic_ocaml.d
+ocamlfind ocamldep piqic_ocaml_version.ml > ._d/piqic_ocaml_version.d
+ocamlfind ocamldep piqic_ocaml_ext.ml > ._d/piqic_ocaml_ext.d
+ocamlfind ocamldep piqic_ocaml_defaults.ml > ._d/piqic_ocaml_defaults.d
+ocamlfind ocamldep piqic_ocaml_in.ml > ._d/piqic_ocaml_in.d
+ocamlfind ocamldep piqic_ocaml_out.ml > ._d/piqic_ocaml_out.d
+ocamlfind ocamldep piqic_ocaml_types.ml > ._d/piqic_ocaml_types.d
+ocamlfind ocamldep piqic_common.ml > ._d/piqic_common.d
+ocamlfind ocamldep piqic_piqi.ml > ._d/piqic_piqi.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_piqi.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_common.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_types.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_out.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_in.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_defaults.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_ext.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml_version.ml
+ocamlfind ocamlopt -package piqilib -c -I ../piqirun piqic_ocaml.ml
+ocamlfind ocamlopt \
+				-package piqilib -linkpkg \
+				    -I ../piqirun        ../piqirun/piqirun.cmxa    -o piqic-ocaml \
+				piqic_piqi.cmx piqic_common.cmx piqic_ocaml_types.cmx piqic_ocaml_out.cmx piqic_ocaml_in.cmx piqic_ocaml_defaults.cmx piqic_ocaml_ext.cmx piqic_ocaml_version.cmx piqic_ocaml.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqic-ocaml'
+make -C piqirun install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+make[2]: `piqirun.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+
+Uninstalling library with ocamlfind
+ocamlfind remove  piqirun
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/piqirun
+
+Uninstallation successful.
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+ocamlfind ocamlopt -a                -o piqirun.cmxa piqirun.cmx piqirun_ext.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+ocaml piqirun.cmo test.ml
+
+Installing library with ocamlfind
+ocamlfind install  piqirun META piqirun.cmi piqirun.cmo piqirun.cmx piqirun.o piqirun_ext.mli piqirun_ext.cmi piqirun_ext.cmo piqirun_ext.cmx piqirun_ext.o piqirun.ml 
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun.ml
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun_ext.o
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun_ext.cmx
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun_ext.cmo
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun_ext.cmi
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun_ext.mli
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun.o
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun.cmx
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun.cmo
+Installed /home/opam/.opam/4.01.0/lib/piqirun/piqirun.cmi
+Installed /home/opam/.opam/4.01.0/lib/piqirun/META
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.7.1/piqirun'
+install -d /home/opam/.opam/4.01.0/bin
+install piqic-ocaml/piqic-ocaml /home/opam/.opam/4.01.0/bin
+Installing piqi.0.7.1.
