@@ -94,3 +94,50 @@ checking for unistd.h... yes
 checking mysql/mysql.h usability... yes
 checking mysql/mysql.h presence... yes
 checking for mysql/mysql.h... yes
+configure: creating ./config.status
+config.status: creating Makefile
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+ocamldep mysql.mli > ._bcdi/mysql.di
+ocamldep -pp "camlp4o " mysql.ml > ._d/mysql.d
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+ocamlc -c -cc "cc" -ccopt "-fPIC -g -O2 -Wall -Wextra \
+				-DPIC   \
+				    -o mysql_stubs.o " mysql_stubs.c
+ar rcs libmysql_stubs.a  mysql_stubs.o
+ocamlc -c mysql.mli
+ocamlc -c -pp "camlp4o " mysql.ml
+ocamlmklib         \
+				-o mysql_stubs  mysql_stubs.o -lz -lmysqlclient  \
+				
+ocamlc -a -dllib dllmysql_stubs.so             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cma mysql.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+ocamldep -native mysql.mli > ._ncdi/mysql.di
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+ocamlopt -c -pp "camlp4o " mysql.ml
+ocamlopt -a             -cclib -lmysql_stubs -cclib -lz -cclib -lmysqlclient   -o mysql.cmxa mysql.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+make[1]: `libmysql_stubs.a' is up to date.
+make[1]: `mysql.cma' is up to date.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mysql.1.1.2'
+
+Installing library with ocamlfind
+ocamlfind install -patch-version "1.1.2" mysql META mysql.mli mysql.cmi mysql.cma mysql.cmx mysql.cmxa libmysql_stubs.a mysql.a dllmysql_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.a
+Installed /home/opam/.opam/4.01.0/lib/mysql/libmysql_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.cmx
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.cma
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.cmi
+Installed /home/opam/.opam/4.01.0/lib/mysql/mysql.mli
+Installed /home/opam/.opam/4.01.0/lib/mysql/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmysql_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmysql_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+Installing mysql.1.1.2.
