@@ -5,10 +5,10 @@
 Ubuntu depexts:
 ++ opam install jsondiff -e source,linux
 + srcext=
+Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install jsondiff
-Ubuntu srcexts:
 The following actions will be performed:
  - install   cppo.0.9.4                            [required by yojson]
  - install   easy-format.1.0.2                     [required by yojson, biniou]
@@ -22,31 +22,31 @@ The following actions will be performed:
 [default] Synchronizing with /home/opam/opam-repository/archives/cppo.0.9.4+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/easy-format.1.0.2+opam.tar.gz
 sending incremental file list
+sending incremental file list
+sending incremental file list
 cppo.0.9.4+opam.tar.gz
-sending incremental file list
-sending incremental file list
 biniou.1.0.9+opam.tar.gz
 easy-format.1.0.2+opam.tar.gz
 
 sent 21,321 bytes  received 35 bytes  42,712.00 bytes/sec
 total size is 21,190  speedup is 0.99
 
-sent 24,345 bytes  received 35 bytes  48,760.00 bytes/sec
-total size is 24,212  speedup is 0.99
-
-sent 13,718 bytes  received 35 bytes  27,506.00 bytes/sec
+sent 13,718 bytes  received 35 bytes  9,168.67 bytes/sec
 total size is 13,580  speedup is 0.99
+
+sent 24,345 bytes  received 35 bytes  16,253.33 bytes/sec
+total size is 24,212  speedup is 0.99
 [default] Synchronizing with /home/opam/opam-repository/archives/jsondiff.0.0.1+opam.tar.gz
 [default] Synchronizing with /home/opam/opam-repository/archives/yojson.1.1.8+opam.tar.gz
 sending incremental file list
-jsondiff.0.0.1+opam.tar.gz
 sending incremental file list
+jsondiff.0.0.1+opam.tar.gz
 yojson.1.1.8+opam.tar.gz
 
 sent 6,174 bytes  received 35 bytes  12,418.00 bytes/sec
 total size is 6,039  speedup is 0.97
 
-sent 24,884 bytes  received 35 bytes  16,612.67 bytes/sec
+sent 24,884 bytes  received 35 bytes  49,838.00 bytes/sec
 total size is 24,751  speedup is 0.99
 
 =-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -178,50 +178,3 @@ ocamllex read.mll
 433 states, 2020 transitions, table size 10678 bytes
 cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
-ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
-ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
-ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
-ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
-ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
-ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
-ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
-		yojson.cmx yojson_biniou.cmx ydump.ml
-test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
-test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
-ocamlfind install yojson META \
-          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
-Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
-Installed /home/opam/.opam/4.01.0/lib/yojson/META
-Installing yojson.1.1.8.
-Building jsondiff.0.0.1:
-  make
-  make install PREFIX=/home/opam/.opam/4.01.0
-sed -e 's:@@VERSION@@:0.0.0:' META.in > META
-ocamlfind ocamlc -c -g -package biniou,yojson,unix jsondiff.ml
-ocamlfind ocamlc -o jsondiff.byte -package biniou,yojson,unix -linkpkg \
-	       	jsondiff.cmo 
-ocamlfind ocamlopt -c -g -package biniou,yojson,unix jsondiff.ml
-ocamlfind ocamlopt -o jsondiff -package biniou,yojson,unix -linkpkg \
-		jsondiff.cmx 
-test ! -f jsondiff || cp jsondiff /home/opam/.opam/4.01.0/bin/
-test ! -f jsondiff.exe || cp jsondiff.exe /home/opam/.opam/4.01.0/bin/
-ocamlfind install jsondiff META \
-          $(ls jsondiff.mli jsondiff.cmi jsondiff.cmo jsondiff.cmx jsondiff.o)
-ls: cannot access jsondiff.mli: No such file or directory
-Installed /home/opam/.opam/4.01.0/lib/jsondiff/jsondiff.o
-Installed /home/opam/.opam/4.01.0/lib/jsondiff/jsondiff.cmx
-Installed /home/opam/.opam/4.01.0/lib/jsondiff/jsondiff.cmo
-Installed /home/opam/.opam/4.01.0/lib/jsondiff/jsondiff.cmi
-Installed /home/opam/.opam/4.01.0/lib/jsondiff/META
-Installing jsondiff.0.0.1.
