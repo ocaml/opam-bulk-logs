@@ -519,3 +519,327 @@ ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_uni
 ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_unidata.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_unidata.cmx
 mkdir -p database
 tools/parse_unidata.opt database < unidata/UnicodeData.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_uniset.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_uniset.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_uniset.cmx
+/bin/grep -F White_Space unidata/PropList.txt | tools/parse_uniset.opt database White_Space
+/bin/grep -F Bidi_Control unidata/PropList.txt | tools/parse_uniset.opt database Bidi_Control
+/bin/grep -F Join_Control unidata/PropList.txt | tools/parse_uniset.opt database Join_Control
+/bin/grep -F Hyphen unidata/PropList.txt | tools/parse_uniset.opt database Hyphen
+/bin/grep -F Quotation_Mark unidata/PropList.txt | tools/parse_uniset.opt database Quotation_Mark
+/bin/grep -F Terminal_Punctuation unidata/PropList.txt | tools/parse_uniset.opt database Terminal_Punctuation
+/bin/grep -F Other_Math unidata/PropList.txt | tools/parse_uniset.opt database Other_Math
+/bin/grep -F Hex_Digit unidata/PropList.txt | tools/parse_uniset.opt database Hex_Digit
+/bin/grep -F ASCII_Hex_Digit unidata/PropList.txt | tools/parse_uniset.opt database ASCII_Hex_Digit
+/bin/grep -F Other_Alphabetic unidata/PropList.txt | tools/parse_uniset.opt database Other_Alphabetic
+/bin/grep -F Ideographic unidata/PropList.txt | tools/parse_uniset.opt database Ideographic
+/bin/grep -F Diacritic unidata/PropList.txt | tools/parse_uniset.opt database Diacritic
+/bin/grep -F Extender unidata/PropList.txt | tools/parse_uniset.opt database Extender
+/bin/grep -F Other_Lowercase unidata/PropList.txt | tools/parse_uniset.opt database Other_Lowercase
+/bin/grep -F Other_Uppercase unidata/PropList.txt | tools/parse_uniset.opt database Other_Uppercase
+/bin/grep -F Noncharacter_Code_Point unidata/PropList.txt | tools/parse_uniset.opt database Noncharacter_Code_Point
+/bin/grep -F Other_Grapheme_Extend unidata/PropList.txt | tools/parse_uniset.opt database Other_Grapheme_Extend
+/bin/grep -F Grapheme_Link unidata/PropList.txt | tools/parse_uniset.opt database Grapheme_Link
+/bin/grep -F IDS_Binary_Operator unidata/PropList.txt | tools/parse_uniset.opt database IDS_Binary_Operator
+/bin/grep -F IDS_Trinary_Operator unidata/PropList.txt | tools/parse_uniset.opt database IDS_Trinary_Operator
+/bin/grep -F Radical unidata/PropList.txt | tools/parse_uniset.opt database Radical
+/bin/grep -F Unified_Ideograph unidata/PropList.txt | tools/parse_uniset.opt database Unified_Ideograph
+/bin/grep -F Other_Default_Ignorable_Code_Point unidata/PropList.txt | tools/parse_uniset.opt database Other_Default_Ignorable_Code_Point
+/bin/grep -F Deprecated unidata/PropList.txt | tools/parse_uniset.opt database Deprecated
+/bin/grep -F Soft_Dotted unidata/PropList.txt | tools/parse_uniset.opt database Soft_Dotted
+/bin/grep -F Logical_Order_Exception unidata/PropList.txt | tools/parse_uniset.opt database Logical_Order_Exception
+/bin/grep -F Math unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Math
+/bin/grep -F Alphabetic unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Alphabetic
+/bin/grep -F Lowercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Lowercase
+/bin/grep -F Uppercase unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Uppercase
+/bin/grep -F ID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Start
+/bin/grep -F ID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database ID_Continue
+/bin/grep -F XID_Start unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Start
+/bin/grep -F XID_Continue unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database XID_Continue
+/bin/grep -F Default_Ignorable_Code_Point unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Default_Ignorable_Code_Point
+/bin/grep -F Grapheme_Extend unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Extend
+/bin/grep -F Grapheme_Base unidata/DerivedCoreProperties.txt | tools/parse_uniset.opt database Grapheme_Base
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/camomilestringprep.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilestringprep.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilestringprep.cmx
+tools/camomilestringprep.opt -in unidata/stringprep -out database
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_casefolding.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_casefolding.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_casefolding.cmx
+tools/parse_casefolding.opt database < unidata/CaseFolding.txt
+tools/parse_uniset.opt database composition_exclusion < unidata/CompositionExclusions.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_age.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_age.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_age.cmx
+tools/parse_age.opt database < unidata/DerivedAge.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_scripts.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_scripts.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_scripts.cmx
+tools/parse_scripts.opt database < unidata/Scripts.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_specialcasing.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_specialcasing.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_specialcasing.cmx
+tools/parse_specialcasing.opt database < unidata/SpecialCasing.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/parse_allkeys.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/parse_allkeys.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/parse_allkeys.cmx
+tools/parse_allkeys.opt database < unidata/tr10/allkeys.txt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . mappings/gen_mappings.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o mappings/gen_mappings.opt bigarray.cmxa str.cmxa toolslib.cmxa mappings/gen_mappings.cmx
+cd mappings && ./gen_mappings.opt
+ocamlopt.opt -c -noassert -I internal -I public -I toolslib -I . tools/camomilecharmap.ml
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilecharmap.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilecharmap.cmx
+tools/camomilecharmap.opt -d charmaps charmaps/ANSI_X3.110-1983 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ANSI_X3.4-1968 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ARMSCII-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ASMO_449 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BIG5 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BIG5-HKSCS || true
+tools/camomilecharmap.opt -d charmaps charmaps/BRF || true
+tools/camomilecharmap.opt -d charmaps charmaps/BS_4730 || true
+tools/camomilecharmap.opt -d charmaps charmaps/BS_VIEWDATA || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP10007 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1125 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1250 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1251 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1252 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1253 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1254 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1255 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1256 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1257 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP1258 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP737 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP775 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP932 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CP949 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CSA_Z243.4-1985-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CSA_Z243.4-1985-2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CSA_Z243.4-1985-GR || true
+tools/camomilecharmap.opt -d charmaps charmaps/CSN_369103 || true
+tools/camomilecharmap.opt -d charmaps charmaps/CWI || true
+tools/camomilecharmap.opt -d charmaps charmaps/DEC-MCS || true
+tools/camomilecharmap.opt -d charmaps charmaps/DIN_66003 || true
+tools/camomilecharmap.opt -d charmaps charmaps/DS_2089 || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-AT-DE || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-AT-DE-A || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-CA-FR || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-DK-NO || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-DK-NO-A || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-ES || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-ES-A || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-ES-S || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-FI-SE || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-FI-SE-A || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-FR || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-IS-FRISS || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-IT || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-PT || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-UK || true
+tools/camomilecharmap.opt -d charmaps charmaps/EBCDIC-US || true
+tools/camomilecharmap.opt -d charmaps charmaps/ECMA-CYRILLIC || true
+tools/camomilecharmap.opt -d charmaps charmaps/ES || true
+tools/camomilecharmap.opt -d charmaps charmaps/ES2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/EUC-JISX0213 || true
+tools/camomilecharmap.opt -d charmaps charmaps/EUC-JP || true
+tools/camomilecharmap.opt -d charmaps charmaps/EUC-JP-MS || true
+tools/camomilecharmap.opt -d charmaps charmaps/EUC-KR || true
+tools/camomilecharmap.opt -d charmaps charmaps/EUC-TW || true
+tools/camomilecharmap.opt -d charmaps charmaps/GB18030 || true
+tools/camomilecharmap.opt -d charmaps charmaps/GB2312 || true
+tools/camomilecharmap.opt -d charmaps charmaps/GBK || true
+tools/camomilecharmap.opt -d charmaps charmaps/GB_1988-80 || true
+tools/camomilecharmap.opt -d charmaps charmaps/GEORGIAN-ACADEMY || true
+tools/camomilecharmap.opt -d charmaps charmaps/GEORGIAN-PS || true
+tools/camomilecharmap.opt -d charmaps charmaps/GOST_19768-74 || true
+tools/camomilecharmap.opt -d charmaps charmaps/GREEK-CCITT || true
+tools/camomilecharmap.opt -d charmaps charmaps/GREEK7 || true
+tools/camomilecharmap.opt -d charmaps charmaps/GREEK7-OLD || true
+tools/camomilecharmap.opt -d charmaps charmaps/HP-GREEK8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/HP-ROMAN8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/HP-ROMAN9 || true
+tools/camomilecharmap.opt -d charmaps charmaps/HP-THAI8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/HP-TURKISH8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM037 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM038 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1004 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1026 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1047 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1124 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1129 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1132 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1133 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1160 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1161 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1162 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1163 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM1164 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM256 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM273 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM274 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM275 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM277 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM278 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM280 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM281 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM284 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM285 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM290 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM297 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM420 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM423 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM424 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM437 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM500 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM850 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM851 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM852 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM855 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM856 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM857 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM860 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM861 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM862 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM863 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM864 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM865 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM866 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM866NAV || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM868 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM869 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM870 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM871 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM874 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM875 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM880 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM891 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM903 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM904 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM905 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM918 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IBM922 || true
+tools/camomilecharmap.opt -d charmaps charmaps/IEC_P27-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/INIS || true
+tools/camomilecharmap.opt -d charmaps charmaps/INIS-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/INIS-CYRILLIC || true
+tools/camomilecharmap.opt -d charmaps charmaps/INVARIANT || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISIRI-3342 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-10 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-11 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-13 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-14 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-15 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-16 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-3 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-4 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-5 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-6 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-7 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-9 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-8859-9E || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-IR-197 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-IR-209 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO-IR-90 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_10367-BOX || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_10646 || true
+Fatal error: exception Failure("Broken entry: <NUL>	/x00/x00	NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_11548-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_2033-1983 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_5427 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_5427-EXT || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_5428 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_646.BASIC || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_646.IRV || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_6937 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_6937-2-25 || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_6937-2-ADD || true
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_8859-1,GL || true
+Fatal error: exception Failure("Broken entry: <NUL>                   \d000   NULL")
+tools/camomilecharmap.opt -d charmaps charmaps/ISO_8859-SUPP || true
+tools/camomilecharmap.opt -d charmaps charmaps/IT || true
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6220-1969-JP || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6220-1969-RO || true
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-A || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-B || true
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-B-ADD || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-HAND || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-HAND-ADD || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_C6229-1984-KANA || true
+Fatal error: exception Failure("Broken entry: <NU>                   /x00   <U0000> NULL (NUL)")
+tools/camomilecharmap.opt -d charmaps charmaps/JIS_X0201 || true
+tools/camomilecharmap.opt -d charmaps charmaps/JOHAB || true
+tools/camomilecharmap.opt -d charmaps charmaps/JUS_I.B1.002 || true
+tools/camomilecharmap.opt -d charmaps charmaps/JUS_I.B1.003-MAC || true
+tools/camomilecharmap.opt -d charmaps charmaps/JUS_I.B1.003-SERB || true
+tools/camomilecharmap.opt -d charmaps charmaps/KOI-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/KOI8-R || true
+tools/camomilecharmap.opt -d charmaps charmaps/KOI8-RU || true
+tools/camomilecharmap.opt -d charmaps charmaps/KOI8-T || true
+tools/camomilecharmap.opt -d charmaps charmaps/KOI8-U || true
+tools/camomilecharmap.opt -d charmaps charmaps/KSC5636 || true
+tools/camomilecharmap.opt -d charmaps charmaps/LATIN-GREEK || true
+tools/camomilecharmap.opt -d charmaps charmaps/LATIN-GREEK-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/MAC-CENTRALEUROPE || true
+Fatal error: exception Failure("Broken entry: <comment> %")
+tools/camomilecharmap.opt -d charmaps charmaps/MAC-CYRILLIC || true
+tools/camomilecharmap.opt -d charmaps charmaps/MAC-IS || true
+tools/camomilecharmap.opt -d charmaps charmaps/MAC-SAMI || true
+tools/camomilecharmap.opt -d charmaps charmaps/MAC-UK || true
+tools/camomilecharmap.opt -d charmaps charmaps/MACINTOSH || true
+tools/camomilecharmap.opt -d charmaps charmaps/MIK || true
+tools/camomilecharmap.opt -d charmaps charmaps/MSZ_7795.3 || true
+tools/camomilecharmap.opt -d charmaps charmaps/NATS-DANO || true
+tools/camomilecharmap.opt -d charmaps charmaps/NATS-DANO-ADD || true
+Fatal error: exception Failure("Broken entry: <A!>                   /x41   <U00C0> LATIN CAPITAL LETTER A WITH GRAVE")
+tools/camomilecharmap.opt -d charmaps charmaps/NATS-SEFI || true
+tools/camomilecharmap.opt -d charmaps charmaps/NATS-SEFI-ADD || true
+Fatal error: exception Failure("Broken entry: <A!>                   /x41   <U00C0> LATIN CAPITAL LETTER A WITH GRAVE")
+tools/camomilecharmap.opt -d charmaps charmaps/NC_NC00-10 || true
+tools/camomilecharmap.opt -d charmaps charmaps/NEXTSTEP || true
+tools/camomilecharmap.opt -d charmaps charmaps/NF_Z_62-010 || true
+tools/camomilecharmap.opt -d charmaps charmaps/NF_Z_62-010_1973 || true
+tools/camomilecharmap.opt -d charmaps charmaps/NS_4551-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/NS_4551-2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/PT || true
+tools/camomilecharmap.opt -d charmaps charmaps/PT154 || true
+tools/camomilecharmap.opt -d charmaps charmaps/PT2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/RK1048 || true
+tools/camomilecharmap.opt -d charmaps charmaps/SAMI || true
+tools/camomilecharmap.opt -d charmaps charmaps/SAMI-WS2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/SEN_850200_B || true
+tools/camomilecharmap.opt -d charmaps charmaps/SEN_850200_C || true
+tools/camomilecharmap.opt -d charmaps charmaps/SHIFT_JIS || true
+tools/camomilecharmap.opt -d charmaps charmaps/SHIFT_JISX0213 || true
+tools/camomilecharmap.opt -d charmaps charmaps/T.101-G2 || true
+tools/camomilecharmap.opt -d charmaps charmaps/T.61-7BIT || true
+tools/camomilecharmap.opt -d charmaps charmaps/T.61-8BIT || true
+tools/camomilecharmap.opt -d charmaps charmaps/TCVN5712-1 || true
+tools/camomilecharmap.opt -d charmaps charmaps/TIS-620 || true
+tools/camomilecharmap.opt -d charmaps charmaps/TSCII || true
+Fatal error: exception Failure("Broken entry: <U0BB8><U0BCD><U0BB0><U0BC0> /x82         TAMIL GLYPH SRI")
+tools/camomilecharmap.opt -d charmaps charmaps/UTF-8 || true
+tools/camomilecharmap.opt -d charmaps charmaps/VIDEOTEX-SUPPL || true
+tools/camomilecharmap.opt -d charmaps charmaps/VISCII || true
+tools/camomilecharmap.opt -d charmaps charmaps/WINDOWS-31J || true
+ocamlopt.opt -pp "camlp4o -I /home/opam/.opam/4.01.0/lib/ocaml" -c -noassert -I internal -I public -I toolslib -I . tools/camomilelocaledef.ml
+File "tools/camomilelocaledef.ml", line 132, characters 8-33:
+Warning 26: unused variable data.
+ocamlopt.opt -noassert -I internal -I public -I toolslib -I . -o tools/camomilelocaledef.opt bigarray.cmxa str.cmxa toolslib.cmxa tools/camomilelocaledef.cmx
+tools/camomilelocaledef.opt --file locales/af.txt locales 
+tools/camomilelocaledef.opt --file locales/af_ZA.txt locales 
+tools/camomilelocaledef.opt --file locales/am.txt locales 
+tools/camomilelocaledef.opt --file locales/am_ET.txt locales 
+tools/camomilelocaledef.opt --file locales/ar.txt locales 
+Warning : normalization option is not supported
+tools/camomilelocaledef.opt --file locales/ar_AE.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_BH.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_DZ.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_EG.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_IN.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_IQ.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_JO.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_KW.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_LB.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_LY.txt locales 
+tools/camomilelocaledef.opt --file locales/ar_MA.txt locales 
