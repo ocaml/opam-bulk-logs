@@ -89,3 +89,90 @@ ocamllex linenum.mll
 16 states, 331 transitions, table size 1420 bytes
 ocamlc -g -c linenum.mli
 ocamlc -g -c linenum.ml
+ocamlc -g -c parse_aux.mli
+ocamlc -g -c parse_aux.ml
+File "parse_aux.ml", line 167, characters 23-54:
+Warning 23: all the fields are explicitly listed in this record:
+the 'with' clause is useless.
+File "parse_aux.ml", line 169, characters 42-74:
+Warning 23: all the fields are explicitly listed in this record:
+the 'with' clause is useless.
+File "parse_aux.ml", line 171, characters 22-47:
+Warning 23: all the fields are explicitly listed in this record:
+the 'with' clause is useless.
+ocamlyacc -v parser_midl.mly
+12 shift/reduce conflicts.
+ocamlc -g -c parser_midl.mli
+ocamlc -g -c parser_midl.ml
+ocamllex lexer_midl.mll
+129 states, 1747 transitions, table size 7762 bytes
+ocamlc -g -c lexer_midl.mli
+ocamlc -g -c lexer_midl.ml
+ocamlc -g -c parse.mli
+ocamlc -g -c parse.ml
+ocamlc -g -c fixlabels.mli
+ocamlc -g -c fixlabels.ml
+ocamlc -g -c normalize.mli
+ocamlc -g -c normalize.ml
+ocamlc -g -c main.ml
+ocamlc -g -o camlidl config.cmo utils.cmo clflags.cmo prefix.cmo lexpr.cmo cvttyp.cmo variables.cmo array.cmo struct.cmo enum.cmo union.cmo cvtval.cmo structdecl.cmo enumdecl.cmo uniondecl.cmo typedef.cmo funct.cmo constdecl.cmo intf.cmo file.cmo predef.cmo linenum.cmo parse_aux.cmo parser_midl.cmo lexer_midl.cmo parse.cmo fixlabels.cmo normalize.cmo main.cmo
+File "array.cmo", line 1:
+Warning 31: files array.cmo and /home/opam/.opam/4.01.0/lib/ocaml/stdlib.cma(Array) both define a module named Array
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
+cd runtime; make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+ocamlc -g -ccopt "-Wall -g" idlalloc.c
+ocamlc -g -ccopt "-Wall -g" comintf.c
+ocamlc -g -ccopt "-Wall -g" comerror.c
+comerror.c: In function 'camlidl_error':
+comerror.c:52:8: warning: unused variable 'msg' [-Wunused-variable]
+   char msg[1024];
+        ^
+comerror.c: In function 'camlidl_uncaught_exception':
+comerror.c:171:3: warning: implicit declaration of function 'caml_format_exception' [-Wimplicit-function-declaration]
+   char * msg = format_caml_exception(exn_bucket);
+   ^
+In file included from /home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:18:0,
+                 from comerror.c:20:
+/home/opam/.opam/4.01.0/lib/ocaml/caml/compatibility.h:250:31: warning: initialization makes pointer from integer without a cast [enabled by default]
+ #define format_caml_exception caml_format_exception /*SP*/
+                               ^
+comerror.c:171:16: note: in expansion of macro 'format_caml_exception'
+   char * msg = format_caml_exception(exn_bucket);
+                ^
+rm -f libcamlidl.a
+ar rc libcamlidl.a idlalloc.o comintf.o comerror.o
+ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cd lib; make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+ocamlc -g -c com.mli
+ocamlc -g -c com.ml
+ocamlc -g -a -o com.cma com.cmo
+ocamlopt -c com.ml
+ocamlopt -a -o com.cmxa com.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cd tools; make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+cd compiler; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
+cp camlidl /home/opam/.opam/4.01.0/bin
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/compiler'
+cd runtime; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cp camlidlruntime.h /home/opam/.opam/4.01.0/lib/camlidl/caml/camlidlruntime.h
+cp libcamlidl.a /home/opam/.opam/4.01.0/lib/camlidl/libcamlidl.a
+cd /home/opam/.opam/4.01.0/lib/camlidl; ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/runtime'
+cd lib; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cp com.cmi com.cma com.cmxa com.a /home/opam/.opam/4.01.0/lib/camlidl
+cd /home/opam/.opam/4.01.0/lib/camlidl; ranlib com.a
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/lib'
+cd tools; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlidl.1.05/tools'
+Installing camlidl.1.05.
