@@ -91,3 +91,61 @@ ocamlfind ocamlc -c -g -package threads -thread -I src -o src/Thrift.cmo src/Thr
 ocamlfind ocamldep -package threads -modules src/TSocket.ml > src/TSocket.ml.depends
 ocamlfind ocamldep -package threads -modules src/TFramedTransport.ml > src/TFramedTransport.ml.depends
 ocamlfind ocamldep -package threads -modules src/TChannelTransport.ml > src/TChannelTransport.ml.depends
+ocamlfind ocamldep -package threads -modules src/TServer.ml > src/TServer.ml.depends
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TBinaryProtocol.cmo src/TBinaryProtocol.ml
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TChannelTransport.cmo src/TChannelTransport.ml
+ocamlfind ocamldep -package threads -modules src/TSimpleServer.ml > src/TSimpleServer.ml.depends
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TServer.cmo src/TServer.ml
+ocamlfind ocamldep -package threads -modules src/TServerSocket.ml > src/TServerSocket.ml.depends
+ocamlfind ocamldep -package threads -modules src/TThreadedServer.ml > src/TThreadedServer.ml.depends
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TSocket.cmo src/TSocket.ml
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TFramedTransport.cmo src/TFramedTransport.ml
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TSimpleServer.cmo src/TSimpleServer.ml
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TServerSocket.cmo src/TServerSocket.ml
+ocamlfind ocamlc -c -g -package threads -thread -I src -o src/TThreadedServer.cmo src/TThreadedServer.ml
+ocamlfind ocamlc -a src/Thrift.cmo src/TBinaryProtocol.cmo src/TSocket.cmo src/TFramedTransport.cmo src/TChannelTransport.cmo src/TServer.cmo src/TSimpleServer.cmo src/TServerSocket.cmo src/TThreadedServer.cmo -o src/libthrift-ocaml.cma
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/Thrift.cmx src/Thrift.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TBinaryProtocol.cmx src/TBinaryProtocol.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TChannelTransport.cmx src/TChannelTransport.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TServer.cmx src/TServer.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TSocket.cmx src/TSocket.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TFramedTransport.cmx src/TFramedTransport.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TSimpleServer.cmx src/TSimpleServer.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TServerSocket.cmx src/TServerSocket.ml
+ocamlfind ocamlopt -c -g -package threads -thread -I src -o src/TThreadedServer.cmx src/TThreadedServer.ml
+ocamlfind ocamlopt -a src/Thrift.cmx src/TBinaryProtocol.cmx src/TSocket.cmx src/TFramedTransport.cmx src/TChannelTransport.cmx src/TServer.cmx src/TSimpleServer.cmx src/TServerSocket.cmx src/TThreadedServer.cmx -o src/libthrift-ocaml.cmxa
+ocamlfind ocamlopt -shared -linkall src/libthrift-ocaml.cmxa -o src/libthrift-ocaml.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/thrift/Thrift.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TBinaryProtocol.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSocket.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TFramedTransport.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TChannelTransport.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServer.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSimpleServer.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServerSocket.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/TThreadedServer.ml
+Installed /home/opam/.opam/4.01.0/lib/thrift/libthrift-ocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/thrift/libthrift-ocaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/thrift/libthrift-ocaml.a
+Installed /home/opam/.opam/4.01.0/lib/thrift/libthrift-ocaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/thrift/Thrift.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TBinaryProtocol.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSocket.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TFramedTransport.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TChannelTransport.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServer.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSimpleServer.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServerSocket.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/TThreadedServer.cmi
+Installed /home/opam/.opam/4.01.0/lib/thrift/Thrift.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TBinaryProtocol.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSocket.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TFramedTransport.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TChannelTransport.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServer.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TSimpleServer.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TServerSocket.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/TThreadedServer.cmx
+Installed /home/opam/.opam/4.01.0/lib/thrift/META
+Installing thrift.0.9.0.
