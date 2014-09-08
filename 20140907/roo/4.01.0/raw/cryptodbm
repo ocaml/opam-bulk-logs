@@ -921,3 +921,61 @@ ocamlfind ocamlc -pack -g src/config.cmo src/types.cmo src/cipher.cmo src/utils.
 ocamlfind ocamlc -a src/errors.cmo src/cryptodbm_internals.cmo -o src/cryptodbm_internals.cma
 ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/errors.cmx src/errors.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/config.cmx src/config.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/types.cmx src/types.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/cipher.cmx src/cipher.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/utils.cmx src/utils.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/lowerDB_impl.cmx src/lowerDB_impl.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/strings.cmx src/strings.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/kinds.cmx src/kinds.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/operations.cmx src/operations.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/setp.cmx src/setp.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/signature.cmx src/signature.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/stats.cmx src/stats.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -for-pack Cryptodbm_internals -I src -o src/subtable.cmx src/subtable.ml
+touch src/cryptodbm_internals.mli  ; if  ocamlfind ocamlopt -pack -g -I src src/config.cmx src/types.cmx src/cipher.cmx src/utils.cmx src/lowerDB_impl.cmx src/strings.cmx src/kinds.cmx src/operations.cmx src/setp.cmx src/signature.cmx src/stats.cmx src/subtable.cmx -o src/cryptodbm_internals.cmx  ; then  rm -f src/cryptodbm_internals.mli  ; else  rm -f src/cryptodbm_internals.mli  ; exit 1; fi
+ocamlfind ocamlopt -a src/errors.cmx src/cryptodbm_internals.cmx -o src/cryptodbm_internals.cmxa
+ocamlfind ocamlopt -shared src/cryptodbm_internals.cmx -o src/cryptodbm_internals.cmxs
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules src/cryptodbm.mli > src/cryptodbm.mli.depends
+ocamlfind ocamlc -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmi src/cryptodbm.mli
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules src/cryptodbm.ml > src/cryptodbm.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmo src/cryptodbm.ml
+ocamlfind ocamlc -a src/cryptodbm.cmo -o src/cryptodbm.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I src -o src/cryptodbm.cmx src/cryptodbm.ml
+ocamlfind ocamlopt -a src/cryptodbm.cmx -o src/cryptodbm.cmxa
+ocamlfind ocamlopt -shared src/cryptodbm.cmx -o src/cryptodbm.cmxs
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_dbm.ml > test/test_dbm.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/common.ml > test/common.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/bitarray.mli > test/bitarray.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/bitarray.cmi test/bitarray.mli
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_dbm_helper.ml > test/test_dbm_helper.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmo test/common.ml
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/helper.ml > test/helper.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmo test/helper.ml
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm_helper.cmo test/test_dbm_helper.ml
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm.cmo test/test_dbm.ml
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/bitarray.ml > test/bitarray.ml.depends
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/bitarray.cmx test/bitarray.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/common.cmx test/common.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/helper.cmx test/helper.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm_helper.cmx test/test_dbm_helper.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_dbm.cmx test/test_dbm.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/errors.cmx src/cryptodbm_internals.cmx src/cryptodbm.cmxa test/bitarray.cmx test/common.cmx test/helper.cmx test/test_dbm_helper.cmx test/test_dbm.cmx -o test/test_dbm.native
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_data_kind.ml > test/test_data_kind.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_data_kind.cmo test/test_data_kind.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_data_kind.cmx test/test_data_kind.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/cryptodbm.cmxa src/errors.cmx src/cryptodbm_internals.cmx test/helper.cmx test/test_data_kind.cmx -o test/test_data_kind.native
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/test_key_kind.ml > test/test_key_kind.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/collision.mli > test/collision.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/collision.cmi test/collision.mli
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_key_kind.cmo test/test_key_kind.ml
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/collision.ml > test/collision.ml.depends
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/collision.cmx test/collision.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/test_key_kind.cmx test/test_key_kind.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/cryptodbm.cmxa src/errors.cmx src/cryptodbm_internals.cmx test/bitarray.cmx test/collision.cmx test/helper.cmx test/test_key_kind.cmx -o test/test_key_kind.native
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/dbm_reader.ml > test/dbm_reader.ml.depends
+ocamlfind ocamldep -package unix -package fileutils -package exenum -package dbm -package cryptokit -modules test/cmdhelper.ml > test/cmdhelper.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/cmdhelper.cmo test/cmdhelper.ml
+ocamlfind ocamlc -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/dbm_reader.cmo test/dbm_reader.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/cmdhelper.cmx test/cmdhelper.ml
+ocamlfind ocamlopt -c -g -I src -I src -package unix -package fileutils -package exenum -package dbm -package cryptokit -I test -I src -o test/dbm_reader.cmx test/dbm_reader.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package fileutils -package exenum -package dbm -package cryptokit src/cryptodbm_internals.cmxa src/errors.cmx src/cryptodbm_internals.cmx src/cryptodbm.cmxa test/cmdhelper.cmx test/helper.cmx test/dbm_reader.cmx -o test/dbm_reader.native
