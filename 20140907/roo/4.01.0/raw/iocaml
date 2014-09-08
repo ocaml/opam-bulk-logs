@@ -6185,3 +6185,55 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -package lwt.syntax lib/lwt_io_ext.cmx lib/websocket.cmx -o lib/websocket.cmxa
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -package lwt.syntax lib/websocket.cmxa lib/lwt_io_ext.cmx lib/websocket.cmx -o lib/websocket.cmxs
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -modules tests/wscat.ml > tests/wscat.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmo tests/wscat.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -syntax camlp4o -package lwt.syntax -package ocplib-endian -package optcomp -I tests -I lib -o tests/wscat.cmx tests/wscat.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg -package cohttp.lwt -package cryptokit -package lwt -package lwt.ssl -package lwt.syntax -package ocplib-endian -package optcomp lib/websocket.cmxa tests/wscat.cmx -o tests/wscat.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/websocket/lwt_io_ext.ml
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.mli
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.cma
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.cmxa
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.a
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.cmxs
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.cmi
+Installed /home/opam/.opam/4.01.0/lib/websocket/lwt_io_ext.cmi
+Installed /home/opam/.opam/4.01.0/lib/websocket/websocket.cmx
+Installed /home/opam/.opam/4.01.0/lib/websocket/lwt_io_ext.cmx
+Installed /home/opam/.opam/4.01.0/lib/websocket/META
+Installing websocket.0.8.1.
+Applying chromium-bug.patch.
+patching file filesys-1.1/static/notebook/js/notebook.js
+Building iocaml.0.4.6:
+  make all
+ocaml-crunch -o filesys.ml -m plain filesys-1.1
+Generating filesys.ml
+Skipping generation of .mli
+ocamlbuild -use-ocamlfind iocamlserver.byte
+ocamlfind ocamldep -syntax camlp4o -package findlib,cow,lwt.syntax,cohttp.lwt,websocket,iocaml-kernel,uuidm,yojson -modules iocamlserver.ml > iocamlserver.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -modules bridge.mli > bridge.mli.depends
+ocamlfind ocamldep -modules config.ml > config.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,yojson,unix -modules files.mli > files.mli.depends
+ocamlfind ocamldep -modules filesys.ml > filesys.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -modules kernel.mli > kernel.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package cow,cow.syntax -modules pages.mli > pages.mli.depends
+ocamlfind ocamldep -package lwt,re -modules uri_paths.mli > uri_paths.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -o bridge.cmi bridge.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -o config.cmo config.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,yojson,unix -o files.cmi files.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -o filesys.cmo filesys.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -o kernel.cmi kernel.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package cow,cow.syntax -o pages.cmi pages.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package lwt,re -o uri_paths.cmi uri_paths.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package findlib,cow,lwt.syntax,cohttp.lwt,websocket,iocaml-kernel,uuidm,yojson -o iocamlserver.cmo iocamlserver.ml
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -modules bridge.ml > bridge.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,yojson,unix -modules files.ml > files.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -modules kernel.ml > kernel.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package cow,cow.syntax -modules pages.ml > pages.ml.depends
+ocamlfind ocamldep -package lwt,re -modules uri_paths.ml > uri_paths.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -o bridge.cmo bridge.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,yojson,unix -o files.cmo files.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -o kernel.cmo kernel.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package cow,cow.syntax -o pages.cmo pages.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package lwt,re -o uri_paths.cmo uri_paths.ml
+ocamlfind ocamlc -linkpkg -g -package findlib,cow,lwt.unix,cohttp,websocket,iocaml-kernel,uuidm,yojson kernel.cmo uri_paths.cmo bridge.cmo config.cmo files.cmo filesys.cmo pages.cmo iocamlserver.cmo -o iocamlserver.byte
+Installing iocaml.0.4.6.
