@@ -855,3 +855,7 @@ ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package biga
 ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.mli > src/endianBytes.mli.depends
 ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmi src/endianBytes.mli
 ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.ml > src/endianBytes.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianString.cmo src/endianString.ml
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmo src/endianBytes.ml
+ocamlfind ocamlc -a src/endianString.cmo src/endianBytes.cmo -o src/ocplib_endian.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianString.cmx src/endianString.ml
