@@ -677,3 +677,134 @@ Building fileutils.0.4.4:
   ./configure
   make
   make install
+
+Configuration: 
+ocamlfind: ..................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: ........................................ /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ...................................... /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: .................................. ocaml-fileutils
+Package version: ............................... 0.4.4
+os_type: ....................................... Unix
+system: ........................................ linux
+architecture: .................................. amd64
+ccomp_type: .................................... cc
+ocaml_version: ................................. 4.01.0
+standard_library_default: ...................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .............................. /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .............................. /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ........................... gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ............................. gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ......................................... default
+ext_obj: ....................................... .o
+ext_asm: ....................................... .s
+ext_lib: ....................................... .a
+ext_dll: ....................................... .so
+default_executable_name: ....................... a.out
+systhread_supported: ........................... true
+Install architecture-independent files dir: .... /usr/local
+Install architecture-dependent files in dir: ... $prefix
+User executables: .............................. $exec_prefix/bin
+System admin executables: ...................... $exec_prefix/sbin
+Program executables: ........................... $exec_prefix/libexec
+Read-only single-machine data: ................. $prefix/etc
+Modifiable architecture-independent data: ...... $prefix/com
+Modifiable single-machine data: ................ $prefix/var
+Object code libraries: ......................... $exec_prefix/lib
+Read-only arch-independent data root: .......... $prefix/share
+Read-only architecture-independent data: ....... $datarootdir
+Info documentation: ............................ $datarootdir/info
+Locale-dependent data: ......................... $datarootdir/locale
+Man documentation: ............................. $datarootdir/man
+Documentation root: ............................ $datarootdir/doc/$pkg_name
+HTML documentation: ............................ $docdir
+DVI documentation: ............................. $docdir
+PDF documentation: ............................. $docdir
+PS documentation: .............................. $docdir
+findlib_version: ............................... 1.5.2
+is_native: ..................................... true
+suffix_program: ................................ 
+Remove a file.: ................................ rm -f
+Remove a directory.: ........................... rm -rf
+Turn ocaml debug flag on: ...................... true
+Turn ocaml profile flag on: .................... false
+Compiler support generation of .cmxs.: ......... true
+OCamlbuild additional flags: ................... 
+pkg_unix: ...................................... /home/opam/.opam/4.01.0/lib/ocaml
+pkg_str: ....................................... /home/opam/.opam/4.01.0/lib/ocaml
+ocamldoc: ...................................... /home/opam/.opam/4.01.0/bin/ocamldoc
+pkg_ounit: ..................................... /home/opam/.opam/4.01.0/lib/oUnit
+
+ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -package str -modules src/FileUtil.ml > src/FileUtil.ml.depends
+ocamlfind ocamldep -package unix -package str -modules src/FilePath.mli > src/FilePath.mli.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FilePath.cmi src/FilePath.mli
+ocamlfind ocamldep -package unix -package str -modules src/FilePath.ml > src/FilePath.ml.depends
+ocamlfind ocamldep -package unix -package str -modules src/CommonPath.ml > src/CommonPath.ml.depends
+ocamlfind ocamldep -package unix -package str -modules src/FileStringExt.ml > src/FileStringExt.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FileStringExt.cmo src/FileStringExt.ml
+ocamlfind ocamldep -package unix -package str -modules src/ExtensionPath.ml > src/ExtensionPath.ml.depends
+ocamlfind ocamldep -package unix -package str -modules src/FilePath_type.ml > src/FilePath_type.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FilePath_type.cmo src/FilePath_type.ml
+ocamlfind ocamldep -package unix -package str -modules src/MacOSPath.ml > src/MacOSPath.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/CommonPath.cmo src/CommonPath.ml
+ocamlfind ocamldep -package unix -package str -modules src/UnixPath.ml > src/UnixPath.ml.depends
+ocamlfind ocamldep -package unix -package str -modules src/Win32Path.ml > src/Win32Path.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/ExtensionPath.cmo src/ExtensionPath.ml
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/MacOSPath.cmo src/MacOSPath.ml
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/UnixPath.cmo src/UnixPath.ml
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/Win32Path.cmo src/Win32Path.ml
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FileUtil.cmo src/FileUtil.ml
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FilePath.cmo src/FilePath.ml
+ocamlfind ocamlc -a src/FileStringExt.cmo src/CommonPath.cmo src/FilePath_type.cmo src/ExtensionPath.cmo src/MacOSPath.cmo src/UnixPath.cmo src/Win32Path.cmo src/FilePath.cmo src/FileUtil.cmo -o src/fileutils.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileStringExt.cmx src/FileStringExt.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FilePath_type.cmx src/FilePath_type.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/CommonPath.cmx src/CommonPath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/ExtensionPath.cmx src/ExtensionPath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/MacOSPath.cmx src/MacOSPath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/UnixPath.cmx src/UnixPath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/Win32Path.cmx src/Win32Path.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FilePath.cmx src/FilePath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtil.cmx src/FileUtil.ml
+ocamlfind ocamlopt -a src/FileStringExt.cmx src/CommonPath.cmx src/FilePath_type.cmx src/ExtensionPath.cmx src/MacOSPath.cmx src/UnixPath.cmx src/Win32Path.cmx src/FilePath.cmx src/FileUtil.cmx -o src/fileutils.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils.cmxa -o src/fileutils.cmxs
+ocamlfind ocamldep -package unix -package str -modules src/FileUtilStr.ml > src/FileUtilStr.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmo src/FileUtilStr.ml
+ocamlfind ocamlc -a src/FileUtilStr.cmo -o src/fileutils-str.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmx src/FileUtilStr.ml
+ocamlfind ocamlopt -a src/FileUtilStr.cmx -o src/fileutils-str.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils-str.cmxa -o src/fileutils-str.cmxs
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/BenchFind.ml > test/BenchFind.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/BenchFind.cmo test/BenchFind.ml
+ocamlfind ocamlc -g -linkpkg -package unix src/fileutils.cma test/BenchFind.cmo -o test/BenchFind.byte
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -linkpkg -package unix -package str -package oUnit src/fileutils.cma src/fileutils-str.cma test/test.cmo -o test/test.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtil.ml
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FilePath.mli
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils.cma
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils.cmxs
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils.cmxa
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils.a
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtil.cmi
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FilePath.cmi
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtil.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FilePath.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/CommonPath.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/ExtensionPath.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FilePath_type.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileStringExt.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/MacOSPath.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/UnixPath.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/Win32Path.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtilStr.ml
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils-str.cma
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils-str.cmxs
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils-str.cmxa
+Installed /home/opam/.opam/4.01.0/lib/fileutils/fileutils-str.a
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtilStr.cmi
+Installed /home/opam/.opam/4.01.0/lib/fileutils/FileUtilStr.cmx
+Installed /home/opam/.opam/4.01.0/lib/fileutils/META
+Installing fileutils.0.4.4.
