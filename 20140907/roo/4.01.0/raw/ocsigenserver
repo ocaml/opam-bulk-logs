@@ -209,3 +209,168 @@ pkg_num: ............................................. /home/opam/.opam/4.01.0/l
 
 ocaml setup.ml -build -classic-display
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/arcfour.c
+mv arcfour.o src/arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-arcfour.c
+mv stubs-arcfour.o src/stubs-arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/blowfish.c
+mv blowfish.o src/blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-blowfish.c
+mv stubs-blowfish.o src/stubs-blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/d3des.c
+mv d3des.o src/d3des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
+mv stubs-des.o src/stubs-des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Applying hasgotfix.patch.
+patching file configure
+Applying include_fix.patch.
+patching file Makefile
+Building dbm.1.0:
+  mkdir -p /home/opam/.opam/4.01.0/lib/dbm
+  ./configure
+  make all
+  make test
+  make install STUBLIBDIR=/home/opam/.opam/4.01.0/lib/stublibs LIBDIR=/home/opam/.opam/4.01.0/lib/dbm
+  cp META /home/opam/.opam/4.01.0/lib/dbm
+Configuring for OCaml version 4.01.0
+
+Configuration for the "camldbm" library:
+        headers found in ......... /usr/include
+        options for compiling .... -DDBM_USES_GDBM_NDBM
+        options for linking ...... -lgdbm_compat -lgdbm
+
+Configuration successful
+
+ocamlc -c -ccopt "" -ccopt "-DDBM_USES_GDBM_NDBM" cldbm.c
+ocamlmklib -oc camldbm cldbm.o -lgdbm_compat -lgdbm
+ocamlc -c  dbm.mli
+ocamlc -c  dbm.ml
+ocamlmklib -o dbm -oc camldbm -linkall dbm.cmo -lgdbm_compat -lgdbm
+ocamlopt -c  dbm.ml
+ocamlmklib -o dbm -oc camldbm -linkall dbm.cmx -lgdbm_compat -lgdbm
+ocamlopt -shared -o dbm.cmxs -I . dbm.cmxa
+ocamlc -o testdbm.byte dbm.cma testdbm.ml
+ocamlopt -ccopt -L. -o testdbm.opt dbm.cmxa testdbm.ml
+rm -f testdatabase.*
+ocamlrun -I . ./testdbm.byte
+key 'one' -> data 'un'
+key 'three' -> data 'trois'
+key 'two' -> data 'deux'
+rm -f testdatabase.*
+./testdbm.opt
+key 'one' -> data 'un'
+key 'three' -> data 'trois'
+key 'two' -> data 'deux'
+rm -f testdatabase.*
+if test -f dllcamldbm.so; then cp dllcamldbm.so /home/opam/.opam/4.01.0/lib/stublibs/; fi 
+cp libcamldbm.a /home/opam/.opam/4.01.0/lib/dbm/
+cd /home/opam/.opam/4.01.0/lib/dbm && ranlib libcamldbm.a
+cp dbm.cma dbm.cmxa dbm.cmi dbm.mli /home/opam/.opam/4.01.0/lib/dbm/
+cp dbm.a /home/opam/.opam/4.01.0/lib/dbm/
+cd /home/opam/.opam/4.01.0/lib/dbm && ranlib dbm.a
+if test -f dbm.cmxs; then cp dbm.cmxs /home/opam/.opam/4.01.0/lib/dbm/; fi
+Installing dbm.1.0.
+Building react.1.2.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
+ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+ocamlfind ocamldep -package compiler-libs.toplevel -modules src/react_top.ml > src/react_top.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmo src/react_top.ml
++ ocamlfind ocamlc -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmo src/react_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmx src/react_top.ml
++ ocamlfind ocamlopt -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmx src/react_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxa
++ ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxa
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
++ ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
++ ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+Installing react.1.2.0.
+Building ssl.0.4.7:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
