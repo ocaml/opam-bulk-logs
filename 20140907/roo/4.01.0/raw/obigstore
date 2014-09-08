@@ -650,3 +650,606 @@ ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -I src -I benchsuite -
 ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -I src -I benchsuite -I qtest -I testsuite -I build -o src/batteriesPrint.cmx src/batteriesPrint.ml
 ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -I src -I benchsuite -I qtest -I testsuite -I build -o src/batteriesExceptionless.cmx src/batteriesExceptionless.ml
 ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -I src -I benchsuite -I qtest -I testsuite -I build -o src/extlib.cmx src/extlib.ml
+ocamlfind ocamlopt -a -package bigarray,num,str src/batConcurrent.cmx src/batInnerWeaktbl.cmx src/batInnerIO.cmx src/batInterfaces.cmx src/batOrd.cmx src/batRef.cmx src/batEnum.cmx src/batChar.cmx src/batReturn.cmx src/batString.cmx src/batBuffer.cmx src/batPrintf.cmx src/batOption.cmx src/batInnerPervasives.cmx src/batBitSet.cmx src/batUnix.cmx src/batIO.cmx src/batNumber.cmx src/batInt.cmx src/batMap.cmx src/batList.cmx src/batArray.cmx src/batBigarray.cmx src/batBig_int.cmx src/batBool.cmx src/batBounded.cmx src/batFile.cmx src/batFloat.cmx src/batInt64.cmx src/batLazyList.cmx src/batMarshal.cmx src/batPervasives.cmx src/batParserCo.cmx src/batVect.cmx src/batCharParser.cmx src/batStream.cmx src/batGenlex.cmx src/batComplex.cmx src/batDeque.cmx src/batDigest.cmx src/batFingerTree.cmx src/batFormat.cmx src/batGc.cmx src/batHashtbl.cmx src/batSys.cmx src/batHashcons.cmx src/batHeap.cmx src/batInt32.cmx src/batLexing.cmx src/batNativeint.cmx src/batNum.cmx src/batOo.cmx src/batPrintexc.cmx src/batQueue.cmx src/batRandom.cmx src/batScanf.cmx src/batSet.cmx src/batSplay.cmx src/batStack.cmx src/batUnit.cmx src/batBase64.cmx src/batDllist.cmx src/batDynArray.cmx src/batGlobal.cmx src/batRefList.cmx src/batSubstring.cmx src/batLogger.cmx src/batMultiPMap.cmx src/batMultiMap.cmx src/batOptParse.cmx src/batPathGen.cmx src/batResult.cmx src/batSeq.cmx src/batTuple.cmx src/batUref.cmx src/batAvlTree.cmx src/batISet.cmx src/batIMap.cmx src/batCache.cmx src/batLog.cmx src/batUChar.cmx src/batUTF8.cmx src/batText.cmx src/batteriesConfig.cmx src/batteriesPrint.cmx src/batteries.cmx src/batteriesExceptionless.cmx src/extlib.cmx -o src/batteries.cmxa
+ocamlfind ocamlopt -shared -linkall -package bigarray,num,str -o src/batteries.cmxs src/batteries.cmxa
+ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batMutex.cmx src/batMutex.ml
+ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batRMutex.cmx src/batRMutex.ml
+ocamlfind ocamlopt -c -g -annot -package bigarray,num,str -thread -I src -I benchsuite -I qtest -I testsuite -I build -o src/batteriesThread.cmx src/batteriesThread.ml
+ocamlfind ocamlopt -a -package bigarray,num,str -thread src/batMutex.cmx src/batRMutex.cmx src/batteriesThread.cmx -o src/batteriesThread.cmxa
+ocamlfind ocamlopt -shared -linkall -package bigarray,num,str -thread -o src/batteriesThread.cmxs src/batteriesThread.cmxa
+Build mode: shared
+ocamlbuild -no-links src/batteries.cma src/batteriesHelp.cmo src/batteriesThread.cma META src/batteries.cmxs src/batteriesThread.cmxs
+ocamlfind: Package `bisect' not found
+Warning: tag "package" does not expect a parameter, but is used with parameter "oUnit"
+Warning: tag "package" does not expect a parameter, but is used with parameter "QTest2Lib"
+ocamlfind remove batteries
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/batteries
+ocamlfind install batteries _build/META _build/src/*.cma battop.ml _build/src/*.cmi _build/src/*.mli _build/src/batteriesHelp.cmo _build/src/batteriesConfig.cmo _build/src/batteriesPrint.cmo ocamlinit build/ocaml \
+		-optional _build/src/*.cmx _build/src/*.a _build/src/*.cmxa _build/src/*.cmxs _build/src/*.lib
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.cmxs
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.cmxs
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.cmxa
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.cmxa
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.a
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.a
+Installed /home/opam/.opam/4.01.0/lib/batteries/extlib.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesPrint.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesExceptionless.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesConfig.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batVect.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUref.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnix.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnit.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUTF8.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUChar.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batTuple.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batText.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSys.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSubstring.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batString.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStream.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStack.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSplay.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSet.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSeq.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batScanf.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batReturn.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batResult.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRefList.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRef.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRandom.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRMutex.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batQueue.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintf.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintexc.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPervasives.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPathGen.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batParserCo.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOrd.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOption.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOptParse.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOo.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNumber.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNum.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNativeint.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMutex.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiPMap.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiMap.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMarshal.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMap.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLogger.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLog.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batList.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLazyList.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInterfaces.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt64.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt32.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerWeaktbl.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerPervasives.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerIO.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batISet.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIO.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIMap.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHeap.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashtbl.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashcons.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGlobal.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGenlex.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGc.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFormat.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFloat.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFingerTree.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFile.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batEnum.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDynArray.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDllist.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDigest.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDeque.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batConcurrent.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batComplex.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCharParser.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batChar.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCache.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBuffer.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBounded.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBool.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBitSet.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBigarray.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBig_int.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBase64.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batAvlTree.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/batArray.cmx
+Installed /home/opam/.opam/4.01.0/lib/batteries/ocaml
+Installed /home/opam/.opam/4.01.0/lib/batteries/ocamlinit
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesPrint.cmo
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesConfig.cmo
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesHelp.cmo
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesHelp.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batVect.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUref.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnix.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnit.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUTF8.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUChar.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batTuple.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batText.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSys.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSubstring.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batString.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStream.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStack.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSplay.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSet.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSeq.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batScanf.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batReturn.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batResult.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRefList.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRef.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRandom.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRMutex.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batQueue.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintf.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintexc.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPervasives.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPathGen.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batParserCo.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOrd.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOption.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOptParse.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOo.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNumber.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNum.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNativeint.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMutex.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiPMap.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiMap.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMarshal.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMap.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLogger.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLog.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batList.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLexing.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLazyList.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInterfaces.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt64.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt32.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerWeaktbl.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerIO.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batISet.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIO.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIMap.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHeap.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashtbl.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashcons.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGlobal.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGenlex.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGc.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFormat.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFloat.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFingerTree.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFile.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batEnum.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDynArray.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDllist.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDigest.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDeque.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batConcurrent.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batComplex.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCharParser.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batChar.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCache.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBuffer.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBounded.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBool.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBitSet.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBigarray.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBig_int.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBase64.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batAvlTree.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/batArray.mli
+Installed /home/opam/.opam/4.01.0/lib/batteries/extlib.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesPrint.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesHelp.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesExceptionless.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesConfig.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batVect.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUref.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnix.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUnit.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUTF8.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batUChar.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batTuple.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batText.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSys.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSubstring.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batString.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStream.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batStack.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSplay.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSet.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batSeq.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batScanf.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batReturn.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batResult.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRefList.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRef.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRandom.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batRMutex.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batQueue.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintf.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPrintexc.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPervasives.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batPathGen.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batParserCo.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOrd.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOption.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOptParse.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batOo.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNumber.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNum.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batNativeint.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMutex.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiPMap.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMultiMap.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMarshal.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batMap.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLogger.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLog.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batList.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batLazyList.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInterfaces.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt64.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt32.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInt.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerWeaktbl.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerPervasives.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batInnerIO.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batISet.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIO.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batIMap.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHeap.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashtbl.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batHashcons.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGlobal.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGenlex.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batGc.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFormat.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFloat.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFingerTree.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batFile.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batEnum.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDynArray.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDllist.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDigest.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batDeque.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batConcurrent.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batComplex.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCharParser.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batChar.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batCache.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBuffer.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBounded.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBool.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBitSet.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBigarray.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBig_int.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batBase64.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batAvlTree.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/batArray.cmi
+Installed /home/opam/.opam/4.01.0/lib/batteries/battop.ml
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteriesThread.cma
+Installed /home/opam/.opam/4.01.0/lib/batteries/batteries.cma
+Installed /home/opam/.opam/4.01.0/lib/batteries/META
+Installing batteries.2.2.0.
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/conf-leveldb/conf-leveldb.1/files/test.cc to ~/.opam/4.01.0/build/conf-leveldb.1/
+Building conf-leveldb.1:
+  cc -c test.cc
+Installing conf-leveldb.1.
+Building cryptokit.1.9:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ cryptokit
+Package version: ..................................... 1.9
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Define include path for zlib.: ....................... 
+Define library path for zlib.: ....................... 
+Enable ZLib: ......................................... true
+Build and run benchmark: ............................. false
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+pkg_unix: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+pkg_num: ............................................. /home/opam/.opam/4.01.0/lib/num
+
+ocaml setup.ml -build -classic-display
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/arcfour.c
+mv arcfour.o src/arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-arcfour.c
+mv stubs-arcfour.o src/stubs-arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/blowfish.c
+mv blowfish.o src/blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-blowfish.c
+mv stubs-blowfish.o src/stubs-blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/d3des.c
+mv d3des.o src/d3des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
+mv stubs-des.o src/stubs-des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Applying opam.patch.
+patching file OMakefile
+Applying fam.patch.
+patching file lib/configure/Configure.om
+Applying readline.patch.
+patching file lib/configure/readline.om
+Building omake.0.9.8.6-0.rc1:
+  make bootstrap PREFIX=/home/opam/.opam/4.01.0
+  make all PREFIX=/home/opam/.opam/4.01.0
+  make install PREFIX=/home/opam/.opam/4.01.0
+mkdir -p boot
+ln -sf ../src/Makefile boot/Makefile
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/omake.0.9.8.6-0.rc1/boot'
+ln -sf ../src/clib/omake_shell_sys.c omake_shell_sys.c
+ln -sf ../src/clib/readline.c readline.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_heap.c lm_heap.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_heap.h lm_heap.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_channel.c lm_channel.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_compat_win32.c lm_compat_win32.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_compat_win32.h lm_compat_win32.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_ctype.c lm_ctype.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_printf.c lm_printf.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_uname_ext.c lm_uname_ext.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_unix_cutil.c lm_unix_cutil.c
+ln -sf ../src/clib/../libmojave-external/cutil/unixsupport.h unixsupport.h
+ln -sf ../src/clib/../libmojave-external/cutil/fam_win32.c fam_win32.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_kqueue.c fam_kqueue.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_inotify.c fam_inotify.c
+ln -sf ../src/clib/../libmojave-external/cutil/fam_pseudo.h fam_pseudo.h
+ln -sf ../src/clib/../libmojave-external/cutil/lm_notify.c lm_notify.c
+ln -sf ../src/clib/../libmojave-external/cutil/inotify.h inotify.h
+ln -sf ../src/clib/../libmojave-external/cutil/inotify-syscalls.h inotify-syscalls.h
+ln -sf ../src/clib/../libmojave-external/cutil/inotify.om inotify.om
+ln -sf ../src/clib/../libmojave-external/cutil/lm_termsize.c lm_termsize.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_terminfo.c lm_terminfo.c
+ln -sf ../src/clib/../libmojave-external/cutil/lm_fs_case_sensitive.c lm_fs_case_sensitive.c
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_printf.ml lm_printf.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_debug.ml lm_debug.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_heap.ml lm_heap.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_list_util.ml lm_list_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_array_util.ml lm_array_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set_sig.ml lm_set_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set.ml lm_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map_sig.ml lm_map_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map.ml lm_map.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_int_set.ml lm_int_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_index.ml lm_index.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_sig.ml lm_thread_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread.ml lm_thread.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_util.ml lm_string_util.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_set.ml lm_string_set.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_printf.mli lm_printf.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_debug.mli lm_debug.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_list_util.mli lm_list_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_array_util.mli lm_array_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_set.mli lm_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_map.mli lm_map.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_int_set.mli lm_int_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_index.mli lm_index.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_core.mli lm_thread_core.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread.mli lm_thread.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_util.mli lm_string_util.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_string_set.mli lm_string_set.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_pool.mli lm_thread_pool.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_arg.ml lm_arg.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_hash_sig.ml lm_hash_sig.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_hash.ml lm_hash.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_location.ml lm_location.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_position.ml lm_position.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_channel.ml lm_channel.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_lexer.ml lm_lexer.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_parser.ml lm_parser.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_glob.ml lm_glob.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_db.ml lm_db.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_arg.mli lm_arg.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_hash.mli lm_hash.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_location.mli lm_location.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_position.mli lm_position.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_channel.mli lm_channel.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_lexer.mli lm_lexer.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_parser.mli lm_parser.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_glob.mli lm_glob.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_db.mli lm_db.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_termsize.ml lm_termsize.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_termsize.mli lm_termsize.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_terminfo.ml lm_terminfo.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_terminfo.mli lm_terminfo.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_filename_util.ml lm_filename_util.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_filename_util.mli lm_filename_util.mli
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_uname.ml lm_uname.ml
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_unix_util.ml lm_unix_util.ml
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_uname.mli lm_uname.mli
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_unix_util.mli lm_unix_util.mli
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_notify.ml lm_notify.ml
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_notify.mli lm_notify.mli
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_fs_case_sensitive.ml lm_fs_case_sensitive.ml
+ln -sf ../src/libmojave/../libmojave-external/unix/lm_fs_case_sensitive.mli lm_fs_case_sensitive.mli
+ln -sf ../src/libmojave/../libmojave-external/util/lm_symbol_hash.ml lm_symbol.ml
+ln -sf ../src/libmojave/../libmojave-external/util/lm_symbol_hash.mli lm_symbol.mli
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_pool_null.ml lm_thread_pool.ml
+ln -sf ../src/libmojave/../libmojave-external/stdlib/lm_thread_core_null.ml lm_thread_core.ml
+ln -sf ../src/util/fmarshal.ml fmarshal.ml
+ln -sf ../src/util/ocaml_patch.mli ocaml_patch.mli
+ln -sf ../src/util/omake_handle_table.ml omake_handle_table.ml
+ln -sf ../src/util/omake_marshal.ml omake_marshal.ml
+ln -sf ../src/util/omake_print_util.ml omake_print_util.ml
+ln -sf ../src/util/omake_print_util.mli omake_print_util.mli
+ln -sf ../src/util/omake_printf.ml omake_printf.ml
+ln -sf ../src/util/omake_readline.ml omake_readline.ml
+ln -sf ../src/util/omake_readline.mli omake_readline.mli
+ln -sf ../src/util/omake_util.ml omake_util.ml
+ln -sf ../src/util/omake_util.mli omake_util.mli
+ln -sf ../src/util/omake_wild.ml omake_wild.ml
+ln -sf ../src/util/omake_wild.mli omake_wild.mli
+ln -sf ../src/util/ocaml_patch_unix.ml ocaml_patch.ml
+ln -sf ../src/magic/omake_gen_magic.ml omake_gen_magic.ml
+ln -sf ../src/ir/omake_cache.ml omake_cache.ml
+ln -sf ../src/ir/omake_cache.mli omake_cache.mli
+ln -sf ../src/ir/omake_cache_type.ml omake_cache_type.ml
+ln -sf ../src/ir/omake_command.ml omake_command.ml
+ln -sf ../src/ir/omake_command.mli omake_command.mli
+ln -sf ../src/ir/omake_command_type.ml omake_command_type.ml
+ln -sf ../src/ir/omake_install.ml omake_install.ml
+ln -sf ../src/ir/omake_install.mli omake_install.mli
+ln -sf ../src/ir/omake_ir.ml omake_ir.ml
+ln -sf ../src/ir/omake_ir_free_vars.ml omake_ir_free_vars.ml
+ln -sf ../src/ir/omake_ir_free_vars.mli omake_ir_free_vars.mli
+ln -sf ../src/ir/omake_ir_print.ml omake_ir_print.ml
+ln -sf ../src/ir/omake_ir_print.mli omake_ir_print.mli
+ln -sf ../src/ir/omake_ir_util.ml omake_ir_util.ml
+ln -sf ../src/ir/omake_ir_util.mli omake_ir_util.mli
+ln -sf ../src/ir/omake_lexer.ml omake_lexer.ml
+ln -sf ../src/ir/omake_node.ml omake_node.ml
+ln -sf ../src/ir/omake_node.mli omake_node.mli
+ln -sf ../src/ir/omake_node_sig.ml omake_node_sig.ml
+ln -sf ../src/ir/omake_node_type.ml omake_node_type.ml
+ln -sf ../src/ir/omake_options.ml omake_options.ml
+ln -sf ../src/ir/omake_options.mli omake_options.mli
+ln -sf ../src/ir/omake_parser.ml omake_parser.ml
+ln -sf ../src/ir/omake_pos.ml omake_pos.ml
+ln -sf ../src/ir/omake_pos.mli omake_pos.mli
+ln -sf ../src/ir/omake_shell_type.ml omake_shell_type.ml
+ln -sf ../src/ir/omake_state.ml omake_state.ml
+ln -sf ../src/ir/omake_state.mli omake_state.mli
+ln -sf ../src/ir/omake_symbol.ml omake_symbol.ml
