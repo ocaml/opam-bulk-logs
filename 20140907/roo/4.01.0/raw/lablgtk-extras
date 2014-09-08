@@ -561,3 +561,64 @@ Setting up libcairo2-dev (1.13.0~20140204-0ubuntu1) ...
 Setting up libpango1.0-dev (1.36.3-1ubuntu1) ...
 Setting up libgtk2.0-dev (2.24.23-0ubuntu1.1) ...
 Setting up libgtksourceview2.0-dev (2.10.5-1ubuntu2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install lablgtk-extras -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install lablgtk-extras
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgtk, config-file]
+ - install   xmlm.1.2.0                            [required by lablgtk-extras]
+ - install   conf-gtksourceview.2                  [required by lablgtk-extras]
+ - install   config-file.1.2                       [required by lablgtk-extras]
+ - install   lablgtk.2.16.0                        [required by lablgtk-extras]
+ - install   lablgtk-extras.1.4
+=== 6 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/config-file.1.2+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgtk.2.16.0+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgtk-extras.1.4+opam.tar.gz
+sending incremental file list
+config-file.1.2+opam.tar.gz
+sending incremental file list
+sending incremental file list
+lablgtk-extras.1.4+opam.tar.gz
+lablgtk.2.16.0+opam.tar.gz
+
+sent 825,330 bytes  received 35 bytes  1,650,730.00 bytes/sec
+total size is 824,999  speedup is 1.00
+
+sent 49,861 bytes  received 35 bytes  99,792.00 bytes/sec
+total size is 49,721  speedup is 1.00
+
+sent 110,488 bytes  received 35 bytes  221,046.00 bytes/sec
+total size is 110,329  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/xmlm.1.2.0+opam.tar.gz
+sending incremental file list
+xmlm.1.2.0+opam.tar.gz
+
+sent 51,864 bytes  received 35 bytes  103,798.00 bytes/sec
+total size is 51,729  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building conf-gtksourceview.2:
+  pkg-config gtksourceview-2.0
+Installing conf-gtksourceview.2.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
