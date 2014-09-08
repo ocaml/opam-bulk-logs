@@ -2974,3 +2974,36 @@ ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
 ocamllex read.mll
 433 states, 2020 transitions, table size 10678 bytes
 cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building pa_bench.111.28.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
