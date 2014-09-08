@@ -1038,3 +1038,32 @@ Installed /home/opam/.opam/4.01.0/lib/yajl/libyajl_stubs.a
 Installed /home/opam/.opam/4.01.0/lib/yajl/libyajl_s.a
 Installed /home/opam/.opam/4.01.0/lib/yajl/META
 Installing yajl.0.7.3.
+Building yajl-extra.0.7.3:
+  make install-extra
+cd twt && make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/yajl-extra.0.7.3/twt'
+ocamlc -o ocaml+twt str.cma unix.cma ocaml+twt.ml
+File "ocaml+twt.ml", line 1:
+Warning 24: bad source file name: "Ocaml+twt" is not a valid module name.
+ocamlc -o ppcompose -pp ./ocaml+twt ppcompose.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/yajl-extra.0.7.3/twt'
+ocamlfind query yajl || make install
+/home/opam/.opam/4.01.0/lib/yajl
+cd extra && PATH=/home/opam/.opam/4.01.0/build/yajl-extra.0.7.3/twt:/home/opam/.opam/4.01.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin ocamlbuild -use-ocamlfind JSON.cmxa JSON.cma
+ocamlfind ocamldep -pp ocaml+twt -package batteries -package yajl -modules JSON.ml > JSON.ml.depends
+ocamlfind ocamldep -pp ocaml+twt -package batteries -package yajl -modules JSON.mli > JSON.mli.depends
+ocamlfind ocamlc -c -g -pp ocaml+twt -package batteries -package yajl -o JSON.cmi JSON.mli
+ocamlfind ocamlopt -c -g -pp ocaml+twt -package batteries -package yajl -o JSON.cmx JSON.ml
+ocamlfind ocamlopt -a JSON.cmx -o JSON.cmxa
+ocamlfind ocamlc -c -g -pp ocaml+twt -package batteries -package yajl -o JSON.cmo JSON.ml
+ocamlfind ocamlc -a JSON.cmo -o JSON.cma
+ocamlfind remove yajl-extra || true
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/yajl-extra
+cd extra/_build && ocamlfind install yajl-extra JSON.a JSON.cmi JSON.cma JSON.cmxa JSON.mli ../META
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/JSON.mli
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/JSON.cmxa
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/JSON.cma
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/JSON.cmi
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/JSON.a
+Installed /home/opam/.opam/4.01.0/lib/yajl-extra/META
+Installing yajl-extra.0.7.3.
