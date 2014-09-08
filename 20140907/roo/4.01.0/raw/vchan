@@ -315,3 +315,138 @@ ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitState.cmx src/oUnitState.ml
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitCheckEnv.cmx src/oUnitCheckEnv.ml
 ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunner.cmx src/oUnitRunner.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitLoggerJUnit.cmx src/oUnitLoggerJUnit.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerProcesses.cmx src/oUnitRunnerProcesses.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitCore.cmx src/oUnitCore.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitTestData.cmx src/oUnitTestData.ml
+ocamlfind ocamlopt -a src/oUnitUtils.cmx src/oUnitPropList.cmx src/oUnitConf.cmx src/oUnitPlugin.cmx src/oUnitLogger.cmx src/oUnitShared.cmx src/oUnitTest.cmx src/oUnitCache.cmx src/oUnitResultSummary.cmx src/oUnitChooser.cmx src/oUnitLoggerStd.cmx src/oUnitLoggerHTMLData.cmx src/oUnitLoggerHTML.cmx src/oUnitLoggerJUnit.cmx src/oUnitBracket.cmx src/oUnitAssert.cmx src/oUnitState.cmx src/oUnitDiff.cmx src/oUnitCheckEnv.cmx src/oUnitRunner.cmx src/oUnitRunnerProcesses.cmx src/oUnitCore.cmx src/oUnitTestData.cmx -o src/oUnitAdvanced.cmxa
+ocamlfind ocamlopt -shared -linkall src/oUnitAdvanced.cmxa -o src/oUnitAdvanced.cmxs
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit.mli > src/oUnit.mli.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit2.mli > src/oUnit2.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmi src/oUnit2.mli
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmi src/oUnit.mli
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit.ml > src/oUnit.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnit2.ml > src/oUnit2.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmo src/oUnit.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmo src/oUnit2.ml
+ocamlfind ocamlc -a src/oUnit2.cmo src/oUnit.cmo -o src/oUnit.cma
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit2.cmx src/oUnit2.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnit.cmx src/oUnit.ml
+ocamlfind ocamlopt -a src/oUnit2.cmx src/oUnit.cmx -o src/oUnit.cmxa
+ocamlfind ocamlopt -shared src/oUnit.cmx -o src/oUnit.cmxs
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitThreads.ml > src/oUnitThreads.ml.depends
+ocamlfind ocamldep -package threads -package unix -modules src/oUnitRunnerThreads.ml > src/oUnitRunnerThreads.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmo src/oUnitRunnerThreads.ml
+ocamlfind ocamlc -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmo src/oUnitThreads.ml
+ocamlfind ocamlc -a src/oUnitRunnerThreads.cmo src/oUnitThreads.cmo -o src/oUnitThreads.cma
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitRunnerThreads.cmx src/oUnitRunnerThreads.ml
+ocamlfind ocamlopt -c -g -I src -I src -package threads -package unix -thread -I src -o src/oUnitThreads.cmx src/oUnitThreads.ml
+ocamlfind ocamlopt -a src/oUnitRunnerThreads.cmx src/oUnitThreads.cmx -o src/oUnitThreads.cmxa
+ocamlfind ocamlopt -shared src/oUnitThreads.cmx -o src/oUnitThreads.cmxs
+ocaml setup.ml -install 
+W: Cannot find source header for module OUnitLoggerHTMLData in library oUnitAdvanced
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.mli
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit2.mli
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.cma
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.a
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit2.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnit2.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.cma
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.cmxa
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.a
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.cmxs
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitThreads.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunnerThreads.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitUtils.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPropList.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPlugin.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitChooser.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitResultSummary.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerStd.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerHTML.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerJUnit.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAssert.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitBracket.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTest.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitState.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunner.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunnerProcesses.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCore.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLogger.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitConf.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitShared.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCache.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTestData.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCheckEnv.ml
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitDiff.mli
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAdvanced.cma
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAdvanced.cmxa
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAdvanced.a
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAdvanced.cmxs
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitUtils.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPropList.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPlugin.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitChooser.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitResultSummary.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerStd.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerHTML.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerHTMLData.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerJUnit.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAssert.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitBracket.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTest.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitState.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunner.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunnerProcesses.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCore.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLogger.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitConf.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitShared.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCache.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTestData.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCheckEnv.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitDiff.cmi
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitUtils.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPropList.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitPlugin.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitChooser.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitResultSummary.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerStd.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerHTML.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerHTMLData.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLoggerJUnit.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitAssert.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitBracket.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTest.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitState.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunner.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitRunnerProcesses.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCore.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitLogger.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitConf.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitShared.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCache.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitTestData.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitCheckEnv.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/oUnitDiff.cmx
+Installed /home/opam/.opam/4.01.0/lib/oUnit/META
+Installing ounit.2.0.0.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux):
