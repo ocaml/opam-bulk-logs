@@ -4874,3 +4874,62 @@ ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations
 ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmo syntax/pa_variants_conv.ml
 ocamlfind ocamlc -a syntax/pa_variants_conv.cmo -o syntax/pa_variants_conv.cma
 ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_variants_conv.cmx syntax/pa_variants_conv.ml
+ocamlfind ocamlopt -a syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_variants_conv.cmx -o syntax/pa_variants_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variant.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/variantslib.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.a
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/variantslib/pa_variants_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/variantslib/META
+Installing variantslib.109.15.03.
+Building yojson.1.1.8:
+  make
+  make install
+sed -e 's:@@VERSION@@:1.1.8:' META.in > META
+cppo -n yojson.mli.cppo -o yojson.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
+ocamllex read.mll
+433 states, 2020 transitions, table size 10678 bytes
+cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building zed.1.3:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
