@@ -248,3 +248,47 @@ ocamlfind ocamlc -pack lib/type.cmo lib/value.cmo -o lib/dyntype.cmo
 ocamlfind ocamlopt -c -annot -package type_conv -for-pack Dyntype -I lib -I pa_lib -I lib_test -o lib/type.cmx lib/type.ml
 ocamlfind ocamlopt -c -annot -package type_conv -for-pack Dyntype -I lib -I pa_lib -I lib_test -o lib/value.cmx lib/value.ml
 touch lib/dyntype.mli  ; if  ocamlfind ocamlopt -pack -I lib lib/type.cmx lib/value.cmx -o lib/dyntype.cmx  ; then  rm -f lib/dyntype.mli  ; else  rm -f lib/dyntype.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -package type_conv lib/dyntype.cmx -o lib/dyntype.cmxa
+ocamlfind ocamlc -a -package type_conv lib/dyntype.cmo -o lib/dyntype.cma
+ocamlbuild pa_dyntype.cma pa_dyntype.cmxs
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_helpers.ml > pa_lib/p4_helpers.ml.depends
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_type.ml > pa_lib/p4_type.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmo pa_lib/p4_helpers.ml
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_value.ml > pa_lib/p4_value.ml.depends
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/pa_type.ml > pa_lib/pa_type.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmo pa_lib/p4_type.ml
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/pa_value.ml > pa_lib/pa_value.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmo pa_lib/p4_value.ml
+ocamlfind ocamlc -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmo pa_lib/pa_type.ml
+ocamlfind ocamlc -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmo pa_lib/pa_value.ml
+ocamlfind ocamlc -pack pa_lib/p4_helpers.cmo pa_lib/p4_type.cmo pa_lib/p4_value.cmo pa_lib/pa_type.cmo pa_lib/pa_value.cmo -o pa_lib/pa_dyntype.cmo
+ocamlfind ocamlc -a -package type_conv -package camlp4.quotations -package camlp4 lib/dyntype.cmo pa_lib/pa_dyntype.cmo -o pa_lib/pa_dyntype.cma
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmx pa_lib/p4_helpers.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmx pa_lib/p4_type.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmx pa_lib/p4_value.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmx pa_lib/pa_type.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmx pa_lib/pa_value.ml
+touch pa_lib/pa_dyntype.mli  ; if  ocamlfind ocamlopt -pack -I pa_lib pa_lib/p4_helpers.cmx pa_lib/p4_type.cmx pa_lib/p4_value.cmx pa_lib/pa_type.cmx pa_lib/pa_value.cmx -o pa_lib/pa_dyntype.cmx  ; then  rm -f pa_lib/pa_dyntype.mli  ; else  rm -f pa_lib/pa_dyntype.mli  ; exit 1; fi
+ocamlfind ocamlopt -shared -package type_conv -package camlp4.quotations -package camlp4 pa_lib/pa_dyntype.cmx -o pa_lib/pa_dyntype.cmxs
+ocamlfind remove dyntype || true
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/dyntype
+ocamlfind install dyntype META -optional _build/pa_lib/pa_dyntype.cmi _build/lib/dyntype.cmi _build/pa_lib/pa_dyntype.cma _build/lib/dyntype.cma _build/pa_lib/pa_dyntype.cmxa _build/lib/dyntype.cmxa _build/pa_lib/pa_dyntype.a _build/lib/dyntype.a
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.a
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cma
+Installed /home/opam/.opam/4.01.0/lib/dyntype/pa_dyntype.cma
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyntype/pa_dyntype.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyntype/META
+Installing dyntype.0.9.0.
+Building orm.0.7.0:
+  make
+  make install
+make -C lib/
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib'
+make -C syntax all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/orm.0.7.0/lib/syntax'
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 pa_orm.ml > ._d/pa_orm.d
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_appengine.ml > ._d/p4_orm_appengine.d
+ocamlfind ocamldep -pp "camlp4orf " -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 p4_orm_sqlite.ml > ._d/p4_orm_sqlite.d
