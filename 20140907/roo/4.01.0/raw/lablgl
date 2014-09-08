@@ -388,3 +388,123 @@ ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_raw.c
 ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glarray.c
 ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glutess.c
 ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_shader.c
+ocamlc -c -w s -I +labltk raw.mli
+ocamlc -c -w s -I +labltk raw.ml
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk gl.mli
+ocamlc -c -w s -I +labltk gl.ml
+ocamlc -c -w s -I +labltk glLight.mli
+ocamlc -c -w s -I +labltk glLight.ml
+ocamlc -c -w s -I +labltk glList.mli
+ocamlc -c -w s -I +labltk glList.ml
+ocamlc -c -w s -I +labltk glMap.mli
+ocamlc -c -w s -I +labltk glMap.ml
+ocamlc -c -w s -I +labltk glMat.mli
+ocamlc -c -w s -I +labltk glMat.ml
+ocamlc -c -w s -I +labltk glMisc.mli
+ocamlc -c -w s -I +labltk glMisc.ml
+File "glMisc.ml", line 26, characters 15-17:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk glPix.mli
+ocamlc -c -w s -I +labltk glPix.ml
+ocamlc -c -w s -I +labltk glClear.mli
+ocamlc -c -w s -I +labltk glClear.ml
+ocamlc -c -w s -I +labltk glTex.mli
+ocamlc -c -w s -I +labltk glTex.ml
+ocamlc -c -w s -I +labltk glDraw.mli
+ocamlc -c -w s -I +labltk glDraw.ml
+File "glDraw.ml", line 30, characters 28-30:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk glFunc.mli
+ocamlc -c -w s -I +labltk glFunc.ml
+ocamlc -c -w s -I +labltk gluMisc.mli
+ocamlc -c -w s -I +labltk gluMisc.ml
+ocamlc -c -w s -I +labltk gluNurbs.mli
+ocamlc -c -w s -I +labltk gluNurbs.ml
+File "gluNurbs.ml", line 57, characters 23-25:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk gluQuadric.mli
+ocamlc -c -w s -I +labltk gluQuadric.ml
+ocamlc -c -w s -I +labltk gluTess.mli
+ocamlc -c -w s -I +labltk gluTess.ml
+ocamlc -c -w s -I +labltk gluMat.mli
+ocamlc -c -w s -I +labltk gluMat.ml
+ocamlc -c -w s -I +labltk glArray.mli
+ocamlc -c -w s -I +labltk glArray.ml
+ocamlc -c -w s -I +labltk glShader.mli
+ocamlc -c -w s -I +labltk glShader.ml
+ocamlmklib -o lablgl ml_gl.o	ml_glu.o	ml_raw.o ml_glarray.o ml_glutess.o	ml_shader.o raw.cmo gl.cmo		glLight.cmo	glList.cmo	glMap.cmo glMat.cmo	glMisc.cmo	glPix.cmo	glClear.cmo glTex.cmo	glDraw.cmo	glFunc.cmo	gluMisc.cmo gluNurbs.cmo	gluQuadric.cmo	gluTess.cmo	gluMat.cmo glArray.cmo	glShader.cmo -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/src'
+cd LablGlut/src && make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/LablGlut/src'
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include -I../../src" wrap_glut.c
+wrap_glut.c: In function 'ml_glutBitmapLength':
+wrap_glut.c:392:3: warning: pointer targets in passing argument 2 of 'glutBitmapLength' differ in signedness [-Wpointer-sign]
+   return Val_int(glutBitmapLength(i2font(Int_val(font)), String_val(str)));
+   ^
+In file included from /usr/include/GL/glut.h:17:0,
+                 from wrap_glut.c:16:
+/usr/include/GL/freeglut_std.h:517:26: note: expected 'const unsigned char *' but argument is of type 'char *'
+ FGAPI int     FGAPIENTRY glutBitmapLength( void* font, const unsigned char* string );
+                          ^
+wrap_glut.c: In function 'ml_glutStrokeLength':
+wrap_glut.c:398:3: warning: pointer targets in passing argument 2 of 'glutStrokeLength' differ in signedness [-Wpointer-sign]
+   return Val_int(glutStrokeLength(i2font(Int_val(font)), String_val(str)));
+   ^
+In file included from /usr/include/GL/glut.h:17:0,
+                 from wrap_glut.c:16:
+/usr/include/GL/freeglut_std.h:518:26: note: expected 'const unsigned char *' but argument is of type 'char *'
+ FGAPI int     FGAPIENTRY glutStrokeLength( void* font, const unsigned char* string );
+                          ^
+ocamlc -c -w s  glut.mli
+ocamlc -c -w s  glut.ml
+ocamlmklib -o lablglut wrap_glut.o glut.cmo -lglut -lGL -lGLU 
+ocamlmktop  -I . -I ../../src  -o lablgluttop \
+	  lablglut.cma lablgl.cma
+make INSTALLDIR="`ocamlc -where`/lablGL" real-lablglut
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/LablGlut/src'
+generate lablglut
+echo "#!/bin/sh" > lablglut
+echo "# toplevel with lablGL and LablGlut" >> lablglut
+if test -f dlllablglut.so; then \
+	    echo 'exec ocaml -I "/home/opam/.opam/4.01.0/lib/ocaml/lablGL" lablgl.cma lablglut.cma $*' >> lablglut; \
+	 else echo 'exec "/home/opam/.opam/4.01.0/lib/ocaml/lablGL/lablgluttop" -I "/home/opam/.opam/4.01.0/lib/ocaml/lablGL" $*' >> lablglut; fi
+chmod 755 lablglut
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/LablGlut/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/LablGlut/src'
+cd src && make opt
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/src'
+ocamlopt -c -I +labltk raw.ml
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk gl.ml
+ocamlopt -c -I +labltk glLight.ml
+ocamlopt -c -I +labltk glList.ml
+ocamlopt -c -I +labltk glMap.ml
+ocamlopt -c -I +labltk glMat.ml
+ocamlopt -c -I +labltk glMisc.ml
+File "glMisc.ml", line 26, characters 15-17:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk glPix.ml
+ocamlopt -c -I +labltk glClear.ml
+ocamlopt -c -I +labltk glTex.ml
+ocamlopt -c -I +labltk glDraw.ml
+File "glDraw.ml", line 30, characters 28-30:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk glFunc.ml
+ocamlopt -c -I +labltk gluMisc.ml
+ocamlopt -c -I +labltk gluNurbs.ml
+File "gluNurbs.ml", line 57, characters 23-25:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlopt -c -I +labltk gluQuadric.ml
+ocamlopt -c -I +labltk gluTess.ml
+ocamlopt -c -I +labltk gluMat.ml
+ocamlopt -c -I +labltk glArray.ml
+ocamlopt -c -I +labltk glShader.ml
+ocamlmklib -o lablgl ml_gl.o	ml_glu.o	ml_raw.o ml_glarray.o ml_glutess.o	ml_shader.o raw.cmx gl.cmx glLight.cmx glList.cmx glMap.cmx glMat.cmx glMisc.cmx glPix.cmx glClear.cmx glTex.cmx glDraw.cmx glFunc.cmx gluMisc.cmx gluNurbs.cmx gluQuadric.cmx gluTess.cmx gluMat.cmx glArray.cmx glShader.cmx -lGL -lGLU 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/src'
+cd LablGlut/src && make opt
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.20120306/LablGlut/src'
+ocamlopt -c  glut.ml
+ocamlmklib -o lablglut wrap_glut.o glut.cmx -lglut -lGL -lGLU 
