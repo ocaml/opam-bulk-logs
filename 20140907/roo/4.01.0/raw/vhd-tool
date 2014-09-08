@@ -1109,3 +1109,37 @@ ocamlfind ocamlc -a src/uuidm.cmo -o src/uuidm.cma
 ocamlfind ocamlopt -c -g -I src -o src/uuidm.cmx src/uuidm.ml
 ocamlfind ocamlopt -a src/uuidm.cmx -o src/uuidm.cmxa
 ocamlfind ocamlopt -shared src/uuidm.cmx -o src/uuidm.cmxs
+ocamlfind ocamldep -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/test.cmx -o test/test.native
+ocamlfind ocamldep -modules test/perf.ml > test/perf.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/perf.cmo test/perf.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/perf.cmx test/perf.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/perf.cmx -o test/perf.native
+ocamlfind ocamldep -modules test/uuidtrip.ml > test/uuidtrip.ml.depends
+ocamlfind ocamlc -c -g -I src -I test -I src -o test/uuidtrip.cmo test/uuidtrip.ml
+ocamlfind ocamlopt -c -g -I src -I test -I src -o test/uuidtrip.cmx test/uuidtrip.ml
+ocamlfind ocamlopt -g -linkpkg src/uuidm.cmxa test/uuidtrip.cmx -o test/uuidtrip.native
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.mli
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cma
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.a
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmxs
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmi
+Installed /home/opam/.opam/4.01.0/lib/uuidm/uuidm.cmx
+Installed /home/opam/.opam/4.01.0/lib/uuidm/META
+Installing uuidm.0.9.5.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux):
