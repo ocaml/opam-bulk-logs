@@ -27,3 +27,57 @@ Preparing to unpack .../libxen-dev_4.4.0-0ubuntu5.1_amd64.deb ...
 Unpacking libxen-dev (4.4.0-0ubuntu5.1) ...
 Setting up libyajl2:amd64 (2.0.4-4) ...
 Setting up libxenstore3.0 (4.4.0-0ubuntu5.1) ...
+Setting up libxen-4.4 (4.4.0-0ubuntu5.1) ...
+Setting up libxen-dev (4.4.0-0ubuntu5.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install xen-evtchn -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install xen-evtchn
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lwt]
+ - install   cmdliner.0.9.5                        [required by xen-evtchn]
+ - install   lwt.2.4.5                             [required by xen-evtchn]
+ - install   xen-evtchn.1.0.5
+=== 4 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/cmdliner.0.9.5+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/lwt.2.4.5+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xen-evtchn.1.0.5+opam.tar.gz
+sending incremental file list
+sending incremental file list
+sending incremental file list
+lwt.2.4.5+opam.tar.gz
+cmdliner.0.9.5+opam.tar.gz
+xen-evtchn.1.0.5+opam.tar.gz
+
+sent 65,444 bytes  received 35 bytes  130,958.00 bytes/sec
+total size is 65,305  speedup is 1.00
+
+sent 50,631 bytes  received 35 bytes  101,332.00 bytes/sec
+total size is 50,490  speedup is 1.00
+
+sent 301,853 bytes  received 35 bytes  603,776.00 bytes/sec
+total size is 301,655  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
