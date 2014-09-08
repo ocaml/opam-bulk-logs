@@ -3216,3 +3216,319 @@ ocamlfind ocamlopt -c -g -syntax camlp4o -package variantslib.syntax -package va
 touch lib/core_kernel.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/core_random.cmx lib/array_permute.cmx lib/stringable.cmx lib/binable0.cmx lib/caml.cmx lib/t.cmx lib/with_return.cmx lib/container.cmx lib/core_printf.cmx lib/monad.cmx lib/stable_unit_test_intf.cmx lib/result.cmx lib/ordered_collection_common.cmx lib/polymorphic_compare.cmx lib/poly.cmx lib/core_list.cmx lib/nothing0.cmx lib/never_returns.cmx lib/pretty_printer.cmx lib/exn.cmx lib/source_code_position0.cmx lib/info.cmx lib/error.cmx lib/or_error.cmx lib/validate.cmx lib/option.cmx lib/avltree.cmx lib/binary_searchable_intf.cmx lib/polymorphic_compare_intf.cmx lib/int_replace_polymorphic_compare.cmx lib/binary_searchable.cmx lib/blit_intf.cmx lib/fn.cmx lib/blit.cmx lib/staged.cmx lib/common.cmx lib/comparator.cmx lib/core_array.cmx lib/core_map_intf.cmx lib/core_map.cmx lib/core_set_intf.cmx lib/core_set.cmx lib/comparable_intf.cmx lib/comparable.cmx lib/core_field.cmx lib/core_hashtbl_intf.cmx lib/int_math.cmx lib/core_hashtbl.cmx lib/invariant_intf.cmx lib/invariant.cmx lib/debug.cmx lib/union_find.cmx lib/doubly_linked.cmx lib/floatable.cmx lib/hash_queue.cmx lib/hash_set_intf.cmx lib/hash_set.cmx lib/obj_array.cmx lib/tuple_type_intf.cmx lib/tuple_type.cmx lib/pool_intf.cmx lib/word_size.cmx lib/pool.cmx lib/pooled_hashtbl.cmx lib/hashable.cmx lib/sexpable.cmx lib/identifiable.cmx lib/intable.cmx lib/robustly_comparable.cmx lib/interfaces.cmx lib/bool.cmx lib/core_char.cmx lib/core_string.cmx lib/float_intf.cmx lib/float_robust_compare.cmx lib/int_conversions.cmx lib/float.cmx lib/int_intf.cmx lib/core_int.cmx lib/core_int32.cmx lib/core_int64.cmx lib/core_lazy.cmx lib/core_nativeint.cmx lib/core_queue.cmx lib/core_sexp.cmx lib/ordering.cmx lib/ref.cmx lib/unit.cmx lib/std_internal.cmx lib/bag.cmx lib/byte_units.cmx lib/core_gc.cmx lib/bigstring.cmx lib/bigbuffer_internal.cmx lib/bigbuffer.cmx lib/bigstring_marshal.cmx lib/substring_intf.cmx lib/make_substring.cmx lib/bigsubstring.cmx lib/binable.cmx lib/binary_packing.cmx lib/quickcheck.cmx lib/stable_unit_test.cmx lib/blang.cmx lib/equal.cmx lib/bounded_int_table.cmx lib/bucket.cmx lib/commutative_group.cmx lib/core_arg.cmx lib/core_bin_prot.cmx lib/core_int63.cmx lib/core_printexc.cmx lib/stack_intf.cmx lib/core_stack.cmx lib/heap_block.cmx lib/core_weak.cmx lib/day_of_week.cmx lib/decimal.cmx lib/dequeue.cmx lib/flags_intf.cmx lib/flags.cmx lib/flat_array.cmx lib/flat_queue.cmx lib/force_once.cmx lib/fqueue.cmx lib/heap_intf.cmx lib/heap.cmx lib/hash_heap.cmx lib/host_and_port.cmx lib/in_channel.cmx lib/int_set.cmx lib/interned_string.cmx lib/linked_stack.cmx lib/memo.cmx lib/month.cmx lib/no_polymorphic_compare.cmx lib/nothing.cmx lib/only_in_test.cmx lib/out_channel.cmx lib/percent.cmx lib/pid.cmx lib/set_once.cmx lib/source_code_position.cmx lib/std_common.cmx lib/string_id.cmx lib/substring.cmx lib/thread_safe_queue.cmx lib/tuple.cmx lib/unique_id_intf.cmx lib/unique_id.cmx lib/type_equal.cmx lib/univ.cmx lib/univ_map.cmx lib/unpack_buffer.cmx lib/validated_intf.cmx lib/validated.cmx lib/std_kernel.cmx lib/std.cmx lib/binary_searchable_unit_tests.cmx lib/constrained_float.cmx lib/container_unit_tests.cmx lib/core_map_unit_tests.cmx lib/core_set_unit_tests.cmx lib/flat_array_debug.cmx lib/flat_array_unit_tests.cmx lib/flat_queue_debug.cmx lib/flat_queue_unit_tests.cmx lib/hashtbl_unit_tests.cmx lib/pool_unit_tests.cmx lib/pooled_hashtbl_unit_test.cmx lib/stable_internal.cmx lib/stable_containers.cmx lib/stable.cmx lib/stack_unit_tests.cmx -o lib/core_kernel.cmx  ; then  rm -f lib/core_kernel.mli  ; else  rm -f lib/core_kernel.mli  ; exit 1; fi
 ocamlfind ocamlopt -a -cclib -lcore_kernel_stubs lib/core_kernel.cmx -o lib/core_kernel.cmxa
 ocamlfind ocamlopt -shared -I lib lib/core_kernel.cmx -o lib/core_kernel.cmxs
+ocamlfind ocamlc -c check_caml_modify/caml_modify_stub.c
+mv caml_modify_stub.o check_caml_modify/caml_modify_stub.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o check_caml_modify/check_caml_modify_stubs check_caml_modify/caml_modify_stub.o
+ocamlfind ocamldep -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -modules check_caml_modify/caml_modify.mli > check_caml_modify/caml_modify.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -I check_caml_modify -o check_caml_modify/caml_modify.cmi check_caml_modify/caml_modify.mli
+ocamlfind ocamldep -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -modules check_caml_modify/caml_modify.ml > check_caml_modify/caml_modify.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -I check_caml_modify -o check_caml_modify/caml_modify.cmo check_caml_modify/caml_modify.ml
+ocamlfind ocamlc -pack -g check_caml_modify/caml_modify.cmo -o check_caml_modify/check_caml_modify.cmo
+ocamlfind ocamlc -a -dllib -lcheck_caml_modify_stubs -cclib -lcheck_caml_modify_stubs check_caml_modify/check_caml_modify.cmo -o check_caml_modify/check_caml_modify.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package pa_ounit.syntax -package pa_ounit -for-pack Check_caml_modify -I check_caml_modify -o check_caml_modify/caml_modify.cmx check_caml_modify/caml_modify.ml
+touch check_caml_modify/check_caml_modify.mli  ; if  ocamlfind ocamlopt -pack -g -I check_caml_modify check_caml_modify/caml_modify.cmx -o check_caml_modify/check_caml_modify.cmx  ; then  rm -f check_caml_modify/check_caml_modify.mli  ; else  rm -f check_caml_modify/check_caml_modify.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -Xlinker -cclib --wrap -cclib -Xlinker -cclib caml_modify -cclib -lcheck_caml_modify_stubs check_caml_modify/check_caml_modify.cmx -o check_caml_modify/check_caml_modify.cmxa
+ocamlfind ocamlopt -shared -cclib -Xlinker -cclib --wrap -cclib -Xlinker -cclib caml_modify -I check_caml_modify check_caml_modify/check_caml_modify.cmx -o check_caml_modify/check_caml_modify.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_params.h
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/array_permute.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/avltree.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bag.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bigbuffer_internal.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bigbuffer.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bigstring_marshal.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bigstring.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bigsubstring.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binable0.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binable.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binary_packing.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binary_searchable.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binary_searchable_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/binary_searchable_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/blang.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/blit.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/blit_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bool.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bounded_int_table.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/bucket.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/byte_units.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/caml.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/common.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/commutative_group.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/comparable_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/comparable.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/comparator.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/constrained_float.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/container.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/container_unit_tests.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_arg.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_array.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_bin_prot.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_char.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_field.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_gc.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_hashtbl_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_hashtbl.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_int32.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_int63.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_int64.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_int.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_lazy.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_list.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_map_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_map.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_map_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_nativeint.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_printexc.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_printf.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_queue.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_random.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_set_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_set.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_set_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_sexp.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_stack.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_string.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_weak.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/day_of_week.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/debug.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/decimal.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/dequeue.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/doubly_linked.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/equal.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/error.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/exn.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flags_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flags.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_array.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_array_debug.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_array_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_queue.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_queue_debug.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/flat_queue_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/floatable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/float_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/float.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/float_robust_compare.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/fn.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/force_once.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/fqueue.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hashable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hash_heap.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hash_queue.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hash_set_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hash_set.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/hashtbl_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/heap_block.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/heap_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/heap.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/host_and_port.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/identifiable.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/in_channel.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/info.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/intable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/int_conversions.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/interfaces.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/interned_string.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/int_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/int_math.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/int_replace_polymorphic_compare.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/int_set.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/invariant.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/invariant_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/linked_stack.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/make_substring.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/memo.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/monad.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/month.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/never_returns.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/no_polymorphic_compare.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/nothing0.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/nothing.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/obj_array.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/only_in_test.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/option.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/ordered_collection_common.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/ordering.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/or_error.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/out_channel.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/percent.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pid.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/poly.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/polymorphic_compare_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/polymorphic_compare.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pool.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pool_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pool_unit_tests.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pooled_hashtbl.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pooled_hashtbl_unit_test.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/pretty_printer.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/quickcheck.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/ref.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/result.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/robustly_comparable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/set_once.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/sexpable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/source_code_position0.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/source_code_position.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stable_containers.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stable_internal.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stable_unit_test_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stable_unit_test.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stack_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stack_unit_tests.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/staged.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/std_common.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/std_internal.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/std_kernel.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/std.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/stringable.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/string_id.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/substring_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/substring.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/thread_safe_queue.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/t.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/tuple.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/tuple_type.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/tuple_type_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/type_equal.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/union_find.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/unique_id_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/unique_id.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/unit.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/univ_map.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/univ.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/unpack_buffer.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/validated_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/validated.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/validate.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/with_return.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/word_size.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/libcore_kernel_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.cmi
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.cma
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.cmxa
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.a
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.cmxs
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/core_kernel.cmx
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/caml_modify.mli
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/libcheck_caml_modify_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.cmi
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.cma
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.cmxa
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.a
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.cmxs
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/check_caml_modify.cmx
+Installed /home/opam/.opam/4.01.0/lib/core_kernel/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcore_kernel_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcore_kernel_stubs.so.owner
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcheck_caml_modify_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcheck_caml_modify_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing core_kernel.109.55.02.
+Building pa_test.109.53.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ pa_test
+Package version: ..................................... 109.53.02
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+pkg_sexplib: ......................................... /home/opam/.opam/4.01.0/lib/sexplib
+pkg_core_kernel: ..................................... /home/opam/.opam/4.01.0/lib/core_kernel
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/pa_test_dummy.ml > lib/pa_test_dummy.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/pa_test_dummy.cmo lib/pa_test_dummy.ml
+ocamlfind ocamlc -a lib/pa_test_dummy.cmo -o lib/pa_test.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/pa_test_dummy.cmx lib/pa_test_dummy.ml
+ocamlfind ocamlopt -a lib/pa_test_dummy.cmx -o lib/pa_test.cmxa
+ocamlfind ocamlopt -shared -linkall lib/pa_test.cmxa -o lib/pa_test.cmxs
+ocamlfind ocamldep -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_test.mli > syntax/pa_test.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmi syntax/pa_test.mli
+ocamlfind ocamldep -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_test.ml > syntax/pa_test.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmo syntax/pa_test.ml
+ocamlfind ocamlc -a syntax/pa_test.cmo -o syntax/pa_test_syntax.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmx syntax/pa_test.ml
+ocamlfind ocamlopt -a syntax/pa_test.cmx -o syntax/pa_test_syntax.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/pa_test_syntax.cmxa -o syntax/pa_test_syntax.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.ml
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cma
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.a
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.cmi
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.cmx
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.mli
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cma
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.a
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmi
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmx
+Installed /home/opam/.opam/4.01.0/lib/pa_test/META
+Installing pa_test.109.53.02.
+Building core.109.55.02:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
