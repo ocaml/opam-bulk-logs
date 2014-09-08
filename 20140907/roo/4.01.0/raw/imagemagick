@@ -574,3 +574,68 @@ Setting up libxt-dev:amd64 (1:1.1.4-1) ...
 Setting up libmagickcore-dev (8:6.7.7.10-6ubuntu3) ...
 Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
 Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.30.7-0ubuntu1) ...
+++ opam install imagemagick -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install imagemagick
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   imagemagick.0.34
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/imagemagick.0.34+opam.tar.gz
+sending incremental file list
+imagemagick.0.34+opam.tar.gz
+
+sent 65,849 bytes  received 35 bytes  131,768.00 bytes/sec
+total size is 65,700  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building imagemagick.0.34:
+  make
+  make find_install
+ocamlc -c magick.mli
+ocamlc -c magick.ml
+gcc -fPIC -c -I"/home/opam/.opam/4.01.0/lib/ocaml" -fopenmp -I/usr/include/ImageMagick   imagemagick_wrap.c
+In file included from imagemagick_wrap.c:41:0:
+imagemagick_wrap.c: In function 'imper_getmagickquantumdepth':
+imagemagick_wrap.c:2218:40: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     value int_quantum_depth = Val_int( (int) depth );
+                                        ^
+/home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:71:36: note: in definition of macro 'Val_long'
+ #define Val_long(x)     (((intnat)(x) << 1) + 1)
+                                    ^
+imagemagick_wrap.c:2218:31: note: in expansion of macro 'Val_int'
+     value int_quantum_depth = Val_int( (int) depth );
+                               ^
+imagemagick_wrap.c: In function 'imper_getmagickquantumrange':
+imagemagick_wrap.c:2246:40: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     value int_quantum_range = Val_int( (int) range );
+                                        ^
+/home/opam/.opam/4.01.0/lib/ocaml/caml/mlvalues.h:71:36: note: in definition of macro 'Val_long'
+ #define Val_long(x)     (((intnat)(x) << 1) + 1)
+                                    ^
+imagemagick_wrap.c:2246:31: note: in expansion of macro 'Val_int'
+     value int_quantum_range = Val_int( (int) range );
+                               ^
+imagemagick_wrap.c: In function 'imper_imagetoblob_stdout':
+imagemagick_wrap.c:6713:12: warning: format '%d' expects argument of type 'int', but argument 3 has type 'size_t' [-Wformat=]
+            "\n", mime_type, blob_size);
+            ^
+imagemagick_wrap.c: In function 'ml_big_array_test':
+imagemagick_wrap.c:6949:21: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long unsigned int' [-Wformat=]
+                     sizeof(arr[0]) * CHAR_BIT);
+                     ^
+imagemagick_wrap.c:6949:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long unsigned int' [-Wformat=]
+                     sizeof(Quantum) * CHAR_BIT,  CHAR_BIT);
+                     ^
+imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+gcc -fPIC -c -I"/home/opam/.opam/4.01.0/lib/ocaml" -fopenmp -I/usr/include/ImageMagick   imagemagick_list.c
+ocamlmklib  -o  imagemagick_stubs  imagemagick_wrap.o imagemagick_list.o  \
+	     -lMagickCore  
+ocamlc -a  -o magick.cma  magick.cmo  -dllib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlopt -c magick.ml
