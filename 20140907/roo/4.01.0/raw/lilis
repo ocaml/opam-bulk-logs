@@ -1775,3 +1775,18 @@ ocamlfind ocamlc -a lilis/ls_stream.cmo lilis/ls_type.cmo lilis/ls_utils.cmo lil
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_type.cmx lilis/ls_type.ml
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_stream.cmx lilis/ls_stream.ml
 ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_utils.cmx lilis/ls_utils.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_parser.cmx lilis/ls_parser.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_lexer.cmx lilis/ls_lexer.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_engine.cmx lilis/ls_engine.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/ls_syntax.cmx lilis/ls_syntax.ml
+ocamlfind ocamlopt -c -g -I mini_calc -package batteries -I lilis -I mini_calc -o lilis/lilis.cmx lilis/lilis.ml
+ocamlfind ocamlopt -a lilis/ls_stream.cmx lilis/ls_type.cmx lilis/ls_utils.cmx lilis/ls_engine.cmx lilis/ls_parser.cmx lilis/ls_lexer.cmx lilis/ls_syntax.cmx lilis/lilis.cmx -o lilis/lilis.cmxa
+ocamlfind ocamlopt -shared lilis/lilis.cmx -o lilis/lilis.cmxs
+ocamlfind ocamldep -package batteries -modules glilis/glilis.mli > glilis/glilis.mli.depends
+ocamlfind ocamlc -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmi glilis/glilis.mli
+ocamlfind ocamldep -package batteries -modules glilis/glilis.ml > glilis/glilis.ml.depends
+ocamlfind ocamlc -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmo glilis/glilis.ml
+ocamlfind ocamlc -a glilis/glilis.cmo -o glilis/glilis.cma
+ocamlfind ocamlopt -c -g -I mini_calc -I lilis -I glilis -I glilis -I glilis -package batteries -I glilis -I lilis -o glilis/glilis.cmx glilis/glilis.ml
+ocamlfind ocamlopt -a glilis/glilis.cmx -o glilis/glilis.cmxa
+ocamlfind ocamlopt -shared glilis/glilis.cmx -o glilis/glilis.cmxs
