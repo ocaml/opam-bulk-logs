@@ -210,3 +210,265 @@ ocamlfind opt -c -o _build/src/cstubs/cstubs_errors.cmx -package str -package by
 ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_c.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_c.ml
 ocamlfind opt -c -o _build/src/cstubs/cstubs_internals.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_internals.ml
 ocamlfind opt -c -o _build/src/cstubs/cstubs_public_name.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_public_name.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_generate_ml.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_generate_ml.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs.ml
+ocamlfind opt -c -o _build/src/cstubs/cstubs_inverted.cmx -package str -package bytes    -package str -package bytes   -I _build/src/cstubs  -I _build/src/ctypes src/cstubs/cstubs_inverted.ml
+ocamlfind opt -a -linkall   -package str -package bytes   -o _build/cstubs.cmxa _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx 
+ocamlfind opt -shared -linkall   -package str -package bytes  -o _build/cstubs.cmxs _build/src/cstubs/cstubs_analysis.cmx _build/src/cstubs/cstubs_errors.cmx _build/src/cstubs/cstubs_generate_c.cmx _build/src/cstubs/cstubs_internals.cmx _build/src/cstubs/cstubs_public_name.cmx _build/src/cstubs/cstubs_generate_ml.cmx _build/src/cstubs/cstubs.cmx _build/src/cstubs/cstubs_inverted.cmx  
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/closure_properties.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/closure_properties.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/dl.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/dl.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/libffi_abi.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/libffi_abi.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/weakRef.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/weakRef.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-base/ffi.cmi    -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/ffi.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-base/foreign_basis.cmo -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind ocamlc -a   -cclib -lctypes-foreign-base_stubs -dllib -lctypes-foreign-base_stubs   -o _build/ctypes-foreign-base.cma _build/src/ctypes-foreign-base/closure_properties.cmo _build/src/ctypes-foreign-base/dl.cmo _build/src/ctypes-foreign-base/ffi_stubs.cmo _build/src/ctypes-foreign-base/libffi_abi.cmo _build/src/ctypes-foreign-base/weakRef.cmo _build/src/ctypes-foreign-base/ffi.cmo _build/src/ctypes-foreign-base/foreign_basis.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o dl_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/ctypes-foreign-base/dl_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o ffi_call_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/ctypes-foreign-base/ffi_call_stubs.c
+cd _build/src/ctypes-foreign-base && ocamlfind ocamlc -c -ccopt -fPIC -ccopt -Wall -ccopt -O3 -ccopt -I -ccopt /home/opam/opam-repository/src -ccopt -I -ccopt /home/opam/opam-repository/tests -o ffi_type_stubs.o  /home/opam/.opam/4.01.0/build/ctypes.0.3.3/src/ctypes-foreign-base/ffi_type_stubs.c
+ocamlmklib -o _build/ctypes-foreign-base_stubs _build/src/ctypes-foreign-base/dl_stubs.o _build/src/ctypes-foreign-base/ffi_call_stubs.o _build/src/ctypes-foreign-base/ffi_type_stubs.o -Wl,--no-as-needed -lffi
+Unknown option -Wl,--no-as-needed
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/closure_properties.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/closure_properties.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/dl.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/dl.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi_stubs.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi_stubs.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/libffi_abi.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/libffi_abi.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/weakRef.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/weakRef.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/ffi.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/ffi.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-base/foreign_basis.cmx        -I _build/src/ctypes-foreign-base  -I _build/src/ctypes src/ctypes-foreign-base/foreign_basis.ml
+ocamlfind opt -a -linkall     -cclib -lctypes-foreign-base_stubs -o _build/ctypes-foreign-base.cmxa _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall     -o _build/ctypes-foreign-base.cmxs _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx _build/src/ctypes-foreign-base/dl_stubs.o _build/src/ctypes-foreign-base/ffi_call_stubs.o _build/src/ctypes-foreign-base/ffi_type_stubs.o -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-threaded/foreign.cmi  -thread -package threads  -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.mli
+ocamlfind ocamlc  -thread -package threads  -thread  -c -o _build/src/ctypes-foreign-threaded/foreign.cmo -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.ml
+ocamlfind ocamlc -a  -thread   -thread -package threads -o _build/ctypes-foreign-threaded.cma _build/src/ctypes-foreign-threaded/foreign.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -c -o _build/src/ctypes-foreign-threaded/foreign.cmx  -thread -package threads  -thread  -thread -package threads  -I _build/src/ctypes-foreign-threaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-threaded/foreign.ml
+ocamlfind opt -a -linkall  -thread  -thread -package threads  -o _build/ctypes-foreign-threaded.cmxa _build/src/ctypes-foreign-threaded/foreign.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall  -thread  -thread -package threads -o _build/ctypes-foreign-threaded.cmxs _build/src/ctypes-foreign-threaded/foreign.cmx  -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-unthreaded/gc_mutex.cmo -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/gc_mutex.ml
+ocamlfind ocamlc -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmi    -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.mli
+ocamlfind ocamlc      -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmo -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.ml
+ocamlfind ocamlc -a      -o _build/ctypes-foreign-unthreaded.cma _build/src/ctypes-foreign-unthreaded/gc_mutex.cmo _build/src/ctypes-foreign-unthreaded/foreign.cmo -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -c -o _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx        -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/gc_mutex.ml
+ocamlfind opt -c -o _build/src/ctypes-foreign-unthreaded/foreign.cmx        -I _build/src/ctypes-foreign-unthreaded  -I _build/src/ctypes  -I _build/src/ctypes-foreign-base src/ctypes-foreign-unthreaded/foreign.ml
+ocamlfind opt -a -linkall      -o _build/ctypes-foreign-unthreaded.cmxa _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx _build/src/ctypes-foreign-unthreaded/foreign.cmx -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind opt -shared -linkall     -o _build/ctypes-foreign-unthreaded.cmxs _build/src/ctypes-foreign-unthreaded/gc_mutex.cmx _build/src/ctypes-foreign-unthreaded/foreign.cmx  -cclib -Wl,--no-as-needed -cclib -lffi
+ocamlfind ocamlc -c -o _build/src/ctypes-top/ctypes_printers.cmi -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -package compiler-libs     -c -o _build/src/ctypes-top/ctypes_printers.cmo -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -package compiler-libs     -c -o _build/src/ctypes-top/install_printers.cmo -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a    -package compiler-libs  -o _build/ctypes-top.cma _build/src/ctypes-top/ctypes_printers.cmo _build/src/ctypes-top/install_printers.cmo 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind opt -c -o _build/src/ctypes-top/ctypes_printers.cmx -package compiler-libs    -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/ctypes_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind opt -c -o _build/src/ctypes-top/install_printers.cmx -package compiler-libs    -package compiler-libs   -I _build/src/ctypes-top  -I _build/src/ctypes src/ctypes-top/install_printers.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind opt -a -linkall   -package compiler-libs   -o _build/ctypes-top.cmxa _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx 
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind opt -shared -linkall   -package compiler-libs  -o _build/ctypes-top.cmxs _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx  
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind install ctypes META
+Installed /home/opam/.opam/4.01.0/lib/ctypes/META
+ocamlfind install -add ctypes  _build/ctypes.cma _build/dllctypes_stubs.so _build/ctypes.cmxa _build/ctypes.cmxs _build/libctypes_stubs.a _build/ctypes.a src/ctypes/static.mli src/ctypes/primitives.mli src/ctypes/unsigned.mli src/ctypes/signed.mli src/ctypes/structs.mli src/ctypes/ctypes.mli src/ctypes/posixTypes.mli _build/src/ctypes/static.cmi _build/src/ctypes/primitives.cmi _build/src/ctypes/unsigned.cmi _build/src/ctypes/signed.cmi _build/src/ctypes/structs.cmi _build/src/ctypes/ctypes.cmi _build/src/ctypes/posixTypes.cmi src/ctypes/complex_stubs.h src/ctypes/cstubs_internals.h src/ctypes/managed_buffer_stubs.h src/ctypes/primitives.h src/ctypes/raw_pointer.h src/ctypes/type_info_stubs.h src/ctypes/unsigned_stubs.h _build/src/ctypes/common.cmx _build/src/ctypes/ctypes_path.cmx _build/src/ctypes/unsigned.cmx _build/src/ctypes/signed.cmx _build/src/ctypes/primitives.cmx _build/src/ctypes/ctypes_primitives.cmx _build/src/ctypes/ctypes_raw.cmx _build/src/ctypes/memory_stubs.cmx _build/src/ctypes/std_view_stubs.cmx _build/src/ctypes/value_printing_stubs.cmx _build/src/ctypes/bigarray_stubs.cmx _build/src/ctypes/ctypes_bigarray.cmx _build/src/ctypes/static.cmx _build/src/ctypes/structs.cmx _build/src/ctypes/structs_computed.cmx _build/src/ctypes/type_printing.cmx _build/src/ctypes/memory.cmx _build/src/ctypes/coerce.cmx _build/src/ctypes/std_views.cmx _build/src/ctypes/value_printing.cmx _build/src/ctypes/ctypes.cmx _build/src/ctypes/posixTypes.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/posixTypes.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/value_printing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/std_views.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/coerce.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/memory.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/type_printing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/structs_computed.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/structs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/static.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_bigarray.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/bigarray_stubs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/value_printing_stubs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/std_view_stubs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/memory_stubs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_raw.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_primitives.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/primitives.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/signed.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/unsigned.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_path.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/common.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/unsigned_stubs.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/type_info_stubs.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/raw_pointer.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/primitives.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/managed_buffer_stubs.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs_internals.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/complex_stubs.h
+Installed /home/opam/.opam/4.01.0/lib/ctypes/posixTypes.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/structs.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/signed.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/unsigned.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/primitives.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/static.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/posixTypes.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/structs.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/signed.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/unsigned.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/primitives.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/static.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/libctypes_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes.cma
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllctypes_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllctypes_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+ocamlfind install -add ctypes  _build/cstubs.cma  _build/cstubs.cmxa _build/cstubs.cmxs  _build/cstubs.a src/cstubs/cstubs_internals.mli src/cstubs/cstubs.mli src/cstubs/cstubs_inverted.mli _build/src/cstubs/cstubs_internals.cmi _build/src/cstubs/cstubs.cmi _build/src/cstubs/cstubs_inverted.cmi  
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs_inverted.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs_internals.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs_inverted.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs_internals.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/cstubs.cma
+ocamlfind install -add ctypes  _build/ctypes-foreign-base.cma _build/dllctypes-foreign-base_stubs.so _build/ctypes-foreign-base.cmxa _build/ctypes-foreign-base.cmxs _build/libctypes-foreign-base_stubs.a _build/ctypes-foreign-base.a src/ctypes-foreign-base/dl.mli src/ctypes-foreign-base/libffi_abi.mli _build/src/ctypes-foreign-base/dl.cmi _build/src/ctypes-foreign-base/libffi_abi.cmi  _build/src/ctypes-foreign-base/closure_properties.cmx _build/src/ctypes-foreign-base/dl.cmx _build/src/ctypes-foreign-base/ffi_stubs.cmx _build/src/ctypes-foreign-base/libffi_abi.cmx _build/src/ctypes-foreign-base/weakRef.cmx _build/src/ctypes-foreign-base/ffi.cmx _build/src/ctypes-foreign-base/foreign_basis.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/foreign_basis.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ffi.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/weakRef.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/libffi_abi.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ffi_stubs.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/dl.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/closure_properties.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/libffi_abi.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/dl.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/libffi_abi.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/dl.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-base.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/libctypes-foreign-base_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-base.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-base.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-base.cma
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllctypes-foreign-base_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllctypes-foreign-base_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+ocamlfind install -add ctypes  _build/ctypes-foreign-threaded.cma  _build/ctypes-foreign-threaded.cmxa _build/ctypes-foreign-threaded.cmxs  _build/ctypes-foreign-threaded.a src/ctypes-foreign-threaded/foreign.mli _build/src/ctypes-foreign-threaded/foreign.cmi  
+Installed /home/opam/.opam/4.01.0/lib/ctypes/foreign.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-threaded.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-threaded.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-threaded.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-threaded.cma
+ocamlfind install -add ctypes  _build/ctypes-foreign-unthreaded.cma  _build/ctypes-foreign-unthreaded.cmxa _build/ctypes-foreign-unthreaded.cmxs  _build/ctypes-foreign-unthreaded.a src/ctypes-foreign-unthreaded/foreign.mli _build/src/ctypes-foreign-unthreaded/foreign.cmi  
+ocamlfind: [WARNING] Overwriting file /home/opam/.opam/4.01.0/lib/ctypes/foreign.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/foreign.cmi
+ocamlfind: [WARNING] Overwriting file /home/opam/.opam/4.01.0/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/foreign.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-unthreaded.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-unthreaded.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-unthreaded.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-foreign-unthreaded.cma
+ocamlfind install -add ctypes  _build/ctypes-top.cma  _build/ctypes-top.cmxa _build/ctypes-top.cmxs  _build/ctypes-top.a src/ctypes-top/ctypes_printers.mli _build/src/ctypes-top/ctypes_printers.cmi  _build/src/ctypes-top/ctypes_printers.cmx _build/src/ctypes-top/install_printers.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/install_printers.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_printers.cmx
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_printers.cmi
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes_printers.mli
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.a
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cma
+Installing ctypes.0.3.3.
+Building lz4.1.0.0:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ lz4
+Package version: ..................................... 1.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_ctypes_stubs: .................................... /home/opam/.opam/4.01.0/lib/ctypes
+pkg_bytes: ........................................... /home/opam/.opam/4.01.0/lib/bytes
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+W: Cannot find source file matching module 'LZ4_bindings' in library lz4
+W: Cannot find source file matching module 'LZ4_generated' in library lz4
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ctypes.stubs -modules lib_gen/LZ4_bindgen.ml > lib_gen/LZ4_bindgen.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package ctypes.stubs -modules lib_gen/LZ4_bindings.ml > lib_gen/LZ4_bindings.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib_gen -o lib_gen/LZ4_bindings.cmo lib_gen/LZ4_bindings.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib_gen -o lib_gen/LZ4_bindgen.cmo lib_gen/LZ4_bindgen.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -linkpkg -package ctypes.stubs lib_gen/LZ4_bindings.cmo lib_gen/LZ4_bindgen.cmo -o lib_gen/LZ4_bindgen.byte
+lib_gen/LZ4_bindgen.byte
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -c lib/LZ4_stubs.c
+mv LZ4_stubs.o lib/LZ4_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlmklib -o lib/lz4_stubs -llz4 lib/LZ4_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bytes -package ctypes.stubs -modules lib/LZ4.mli > lib/LZ4.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4.cmi lib/LZ4.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bytes -package ctypes.stubs -modules lib/LZ4.ml > lib/LZ4.ml.depends
+cp -p lib_gen/LZ4_bindings.ml lib/LZ4_bindings.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bytes -package ctypes.stubs -modules lib/LZ4_bindings.ml > lib/LZ4_bindings.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bytes -package ctypes.stubs -modules lib/LZ4_generated.ml > lib/LZ4_generated.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4_bindings.cmo lib/LZ4_bindings.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4_generated.cmo lib/LZ4_generated.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4.cmo lib/LZ4.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -llz4_stubs -cclib -llz4_stubs -cclib -llz4 lib/LZ4_bindings.cmo lib/LZ4_generated.cmo lib/LZ4.cmo -o lib/lz4.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4_bindings.cmx lib/LZ4_bindings.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4_generated.cmx lib/LZ4_generated.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -ccopt -I -ccopt /home/opam/.opam/4.01.0/lib/ctypes/.. -package bytes -package ctypes.stubs -w @5@8@10@11@12@14@23@24@26@29@40 -I lib -o lib/LZ4.cmx lib/LZ4.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -llz4_stubs -cclib -llz4 lib/LZ4_bindings.cmx lib/LZ4_generated.cmx lib/LZ4.cmx -o lib/lz4.cmxa
