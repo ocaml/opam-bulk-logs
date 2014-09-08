@@ -806,3 +806,83 @@ ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.o
 ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfAdd.mli > common/cudfAdd.mli.depends
 ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmi common/cudfAdd.mli
 ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfAdd.ml > common/cudfAdd.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/cudfDiff.ml > common/cudfDiff.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/versionInfo.ml > common/versionInfo.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -modules common/url.ml > common/url.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/edosSolver.cmo common/edosSolver.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfSolver.cmo common/cudfSolver.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/input.cmo common/input.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/util.cmo common/util.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfAdd.cmo common/cudfAdd.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/cudfDiff.cmo common/cudfDiff.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/versionInfo.cmo common/versionInfo.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs    -DHASOCAMLGRAPH' -I common -I doselibs -o common/url.cmo common/url.ml
+ocamlfind ocamlc -pack common/util.cmo common/edosSolver.cmo common/cudfSolver.cmo common/url.cmo common/input.cmo common/cudfAdd.cmo common/cudfDiff.cmo common/versionInfo.cmo -o common/common.cmo
+ocamlfind ocamlc -a common/common.cmo -o common/common.cma
+# Parallel statistics: { count(total): 1(22), max: 8, min: 8, average(total): 8.000(1.318) }
+ocamlbuild  -j 10 -classic-display deb/debian.cma
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q deb/format822_lexer.mll
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_lexer.ml > deb/format822_lexer.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822.ml > deb/format822.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc deb/format822_parser.mly
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_parser.mli > deb/format822_parser.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822.cmo deb/format822.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_parser.cmi deb/format822_parser.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/format822_parser.ml > deb/format822_parser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q deb/packages_lexer.mll
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_lexer.ml > deb/packages_lexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc deb/packages_parser.mly
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_parser.mli > deb/packages_parser.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_parser.cmi deb/packages_parser.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages_parser.ml > deb/packages_parser.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/packages.ml > deb/packages.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_lexer.cmo deb/format822_lexer.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_lexer.cmo deb/packages_lexer.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/apt.ml > deb/apt.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages.cmo deb/packages.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/sources.ml > deb/sources.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/architecture.mli > deb/architecture.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/architecture.cmi deb/architecture.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/version.mli > deb/version.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/version.cmi deb/version.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/version.ml > deb/version.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debcudf.mli > deb/debcudf.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debcudf.cmi deb/debcudf.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debcudf.ml > deb/debcudf.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/sources.cmo deb/sources.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/release.mli > deb/release.mli.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/release.cmi deb/release.mli
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/release.ml > deb/release.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/architecture.ml > deb/architecture.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/debutil.ml > deb/debutil.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/evolution.ml > deb/evolution.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/edsp.ml > deb/edsp.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/apt.cmo deb/apt.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debutil.cmo deb/debutil.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules deb/printer.ml > deb/printer.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/format822_parser.cmo deb/format822_parser.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/packages_parser.cmo deb/packages_parser.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/version.cmo deb/version.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/debcudf.cmo deb/debcudf.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/release.cmo deb/release.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/architecture.cmo deb/architecture.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/evolution.cmo deb/evolution.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/edsp.cmo deb/edsp.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I deb -I doselibs -o deb/printer.cmo deb/printer.ml
+ocamlfind ocamlc -pack deb/format822.cmo deb/format822_parser.cmo deb/format822_lexer.cmo deb/packages_parser.cmo deb/packages_lexer.cmo deb/packages.cmo deb/apt.cmo deb/architecture.cmo deb/sources.cmo deb/version.cmo deb/debcudf.cmo deb/release.cmo deb/debutil.cmo deb/evolution.cmo deb/edsp.cmo deb/printer.cmo -o deb/debian.cmo
+ocamlfind ocamlc -a deb/debian.cmo -o deb/debian.cma
+# Parallel statistics: { count(total): 1(43), max: 9, min: 9, average(total): 9.000(1.186) }
+ocamlbuild  -j 10 -classic-display rpm/rpm.cma
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules rpm/hdlists.ml > rpm/hdlists.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules rpm/version.ml > rpm/version.ml.depends
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules rpm/packages.ml > rpm/packages.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/hdlists.cmo rpm/hdlists.ml
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules rpm/rpmcudf.ml > rpm/rpmcudf.ml.depends
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/packages.cmo rpm/packages.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/version.cmo rpm/version.ml
+ocamlfind ocamlc -c -w -24 -ccopt -O9 -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -I rpm -I doselibs -o rpm/rpmcudf.cmo rpm/rpmcudf.ml
+ocamlfind ocamlc -pack rpm/hdlists.cmo rpm/version.cmo rpm/packages.cmo rpm/rpmcudf.cmo -o rpm/rpm.cmo
+ocamlfind ocamlc -a rpm/rpm.cmo -o rpm/rpm.cma
+# No parallelism done
+ocamlbuild  -j 10 -classic-display opencsw/csw.cma
+ocamlfind ocamldep -package extlib -package re.pcre -package cudf -pp 'camlp4o.opt -I_build Camlp4MacroParser.cmxs' -modules opencsw/version.ml > opencsw/version.ml.depends
