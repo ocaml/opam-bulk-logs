@@ -6627,3 +6627,43 @@ ocamlfind ocamlc -package lwt -I deriving_json -c typed_array.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g typed_array.ml
 ocamlfind ocamlc -package lwt -I deriving_json -c file.mli
 ocamlfind ocamlc -package lwt -I deriving_json -c dom_html.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_html.ml
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g file.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c firebug.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g firebug.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js.ml
+sed -e "s|%%VERSION%%|`sed -e 1q ../VERSION`|" sys_js.mlp >sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c sys_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c regexp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g regexp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c cSS.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g cSS.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c url.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g url.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c form.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g form.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c xmlHttpRequest.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g xmlHttpRequest.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c event_arrows.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g event_arrows.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c json.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
+(echo "#include <stdlib.h>"; \
+	 echo "#include <stdio.h>"; \
+	 echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+	 (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml file.ml dom_events.ml firebug.ml lwt_js.ml sys_js.ml regexp.ml cSS.ml url.ml form.ml xmlHttpRequest.ml event_arrows.ml lwt_js_events.ml json.ml webGL.ml webSockets.ml keycode.ml | \
+	  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
