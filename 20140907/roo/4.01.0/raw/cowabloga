@@ -1102,3 +1102,37 @@ ocamlfind ocamlc -c -g -package uutf -I src -o src/jsonm.cmo src/jsonm.ml
 ocamlfind ocamlc -a src/jsonm.cmo -o src/jsonm.cma
 ocamlfind ocamlopt -c -g -package uutf -I src -o src/jsonm.cmx src/jsonm.ml
 ocamlfind ocamlopt -a src/jsonm.cmx -o src/jsonm.cmxa
+ocamlfind ocamlopt -shared src/jsonm.cmx -o src/jsonm.cmxs
+ocamlfind ocamldep -package uutf -package unix -modules test/jsontrip.ml > test/jsontrip.ml.depends
+ocamlfind ocamlc -c -g -I src -package uutf -package unix -I test -I src -o test/jsontrip.cmo test/jsontrip.ml
+ocamlfind ocamlopt -c -g -I src -package uutf -package unix -I test -I src -o test/jsontrip.cmx test/jsontrip.ml
+ocamlfind ocamlopt -g -linkpkg -package uutf -package unix src/jsonm.cmxa test/jsontrip.cmx -o test/jsontrip.native
+ocamlfind ocamldep -package uutf -package unix -modules test/ocamltweets.ml > test/ocamltweets.ml.depends
+ocamlfind ocamlc -c -g -I src -package uutf -package unix -I test -I src -o test/ocamltweets.cmo test/ocamltweets.ml
+ocamlfind ocamlopt -c -g -I src -package uutf -package unix -I test -I src -o test/ocamltweets.cmx test/ocamltweets.ml
+ocamlfind ocamlopt -g -linkpkg -package uutf -package unix src/jsonm.cmxa test/ocamltweets.cmx -o test/ocamltweets.native
+ocamlfind ocamldep -package uutf -package unix -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package uutf -package unix -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlopt -c -g -I src -package uutf -package unix -I test -I src -o test/test.cmx test/test.ml
+ocamlfind ocamlopt -g -linkpkg -package uutf src/jsonm.cmxa test/test.cmx -o test/test.native
+ocamlfind ocamldep -package uutf -package unix -modules test/jtree.ml > test/jtree.ml.depends
+ocamlfind ocamlc -c -g -I src -package uutf -package unix -I test -I src -o test/jtree.cmo test/jtree.ml
+ocamlfind ocamlopt -c -g -I src -package uutf -package unix -I test -I src -o test/jtree.cmx test/jtree.ml
+ocamlfind ocamlopt -g -linkpkg -package uutf src/jsonm.cmxa test/jtree.cmx -o test/jtree.native
+ocamlfind ocamldep -package uutf -package unix -modules test/examples.ml > test/examples.ml.depends
+ocamlfind ocamlc -c -g -I src -package uutf -package unix -I test -I src -o test/examples.cmo test/examples.ml
+ocamlfind ocamlopt -c -g -I src -package uutf -package unix -I test -I src -o test/examples.cmx test/examples.ml
+ocamlfind ocamlopt -g -linkpkg -package uutf -package unix src/jsonm.cmxa test/examples.cmx -o test/examples.native
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.mli
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.cma
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.a
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.cmxs
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.cmi
+Installed /home/opam/.opam/4.01.0/lib/jsonm/jsonm.cmx
+Installed /home/opam/.opam/4.01.0/lib/jsonm/META
+Installing jsonm.0.9.1.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --enable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
