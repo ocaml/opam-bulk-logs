@@ -1067,3 +1067,58 @@ ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_oop.ppo pa_oop.ml
 ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_oop.ppo
 rm -f pa_oop.ppo
 ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_sml.ppo pa_sml.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_sml.ppo
+rm -f pa_sml.ppo
+ocamlrun ../boot/camlp5 -nolib -I ../boot pa_r.cmo pa_rp.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_lispr.ppo pa_lispr.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_lispr.ppo
+rm -f pa_lispr.ppo
+make --no-print-directory -f Makefile.withnew pa_lisp.cmo
+ocamlrun ../main/camlp5 -nolib -I ../meta -I ../etc ./pa_lispr.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_lisp.ppo pa_lisp.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_lisp.ppo
+rm -f pa_lisp.ppo
+ocamlrun ../boot/camlp5 -nolib -I ../boot pa_r.cmo pa_rp.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_schemer.ppo pa_schemer.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_schemer.ppo
+rm -f pa_schemer.ppo
+make --no-print-directory -f Makefile.withnew pa_scheme.cmo
+ocamlrun ../main/camlp5 -nolib -I ../meta -I ../etc ./pa_schemer.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_scheme.ppo pa_scheme.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_scheme.ppo
+rm -f pa_scheme.ppo
+make --no-print-directory -f Makefile.withnew pa_extfold.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pa_extfold.ppo pa_extfold.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_extfold.ppo
+rm -f pa_extfold.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extfun.ppo pa_extfun.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_extfun.ppo
+rm -f pa_extfun.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extprint.ppo pa_extprint.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_extprint.ppo
+rm -f pa_extprint.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_lefteval.ppo pa_lefteval.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_lefteval.ppo
+rm -f pa_lefteval.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_mkast.ppo pa_mkast.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_mkast.ppo
+rm -f pa_mkast.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_mktest.ppo pa_mktest.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_mktest.ppo
+rm -f pa_mktest.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_pprintf.ppo pa_pprintf.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_pprintf.ppo
+rm -f pa_pprintf.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_pragma.ppo pa_pragma.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_pragma.ppo
+rm -f pa_pragma.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_reloc.ppo pa_reloc.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_reloc.ppo
+rm -f pa_reloc.ppo
+make --no-print-directory -f Makefile.withnew pr_r.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_r.ppo pr_r.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_r.ppo
+rm -f pr_r.ppo
+make --no-print-directory -f Makefile.withnew pr_ro.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_ro.ppo pr_ro.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_ro.ppo
+rm -f pr_ro.ppo
+make --no-print-directory -f Makefile.withnew pr_rp.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_rp.ppo pr_rp.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_rp.ppo
