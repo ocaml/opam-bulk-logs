@@ -58,3 +58,48 @@ Building react.1.2.0:
 ocamlfind ocamldep -modules src/react.ml > src/react.ml.depends
 ocamlfind ocamldep -modules src/react.mli > src/react.mli.depends
 ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmi src/react.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/react.cmx src/react.ml
+ocamlfind ocamlopt -a src/react.cmx -o src/react.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/react.cmo src/react.ml
+ocamlfind ocamlc -a src/react.cmo -o src/react.cma
+ocamlfind ocamlopt -shared src/react.cmx -o src/react.cmxs
+ocamlfind ocamldep -package compiler-libs.toplevel -modules src/react_top.ml > src/react_top.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmo src/react_top.ml
++ ocamlfind ocamlc -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmo src/react_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmx src/react_top.ml
++ ocamlfind ocamlopt -c -annot -bin-annot -package compiler-libs.toplevel -I src -I test -o src/react_top.cmx src/react_top.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxa
++ ocamlfind ocamlopt -a -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxa
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
++ ocamlfind ocamlc -a -package compiler-libs.toplevel src/react_top.cmo -o src/react_top.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
++ ocamlfind ocamlopt -shared -package compiler-libs.toplevel src/react_top.cmx -o src/react_top.cmxs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+Installing react.1.2.0.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building lwt.2.4.5:
+  ./configure --disable-libev --enable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib --disable-text
+  make build
+  make install
