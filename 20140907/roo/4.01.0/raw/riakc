@@ -5650,3 +5650,46 @@ ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bi
 	request.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
 	response.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	opts.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o  -c \
+	conn.ml
+ocamlfind ocamlc -pack -o riakc.cmo pb_robj.cmo pb_response.cmo robj.cmo request.cmo response.cmo opts.cmo conn.cmo
+ocamlfind ocamlc -package core,async,async_core,async_unix,bitstring,bitstring.syntax,protobuf -syntax camlp4o -custom -a -thread -I +camlp4 -o riakc.cma riakc.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/riakc.2.0.0/lib/riakc'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/riakc.2.0.0/lib'
+make -C examples
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/riakc.2.0.0/examples'
+../lib/Ocamlrules.mk.in:76: warning: overriding commands for target `clean'
+Makefile:62: warning: ignoring old commands for target `clean'
+ocamlfind ocamldep -package riakc   ping.ml client_id.ml server_info.ml list_buckets.ml list_keys.ml bucket_props.ml get.ml put.ml delete.ml  > .d
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/riakc.2.0.0/examples'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/riakc.2.0.0/examples'
+../lib/Ocamlrules.mk.in:76: warning: overriding commands for target `clean'
+Makefile:62: warning: ignoring old commands for target `clean'
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	ping.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o ping.native ping.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	client_id.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o client_id.native client_id.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	server_info.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o server_info.native server_info.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	list_buckets.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o list_buckets.native list_buckets.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	list_keys.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o list_keys.native list_keys.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	bucket_props.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o bucket_props.native bucket_props.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	get.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o get.native get.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	put.ml
+ocamlfind ocamlopt -package riakc -thread -linkpkg -o put.native put.cmx
+ocamlfind ocamlopt -thread -I +camlp4 -package riakc  -c \
+	delete.ml
