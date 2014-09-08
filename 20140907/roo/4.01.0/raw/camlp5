@@ -925,3 +925,177 @@ ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I
 rm -f parserify.ppi
 ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o parserify.ppo parserify.ml
 ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl parserify.ppo
+rm -f parserify.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o argl.ppi argl.mli
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -intf argl.ppi
+rm -f argl.ppi
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o argl.ppo argl.ml
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl argl.ppo
+rm -f argl.ppo
+OTOP=../ocaml_stuff/4.01.0 OVERSION=4.01.0 OLIBDIR="/home/opam/.opam/4.01.0/lib/ocaml" ../tools/mkcrc.sh
+ocamlc.opt -c -impl crc.tmp
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o main.ppo main.ml
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl main.ppo
+rm -f main.ppo
+ocamlc.opt -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing ../boot/versdep.cmo ../boot/ploc.cmo ../boot/plexing.cmo ../boot/plexer.cmo ../boot/fstream.cmo ../boot/gramext.cmo ../boot/grammar.cmo ../boot/diff.cmo ../boot/extfold.cmo ../boot/extfun.cmo ../boot/pretty.cmo ../boot/pprintf.cmo ../boot/eprinter.cmo ../ocaml_stuff/4.01.0/utils/pconfig.cmo quotation.cmo prtools.cmo ast2pt.cmo reloc.cmo pcaml.cmo exparser.cmo parserify.cmo argl.cmo ../boot/stdpp.cmo ../boot/token.cmo crc.cmo main.cmo -a -o camlp5.cma
+ocamlc.opt ../odyl/odyl.cma camlp5.cma ../odyl/odyl.cmo -linkall -o camlp5
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o q_MLast.ppo q_MLast.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl q_MLast.ppo
+rm -f q_MLast.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o q_ast.ppo q_ast.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl q_ast.ppo
+rm -f q_ast.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_r.ppo pa_r.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_r.ppo
+rm -f pa_r.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_rp.ppo pa_rp.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_rp.ppo
+rm -f pa_rp.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_macro.ppo pa_macro.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_macro.ppo
+rm -f pa_macro.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_fstream.ppo pa_fstream.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_fstream.ppo
+rm -f pa_fstream.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extend.ppo pa_extend.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_extend.ppo
+rm -f pa_extend.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extend_m.ppo pa_extend_m.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_extend_m.ppo
+rm -f pa_extend_m.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pr_dump.ppo pr_dump.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pr_dump.ppo
+rm -f pr_dump.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_lexer.ppo pa_lexer.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -I ../ocaml_stuff/4.01.0/utils -c -impl pa_lexer.ppo
+rm -f pa_lexer.ppo
+rm -f camlp5r
+cd ../main; make CAMLP5=../meta/camlp5r CAMLP5M="-I ../meta pa_r.cmo pa_rp.cmo pr_dump.cmo"
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+ocamlc.opt ../odyl/odyl.cma camlp5.cma -I ../meta pa_r.cmo pa_rp.cmo pr_dump.cmo ../odyl/odyl.cmo -linkall -o ../meta/camlp5r
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+make compare
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[3]: Nothing to be done for `compare'.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+Fixpoint reached, bootstrap succeeded.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+make out
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+set -e; cd ocaml_stuff; make; cd ..
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff'
+set -e; \
+	for i in ./4.01.0/utils ./4.01.0/parsing; do \
+	  cwd=`pwd`; \
+	  cd $i; make all EXE= OCAMLN=ocaml; \
+	  cd $cwd; \
+        done
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff/4.01.0/utils'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff/4.01.0/utils'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff/4.01.0/parsing'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff/4.01.0/parsing'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/ocaml_stuff'
+set -e; for i in lib odyl main meta etc top ocpp man; do cd $i; make all; cd ..; done
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/etc'
+ocamlrun ../boot/camlp5r -nolib -I ../boot pa_macro.cmo -mode S -o pa_o.ppo pa_o.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_o.ppo
+rm -f pa_o.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_op.ppo pa_op.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_op.ppo
+rm -f pa_op.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_oop.ppo pa_oop.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_oop.ppo
+rm -f pa_oop.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_sml.ppo pa_sml.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_sml.ppo
+rm -f pa_sml.ppo
+ocamlrun ../boot/camlp5 -nolib -I ../boot pa_r.cmo pa_rp.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_lispr.ppo pa_lispr.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_lispr.ppo
+rm -f pa_lispr.ppo
+make --no-print-directory -f Makefile.withnew pa_lisp.cmo
+ocamlrun ../main/camlp5 -nolib -I ../meta -I ../etc ./pa_lispr.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_lisp.ppo pa_lisp.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_lisp.ppo
+rm -f pa_lisp.ppo
+ocamlrun ../boot/camlp5 -nolib -I ../boot pa_r.cmo pa_rp.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_schemer.ppo pa_schemer.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_schemer.ppo
+rm -f pa_schemer.ppo
+make --no-print-directory -f Makefile.withnew pa_scheme.cmo
+ocamlrun ../main/camlp5 -nolib -I ../meta -I ../etc ./pa_schemer.cmo pa_extend.cmo q_MLast.cmo pr_dump.cmo -mode S -o pa_scheme.ppo pa_scheme.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_scheme.ppo
+rm -f pa_scheme.ppo
+make --no-print-directory -f Makefile.withnew pa_extfold.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pa_extfold.ppo pa_extfold.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pa_extfold.ppo
+rm -f pa_extfold.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extfun.ppo pa_extfun.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_extfun.ppo
+rm -f pa_extfun.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_extprint.ppo pa_extprint.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_extprint.ppo
+rm -f pa_extprint.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_lefteval.ppo pa_lefteval.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_lefteval.ppo
+rm -f pa_lefteval.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_mkast.ppo pa_mkast.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_mkast.ppo
+rm -f pa_mkast.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_mktest.ppo pa_mktest.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_mktest.ppo
+rm -f pa_mktest.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_pprintf.ppo pa_pprintf.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_pprintf.ppo
+rm -f pa_pprintf.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_pragma.ppo pa_pragma.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_pragma.ppo
+rm -f pa_pragma.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_reloc.ppo pa_reloc.ml
+ocamlc.opt -warn-error A -I ../main -I ../boot -c -impl pa_reloc.ppo
+rm -f pa_reloc.ppo
+make --no-print-directory -f Makefile.withnew pr_r.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_r.ppo pr_r.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_r.ppo
+rm -f pr_r.ppo
+make --no-print-directory -f Makefile.withnew pr_ro.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_ro.ppo pr_ro.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_ro.ppo
+rm -f pr_ro.ppo
+make --no-print-directory -f Makefile.withnew pr_rp.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_rp.ppo pr_rp.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_rp.ppo
+rm -f pr_rp.ppo
+make --no-print-directory -f Makefile.withnew pr_o.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_o.ppo pr_o.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_o.ppo
+rm -f pr_o.ppo
+make --no-print-directory -f Makefile.withnew pr_op.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_op.ppo pr_op.ml
+ocamlc.opt -warn-error A -I ../main -I ../meta -I ../lib -c -impl pr_op.ppo
+rm -f pr_op.ppo
+make --no-print-directory -f Makefile.withnew pr_scheme.cmo
+ocamlrun ../meta/camlp5r -nolib -I ../meta -I ../etc -mode S -o pr_scheme.ppo pr_scheme.ml
