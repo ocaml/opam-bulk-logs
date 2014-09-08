@@ -4838,3 +4838,19 @@ Building stog-rdf.0.11.0:
 if test -f `dirname stog_rdf.ml`/`basename stog_rdf.ml .ml`.mli && test ! -f `dirname stog_rdf.ml`/`basename stog_rdf.ml .ml`.cmi ; then \
 	ocamlfind ocamlc -I +ocamldoc -g -annot -package netstring,stog,rdf,config-file -rectypes -c `dirname stog_rdf.ml`/`basename stog_rdf.ml .ml`.mli; fi
 ocamlfind ocamlc -I +ocamldoc -g -annot -package netstring,stog,rdf,config-file -rectypes -c stog_rdf.ml
+ocamlfind ocamlc -a -package rdf -o stog_rdf.cma \
+	-I +ocamldoc stog_rdf.cmo
+ocamlfind ocamlopt -I +ocamldoc -g -annot -package netstring,stog,rdf,config-file -rectypes -c stog_rdf.ml
+ocamlfind ocamlopt `ocamlfind query -predicates native rdf -i-format -r | grep -v netstring` -shared -o stog_rdf.cmxs  \
+	-I +ocamldoc stog_rdf.cmx
+ocamlfind ocamlopt -a -package rdf -o stog_rdf.cmxa \
+	-I +ocamldoc stog_rdf.cmx
+ocamlfind install stog-rdf META \
+	stog_rdf.cmxs stog_rdf.cma stog_rdf.cmxa stog_rdf.a stog_rdf.cmi
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/stog_rdf.cmi
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/stog_rdf.a
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/stog_rdf.cmxa
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/stog_rdf.cma
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/stog_rdf.cmxs
+Installed /home/opam/.opam/4.01.0/lib/stog-rdf/META
+Installing stog-rdf.0.11.0.
