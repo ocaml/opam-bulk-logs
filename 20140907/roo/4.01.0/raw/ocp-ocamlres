@@ -97,3 +97,11 @@ cp src/oCamlResScanners.ml  build/oCamlResScanners.ml
 ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
 cp src/oCamlResSubFormats.ml  build/oCamlResSubFormats.ml
 ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+cp src/oCamlResFormats.ml  build/oCamlResFormats.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+cp src/oCamlResRegistry.ml  build/oCamlResRegistry.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlc -a -package unix,str,pprint,dynlink build/oCamlRes.cmo build/oCamlResScanners.cmo build/oCamlResSubFormats.cmo build/oCamlResFormats.cmo build/oCamlResRegistry.cmo -o build/ocplib-ocamlres.cma
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlRes.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
