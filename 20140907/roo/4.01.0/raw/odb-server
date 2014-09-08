@@ -106,3 +106,19 @@ ocamlc -g  -I +threads -annot -thread -c odb_doc.ml
 if test -f `dirname odb_tools.ml`/`basename odb_tools.ml .ml`.mli && test ! -f `dirname odb_tools.ml`/`basename odb_tools.ml .ml`.cmi ; then \
 	ocamlc -g  -I +threads -annot -thread -c `dirname odb_tools.ml`/`basename odb_tools.ml .ml`.mli; fi
 ocamlc -g  -I +threads -annot -thread -c odb_tools.ml
+if test -f `dirname odb_project_tool.ml`/`basename odb_project_tool.ml .ml`.mli && test ! -f `dirname odb_project_tool.ml`/`basename odb_project_tool.ml .ml`.cmi ; then \
+	ocamlc -g  -I +threads -annot -thread -c `dirname odb_project_tool.ml`/`basename odb_project_tool.ml .ml`.mli; fi
+ocamlc -g  -I +threads -annot -thread -c odb_project_tool.ml
+if test -f `dirname odb_server.ml`/`basename odb_server.ml .ml`.mli && test ! -f `dirname odb_server.ml`/`basename odb_server.ml .ml`.cmi ; then \
+	ocamlc -g  -I +threads -annot -thread -c `dirname odb_server.ml`/`basename odb_server.ml .ml`.mli; fi
+ocamlc -g  -I +threads -annot -thread -c odb_server.ml
+ocamlc -g -a -o odb.cma odb_config.cmo odb_misc.cmo odb_file.cmo odb_commands.cmo odb_comm.cmo odb_project_types.cmo odb_project_parser.cmo odb_project_lexer.cmo odb_project.cmo odb_client.cmo odb_doc.cmo odb_tools.cmo odb_project_tool.cmo odb_server.cmo
+ocamlc -g -linkall -o odb-server.byte -I +threads -annot -thread unix.cma threads.cma dynlink.cma str.cma \
+	 odb.cma server.cmo
+ocamlc -g -o odb-client.byte -I +threads -annot -thread unix.cma threads.cma dynlink.cma str.cma odb.cma client.cmo
+ocamlopt -g -shared -o plugins/ocamlwc.cmxs  -I +threads -annot -thread plugins/ocamlwc.ml
+mkdir -p /home/opam/.opam/4.01.0/lib/odb-server
+cp -f odb_config.cmi odb_misc.cmi odb_file.cmi odb_commands.cmi odb_comm.cmi odb_project_types.cmi odb_project_parser.cmi odb_project_lexer.cmi odb_project.cmi odb_client.cmi odb_doc.cmi odb_tools.cmi odb_project_tool.cmi odb_server.cmi odb.cmxa odb.cma odb.a \
+	`ls server.cmi | grep -v server.cmi` /home/opam/.opam/4.01.0/lib/odb-server
+cp -f odb-server odb-client  /home/opam/.opam/4.01.0/bin
+Installing odb-server.0.1.
