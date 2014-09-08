@@ -6218,3 +6218,22 @@ ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojso
 ocamlfind ocamldep -syntax camlp4o -package cow,cow.syntax -modules pages.mli > pages.mli.depends
 ocamlfind ocamldep -package lwt,re -modules uri_paths.mli > uri_paths.mli.depends
 ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -o bridge.cmi bridge.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -o config.cmo config.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,yojson,unix -o files.cmi files.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -o filesys.cmo filesys.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -o kernel.cmi kernel.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package cow,cow.syntax -o pages.cmi pages.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package lwt,re -o uri_paths.cmi uri_paths.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package findlib,cow,lwt.syntax,cohttp.lwt,websocket,iocaml-kernel,uuidm,yojson -o iocamlserver.cmo iocamlserver.ml
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -modules bridge.ml > bridge.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,yojson,unix -modules files.ml > files.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -modules kernel.ml > kernel.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package cow,cow.syntax -modules pages.ml > pages.ml.depends
+ocamlfind ocamldep -package lwt,re -modules uri_paths.ml > uri_paths.ml.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,uri,websocket,iocaml-kernel,yojson -o bridge.cmo bridge.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,yojson,unix -o files.cmo files.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package lwt.syntax,iocaml-kernel,uuidm,yojson -o kernel.cmo kernel.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -syntax camlp4o -package cow,cow.syntax -o pages.cmo pages.ml
+ocamlfind ocamlc -c -g -annot -bin-annot -principal -strict-sequence -package lwt,re -o uri_paths.cmo uri_paths.ml
+ocamlfind ocamlc -linkpkg -g -package findlib,cow,lwt.unix,cohttp,websocket,iocaml-kernel,uuidm,yojson kernel.cmo uri_paths.cmo bridge.cmo config.cmo files.cmo filesys.cmo pages.cmo iocamlserver.cmo -o iocamlserver.byte
+Installing iocaml.0.4.6.
