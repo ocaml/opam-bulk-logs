@@ -12246,3 +12246,8 @@ coqc  -R lib/coq Why lib/coq/WhyCM.v
 coqc  -R lib/coq Why lib/coq/Why.v
 coqc  -R lib/coq Why lib/coq/WhyReal.v
 coqc -R /home/opam/.opam/4.01.0/lib/why3/lib/why3/coq Why3 -R lib/coq Why lib/coq/Jessie_memory_model.v
+WHYLIB=lib bin/why.opt --dir lib/coq --coq-v8 -coq-preamble \
+        "Require Export Reals. Require Export Why." \
+        --no-coq-use-dp lib/why/jessie.why
+coqc  -R lib/coq Why lib/coq/jessie_why.v
+ocamlopt.opt -w Z -warn-error A -dtypes -I src -I jc -I c -I java -I intf -I tools -I mix -I ml -I /home/opam/.opam/4.01.0/lib/lablgtk2 -I +threads -I /home/opam/.opam/4.01.0/lib/ocamlgraph -o bin/why2html.opt tools/why2html.ml
