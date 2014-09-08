@@ -4765,3 +4765,17 @@ ocamlfind ocamldep -package yojson -package threads -package str -package sexpli
 ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -syntax camlp4o -modules mocml/Parser.ml > mocml/Parser.ml.depends
 ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -syntax camlp4o -modules mocml/TypAst.ml > mocml/TypAst.ml.depends
 ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -syntax camlp4o -thread -I mocml -o mocml/Parser.cmo mocml/Parser.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q mocml/TypLexer.mll
+ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -modules mocml/TypLexer.ml > mocml/TypLexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc mocml/TypParser.mly
++ /home/opam/.opam/4.01.0/bin/ocamlyacc mocml/TypParser.mly
+1 shift/reduce conflict.
+ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -modules mocml/TypParser.mli > mocml/TypParser.mli.depends
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -syntax camlp4o -thread -I mocml -o mocml/TypAst.cmo mocml/TypAst.ml
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -thread -I mocml -o mocml/TypParser.cmi mocml/TypParser.mli
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -thread -I mocml -o mocml/TypLexer.cmo mocml/TypLexer.ml
+ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -modules mocml/qml2.ml > mocml/qml2.ml.depends
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -thread -I mocml -o mocml/helpers.cmo mocml/helpers.ml
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -syntax camlp4o -thread -I mocml -o mocml/ParseYaml.cmo mocml/ParseYaml.ml
+ocamlfind ocamldep -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -modules mocml/qml.ml > mocml/qml.ml.depends
+ocamlfind ocamlc -c -g -package yojson -package threads -package str -package sexplib.syntax -package sexplib -package core_kernel -thread -I mocml -o mocml/qml.cmo mocml/qml.ml
