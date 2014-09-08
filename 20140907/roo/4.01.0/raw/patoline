@@ -177,3 +177,43 @@ ocamlc -I ../dyplib -o dypgen dyp.cma argument.cmo extract_type.cmo dypgen_parse
 ocamlopt -I ../dyplib -c argument.ml
 ocamlopt -I ../dyplib -c extract_type.ml
 ocamlopt -I ../dyplib -c dypgen_parser.ml
+ocamlopt -I ../dyplib -c dypgen_lexer.ml
+ocamlopt -I ../dyplib -c insert_linenum.ml
+ocamlopt -I ../dyplib -c dypgen.ml
+ocamlopt -I ../dyplib -o dypgen.opt dyp.cmxa argument.cmx extract_type.cmx dypgen_parser.cmx dypgen_lexer.cmx insert_linenum.cmx dypgen.cmx
+rm dypgen_lexer.ml extract_type.ml insert_linenum.ml
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dypgen'
+mkdir -p /home/opam/.opam/4.01.0/bin
+cp dypgen/dypgen.opt /home/opam/.opam/4.01.0/bin
+install -d /home/opam/.opam/4.01.0/bin
+install -m 755 dypgen/dypgen /home/opam/.opam/4.01.0/bin
+install -m 755 dyp2gram.pl /home/opam/.opam/4.01.0/bin/dyp2gram
+install -d /home/opam/.opam/4.01.0/man/man1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dypgen.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dypgen.opt.1
+install -m 644 doc/dypgen.1 /home/opam/.opam/4.01.0/man/man1/dyp2gram.1
+cd dyplib; make install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+ocamlfind remove -destdir /home/opam/.opam/4.01.0/lib dyp
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/dyp
+install -d /home/opam/.opam/4.01.0/lib
+ocamlfind install -destdir /home/opam/.opam/4.01.0/lib dyp META dyp.cma dyp.cmxa dyp.a dyp.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.a
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dyp/dyp.cma
+Installed /home/opam/.opam/4.01.0/lib/dyp/META
+chmod a-x /home/opam/.opam/4.01.0/lib/dyp/META #why is this needed ?
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/dypgen.20120619-1/dyplib'
+Installing dypgen.20120619-1.
+Applying opam.patch.
+patching file OMakefile
+Applying fam.patch.
+patching file lib/configure/Configure.om
+Applying readline.patch.
+patching file lib/configure/readline.om
+Building omake.0.9.8.6-0.rc1:
+  make bootstrap PREFIX=/home/opam/.opam/4.01.0
+  make all PREFIX=/home/opam/.opam/4.01.0
+  make install PREFIX=/home/opam/.opam/4.01.0
+mkdir -p boot
