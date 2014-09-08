@@ -225,3 +225,69 @@ make -f Makefile-lco all
 make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
 ocamlc  -c  sig_env.ml
 ocamlc  -c  lco_interpreter.mli
+ocamlc  -c  lco_ctrl_tree.ml
+ocamlc  -c  rml_machine.ml
+ocamlc  -c  implem_lco_ctrl_tree_record.ml
+../compiler/rmlc -I ../stdlib -d lco -no_reactivity_warning -runtime Lco ../stdlib/rml_list.rml
+ocamlc  -c  -I lco -o lco/rml_list.cmo lco/rml_list.ml
+cp ../stdlib/thread/async_body.ml lco/async_body.ml
+ocamlc -thread -c  -I lco -o lco/async_body.cmo lco/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lco -no_reactivity_warning -runtime Lco ../stdlib/thread/async.rml
+ocamlc  -c  -I lco -o lco/async.cmo lco/async.ml
+ocamlc  -a -o lco/rmllib.cma sig_env.cmo lco_ctrl_tree.cmo rml_machine.cmo implem_lco_ctrl_tree_record.cmo lco/rml_list.cmo lco/async_body.cmo lco/async.cmo
+ocamlopt  -c  sig_env.ml
+ocamlopt  -c  lco_ctrl_tree.ml
+ocamlopt  -c  rml_machine.ml
+ocamlopt  -c  implem_lco_ctrl_tree_record.ml
+ocamlopt  -c  -I lco -o lco/rml_list.cmx lco/rml_list.ml
+ocamlopt -thread -c  -I lco -o lco/async_body.cmx lco/async_body.ml
+ocamlopt  -c  -I lco -o lco/async.cmx lco/async.ml
+ocamlopt  -a -o lco/rmllib.cmxa sig_env.cmx lco_ctrl_tree.cmx rml_machine.cmx implem_lco_ctrl_tree_record.cmx lco/rml_list.cmx lco/async_body.cmx lco/async.cmx
+rm lco/async.ml lco/async_body.ml lco/rml_list.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+make -f Makefile-lco_n all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+ocamlc  -c  lco_ctrl_tree_n.ml
+ocamlc  -c  implem_lco_ctrl_tree_n_record.ml
+../compiler/rmlc -I ../stdlib -d lco_n -no_reactivity_warning -runtime Lco_n ../stdlib/rml_list.rml
+ocamlc  -c  -I lco_n -o lco_n/rml_list.cmo lco_n/rml_list.ml
+cp ../stdlib/thread/async_body.ml lco_n/async_body.ml
+ocamlc -thread -c  -I lco_n -o lco_n/async_body.cmo lco_n/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lco_n -no_reactivity_warning -runtime Lco_n ../stdlib/thread/async.rml
+ocamlc  -c  -I lco_n -o lco_n/async.cmo lco_n/async.ml
+ocamlc  -a -o lco_n/rmllib.cma sig_env.cmo lco_ctrl_tree_n.cmo rml_machine.cmo implem_lco_ctrl_tree_n_record.cmo lco_n/rml_list.cmo lco_n/async_body.cmo lco_n/async.cmo
+ocamlopt  -c  lco_ctrl_tree_n.ml
+ocamlopt  -c  implem_lco_ctrl_tree_n_record.ml
+ocamlopt  -c  -I lco_n -o lco_n/rml_list.cmx lco_n/rml_list.ml
+ocamlopt -thread -c  -I lco_n -o lco_n/async_body.cmx lco_n/async_body.ml
+ocamlopt  -c  -I lco_n -o lco_n/async.cmx lco_n/async.ml
+ocamlopt  -a -o lco_n/rmllib.cmxa sig_env.cmx lco_ctrl_tree_n.cmx rml_machine.cmx implem_lco_ctrl_tree_n_record.cmx lco_n/rml_list.cmx lco_n/async_body.cmx lco_n/async.cmx
+rm lco_n/async_body.ml lco_n/rml_list.ml lco_n/async.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+make -f Makefile-lco_class all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+ocamlc  -c  implem_lco_ctrl_tree_class.ml
+../compiler/rmlc -I ../stdlib -d lco_class -no_reactivity_warning -runtime Lco_class ../stdlib/rml_list.rml
+ocamlc  -c  -I lco_class -o lco_class/rml_list.cmo lco_class/rml_list.ml
+cp ../stdlib/thread/async_body.ml lco_class/async_body.ml
+ocamlc -thread -c  -I lco_class -o lco_class/async_body.cmo lco_class/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lco_class -no_reactivity_warning -runtime Lco_class ../stdlib/thread/async.rml
+ocamlc  -c  -I lco_class -o lco_class/async.cmo lco_class/async.ml
+ocamlc  -a -o lco_class/rmllib.cma sig_env.cmo lco_ctrl_tree.cmo rml_machine.cmo implem_lco_ctrl_tree_class.cmo lco_class/rml_list.cmo lco_class/async_body.cmo lco_class/async.cmo
+ocamlopt  -c  implem_lco_ctrl_tree_class.ml
+ocamlopt  -c  -I lco_class -o lco_class/rml_list.cmx lco_class/rml_list.ml
+ocamlopt -thread -c  -I lco_class -o lco_class/async_body.cmx lco_class/async_body.ml
+ocamlopt  -c  -I lco_class -o lco_class/async.cmx lco_class/async.ml
+ocamlopt  -a -o lco_class/rmllib.cmxa sig_env.cmx lco_ctrl_tree.cmx rml_machine.cmx implem_lco_ctrl_tree_class.cmx lco_class/rml_list.cmx lco_class/async_body.cmx lco_class/async.cmx
+rm lco_class/rml_list.ml lco_class/async_body.ml lco_class/async.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+make -f Makefile-lco_rewrite all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/interpreter'
+ocamlc -rectypes -c  lco_rewrite.ml
+ocamlc -rectypes -c  implem_lco_rewrite_record.ml
+../compiler/rmlc -I ../stdlib -d lco_rewrite -no_reactivity_warning -runtime Lco_rewrite ../stdlib/rml_list.rml
+ocamlc -rectypes -c  -I lco_rewrite -o lco_rewrite/rml_list.cmo lco_rewrite/rml_list.ml
+cp ../stdlib/thread/async_body.ml lco_rewrite/async_body.ml
+ocamlc -rectypes -thread -c  -I lco_rewrite -o lco_rewrite/async_body.cmo lco_rewrite/async_body.ml
+../compiler/rmlc -I ../stdlib -I ../stdlib/thread -d lco_rewrite -no_reactivity_warning -runtime Lco_rewrite ../stdlib/thread/async.rml
+ocamlc -rectypes -c  -I lco_rewrite -o lco_rewrite/async.cmo lco_rewrite/async.ml
