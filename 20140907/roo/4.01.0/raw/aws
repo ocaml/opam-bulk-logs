@@ -818,3 +818,104 @@ make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
 ocamlc -c -cc "gcc" -ccopt "-fPIC -g -O2 -DHAVE_TLS11 -DHAVE_TLS12 -ansi -DCAML_NAME_SPACE -Wall \
 				-DPIC   \
 				    -o ssl_stubs.o " ssl_stubs.c 
+ar rcs libssl_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl.mli
+ocamlc -c -thread ssl.ml
+ocamlmklib                     \
+				-o ssl_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_stubs.so              \
+				-cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  -o ssl.cma  ssl.cmo
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+making ._d/ssl_threads.d from ssl_threads.ml
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+ar rcs libssl_threads_stubs.a  ssl_stubs.o
+ocamlc -c -thread ssl_threads.mli
+ocamlc -c -thread ssl_threads.ml
+ocamlmklib                     \
+				-o ssl_threads_stubs  ssl_stubs.o -lcrypto -lssl \
+				
+ocamlc -a -thread -dllib dllssl_threads_stubs.so              \
+				-cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  -o ssl_threads.cma  ssl.cmo ssl_threads.cmo
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+making ._ncdi/ssl.di from ssl.mli
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: `libssl_stubs.a' is up to date.
+ocamlopt -c -thread ssl.ml
+ocamlopt -a -thread              -cclib -lssl_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl.cmxa ssl.cmx
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[4]: `libssl_threads_stubs.a' is up to date.
+ocamlopt -c -thread ssl_threads.ml
+ocamlopt -a -thread              -cclib -lssl_threads_stubs -cclib -lcrypto -cclib -lssl  \
+				 -o ssl_threads.cmxa ssl.cmx ssl_threads.cmx
+make[4]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+/home/opam/.opam/4.01.0/bin/ocamlfind install  ssl META ssl.mli ssl_threads.mli ssl.cmi ssl_threads.cmi ssl.cma ssl_threads.cma ssl.cmxa ssl_threads.cmxa ssl.cmx ssl_threads.cmx libssl_stubs.a libssl_threads_stubs.a ssl.a ssl_threads.a dllssl_stubs.so dllssl_threads_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.a
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.a
+Installed /home/opam/.opam/4.01.0/lib/ssl/libssl_threads_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ssl/libssl_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.cmx
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.cmx
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.cma
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.cma
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.cmi
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.cmi
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl_threads.mli
+Installed /home/opam/.opam/4.01.0/lib/ssl/ssl.mli
+Installed /home/opam/.opam/4.01.0/lib/ssl/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllssl_threads_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllssl_threads_stubs.so.owner
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllssl_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllssl_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ssl.0.4.7/src'
+Installing ssl.0.4.7.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building biniou.1.0.9:
+  make
+  make install
+ocamlfind ocamlc -a -dtypes -g -o biniou.cma \
+		-package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
+ocamlfind ocamlopt -a -dtypes -g \
+		-o biniou.cmxa -package "easy-format" bi_util.mli bi_util.ml bi_share.mli bi_share.ml bi_outbuf.mli bi_outbuf.ml bi_inbuf.mli bi_inbuf.ml bi_vint.mli bi_vint.ml bi_io.mli bi_io.ml bi_dump.ml bi_stream.mli bi_stream.ml
