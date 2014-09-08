@@ -1061,3 +1061,39 @@ ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
 ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
 ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building merlin-acme.0.1:
+  make
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o LibMerlin.cmo LibMerlin.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o LibAcme.cmo LibAcme.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o Cplt.cmo Cplt.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o TypeOf.cmo TypeOf.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o Locate.cmo Locate.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -c -o Errors.cmo Errors.ml
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -linkpkg -o Cplt LibMerlin.cmo LibAcme.cmo Cplt.cmo
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -linkpkg -o TypeOf LibMerlin.cmo LibAcme.cmo TypeOf.cmo
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -linkpkg -o Locate LibMerlin.cmo LibAcme.cmo Locate.cmo
+ocamlfind ocamlc -package unix,str,batteries,yojson,o9p,acme -linkpkg -o Errors LibMerlin.cmo LibAcme.cmo Errors.cmo
+Installing merlin-acme.0.1.
