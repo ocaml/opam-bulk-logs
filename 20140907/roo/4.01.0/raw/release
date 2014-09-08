@@ -882,3 +882,120 @@ ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/util -package unix -package
 ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/util -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -I lib/config -I lib/util -o lib/config/release_config_lexer.cmx lib/config/release_config_lexer.ml
 ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/util -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -I lib/config -I lib/util -o lib/config/release_config.cmx lib/config/release_config.ml
 ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/util -package unix -package str -package lwt.syntax -package lwt -syntax camlp4o -I lib/config -I lib/util -o lib/config/release_config_validations.cmx lib/config/release_config_validations.ml
+ocamlfind ocamlopt -a lib/config/release_config_values.cmx lib/config/release_config_global.cmx lib/config/release_config_parser.cmx lib/config/release_config_lexer.cmx lib/config/release_config.cmx lib/config/release_config_validations.cmx -o lib/config/release-config.cmxa
+ocamlfind ocamlopt -shared -linkall lib/config/release-config.cmxa -o lib/config/release-config.cmxs
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -modules lib/core/release.mli > lib/core/release.mli.depends
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -modules lib/core/release_ipc.mli > lib/core/release_ipc.mli.depends
+ocamlfind ocamlc -c -g -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -I lib/core -I lib/buffer -I lib/util -o lib/core/release_ipc.cmi lib/core/release_ipc.mli
+ocamlfind ocamlc -c -g -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -I lib/core -I lib/buffer -I lib/util -o lib/core/release.cmi lib/core/release.mli
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib/core/release.ml > lib/core/release.ml.depends
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -modules lib/core/release_privileges.mli > lib/core/release_privileges.mli.depends
+ocamlfind ocamlc -c -g -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -I lib/core -I lib/buffer -I lib/util -o lib/core/release_privileges.cmi lib/core/release_privileges.mli
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -modules lib/core/release_io.mli > lib/core/release_io.mli.depends
+ocamlfind ocamlc -c -g -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -I lib/core -I lib/buffer -I lib/util -o lib/core/release_io.cmi lib/core/release_io.mli
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib/core/release_io.ml > lib/core/release_io.ml.depends
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib/core/release_ipc.ml > lib/core/release_ipc.ml.depends
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -modules lib/core/release_socket.mli > lib/core/release_socket.mli.depends
+ocamlfind ocamlc -c -g -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -I lib/core -I lib/buffer -I lib/util -o lib/core/release_socket.cmi lib/core/release_socket.mli
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib/core/release_privileges.ml > lib/core/release_privileges.ml.depends
+ocamlfind ocamldep -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib/core/release_socket.ml > lib/core/release_socket.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release.cmo lib/core/release.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_io.cmo lib/core/release_io.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_ipc.cmo lib/core/release_ipc.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_privileges.cmo lib/core/release_privileges.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_socket.cmo lib/core/release_socket.ml
+ocamlfind ocamlc -a lib/core/release_io.cmo lib/core/release_socket.cmo lib/core/release_ipc.cmo lib/core/release_privileges.cmo lib/core/release.cmo -o lib/core/release.cma
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_io.cmx lib/core/release_io.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_socket.cmx lib/core/release_socket.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_ipc.cmx lib/core/release_ipc.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release_privileges.cmx lib/core/release_privileges.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib/core -I lib/buffer -I lib/util -o lib/core/release.cmx lib/core/release.ml
+ocamlfind ocamlopt -a lib/core/release_io.cmx lib/core/release_socket.cmx lib/core/release_ipc.cmx lib/core/release_privileges.cmx lib/core/release.cmx -o lib/core/release.cmxa
+ocamlfind ocamlopt -shared lib/core/release.cmx -o lib/core/release.cmxs
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/master.ml > lib_test/master.ml.depends
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/ipc.ml > lib_test/ipc.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/ipc.cmo lib_test/ipc.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/master.cmo lib_test/master.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/ipc.cmx lib_test/ipc.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/master.cmx lib_test/master.ml
+ocamlfind ocamlopt -g -linkpkg -package str -package lwt.unix -package lwt.syntax -package lwt lib/buffer/release-buffer.cmxa lib/util/release-util.cmxa lib/core/release.cmxa lib_test/ipc.cmx lib_test/master.cmx -o lib_test/master.native
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/slave.ml > lib_test/slave.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/slave.cmo lib_test/slave.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/slave.cmx lib_test/slave.ml
+ocamlfind ocamlopt -g -linkpkg -package str -package lwt.unix -package lwt.syntax -package lwt lib/buffer/release-buffer.cmxa lib/util/release-util.cmxa lib/core/release.cmxa lib_test/ipc.cmx lib_test/slave.cmx -o lib_test/slave.native
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/helper.ml > lib_test/helper.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/helper.cmo lib_test/helper.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/helper.cmx lib_test/helper.ml
+ocamlfind ocamlopt -g -linkpkg -package str -package lwt.unix -package lwt.syntax -package lwt lib/buffer/release-buffer.cmxa lib/util/release-util.cmxa lib/core/release.cmxa lib_test/ipc.cmx lib_test/helper.cmx -o lib_test/helper.native
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/masterctl.ml > lib_test/masterctl.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/masterctl.cmo lib_test/masterctl.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/masterctl.cmx lib_test/masterctl.ml
+ocamlfind ocamlopt -g -linkpkg -package str -package lwt.unix -package lwt.syntax -package lwt lib/buffer/release-buffer.cmxa lib/util/release-util.cmxa lib/core/release.cmxa lib_test/ipc.cmx lib_test/masterctl.cmx -o lib_test/masterctl.native
+ocamlfind ocamldep -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -modules lib_test/config_test.ml > lib_test/config_test.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/config_test.cmo lib_test/config_test.ml
+ocamlfind ocamlopt -c -g -annot -warn-error A -I lib/buffer -I lib/util -I lib/config -I lib/core -package unix -package str -package lwt.unix -package lwt.syntax -package lwt -syntax camlp4o -I lib_test -I lib/config -I lib/core -o lib_test/config_test.cmx lib_test/config_test.ml
+ocamlfind ocamlopt -g -linkpkg -package unix -package str -package lwt.unix -package lwt.syntax -package lwt lib/util/release-util.cmxa lib/config/release-config.cmxa lib_test/config_test.cmx -o lib_test/config_test.native
+W: Cannot find source header for module Release_config_lexer in library release-config
+W: Cannot find source header for module Release_config_parser in library release-config
+Installed /home/opam/.opam/4.01.0/lib/release/release.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_io.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_ipc.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_privileges.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_socket.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release.cma
+Installed /home/opam/.opam/4.01.0/lib/release/release.cmxa
+Installed /home/opam/.opam/4.01.0/lib/release/release.a
+Installed /home/opam/.opam/4.01.0/lib/release/release.cmxs
+Installed /home/opam/.opam/4.01.0/lib/release/release.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_io.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_ipc.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_privileges.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_socket.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_io.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_ipc.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_privileges.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_socket.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_util.ml
+Installed /home/opam/.opam/4.01.0/lib/release/release-util.cma
+Installed /home/opam/.opam/4.01.0/lib/release/release-util.cmxa
+Installed /home/opam/.opam/4.01.0/lib/release/release-util.a
+Installed /home/opam/.opam/4.01.0/lib/release/release-util.cmxs
+Installed /home/opam/.opam/4.01.0/lib/release/release_util.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_util.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_global.ml
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_values.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_validations.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release-config.cma
+Installed /home/opam/.opam/4.01.0/lib/release/release-config.cmxa
+Installed /home/opam/.opam/4.01.0/lib/release/release-config.a
+Installed /home/opam/.opam/4.01.0/lib/release/release-config.cmxs
+Installed /home/opam/.opam/4.01.0/lib/release/release_config.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_lexer.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_parser.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_global.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_values.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_validations.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_config.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_lexer.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_parser.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_global.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_values.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_config_validations.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_bytes.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release-bytes.cma
+Installed /home/opam/.opam/4.01.0/lib/release/release-bytes.cmxa
+Installed /home/opam/.opam/4.01.0/lib/release/release-bytes.a
+Installed /home/opam/.opam/4.01.0/lib/release/release-bytes.cmxs
+Installed /home/opam/.opam/4.01.0/lib/release/release_bytes.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_bytes.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/release_buffer.mli
+Installed /home/opam/.opam/4.01.0/lib/release/release-buffer.cma
+Installed /home/opam/.opam/4.01.0/lib/release/release-buffer.cmxa
+Installed /home/opam/.opam/4.01.0/lib/release/release-buffer.a
+Installed /home/opam/.opam/4.01.0/lib/release/release-buffer.cmxs
+Installed /home/opam/.opam/4.01.0/lib/release/release_buffer.cmi
+Installed /home/opam/.opam/4.01.0/lib/release/release_buffer.cmx
+Installed /home/opam/.opam/4.01.0/lib/release/META
+Installing release.1.1.0.
