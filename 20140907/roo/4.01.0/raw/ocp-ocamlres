@@ -105,3 +105,42 @@ ocamlfind ocamlc -a -package unix,str,pprint,dynlink build/oCamlRes.cmo build/oC
 ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlRes.ml
 ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResScanners.ml
 ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResSubFormats.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResFormats.ml
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResRegistry.ml
+ocamlfind ocamlopt -a -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxa
+ocamlfind ocamlopt -shared -package unix,str,pprint,dynlink build/oCamlRes.cmx build/oCamlResScanners.cmx build/oCamlResSubFormats.cmx build/oCamlResFormats.cmx build/oCamlResRegistry.cmx -o build/ocplib-ocamlres.cmxs
+cp src/oCamlResMain.ml  build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -bin-annot -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlc -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.byte build/ocplib-ocamlres.cma build/oCamlResMain.cmo
+ocamlfind ocamlopt -I build -g -c -package unix,str,pprint,dynlink build/oCamlResMain.ml
+ocamlfind ocamlopt -I build -g -package unix,str,pprint,dynlink -linkpkg -o build/ocp-ocamlres.asm build/ocplib-ocamlres.cmxa build/oCamlResMain.cmx
+cp src/META  build/META
+rm build/oCamlRes.mli build/oCamlRes.ml build/oCamlResSubFormats.ml build/oCamlResRegistry.ml build/oCamlResFormats.ml build/oCamlResScanners.ml build/oCamlResMain.ml
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+ocamlfind install -destdir /home/opam/.opam/4.01.0/lib ocplib-ocamlres \
+          build/META \
+          build/*ocplib-ocamlres.* \
+	   build/oCamlRes.cmi  build/oCamlRes.cmti  build/oCamlRes.cmt  build/oCamlResScanners.cmt  build/oCamlResSubFormats.cmt  build/oCamlResFormats.cmt  build/oCamlResRegistry.cmt src/oCamlRes.mli
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.mli
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResRegistry.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResFormats.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResSubFormats.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlResScanners.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmt
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmti
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/oCamlRes.cmi
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cmxs
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.cma
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/ocplib-ocamlres.a
+Installed /home/opam/.opam/4.01.0/lib/ocplib-ocamlres/META
+install build/ocp-ocamlres.asm /home/opam/.opam/4.01.0/bin/ocp-ocamlres
+install build/ocp-ocamlres.byte /home/opam/.opam/4.01.0/bin/ocp-ocamlres.byte
+ocamlfind ocamldoc -I build  -package unix,str,pprint,dynlink \
+          -html -d doc \
+	  src/oCamlRes.mli
+install -d /home/opam/.opam/4.01.0/doc/ocp-ocamlres
+install doc/*.html /home/opam/.opam/4.01.0/doc/ocp-ocamlres/
+Installing ocp-ocamlres.0.3.
