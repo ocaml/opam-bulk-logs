@@ -674,3 +674,118 @@ mkdir doc
 ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
 ocamlopt  -c xml_parser.ml
 ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
+ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
+ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/4.01.0/lib/xml-light/META
+Installing xml-light.2.4.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building config-file.1.2:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make all
+  make install
+checking for ocamlfind... /home/opam/.opam/4.01.0/bin/ocamlfind
+checking for camlp4... /home/opam/.opam/4.01.0/bin/camlp4
+configure: creating ./config.status
+config.status: creating master.Makefile
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt   -c config_file.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -o config_file.cmxs -shared config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmxs
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.o
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmx
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmo
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.cmi
+Installed /home/opam/.opam/4.01.0/lib/config-file/config_file.mli
+Installed /home/opam/.opam/4.01.0/lib/config-file/META
+Installing config-file.1.2.
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2 and /home/opam/.opam/4.01.0/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+checking for GTK+ - version >= 2.0.0... yes (version 2.24.23)
+checking pkg-config is at least version 0.9.0... yes
+checking for GTKGL... no
+checking for GLADE... yes
+checking for RSVG... no
+checking for GNOMECANVAS... no
+checking for GNOMEUI... no
+checking for PANEL... no
+checking for GTKSPELL... no
+checking for GTKSOURCEVIEW... no
+checking for GTKSOURCEVIEW2... 
