@@ -4,3 +4,44 @@
 Ubuntu depexts:
 + '[' '' '!=' '' ']'
 ++ opam install smtp -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install smtp
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   smtp.0.2
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/smtp.0.2+opam.tar.gz
+sending incremental file list
+smtp.0.2+opam.tar.gz
+
+sent 7,947 bytes  received 35 bytes  15,964.00 bytes/sec
+total size is 7,818  speedup is 0.98
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building smtp.0.2:
+  ocaml pkg/build.ml native=true native-dynlink=true unix=true lwt=false
+ocamlfind ocamldep -modules test/test_unix.ml > test/test_unix.ml.depends
+ocamlfind ocamldep -modules src/smtp_unix.mli > src/smtp_unix.mli.depends
+ocamlfind ocamldep -modules src/smtp.mli > src/smtp.mli.depends
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/smtp.cmi src/smtp.mli
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/smtp_unix.cmi src/smtp_unix.mli
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/test_unix.cmo test/test_unix.ml
+ocamlfind ocamldep -modules src/smtp_unix.ml > src/smtp_unix.ml.depends
+ocamlfind ocamldep -modules src/smtp.ml > src/smtp.ml.depends
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/smtp.cmx src/smtp.ml
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/smtp_unix.cmx src/smtp_unix.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/test_unix.cmx test/test_unix.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/smtp.cmx src/smtp_unix.cmx test/test_unix.cmx -o test/test_unix.native
+ocamlfind ocamlopt -a src/smtp.cmx -o src/smtp.cmxa
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/smtp.cmo src/smtp.ml
+ocamlfind ocamlc -a src/smtp.cmo -o src/smtp.cma
+ocamlfind ocamlopt -shared src/smtp.cmx -o src/smtp.cmxs
+ocamlfind ocamlopt -a src/smtp.cmx src/smtp_unix.cmx -o src/smtp_unix.cmxa
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/smtp_unix.cmo src/smtp_unix.ml
+ocamlfind ocamlc -a src/smtp.cmo src/smtp_unix.cmo -o src/smtp_unix.cma
+ocamlfind ocamlopt -shared src/smtp_unix.cmx -o src/smtp_unix.cmxs
+Installing smtp.0.2.
