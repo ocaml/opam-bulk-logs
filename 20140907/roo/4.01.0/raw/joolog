@@ -2059,3 +2059,430 @@ ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g eventSource.m
         > stubs.c
 ocamlfind ocamlc -package lwt -c stubs.c
 ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo dom_svg.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo lwt_js_events.cmo json.cmo jsonp.cmo webGL.cmo webSockets.cmo keycode.cmo eventSource.cmo stubs.o
+ocamlfind ocamlc -package lwt,lwt.log -I . -I log log/lwt_log_js.mli -o log/lwt_log_js.cmi
+ocamlfind ocamlc -syntax camlp4o -package lwt,lwt.syntax,lwt.log -ppopt syntax/pa_js.cmo -I log -c log/lwt_log_js.ml -o log/lwt_log_js.cmo
+ocamlfind ocamlc -a -o log/logger.cma log/lwt_log_js.cmo
+ocamlfind ocamlc -package lwt -I . -I log toplevel/jsooTop.mli -o toplevel/jsooTop.cmi
+make -C ../compiler local/compiler.cma
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+echo "let s = \"2.4.1\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+mkdir -p local
+cp compiler.* local/
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+ocamlfind ocamlc -syntax camlp4o \
+		-package lwt,lwt.syntax \
+		-ppopt syntax/pa_js.cmo \
+		-I toplevel -I ../compiler/local -I +compiler-libs \
+		-c toplevel/jsooTop.ml -o toplevel/jsooTop.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/ocamlbuild'
+ocamlbuild -use-ocamlfind ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
+ocamlfind ocamlopt -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmx ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlopt -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxs
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/ocamlbuild'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/runtime'
+echo "//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js" > runtime.js
+for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js ; do \
+		 echo "//# 1 \"$f\"" >> runtime.js; \
+	   cat $f >> runtime.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/runtime'
+make -C jsoo_tools
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_common.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mktop.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mktop.cmx -o jsoo_mktop.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+mv -f jsoo_mktop.opt jsoo_mktop
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mkcmis.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mkcmis.cmx -o jsoo_mkcmis.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+mv -f jsoo_mkcmis.opt jsoo_mkcmis
+rm jsoo_common.cmx jsoo_mkcmis.cmx jsoo_mktop.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind install -patch-version 2.4.1 js_of_ocaml lib/META lib/*.cmi lib/log/*.cmi lib/toplevel/jsooTop.cmi ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmi lib/js_of_ocaml.cma lib/syntax/pa_js.cmo lib/dlljs_of_ocaml.so lib/libjs_of_ocaml.a lib/log/logger.cma lib/syntax/pa_js.cmx lib/syntax/pa_js.cmxs lib/toplevel/jsooTop.cmo ocamlbuild/_build/ocamlbuild_js_of_ocaml.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxa ocamlbuild/_build/ocamlbuild_js_of_ocaml.a ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxs runtime/runtime.js runtime/weak.js runtime/polyfill/classlist.js runtime/polyfill/array.js runtime/toplevel.js runtime/graphics.js runtime/nat.js  lib/*.mli lib/log/*.mli lib/toplevel/jsooTop.mli ocamlbuild/_build/ocamlbuild_js_of_ocaml.mli compiler/compiler.cmi compiler/compiler.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/compiler.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/compiler.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_log_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/xmlHttpRequest.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webSockets.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webGL.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/url.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/typed_array.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/sys_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/regexp.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js_events.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/keycode.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsonp.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/json.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/form.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/firebug.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/file.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/eventSource.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_svg.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_html.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_events.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/cSS.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/nat.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/graphics.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/toplevel.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/array.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/classlist.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/weak.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/runtime.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.a
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.cmo
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmxs
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmx
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/logger.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/libjs_of_ocaml.a
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmo
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js_of_ocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_log_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/xmlHttpRequest.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webSockets.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webGL.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/url.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/typed_array.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/sys_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/regexp.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js_events.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/keycode.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsonp.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/json.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/form.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/firebug.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/file.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/eventSource.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_svg.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_html.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_events.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/cSS.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlljs_of_ocaml.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlljs_of_ocaml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing js_of_ocaml.2.4.1.
+Building ocaml-data-notation.0.0.11:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ ocaml-data-notation
+Package version: ..................................... 0.0.11
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations_o: ............................. /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+
+ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -modules src/ODN.ml > src/ODN.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -I src -o src/ODN.cmo src/ODN.ml
+ocamlfind ocamlc -a src/ODN.cmo -o src/odn.cma
+ocamlfind ocamlopt -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -I src -o src/ODN.cmx src/ODN.ml
+ocamlfind ocamlopt -a src/ODN.cmx -o src/odn.cmxa
+ocamlfind ocamlopt -shared -linkall src/odn.cmxa -o src/odn.cmxs
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_odn.ml > src/pa_odn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_odn.cmo src/pa_odn.ml
+ocamlfind ocamlc -a src/pa_odn.cmo -o src/pa_odn.cma
+ocamlfind ocamldep -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -modules src/pa_noodn.ml > src/pa_noodn.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.lib -package camlp4.quotations.o -package type_conv -syntax camlp4o -I src -o src/pa_noodn.cmo src/pa_noodn.ml
+ocamlfind ocamlc -a src/pa_noodn.cmo -o src/pa_noodn.cma
+Skipping precommit checks.
+ocaml setup.ml -test 
+W: Tests are turned off, consider enabling with 'ocaml setup.ml -configure --enable-tests'
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/odn/ODN.ml
+Installed /home/opam/.opam/4.01.0/lib/odn/odn.cma
+Installed /home/opam/.opam/4.01.0/lib/odn/odn.cmxa
+Installed /home/opam/.opam/4.01.0/lib/odn/odn.a
+Installed /home/opam/.opam/4.01.0/lib/odn/odn.cmxs
+Installed /home/opam/.opam/4.01.0/lib/odn/ODN.cmi
+Installed /home/opam/.opam/4.01.0/lib/odn/ODN.cmx
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_noodn.ml
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_noodn.cma
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_noodn.cmi
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_odn.ml
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_odn.cma
+Installed /home/opam/.opam/4.01.0/lib/odn/pa_odn.cmi
+Installed /home/opam/.opam/4.01.0/lib/odn/META
+Installing ocaml-data-notation.0.0.11.
+Building oasis.0.4.4:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ................................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: ...................................................... /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: .................................................... /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .................................................. /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ................................................ oasis
+Package version: ............................................. 0.4.4
+os_type: ..................................................... Unix
+system: ...................................................... linux
+architecture: ................................................ amd64
+ccomp_type: .................................................. cc
+ocaml_version: ............................................... 4.01.0
+standard_library_default: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: ............................................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: ............................................ /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ......................................... gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ........................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ....................................................... default
+ext_obj: ..................................................... .o
+ext_asm: ..................................................... .s
+ext_lib: ..................................................... .a
+ext_dll: ..................................................... .so
+default_executable_name: ..................................... a.out
+systhread_supported: ......................................... true
+Install architecture-independent files dir: .................. /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ................. $prefix
+User executables: ............................................ $exec_prefix/bin
+System admin executables: .................................... $exec_prefix/sbin
+Program executables: ......................................... $exec_prefix/libexec
+Read-only single-machine data: ............................... $prefix/etc
+Modifiable architecture-independent data: .................... $prefix/com
+Modifiable single-machine data: .............................. $prefix/var
+Object code libraries: ....................................... $exec_prefix/lib
+Read-only arch-independent data root: ........................ $prefix/share
+Read-only architecture-independent data: ..................... $datarootdir
+Info documentation: .......................................... $datarootdir/info
+Locale-dependent data: ....................................... $datarootdir/locale
+Man documentation: ........................................... $datarootdir/man
+Documentation root: .......................................... $datarootdir/doc/$pkg_name
+HTML documentation: .......................................... $docdir
+DVI documentation: ........................................... $docdir
+PDF documentation: ........................................... $docdir
+PS documentation: ............................................ $docdir
+findlib_version: ............................................. 1.5.2
+is_native: ................................................... true
+suffix_program: .............................................. 
+Remove a file.: .............................................. rm -f
+Remove a directory.: ......................................... rm -rf
+Turn ocaml debug flag on: .................................... true
+Turn ocaml profile flag on: .................................. false
+Compiler support generation of .cmxs.: ....................... true
+OCamlbuild additional flags: ................................. 
+Install oasis and base libraries, for plugins development: ... true
+Use ocaml-gettext for i18n: .................................. false
+Create documentations: ....................................... true
+Compile tests executable and library and run them: ........... false
+make: ........................................................ /usr/bin/make
+ocamlmod: .................................................... /home/opam/.opam/4.01.0/bin/ocamlmod
+ocamlyacc: ................................................... /home/opam/.opam/4.01.0/bin/ocamlyacc
+ocamllex: .................................................... /home/opam/.opam/4.01.0/bin/ocamllex
+ocamlify: .................................................... /home/opam/.opam/4.01.0/bin/ocamlify
+pkg_unix: .................................................... /home/opam/.opam/4.01.0/lib/ocaml
+pkg_odn: ..................................................... /home/opam/.opam/4.01.0/lib/odn
+pkg_ocamlbuild: .............................................. /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild
+ocamldoc: .................................................... /home/opam/.opam/4.01.0/bin/ocamldoc
+pkg_dynlink: ................................................. /home/opam/.opam/4.01.0/lib/ocaml
+pkg_findlib: ................................................. /home/opam/.opam/4.01.0/lib/findlib
+
+W: Cannot find source file matching module 'plugins/none/NoneData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/internal/InternalData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/ocamlbuild/OCamlbuildData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/custom/CustomData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/extra/META/METAData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/extra/devfiles/DevFilesData' in library builtin-plugins
+W: Cannot find source file matching module 'plugins/extra/stdfiles/StdFilesData' in library builtin-plugins
+W: Cannot find source file matching module 'OASISData' in library oasis
+W: Cannot find source file matching module 'OASISData' in library oasis
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/FormatExt.mli > src/oasis/FormatExt.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/FormatExt.cmi src/oasis/FormatExt.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/FormatExt.ml > src/oasis/FormatExt.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISString.ml > src/oasis/OASISString.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISString.cmo src/oasis/OASISString.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/ODNFunc.mli > src/oasis/ODNFunc.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/ODNFunc.cmi src/oasis/ODNFunc.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/ODNFunc.ml > src/oasis/ODNFunc.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/PropList.mli > src/oasis/PropList.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/PropList.cmi src/oasis/PropList.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/PropList.ml > src/oasis/PropList.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISGettext.mli > src/oasis/OASISGettext.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISGettext.cmi src/oasis/OASISGettext.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISUtils.mli > src/oasis/OASISUtils.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISUtils.cmi src/oasis/OASISUtils.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISUtils.ml > src/oasis/OASISUtils.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISUnixPath.mli > src/oasis/OASISUnixPath.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISUnixPath.cmi src/oasis/OASISUnixPath.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISUnixPath.ml > src/oasis/OASISUnixPath.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISPath_intern.ml > src/oasis/OASISPath_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISPath_intern.cmo src/oasis/OASISPath_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISContext.mli > src/oasis/OASISContext.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISContext.cmi src/oasis/OASISContext.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISContext.ml > src/oasis/OASISContext.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -syntax camlp4o -package camlp4.macro -package odn -package unix -syntax camlp4o -modules src/oasis/OASISGettext.ml > src/oasis/OASISGettext.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISMessage.mli > src/oasis/OASISMessage.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISMessage.cmi src/oasis/OASISMessage.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISMessage.ml > src/oasis/OASISMessage.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -syntax camlp4o -package odn.with.syntax -package unix -syntax camlp4o -modules src/oasis/OASISText.ml > src/oasis/OASISText.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISValues.mli > src/oasis/OASISValues.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISValues.cmi src/oasis/OASISValues.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISTypes.mli > src/oasis/OASISTypes.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISExpr.mli > src/oasis/OASISExpr.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISLicense.mli > src/oasis/OASISLicense.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISVersion.mli > src/oasis/OASISVersion.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISVersion.cmi src/oasis/OASISVersion.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -syntax camlp4o -package odn.with.syntax -package unix -syntax camlp4o -warn-error +8 -I src/oasis -o src/oasis/OASISText.cmo src/oasis/OASISText.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISExpr.cmi src/oasis/OASISExpr.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISLicense.cmi src/oasis/OASISLicense.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISTypes.cmi src/oasis/OASISTypes.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -syntax camlp4o -package odn.with.syntax -package unix -syntax camlp4o -modules src/oasis/OASISTypes.ml > src/oasis/OASISTypes.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISParse.mli > src/oasis/OASISParse.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISParse.cmi src/oasis/OASISParse.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISParse.ml > src/oasis/OASISParse.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISAst.ml > src/oasis/OASISAst.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISAstTypes.ml > src/oasis/OASISAstTypes.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISBuildSection.mli > src/oasis/OASISBuildSection.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSection.mli > src/oasis/OASISSection.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISSection.cmi src/oasis/OASISSection.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISCheck.ml > src/oasis/OASISCheck.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISFeatures.ml > src/oasis/OASISFeatures.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISPlugin.mli > src/oasis/OASISPlugin.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISFileTemplate.mli > src/oasis/OASISFileTemplate.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSetupUpdate.ml > src/oasis/OASISSetupUpdate.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISFileTemplate.cmi src/oasis/OASISFileTemplate.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISSetupUpdate.cmo src/oasis/OASISSetupUpdate.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSchema_intern.ml > src/oasis/OASISSchema_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISAstTypes.cmo src/oasis/OASISAstTypes.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISFeatures.cmo src/oasis/OASISFeatures.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISPlugin.cmi src/oasis/OASISPlugin.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISSchema_intern.cmo src/oasis/OASISSchema_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISDocument.mli > src/oasis/OASISDocument.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSchema.mli > src/oasis/OASISSchema.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISSchema.cmi src/oasis/OASISSchema.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISDocument_intern.ml > src/oasis/OASISDocument_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISBuildSection_intern.ml > src/oasis/OASISBuildSection_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISCustom.ml > src/oasis/OASISCustom.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSection_intern.ml > src/oasis/OASISSection_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISBuildSection_intern.cmo src/oasis/OASISBuildSection_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISCustom.cmo src/oasis/OASISCustom.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISSection_intern.cmo src/oasis/OASISSection_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISExecutable.mli > src/oasis/OASISExecutable.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISExecutable_intern.ml > src/oasis/OASISExecutable_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISFindlib.mli > src/oasis/OASISFindlib.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISFlag.mli > src/oasis/OASISFlag.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISFlag_intern.ml > src/oasis/OASISFlag_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISLibrary.mli > src/oasis/OASISLibrary.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISLibrary_intern.ml > src/oasis/OASISLibrary_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISObject.mli > src/oasis/OASISObject.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISObject_intern.ml > src/oasis/OASISObject_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISPackage.mli > src/oasis/OASISPackage.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISPackage_intern.ml > src/oasis/OASISPackage_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISConf.ml > src/oasis/OASISConf.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISConf.cmo src/oasis/OASISConf.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package odn -package unix -syntax camlp4o -modules src/oasis/OASISRecDescParser.ml > src/oasis/OASISRecDescParser.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSourceRepository.mli > src/oasis/OASISSourceRepository.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISSourceRepository_intern.ml > src/oasis/OASISSourceRepository_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISTest.mli > src/oasis/OASISTest.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package odn -package unix -modules src/oasis/OASISTest_intern.ml > src/oasis/OASISTest_intern.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISBuildSection.cmi src/oasis/OASISBuildSection.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISCheck.cmo src/oasis/OASISCheck.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISDocument.cmi src/oasis/OASISDocument.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISDocument_intern.cmo src/oasis/OASISDocument_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISExecutable.cmi src/oasis/OASISExecutable.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISExecutable_intern.cmo src/oasis/OASISExecutable_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISFindlib.cmi src/oasis/OASISFindlib.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISFlag.cmi src/oasis/OASISFlag.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISFlag_intern.cmo src/oasis/OASISFlag_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISLibrary.cmi src/oasis/OASISLibrary.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISLibrary_intern.cmo src/oasis/OASISLibrary_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISObject.cmi src/oasis/OASISObject.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISObject_intern.cmo src/oasis/OASISObject_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISPackage.cmi src/oasis/OASISPackage.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package odn -package unix -warn-error +8 -I src/oasis -o src/oasis/OASISPackage_intern.cmo src/oasis/OASISPackage_intern.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -package camlp4 -package odn -package unix -syntax camlp4o -warn-error +8 -I src/oasis -o src/oasis/OASISRecDescParser.cmo src/oasis/OASISRecDescParser.ml
