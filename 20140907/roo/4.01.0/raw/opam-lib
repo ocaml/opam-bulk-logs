@@ -4,3 +4,140 @@
 + '[' '' '!=' '' ']'
 Ubuntu depexts:
 ++ opam install opam-lib -e source,linux
+Ubuntu srcexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install opam-lib
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ocp-build, extlib-compat]
+ - install   re.1.2.2                              [required by opam-lib]
+ - install   ocamlgraph.1.8.5                      [required by opam-lib]
+ - install   cmdliner.0.9.5                        [required by opam-lib]
+ - install   ocp-build.1.99.8-beta                 [required by dose, cudf]
+ - install   extlib-compat.1.6.1                   [required by dose, cudf]
+ - install   cudf.0.6.3                            [required by opam-lib]
+ - install   dose.3.1.2                            [required by opam-lib]
+ - install   opam-lib.1.1.1
+=== 9 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/cmdliner.0.9.5+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/cudf.0.6.3+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/dose.3.1.2+opam.tar.gz
+sending incremental file list
+dose.3.1.2+opam.tar.gz
+sending incremental file list
+sending incremental file list
+cmdliner.0.9.5+opam.tar.gz
+cudf.0.6.3+opam.tar.gz
+
+sent 268,453 bytes  received 35 bytes  536,976.00 bytes/sec
+total size is 268,262  speedup is 1.00
+
+sent 65,444 bytes  received 35 bytes  130,958.00 bytes/sec
+total size is 65,305  speedup is 1.00
+
+sent 55,598 bytes  received 35 bytes  111,266.00 bytes/sec
+total size is 55,463  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/extlib-compat.1.6.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocamlgraph.1.8.5+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocp-build.1.99.8-beta+opam.tar.gz
+sending incremental file list
+extlib-compat.1.6.1+opam.tar.gz
+sending incremental file list
+ocamlgraph.1.8.5+opam.tar.gz
+sending incremental file list
+ocp-build.1.99.8-beta+opam.tar.gz
+
+sent 73,151 bytes  received 35 bytes  146,372.00 bytes/sec
+total size is 72,999  speedup is 1.00
+
+sent 285,331 bytes  received 35 bytes  570,732.00 bytes/sec
+total size is 285,134  speedup is 1.00
+
+sent 899,755 bytes  received 35 bytes  1,799,580.00 bytes/sec
+total size is 899,401  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/opam-lib.1.1.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/re.1.2.2+opam.tar.gz
+sending incremental file list
+sending incremental file list
+re.1.2.2+opam.tar.gz
+opam-lib.1.1.1+opam.tar.gz
+
+sent 92,573 bytes  received 35 bytes  185,216.00 bytes/sec
+total size is 92,432  speedup is 1.00
+
+sent 1,500,159 bytes  received 35 bytes  3,000,388.00 bytes/sec
+total size is 1,499,668  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building ocamlgraph.1.8.5:
+  ./configure
+  make
+  make install-findlib
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for ocamldoc... ocamldoc
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamlweb... true
+checking for ocamlfind... ocamlfind
+OCamlfind detected and enabled
+ocamlfind: Package `lablgtk2' not found
+checking for /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2/lablgtk.cmxa... no
+checking Win32 platform... no
+configure: WARNING: lablgnomecanvas not found: the graph editor and view_graph will not be compiled
+configure: creating ./config.status
+config.status: creating Makefile
+sed -e s/VERSION/1.8.5/ -e s/CMA/graph.cma/ -e s/CMXA/graph.cmxa/ \
+		META.in > META
+ocamllex.opt src/gml.mll
+26 states, 827 transitions, table size 3464 bytes
+2623 additional bytes used for bindings
+rm -f src/version.ml
+echo "let version = \""1.8.5"\"" > src/version.ml
+echo "let date = \""`date`"\"" >> src/version.ml
+rm -f .depend
+ocamldep -slash -I src -I lib -I editor -I view_graph -I dgraph\
+		lib/*.ml lib/*.mli \
+		src/*.ml src/*.mli \
+		editor/*.mli editor/*.ml \
+		view_graph/*.mli view_graph/*.ml \
+		dgraph/*.mli dgraph/*.ml > .depend
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig_pack.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_ast.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/version.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/blocks.ml
