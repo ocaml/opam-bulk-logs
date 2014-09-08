@@ -4276,3 +4276,411 @@ ocamlfind ocamlc -package findlib -c instr.mli
 ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c instr.ml
 ocamlfind ocamlc -package findlib -c parse_bytecode.mli
 ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c parse_bytecode.ml
+ocamlfind ocamlc -package findlib -c js_output.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_output.ml
+ocamlfind ocamlc -package findlib -c js_simpl.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_simpl.ml
+ocamlfind ocamlc -package findlib -c js_token.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_token.ml
+menhir --external-tokens Js_token --explain js_parser.mly
+Warning: you are using the standard library and/or the %inline keyword. We
+recommend switching on --infer in order to avoid obscure type error messages.
+Warning: 12 states have shift/reduce conflicts.
+Warning: 47 shift/reduce conflicts were arbitrarily resolved.
+ocamlfind ocamlc -package findlib -c js_parser.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_parser.ml
+ocamlfind ocamlc -package findlib -c js_lexer.mli
+ocamllex js_lexer.mll
+109 states, 948 transitions, table size 4446 bytes
+1738 additional bytes used for bindings
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_lexer.ml
+ocamlfind ocamlc -package findlib -c parse_js.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c parse_js.ml
+menhir --explain annot_parser.mly
+Warning: you are using the standard library and/or the %inline keyword. We
+recommend switching on --infer in order to avoid obscure type error messages.
+ocamlfind ocamlc -package findlib -c annot_parser.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c annot_parser.ml
+ocamlfind ocamlc -package findlib -c annot_lexer.mli
+ocamllex annot_lexer.mll
+67 states, 4625 transitions, table size 18902 bytes
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c annot_lexer.ml
+ocamlfind ocamlc -package findlib -c subst.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c subst.ml
+ocamlfind ocamlc -package findlib -c pure_fun.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c pure_fun.ml
+ocamlfind ocamlc -package findlib -c deadcode.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c deadcode.ml
+ocamlfind ocamlc -package findlib -c flow.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c flow.ml
+ocamlfind ocamlc -package findlib -c specialize.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c specialize.ml
+ocamlfind ocamlc -package findlib -c specialize_js.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c specialize_js.ml
+ocamlfind ocamlc -package findlib -c eval.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c eval.ml
+ocamlfind ocamlc -package findlib -c inline.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c inline.ml
+ocamlfind ocamlc -package findlib -c tailcall.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c tailcall.ml
+ocamlfind ocamlc -package findlib -c freevars.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c freevars.ml
+ocamlfind ocamlc -package findlib -c phisimpl.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c phisimpl.ml
+ocamlfind ocamlc -package findlib -c js_traverse.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_traverse.ml
+ocamlfind ocamlc -package findlib -c js_assign.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_assign.ml
+ocamlfind ocamlc -package findlib -c js_tailcall.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_tailcall.ml
+ocamlfind ocamlc -package findlib -c linker.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c linker.ml
+ocamlfind ocamlc -package findlib -c generate.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c generate.ml
+ocamlfind ocamlc -package findlib -c driver.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c driver.ml
+ocamlfind ocamlc -package findlib -c pseudoFs.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c pseudoFs.ml
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c compile.ml
+ocamlfind ocamlopt -package findlib -linkpkg -g -o compile.opt compiler_version.cmx pretty_print.cmx util.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx annot_parser.cmx annot_lexer.cmx instr.cmx primitive.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx generate.cmx parse_bytecode.cmx driver.cmx pseudoFs.cmx compile.cmx
+mv -f compile.opt js_of_ocaml
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c minify.ml
+ocamlfind ocamlopt -package findlib -linkpkg -g -o minify.opt compiler_version.cmx pretty_print.cmx util.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx annot_parser.cmx annot_lexer.cmx instr.cmx primitive.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx generate.cmx parse_bytecode.cmx driver.cmx pseudoFs.cmx minify.cmx
+mv -f minify.opt jsoo_minify
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+make -C compiler lib
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+echo "let s = \"2.4.1\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+ocamlfind ocamlc -package findlib -c compiler_version.ml
+ocamlfind ocamlc -package findlib -c pretty_print.ml
+ocamlfind ocamlc -package findlib -c util.ml
+ocamlfind ocamlc -package findlib -c option.ml
+ocamlfind ocamlc -package findlib -c reserved.ml
+ocamlfind ocamlc -package findlib -c varPrinter.ml
+ocamlfind ocamlc -package findlib -c dgraph.ml
+ocamlfind ocamlc -package findlib -c code.ml
+ocamlfind ocamlc -package findlib -c javascript.ml
+ocamlfind ocamlc -package findlib -c vlq64.ml
+ocamlfind ocamlc -package findlib -c source_map.ml
+ocamlfind ocamlc -package findlib -c js_output.ml
+ocamlfind ocamlc -package findlib -c js_simpl.ml
+ocamlfind ocamlc -package findlib -c parse_info.ml
+ocamlfind ocamlc -package findlib -c js_token.ml
+ocamlfind ocamlc -package findlib -c js_parser.ml
+ocamlfind ocamlc -package findlib -c js_lexer.ml
+ocamlfind ocamlc -package findlib -c parse_js.ml
+ocamlfind ocamlc -package findlib -c annot_parser.ml
+ocamlfind ocamlc -package findlib -c annot_lexer.ml
+ocamlfind ocamlc -package findlib -c instr.ml
+ocamlfind ocamlc -package findlib -c primitive.ml
+ocamlfind ocamlc -package findlib -c subst.ml
+ocamlfind ocamlc -package findlib -c pure_fun.ml
+ocamlfind ocamlc -package findlib -c deadcode.ml
+ocamlfind ocamlc -package findlib -c flow.ml
+ocamlfind ocamlc -package findlib -c specialize.ml
+ocamlfind ocamlc -package findlib -c specialize_js.ml
+ocamlfind ocamlc -package findlib -c eval.ml
+ocamlfind ocamlc -package findlib -c inline.ml
+ocamlfind ocamlc -package findlib -c tailcall.ml
+ocamlfind ocamlc -package findlib -c freevars.ml
+ocamlfind ocamlc -package findlib -c phisimpl.ml
+ocamlfind ocamlc -package findlib -c js_traverse.ml
+ocamlfind ocamlc -package findlib -c js_assign.ml
+ocamlfind ocamlc -package findlib -c js_tailcall.ml
+ocamlfind ocamlc -package findlib -c linker.ml
+ocamlfind ocamlc -package findlib -c generate.ml
+ocamlfind ocamlc -package findlib -c parse_bytecode.ml
+ocamlfind ocamlc -package findlib -c driver.ml
+ocamlfind ocamlc -package findlib -c pseudoFs.ml
+ocamlfind ocamlc -pack -o compiler.cmo compiler_version.cmo pretty_print.cmo util.cmo option.cmo reserved.cmo varPrinter.cmo dgraph.cmo code.cmo javascript.cmo vlq64.cmo source_map.cmo js_output.cmo js_simpl.cmo parse_info.cmo js_token.cmo js_parser.cmo js_lexer.cmo parse_js.cmo annot_parser.cmo annot_lexer.cmo instr.cmo primitive.cmo subst.cmo pure_fun.cmo deadcode.cmo flow.cmo specialize.cmo specialize_js.cmo eval.cmo inline.cmo tailcall.cmo freevars.cmo phisimpl.cmo js_traverse.cmo js_assign.cmo js_tailcall.cmo linker.cmo generate.cmo parse_bytecode.cmo driver.cmo pseudoFs.cmo
+ocamlfind ocamlc -a -o compiler.cma compiler.cmo
+ocamlfind ocamlopt -pack -g -o compiler.cmx compiler_version.cmx pretty_print.cmx util.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx annot_parser.cmx annot_lexer.cmx instr.cmx primitive.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx generate.cmx parse_bytecode.cmx driver.cmx pseudoFs.cmx
+ocamlfind ocamlopt -a -o compiler.cmxa compiler.cmx
+ocamlfind ocamlopt -shared -g -o compiler.cmxs compiler.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+make -C lib
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/lib'
+ocamlfind ocamlc -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c typed_array.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g typed_array.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c file.mli
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_html.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_html.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_svg.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_svg.ml
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g file.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c dom_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g dom_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c firebug.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g firebug.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js.ml
+sed -e "s|%%VERSION%%|`sed -e 1q ../VERSION`|" sys_js.mlp >sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c sys_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c regexp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g regexp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c cSS.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g cSS.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c url.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g url.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c form.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g form.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c xmlHttpRequest.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g xmlHttpRequest.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c lwt_js_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g lwt_js_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c json.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c jsonp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g jsonp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c eventSource.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g eventSource.ml
+(echo "#include <stdlib.h>"; \
+	 echo "#include <stdio.h>"; \
+	 echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+	 (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml dom_svg.ml file.ml dom_events.ml firebug.ml lwt_js.ml sys_js.ml regexp.ml cSS.ml url.ml form.ml xmlHttpRequest.ml lwt_js_events.ml json.ml jsonp.ml webGL.ml webSockets.ml keycode.ml eventSource.ml | \
+	  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
+ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo dom_svg.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo lwt_js_events.cmo json.cmo jsonp.cmo webGL.cmo webSockets.cmo keycode.cmo eventSource.cmo stubs.o
+ocamlfind ocamlc -package lwt,lwt.log -I . -I log log/lwt_log_js.mli -o log/lwt_log_js.cmi
+ocamlfind ocamlc -syntax camlp4o -package lwt,lwt.syntax,lwt.log -ppopt syntax/pa_js.cmo -I log -c log/lwt_log_js.ml -o log/lwt_log_js.cmo
+ocamlfind ocamlc -a -o log/logger.cma log/lwt_log_js.cmo
+ocamlfind ocamlc -package lwt -I . -I log toplevel/jsooTop.mli -o toplevel/jsooTop.cmi
+make -C ../compiler local/compiler.cma
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+echo "let s = \"2.4.1\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+mkdir -p local
+cp compiler.* local/
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+ocamlfind ocamlc -syntax camlp4o \
+		-package lwt,lwt.syntax \
+		-ppopt syntax/pa_js.cmo \
+		-I toplevel -I ../compiler/local -I +compiler-libs \
+		-c toplevel/jsooTop.ml -o toplevel/jsooTop.cmo
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/ocamlbuild'
+ocamlbuild -use-ocamlfind ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
+ocamlfind ocamlopt -c -package ocamlbuild -package str -o ocamlbuild_js_of_ocaml.cmx ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlopt -a -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxa
+ocamlfind ocamlopt -shared -package ocamlbuild -package str ocamlbuild_js_of_ocaml.cmx -o ocamlbuild_js_of_ocaml.cmxs
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/ocamlbuild'
+make -C runtime
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/runtime'
+echo "//concat mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js" > runtime.js
+for f in mlString.js ieee_754.js int64.js md5.js marshal.js lexing.js parsing.js bigarray.js unix.js stdlib.js io.js fs.js jslib.js jslib_js_of_ocaml.js internalMod.js gc.js polyfill/json.js ; do \
+		 echo "//# 1 \"$f\"" >> runtime.js; \
+	   cat $f >> runtime.js; \
+	done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/runtime'
+make -C jsoo_tools
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_common.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mktop.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mktop.cmx -o jsoo_mktop.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+mv -f jsoo_mktop.opt jsoo_mktop
+ocamlfind ocamlopt -c -g \
+	-package compiler-libs.common,findlib \
+	-I ../compiler/local/ jsoo_mkcmis.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -linkpkg -g \
+	-package compiler-libs.common,findlib \
+	../compiler/local/compiler.cmxa jsoo_common.cmx jsoo_mkcmis.cmx -o jsoo_mkcmis.opt
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+mv -f jsoo_mkcmis.opt jsoo_mkcmis
+rm jsoo_common.cmx jsoo_mkcmis.cmx jsoo_mktop.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/jsoo_tools'
+ocamlfind install -patch-version 2.4.1 js_of_ocaml lib/META lib/*.cmi lib/log/*.cmi lib/toplevel/jsooTop.cmi ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmi lib/js_of_ocaml.cma lib/syntax/pa_js.cmo lib/dlljs_of_ocaml.so lib/libjs_of_ocaml.a lib/log/logger.cma lib/syntax/pa_js.cmx lib/syntax/pa_js.cmxs lib/toplevel/jsooTop.cmo ocamlbuild/_build/ocamlbuild_js_of_ocaml.cma ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxa ocamlbuild/_build/ocamlbuild_js_of_ocaml.a ocamlbuild/_build/ocamlbuild_js_of_ocaml.cmxs runtime/runtime.js runtime/weak.js runtime/polyfill/classlist.js runtime/polyfill/array.js runtime/toplevel.js runtime/graphics.js runtime/nat.js  lib/*.mli lib/log/*.mli lib/toplevel/jsooTop.mli ocamlbuild/_build/ocamlbuild_js_of_ocaml.mli compiler/compiler.cmi compiler/compiler.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/compiler.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/compiler.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_log_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/xmlHttpRequest.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webSockets.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webGL.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/url.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/typed_array.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/sys_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/regexp.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js_events.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/keycode.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsonp.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/json.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/form.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/firebug.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/file.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/eventSource.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_svg.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_html.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_events.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/cSS.mli
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/nat.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/graphics.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/toplevel.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/array.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/classlist.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/weak.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/runtime.js
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.a
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.cmo
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmxs
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmx
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/logger.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/libjs_of_ocaml.a
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/pa_js.cmo
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js_of_ocaml.cma
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/ocamlbuild_js_of_ocaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsooTop.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_log_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/xmlHttpRequest.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webSockets.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/webGL.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/url.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/typed_array.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/sys_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/regexp.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js_events.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/lwt_js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/keycode.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/jsonp.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/json.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/js.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/form.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/firebug.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/file.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/eventSource.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_svg.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_html.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom_events.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/dom.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/cSS.cmi
+Installed /home/opam/.opam/4.01.0/lib/js_of_ocaml/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlljs_of_ocaml.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlljs_of_ocaml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing js_of_ocaml.2.4.1.
+Building ocplib-endian.0.7:
+  ocaml setup.ml -configure --disable-debug --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ ocplib-endian
+Package version: ..................................... 0.6
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ false
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_optcomp: ......................................... /home/opam/.opam/4.01.0/lib/optcomp
+pkg_bytes: ........................................... /home/opam/.opam/4.01.0/lib/bytes
+pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/lib/ocaml
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianString.mli > src/endianString.mli.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianString.cmi src/endianString.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianString.ml > src/endianString.ml.depends
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.mli > src/endianBytes.mli.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmi src/endianBytes.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.ml > src/endianBytes.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianString.cmo src/endianString.ml
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmo src/endianBytes.ml
+ocamlfind ocamlc -a src/endianString.cmo src/endianBytes.cmo -o src/ocplib_endian.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianString.cmx src/endianString.ml
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBytes.cmx src/endianBytes.ml
+ocamlfind ocamlopt -a src/endianString.cmx src/endianBytes.cmx -o src/ocplib_endian.cmxa
+ocamlfind ocamlopt -shared -linkall src/ocplib_endian.cmxa -o src/ocplib_endian.cmxs
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.mli > src/endianBigstring.mli.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmi src/endianBigstring.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.ml > src/endianBigstring.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmo src/endianBigstring.ml
+ocamlfind ocamlc -a src/endianBigstring.cmo -o src/bigstring.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBigstring.cmx src/endianBigstring.ml
+ocamlfind ocamlopt -a src/endianBigstring.cmx -o src/bigstring.cmxa
+ocamlfind ocamlopt -shared -linkall src/bigstring.cmxa -o src/bigstring.cmxs
