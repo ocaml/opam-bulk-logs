@@ -1439,3 +1439,79 @@ rm -f compile.ppo
 OCAMLN=ocaml CAMLP5N=camlp5 EXE= ./compile.sh -e "Grammar.Entry.obj Pcaml.interf" -e "Grammar.Entry.obj Pcaml.implem" -e "Grammar.Entry.obj Pcaml.top_phrase" -e "Grammar.Entry.obj Pcaml.use_file"  ../etc/pa_o.ml ../etc/pa_op.ml > o_fast.ml.tmp
 ocamlc -c tmp.mli
 ocamlrun ../meta/camlp5r -nolib -I ../meta pa_macro.cmo pa_extend.cmo q_MLast.cmo -meta_action tmp.ml -o tmp.ppo
+ocamlc -I ../lib -I ../main -c -impl tmp.ppo
+rm tmp.ppo
+ocamlrun ../main/camlp5 ./compile.cmo ./tmp.cmo ../etc/pr_r.cmo ../etc/pr_rp.cmo  -sep nn -impl - < /dev/null
+cat ../etc/pa_o.ml ../etc/pa_op.ml | sed -e "s/Plexer.gmake ()/Lazy.force P.lexer/" -e "/EXTEND/,/END/d" -e "/Grammar.Entry.of_parser/d" -e "/Grammar.Entry.gcreate/d" -e "/Grammar.Entry.create/d" | grep -v '#load' | grep -v "^IFDEF" | grep -v "^END" | grep -v DELETE_RULE | cat comp_head.ml.tpl - o_fast.ml.tmp comp_trail.ml.tpl > pa_o_fast.ml
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pa_o_fast.ppo pa_o_fast.ml
+ocamlopt.opt -w y -warn-error A -I ../main -I ../boot -c -impl pa_o_fast.ppo
+rm -f pa_o_fast.ppo
+rm -f camlp5o.fast.opt
+cd ../main; make optp5 CAMLP5OPT=../compile/camlp5o.fast.opt CAMLP5M="../compile/pa_o_fast.cmx ../meta/pr_dump.cmx"
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+ocamlopt.opt ../odyl/odyl.cmxa camlp5.cmxa ../compile/pa_o_fast.cmx ../meta/pr_dump.cmx ../odyl/odyl.cmx -linkall -o ../compile/camlp5o.fast.opt
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/compile'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11'
+rm -rf "/home/opam/.opam/4.01.0/lib/camlp5"
+for i in lib odyl main meta etc top ocpp man compile; do \
+	  (cd $i; make install DESTDIR=; cd ..); \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+mkdir -p "/home/opam/.opam/4.01.0/lib/camlp5"
+cp gramlib.cma *.mli "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp *.cmi "/home/opam/.opam/4.01.0/lib/camlp5/."
+if test -f gramlib.cmxa; then \
+	  make installopt LIBDIR="/home/opam/.opam/4.01.0/lib" DESTDIR=; \
+	fi
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+cp gramlib.cmxa *.cmx "/home/opam/.opam/4.01.0/lib/camlp5/."
+if test -f gramlib.lib; then \
+	  cp gramlib.lib "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	else \
+	  tar cf - gramlib"".a | \
+	  (cd "/home/opam/.opam/4.01.0/lib/camlp5/."; tar xf -); \
+	fi
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+mkdir -p "/home/opam/.opam/4.01.0/lib/camlp5" "/home/opam/.opam/4.01.0/bin"
+cp odyl.cmo odyl.cma "/home/opam/.opam/4.01.0/lib/camlp5/."
+if test -f odyl.cmxa; then \
+	  cp odyl.cmxa odyl.cmx "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	  cp odyl.a odyl.o "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+mkdir -p "/home/opam/.opam/4.01.0/bin"
+mkdir -p "/home/opam/.opam/4.01.0/lib/camlp5"
+cp camlp5 "/home/opam/.opam/4.01.0/bin/."
+cp mLast.mli quotation.mli pcaml.mli prtools.mli reloc.mli "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp mLast.cmi quotation.cmi pcaml.cmi prtools.cmi reloc.cmi "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp camlp5.cma "/home/opam/.opam/4.01.0/lib/camlp5/."
+if test -f camlp5.cmxa; then \
+	  cp camlp5.cmxa "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	  cp camlp5.a "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+mkdir -p "/home/opam/.opam/4.01.0/lib/camlp5" "/home/opam/.opam/4.01.0/bin"
+cp q_MLast.cmo q_ast.cmo pa_r.cmo pa_rp.cmo pa_macro.cmo pa_fstream.cmo pa_extend.cmo pa_extend_m.cmo pr_dump.cmo pa_lexer.cmo "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp pa_macro.cmi pa_extend.cmi "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp camlp5r "/home/opam/.opam/4.01.0/bin/."
+if test -f camlp5r.opt; then \
+	  cp camlp5r.opt "/home/opam/.opam/4.01.0/bin/."; \
+	fi
+if test -f pa_r.cmx; then \
+	  cp q_MLast.cmx q_ast.cmx pa_r.cmx pa_rp.cmx pa_macro.cmx pa_fstream.cmx pa_extend.cmx pa_extend_m.cmx pr_dump.cmx pa_lexer.cmx "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	  for i in q_MLast q_ast pa_r pa_rp pa_macro pa_fstream pa_extend pa_extend_m pr_dump pa_lexer; do \
+	     cp $i.o "/home/opam/.opam/4.01.0/lib/camlp5/."; \
+	  done; \
+	fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/etc'
+mkdir -p "/home/opam/.opam/4.01.0/lib/camlp5" "/home/opam/.opam/4.01.0/bin"
+rm -f "/home/opam/.opam/4.01.0/lib/camlp5/pa_lex.cmo"
+cp pa_o.cmo pa_op.cmo pa_oop.cmo pa_sml.cmo pa_lisp.cmo pa_scheme.cmo pa_extfold.cmo pa_extfun.cmo pa_extprint.cmo pa_lefteval.cmo pa_mkast.cmo pa_mktest.cmo pa_pprintf.cmo pa_pragma.cmo pa_reloc.cmo pr_r.cmo pr_ro.cmo pr_rp.cmo pr_o.cmo pr_op.cmo pr_scheme.cmo pr_schemep.cmo pr_extend.cmo pr_extfun.cmo pr_extprint.cmo pr_depend.cmo pr_null.cmo q_phony.cmo "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp lib.sml "/home/opam/.opam/4.01.0/lib/camlp5/."
+cp camlp5o camlp5sch "/home/opam/.opam/4.01.0/bin/."
