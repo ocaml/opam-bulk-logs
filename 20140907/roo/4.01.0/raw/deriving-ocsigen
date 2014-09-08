@@ -240,3 +240,34 @@ ocamlfind ocamlopt -package camlp4 -for-pack Pa_deriving_common -c id.ml
 ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package optcomp -for-pack Pa_deriving_common -c utils.ml
 ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.r,optcomp -for-pack Pa_deriving_common -c type.ml
 ocamlfind ocamlopt -package camlp4 -for-pack Pa_deriving_common -c defs.ml
+ocamlfind ocamlopt -package camlp4 -for-pack Pa_deriving_common -c clusters.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o,optcomp -for-pack Pa_deriving_common -c base.ml
+File "base.ml", line 145, characters 10-12:
+Warning 26: unused variable ty.
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o -for-pack Pa_deriving_common -c extend.ml
+ocamlfind ocamlopt -o pa_deriving_common.cmx -pack id.cmx utils.cmx type.cmx defs.cmx clusters.cmx base.cmx extend.cmx
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.extend,camlp4.quotations.o  -c pa_deriving.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/show_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/dump_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/enum_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/bounded_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/eq_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/typeable_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/pickle_class.ml
+ocamlfind ocamlopt -package camlp4 -syntax camlp4o -package camlp4.quotations.o -I classes  -c classes/functor_class.ml
+ocamlfind ocamlopt -o pa_deriving.cmxa -a pa_deriving_common.cmx pa_deriving.cmx classes/show_class.cmx classes/dump_class.cmx classes/enum_class.cmx classes/bounded_class.cmx classes/eq_class.cmx classes/typeable_class.cmx classes/pickle_class.cmx classes/functor_class.cmx
+ocamlfind ocamlopt -shared -linkall -o pa_deriving.cmxs pa_deriving.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/deriving-ocsigen.0.5/syntax'
+make -C lib
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/deriving-ocsigen.0.5/lib'
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Show.mli
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Show.ml
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_interned.mli
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_interned.ml
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Eq.mli
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Eq.ml
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Bounded.mli
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Bounded.ml
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Enum.mli
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_Enum.ml
+ocamlfind ocamlc -w ae -package camlp4 -ppopt ../syntax/pa_deriving.cma -syntax camlp4o -c deriving_monad.mli
