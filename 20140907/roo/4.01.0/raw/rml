@@ -1,0 +1,129 @@
+++ opam install rml -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install rml -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install rml
+The following actions will be performed:
+ - install   rml.1.09.03
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/rml.1.09.03+opam.tar.gz
+sending incremental file list
+rml.1.09.03+opam.tar.gz
+
+sent 706,302 bytes  received 35 bytes  1,412,674.00 bytes/sec
+total size is 706,006  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building rml.1.09.03:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
+creating compiler/global/rzi.ml
+checking for install... install
+checking for ocaml... ocaml
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlcp... ocamlcp
+checking for ocamlbuild... ocamlbuild
+
+patching file ../compiler/reac/annot.ml (read from compiler/reac/annot.ml)
+patching file ../compiler/global/asttypes.ml (read from compiler/global/asttypes.ml)
+patching file ../compiler/main/errors.ml (read from compiler/main/errors.ml)
+patching file ../compiler/global/global.ml (read from compiler/global/global.ml)
+patching file ../compiler/parsing/lexer.mll (read from compiler/parsing/lexer.mll)
+patching file ../compiler/parsing/linenum.mll (read from compiler/parsing/linenum.mll)
+patching file ../compiler/parsing/location.ml (read from compiler/parsing/location.ml)
+patching file ../compiler/global/modules.ml (read from compiler/global/modules.ml)
+patching file ../compiler/parsing/parse_ast.ml (read from compiler/parsing/parse_ast.ml)
+patching file ../compiler/parsing/parse.ml (read from compiler/parsing/parse.ml)
+patching file ../compiler/parsing/parse_printer.ml (read from compiler/parsing/parse_printer.ml)
+patching file ../compiler/parsing/parser.mly (read from compiler/parsing/parser.mly)
+patching file ../compiler/reac/reac_ast.ml (read from compiler/reac/reac_ast.ml)
+patching file ../compiler/parsing/syntaxerr.ml (read from compiler/parsing/syntaxerr.ml)
+patching file ../compiler/global/warnings.ml (read from compiler/global/warnings.ml)
+patching file ../tools/rmlbuild/rmlbuild/Makefile (read from tools/rmlbuild/rmlbuild/Makefile)
+patching file ../tools/rmlbuild/rmlbuild/main.ml (read from tools/rmlbuild/rmlbuild/main.ml)
+patching file ../tools/rmlbuild/rmlbuild/ocamlbuild_pack.mlpack (read from tools/rmlbuild/rmlbuild/ocamlbuild_pack.mlpack)
+patching file ../tools/rmlbuild/rmlbuild/ocamlbuild_plugin.ml (read from tools/rmlbuild/rmlbuild/ocamlbuild_plugin.ml)
+patching file ../tools/rmlbuild/rmlbuild/start.sh (read from tools/rmlbuild/rmlbuild/start.sh)
+Patch OK
+
+** Configuration summary **
+
+Directories where ReactiveML will be installed:
+        binaries.................. /home/opam/.opam/4.01.0/bin
+        standard library.......... /home/opam/.opam/4.01.0/lib/rml
+        manual pages.............. /home/opam/.opam/4.01.0/man (with extension .1)
+
+creating config
+
+** ReactiveML configuration completed successfully **
+
+(cd compiler; touch .depend; make depend; make opt)
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/compiler'
+echo "(* This file is generated *)" > global/version.ml
+echo "let version = \"1.09.03\"" >> global/version.ml
+echo "let stdlib = \""/home/opam/.opam/4.01.0/lib/rml"\"" >> global/version.ml
+ocamlyacc -v parsing/parser.mly
+ocamllex parsing/lexer.mll
+167 states, 2981 transitions, table size 12926 bytes
+2216 additional bytes used for bindings
+ocamllex parsing/linenum.mll
+12 states, 323 transitions, table size 1364 bytes
+(for d in global parsing external static typing other_analysis reac lco lk caml optimization main; \
+	 do ocamldep -slash -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main $d/*.mli $d/*.ml; \
+	 done) > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/compiler'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/rml.1.09.03/compiler'
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/version.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/asttypes.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/warnings.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/linenum.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/location.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/misc.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/ident.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/global_ident.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/global.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main static/def_static.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main typing/def_types.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/rzi.mli
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/version.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/warnings.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/linenum.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/location.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/misc.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/ident.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/global_ident.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/global.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main static/def_static.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/asttypes.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main typing/def_types.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/def_modules.ml
+ocaml -I global global/def_modules.cmo ../configure-tools/embedrzi.ml "../"
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/rzi.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/def_modules.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parse_ident.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/modules.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main global/symbol_table.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/syntaxerr.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parse_ast.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parse_ident.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parse_ast.ml
+ocamlc  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parser.mli
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/parser.ml
+ocamlopt  -for-pack Rmlcompiler -c -I global -I parsing -I external -I static -I typing -I other_analysis -I reac -I lco -I lk -I caml -I optimization -I main parsing/lexer.ml
