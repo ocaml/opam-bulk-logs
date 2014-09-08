@@ -2003,3 +2003,86 @@ tools/camomilelocaledef.opt --file locales/zh_HK.txt locales
 tools/camomilelocaledef.opt --file locales/zh_MO.txt locales 
 tools/camomilelocaledef.opt --file locales/zh_SG.txt locales 
 tools/camomilelocaledef.opt --file locales/zh_TW.txt locales 
+tools/camomilelocaledef.opt --file locales/zh_TW_STROKE.txt locales 
+tools/camomilelocaledef.opt --file locales/zh__PINYIN.txt locales 
+rm toolslib/colLexer.ml internal/uReStrLexer.ml toolslib/colParser.mli toolslib/colParser.ml
+files= &&\
+	if [ -f camomileLibrary.cmx ]; then files=camomileLibrary.cmx; fi && \
+	if [ -f camomileLibrary.cma ]; then files="camomileLibrary.cma $files"; fi && \
+	if [ -f camomileLibrary.cmxa ]; then files="camomileLibrary.cmxa $files"; fi && \
+	if [ -f camomileLibraryDefault.cmx ]; then files="camomileLibraryDefault.cmx $files"; fi && \
+	if [ -f camomileLibraryDyn.cmx ]; then files="camomileLibraryDyn.cmx $files"; fi && \
+	if [ -f camomile.cma ]; then files="camomile.cma $files"; fi&& \
+	if [ -f camomile.cmxa ]; then files="camomile.cmxa $files"; fi&& \
+	if [ -f camomile.cmxs ]; then files="camomile.cmxs $files"; fi&& \
+	if [ -f camomile.a ]; then files="camomile.a $files"; fi && \
+	ocamlfind install camomile $files META camomileLibrary.mli camomileLibraryDefault.mli camomileLibraryDyn.mli camomileLibrary.cmi camomileLibraryDefault.cmi camomileLibraryDyn.cmi
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDyn.cmi
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDefault.cmi
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibrary.cmi
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDyn.mli
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDefault.mli
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibrary.mli
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibrary.cmx
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibrary.cma
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibrary.cmxa
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDefault.cmx
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomileLibraryDyn.cmx
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomile.cma
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomile.cmxa
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomile.cmxs
+Installed /home/opam/.opam/4.01.0/lib/camomile/camomile.a
+Installed /home/opam/.opam/4.01.0/lib/camomile/META
+mkdir -p '/home/opam/.opam/4.01.0/share'
+mkdir -p '/home/opam/.opam/4.01.0/share'/camomile
+mkdir -p '/home/opam/.opam/4.01.0/share'/camomile/database
+cp -f database/*.mar '/home/opam/.opam/4.01.0/share'/camomile/database || true
+mkdir -p '/home/opam/.opam/4.01.0/share'/camomile/charmaps
+cp -f charmaps/*.mar '/home/opam/.opam/4.01.0/share'/camomile/charmaps || true
+mkdir -p '/home/opam/.opam/4.01.0/share'/camomile/mappings
+cp -f mappings/*.mar '/home/opam/.opam/4.01.0/share'/camomile/mappings || true
+mkdir -p '/home/opam/.opam/4.01.0/share'/camomile/locales
+cp -f locales/*.mar '/home/opam/.opam/4.01.0/share'/camomile/locales || true
+Installing camomile.0.8.5.
+Building patoline.0.1:
+  ocaml unix.cma configure.ml --prefix /home/opam/.opam/4.01.0 --bin-prefix /home/opam/.opam/4.01.0/bin --ocaml-libs /home/opam/.opam/4.01.0/lib --fonts-dir /home/opam/.opam/4.01.0/share/patoline/fonts --grammars-dir /home/opam/.opam/4.01.0/lib/patoline/grammars --plugins-dir /home/opam/.opam/4.01.0/lib/patoline/plugins --hyphen-dir /home/opam/.opam/4.01.0/share/patoline/hyphen
+  make
+  make install
+Looking for package dyp... found (dyp)
+Looking for package camomile... found (camomile)
+Looking for package sqlite3... found (sqlite3)
+Looking for package camlimages.all_formats... found (camlimages.all_formats)
+Looking for package zip... found (zip)
+Looking for package cairo... not found
+Looking for package str... found (str)
+Looking for package lablgl... not found
+Looking for package netstring... not found
+
+Good news: you can use Patoline !
+
+Now build it by doing:
+	make
+	make install
+
+And optionally
+	make doc
+	make check
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src'
+make -C Rbuffer rbuffer.cmxa
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Rbuffer'
+ocamlc -o rbuffer.cmi rbuffer.mli
+ocamlc -o rope.cmi rope.mli
+ocamlopt -a -o rbuffer.cmxa rbuffer.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Rbuffer'
+make -C Typography _build/Typography.cmxa
+ls: cannot access */*/*.mli: No such file or directory
+ls: cannot access */*/*.mli: No such file or directory
+ls: cannot access */*/*.mli: No such file or directory
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/patoline.0.1/src/Typography'
+ocamlbuild -use-ocamlfind -classic-display Typography.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules Config.ml > Config.ml.depends
+ocamlfind ocamldep -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -modules ConfigUtil.ml > ConfigUtil.ml.depends
+ocamlfind ocamlc -c -I ../../Rbuffer -pp 'cpp -C -ffreestanding -w -DCAMLZIP -DCAMLIMAGES -DLANG_FR' -package camomile -package zip -package camlimages.all_formats -I Fonts -I Output -I Fonts/Sfnt -o Config.cmo Config.ml
