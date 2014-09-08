@@ -1214,3 +1214,43 @@ rm -f eprinter.ppo
 ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o stdpp.ppo stdpp.ml
 ocamlopt.opt -warn-error A -I ../ocaml_stuff/4.01.0/parsing -c -impl stdpp.ppo
 rm -f stdpp.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o token.ppo token.ml
+ocamlopt.opt -warn-error A -I ../ocaml_stuff/4.01.0/parsing -c -impl token.ppo
+rm -f token.ppo
+ocamlopt.opt versdep.cmx ploc.cmx plexing.cmx plexer.cmx fstream.cmx gramext.cmx grammar.cmx diff.cmx extfold.cmx extfun.cmx pretty.cmx pprintf.cmx eprinter.cmx stdpp.cmx token.cmx -a -o gramlib.cmxa
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/lib'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+cp odyl_config.ml odyl_config.ppo
+cat odyl_config.ml > odyl_config.ppo
+ocamlopt.opt -warn-error A -c -impl odyl_config.ppo
+rm -f odyl_config.ppo
+OPT=.opt EXE= OCAMLN=ocaml MODE=S COMPWITH=old CAMLP5N=camlp5 ../tools/camlp5_comm.sh -DOPT -o odyl_main.ppo odyl_main.ml
+ocamlrun ../boot/camlp5r -nolib -I ../boot pa_macro.cmo -mode S -DOPT -o odyl_main.ppo odyl_main.ml
+ocamlopt.opt -c -impl odyl_main.ppo
+rm -f odyl_main.ppo
+ocamlopt.opt odyl_config.cmx odyl_main.cmx -a -o odyl.cmxa
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o odyl.ppo odyl.ml
+ocamlopt.opt -warn-error A -c -impl odyl.ppo
+rm -f odyl.ppo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/odyl'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o quotation.ppo quotation.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl quotation.ppo
+rm -f quotation.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o prtools.ppo prtools.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl prtools.ppo
+rm -f prtools.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o ast2pt.ppo ast2pt.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl ast2pt.ppo
+rm -f ast2pt.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o reloc.ppo reloc.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl reloc.ppo
+rm -f reloc.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o pcaml.ppo pcaml.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl pcaml.ppo
+rm -f pcaml.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o exparser.ppo exparser.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl exparser.ppo
+rm -f exparser.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o parserify.ppo parserify.ml
+ocamlopt.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl parserify.ppo
