@@ -117,3 +117,38 @@ ocamlfind ocamlc -a src/exEnum.cmo -o src/exenum.cma
 ocamlfind ocamlopt -c -g -I src -package num -I src -o src/exEnum.cmx src/exEnum.ml
 ocamlfind ocamlopt -a src/exEnum.cmx -o src/exenum.cmxa
 ocamlfind ocamlopt -shared -linkall src/exenum.cmxa -o src/exenum.cmxs
+ocamlfind ocamldep -package num -modules test/test_enum.ml > test/test_enum.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package num -I test -I src -o test/test_enum.cmo test/test_enum.ml
+ocamlfind ocamlopt -c -g -I src -I src -package num -I test -I src -o test/test_enum.cmx test/test_enum.ml
+ocamlfind ocamlopt -g -linkpkg -package num src/exenum_internals.cmxa src/exenum_internals.cmx src/exenum.cmxa test/test_enum.cmx -o test/test_enum.native
+ocamlfind ocamldep -package num -modules test/test_serious.ml > test/test_serious.ml.depends
+ocamlfind ocamldep -package num -modules test/categorize.mli > test/categorize.mli.depends
+ocamlfind ocamldep -package num -modules test/setp.mli > test/setp.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -package num -I test -I src -o test/categorize.cmi test/categorize.mli
+ocamlfind ocamlc -c -g -I src -I src -package num -I test -I src -o test/setp.cmi test/setp.mli
+ocamlfind ocamlc -c -g -I src -I src -package num -I test -I src -o test/test_serious.cmo test/test_serious.ml
+ocamlfind ocamldep -package num -modules test/categorize.ml > test/categorize.ml.depends
+ocamlfind ocamldep -package num -modules test/setp.ml > test/setp.ml.depends
+ocamlfind ocamlopt -c -g -I src -I src -package num -I test -I src -o test/categorize.cmx test/categorize.ml
+ocamlfind ocamlopt -c -g -I src -I src -package num -I test -I src -o test/setp.cmx test/setp.ml
+ocamlfind ocamlopt -c -g -I src -I src -package num -I test -I src -o test/test_serious.cmx test/test_serious.ml
+ocamlfind ocamlopt -g -linkpkg -package num src/exenum_internals.cmxa src/exenum_internals.cmx src/exenum.cmxa test/categorize.cmx test/setp.cmx test/test_serious.cmx -o test/test_serious.native
+ocamlfind ocamldep -package num -modules example/lambda.ml > example/lambda.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package num -I example -I src -o example/lambda.cmo example/lambda.ml
+ocamlfind ocamlopt -c -g -I src -I src -package num -I example -I src -o example/lambda.cmx example/lambda.ml
+ocamlfind ocamlopt -g -linkpkg -package num src/exenum_internals.cmxa src/exenum_internals.cmx src/exenum.cmxa example/lambda.cmx -o example/lambda.native
+Installed /home/opam/.opam/4.01.0/lib/exenum/exEnum.mli
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum.cma
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum.cmxa
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum.a
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum.cmxs
+Installed /home/opam/.opam/4.01.0/lib/exenum/exEnum.cmi
+Installed /home/opam/.opam/4.01.0/lib/exenum/exEnum.cmx
+Installed /home/opam/.opam/4.01.0/lib/exenum/convenience.ml
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum_internals.cmi
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum_internals.cma
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum_internals.cmxa
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum_internals.a
+Installed /home/opam/.opam/4.01.0/lib/exenum/exenum_internals.cmxs
+Installed /home/opam/.opam/4.01.0/lib/exenum/META
+Installing exenum.0.6.
