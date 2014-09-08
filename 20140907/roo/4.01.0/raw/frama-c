@@ -966,3 +966,76 @@ ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr
 <command-line>:748:1: warning: 'gtk_source_view_set_mark_category_pixbuf' is deprecated (declared at /usr/include/gtksourceview-2.0/gtksourceview/gtksourceview.h:194) [-Wdeprecated-declarations]
 <command-line>: In function 'ml_gtk_source_view_get_mark_category_pixbuf':
 <command-line>:750:1: warning: 'gtk_source_view_get_mark_category_pixbuf' is deprecated (declared at /usr/include/gtksourceview-2.0/gtksourceview/gtksourceview.h:216) [-Wdeprecated-declarations]
+ocamlc.opt   -w s -c sourceView2Enums.ml
+ocamlc.opt   -w s -c gtkSourceView2_types.mli
+./propcc gtkSourceView2.props
+ocamlc.opt   -w s -c gtkSourceView2Props.ml
+ocamlc.opt   -w s -c ogtkSourceView2Props.ml
+ocamlc.opt   -w s -c gtkSourceView2.ml
+ocamlc.opt   -w s -c gSourceView2.mli
+ocamlc.opt   -w s -c gSourceView2.ml
+ocamlmklib -verbose -ocamlc "ocamlc.opt" -ocamlopt "ocamlopt.opt" -o lablgtksourceview2 ml_gtksourceview2.o sourceView2Enums.cmo gtkSourceView2Props.cmo ogtkSourceView2Props.cmo gtkSourceView2.cmo gSourceView2.cmo -lgtksourceview-2.0 -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo -lpango-1.0 -lfontconfig -lgobject-2.0 -lglib-2.0 -lfreetype
++ gcc -shared -o ./dlllablgtksourceview2.so ml_gtksourceview2.o    -lgtksourceview-2.0 -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo -lpango-1.0 -lfontconfig -lgobject-2.0 -lglib-2.0 -lfreetype
++ ar rc ./liblablgtksourceview2.a  ml_gtksourceview2.o; ranlib ./liblablgtksourceview2.a
++ ocamlc.opt -a  -o lablgtksourceview2.cma  sourceView2Enums.cmo gtkSourceView2Props.cmo ogtkSourceView2Props.cmo gtkSourceView2.cmo gSourceView2.cmo -dllib -llablgtksourceview2 -cclib -llablgtksourceview2   -cclib -lgtksourceview-2.0 -cclib -lgtk-x11-2.0 -cclib -lgdk-x11-2.0 -cclib -latk-1.0 -cclib -lgio-2.0 -cclib -lpangoft2-1.0 -cclib -lpangocairo-1.0 -cclib -lgdk_pixbuf-2.0 -cclib -lcairo -cclib -lpango-1.0 -cclib -lfontconfig -cclib -lgobject-2.0 -cclib -lglib-2.0 -cclib -lfreetype 
+ocamlc.opt   -w s -c -thread gtkThread.mli
+ocamlc.opt   -w s -c -thread gtkThread.ml
+ocamlmktop  -thread  -o lablgtktop unix.cma threads.cma  \
+	   -I . lablgtk.cma lablgnomecanvas.cma lablgtksourceview2.cma gtkThread.cmo
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/4.01.0/lib/ocaml/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/4.01.0/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma lablgnomecanvas.cma lablgtksourceview2.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+ocamlc.opt -o gdk_pixbuf_mlsource -I . lablgtk.cma gdk_pixbuf_mlsource.ml
+ocamlc.opt   -w s -c gtkThInit.ml
+sed -e "s|@LABLGTK_MLS@|gaux gpointer gutf8 glib gobject gdkEnums pangoEnums gtkEnums pango gdk gdkEvent gdkKeysyms gdkPixbuf gtk gtkSignal gtkStock gtkObject gtkBaseProps gtkBinProps gtkButtonProps gtkEditProps gtkListProps gtkMenuProps gtkMiscProps gtkPackProps gtkRangeProps gtkTextProps gtkTreeProps gtkFileProps gtkActionProps gtkBrokenProps gtkAssistantProps gtkData gtkBase gtkPack gtkButton gtkAssistant gtkMenu gtkMisc gtkWindow gtkList gtkBin gtkEdit gtkRange gtkText gtkTree gtkFile gtkMain gtkBroken gPango gDraw gObj gData gMain ogtkBaseProps ogtkBinProps ogtkButtonProps ogtkEditProps ogtkListProps ogtkMenuProps ogtkMiscProps ogtkPackProps ogtkRangeProps ogtkTextProps ogtkTreeProps ogtkFileProps ogtkActionProps ogtkBrokenProps ogtkAssistantProps gContainer gPack gButton gText gMenu gMisc gTree gList gFile gWindow gAssistant gBin gEdit gRange gAction gBroken gUtil gToolbox|" \
+	    -e "s|@EXTRA_MLS@|gtkInit gtkThread gtkThInit|" \
+	    -e "s|@PROP_MLS@|gtkBaseProps gtkBinProps gtkButtonProps gtkEditProps gtkListProps gtkMenuProps gtkMiscProps gtkPackProps gtkRangeProps gtkTextProps gtkTreeProps gtkFileProps gtkActionProps gtkBrokenProps gtkAssistantProps ogtkBaseProps ogtkBinProps ogtkButtonProps ogtkEditProps ogtkListProps ogtkMenuProps ogtkMiscProps ogtkPackProps ogtkRangeProps ogtkTextProps ogtkTreeProps ogtkFileProps ogtkActionProps ogtkBrokenProps ogtkAssistantProps|" \
+	    -e "s|@GTKLIBS@|-lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo -lpango-1.0 -lfontconfig -lgobject-2.0 -lglib-2.0 -lfreetype|" \
+	    -e "s|@GLADE_MLS@||" \
+	    -e "s|@GLADE_LIBS@||" \
+	    -e "s|@RSVG_MLS@||" \
+	    -e "s|@RSVG_LIBS@||" \
+	    -e "s|@CANVAS_MLS@|gnomeCanvas gnoCanvas|" \
+	    -e "s|@CANVAS_LIBS@|-lgnomecanvas-2 -lart_lgpl_2 -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo -lpango-1.0 -lfontconfig -lgobject-2.0 -lglib-2.0 -lfreetype|" \
+	    -e "s|@TOOLCHAIN@|unix|" \
+	    < build.ml.in > build.ml
+ocamlc.opt   -w s -c gtkInit.ml
+ocamlopt.opt  -w s -c gaux.ml
+ocamlopt.opt  -w s -c gpointer.ml
+ocamlopt.opt  -w s -c gutf8.ml
+ocamlopt.opt  -w s -c glib.ml
+ocamlopt.opt  -w s -c gobject.ml
+ocamlopt.opt  -w s -c gdkEnums.ml
+ocamlopt.opt  -w s -c pangoEnums.ml
+ocamlopt.opt  -w s -c gtkEnums.ml
+ocamlopt.opt  -w s -c pango.ml
+ocamlopt.opt  -w s -c gdk.ml
+ocamlopt.opt  -w s -c gdkEvent.ml
+ocamlopt.opt  -w s -c gdkKeysyms.ml
+ocamlopt.opt  -w s -c gdkPixbuf.ml
+ocamlopt.opt  -w s -c gtk.ml
+ocamlopt.opt  -w s -c gtkSignal.ml
+ocamlopt.opt  -w s -c gtkStock.ml
+ocamlopt.opt  -w s -c gtkObject.ml
+ocamlopt.opt  -w s -c gtkBaseProps.ml
+ocamlopt.opt  -w s -c gtkBinProps.ml
+ocamlopt.opt  -w s -c gtkButtonProps.ml
+ocamlopt.opt  -w s -c gtkEditProps.ml
+ocamlopt.opt  -w s -c gtkListProps.ml
+ocamlopt.opt  -w s -c gtkMenuProps.ml
+ocamlopt.opt  -w s -c gtkMiscProps.ml
+ocamlopt.opt  -w s -c gtkPackProps.ml
+ocamlopt.opt  -w s -c gtkRangeProps.ml
+ocamlopt.opt  -w s -c gtkTextProps.ml
+ocamlopt.opt  -w s -c gtkTreeProps.ml
+ocamlopt.opt  -w s -c gtkFileProps.ml
+ocamlopt.opt  -w s -c gtkActionProps.ml
+ocamlopt.opt  -w s -c gtkBrokenProps.ml
+ocamlopt.opt  -w s -c gtkAssistantProps.ml
