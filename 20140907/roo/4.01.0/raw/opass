@@ -5771,3 +5771,64 @@ ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
 	form.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
 	engine.ml
+ocamlfind ocamlc -pack -o editable.cmo entry.cmo form.cmo engine.cmo
+ocamlfind ocamlc -package core -custom -a -thread -I +camlp4 -o editable.cma editable.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/editable'
+make -C db .d
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax -syntax camlp4o  db.ml  db.mli > .d
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+make[3]: `.d' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+make -C db native-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+ocamlfind ocamlc -thread -I +camlp4 -package core,sexplib,sexplib.syntax -syntax camlp4o -c db.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,sexplib,sexplib.syntax -syntax camlp4o  -c \
+	db.ml
+ocamlfind ocamlopt -package core,sexplib,sexplib.syntax -syntax camlp4o -a -thread -I +camlp4 -o db.cmxa db.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+make -C db byte-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+ocamlfind ocamlc -thread -I +camlp4 -package core,sexplib,sexplib.syntax -syntax camlp4o  -c \
+	db.ml
+ocamlfind ocamlc -package core,sexplib,sexplib.syntax -syntax camlp4o -custom -a -thread -I +camlp4 -o db.cma db.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/db'
+make -C password .d
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+ocamlfind ocamldep -package core  password.ml  password.mli > .d
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+make[3]: `.d' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+make -C password native-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+ocamlfind ocamlc -thread -I +camlp4 -package core -c password.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core  -c \
+	password.ml
+ocamlfind ocamlopt -package core -a -thread -I +camlp4 -o password.cmxa password.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+make -C password byte-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
+	password.ml
+ocamlfind ocamlc -package core -custom -a -thread -I +camlp4 -o password.cma password.cmo
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/password'
+make -C main .d
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/main'
+ocamlfind ocamldep -package core,core_extended,str,db,password,editable,csv  forms.ml db_io.ml oui.ml import_1password.ml import_txt.ml import_csv.ml opass.ml forms.mli db_io.mli oui.mli import_1password.mli import_txt.mli import_csv.mli > .d
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/main'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/main'
+make[3]: `.d' is up to date.
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/main'
+make -C main native-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/main'
+ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv -cclib -lre2_stubs -cclib -lstdc++ -c forms.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	forms.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv -cclib -lre2_stubs -cclib -lstdc++ -c oui.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	oui.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv -cclib -lre2_stubs -cclib -lstdc++ -c import_txt.mli
+ocamlfind ocamlopt -thread -I +camlp4 -package core,core_extended,str,db,password,editable,csv  -c \
+	import_txt.ml
