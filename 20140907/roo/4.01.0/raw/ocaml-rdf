@@ -1282,3 +1282,78 @@ ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
 /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
 /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
 /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.ml > ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmo ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a cset.cmo ulex.cmo pa_ulex.cmo -o pa_ulex.cma
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.mli > ulexing.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmi ulexing.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulexing.ml > ulexing.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.mli > utf8.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmi utf8.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulexing.cmo ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules utf8.ml > utf8.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o utf8.cmo utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a utf8.cmo ulexing.cmo -o ulexing.cma
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Applying robust-host.patch.
+patching file src/equeue-ssl/https_client.ml
+patching file src/equeue-ssl/https_client.mli
+patching file src/netclient/http_client.ml
+Hunk #3 succeeded at 3570 (offset -8 lines).
+Hunk #4 succeeded at 3585 (offset -8 lines).
+Hunk #5 succeeded at 3602 (offset -8 lines).
+Hunk #6 succeeded at 3746 (offset -8 lines).
+Hunk #7 succeeded at 4532 (offset -8 lines).
+Hunk #8 succeeded at 4678 (offset -8 lines).
+Hunk #9 succeeded at 4910 (offset -8 lines).
+Hunk #10 succeeded at 5143 (offset -8 lines).
+patching file src/netclient/http_client.mli
+Building ocamlnet.3.7.5:
+  ./configure -bindir /home/opam/.opam/4.01.0/bin -enable-pcre -disable-gtk2 -disable-ssl -disable-zip -enable-crypto -with-nethttpd
+  make all
+  make opt
+  make install
+Welcome to Ocamlnet version 3.7.5
+Checking operating system... Linux
+Checking for findlib... found
+Checking multi-threading support... posix (ok)
+Checking word size... 64 bit
+Checking endianess... little
+Checking for GPROF... found
+Checking for PCRE... found
+Checking for win32... no
+Checking whether Ocaml has Printexc.register_printer... found
+Checking for POSIX pthread... found
+Checking whether Ocaml has fancy page tables... found
+Checking on new implementation of caml_modify... found
+Checking whether new caml_modify can be overridden... 
