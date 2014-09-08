@@ -210,3 +210,67 @@ ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib 
 ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_std.cmo -o tests/do_std.byte
 ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_concrete.ml > tests/do_concrete.ml.depends
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_concrete.cmo tests/do_concrete.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_concrete.cmo -o tests/do_concrete.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_api.ml > tests/do_api.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_api.cmo tests/do_api.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_api.cmo -o tests/do_api.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_macro.ml > tests/test_macro.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_macro.cmo tests/test_macro.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_macro.cmo -o tests/test_macro.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_complex.ml > tests/test_complex.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_complex.cmo tests/test_complex.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_complex.cmo -o tests/test_complex.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/ad_hoc_newton.ml > examples/ad_hoc_newton.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/ad_hoc_newton.cmo examples/ad_hoc_newton.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/ad_hoc_newton.cmo -o examples/ad_hoc_newton.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/comp_diff.ml > examples/comp_diff.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/comp_diff.cmo examples/comp_diff.ml
+ocamlfind ocamlc -g -linkpkg examples/comp_diff.cmo -o examples/comp_diff.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/pi_digits.ml > examples/pi_digits.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/pi_digits.cmo examples/pi_digits.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/pi_digits.cmo -o examples/pi_digits.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/rk4.ml > examples/rk4.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/rk4.cmo examples/rk4.ml
+ocamlfind ocamlc -g -linkpkg examples/rk4.cmo -o examples/rk4.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/newton_basin.ml > examples/newton_basin.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
++ ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
+File "examples/newton_basin.ml", line 2, characters 0-13:
+Error: Unbound module Graphics
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/pa_do.cma src/pa_do.cmxa src/pa_do.a src/pa_do.cmxs src/pa_do_nums.cma src/pa_do_nums.cmxa src/pa_do_nums.a src/pa_do_nums.cmxs src/pa_infix.cma src/pa_infix.cmxa src/pa_infix.a src/pa_infix.cmxs src/pa_do_top.cma src/pa_do_top.cmxa src/pa_do_top.a src/pa_do_top.cmxs src/pa_do_top_make.cma src/pa_do_top_make.cmxa src/pa_do_top_make.a src/pa_do_top_make.cmxs tests/op_basic.byte tests/op_mix.byte tests/op_concrete.byte tests/do_std.byte tests/do_concrete.byte tests/do_api.byte tests/test_macro.byte tests/test_complex.byte examples/ad_hoc_newton.byte examples/comp_diff.byte examples/pi_digits.byte examples/rk4.byte examples/newton_basin.byte examples/newton_basin_base.byte examples/newton_cotes.byte examples/add_vec/use.byte examples/comp_assit_proof/contraction.byte examples/first_order_logic/use.byte examples/length/use.byte examples/ray_tracer/ray.native examples/ray_tracer/ray_orig.native -tag debug' terminated with error code 10")
+make: *** [all] Error 1
+Removing pa_do.0.8.16.
+[ERROR] The compilation of pa_do.0.8.16 failed.
+  ocamlfind remove pa_do
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/pa_do
+
+
+#=== ERROR while installing pa_do.0.8.16 ======================================#
+# opam-version         1.2.0 (751d606562478b9bd4653b64989d2f2869f23d99)
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.01.0/build/pa_do.0.8.16
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/pa_do.0.8.16/pa_do-128-6d07ae.env
+# stdout-file          /home/opam/.opam/4.01.0/build/pa_do.0.8.16/pa_do-128-6d07ae.out
+# stderr-file          /home/opam/.opam/4.01.0/build/pa_do.0.8.16/pa_do-128-6d07ae.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlc -g -linkpkg -package num examples/pi_digits.cmo -o examples/pi_digits.byte
+# ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/rk4.ml > examples/rk4.ml.depends
+# ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/rk4.cmo examples/rk4.ml
+# ocamlfind ocamlc -g -linkpkg examples/rk4.cmo -o examples/rk4.byte
+# ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/newton_basin.ml > examples/newton_basin.ml.depends
+# ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
+# + ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
+# File "examples/newton_basin.ml", line 2, characters 0-13:
+# Error: Unbound module Graphics
+# Command exited with code 2.
+### stderr ###
+# fatal: Not a git repository (or any of the parent directories): .git
+# E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/pa_do.cma src/pa_do.cmxa src/pa_do.a src/pa_do.cmxs src/pa_do_nums.cma src/pa_do_nums.cmxa src/pa_do_nums.a src/pa_do_nums.cmxs src/pa_infix.cma src/pa_infix.cmxa src/pa_infix.a src/pa_infix.cmxs src/pa_do_top.cma src/pa_do_top.cmxa src/pa_do_top.a src/pa_do_top.cmxs src/pa_do_top_make.cma src/pa_do_top_make.cmxa src/pa_do_top_make....[truncated]
+# make: *** [all] Error 1
+
+'opam install pa_do' failed.

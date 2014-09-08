@@ -5130,3 +5130,66 @@ ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
 ln -s dynlink_wrapper.natdynlink.ml dynlink_wrapper.ml
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+ocamlfind ocamlc  -thread -a -o baselib.cma ocsigen_lib_base.cmo ocsigen_lib.cmo ocsigen_cache.cmo ocsigen_config.cmo ocsigen_commandline.cmo ocsigen_messages.cmo dynlink_wrapper.cmo ocsigen_loader.cmo ocsigen_stream.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o parsecommandline.cma commandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o donotparsecommandline.cma nocommandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
+ocamlfind ocamlc  -thread -a -o polytables.cma polytables.cmo
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib_base.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_lib.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_cache.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_config.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+ocamlfind ocamlopt   -thread -a -o baselib.cmxa ocsigen_lib_base.cmx ocsigen_lib.cmx ocsigen_cache.cmx ocsigen_config.cmx ocsigen_commandline.cmx ocsigen_messages.cmx dynlink_wrapper.cmx ocsigen_loader.cmx ocsigen_stream.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o parsecommandline.cmxa commandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml
+ocamlfind ocamlopt   -thread -a -o donotparsecommandline.cmxa nocommandline/ocsigen_getcommandline.cmx
+ocamlfind ocamlopt   -thread -shared -linkall -o parsecommandline.cmxs parsecommandline.cmxa
+ocamlfind ocamlopt   -thread -shared -linkall -o donotparsecommandline.cmxs donotparsecommandline.cmxa
+ocamlfind ocamlopt   -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c polytables.ml
+ocamlfind ocamlopt   -thread -a -o polytables.cmxa polytables.cmx
+ocamlfind ocamlopt   -thread -shared -linkall -o polytables.cmxs polytables.cmxa
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/baselib'
+make -C http all
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocsigenserver.2.4.0/src/http'
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c multipart.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c multipart.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_headers.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_headers.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_cookies.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_cookies.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_frame.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_frame.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_com.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_charset_mime.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_senders.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_headers.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_headers.ml
+ocamllex http_lexer.mll
+64 states, 3199 transitions, table size 13180 bytes
+8057 additional bytes used for bindings
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_lexer.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c framepp.mli
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c framepp.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_com.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_charset_mime.ml
+ocamlfind ocamlc -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_senders.ml
+ocamlfind ocamlc -a -o http.cma multipart.cmo http_headers.cmo ocsigen_cookies.cmo ocsigen_http_frame.cmo ocsigen_headers.cmo http_lexer.cmo framepp.cmo ocsigen_http_com.cmo ocsigen_charset_mime.cmo ocsigen_senders.cmo
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c multipart.ml
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_headers.ml
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_cookies.ml
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c ocsigen_http_frame.ml
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c http_lexer.ml
+ocamlfind ocamlopt  -package netstring,netstring-pcre,lwt.ssl,tyxml -I ../baselib -c framepp.ml
