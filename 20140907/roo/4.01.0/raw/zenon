@@ -939,3 +939,20 @@ ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I
 rm -f parserify.ppi
 ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o parserify.ppo parserify.ml
 ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl parserify.ppo
+rm -f parserify.ppo
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o argl.ppi argl.mli
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -intf argl.ppi
+rm -f argl.ppi
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o argl.ppo argl.ml
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl argl.ppo
+rm -f argl.ppo
+OTOP=../ocaml_stuff/4.01.0 OVERSION=4.01.0 OLIBDIR="/home/opam/.opam/4.01.0/lib/ocaml" ../tools/mkcrc.sh
+ocamlc.opt -c -impl crc.tmp
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o main.ppo main.ml
+ocamlc.opt -warn-error A -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing -c -impl main.ppo
+rm -f main.ppo
+ocamlc.opt -I ../odyl -I ../boot -I ../ocaml_stuff/4.01.0/utils -I ../ocaml_stuff/4.01.0/parsing ../boot/versdep.cmo ../boot/ploc.cmo ../boot/plexing.cmo ../boot/plexer.cmo ../boot/fstream.cmo ../boot/gramext.cmo ../boot/grammar.cmo ../boot/diff.cmo ../boot/extfold.cmo ../boot/extfun.cmo ../boot/pretty.cmo ../boot/pprintf.cmo ../boot/eprinter.cmo ../ocaml_stuff/4.01.0/utils/pconfig.cmo quotation.cmo prtools.cmo ast2pt.cmo reloc.cmo pcaml.cmo exparser.cmo parserify.cmo argl.cmo ../boot/stdpp.cmo ../boot/token.cmo crc.cmo main.cmo -a -o camlp5.cma
+ocamlc.opt ../odyl/odyl.cma camlp5.cma ../odyl/odyl.cmo -linkall -o camlp5
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/main'
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/meta'
+ocamlrun ../boot/camlp5r -nolib -I ../boot -mode S -o q_MLast.ppo q_MLast.ml
