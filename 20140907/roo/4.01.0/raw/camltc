@@ -1061,3 +1061,58 @@ ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix 
 ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o hotc.cmi hotc.mli
 ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o logging.cmo logging.ml
 ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o prefix_otc.cmo prefix_otc.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -modules otc_test.ml > otc_test.ml.depends
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o camltc.cmi camltc.mli
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o hotc_test.cmo hotc_test.ml
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o otc_test.cmo otc_test.ml
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o test.cmo test.ml
+ocamlfind ocamlc -ccopt -I../3rd-party/tokyocabinet -ccopt -O2 -c otc_wrapper.c
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o otc otc_wrapper.o
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -modules camltc.ml > camltc.ml.depends
+echo 'let git_revision = "tags/camltc-0.9.2-0-gfabaff1"
+let compile_time = "08/09/2014 05:18:02 UTC"
+let machine = "694f7c46eeba 3.13.0-24-generic x86_64 x86_64 x86_64 GNU/Linux"
+let major = 0
+let minor = 9
+let patch = 2
+let dependencies = "Incubaid'\''s tokyocabinet fork: 6d4cc70ac5e7580aacb40349a165ed65f9c9f98c 3rd-party/tokyocabinet (1.4.48-20-g6d4cc70)"
+' > camltc_version.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -modules camltc_version.ml > camltc_version.ml.depends
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o camltc_version.cmo camltc_version.ml
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o camltc.cmo camltc.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -modules hotc.ml > hotc.ml.depends
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o hotc.cmo hotc.ml
+ocamlfind ocamlc -linkpkg -g -thread -custom -cclib -L. -cclib -lotc -cclib -ltokyocabinet -cclib -L3rd-party/tokyocabinet -package lwt.preemptive -package lwt.unix -package lwt -package oUnit camltc_version.cmo otc.cmo hotc.cmo camltc.cmo extra.cmo logging.cmo prefix_otc.cmo hotc_test.cmo otc_test.cmo test.cmo libotc.a -o test.byte
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o otc.cmx otc.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o camltc_version.cmx camltc_version.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o hotc.cmx hotc.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o extra.cmx extra.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o logging.cmx logging.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o prefix_otc.cmx prefix_otc.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o camltc.cmx camltc.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o hotc_test.cmx hotc_test.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o otc_test.cmx otc_test.ml
+ocamlfind ocamlopt -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -package oUnit -o test.cmx test.ml
+ocamlfind ocamlopt -linkpkg -g -thread -cclib -L. -cclib -lotc -cclib -ltokyocabinet -cclib -L3rd-party/tokyocabinet -package lwt.preemptive -package lwt.unix -package lwt -package oUnit camltc_version.cmx otc.cmx hotc.cmx camltc.cmx extra.cmx logging.cmx prefix_otc.cmx hotc_test.cmx otc_test.cmx test.cmx libotc.a -o test.native
+ocamlfind ocamlc -a -thread -custom -cclib -L. -cclib -lotc -cclib -ltokyocabinet -cclib -L3rd-party/tokyocabinet -package lwt.preemptive -package lwt.unix -package lwt -package oUnit camltc_version.cmo otc.cmo hotc.cmo camltc.cmo -o camltc.cma
+ocamlfind ocamlopt -a -thread -cclib -L. -cclib -lotc -cclib -ltokyocabinet -cclib -L3rd-party/tokyocabinet -package lwt.preemptive -package lwt.unix -package lwt -package oUnit camltc_version.cmx otc.cmx hotc.cmx camltc.cmx -o camltc.cmxa
+make: Leaving directory `/home/opam/.opam/4.01.0/build/camltc.0.9.2/src'
+make: Entering directory `/home/opam/.opam/4.01.0/build/camltc.0.9.2/src'
+ocamlfind install camltc META \
+	  _build/camltc.cma \
+	  _build/camltc.cmxa \
+	  _build/camltc.cmi \
+	  _build/camltc.mli \
+	  _build/libotc.a \
+	  _build/camltc.a \
+	  _build/3rd-party/tokyocabinet/libtokyocabinet.a
+Installed /home/opam/.opam/4.01.0/lib/camltc/libtokyocabinet.a
+Installed /home/opam/.opam/4.01.0/lib/camltc/camltc.a
+Installed /home/opam/.opam/4.01.0/lib/camltc/libotc.a
+Installed /home/opam/.opam/4.01.0/lib/camltc/camltc.mli
+Installed /home/opam/.opam/4.01.0/lib/camltc/camltc.cmi
+Installed /home/opam/.opam/4.01.0/lib/camltc/camltc.cmxa
+Installed /home/opam/.opam/4.01.0/lib/camltc/camltc.cma
+Installed /home/opam/.opam/4.01.0/lib/camltc/META
+make: Leaving directory `/home/opam/.opam/4.01.0/build/camltc.0.9.2/src'
+Installing camltc.0.9.2.
