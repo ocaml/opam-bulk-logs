@@ -3433,3 +3433,102 @@ Building pa_test.109.53.02:
 ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
 rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
 ./setup.exe -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ pa_test
+Package version: ..................................... 109.53.02
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+camlp4o: ............................................. /home/opam/.opam/4.01.0/bin/camlp4o
+pkg_camlp4_lib: ...................................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_camlp4_quotations: ............................... /home/opam/.opam/4.01.0/lib/ocaml/camlp4
+pkg_type_conv: ....................................... /home/opam/.opam/4.01.0/lib/type_conv
+pkg_sexplib: ......................................... /home/opam/.opam/4.01.0/lib/sexplib
+pkg_core_kernel: ..................................... /home/opam/.opam/4.01.0/lib/core_kernel
+
+./setup.exe -build 
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules lib/pa_test_dummy.ml > lib/pa_test_dummy.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/pa_test_dummy.cmo lib/pa_test_dummy.ml
+ocamlfind ocamlc -a lib/pa_test_dummy.cmo -o lib/pa_test.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/pa_test_dummy.cmx lib/pa_test_dummy.ml
+ocamlfind ocamlopt -a lib/pa_test_dummy.cmx -o lib/pa_test.cmxa
+ocamlfind ocamlopt -shared -linkall lib/pa_test.cmxa -o lib/pa_test.cmxs
+ocamlfind ocamldep -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_test.mli > syntax/pa_test.mli.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmi syntax/pa_test.mli
+ocamlfind ocamldep -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_test.ml > syntax/pa_test.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmo syntax/pa_test.ml
+ocamlfind ocamlc -a syntax/pa_test.cmo -o syntax/pa_test_syntax.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package core_kernel -package sexplib -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_test.cmx syntax/pa_test.ml
+ocamlfind ocamlopt -a syntax/pa_test.cmx -o syntax/pa_test_syntax.cmxa
+ocamlfind ocamlopt -shared -linkall syntax/pa_test_syntax.cmxa -o syntax/pa_test_syntax.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.ml
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cma
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.a
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.cmi
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_dummy.cmx
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.mli
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cma
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.a
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test_syntax.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmi
+Installed /home/opam/.opam/4.01.0/lib/pa_test/pa_test.cmx
+Installed /home/opam/.opam/4.01.0/lib/pa_test/META
+Installing pa_test.109.53.02.
+Building core.109.55.02:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
