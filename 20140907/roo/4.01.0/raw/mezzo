@@ -1158,3 +1158,111 @@ ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma pa_ulex.cmxa ulexing.cmxa
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o cset.cmx cset.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulex.cmx ulex.ml
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmx pa_ulex.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a cset.cmx ulex.cmx pa_ulex.cmx -o pa_ulex.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
++ /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o utf8.cmx utf8.ml
+File "utf8.ml", line 113, characters 20-21:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -o ulexing.cmx ulexing.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -a utf8.cmx ulexing.cmx -o ulexing.cmxa
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+cd _build && make -f ../Makefile realinstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+ocamlfind install ulex ../META ulexing.mli utf8.mli ulexing.cmi utf8.cmi ulexing.cmx utf8.cmx pa_ulex.cma ulexing.a ulexing.cma ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.a
+Installed /home/opam/.opam/4.01.0/lib/ulex/pa_ulex.cma
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmx
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.cmi
+Installed /home/opam/.opam/4.01.0/lib/ulex/utf8.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/ulexing.mli
+Installed /home/opam/.opam/4.01.0/lib/ulex/META
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ulex.1.1/_build'
+Installing ulex.1.1.
+Building yojson.1.1.8:
+  make
+  make install
+sed -e 's:@@VERSION@@:1.1.8:' META.in > META
+cppo -n yojson.mli.cppo -o yojson.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.mli
+ocamllex read.mll
+433 states, 2020 transitions, table size 10678 bytes
+cppo -D "VERSION 1.1.8" yojson.ml.cppo -o yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.mli
+ocamlfind ocamlc -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson.ml
+ocamlfind ocamlopt -c -dtypes -g -package easy-format,biniou yojson_biniou.ml
+ocamlopt -shared -linkall -I . -o yojson.cmxs yojson.cmx
+ocamlopt -shared -linkall -I . -o yojson_biniou.cmxs yojson_biniou.cmx
+ocamlfind ocamlopt -o ydump -dtypes -g -package easy-format,biniou -linkpkg \
+		yojson.cmx yojson_biniou.cmx ydump.ml
+test ! -f ydump || cp ydump /home/opam/.opam/4.01.0/bin/
+test ! -f ydump.exe || cp ydump.exe /home/opam/.opam/4.01.0/bin/
+ocamlfind install yojson META \
+          $(ls yojson.mli yojson_biniou.mli yojson.cmi yojson_biniou.cmi yojson.cmo yojson_biniou.cmo yojson.cmx yojson_biniou.cmx yojson.cmxs yojson_biniou.cmxs yojson.o yojson_biniou.o)
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson_biniou.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.o
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.mli
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmxs
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmx
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmo
+Installed /home/opam/.opam/4.01.0/lib/yojson/yojson.cmi
+Installed /home/opam/.opam/4.01.0/lib/yojson/META
+Installing yojson.1.1.8.
+Building mezzo.0.0.m8:
+  ./configure
+  make
+  make install
+No Firefox, support for -explain html disabled
+found ocamlfind, good
+This is a SYSTEM installation
+libdir is /home/opam/.opam/4.01.0/lib/mezzo
+srcdir is /home/opam/.opam/4.01.0/build/mezzo.0.0.m8
+sed found as sed
+find found as find
+time found as time
+... configure done.
+ocaml parsing/KeywordGenerator.ml < parsing/Keywords > parsing/Keywords.ml
+if [ -d ../misc/pygments/mezzolexer ] ; then \
+	  ocaml parsing/KeywordPygments.ml < parsing/Keywords > ../misc/pygments/mezzolexer/mezzokeywords.py ; \
+	fi
+ocaml parsing/KeywordGenerator.ml -vim vim/syntax/mezzo.vim.raw < parsing/Keywords > vim/syntax/mezzo.vim
+myocamlbuild.ml generated
+# This re-generates the list of modules that go into MezzoStdLib
+make -C stdlib/
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mezzo.0.0.m8/stdlib'
+MezzoStdLib.mllib generated
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mezzo.0.0.m8/stdlib'
+# This is the big call that builds everything.
+ocamlbuild -j 4 -use-ocamlfind -use-menhir -menhir "menhir --explain --infer -la 1 --table" -classic-display -I lib -I parsing -I typing -I utils -I interpreter -I compiler -I tests/unit -I ocamlbuild -I mezzolib -I corelib -I stdlib mezzo.native testsuite.native mezzolib/MezzoLib.cma mezzolib/MezzoLib.cmxa corelib/MezzoCoreLib.cma corelib/MezzoCoreLib.cmxa stdlib/MezzoStdLib.cma stdlib/MezzoStdLib.cmxa ocamlbuild/ocamlbuild_mezzo.cma ocamlbuild/ocamlbuild_mezzo.cmxa
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules mezzo.ml > mezzo.ml.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules configure.ml > configure.ml.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules utils/Debug.ml > utils/Debug.ml.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules lib/Bash.mli > lib/Bash.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I parsing -I typing -I interpreter -I ocamlbuild -I stdlib -I corelib -I lib -I utils -I compiler -I mezzolib -I tests/unit -o configure.cmo configure.ml
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules parsing/Datacon.ml > parsing/Datacon.ml.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules parsing/Identifier.mli > parsing/Identifier.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules lib/gMap.mli > lib/gMap.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules lib/gSet.mli > lib/gSet.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I lib -I parsing -I typing -I interpreter -I ocamlbuild -I stdlib -I corelib -I utils -I compiler -I mezzolib -I tests/unit -o lib/gSet.cmi lib/gSet.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I lib -I parsing -I typing -I interpreter -I ocamlbuild -I stdlib -I corelib -I utils -I compiler -I mezzolib -I tests/unit -o lib/gMap.cmi lib/gMap.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I parsing -I typing -I interpreter -I ocamlbuild -I stdlib -I corelib -I lib -I utils -I compiler -I mezzolib -I tests/unit -o parsing/Identifier.cmi parsing/Identifier.mli
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules typing/DerivationPrinter.mli > typing/DerivationPrinter.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules typing/Derivations.mli > typing/Derivations.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules lib/Either.mli > lib/Either.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules lib/LazyList.mli > lib/LazyList.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules typing/TypeCore.mli > typing/TypeCore.mli.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules typing/DataTypeFlavor.ml > typing/DataTypeFlavor.ml.depends
+ocamlfind ocamldep -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -modules typing/Mode.mli > typing/Mode.mli.depends
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I typing -I parsing -I interpreter -I ocamlbuild -I stdlib -I corelib -I lib -I utils -I compiler -I mezzolib -I tests/unit -o typing/Mode.cmi typing/Mode.mli
+ocamlfind ocamlc -c -g -annot -bin-annot -strict-sequence -w @1..3@8..12@14..21@23..40-41@43 -package yojson -package menhirLib -package ulex -package pprint -package fix -package unix -package functory -package str -package ocamlbuild -I parsing -I typing -I interpreter -I ocamlbuild -I stdlib -I corelib -I lib -I utils -I compiler -I mezzolib -I tests/unit -o parsing/Datacon.cmo parsing/Datacon.ml
