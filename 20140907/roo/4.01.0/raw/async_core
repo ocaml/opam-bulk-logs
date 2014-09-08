@@ -1150,3 +1150,35 @@ ocamlfind ocamlc -a lib/fieldslib.cmo -o lib/fieldslib.cma
 ocamlfind ocamlopt -c -g -for-pack Fieldslib -I lib -o lib/field.cmx lib/field.ml
 touch lib/fieldslib.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/field.cmx -o lib/fieldslib.cmx  ; then  rm -f lib/fieldslib.mli  ; else  rm -f lib/fieldslib.mli  ; exit 1; fi
 ocamlfind ocamlopt -a lib/fieldslib.cmx -o lib/fieldslib.cmxa
+ocamlfind ocamlopt -shared lib/fieldslib.cmx -o lib/fieldslib.cmxs
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_fields_conv.mli > syntax/pa_fields_conv.mli.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_fields_conv.cmi syntax/pa_fields_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -modules syntax/pa_fields_conv.ml > syntax/pa_fields_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_fields_conv.cmo syntax/pa_fields_conv.ml
+ocamlfind ocamlc -a syntax/pa_fields_conv.cmo -o syntax/pa_fields_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package type_conv -package camlp4.quotations -package camlp4.lib -I syntax -o syntax/pa_fields_conv.cmx syntax/pa_fields_conv.ml
+ocamlfind ocamlopt -a syntax/pa_fields_conv.cmx -o syntax/pa_fields_conv.cmxa
+ocamlfind ocamlopt -shared syntax/pa_fields_conv.cmx -o syntax/pa_fields_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/field.mli
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.cmi
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.cma
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.cmxa
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.a
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.cmxs
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/fieldslib.cmx
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.a
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/pa_fields_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/fieldslib/META
+Installing fieldslib.109.20.03.
+Building pa_ounit.109.53.02:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
