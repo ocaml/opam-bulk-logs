@@ -4925,3 +4925,20 @@ ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -sy
 ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
 	builder.ml
 ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o -c parser.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	parser.ml
+ocamlfind ocamlopt -pack -o protobuf.cmx fixed32.cmx fixed64.cmx sint32.cmx sint64.cmx varint.cmx protocol.cmx builder.cmx parser.cmx
+ocamlfind ocamlopt -for-pack Protobuf -package core,bitstring,bitstring.syntax -syntax camlp4o -a -thread -I +camlp4 -o protobuf.cmxa protobuf.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib/protobuf'
+make -C protobuf byte-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/protobuf.1.0.0/lib/protobuf'
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	fixed32.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	fixed64.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	sint32.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	sint64.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core,bitstring,bitstring.syntax -syntax camlp4o  -c \
+	varint.ml
