@@ -204,3 +204,192 @@ pkg_num: ............................................. /home/opam/.opam/4.01.0/l
 
 ocaml setup.ml -build -classic-display
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/arcfour.c
+mv arcfour.o src/arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-arcfour.c
+mv stubs-arcfour.o src/stubs-arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/blowfish.c
+mv blowfish.o src/blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-blowfish.c
+mv stubs-blowfish.o src/stubs-blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/d3des.c
+mv d3des.o src/d3des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
+mv stubs-des.o src/stubs-des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+	  echo "let ocamlfind = true" >> src/installation.ml ; \
+	else \
+	  echo "let ocamlfind = false" >> src/installation.ml ; \
+	fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx rowDisplacement.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableFormat.cmx tableFormat.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableInterpreter.cmx tableInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o convert.cmx convert.ml
+touch menhirLib.mli  ; if  ocamlfind ocamlopt -pack -g infiniteArray.cmx packedIntArray.cmx rowDisplacement.cmx engineTypes.cmx engine.cmx tableFormat.cmx tableInterpreter.cmx convert.cmx -o menhirLib.cmx  ; then  rm -f menhirLib.mli  ; else  rm -f menhirLib.mli  ; exit 1; fi
+# Parallel statistics: { count(total): 2(33), max: 6, min: 2, average(total): 4.000(1.182) }
+Checking that Objective Caml is recent enough...
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules checkOCamlVersion.ml > checkOCamlVersion.ml.depends
+ocamlfind ocamlc -c -g -o checkOCamlVersion.cmo checkOCamlVersion.ml
+ocamlfind ocamlc -linkpkg str.cma -g checkOCamlVersion.cmo -o checkOCamlVersion.byte
+# No parallelism done
+Version 4.01.0 is OK.
+ocamlfind ocamldep -modules menhir.ml > menhir.ml.depends
+ocamlfind ocamldep -modules back.mli > back.mli.depends
+ocamlfind ocamlc -c -o back.cmi back.mli
+ocamlfind ocamlc -c -g -o menhir.cmo menhir.ml
+ocamlfind ocamldep -modules back.ml > back.ml.depends
+ocamlfind ocamldep -modules codeBackend.ml > codeBackend.ml.depends
+ocamlfind ocamldep -modules codeBackend.mli > codeBackend.mli.depends
+ocamlfind ocamldep -modules IL.mli > IL.mli.depends
+ocamlfind ocamldep -modules stretch.mli > stretch.mli.depends
+ocamlfind ocamldep -modules keyword.mli > keyword.mli.depends
+ocamlfind ocamldep -modules positions.mli > positions.mli.depends
+ocamlfind ocamlc -c -o keyword.cmi keyword.mli
+ocamlfind ocamlc -c -o positions.cmi positions.mli
+ocamlfind ocamlc -c -o stretch.cmi stretch.mli
+ocamlfind ocamlc -c -o IL.cmi IL.mli
+ocamlfind ocamlc -c -o codeBackend.cmi codeBackend.mli
+ocamlfind ocamldep -modules action.ml > action.ml.depends
+ocamlfind ocamldep -modules action.mli > action.mli.depends
+ocamlfind ocamlc -c -o action.cmi action.mli
+ocamlfind ocamldep -modules keyword.ml > keyword.ml.depends
+ocamlfind ocamldep -modules positions.ml > positions.ml.depends
+ocamlfind ocamldep -modules printer.ml > printer.ml.depends
+ocamlfind ocamldep -modules printer.mli > printer.mli.depends
+ocamlfind ocamlc -c -o printer.cmi printer.mli
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q lineCount.mll
+ocamlfind ocamldep -modules lineCount.ml > lineCount.ml.depends
+ocamlfind ocamlc -c -g -o lineCount.cmo lineCount.ml
+ocamlfind ocamldep -modules settings.ml > settings.ml.depends
+ocamlfind ocamldep -modules settings.mli > settings.mli.depends
+ocamlfind ocamlc -c -o settings.cmi settings.mli
+ocamlfind ocamldep -modules installation.ml > installation.ml.depends
+ocamlfind ocamldep -modules installation.mli > installation.mli.depends
+ocamlfind ocamlc -c -o installation.cmi installation.mli
+ocamlfind ocamldep -modules stringSet.ml > stringSet.ml.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamldep -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -g -o version.cmo version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o installation.cmx installation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o stringSet.cmx stringSet.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o version.cmx version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lineCount.cmx lineCount.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o settings.cmx settings.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o keyword.cmx keyword.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o positions.cmx positions.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o printer.cmx printer.ml
