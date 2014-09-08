@@ -30,3 +30,129 @@ Preparing to unpack .../uuid-dev_2.20.1-5.1ubuntu20.1_amd64.deb ...
 Unpacking uuid-dev (2.20.1-5.1ubuntu20.1) ...
 Setting up libvhd0 (2.0.90-2ubuntu1) ...
 Setting up libvhdio-2.0.90 (2.0.90-2ubuntu1) ...
+Setting up libblktapctl0 (2.0.90-2ubuntu1) ...
+Setting up blktap-dev (2.0.90-2ubuntu1) ...
+Setting up uuid-dev (2.20.1-5.1ubuntu20.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install libvhd -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install libvhd
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   libvhd.0.9.0
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/libvhd.0.9.0+opam.tar.gz
+sending incremental file list
+libvhd.0.9.0+opam.tar.gz
+
+sent 44,159 bytes  received 35 bytes  88,388.00 bytes/sec
+total size is 44,022  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building libvhd.0.9.0:
+  make
+  make install BINDIR=/home/opam/.opam/4.01.0/bin
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ libvhd
+Package version: ..................................... 0.9.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+
+ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamlc -c lib/vhd_stubs.c
++ ocamlfind ocamlc -c lib/vhd_stubs.c
+lib/vhd_stubs.c: In function 'stub_vhd_write_sector':
+lib/vhd_stubs.c:421:3: warning: format '%Ld' expects argument of type 'long long int', but argument 4 has type 'uint64_t' [-Wformat=]
+   syslog(LOG_INFO, "string='%s', sectorno=%Ld, err=%d", buf, sectorno, err);
+   ^
+lib/vhd_stubs.c: In function 'stub_vhd_read_sector':
+lib/vhd_stubs.c:435:7: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+   int err;
+       ^
+lib/vhd_stubs.c: In function 'stub_vhd_get_first_allocated_block':
+lib/vhd_stubs.c:535:13: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+   int i,max,err;
+             ^
+mv vhd_stubs.o lib/vhd_stubs.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o lib/libvhd_stubs -lvhd -luuid lib/vhd_stubs.o
+ocamlfind ocamldep -modules lib/vhd.mli > lib/vhd.mli.depends
+ocamlfind ocamlc -c -g -I lib -o lib/vhd.cmi lib/vhd.mli
+ocamlfind ocamldep -modules lib/vhd.ml > lib/vhd.ml.depends
+ocamlfind ocamlc -c -g -I lib -o lib/vhd.cmo lib/vhd.ml
+ocamlfind ocamlc -a -dllib -llibvhd_stubs -cclib -llibvhd_stubs -cclib -lvhd -cclib -luuid lib/vhd.cmo -o lib/libvhd.cma
+ocamlfind ocamlopt -c -g -I lib -o lib/vhd.cmx lib/vhd.ml
+ocamlfind ocamlopt -a -cclib -llibvhd_stubs -cclib -lvhd -cclib -luuid lib/vhd.cmx -o lib/libvhd.cmxa
+ocamlfind ocamlopt -shared -linkall -I lib lib/libvhd.cmxa -o lib/libvhd.cmxs
+ocamlfind ocamldep -modules lib_test/open.ml > lib_test/open.ml.depends
+ocamlfind ocamlc -c -g -I lib -I lib_test -I lib -o lib_test/open.cmo lib_test/open.ml
+ocamlfind ocamlc -g -I lib -linkpkg lib/libvhd.cma lib_test/open.cmo -o lib_test/open.byte
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/libvhd/vhd.mli
+Installed /home/opam/.opam/4.01.0/lib/libvhd/liblibvhd_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/libvhd/libvhd.cma
+Installed /home/opam/.opam/4.01.0/lib/libvhd/libvhd.cmxa
+Installed /home/opam/.opam/4.01.0/lib/libvhd/libvhd.a
+Installed /home/opam/.opam/4.01.0/lib/libvhd/libvhd.cmxs
+Installed /home/opam/.opam/4.01.0/lib/libvhd/vhd.cmi
+Installed /home/opam/.opam/4.01.0/lib/libvhd/vhd.cmx
+Installed /home/opam/.opam/4.01.0/lib/libvhd/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllibvhd_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllibvhd_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing libvhd.0.9.0.
