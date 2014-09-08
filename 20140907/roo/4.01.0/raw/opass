@@ -4857,3 +4857,40 @@ ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -
 ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/regex.cmi lib/regex.mli
 ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -modules lib/regex.ml > lib/regex.ml.depends
 ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -modules lib/std.ml > lib/std.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/re2_internal.cmo lib/re2_internal.ml
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/regex.cmo lib/regex.ml
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -pack -g lib/options.cmo lib/re2_internal_intf.cmo lib/re2_internal.cmo lib/regex.cmo lib/std.cmo -o lib/re2.cmo
+ocamlfind ocamlc -a -dllib dllre2_stubs.so -cclib -Llib -cclib -lre2_stubs -cclib -lstdc++ lib/re2.cmo -o lib/re2.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -for-pack Re2 -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/options.cmx lib/options.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -for-pack Re2 -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/re2_internal_intf.cmx lib/re2_internal_intf.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -for-pack Re2 -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/re2_internal.cmx lib/re2_internal.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -for-pack Re2 -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/regex.cmx lib/regex.ml
+ocamlfind ocamlopt -c -g -syntax camlp4o -thread -for-pack Re2 -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/std.cmx lib/std.ml
+touch lib/re2.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/options.cmx lib/re2_internal_intf.cmx lib/re2_internal.cmx lib/regex.cmx lib/std.cmx -o lib/re2.cmx  ; then  rm -f lib/re2.mli  ; else  rm -f lib/re2.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -Llib -cclib -lre2_stubs -cclib -lstdc++ lib/re2.cmx -o lib/re2.cmxa
+ocamlfind ocamlopt -shared -cclib -Llib -cclib -lre2_stubs -cclib -lstdc++ lib/re2.cmx -o lib/re2.cmxs
+./setup.exe -install 
+W: Cannot find source header for module Options in library re2
+Installed /home/opam/.opam/4.01.0/lib/re2/re2_internal.mli
+Installed /home/opam/.opam/4.01.0/lib/re2/re2_internal_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/re2/regex.mli
+Installed /home/opam/.opam/4.01.0/lib/re2/std.ml
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.cmi
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.cma
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.cmxa
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.a
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.cmxs
+Installed /home/opam/.opam/4.01.0/lib/re2/re2.cmx
+Installed /home/opam/.opam/4.01.0/lib/re2/META
+Installed /home/opam/.opam/4.01.0/lib/re2/libre2_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllre2_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllre2_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing re2.111.08.00.
+Building textutils.111.28.00:
+  make
+  make install
+ocamlopt.opt -o setup.exe setup.ml || ocamlopt -o setup.exe setup.ml || ocamlc -o setup.exe setup.ml
+rm -f setup.cmx setup.cmi setup.o setup.obj setup.cmo
+./setup.exe -configure 
