@@ -147,3 +147,47 @@ mv pcre_stubs.o lib/pcre_stubs.o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/pcregrep -I lib -o examples/pcregrep/pcregrep.cmx examples/pcregrep/pcregrep.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/pcregrep/pcregrep.cmx -o examples/pcregrep/pcregrep.native
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/subst/subst.ml > examples/subst/subst.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmo examples/subst/subst.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/subst -I lib -o examples/subst/subst.cmx examples/subst/subst.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -I lib -linkpkg lib/pcre.cmxa examples/subst/subst.cmx -o examples/subst/subst.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.mli
+Installed /home/opam/.opam/4.01.0/lib/pcre/libpcre_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cma
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.a
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmi
+Installed /home/opam/.opam/4.01.0/lib/pcre/pcre.cmx
+Installed /home/opam/.opam/4.01.0/lib/pcre/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpcre_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpcre_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing pcre-ocaml.7.1.1.
+Building ocamldbi.0.9.11:
+  make
+  make install OCAMLDBIDIR=/home/opam/.opam/4.01.0/lib/ocamldbi DOCDIR=/home/opam/.opam/4.01.0/doc/ocamldbi
+sed  -e 's/@PACKAGE@/ocamldbi/' \
+		-e 's/@VERSION@/0.9.11/' \
+		< META.in > META
+ocamlc -g -I /home/opam/.opam/4.01.0/lib/pcre -c dbi.mli
+ocamlc -g -I /home/opam/.opam/4.01.0/lib/pcre -c dbi.ml
+ocamlc -g -I /home/opam/.opam/4.01.0/lib/pcre -a dbi.cmo -o dbi.cma
+ocamlopt -w s -I /home/opam/.opam/4.01.0/lib/pcre -c dbi.ml
+ocamlopt -w s -I /home/opam/.opam/4.01.0/lib/pcre -a dbi.cmx -o dbi.cmxa
+rm -rf html
+mkdir -p html
+ocamldoc -html -stars -sort -colorize-code -I /home/opam/.opam/4.01.0/lib/pcre -d html dbi.mli 
+install -c -m 0755 -d /home/opam/.opam/4.01.0/lib/ocamldbi
+install -c -m 0644 META /home/opam/.opam/4.01.0/lib/ocamldbi
+install -c -m 0644 dbi.cma  \
+	  /home/opam/.opam/4.01.0/lib/ocamldbi
+install -c -m 0644 dbi.cmxa dbi.a  \
+	   /home/opam/.opam/4.01.0/lib/ocamldbi
+install -c -m 0644 dbi.mli dbi.cmi  \
+		 /home/opam/.opam/4.01.0/lib/ocamldbi
+install -c -m 0755 -d /home/opam/.opam/4.01.0/doc/ocamldbi
+install -c -m 0644 AUTHORS FAQ README TODO /home/opam/.opam/4.01.0/doc/ocamldbi
+install -c -m 0755 -d /home/opam/.opam/4.01.0/doc/ocamldbi/html
+install -c -m 0644 html/*.html /home/opam/.opam/4.01.0/doc/ocamldbi/html
+Installing ocamldbi.0.9.11.
