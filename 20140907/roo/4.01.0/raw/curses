@@ -137,3 +137,29 @@ make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/curses.1.0.3'
 make[1]: Entering directory `/home/opam/.opam/4.01.0/build/curses.1.0.3'
 make[1]: `libcurses_stubs.a' is up to date.
 ocamlopt -c keys.ml
+ocamlopt -c -pp "gcc -x c -E " curses.ml
+ocamlopt -a             -cclib -lcurses_stubs -cclib -lncurses   -o curses.cmxa keys.cmx curses.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/curses.1.0.3'
+ranlib *.a
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/curses.1.0.3'
+make[1]: `libcurses_stubs.a' is up to date.
+ocamlc -a -dllib dllcurses_stubs.so -custom             -cclib -lcurses_stubs -cclib -lncurses   -o curses.cma keys.cmo curses.cmo
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/curses.1.0.3'
+ranlib *.a
+
+Installing library with ocamlfind
+ocamlfind install  curses META curses.mli curses.cmi keys.cmi curses.cma curses.cmxa curses.a libcurses_stubs.a dllcurses_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/curses/libcurses_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/curses/curses.a
+Installed /home/opam/.opam/4.01.0/lib/curses/curses.cmxa
+Installed /home/opam/.opam/4.01.0/lib/curses/curses.cma
+Installed /home/opam/.opam/4.01.0/lib/curses/keys.cmi
+Installed /home/opam/.opam/4.01.0/lib/curses/curses.cmi
+Installed /home/opam/.opam/4.01.0/lib/curses/curses.mli
+Installed /home/opam/.opam/4.01.0/lib/curses/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurses_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcurses_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+Installing curses.1.0.3.
