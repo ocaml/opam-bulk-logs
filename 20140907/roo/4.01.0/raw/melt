@@ -679,3 +679,146 @@ ocamlfind ocamlc -g  -c bitstring.mli
 ocamlfind ocamlc -g  -c bitstring.ml
 ocamlfind ocamlc -g  -c bitmatch.ml
 ocamlmklib -o bitstring bitstring_types.cmo bitstring_config.cmo bitstring_c.o bitstring.cmo bitmatch.cmo
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.mli
+ocamlfind ocamlc -g  \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlc -a -o bitstring_persistent.cma bitstring_persistent.cmo
+ocamlfind ocamlopt   -c bitstring_types.ml
+ocamlfind ocamlopt   -c bitstring_config.ml
+ocamlfind ocamlopt   -c bitstring.ml
+ocamlfind ocamlopt   -c bitmatch.ml
+ocamlmklib -o bitstring bitstring_types.cmx bitstring_config.cmx bitstring_c.o bitstring.cmx bitmatch.cmx
+ocamlfind ocamlopt   \
+	  -I +camlp4 -pp camlp4of -c bitstring_persistent.ml
+ocamlfind ocamlopt -a -o bitstring_persistent.cmxa bitstring_persistent.cmx
+ocamlfind ocamlc bitstring.cma -I +camlp4 dynlink.cma camlp4lib.cma \
+	  -pp camlp4of -c pa_bitstring.ml -o pa_bitstring.cmo
+ocamlfind ocamlc -g  -c bitstring_objinfo.ml
+ocamlfind ocamlc -I +camlp4 unix.cma dynlink.cma camlp4lib.cma \
+	  -linkpkg \
+	  bitstring.cma bitstring_persistent.cma \
+	  bitstring_objinfo.cmo -o bitstring-objinfo
+ocamlfind install bitstring META *.mli *.cmx *.cma *.cmxa *.a *.so \
+		bitstring.cmi \
+		bitstring_persistent.cmi \
+		pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/pa_bitstring.cmo
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmi
+Installed /home/opam/.opam/4.01.0/lib/bitstring/libbitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.a
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cma
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_types.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_config.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitmatch.cmx
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring_persistent.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/bitstring.mli
+Installed /home/opam/.opam/4.01.0/lib/bitstring/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbitstring.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing bitstring.2.0.4.
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2 and /home/opam/.opam/4.01.0/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+checking for GTK+ - version >= 2.0.0... yes (version 2.24.23)
+checking pkg-config is at least version 0.9.0... yes
+checking for GTKGL... no
+checking for GLADE... no
+checking for RSVG... no
+checking for GNOMECANVAS... no
+checking for GNOMEUI... no
+checking for PANEL... no
+checking for GTKSPELL... no
+checking for GTKSOURCEVIEW... no
+checking for GTKSOURCEVIEW2... no
+checking for GTKQUARTZ... no
+checking for GTKALL... yes
+configure: creating ./config.status
+config.status: creating config.make
+
+LablGTK configuration:
+	threads  	system
+	native dynlink 	yes
+	GtkGLArea 	not found
+	libglade 	not found
+	librsvg  	not found
+	libgnomecanvas 	not found
+	libgnomeui 	not found
+	libpanelapplet 	not found
+	gtkspell 	not found
+	gtksourceview 1 	not found
+	gtksourceview 2 	not found
+	quartz    	not found
+
+	debug   	no
+	C compiler	gcc
+make -C src world
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+ocamlc.opt -c -pp "camlp4o -impl" -impl varcc.ml4
+ocamlc.opt   -o varcc varcc.cmo
+rm -f *_tags.h *_tags.c
+./varcc gdkpixbuf_tags.var
+./varcc gdk_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_gdkpixbuf.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gdkpixbuf.c'
+./varcc pango_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_gdk.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gdk.c'
+./varcc glib_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_glib.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_glib.c'
+<command-line>: In function 'ml_poll':
+<command-line>:303:5: warning: implicit declaration of function 'caml_enter_blocking_section' [-Wimplicit-function-declaration]
+<command-line>:305:5: warning: implicit declaration of function 'caml_leave_blocking_section' [-Wimplicit-function-declaration]
+<command-line>: In function 'ml_g_io_channel_read':
+<command-line>:367:3: warning: 'g_io_channel_read' is deprecated (declared at /usr/include/glib-2.0/glib/giochannel.h:166): Use 'g_io_channel_read_chars' instead [-Wdeprecated-declarations]
+./varcc gobject_tags.var
+ocamlc.opt -c -ccopt '-DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O' -verbose ml_gobject.c
++ gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -c -DG_DISABLE_ASSERT -DG_DISABLE_CAST_CHECKS -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/harfbuzz   -imacros ml_domain.h -O  -I'/home/opam/.opam/4.01.0/lib/ocaml' 'ml_gobject.c'
+<command-line>: In function 'ml_g_type_init':
+<command-line>:102:1: warning: 'g_type_init' is deprecated (declared at /usr/include/glib-2.0/gobject/gtype.h:667) [-Wdeprecated-declarations]
