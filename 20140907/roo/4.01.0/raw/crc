@@ -647,3 +647,21 @@ pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/l
 ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianString.mli > src/endianString.mli.depends
 ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianString.cmi src/endianString.mli
 ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianString.ml > src/endianString.ml.depends
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.mli > src/endianBytes.mli.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmi src/endianBytes.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBytes.ml > src/endianBytes.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianString.cmo src/endianString.ml
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBytes.cmo src/endianBytes.ml
+ocamlfind ocamlc -a src/endianString.cmo src/endianBytes.cmo -o src/ocplib_endian.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianString.cmx src/endianString.ml
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBytes.cmx src/endianBytes.ml
+ocamlfind ocamlopt -a src/endianString.cmx src/endianBytes.cmx -o src/ocplib_endian.cmxa
+ocamlfind ocamlopt -shared -linkall src/ocplib_endian.cmxa -o src/ocplib_endian.cmxs
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.mli > src/endianBigstring.mli.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmi src/endianBigstring.mli
+ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -modules src/endianBigstring.ml > src/endianBigstring.ml.depends
+ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmo src/endianBigstring.ml
+ocamlfind ocamlc -a src/endianBigstring.cmo -o src/bigstring.cma
+ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBigstring.cmx src/endianBigstring.ml
+ocamlfind ocamlopt -a src/endianBigstring.cmx -o src/bigstring.cmxa
+ocamlfind ocamlopt -shared -linkall src/bigstring.cmxa -o src/bigstring.cmxs
