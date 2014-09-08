@@ -1,1 +1,117 @@
 ++ opam install optimization1d -e ubuntu
++ depext=
++ echo Ubuntu depexts:
++ '[' '' '!=' '' ']'
+Ubuntu depexts:
+++ opam install optimization1d -e source,linux
+Ubuntu srcexts:
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install optimization1d
+The following actions will be performed:
+ - install   optimization1d.0.5.1
+=== 1 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/optimization1d.0.5.1+opam.tar.gz
+sending incremental file list
+optimization1d.0.5.1+opam.tar.gz
+
+sent 43,150 bytes  received 35 bytes  86,370.00 bytes/sec
+total size is 43,005  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building optimization1d.0.5.1:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ optimization1d
+Package version: ..................................... 0.5.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules src/min1D.mli > src/min1D.mli.depends
+ocamlfind ocamlc -c -g -I src -o src/min1D.cmi src/min1D.mli
+ocamlfind ocamldep -modules src/min1D.ml > src/min1D.ml.depends
+ocamlfind ocamldep -modules src/max1D.mli > src/max1D.mli.depends
+ocamlfind ocamlc -c -g -I src -o src/max1D.cmi src/max1D.mli
+ocamlfind ocamldep -modules src/max1D.ml > src/max1D.ml.depends
+ocamlfind ocamlc -c -g -I src -o src/min1D.cmo src/min1D.ml
+ocamlfind ocamlc -c -g -I src -o src/max1D.cmo src/max1D.ml
+ocamlfind ocamlc -a src/min1D.cmo src/max1D.cmo -o src/optimization1d.cma
+ocamlfind ocamlopt -c -g -I src -o src/min1D.cmx src/min1D.ml
+ocamlfind ocamlopt -c -g -I src -o src/max1D.cmx src/max1D.ml
+ocamlfind ocamlopt -a src/min1D.cmx src/max1D.cmx -o src/optimization1d.cmxa
+ocamlfind ocamlopt -shared -linkall src/optimization1d.cmxa -o src/optimization1d.cmxs
+ocamlfind ocamldep -modules tests/max1D_test.ml > tests/max1D_test.ml.depends
+ocamlfind ocamlc -c -g -I src -I tests -I src -o tests/max1D_test.cmo tests/max1D_test.ml
+ocamlfind ocamlc -g -linkpkg src/optimization1d.cma tests/max1D_test.cmo -o tests/max1D_test.byte
+ocamlfind ocamldep -modules tests/min1D_test.ml > tests/min1D_test.ml.depends
+ocamlfind ocamlc -c -g -I src -I tests -I src -o tests/min1D_test.cmo tests/min1D_test.ml
+ocamlfind ocamlc -g -linkpkg src/optimization1d.cma tests/min1D_test.cmo -o tests/min1D_test.byte
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/min1D.mli
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/max1D.mli
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/optimization1d.cma
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/optimization1d.cmxa
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/optimization1d.a
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/optimization1d.cmxs
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/min1D.cmi
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/max1D.cmi
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/min1D.cmx
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/max1D.cmx
+Installed /home/opam/.opam/4.01.0/lib/optimization1d/META
+Installing optimization1d.0.5.1.
