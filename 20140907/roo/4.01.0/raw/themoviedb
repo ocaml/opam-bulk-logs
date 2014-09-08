@@ -5981,3 +5981,14 @@ ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_getcommandline.mli
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_commandline.ml
 ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_messages.ml
+ln -s dynlink_wrapper.natdynlink.ml dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c dynlink_wrapper.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_loader.ml
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.mli
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c ocsigen_stream.ml
+ocamlfind ocamlc  -thread -a -o baselib.cma ocsigen_lib_base.cmo ocsigen_lib.cmo ocsigen_cache.cmo ocsigen_config.cmo ocsigen_commandline.cmo ocsigen_messages.cmo dynlink_wrapper.cmo ocsigen_loader.cmo ocsigen_stream.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c commandline/ocsigen_getcommandline.ml
+ocamlfind ocamlc  -thread -a -o parsecommandline.cma commandline/ocsigen_getcommandline.cmo
+ocamlfind ocamlc  -thread -syntax camlp4o -package lwt.unix,netstring,netstring-pcre,cryptokit,findlib,tyxml,lwt.syntax,lwt.extra,ipaddr -c nocommandline/ocsigen_getcommandline.ml

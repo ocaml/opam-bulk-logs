@@ -1396,3 +1396,5 @@ ocamlfind ocamldep -package optcomp -package camlp4 -package bytes -package biga
 ocamlfind ocamlc -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -I src -o src/endianBigstring.cmo src/endianBigstring.ml
 ocamlfind ocamlc -a src/endianBigstring.cmo -o src/bigstring.cma
 ocamlfind ocamlopt -c -package optcomp -package camlp4 -package bytes -package bigarray -syntax camlp4o -inline 1000 -I src -o src/endianBigstring.cmx src/endianBigstring.ml
+ocamlfind ocamlopt -a src/endianBigstring.cmx -o src/bigstring.cmxa
+ocamlfind ocamlopt -shared -linkall src/bigstring.cmxa -o src/bigstring.cmxs
