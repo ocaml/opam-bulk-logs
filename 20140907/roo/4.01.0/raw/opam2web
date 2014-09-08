@@ -2703,3 +2703,81 @@ ocamlfind ocamlopt -a -package type_conv lib/dyntype.cmx -o lib/dyntype.cmxa
 ocamlfind ocamlc -a -package type_conv lib/dyntype.cmo -o lib/dyntype.cma
 ocamlbuild pa_dyntype.cma pa_dyntype.cmxs
 ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_helpers.ml > pa_lib/p4_helpers.ml.depends
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_type.ml > pa_lib/p4_type.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmo pa_lib/p4_helpers.ml
+ocamlfind ocamldep -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/p4_value.ml > pa_lib/p4_value.ml.depends
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/pa_type.ml > pa_lib/pa_type.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmo pa_lib/p4_type.ml
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -modules pa_lib/pa_value.ml > pa_lib/pa_value.ml.depends
+ocamlfind ocamlc -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmo pa_lib/p4_value.ml
+ocamlfind ocamlc -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmo pa_lib/pa_type.ml
+ocamlfind ocamlc -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmo pa_lib/pa_value.ml
+ocamlfind ocamlc -pack pa_lib/p4_helpers.cmo pa_lib/p4_type.cmo pa_lib/p4_value.cmo pa_lib/pa_type.cmo pa_lib/pa_value.cmo -o pa_lib/pa_dyntype.cmo
+ocamlfind ocamlc -a -package type_conv -package camlp4.quotations -package camlp4 lib/dyntype.cmo pa_lib/pa_dyntype.cmo -o pa_lib/pa_dyntype.cma
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmx pa_lib/p4_helpers.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmx pa_lib/p4_type.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmx pa_lib/p4_value.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmx pa_lib/pa_type.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmx pa_lib/pa_value.ml
+touch pa_lib/pa_dyntype.mli  ; if  ocamlfind ocamlopt -pack -I pa_lib pa_lib/p4_helpers.cmx pa_lib/p4_type.cmx pa_lib/p4_value.cmx pa_lib/pa_type.cmx pa_lib/pa_value.cmx -o pa_lib/pa_dyntype.cmx  ; then  rm -f pa_lib/pa_dyntype.mli  ; else  rm -f pa_lib/pa_dyntype.mli  ; exit 1; fi
+ocamlfind ocamlopt -shared -package type_conv -package camlp4.quotations -package camlp4 pa_lib/pa_dyntype.cmx -o pa_lib/pa_dyntype.cmxs
+ocamlfind remove dyntype || true
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/dyntype
+ocamlfind install dyntype META -optional _build/pa_lib/pa_dyntype.cmi _build/lib/dyntype.cmi _build/pa_lib/pa_dyntype.cma _build/lib/dyntype.cma _build/pa_lib/pa_dyntype.cmxa _build/lib/dyntype.cmxa _build/pa_lib/pa_dyntype.a _build/lib/dyntype.a
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.a
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cmxa
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cma
+Installed /home/opam/.opam/4.01.0/lib/dyntype/pa_dyntype.cma
+Installed /home/opam/.opam/4.01.0/lib/dyntype/dyntype.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyntype/pa_dyntype.cmi
+Installed /home/opam/.opam/4.01.0/lib/dyntype/META
+Installing dyntype.0.9.0.
+Building js_of_ocaml.2.4.1:
+  make build
+  make install-lib BINDIR=/home/opam/.opam/4.01.0/bin
+make -C compiler
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.4.1/compiler'
+echo "let s = \"2.4.1\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+ocamlfind ocamlc -package findlib -c compiler_version.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c compiler_version.ml
+ocamlfind ocamlc -package findlib -c pretty_print.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c pretty_print.ml
+ocamlfind ocamlc -package findlib -c util.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c util.ml
+ocamlfind ocamlc -package findlib -c option.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c option.ml
+ocamlfind ocamlc -package findlib -c reserved.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c reserved.ml
+ocamlfind ocamlc -package findlib -c varPrinter.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c varPrinter.ml
+ocamlfind ocamlc -package findlib -c dgraph.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c dgraph.ml
+ocamlfind ocamlc -package findlib -c code.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c code.ml
+ocamlfind ocamlc -package findlib -c parse_info.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c parse_info.ml
+ocamlfind ocamlc -package findlib -c javascript.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c javascript.ml
+ocamlfind ocamlc -package findlib -c vlq64.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c vlq64.ml
+ocamlfind ocamlc -package findlib -c source_map.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c source_map.ml
+ocamlfind ocamlc -package findlib -c primitive.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c primitive.ml
+ocamlfind ocamlc -package findlib -c instr.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c instr.ml
+ocamlfind ocamlc -package findlib -c parse_bytecode.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c parse_bytecode.ml
+ocamlfind ocamlc -package findlib -c js_output.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_output.ml
+ocamlfind ocamlc -package findlib -c js_simpl.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_simpl.ml
+ocamlfind ocamlc -package findlib -c js_token.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c js_token.ml
+menhir --external-tokens Js_token --explain js_parser.mly
+Warning: you are using the standard library and/or the %inline keyword. We
+recommend switching on --infer in order to avoid obscure type error messages.
+Warning: 12 states have shift/reduce conflicts.
+Warning: 47 shift/reduce conflicts were arbitrarily resolved.
