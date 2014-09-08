@@ -95,3 +95,16 @@ ocamlfind ocamlc -c -g -package camlp4.macro -syntax camlp4o -I src -o src/integ
 ocamlfind ocamlc -a src/integration1D.cmo -o src/integration1d.cma
 ocamlfind ocamlopt -c -g -package camlp4.macro -syntax camlp4o -I src -o src/integration1D.cmx src/integration1D.ml
 ocamlfind ocamlopt -a src/integration1D.cmx -o src/integration1d.cmxa
+ocamlfind ocamlopt -shared -linkall src/integration1d.cmxa -o src/integration1d.cmxs
+ocamlfind ocamldep -package camlp4.macro -modules examples/tests.ml > examples/tests.ml.depends
+ocamlfind ocamlc -c -g -I src -package camlp4.macro -I examples -I src -o examples/tests.cmo examples/tests.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.macro src/integration1d.cma examples/tests.cmo -o examples/tests.byte
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1D.mli
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1d.cma
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1d.cmxa
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1d.a
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1d.cmxs
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1D.cmi
+Installed /home/opam/.opam/4.01.0/lib/integration1d/integration1D.cmx
+Installed /home/opam/.opam/4.01.0/lib/integration1d/META
+Installing integration1d.0.4.1.
