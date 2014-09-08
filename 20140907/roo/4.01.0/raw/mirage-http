@@ -3000,3 +3000,35 @@ mv barrier_stubs.o lib/barrier_stubs.o
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -dllib -lshared_memory_ring_stubs -cclib -lshared_memory_ring_stubs lib/ring.cmo -o lib/shared_memory_ring.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I lib -I lwt -I xen -o lib/ring.cmx lib/ring.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -cclib -lshared_memory_ring_stubs lib/ring.cmx -o lib/shared_memory_ring.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -linkall -I lib lib/shared_memory_ring.cmxa -o lib/shared_memory_ring.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -modules xen/console_ring.mli > xen/console_ring.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmi xen/console_ring.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -modules xen/console_ring.ml > xen/console_ring.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmo xen/console_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a xen/console_ring.cmo -o xen/console_ring.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/console_ring.cmx xen/console_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a xen/console_ring.cmx -o xen/console_ring.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared xen/console_ring.cmx -o xen/console_ring.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -modules xen/xenstore_ring.mli > xen/xenstore_ring.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmi xen/xenstore_ring.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -modules xen/xenstore_ring.ml > xen/xenstore_ring.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmo xen/xenstore_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a xen/xenstore_ring.cmo -o xen/xenstore_ring.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -syntax camlp4o -I xen -I lib -I lwt -o xen/xenstore_ring.cmx xen/xenstore_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared xen/xenstore_ring.cmx -o xen/xenstore_ring.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -modules lwt/lwt_ring.mli > lwt/lwt_ring.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmi lwt/lwt_ring.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -modules lwt/lwt_ring.ml > lwt/lwt_ring.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmo lwt/lwt_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lwt/lwt_ring.cmo -o lwt/lwt_shared_memory_ring.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -syntax camlp4o -package lwt.syntax -syntax camlp4o -I lwt -I lib -I xen -o lwt/lwt_ring.cmx lwt/lwt_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lwt/lwt_ring.cmx -o lwt/lwt_shared_memory_ring.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared -linkall lwt/lwt_shared_memory_ring.cmxa -o lwt/lwt_shared_memory_ring.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/ring_test.ml > lib_test/ring_test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.mli > lib_test/old_ring.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmi lib_test/old_ring.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmo lib_test/ring_test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -modules lib_test/old_ring.ml > lib_test/old_ring.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/old_ring.cmx lib_test/old_ring.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I lib -I xen -I xen -package cstruct -syntax camlp4o -package cstruct.syntax -package lwt -package lwt.unix -package oUnit -syntax camlp4o -I lib_test -I lib -I xen -I lwt -o lib_test/ring_test.cmx lib_test/ring_test.ml
