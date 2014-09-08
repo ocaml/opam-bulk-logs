@@ -310,3 +310,92 @@ mv stubs-misc.o src/stubs-misc.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
 mv stubs-rng.o src/stubs-rng.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c: In function 'caml_zlib_deflate':
+src/stubs-zlib.c:98:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:100:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+src/stubs-zlib.c: In function 'caml_zlib_inflate':
+src/stubs-zlib.c:143:15: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_in = &Byte(srcbuf, Long_val(srcpos));
+               ^
+src/stubs-zlib.c:145:16: warning: pointer targets in assignment differ in signedness [-Wpointer-sign]
+   zs->next_out = &Byte(dstbuf, Long_val(dstpos));
+                ^
+mv stubs-zlib.o src/stubs-zlib.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/keccak.c
+mv keccak.o src/keccak.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha3.c
+mv stubs-sha3.o src/stubs-sha3.o
+/home/opam/.opam/4.01.0/bin/ocamlmklib -o src/cryptokit_stubs -lz src/arcfour.o src/stubs-arcfour.o src/blowfish.o src/stubs-blowfish.o src/d3des.o src/stubs-des.o src/rijndael-alg-fst.o src/ripemd160.o src/stubs-ripemd160.o src/sha1.o src/stubs-sha1.o src/sha256.o src/stubs-sha256.o src/stubs-aes.o src/stubs-md5.o src/stubs-misc.o src/stubs-rng.o src/stubs-zlib.o src/keccak.o src/stubs-sha3.o
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.mli > src/cryptokit.mli.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmi src/cryptokit.mli
+ocamlfind ocamldep -package num -package unix -modules src/cryptokit.ml > src/cryptokit.ml.depends
+ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
++ ocamlfind ocamlc -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmo src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlc -a -dllib -lcryptokit_stubs -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmo -o src/cryptokit.cma
+ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
++ ocamlfind ocamlopt -c -g -ccopt -O -ccopt -DHAVE_ZLIB -package num -package unix -I src -o src/cryptokit.cmx src/cryptokit.ml
+File "src/cryptokit.ml", line 1930, characters 19-21:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlfind ocamlopt -a -cclib -lcryptokit_stubs -cclib -lz src/cryptokit.cmx -o src/cryptokit.cmxa
+ocamlfind ocamlopt -shared -cclib -lcryptokit_stubs -I src src/cryptokit.cmx -o src/cryptokit.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.mli
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/libcryptokit_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cma
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.a
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmi
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/cryptokit.cmx
+Installed /home/opam/.opam/4.01.0/lib/cryptokit/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcryptokit_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cryptokit.1.9.
+Building ocurl.0.7.1:
+  ./configure
+  make
+  make install
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for libcurl cflags...  
+checking for libcurl libs... -lcurl  
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for ocamlfind... ocamlfind
+checking for OCaml findlib package lwt... not found
+checking for prefix by checking for ocamlc... /home/opam/.opam/4.01.0/bin/ocamlc
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... 
