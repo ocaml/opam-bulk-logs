@@ -393,3 +393,31 @@ ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -module
 ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -modules lib/shadow.mli > lib/shadow.mli.depends
 ocamlfind ocamlc -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I lib -o lib/shadow.cmi lib/shadow.mli
 ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -modules lib/shadow.ml > lib/shadow.ml.depends
+ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -modules lib/common.mli > lib/common.mli.depends
+ocamlfind ocamlc -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I lib -o lib/common.cmi lib/common.mli
+ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -modules lib/common.ml > lib/common.ml.depends
+ocamlfind ocamlc -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I lib -o lib/passwd.cmo lib/passwd.ml
+ocamlfind ocamlc -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I lib -o lib/shadow.cmo lib/shadow.ml
+ocamlfind ocamlc -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I lib -o lib/common.cmo lib/common.ml
+ocamlfind ocamlc -pack -g lib/passwd.cmo lib/shadow.cmo lib/common.cmo -o lib/oPasswd.cmo
+ocamlfind ocamlc -a -warn-error +a -bin-annot -short-paths lib/oPasswd.cmo -o lib/oPasswd.cma
+ocamlfind ocamlopt -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -for-pack OPasswd -I lib -o lib/passwd.cmx lib/passwd.ml
+ocamlfind ocamlopt -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -for-pack OPasswd -I lib -o lib/shadow.cmx lib/shadow.ml
+ocamlfind ocamlopt -c -g -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -for-pack OPasswd -I lib -o lib/common.cmx lib/common.ml
+touch lib/oPasswd.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/passwd.cmx lib/shadow.cmx lib/common.cmx -o lib/oPasswd.cmx  ; then  rm -f lib/oPasswd.mli  ; else  rm -f lib/oPasswd.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -warn-error +a -bin-annot -short-paths lib/oPasswd.cmx -o lib/oPasswd.cmxa
+ocamlfind ocamlopt -shared lib/oPasswd.cmx -o lib/oPasswd.cmxs
+ocamlfind ocamldep -package unix -package ctypes.foreign -package ctypes -modules test/opasswd_test.ml > test/opasswd_test.ml.depends
+ocamlfind ocamlc -c -g -I lib -package unix -package ctypes.foreign -package ctypes -I test -I lib -o test/opasswd_test.cmo test/opasswd_test.ml
+ocamlfind ocamlopt -c -g -I lib -warn-error +a -bin-annot -short-paths -package unix -package ctypes.foreign -package ctypes -I test -I lib -o test/opasswd_test.cmx test/opasswd_test.ml
+ocamlfind ocamlopt -g -warn-error +a -bin-annot -short-paths -linkpkg -package unix -package ctypes.foreign -package ctypes lib/oPasswd.cmxa lib/oPasswd.cmx test/opasswd_test.cmx -o test/opasswd_test.native
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/passwd.mli
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/shadow.mli
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/common.mli
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/oPasswd.cmi
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/oPasswd.cma
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/oPasswd.cmxa
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/oPasswd.a
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/oPasswd.cmxs
+Installed /home/opam/.opam/4.01.0/lib/oPasswd/META
+Installing opasswd.0.9.3.
