@@ -1581,3 +1581,215 @@ checking linux/videodev.h usability... no
 checking linux/videodev.h presence... no
 checking for linux/videodev.h... no
 configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating external/Makefile
+config.status: creating external/Makefile.defs
+config.status: creating src/META
+config.status: creating config.h
+
+
+Supported external libraries:
+  - Alsa      : no
+  - AO        : no
+  - FFmpeg    : no
+  - Gstreamer : no
+  - Mad       : yes
+  - ogg       : no
+  - OSS       : yes
+  - Pulseaudio: no
+  - SDL       : no
+  - Theora    : no
+  - V4L       : no
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep synth.mli > ._bcdi/synth.di
+ocamldep MIDI.mli > ._bcdi/MIDI.di
+ocamldep video.mli > ._bcdi/video.di
+ocamldep image.mli > ._bcdi/image.di
+ocamldep audio.mli > ._bcdi/audio.di
+ocamldep ringbuffer.mli > ._bcdi/ringbuffer.di
+ocamldep synth.ml > ._d/synth.d
+ocamldep MIDI.ml > ._d/MIDI.d
+ocamldep video.ml > ._d/video.d
+ocamldep image.ml > ._d/image.d
+ocamldep audio.ml > ._d/audio.d
+ocamldep IO.ml > ._d/IO.d
+ocamldep ringbuffer.ml > ._d/ringbuffer.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I.. -I/home/opam/.opam/4.01.0/lib/mad  -o audio_c.o " audio_c.c
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I.. -I/home/opam/.opam/4.01.0/lib/mad  -o image_c.o " image_c.c
+image_c.c: In function 'caml_rgb_color_to_alpha':
+image_c.c:1319:10: warning: variable 'd' set but not used [-Wunused-but-set-variable]
+   double d;
+          ^
+image_c.c:1318:22: warning: variable 'aa' set but not used [-Wunused-but-set-variable]
+   double rr, gg, bb, aa;
+                      ^
+ar rcs libmm_stubs.a  audio_c.o image_c.o
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad IO.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad image.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad image.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad video.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad video.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad MIDI.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad MIDI.ml
+File "MIDI.ml", line 153, characters 51-52:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad synth.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad synth.ml
+ocamlmklib    -I .. -I /home/opam/.opam/4.01.0/lib/mad     \
+				-o mm_stubs  audio_c.o image_c.o   \
+				
+ocamlc.opt -a -dllib dllmm_stubs.so    -I .. -I /home/opam/.opam/4.01.0/lib/mad -linkall        -cclib -lmm_stubs    -o mm.cma ringbuffer.cmo IO.cmo audio.cmo image.cmo video.cmo MIDI.cmo synth.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep -native synth.mli > ._ncdi/synth.di
+ocamldep -native MIDI.mli > ._ncdi/MIDI.di
+ocamldep -native video.mli > ._ncdi/video.di
+ocamldep -native image.mli > ._ncdi/image.di
+ocamldep -native audio.mli > ._ncdi/audio.di
+ocamldep -native ringbuffer.mli > ._ncdi/ringbuffer.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad IO.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad image.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad video.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad MIDI.ml
+File "MIDI.ml", line 153, characters 51-52:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad synth.ml
+ocamlopt.opt -a     -I .. -I /home/opam/.opam/4.01.0/lib/mad -linkall       -cclib -lmm_stubs    -o mm.cmxa ringbuffer.cmx IO.cmx audio.cmx image.cmx video.cmx MIDI.cmx synth.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+ocamlc.opt -a -dllib dllmm_stubs.so    -I .. -I /home/opam/.opam/4.01.0/lib/mad -linkall        -cclib -lmm_stubs    -o mm.cma ringbuffer.cmo IO.cmo audio.cmo image.cmo video.cmo MIDI.cmo synth.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+make[2]: `mm.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+
+Installing library with ocamlfind
+ocamlfind install  mm META *.cm* *.mli *.so *.a
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.a
+Installed /home/opam/.opam/4.01.0/lib/mm/libmm_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/mm/video.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/image.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.mli
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/video.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/synth.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/ringbuffer.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mm/mm.cma
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/image.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/audio.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/MIDI.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmx
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmo
+Installed /home/opam/.opam/4.01.0/lib/mm/IO.cmi
+Installed /home/opam/.opam/4.01.0/lib/mm/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmm_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmm_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+Installing mm.0.2.1.
+Building pcre-ocaml.7.1.1:
+  make
+  make install
+ocaml setup.ml -configure 
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ pcre-ocaml
+Package version: ..................................... 7.1.1
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /usr/local
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+with_pcre_config: .................................... pcre-config
+Strict compile-time checks: .......................... true
+Build examples: ...................................... true
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
+
+ocaml setup.ml -build 
