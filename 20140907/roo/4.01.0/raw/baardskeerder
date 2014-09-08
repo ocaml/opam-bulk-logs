@@ -1090,3 +1090,167 @@ Building quickcheck.1.0.0:
   ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
   ocaml setup.ml -build
   ocaml setup.ml -install
+
+Configuration: 
+ocamlfind: ........................................... /home/opam/.opam/4.01.0/bin/ocamlfind
+ocamlc: .............................................. /home/opam/.opam/4.01.0/bin/ocamlc.opt
+ocamlopt: ............................................ /home/opam/.opam/4.01.0/bin/ocamlopt.opt
+ocamlbuild: .......................................... /home/opam/.opam/4.01.0/bin/ocamlbuild
+Package name: ........................................ quickcheck
+Package version: ..................................... 1.0.0
+os_type: ............................................. Unix
+system: .............................................. linux
+architecture: ........................................ amd64
+ccomp_type: .......................................... cc
+ocaml_version: ....................................... 4.01.0
+standard_library_default: ............................ /home/opam/.opam/4.01.0/lib/ocaml
+standard_library: .................................... /home/opam/.opam/4.01.0/lib/ocaml
+standard_runtime: .................................... /home/opam/.opam/4.01.0/bin/ocamlrun
+bytecomp_c_compiler: ................................. gcc -fno-defer-pop -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC
+native_c_compiler: ................................... gcc -Wall -D_FILE_OFFSET_BITS=64 -D_REENTRANT
+model: ............................................... default
+ext_obj: ............................................. .o
+ext_asm: ............................................. .s
+ext_lib: ............................................. .a
+ext_dll: ............................................. .so
+default_executable_name: ............................. a.out
+systhread_supported: ................................. true
+Install architecture-independent files dir: .......... /home/opam/.opam/4.01.0
+Install architecture-dependent files in dir: ......... $prefix
+User executables: .................................... $exec_prefix/bin
+System admin executables: ............................ $exec_prefix/sbin
+Program executables: ................................. $exec_prefix/libexec
+Read-only single-machine data: ....................... $prefix/etc
+Modifiable architecture-independent data: ............ $prefix/com
+Modifiable single-machine data: ...................... $prefix/var
+Object code libraries: ............................... $exec_prefix/lib
+Read-only arch-independent data root: ................ $prefix/share
+Read-only architecture-independent data: ............. $datarootdir
+Info documentation: .................................. $datarootdir/info
+Locale-dependent data: ............................... $datarootdir/locale
+Man documentation: ................................... $datarootdir/man
+Documentation root: .................................. $datarootdir/doc/$pkg_name
+HTML documentation: .................................. $docdir
+DVI documentation: ................................... $docdir
+PDF documentation: ................................... $docdir
+PS documentation: .................................... $docdir
+findlib_version: ..................................... 1.5.2
+is_native: ........................................... true
+suffix_program: ...................................... 
+Remove a file.: ...................................... rm -f
+Remove a directory.: ................................. rm -rf
+Turn ocaml debug flag on: ............................ true
+Turn ocaml profile flag on: .......................... false
+Compiler support generation of .cmxs.: ............... true
+OCamlbuild additional flags: ......................... 
+Create documentations: ............................... true
+Compile tests executable and library and run them: ... false
+pkg_optcomp: ......................................... /home/opam/.opam/4.01.0/lib/optcomp
+
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.mli > src/quickCheck.mli.depends
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.mli > src/quickCheck_gen.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmi src/quickCheck_gen.mli
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmi src/quickCheck.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck.ml > src/quickCheck.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.mli > src/quickCheck_util.mli.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmi src/quickCheck_util.mli
+ocamlfind ocamldep -package optcomp -modules src/quickCheck_gen.ml > src/quickCheck_gen.ml.depends
+ocamlfind ocamldep -package optcomp -syntax camlp4o -modules src/quickCheck_util.ml > src/quickCheck_util.ml.depends
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmo src/quickCheck.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmo src/quickCheck_gen.ml
+ocamlfind ocamlc -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmo src/quickCheck_util.ml
+ocamlfind ocamlc -a -w @a -g src/quickCheck_util.cmo src/quickCheck_gen.cmo src/quickCheck.cmo -o src/quickcheck.cma
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -syntax camlp4o -I src -o src/quickCheck_util.cmx src/quickCheck_util.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck_gen.cmx src/quickCheck_gen.ml
+ocamlfind ocamlopt -c -g -w @a -g -package optcomp -I src -o src/quickCheck.cmx src/quickCheck.ml
+ocamlfind ocamlopt -a -w @a -g src/quickCheck_util.cmx src/quickCheck_gen.cmx src/quickCheck.cmx -o src/quickcheck.cmxa
+ocamlfind ocamlopt -shared -linkall src/quickcheck.cmxa -o src/quickcheck.cmxs
+ocamlfind ocamldep -package optcomp -modules tests/test.ml > tests/test.ml.depends
+ocamlfind ocamlc -c -g -I src -package optcomp -I tests -I src -o tests/test.cmo tests/test.ml
+ocamlfind ocamlopt -c -g -I src -package optcomp -I tests -I src -o tests/test.cmx tests/test.ml
+ocamlfind ocamlopt -g -linkpkg -package optcomp src/quickcheck.cmxa tests/test.cmx -o tests/test.native
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck.mli
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_gen.mli
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_util.mli
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickcheck.cma
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickcheck.cmxa
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickcheck.a
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickcheck.cmxs
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck.cmi
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_gen.cmi
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_util.cmi
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck.cmx
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_gen.cmx
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/quickCheck_util.cmx
+Installed /home/opam/.opam/4.01.0/lib/quickcheck/META
+Installing quickcheck.1.0.0.
+Building baardskeerder.0.5.2:
+  sh -c cd src && make
+  sh -c cd src && make install
+ocamlbuild -use-ocamlfind bsmgr.byte bsmgr.native baardskeerder.cma baardskeerder.cmxa baardskeerder.a bs_internal.cma bs_internal.cmxa
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package unix -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules bsmgr.ml > bsmgr.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules base.ml > base.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules pos.ml > pos.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o pos.cmo pos.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules bs_internal.ml > bs_internal.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules commit.ml > commit.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o base.cmo base.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules pretty.ml > pretty.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules time.ml > time.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o pretty.cmo pretty.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o time.cmo time.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules dbx.ml > dbx.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules catchup.ml > catchup.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o commit.cmo commit.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules entry.ml > entry.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules index.ml > index.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules indexz.ml > indexz.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o index.cmo index.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules leaf.ml > leaf.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules leafz.ml > leafz.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o leaf.cmo leaf.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o indexz.cmo indexz.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o leafz.cmo leafz.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules log.ml > log.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o entry.cmo entry.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules slab.mli > slab.mli.depends
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -o slab.cmi slab.mli
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o log.cmo log.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules prefix.ml > prefix.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules tree.ml > tree.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o catchup.cmo catchup.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o prefix.cmo prefix.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o tree.cmo tree.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules flog.mli > flog.mli.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o bs_internal.cmo bs_internal.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules flog0.ml > flog0.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules monad.ml > monad.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules pack.ml > pack.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules store.ml > store.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules lwt_unix_ext.ml > lwt_unix_ext.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules posix.mli > posix.mli.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o lwt_unix_ext.cmo lwt_unix_ext.ml
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -o posix.cmi posix.mli
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o monad.cmo monad.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o pack.cmo pack.ml
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o store.cmo store.ml
+ocamlfind ocamldep -package oUnit -package lwt.preemptive -package lwt.unix -package lwt -modules hudson_xml.ml > hudson_xml.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules rewrite.ml > rewrite.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o dbx.cmo dbx.ml
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules sync.ml > sync.ml.depends
+ocamlfind ocamldep -package oUnit -package lwt.preemptive -package lwt.unix -package lwt -modules test.ml > test.ml.depends
+ocamlfind ocamldep -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules catchup_test.ml > catchup_test.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules mlog.ml > mlog.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o mlog.cmo mlog.ml
+ocamlfind ocamldep -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules dbx_test.ml > dbx_test.ml.depends
+ocamlfind ocamldep -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules base_test.ml > base_test.ml.depends
+ocamlfind ocamlc -c -g -annot -w A -thread -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -o base_test.cmo base_test.ml
+ocamlfind ocamldep -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules flog0_test.ml > flog0_test.ml.depends
+ocamlfind ocamlc -c -g -annot -warn-error A -thread -package lwt.preemptive -package lwt.unix -package lwt -o flog0.cmo flog0.ml
+ocamlfind ocamldep -package oUnit -package quickcheck -package lwt.preemptive -package lwt.unix -package lwt -modules flog_test.ml > flog_test.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules binary.ml > binary.ml.depends
+ocamlfind ocamldep -package lwt.preemptive -package lwt.unix -package lwt -modules crc32c.mli > crc32c.mli.depends
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -o crc32c.cmi crc32c.mli
+ocamlfind ocamlc -c -g -annot -thread -package lwt.preemptive -package lwt.unix -package lwt -o flog.cmi flog.mli
