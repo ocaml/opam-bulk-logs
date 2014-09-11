@@ -1,0 +1,145 @@
+++ opam install sarek -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install sarek
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   ocp-build.0.1                         [required by sarek]
+ - install   spoc.20140620                         [required by sarek]
+ - install   sarek.20140620
+=== 3 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[ocp-build.0.1] Downloading http://www.ocamlpro.com/pub/ocp-build.tar.gz
+[spoc.20140620] Downloading https://github.com/mathiasbourgoin/SPOC/releases/download/20140620/spoc-20140620.tar.gz
+[sarek.20140620] Downloading https://github.com/mathiasbourgoin/SPOC/releases/download/20140620/sarek-20140620.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+100  843k  100  843k    0     0  2724k      0 --:--:-- --:--:-- --:--:-- 2721k
+100   350    0   350    0     0    542      0 --:--:-- --:--:-- --:--:--   541
+100   347    0   347    0     0    530      0 --:--:-- --:--:-- --:--:--   530
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0 1155k    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0 20 1155k   20  237k    0     0   112k   26 1013k   26  270k    0     0   129k      0  0:00:07  0:00:02  0:00:05  268k    0  0:00:10  0:00:02  0:00:08  262k100 1155k  100 1155k    0     0   415k      0  0:00:02  0:00:02 --:--:--  737k
+200
+ 88 1013k   88  899k    0     0   281k      0  0:00:03  0:00:03 --:--:--  423k100 1013k  100 1013k    0     0   316k      0  0:00:03  0:00:03 --:--:--  475k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Copying ~/.opam/repo/default/packages/ocp-build/ocp-build.0.1/files/ocp-build.install to ~/.opam/4.01.0/build/ocp-build.0.1/
+Building ocp-build.0.1:
+  make
+mkdir -p ./_obuild
+ocamlc -o ./_obuild/unixrun -make-runtime unix.cma
+_obuild/unixrun boot/ocp-build.boot -init -scan -sanitize -v 0 ocp-build
+ocp-build: Entering directory `/home/opam/.opam/4.01.0/build/ocp-build.0.1'
+Cache: 0 digests loaded
+No error. 293 commands executed, 397 files generated.
+ocp-build: Leaving directory `/home/opam/.opam/4.01.0/build/ocp-build.0.1'
+Compilation successful
+Installing ocp-build.0.1.
+Building spoc.20140620:
+  make build
+  make install
+ocp-build -init
+ocp-build: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620'
+Cache: 0 digests loaded
+ocp-build: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620'
+cd extension && make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+ocamlfind ocamlc -I +camlp4 -pp camlp4of dynlink.cma camlp4lib.cma kernels_ext.ml
+File "kernels_ext.ml", line 147, characters 4-22:
+Warning 26: unused variable t.
+ocamlfind ocamlc -a kernels_ext.cmo -o kernels_ext.cma
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+cd Js && make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+echo "//concat SPOC.js Kernel.js Mem.js " > spoc_lib.js
+for f in SPOC.js Kernel.js Mem.js  ; do \
+	 echo "//# 1 \"$f\"" >> spoc_lib.js; \
+   cat $f >> spoc_lib.js; \
+done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+ocamlfind remove spoc
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc
+cd extension && make uninstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+ocamlfind remove spoc_external_kernels
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc_external_kernels
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+cd Js && make uninstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+rm -f `ocamlfind query spoc`/spoc_lib.js
+ocamlfind: Package `spoc' not found
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+ocp-build install
+Cache: 0 digests loaded
+Error: Could not find target project install
+ocp-build: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620'
+make: *** [install] Error 2
+Removing spoc.20140620.
+[ERROR] The compilation of spoc.20140620 failed.
+  make uninstall
+ocamlfind remove spoc
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc
+cd extension && make uninstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+ocamlfind remove spoc_external_kernels
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc_external_kernels
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+cd Js && make uninstall
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+rm -f `ocamlfind query spoc`/spoc_lib.js
+ocamlfind: Package `spoc' not found
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   ocp-build.0.1
+The following failed
+ - install   spoc.20140620
+Due to the errors, the following have been cancelled
+ - install   sarek.20140620
+
+#==================== ERROR while installing spoc.20140620 ====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make install
+# path                 /home/opam/.opam/4.01.0/build/spoc.20140620
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/spoc.20140620/spoc-500-d2c37b.env
+# stdout-file          /home/opam/.opam/4.01.0/build/spoc.20140620/spoc-500-d2c37b.out
+# stderr-file          /home/opam/.opam/4.01.0/build/spoc.20140620/spoc-500-d2c37b.err
+### stdout ###
+# ...[truncated]
+# cd extension && make uninstall
+# make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+# ocamlfind remove spoc_external_kernels
+# make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/extension'
+# cd Js && make uninstall
+# make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+# rm -f `ocamlfind query spoc`/spoc_lib.js
+# make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spoc.20140620/Js'
+# ocp-build install
+# ocp-build: Entering directory `/home/opam/.opam/4.01.0/build/spoc.20140620'
+### stderr ###
+# Cache: 0 digests loaded
+# File "kernels_ext.ml", line 147, characters 4-22:
+# Warning 26: unused variable t.
+# ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc
+# ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/spoc_external_kernels
+# ocamlfind: Package `spoc' not found
+# Cache: 0 digests loaded
+# Error: Could not find target project install
+# make: *** [install] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140811184629.export"
+'opam install sarek' failed.
+2014/09/11 19:46:49 Error: Cannot destroy container a7efd1f415d217fe770d929ca75a29cca17247ffe0a3f609817ce768bf840bff: Driver aufs failed to remove root filesystem a7efd1f415d217fe770d929ca75a29cca17247ffe0a3f609817ce768bf840bff: rename /var/lib/docker/aufs/mnt/a7efd1f415d217fe770d929ca75a29cca17247ffe0a3f609817ce768bf840bff /var/lib/docker/aufs/mnt/a7efd1f415d217fe770d929ca75a29cca17247ffe0a3f609817ce768bf840bff-removing: device or resource busy
