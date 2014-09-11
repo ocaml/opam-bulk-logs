@@ -1,0 +1,158 @@
+++ opam install odiff-gtk -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install odiff-gtk
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgtk]
+ - install   ocamldiff.1.1                         [required by odiff-gtk]
+ - install   lablgtk.2.16.0                        [required by odiff-gtk]
+ - install   odiff-gtk.1.0
+=== 4 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[lablgtk.2.16.0] Downloading https://forge.ocamlcore.org/frs/download.php/979/lablgtk-2.16.0.tar.gz
+[ocamldiff.1.1] Downloading http://zoggy.github.com/ocamldiff/ocamldiff-1.1.tar.gz
+[odiff-gtk.1.0] Downloading http://zoggy.github.io/odiff-gtk/odiff-gtk-1.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   178  100   178    0     0    676      0 --:--:-- --:--:-- --:--:--   676
+100 10675  100 10675    0     0  40328      0 --:--:-- --:--:-- --:--:-- 40435
+200
+100  7910  100  7910    0     0  15072      0 --:--:-- --:--:-- --:--:-- 15072
+200
+100  768k  100  768k    0     0  1022k      0 --:--:-- --:--:-- --:--:-- 1023k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building ocamldiff.1.1:
+  make all
+  make install
+ocamlfind ocamlc -package unix -annot -c odiff_types.mli
+ocamlyacc odiff_parser.mly
+ocamlfind ocamlc -package unix -annot -c odiff_parser.mli
+ocamlfind ocamlc -package unix -annot -c odiff_lexer.mli
+ocamlfind ocamlc -package unix -annot -c odiff.mli
+ocamlfind ocamlc -package unix -annot -c odiff_types.ml
+ocamlfind ocamlc -package unix -annot -c odiff_parser.ml
+ocamllex odiff_lexer.mll
+43 states, 329 transitions, table size 1574 bytes
+ocamlfind ocamlc -package unix -annot -c odiff_lexer.ml
+ocamlfind ocamlc -package unix -annot -c odiff.ml
+ocamlfind ocamlc -package unix -annot -o odiff.cma -a odiff_types.cmo odiff_parser.cmo odiff_lexer.cmo odiff.cmo
+ocamlfind ocamlopt -package unix  -c odiff_types.ml
+ocamlfind ocamlopt -package unix  -c odiff_parser.ml
+ocamlfind ocamlopt -package unix  -c odiff_lexer.ml
+ocamlfind ocamlopt -package unix  -c odiff.ml
+ocamlfind ocamlopt -package unix  -o odiff.cmxa -a odiff_types.cmx odiff_parser.cmx odiff_lexer.cmx odiff.cmx
+ocamlfind ocamlopt -package unix  -o odiff.cmxs -shared odiff_types.cmx odiff_parser.cmx odiff_lexer.cmx odiff.cmx
+rm odiff_parser.mli odiff_lexer.ml
+ocamlfind install diff META LICENSE \
+odiff.cmi odiff.cma odiff.cmxa odiff.a odiff.cmxs
+Installed /home/opam/.opam/4.01.0/lib/diff/odiff.cmxs
+Installed /home/opam/.opam/4.01.0/lib/diff/odiff.a
+Installed /home/opam/.opam/4.01.0/lib/diff/odiff.cmxa
+Installed /home/opam/.opam/4.01.0/lib/diff/odiff.cma
+Installed /home/opam/.opam/4.01.0/lib/diff/odiff.cmi
+Installed /home/opam/.opam/4.01.0/lib/diff/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/diff/META
+Installing ocamldiff.1.1.
+Copying ~/.opam/repo/default/packages/lablgtk/lablgtk.2.16.0/files/lablgtk.install to ~/.opam/4.01.0/build/lablgtk.2.16.0/
+Copying ~/.opam/repo/default/packages/lablgtk/lablgtk.2.16.0/files/lablgldir.patch to ~/.opam/4.01.0/build/lablgtk.2.16.0/
+Applying lablgldir.patch.
+patching file configure
+Building lablgtk.2.16.0:
+  ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2 and /home/opam/.opam/4.01.0/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+checking for GTK+ - version >= 2.0.0... no
+*** Could not run GTK+ test program, checking why...
+*** The test program failed to compile or link. See the file config.log for the
+*** exact error that occured. This usually means GTK+ is incorrectly installed.
+configure: error: GTK+ is required
+Removing lablgtk.2.16.0.
+[ERROR] The compilation of lablgtk.2.16.0 failed.
+  ocamlfind remove lablgtk2
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/lablgtk2
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   ocamldiff.1.1
+ - install   camlp4.4.01.0
+The following failed
+ - install   lablgtk.2.16.0
+Due to the errors, the following have been cancelled
+ - install   odiff-gtk.1.0
+
+=-=-=-=-=-=-=-=-=-=-=-=- lablgtk.2.16.0 troobleshooting -=-=-=-=-=-=-=-=-=-=-=-=
+This package requires gtk+ 2.0 development packages installed on your system
+
+#=================== ERROR while installing lablgtk.2.16.0 ====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+# path                 /home/opam/.opam/4.01.0/build/lablgtk.2.16.0
+# compiler             4.01.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.01.0/build/lablgtk.2.16.0/lablgtk-129-6cc03f.env
+# stdout-file          /home/opam/.opam/4.01.0/build/lablgtk.2.16.0/lablgtk-129-6cc03f.out
+# stderr-file          /home/opam/.opam/4.01.0/build/lablgtk.2.16.0/lablgtk-129-6cc03f.err
+### stdout ###
+# ...[truncated]
+# checking for suffix of object files... o
+# checking whether we are using the GNU C compiler... yes
+# checking whether gcc accepts -g... yes
+# checking for gcc option to accept ISO C89... none needed
+# checking platform... Unix
+# checking native dynlink... checking for pkg-config... /usr/bin/pkg-config
+# checking for GTK+ - version >= 2.0.0... no
+# *** Could not run GTK+ test program, checking why...
+# *** The test program failed to compile or link. See the file config.log for the
+# *** exact error that occured. This usually means GTK+ is incorrectly installed.
+### stderr ###
+# configure: error: GTK+ is required
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140811183738.export"
+'opam install odiff-gtk' failed.
