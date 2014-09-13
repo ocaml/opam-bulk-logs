@@ -8358,3 +8358,139 @@ ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -package lwt -c -g keycode.ml
 ocamlfind ocamlc -package lwt -c stubs.c
 ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo event_arrows.cmo lwt_js_events.cmo json.cmo webGL.cmo webSockets.cmo keycode.cmo stubs.o
 ocamlfind ocamlopt -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+ocamlfind ocamlc -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.mli
+ocamlfind ocamlc -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -package deriving.syntax.common,camlp4.quotations.o -syntax camlp4o -c syntax/pa_deriving_Json.ml
+ocamlfind ocamlopt -I syntax -shared -linkall -o syntax/pa_deriving_Json.cmxs syntax/pa_deriving_Json.cmx
+ocamllex deriving_json/deriving_Json_lexer.mll
+129 states, 789 transitions, table size 3930 bytes
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json_lexer.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+Warning 3: deprecated: Format.bprintf
+ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+ocamlfind ocamlc -package lwt,graphics -I ./ graphics/graphics_js.mli -o graphics/graphics_js.cmi
+File "graphics/graphics_js.mli", line 22, characters 23-31:
+Error: Unbound module Graphics
+make[1]: *** [graphics/graphics_js.cmi] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/js_of_ocaml.2.2/lib'
+make: *** [library] Error 2
+Removing js_of_ocaml.2.2.
+[ERROR] The compilation of js_of_ocaml.2.2 failed.
+  ocamlfind remove js_of_ocaml
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/js_of_ocaml
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+#=================== ERROR while installing js_of_ocaml.2.2 ===================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make build
+# path                 /home/opam/.opam/4.02.0/build/js_of_ocaml.2.2
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/js_of_ocaml.2.2/js_of_ocaml-14078-899ac0.env
+# stdout-file          /home/opam/.opam/4.02.0/build/js_of_ocaml.2.2/js_of_ocaml-14078-899ac0.out
+# stderr-file          /home/opam/.opam/4.02.0/build/js_of_ocaml.2.2/js_of_ocaml-14078-899ac0.err
+### stdout ###
+# ...[truncated]
+# ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+# ocamlfind ocamlc -package lwt -I deriving_json -c deriving_json/deriving_Json.mli
+# ocamlfind ocamlc -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+# ocamlfind ocamlc -a -o deriving_json.cma deriving_json/deriving_Json_lexer.cmo deriving_json/deriving_Json.cmo
+# ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json_lexer.ml
+# ocamlfind ocamlopt -package deriving.syntax.common -syntax camlp4o -ppopt syntax/pa_deriving_Json.cmo -I deriving_json -c deriving_json/deriving_Json.ml
+# ocamlfind ocamlopt -a -o deriving_json.cmxa deriving_json/deriving_Json_lexer.cmx deriving_json/deriving_Json.cmx
+# ocamlfind ocamlopt -shared -linkall -o deriving_json.cmxs deriving_json.cmxa
+# ocamlfind ocamlc -package lwt,graphics -I ./ graphics/graphics_js.mli -o graphics/graphics_js.cmi
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/js_of_ocaml.2.2/lib'
+### stderr ###
+# ...[truncated]
+# File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+# Warning 3: deprecated: Format.bprintf
+# File "deriving_json/deriving_Json.ml", line 158, characters 25-39:
+# Warning 3: deprecated: Format.bprintf
+# File "deriving_json/deriving_Json.ml", line 163, characters 25-39:
+# Warning 3: deprecated: Format.bprintf
+# File "graphics/graphics_js.mli", line 22, characters 23-31:
+# Error: Unbound module Graphics
+# make[1]: *** [graphics/graphics_js.cmi] Error 2
+# make: *** [library] Error 2
+
+These actions have been completed successfully
+ - install   ocamlnet.3.7.5
+ - install   deriving.0.6.2
+ - install   sexplib.111.25.00
+ - install   react.1.2.0
+ - install   menhir.20130912
+ - install   ipaddr.2.5.0
+ - install   ssl.0.4.7
+ - install   calendar.2.03.2
+ - install   camlp4.4.02.0+1
+ - install   tyxml.3.1.1
+ - install   cryptokit.1.9
+ - install   lwt.2.4.5
+ - install   conf-libpcre.1
+ - install   optcomp.1.6
+ - install   type_conv.111.13.00
+ - install   pcre-ocaml.7.1.1
+
+#================= ERROR while installing sqlite3-ocaml.2.0.6 =================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              ocaml setup.ml -build
+# path                 /home/opam/.opam/4.02.0/build/sqlite3-ocaml.2.0.6
+# compiler             4.02.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0/build/sqlite3-ocaml.2.0.6/sqlite3-ocaml-4689-d474c2.env
+# stdout-file          /home/opam/.opam/4.02.0/build/sqlite3-ocaml.2.0.6/sqlite3-ocaml-4689-d474c2.out
+# stderr-file          /home/opam/.opam/4.02.0/build/sqlite3-ocaml.2.0.6/sqlite3-ocaml-4689-d474c2.err
+### stdout ###
+# ...[truncated]
+# Turn ocaml profile flag on: .......................... false
+# Compiler support generation of .cmxs.: ............... true
+# OCamlbuild additional flags: ......................... 
+# Strict compile-time checks: .......................... true
+# Create documentations: ............................... true
+# Compile tests executable and library and run them: ... false
+# ocamldoc: ............................................ /home/opam/.opam/4.02.0/bin/ocamldoc
+# 
+# /home/opam/.opam/4.02.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+# Failure: pkg-config failed for cflags.
+### stderr ###
+# ...[truncated]
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# File "setup.ml", line 247, characters 8-26:
+# Warning 3: deprecated: String.set
+# File "setup.ml", line 2502, characters 6-24:
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# Package sqlite3 was not found in the pkg-config search path.
+# Perhaps you should add the directory containing `sqlite3.pc'
+# to the PKG_CONFIG_PATH environment variable
+# No package 'sqlite3' found
+# E: Failure("Command ''/home/opam/.opam/4.02.0/bin/ocamlbuild' lib/libsqlite3_stubs.a lib/dllsqlite3_stubs.so lib/sqlite3.cma lib/sqlite3.cmxa lib/sqlite3.a lib/sqlite3.cmxs -tag debug' terminated with error code 2")
+
+The following failed
+ - install   js_of_ocaml.2.2
+ - install   sqlite3-ocaml.2.0.6
+Due to the errors, the following have been cancelled
+ - install   eliom.4.0.0
+ - install   litiom.3.0
+ - install   ocsigenserver.2.4.0
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140813120933.export"
+'opam install litiom' failed.
