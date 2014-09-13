@@ -468,3 +468,11 @@ ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package
 ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/path_generated.cmo lib/path_generated.ml
 ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/main.cmo lib/main.ml
 ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/mirari.ml > lib/mirari.ml.depends
+ocamlfind ocamldep -package fd-send-recv -package tuntap -package unix -package cmdliner -modules lib/util.ml > lib/util.ml.depends
+ocamlfind ocamlc -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/util.cmo lib/util.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/util.cmx lib/util.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/mirari.cmx lib/mirari.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/path_generated.cmx lib/path_generated.ml
+ocamlfind ocamlopt -c -package fd-send-recv -package tuntap -package unix -package cmdliner -I lib -o lib/main.cmx lib/main.ml
+ocamlfind ocamlopt -linkpkg -package fd-send-recv -package tuntap -package unix -package cmdliner lib/util.cmx lib/mirari.cmx lib/path_generated.cmx lib/main.cmx -o lib/main.native
+Installing mirari.0.9.7.
