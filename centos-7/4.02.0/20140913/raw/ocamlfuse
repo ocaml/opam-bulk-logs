@@ -145,3 +145,112 @@ In file included from /home/opam/.opam/4.02.0/lib/ocaml/caml/mlvalues.h:18:0,
 comerror.c:171:16: note: in expansion of macro 'format_caml_exception'
    char * msg = format_caml_exception(exn_bucket);
                 ^
+rm -f libcamlidl.a
+ar rc libcamlidl.a idlalloc.o comintf.o comerror.o
+ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/runtime'
+cd lib; make all
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/lib'
+ocamlc -g -c com.mli
+ocamlc -g -c com.ml
+ocamlc -g -a -o com.cma com.cmo
+ocamlopt -c com.ml
+ocamlopt -a -o com.cmxa com.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/lib'
+cd tools; make all
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/tools'
+cd compiler; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/compiler'
+cp camlidl /home/opam/.opam/4.02.0/bin
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/compiler'
+cd runtime; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/runtime'
+cp camlidlruntime.h /home/opam/.opam/4.02.0/lib/camlidl/caml/camlidlruntime.h
+cp libcamlidl.a /home/opam/.opam/4.02.0/lib/camlidl/libcamlidl.a
+cd /home/opam/.opam/4.02.0/lib/camlidl; ranlib libcamlidl.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/runtime'
+cd lib; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/lib'
+cp com.cmi com.cma com.cmxa com.a /home/opam/.opam/4.02.0/lib/camlidl
+cd /home/opam/.opam/4.02.0/lib/camlidl; ranlib com.a
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/lib'
+cd tools; make install
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/tools'
+make[1]: Nothing to be done for `install'.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/camlidl.1.05/tools'
+Installing camlidl.1.05.
+Building ocamlfuse.2.7.1-cvs2:
+  make -C lib INCDIRS=/home/opam/.opam/4.02.0/lib/camlidl
+  make -C lib install
+make: Entering directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+camlidl -header  \
+			 Fuse_bindings.idl
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+making ._ncdi/Fuse_bindings.di from Fuse_bindings.mli
+making ._d/Fuse_bindings.d from Fuse_bindings.ml
+making ._d/Fuse.d from Fuse.ml
+making ._d/Fuse_lib.d from Fuse_lib.ml
+making ._d/Unix_util.d from Unix_util.ml
+making ._d/Result.d from Result.ml
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+			-DPIC -DNATIVE_CODE   \
+			  -I/home/opam/.opam/4.02.0/lib/camlidl  -o Fuse_bindings_stubs.o " Fuse_bindings_stubs.c 
+In file included from Fuse_bindings_stubs.c:17:0:
+Fuse_bindings.h:16:18: fatal error: fuse.h: No such file or directory
+ #include <fuse.h>
+                  ^
+compilation terminated.
+make[1]: *** [Fuse_bindings_stubs.o] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+make: *** [native-code-library] Error 2
+make: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+[ERROR] The compilation of ocamlfuse.2.7.1-cvs2 failed.
+Removing ocamlfuse.2.7.1-cvs2.
+  ocamlfind remove Fuse
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/Fuse
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   camlidl.1.05
+The following failed
+ - install   ocamlfuse.2.7.1-cvs2
+
+#================ ERROR while installing ocamlfuse.2.7.1-cvs2 =================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make -C lib INCDIRS=/home/opam/.opam/4.02.0/lib/camlidl
+# path                 /home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/ocamlfuse-218-1872ec.env
+# stdout-file          /home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/ocamlfuse-218-1872ec.out
+# stderr-file          /home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/ocamlfuse-218-1872ec.err
+### stdout ###
+# ...[truncated]
+# making ._d/Fuse_lib.d from Fuse_lib.ml
+# making ._d/Unix_util.d from Unix_util.ml
+# making ._d/Result.d from Result.ml
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+# make[1]: Entering directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+# ocamlc -c -cc "cc" -ccopt "-fPIC -D_FILE_OFFSET_BITS=64 -I. -pthread \
+# 			-DPIC -DNATIVE_CODE   \
+# 			  -I/home/opam/.opam/4.02.0/lib/camlidl  -o Fuse_bindings_stubs.o " Fuse_bindings_stubs.c 
+# make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+# make: Leaving directory `/home/opam/.opam/4.02.0/build/ocamlfuse.2.7.1-cvs2/lib'
+### stderr ###
+# In file included from Fuse_bindings_stubs.c:17:0:
+# Fuse_bindings.h:16:18: fatal error: fuse.h: No such file or directory
+#  #include <fuse.h>
+#                   ^
+# compilation terminated.
+# make[1]: *** [Fuse_bindings_stubs.o] Error 2
+# make: *** [native-code-library] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140813122852.export"
+'opam install ocamlfuse' failed.
