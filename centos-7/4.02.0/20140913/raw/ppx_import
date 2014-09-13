@@ -1,1 +1,44 @@
 ++ opam install ppx_import -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install ppx_import
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   ppx_tools.0.99.1                      [required by ppx_import]
+ - install   ppx_import.0.1
+=== 2 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[ppx_import.0.1] Downloading https://github.com/whitequark/ppx_import/archive/v0.1.tar.gz
+[ppx_tools.0.99.1] Downloading http://github.com/alainfrisch/ppx_tools/archive/ppx_tools_0.99.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   127    0   127    0     0    133      0 --:--:-- --:--:-- --:--:--   133
+  0     0    0   139    0     0    141      0 --:--:-- --:--:-- --:--:--   141
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0 10299    0     0   6898      0 --:--:--  0:00:01 --:--:-- 92783
+200
+100 14714  100 14714    0     0   8808      0  0:00:01  0:00:01 --:--:-- 67187
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building ppx_tools.0.99.1:
+  make all
+  make install
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlc -a -o ppx_tools.cma ast_convenience.cmo ast_mapper_class.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c genlifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o genlifter ocamlcommon.cma ppx_tools.cma genlifter.cmo
+./genlifter -I +compiler-libs Parsetree.expression > ast_lifter.ml || rm -rf ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c dumpast.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o dumpast ocamlcommon.cma ocamlbytecomp.cma ast_lifter.cmo dumpast.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ppx_metaquot.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o ppx_metaquot ocamlcommon.cma ppx_tools.cma ast_lifter.cmo ppx_metaquot.cmo
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
