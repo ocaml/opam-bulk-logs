@@ -273,3 +273,19 @@ Warning: the tag "pkg_lwt.syntax" is not used in any flag declaration, so it wil
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -a src/mongoOperation.cmo src/mongoUtils.cmo src/mongoHeader.cmo src/mongoReply.cmo src/mongoRequest.cmo src/mongoSend.cmo src/mongo.cmo src/mongoAdmin.cmo src/mongoMetaOp.cmo src/mongoQueryOp.cmo -o src/mongo.cma
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoOperation.cmx src/mongoOperation.ml
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoUtils.cmx src/mongoUtils.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoHeader.cmx src/mongoHeader.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoReply.cmx src/mongoReply.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoRequest.cmx src/mongoRequest.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoSend.cmx src/mongoSend.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongo.cmx src/mongo.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoAdmin.cmx src/mongoAdmin.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoMetaOp.cmx src/mongoMetaOp.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -package bson -I src -o src/mongoQueryOp.cmx src/mongoQueryOp.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -a src/mongoOperation.cmx src/mongoUtils.cmx src/mongoHeader.cmx src/mongoReply.cmx src/mongoRequest.cmx src/mongoSend.cmx src/mongo.cmx src/mongoAdmin.cmx src/mongoMetaOp.cmx src/mongoQueryOp.cmx -o src/mongo.cmxa
+ocamlfind ocamlopt -shared -linkall src/mongo.cmxa -o src/mongo.cmxs
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package bson -package unix -modules test/test_mongo.ml > test/test_mongo.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -I src -package bson -package unix -I test -I src -o test/test_mongo.cmo test/test_mongo.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -I src -package bson -package unix -I test -I src -o test/test_mongo.cmx test/test_mongo.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -g -linkpkg -package bson -package unix src/mongo.cmxa test/test_mongo.cmx -o test/test_mongo.native
+File "setup.ml", line 234, characters 8-26:
+Warning 3: deprecated: String.set
