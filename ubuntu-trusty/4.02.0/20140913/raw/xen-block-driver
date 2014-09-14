@@ -2657,3 +2657,72 @@ mv xenctrl_stubs.o lib/xenctrl_stubs.o
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package bigarray -package lwt -package unix -modules lib/xenmmap.mli > lib/xenmmap.mli.depends
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenmmap.cmi lib/xenmmap.mli
 /home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package bigarray -package lwt -package unix -modules lib/xenmmap.ml > lib/xenmmap.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package bigarray -package lwt -package unix -modules lib/xenctrl.mli > lib/xenctrl.mli.depends
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenctrl.cmi lib/xenctrl.mli
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package bigarray -package lwt -package unix -modules lib/xenctrl.ml > lib/xenctrl.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenmmap.cmo lib/xenmmap.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenctrl.cmo lib/xenctrl.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -a -dllib -lxenctrl_stubs -cclib -lxenctrl_stubs -cclib -lxenctrl -cclib -lxenguest -cclib -lxenstore lib/xenmmap.cmo lib/xenctrl.cmo -o lib/xenctrl.cma
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenmmap.cmx lib/xenmmap.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -ccopt -Wno-unused-function -ccopt -g -ccopt -ggdb -package bigarray -package lwt -package unix -I lib -I xenlight -o lib/xenctrl.cmx lib/xenctrl.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -a -cclib -lxenctrl_stubs -cclib -lxenctrl -cclib -lxenguest -cclib -lxenstore lib/xenmmap.cmx lib/xenctrl.cmx -o lib/xenctrl.cmxa
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -shared -I lib lib/xenctrl.cmxa lib/xenmmap.cmx lib/xenctrl.cmx -o lib/xenctrl.cmxs
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c xenguest-4.2/xenguest_stubs.c
++ /home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c xenguest-4.2/xenguest_stubs.c
+xenguest-4.2/xenguest_stubs.c: In function 'dispatch_suspend':
+xenguest-4.2/xenguest_stubs.c:259:14: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+  int domid = (int) arg;
+              ^
+xenguest-4.2/xenguest_stubs.c: In function 'stub_xc_linux_build_native':
+xenguest-4.2/xenguest_stubs.c:374:2: warning: implicit declaration of function 'xc_dom_loginit' [-Wimplicit-function-declaration]
+  xc_dom_loginit(xch);
+  ^
+xenguest-4.2/xenguest_stubs.c:389:4: warning: implicit declaration of function 'xc_dom_gnttab_seed' [-Wimplicit-function-declaration]
+    r = xc_dom_gnttab_seed(xch, c_domid,
+    ^
+xenguest-4.2/xenguest_stubs.c:404:2: warning: implicit declaration of function 'xc_dom_release' [-Wimplicit-function-declaration]
+  xc_dom_release(dom);
+  ^
+xenguest-4.2/xenguest_stubs.c: In function 'stub_xc_hvm_build_native':
+xenguest-4.2/xenguest_stubs.c:530:5: warning: implicit declaration of function 'xc_dom_gnttab_hvm_seed' [-Wimplicit-function-declaration]
+     xc_dom_gnttab_hvm_seed(xch, _D(domid), console_mfn, store_mfn, Int_val(console_domid), Int_val(store_domid));
+     ^
+xenguest-4.2/xenguest_stubs.c: In function 'stub_xc_domain_save':
+xenguest-4.2/xenguest_stubs.c:595:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  callbacks.data = (void*) c_domid;
+                   ^
+xenguest-4.2/xenguest_stubs.c: In function 'stub_xc_domain_restore':
+xenguest-4.2/xenguest_stubs.c:683:9: warning: passing argument 14 of 'xc_domain_restore' makes integer from pointer without a cast [enabled by default]
+         );
+         ^
+In file included from xenguest-4.2/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: expected 'int' but argument is of type 'long unsigned int *'
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+xenguest-4.2/xenguest_stubs.c:683:9: error: too few arguments to function 'xc_domain_restore'
+         );
+         ^
+In file included from xenguest-4.2/xenguest_stubs.c:27:0:
+/usr/include/xenguest.h:123:5: note: declared here
+ int xc_domain_restore(xc_interface *xch, int io_fd, uint32_t dom,
+     ^
+xenguest-4.2/xenguest_stubs.c: At top level:
+xenguest-4.2/xenguest_stubs.c:570:30: warning: 'save_callbacks' defined but not used [-Wunused-variable]
+ static struct save_callbacks save_callbacks = {
+                              ^
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.02.0/bin/ocamlbuild' lib/libxenctrl_stubs.a lib/dllxenctrl_stubs.so lib/xenctrl.cma lib/xenctrl.cmxa lib/xenctrl.a lib/xenctrl.cmxs xenguest-4.2/libxenguest42_stubs.a xenguest-4.2/dllxenguest42_stubs.so xenguest-4.2/xenguest42.cma xenguest-4.2/xenguest42.cmxa xenguest-4.2/xenguest42.a xenguest-4.2/xenguest42.cmxs xenguest-4.2/xenguest_main.native test/test_hvm_check_pvdriver.native -tag debug -j 4' terminated with error code 10")
+make: *** [build] Error 1
+Removing xenctrl.0.9.26.
+[ERROR] The compilation of xenctrl.0.9.26 failed.
+  make uninstall
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/xenctrl
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/xenlight
+Building cstruct.1.4.0:
+  make
+  make install
+ocaml setup.ml -configure --enable-lwt --enable-unix --disable-async --enable-tests
+File "setup.ml", line 247, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 2502, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
