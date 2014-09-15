@@ -233,3 +233,139 @@ make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/simula
 /home/opam/.opam/4.01.0/bin/ocamlbuild -cflags -w,Ae,-warn-error,A -lflags -w,Ae,-warn-error,A -no-links -classic-display -cflags -thread,-I,/home/opam/.opam/4.01.0/build/ocapic.3.0/lib/extra -lflags -thread,unix.cmxa,graphics.cmxa,threads.cmxa,-I,/home/opam/.opam/4.01.0/build/ocapic.3.0/lib/extra,simul.cmx main.native
 /home/opam/.opam/4.01.0/bin/ocamldep.opt -modules main.ml > main.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/4.01.0/build/ocapic.3.0/lib/extra -o main.cmo main.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -I /home/opam/.opam/4.01.0/build/ocapic.3.0/lib/extra -o main.cmx main.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -w Ae -warn-error A -thread unix.cmxa graphics.cmxa threads.cmxa -I /home/opam/.opam/4.01.0/build/ocapic.3.0/lib/extra simul.cmx main.cmx -o main.native
+cp _build/main.native /home/opam/.opam/4.01.0/build/ocapic.3.0/bin/ocapic_keyboard_simulator
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/keyboard'
+rm simu.o cserial.o stds.o shared.o sf_regs.o ceeprom.o
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/ocapic'
+cp /home/opam/.opam/4.01.0/build/ocapic.3.0/etc/config.ml config.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -w Ae -warn-error A -c config.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -w Ae -warn-error A -c ocapic.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -w Ae -warn-error A config.cmx ocapic.cmx -o /home/opam/.opam/4.01.0/build/ocapic.3.0/bin/ocapic
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/ocapic'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/ocasim'
+/home/opam/.opam/4.01.0/bin/ocamlbuild -cflags -w,Ae,-warn-error,A -lflags -w,Ae,-warn-error,A -no-links -classic-display -cflags -thread -lflags	  \
+	  -thread,unix.cmxa,threads.cmxa  -lflag /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/simu.c  -lflag /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/shared.c  -lflag /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/sf_regs.c  -lflag /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/ceeprom.c main.native
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules main.ml > main.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules code.ml > code.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules flash.ml > flash.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules hexfile.ml > hexfile.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o hexfile.cmo hexfile.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules instr.ml > instr.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o flash.cmo flash.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o instr.cmo instr.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules interp.ml > interp.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ram.ml > ram.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules sfr.ml > sfr.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o sfr.cmo sfr.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tools.ml > tools.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o ram.cmo ram.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o tools.cmo tools.ml
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules trigs.ml > trigs.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o code.cmo code.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o interp.cmo interp.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o trigs.cmo trigs.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -w Ae -warn-error A -thread -o main.cmo main.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o hexfile.cmx hexfile.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o flash.cmx flash.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o instr.cmx instr.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o sfr.cmx sfr.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o ram.cmx ram.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o tools.cmx tools.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o code.cmx code.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o interp.cmx interp.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o trigs.cmx trigs.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -w Ae -warn-error A -thread -o main.cmx main.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -w Ae -warn-error A -thread unix.cmxa threads.cmxa /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/simu.c /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/shared.c /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/sf_regs.c /home/opam/.opam/4.01.0/build/ocapic.3.0/src/simulator/ceeprom.c hexfile.cmx flash.cmx instr.cmx code.cmx sfr.cmx ram.cmx tools.cmx interp.cmx trigs.cmx main.cmx -o main.native
+cp _build/main.native /home/opam/.opam/4.01.0/build/ocapic.3.0/bin/ocasim
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/src/ocasim'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocapic.3.0/lib'
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -w Ae -warn-error A -nopervasives -c pervasives.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c std_exit.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c list.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c array.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c char.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c string.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c map.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c nap.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c obj.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c sys.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c buffer.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c hashtbl.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c queue.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c set.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c sort.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c stack.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c arrayLabels.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c listLabels.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c moreLabels.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c stdLabels.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c stringLabels.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalOO.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c oo.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalLazy.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c lazy.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalMod.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c gc.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c int32.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c int64.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c random.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c printf.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c stream.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c genlex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c serial.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c eeprom.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c std_exit.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c list.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c array.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c char.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c string.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c map.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c nap.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c obj.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c sys.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c buffer.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c hashtbl.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c queue.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c set.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c sort.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c stack.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c arrayLabels.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c listLabels.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c moreLabels.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c stdLabels.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -nolabels -c stringLabels.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c oo.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalLazy.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c lazy.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalMod.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c camlinternalOO.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c gc.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c int32.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c int64.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c random.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c printf.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c stream.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c genlex.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c serial.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c eeprom.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -c 18f4620/pic.ml
+cp spiclibs/lcd.ml 18f4620/lcd.ml
+cp spiclibs/lcd.mli 18f4620/lcd.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -I 18f4620 -c 18f4620/lcd.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -nostdlib -I 18f4620 -c 18f4620/lcd.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -a 18f4620/pic.cmo 18f4620/lcd.cmo -o 18f4620/piclib.cma
+cd 18f4620; /home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini	\
+	  -I ../  lcd.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  std_exit.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  list.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  array.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  char.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  string.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  map.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  nap.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  obj.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  sys.mli
+/home/opam/.opam/4.01.0/bin/ocamldoc -hide-warnings -man -man-mini  buffer.mli
