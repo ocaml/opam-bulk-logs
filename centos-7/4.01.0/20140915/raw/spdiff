@@ -826,3 +826,75 @@ Building spdiff.0.1:
 echo "let foo_ctl () = failwith \"there is no foo_ctl formula\"" \
   > test.ml
 ocamldep  *.mli *.ml > .depend
+set -e; for i in localcocci/commons localcocci/globals localcocci/menhirlib localcocci/parsing_cocci localcocci/parsing_c; do make -C $i depend; done
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/commons'
+ocamldep -I ocamlextra -I ocollection  *.mli *.ml  > .depend
+for i in ocamlextra ocollection; do ocamldep -I ocamlextra -I ocollection  $i/*.ml $i/*.mli >> .depend; done
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/commons'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/globals'
+ocamldep  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/globals'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/menhirlib'
+ocamldep  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/menhirlib'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/parsing_cocci'
+ocamllex lexer_cocci.mll
+181 states, 1670 transitions, table size 7766 bytes
+2130 additional bytes used for bindings
+ocamllex lexer_script.mll
+5 states, 259 transitions, table size 1066 bytes
+menhir --table parser_cocci_menhir.mly
+Warning: you are using the standard library and/or the %inline keyword. We
+recommend switching on --infer in order to avoid obscure type error messages.
+ocamldep -I ../commons -I ../commons/ocamlextra -I ../globals -I ../menhirlib *.mli *.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/parsing_cocci'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/parsing_c'
+ocamllex  lexer_c.mll
+381 states, 13030 transitions, table size 54406 bytes
+3353 additional bytes used for bindings
+ocamlyacc -v parser_c.mly
+ocamldep -I ../commons -I ../commons/ocamlextra -I ../commons/ocollection -I ../globals -I  ../parsing_cocci  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/parsing_c'
+set -e; for i in localcocci/commons localcocci/globals localcocci/menhirlib localcocci/parsing_cocci localcocci/parsing_c; do make -C $i all.opt; done 
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/spdiff.0.1/localcocci/commons'
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/dumper.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/dumper.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/ANSITerminal.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/ANSITerminal.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/setb.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/setb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/mapb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/setPt.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c common.mli
+ocamlopt  -I ocamlextra -I ocollection   -c common.ml
+ocamlopt  -I ocamlextra -I ocollection   -c common_extra.ml
+ocamlopt  -I ocamlextra -I ocollection   -c interfaces.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c objet.mli
+ocamlopt  -I ocamlextra -I ocollection   -c objet.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocollection.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection.ml
+ocamlopt  -I ocamlextra -I ocollection   -c seti.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c seti.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/setPt.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c oset.mli
+ocamlopt  -I ocamlextra -I ocollection   -c oset.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c oassoc.mli
+ocamlopt  -I ocamlextra -I ocollection   -c oassoc.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c osequence.mli
+ocamlopt  -I ocamlextra -I ocollection   -c osequence.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ograph.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ograph.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oseti.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oseth.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/osetb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/osetpt.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oassocb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oassoch.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocollection/oassoc_buffer.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oassoc_buffer.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocollection/oassoc_cache.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oassoc_cache.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocollection/oassocid.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c oarray.mli
+ocamlopt  -I ocamlextra -I ocollection   -c oarray.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocollection/ograph2way.mli
