@@ -1362,3 +1362,36 @@ ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/op
 ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqic_ocaml_out.ml
 ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqic_ocaml_in.ml
 ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqic_ocaml_defaults.ml
+ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqic_ocaml.ml
+ocamlfind ocamlopt -package ulex,easy-format,piqirun -c -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqic_ocaml_ext.ml
+ocamlfind ocamlopt -package ulex,easy-format,piqirun -c piqic_run.ml
+ocamlc -c -cc "cc" -ccopt " \
+			-DNATIVE_CODE   \
+			    -o piqi_c_impl.o " piqi_c_impl.c
+ocamlfind ocamlopt \
+			-package ulex,easy-format,piqirun -linkpkg \
+			              piqi_c_impl.o    -o piqic \
+			piqi_version.cmx piqloc.cmx piqi_util.cmx piq_ast.cmx piqi_lang_piqi.cmx piqi_c.cmx piqi_config.cmx piqi_iolist.cmx piqi_graph.cmx piqi_name.cmx piqi_common.cmx piqi_file.cmx piqi_main.cmx piqi_protobuf.cmx piqi_db.cmx piq_lexer.cmx piq_parser.cmx piq_gen.cmx piqi_objstore.cmx piqobj.cmx piqobj_common.cmx piqobj_to_protobuf.cmx piqobj_of_protobuf.cmx piqobj_to_piq.cmx piqobj_of_piq.cmx piqi.cmx piqi_pp.cmx piqic_common.cmx piqic_ocaml_types.cmx piqic_ocaml_out.cmx piqic_ocaml_in.cmx piqic_ocaml_defaults.cmx piqic_ocaml.cmx piqic_ocaml_ext.cmx piqic_run.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.6.5/piqic'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/piqi.0.6.5/piqic'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.6.5/piqilib'
+echo "let version = \"`head -1 /home/opam/.opam/4.01.0/build/piqi.0.6.5/VERSION`\"" >piqi_version.ml
+../piqicc/piqicc -I /home/opam/.opam/4.01.0/build/piqi.0.6.5 -o piqi_lang_piqi.ml.tmp.ml \
+	--spec piqi.piqi --lang piqi-lang.piqi --impl piqi-impl.piqi
+camlp4o -printer o -o piqi_lang_piqi.ml piqi_lang_piqi.ml.tmp.ml
+ocamllex  piqi_json_parser.mll
+91 states, 1087 transitions, table size 4894 bytes
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/piqi.0.6.5/piqilib'
+ocamlfind ocamldep -native piqirun_ext.mli > ._ncdi/piqirun_ext.di
+ocamlfind ocamldep -native piqi_xml_type.mli > ._ncdi/piqi_xml_type.di
+ocamlfind ocamldep -native piqi_json_type.mli > ._ncdi/piqi_json_type.di
+ocamlfind ocamldep -native piqi_c.mli > ._ncdi/piqi_c.di
+ocamlfind ocamldep piqi_json_parser.ml > ._d/piqi_json_parser.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqi_getopt.ml > ._d/piqi_getopt.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqi_light.ml > ._d/piqi_light.d
+ocamlfind ocamldep piqirun_ext.ml > ._d/piqirun_ext.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqi_convert.ml > ._d/piqi_convert.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piq.ml > ._d/piq.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqobj_of_xml.ml > ._d/piqobj_of_xml.d
+ocamlfind ocamldep -pp "camlp4o -I /home/opam/.opam/4.01.0/build/piqi.0.6.5/build/lib/ocaml/piqi pa_labelscope.cmo pa_openin.cmo " piqobj_to_xml.ml > ._d/piqobj_to_xml.d
+ocamlfind ocamldep piqi_xml.ml > ._d/piqi_xml.d
