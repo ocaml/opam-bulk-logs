@@ -1562,3 +1562,35 @@ if test -f pa_o_fast.cmx; then \
 	fi
 make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlp5.6.11/compile'
 Installing camlp5.6.11.
+Building ledit.2.03:
+  make
+  make install LIBDIR=/home/opam/.opam/4.01.0/lib/ledit MANDIR=/home/opam/.opam/4.01.0/man/man1 BINDIR=/home/opam/.opam/4.01.0/bin
+camlp5r -I ext -loc loc ext/pa_def.ml -o ext/pa_def.ppo
+ocamlc -I `camlp5 -where` -c -impl ext/pa_def.ppo
+rm -f ext/pa_def.ppo
+camlp5r -I ext -loc loc ext/pa_local.ml -o ext/pa_local.ppo
+ocamlc -I `camlp5 -where` -c -impl ext/pa_local.ppo
+rm -f ext/pa_local.ppo
+camlp5r -I ext cursor.mli -o cursor.ppi
+ocamlc -c -intf cursor.ppi
+/bin/rm -f cursor.ppi
+camlp5r -I ext cursor.ml -o cursor.ppo
+ocamlc -I `camlp5 -where` -c -impl cursor.ppo
+/bin/rm -f cursor.ppo
+camlp5r -I ext ledit.mli -o ledit.ppi
+ocamlc -c -intf ledit.ppi
+/bin/rm -f ledit.ppi
+camlp5r -I ext ledit.ml -o ledit.ppo
+ocamlc -I `camlp5 -where` -c -impl ledit.ppo
+/bin/rm -f ledit.ppo
+camlp5r -I ext go.ml -o go.ppo
+ocamlc -I `camlp5 -where` -c -impl go.ppo
+/bin/rm -f go.ppo
+ocamlc -custom unix.cma -I `camlp5 -where` gramlib.cma cursor.cmo ledit.cmo go.cmo -o ledit.out
+VERSION=`sed -n -e 's/^.* version = "\(.*\)".*$/\1/p' go.ml`; \
+	sed s/LEDIT_VERSION/$VERSION/ ledit.1.tpl > ledit.1
+ocamlc -a -o ledit.cma cursor.cmo ledit.cmo
+mkdir -p /home/opam/.opam/4.01.0/bin /home/opam/.opam/4.01.0/man/man1
+cp ledit.out /home/opam/.opam/4.01.0/bin/ledit
+cp ledit.1 /home/opam/.opam/4.01.0/man/man1/ledit.1
+Installing ledit.2.03.
