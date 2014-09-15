@@ -4844,3 +4844,11 @@ ocamlfind ocamldep -package threads -package sexplib.syntax -package sexplib -pa
 ocamlfind ocamldep -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -modules lib/std.ml > lib/std.ml.depends
 ocamlfind ocamldep -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -modules lib/text_graph.mli > lib/text_graph.mli.depends
 ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -I lib -o lib/text_graph.cmi lib/text_graph.mli
+ocamlfind ocamldep -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -modules lib/text_graph.ml > lib/text_graph.ml.depends
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -I lib -o lib/ascii_table.cmo lib/ascii_table.ml
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -I lib -o lib/console.cmo lib/console.ml
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -I lib -o lib/std.cmo lib/std.ml
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -I lib -o lib/text_graph.cmo lib/text_graph.ml
+ocamlfind ocamlc -pack -g lib/console.cmo lib/ascii_table.cmo lib/text_graph.cmo lib/std.cmo -o lib/textutils.cmo
+ocamlfind ocamlc -a lib/textutils.cmo -o lib/textutils.cma
+ocamlfind ocamlopt -c -g -package threads -package sexplib.syntax -package sexplib -package pa_ounit.syntax -package pa_ounit -package core -syntax camlp4o -thread -for-pack Textutils -I lib -o lib/console.cmx lib/console.ml
