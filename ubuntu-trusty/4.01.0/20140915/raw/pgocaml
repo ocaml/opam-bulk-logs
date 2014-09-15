@@ -461,3 +461,20 @@ make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/pgocaml.2.1'
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -modules src/PGOCaml_generic.ml > src/PGOCaml_generic.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -modules src/PGOCaml_config.ml > src/PGOCaml_config.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_config.cmo src/PGOCaml_config.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_aux.cmo src/PGOCaml_aux.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml.cmo src/PGOCaml.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_generic.cmo src/PGOCaml_generic.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/PGOCaml_aux.cmo src/PGOCaml_config.cmo src/PGOCaml_generic.cmo src/PGOCaml.cmo -o src/pgocaml.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_aux.cmx src/PGOCaml_aux.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_config.cmx src/PGOCaml_config.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml_generic.cmx src/PGOCaml_generic.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -I src -o src/PGOCaml.cmx src/PGOCaml.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/PGOCaml_aux.cmx src/PGOCaml_config.cmx src/PGOCaml_generic.cmx src/PGOCaml.cmx -o src/pgocaml.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/pgocaml.cmxa src/PGOCaml_aux.cmx src/PGOCaml_config.cmx src/PGOCaml_generic.cmx src/PGOCaml.cmx -o src/pgocaml.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -syntax camlp4o -modules src/pa_pgsql.ml > src/pa_pgsql.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -syntax camlp4o -package camlp4.extend -package camlp4.quotations -package csv -package pcre -package unix -syntax camlp4o -I src -o src/pa_pgsql.cmo src/pa_pgsql.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/pa_pgsql.cmo -o src/pa_pgsql.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package calendar -package csv -package pcre -package unix -modules utils/pgocaml_prof.ml > utils/pgocaml_prof.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -package calendar -package csv -package pcre -package unix -I utils -I src -o utils/pgocaml_prof.cmo utils/pgocaml_prof.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -linkpkg -package calendar -package csv -package pcre -package unix src/pgocaml.cma utils/pgocaml_prof.cmo -o utils/pgocaml_prof.byte
+ocaml setup.ml -build 
