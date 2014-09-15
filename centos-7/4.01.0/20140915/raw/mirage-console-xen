@@ -110,4 +110,36 @@ The following actions will be performed:
 [xen-gnt.1.0.3] Downloading https://github.com/mirage/ocaml-gnt/archive/v1.0.3.tar.gz
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 63087  100 63087    0     0  38847      0  0:00:01  0:00:01 --:--:-- 79354
+200
+[xenstore.1.2.5] Downloading https://github.com/mirage/ocaml-xenstore/archive/1.2.5.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0   127    0     0    177      0 --:--:-- --:--:-- --:--:--   177
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   124    0   124    0     0    171      0 --:--:-- --:--:-- --:--:--   171
+100   128    0   128    0     0    169      0 --:--:-- --:--:-- --:--:--   169
+100 50572  100 50572    0     0  34238      0  0:00:01  0:00:01 --:--:-- 34238
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 26 55251   26 14558    0     0  10593      0  0:00:05  0:00:01  0:00:04 10593100 55251  100 55251    0     0  37508      0  0:00:01  0:00:01 --:--:--  405k
+200
+100 94240  100 94240    0     0  54821      0  0:00:01  0:00:01 --:--:--  113k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building ounit.2.0.0:
+  make build
+  make install
+ocaml setup.ml -configure 
