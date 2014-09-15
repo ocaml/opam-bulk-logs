@@ -40,3 +40,37 @@ The following actions will be performed:
 200
   0     0    0 31008    0     0  19157      0 --:--:--  0:00:01 --:--:-- 19157  0     0    0 63726    0     0  36688      0 --:--:--  0:00:01 --:--:--  270k
 200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   134    0   134    0     0    170      0 --:--:-- --:--:-- --:--:--   170
+ 20 71354   20 14553    0     0  10029      0  0:00:07  0:00:01  0:00:06 10029100 71354  100 71354    0     0  43218      0  0:00:01  0:00:01 --:--:--  277k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building obuild.0.0.9:
+  ./bootstrap
+  cp dist/build/obuild/obuild dist/build/obuild-simple/obuild-simple /home/opam/.opam/4.01.0/bin
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING types
+COMPILING gconf
+COMPILING filetype
+COMPILING dag
+COMPILING libname
+COMPILING pp
+COMPILING expr
+COMPILING utils
+COMPILING modname
