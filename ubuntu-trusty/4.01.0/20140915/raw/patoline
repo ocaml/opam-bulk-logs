@@ -21,3 +21,90 @@ Preparing to unpack .../zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb ...
 Unpacking zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
 Setting up libsqlite3-dev:amd64 (3.8.2-1ubuntu2) ...
 Setting up zlib1g-dev:amd64 (1:1.2.8.dfsg-1ubuntu1) ...
+++ opam install patoline -e source,linux
++ srcext=
+Ubuntu srcexts:
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install patoline
+The following actions will be performed:
+ - install   omake.0.9.8.6-0.rc1                   [required by camlimages]
+ - install   camlp4.4.01.0                         [required by camomile]
+ - install   camlzip.1.05                          [required by patoline]
+ - install   dypgen.20120619-1                     [required by patoline]
+ - install   sqlite3-ocaml.2.0.6                   [required by patoline]
+ - install   camlimages.4.1.2                      [required by patoline]
+ - install   camomile.0.8.5                        [required by patoline]
+ - install   patoline.0.1
+=== 8 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/camlimages.4.1.2+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/camlzip.1.05+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/camomile.0.8.5+opam.tar.gz
+sending incremental file list
+sending incremental file list
+camlimages.4.1.2+opam.tar.gz
+camlzip.1.05+opam.tar.gz
+sending incremental file list
+camomile.0.8.5+opam.tar.gz
+
+sent 26,595 bytes  received 35 bytes  53,260.00 bytes/sec
+total size is 26,462  speedup is 0.99
+
+sent 1,275,168 bytes  received 35 bytes  2,550,406.00 bytes/sec
+total size is 1,274,731  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/dypgen.20120619-1+opam.tar.gz
+
+sent 3,721,646 bytes  received 35 bytes  7,443,362.00 bytes/sec
+total size is 3,720,611  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/omake.0.9.8.6-0.rc1+opam.tar.gz
+sending incremental file list
+sending incremental file list
+dypgen.20120619-1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/patoline.0.1+opam.tar.gz
+omake.0.9.8.6-0.rc1+opam.tar.gz
+sending incremental file list
+patoline.0.1+opam.tar.gz
+
+sent 473,231 bytes  received 35 bytes  946,532.00 bytes/sec
+total size is 472,985  speedup is 1.00
+[default] Synchronizing with /home/opam/opam-repository/archives/sqlite3-ocaml.2.0.6+opam.tar.gz
+
+sent 3,246,956 bytes  received 35 bytes  6,493,982.00 bytes/sec
+total size is 3,246,028  speedup is 1.00
+sending incremental file list
+
+sqlite3-ocaml.2.0.6+opam.tar.gz
+sent 3,675,501 bytes  received 35 bytes  7,351,072.00 bytes/sec
+total size is 3,674,476  speedup is 1.00
+
+sent 66,750 bytes  received 35 bytes  133,570.00 bytes/sec
+total size is 66,598  speedup is 1.00
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+ocamlmklib -oc camlzip zlibstubs.o \
+            -L/usr/local/lib -lz
+ocamlc -g -c zlib.mli
+ocamlc -g -c zlib.ml
+ocamlc -g -c zip.mli
+ocamlc -g -c zip.ml
+ocamlc -g -c gzip.mli
+ocamlc -g -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmo zip.cmo gzip.cmo \
+            -L/usr/local/lib -lz
+ocamlopt -c zlib.ml
+ocamlopt -c zip.ml
+ocamlopt -c gzip.ml
+ocamlmklib -o zip -oc camlzip zlib.cmx zip.cmx gzip.cmx \
+            -L/usr/local/lib -lz
+ocamlopt -shared -linkall -I ./ -o zip.cmxs zip.cmxa
