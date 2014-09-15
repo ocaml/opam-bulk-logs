@@ -738,3 +738,36 @@ pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/l
 
 ./setup.exe -build 
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.mli > lib/pa_type_conv.mli.depends
+ocamlfind ocamlc -c -g -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmi lib/pa_type_conv.mli
+ocamlfind ocamldep -syntax camlp4o -package camlp4.extend -package camlp4.quotations -modules lib/pa_type_conv.ml > lib/pa_type_conv.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmo lib/pa_type_conv.ml
+ocamlfind ocamlc -a lib/pa_type_conv.cmo -o lib/pa_type_conv.cma
+ocamlfind ocamlopt -c -g -syntax camlp4o -package camlp4.extend -package camlp4.quotations -I lib -o lib/pa_type_conv.cmx lib/pa_type_conv.ml
+ocamlfind ocamlopt -a lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxa
+ocamlfind ocamlopt -shared lib/pa_type_conv.cmx -o lib/pa_type_conv.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.mli
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cma
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmxa
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.a
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmxs
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmi
+Installed /home/opam/.opam/4.01.0/lib/type_conv/pa_type_conv.cmx
+Installed /home/opam/.opam/4.01.0/lib/type_conv/META
+Installing type_conv.111.13.00.
+Building rpc.1.5.1:
+  make
+  make install
+cd lib && make all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/rpc.1.5.1/lib'
+ocamlfind ocamlopt -annot -g -package xmlm,lwt -c -o rpc.cmi rpc.mli
+ocamlfind ocamlc -annot -g -package xmlm,lwt -c -o rpc.cmo rpc.ml
+ocamlfind ocamlopt -annot -g -package xmlm,lwt -c -o rpc.o rpc.ml
+ocamlfind ocamlc -annot -g -c -package camlp4 -pp "camlp4orf" -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 -o pa_module_conv.cmo pa_module_conv.ml
+ocamlfind ocamlc -annot -g -c -package camlp4,type_conv -pp "camlp4orf" -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 -I /home/opam/.opam/4.01.0/lib/type_conv  p4_rpc.cmo p4_rpc.ml
+File "p4_rpc.ml", line 558, characters 6-14:
+Warning 26: unused variable arg_path.
+ocamlfind ocamlc -annot -g -c -package camlp4,type_conv -pp "camlp4orf" -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 -I /home/opam/.opam/4.01.0/lib/type_conv  pa_rpc.cmo pa_rpc.ml
+ocamlfind ocamlc -a -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 -I /home/opam/.opam/4.01.0/lib/type_conv  -o pa_rpc.cma pa_module_conv.cmo rpc.cmo p4_rpc.cmo pa_rpc.cmo
+ocamlfind ocamlc -annot -g -c -package camlp4,type_conv -pp "camlp4orf" -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 -I /home/opam/.opam/4.01.0/lib/type_conv  p4_idl.cmo p4_idl.ml
