@@ -276,3 +276,16 @@ ocamlfind ocamlc -c -g -I examples/length -o examples/length/length.cmi examples
 ocamlfind ocamlc -c -g -annot -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/length/pa_length.cmo -I examples/length -o examples/length/use.cmo examples/length/use.ml
 ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/length/length.ml > examples/length/length.ml.depends
 ocamlfind ocamlc -c -g -annot -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/length -o examples/length/length.cmo examples/length/length.ml
+ocamlfind ocamlc -g -linkpkg examples/length/length.cmo examples/length/use.cmo -o examples/length/use.byte
+ocamlfind ocamldep -package camlp4 -package camlp4.quotations.o -syntax camlp4o -modules examples/ray_tracer/pa_ray.ml > examples/ray_tracer/pa_ray.ml.depends
+ocamlfind ocamlc -c -g -annot -rectypes -rectypes -package camlp4 -package camlp4.quotations.o -syntax camlp4o -I src/ -I examples/ray_tracer -o examples/ray_tracer/pa_ray.cmo examples/ray_tracer/pa_ray.ml
+ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/ray_tracer/pa_ray.cmo -modules examples/ray_tracer/ray.ml > examples/ray_tracer/ray.ml.depends
+ocamlfind ocamlc -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/ray_tracer/pa_ray.cmo -I examples/ray_tracer -o examples/ray_tracer/ray.cmo examples/ray_tracer/ray.ml
+ocamlfind ocamlopt -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/ray_tracer/pa_ray.cmo -I examples/ray_tracer -o examples/ray_tracer/ray.cmx examples/ray_tracer/ray.ml
+ocamlfind ocamlopt -g -rectypes -linkpkg examples/ray_tracer/ray.cmx -o examples/ray_tracer/ray.native
+ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/ray_tracer/ray_orig.ml > examples/ray_tracer/ray_orig.ml.depends
+ocamlfind ocamlc -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/ray_tracer -o examples/ray_tracer/ray_orig.cmo examples/ray_tracer/ray_orig.ml
+ocamlfind ocamlopt -c -g -annot -rectypes -rectypes -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/ray_tracer -o examples/ray_tracer/ray_orig.cmx examples/ray_tracer/ray_orig.ml
+ocamlfind ocamlopt -g -rectypes -linkpkg examples/ray_tracer/ray_orig.cmx -o examples/ray_tracer/ray_orig.native
+fatal: Not a git repository (or any of the parent directories): .git
+ocaml setup.ml -configure --enable-tests
