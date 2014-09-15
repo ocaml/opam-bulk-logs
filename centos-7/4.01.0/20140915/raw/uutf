@@ -1,1 +1,35 @@
 ++ opam install uutf -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install uutf
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   uutf.0.9.3
+=== 1 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[uutf.0.9.3] Downloading http://erratique.ch/software/uutf/releases/uutf-0.9.3.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 31734  100 31734    0     0   147k      0 --:--:-- --:--:-- --:--:--  147k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building uutf.0.9.3:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/uutf.mli > src/uutf.mli.depends
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmi src/uutf.mli
+ocamlfind ocamldep -modules src/uutf.ml > src/uutf.ml.depends
+ocamlfind ocamlopt -c -bin-annot -I src -I test -o src/uutf.cmx src/uutf.ml
+ocamlfind ocamlc -c -bin-annot -I src -I test -o src/uutf.cmo src/uutf.ml
+ocamlfind ocamlc -a src/uutf.cmo -o src/uutf.cma
+ocamlfind ocamlopt -a src/uutf.cmx -o src/uutf.cmxa
+ocamlfind ocamlopt -shared src/uutf.cmx -o src/uutf.cmxs
+ocamlfind ocamldep -modules test/utftrip.ml > test/utftrip.ml.depends
+ocamlfind ocamlc -c -bin-annot -I test -I src -o test/utftrip.cmo test/utftrip.ml
+ocamlfind ocamlopt -c -bin-annot -I test -I src -o test/utftrip.cmx test/utftrip.ml
+ocamlfind ocamlopt -linkpkg unix.cmxa src/uutf.cmx test/utftrip.cmx -o test/utftrip.native
+Installing uutf.0.9.3.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.01.0/build/uutf.0.9.3/uutf.install: is your OPAM up-to-date ?
