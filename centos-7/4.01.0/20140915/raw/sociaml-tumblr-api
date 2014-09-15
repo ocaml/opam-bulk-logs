@@ -298,4 +298,82 @@ The following actions will be performed:
 [uri.1.3.12] Downloading https://github.com/mirage/ocaml-uri/archive/v1.3.12.tar.gz
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 58766  100 58766    0     0  60177      0 --:--:-- --:--:-- --:--:-- 60149
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+[variantslib.109.15.00] Downloading https://ocaml.janestreet.com/ocaml-core/109.15.00/individual/variantslib-109.15.00.tar.gz
+100   125    0   125    0     0    183      0 --:--:-- --:--:-- --:--:--   183
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0  242k    0   856    0     0    693      0  0:05:58  0:00:01  0:05:57   693  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 57154  100 57154    0     0  58583      0 --:--:-- --:--:-- --:--:-- 58559
+200
+100  242k  100  242k    0     0   133k      0  0:00:01  0:00:01 --:--:--  413k
+200
+100 40546  100 40546    0     0  14462      0  0:00:02  0:00:02 --:--:-- 14465
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building calendar.2.03.2:
+  ./configure
+  make
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0: Good!
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamlfind... ocamlfind
+checking for ocamldoc... ocamldoc
+checking for ocamlweb... ocamlweb
+checking for ocamlwc... ocamlwc
+checking for ocamldot... ocamldot
+checking platform... linux
+checking extension for object files... .o
+checking extension for library files... .a
+checking for /home/opam/.opam/4.01.0/lib/ocaml/dynlink.cmxa... yes
+native dynlink works fine. Great.
+configure: creating ./config.status
+config.status: creating Makefile
+echo "let version = \"2.03.2\"" > src/version.ml
+echo "let date = \"`date`\"" >> src/version.ml
+rm -f .depend
+ocamldep -I src -I tests src/*.ml src/*.mli tests/*.ml tests/*.mli \
+  > .depend
+ocamlc.opt -I src -I target -I tests -c src/period.mli
+ocamlc.opt -I src -I target -I tests -c src/date_sig.mli
+ocamlc.opt -I src -I target -I tests -c src/time_Zone.mli
+ocamlc.opt -I src -I target -I tests -c src/time_sig.mli
+ocamlc.opt -I src -I target -I tests -c src/calendar_sig.mli
+ocamlc.opt -I src -I target -I tests -c src/utils.mli
+ocamlc.opt -I src -I target -I tests -c src/utils.ml
+ocamlc.opt -I src -I target -I tests -c src/time_Zone.ml
+ocamlc.opt -I src -I target -I tests -c src/time.mli
+ocamlc.opt -I src -I target -I tests -c src/time.ml
+ocamlc.opt -I src -I target -I tests -c src/ftime.mli
+ocamlc.opt -I src -I target -I tests -c src/ftime.ml
+ocamlc.opt -I src -I target -I tests -c src/date.mli
+ocamlc.opt -I src -I target -I tests -c src/date.ml
+ocamlc.opt -I src -I target -I tests -c src/calendar_builder.mli
+ocamlc.opt -I src -I target -I tests -c src/calendar_builder.ml
+ocamlc.opt -I src -I target -I tests -c src/calendar.mli
+ocamlc.opt -I src -I target -I tests -c src/calendar.ml
+ocamlc.opt -I src -I target -I tests -c src/fcalendar.mli
+ocamlc.opt -I src -I target -I tests -c src/fcalendar.ml
+ocamlc.opt -I src -I target -I tests -c src/printer.mli
+ocamlc.opt -I src -I target -I tests -c src/printer.ml
+ocamlc.opt -I src -I target -I tests -c src/version.mli
+ocamlc.opt -I src -I target -I tests -c src/version.ml
+mkdir -p target
+ocamlfind ocamlc -I src -I target -I tests -pack -o target/calendarLib.cmo \
+	src/period.cmi src/date_sig.cmi src/time_sig.cmi src/calendar_sig.cmi src/utils.cmo src/time_Zone.cmo src/time.cmo src/ftime.cmo src/date.cmo src/calendar_builder.cmo src/calendar.cmo src/fcalendar.cmo src/printer.cmo src/version.cmo
+ocamlfind ocamlc -I src -I target -I tests -a -o target/calendarLib.cma target/calendarLib.cmo
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/utils.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/time_Zone.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/time.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/ftime.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/date.ml
+ocamlopt.opt -I src -I target -I tests -noassert -for-pack CalendarLib -c src/calendar_builder.ml
