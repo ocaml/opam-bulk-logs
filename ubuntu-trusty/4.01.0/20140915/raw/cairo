@@ -1395,3 +1395,94 @@ Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllablgtk2.so
 Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllablgtk2.so.owner
 ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
 ranlib "`ocamlfind query lablgtk2 | tr -d '\r'`"/liblablgtk2.a
+rm lablgtk2
+make INSTALLDIR=`ocamlfind query lablgtk2 | tr -d '\r'` lablgtk2
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+sed -e "s|@INSTALLDIR@|/home/opam/.opam/4.01.0/lib/lablgtk2|g" \
+	    -e "s|@LABLGLDIR@|/home/opam/.opam/4.01.0/lib/lablgl|g" \
+	    -e "s|@MLLIBS@| lablgtk.cma|g" \
+	    -e "s|@INITOBJS@|gtkInit.cmo|g" \
+	    -e "s|@THOBJS@|gtkThread.cmo|g" \
+	    -e "s|@THINITOBJS@|gtkThInit.cmo|g" \
+	    -e "s|@USEDLL@|yes|g" \
+	    -e "s|@THREADS_LIB@|system|g" \
+	    < lablgtk2.in > lablgtk2
+chmod 755 lablgtk2
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+cp lablgtk2 "/home/opam/.opam/4.01.0/bin"
+if test -f lablgladecc; then \
+	  cp lablgladecc "/home/opam/.opam/4.01.0/bin/lablgladecc2"; \
+	fi
+cp gdk_pixbuf_mlsource "/home/opam/.opam/4.01.0/bin"
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lablgtk.2.16.0/src'
+Installing lablgtk.2.16.0.
+Applying opam.patch.
+patching file config.make.in
+patching file src/Makefile
+Building cairo.1.2.0:
+  aclocal -I support
+  autoconf
+  ./configure LABLGTKDIR=/home/opam/.opam/4.01.0/lib/lablgtk2 --prefix /home/opam/.opam/4.01.0 --sbindir=/home/opam/.opam/4.01.0/lib/cairo/sbin --libexecdir=/home/opam/.opam/4.01.0/lib/cairo/libexec --sysconfdir=/home/opam/.opam/4.01.0/lib/cairo/etc --sharedstatedir=/home/opam/.opam/4.01.0/lib/cairo/com --localstatedir=/home/opam/.opam/4.01.0/lib/cairo/var --libdir=/home/opam/.opam/4.01.0/lib/cairo/lib --includedir=/home/opam/.opam/4.01.0/lib/cairo/include --datarootdir=/home/opam/.opam/4.01.0/lib/cairo/share
+  make
+  make install
+  ocamlopt.opt -shared -linkall -I src -ccopt -I/usr/include/cairo -ccopt -I/usr/include/glib-2.0 -ccopt -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -ccopt -I/usr/include/pixman-1 -ccopt -I/usr/include/freetype2 -ccopt -I/usr/include/libpng12 -o src/cairo.cmxs -cclib -Lsrc/ -cclib -lcairo src/cairo.cmxa
+  cp src/cairo.cmxs /home/opam/.opam/4.01.0/lib/cairo
+  cp META /home/opam/.opam/4.01.0/lib/cairo
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for CAIRO... yes
+checking for OCaml module lablgtk... /home/opam/.opam/4.01.0/lib/lablgtk2
+checking for GDK... yes
+checking for LIBSVG_CAIRO... no
+checking for LIBPANGOCAIRO... yes
+
+  GTK+         support: yes
+  libsvg-cairo support: no
+  libpangocairo support: yes
+
+configure: creating ./config.status
+config.status: creating config.make
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+making deps
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+ocamlc.opt  cairo.mli
+ocamlc.opt -c  cairo.ml
+ocamlc.opt  cairo_bigarray.mli
+ocamlc.opt -c  cairo_bigarray.ml
+ocamlc.opt  cairo_png.mli
+ocamlc.opt -c  cairo_png.ml
+ocamlc.opt  cairo_pdf.mli
+ocamlc.opt -c  cairo_pdf.ml
+ocamlc.opt  cairo_ps.mli
+ocamlc.opt -c  cairo_ps.ml
+ocamlc.opt  cairo_svg.mli
+ocamlc.opt -c  cairo_svg.ml
+ocamlc.opt  cairo_ft.mli
+ocamlc.opt -c  cairo_ft.ml
+ocamlmklib -o cairo -oc mlcairo cairo.cmo cairo_bigarray.cmo cairo_png.cmo cairo_pdf.cmo cairo_ps.cmo cairo_svg.cmo cairo_ft.cmo -lcairo -lfreetype
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_wrappers.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_status.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_bigarr.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_path.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_surface.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_pattern.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_matrix.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_font.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_ft.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_png.c
+ocamlc.opt -ccopt "-g -I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  " ml_cairo_pdf.c
