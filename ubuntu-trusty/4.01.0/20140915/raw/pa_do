@@ -198,3 +198,26 @@ ocamlfind ocamlc -c -g -I src -package camlp4.extend -package camlp4.lib -packag
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/op_basic.cmo tests/op_basic.ml
 ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test.ml > tests/test.ml.depends
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test.cmo tests/test.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/op_basic.cmo -o tests/op_basic.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/op_mix.ml > tests/op_mix.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/op_mix.cmo tests/op_mix.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/op_mix.cmo -o tests/op_mix.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/op_concrete.ml > tests/op_concrete.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/op_concrete.cmo tests/op_concrete.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/op_concrete.cmo -o tests/op_concrete.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_std.ml > tests/do_std.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_std.cmo tests/do_std.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_std.cmo -o tests/do_std.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_concrete.ml > tests/do_concrete.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_concrete.cmo tests/do_concrete.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_concrete.cmo -o tests/do_concrete.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/do_api.ml > tests/do_api.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/do_api.cmo tests/do_api.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_api.cmo -o tests/do_api.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_macro.ml > tests/test_macro.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_macro.cmo tests/test_macro.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_macro.cmo -o tests/test_macro.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_complex.ml > tests/test_complex.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_complex.cmo tests/test_complex.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_complex.cmo -o tests/test_complex.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/ad_hoc_newton.ml > examples/ad_hoc_newton.ml.depends
