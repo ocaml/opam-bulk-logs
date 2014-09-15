@@ -136,3 +136,41 @@ make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
 make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
 make[2]: `libffmpeg_stubs.a' is up to date.
 ocamlopt.opt -c -for-pack FFmpeg avutil.ml
+ocamlopt.opt -c -for-pack FFmpeg swscale.ml
+ocamlopt.opt -pack -o FFmpeg.cmx   avutil.cmx swscale.cmx
+ocamlopt.opt -a -cclib -lffmpeg_stubs -cclib -lavutil -cclib -lswscale   -ccopt -L/home/opam/.opam/4.01.0/lib -ccopt -L/home/opam/.opam/4.01.0/lib -o ffmpeg.cmxa FFmpeg.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make[2]: `libffmpeg_stubs.a' is up to date.
+ocamlc.opt -a -cclib -lffmpeg_stubs -cclib -lavutil -cclib -lswscale   -dllib dllffmpeg_stubs.so       -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib    -o ffmpeg.cma FFmpeg.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+make[2]: `libffmpeg_stubs.a' is up to date.
+make[2]: `ffmpeg.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  ffmpeg META avutil.mli swscale.mli FFmpeg.cmi avutil.cmi swscale.cmi ffmpeg.cma ffmpeg.cmxa FFmpeg.cmx avutil.cmx swscale.cmx ffmpeg.a libffmpeg_stubs.a dllffmpeg_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/libffmpeg_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/ffmpeg.a
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/swscale.cmx
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/avutil.cmx
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/FFmpeg.cmx
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/ffmpeg.cmxa
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/ffmpeg.cma
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/swscale.cmi
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/avutil.cmi
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/FFmpeg.cmi
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/swscale.mli
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/avutil.mli
+Installed /home/opam/.opam/4.01.0/lib/ffmpeg/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllffmpeg_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllffmpeg_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ffmpeg.0.1.0/src'
+Installing ffmpeg.0.1.0.
