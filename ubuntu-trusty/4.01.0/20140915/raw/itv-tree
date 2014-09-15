@@ -86,3 +86,20 @@ Compile tests executable and library and run them: ... false
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/interval_tree.mli > lib/interval_tree.mli.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/interval_tree.cmi lib/interval_tree.mli
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib/interval_tree.ml > lib/interval_tree.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -o lib/interval_tree.cmo lib/interval_tree.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/interval_tree.cmo -o lib/itv-tree.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I lib -o lib/interval_tree.cmx lib/interval_tree.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/interval_tree.cmx -o lib/itv-tree.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/itv-tree.cmxa lib/interval_tree.cmx -o lib/itv-tree.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules lib_test/test.ml > lib_test/test.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I lib -I lib_test -I lib -o lib_test/test.cmo lib_test/test.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -g -linkpkg lib/itv-tree.cma lib_test/test.cmo -o lib_test/test.byte
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/interval_tree.mli
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/itv-tree.cma
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/itv-tree.cmxa
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/itv-tree.a
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/itv-tree.cmxs
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/interval_tree.cmi
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/interval_tree.cmx
+Installed /home/opam/.opam/4.01.0/lib/itv-tree/META
+Installing itv-tree.2.0.
