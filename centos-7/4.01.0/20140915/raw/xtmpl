@@ -1,0 +1,35 @@
+++ opam install xtmpl -e centos,centos-7
++ depext=
+CentOS 7 depexts:
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install xtmpl
+The following actions will be performed:
+ - install   xmlm.1.2.0                            [required by xtmpl]
+ - install   xtmpl.0.9
+=== 2 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+[xtmpl.0.9] Downloading http://zoggy.github.com/xtmpl/xtmpl-0.9.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   178  100   178    0     0    909      0 --:--:-- --:--:-- --:--:--   908
+100 38181  100 38181    0     0   162k      0 --:--:-- --:--:-- --:--:--  162k
+200
+100 14176  100 14176    0     0  34158      0 --:--:-- --:--:-- --:--:-- 34158
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
