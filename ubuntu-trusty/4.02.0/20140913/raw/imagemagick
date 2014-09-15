@@ -592,3 +592,14 @@ imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int',
                      ^
 imagemagick_wrap.c:6952:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
 gcc -fPIC -c -I"/home/opam/.opam/4.02.0/lib/ocaml" -fopenmp -I/usr/include/ImageMagick   imagemagick_list.c
+ocamlmklib  -o  imagemagick_stubs  imagemagick_wrap.o imagemagick_list.o  \
+	     -lMagickCore  
+ocamlc -a  -o magick.cma  magick.cmo  -dllib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlopt -c magick.ml
+File "magick.ml", line 953, characters 4-22:
+Warning 3: deprecated: String.set
+ocamlopt -a  -o magick.cmxa  magick.cmx  -cclib -limagemagick_stubs \
+	      -cclib -lMagickCore
+ocamlopt -shared -linkall -I ./ -o magick.cmxs  magick.cmxa  -cclib -limagemagick_stubs \
+	      -cclib -lMagickCore
