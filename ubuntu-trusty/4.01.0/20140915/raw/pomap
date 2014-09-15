@@ -118,3 +118,38 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -w Aer-44 -I lib -o lib/pomap_impl.cmx lib/pomap_impl.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/display_hasse_intf.cmx lib/store_intf.cmx lib/pomap_intf.cmx lib/display_hasse_impl.cmx lib/ptset.cmx lib/store_impl.cmx lib/pomap_impl.cmx -o lib/pomap.cmxa
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/pomap.cmxa lib/display_hasse_intf.cmx lib/store_intf.cmx lib/pomap_intf.cmx lib/display_hasse_impl.cmx lib/ptset.cmx lib/store_impl.cmx lib/pomap_impl.cmx -o lib/pomap.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/hasse/hasse.ml > examples/hasse/hasse.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules examples/hasse/po_examples.ml > examples/hasse/po_examples.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/hasse -I lib -o examples/hasse/po_examples.cmo examples/hasse/po_examples.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/hasse -I lib -o examples/hasse/hasse.cmo examples/hasse/hasse.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/hasse -I lib -o examples/hasse/po_examples.cmx examples/hasse/po_examples.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -strict-sequence -I lib -w Aer-44 -I examples/hasse -I lib -o examples/hasse/hasse.cmx examples/hasse/hasse.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg examples/hasse/po_examples.cmx lib/pomap.cmxa examples/hasse/hasse.cmx -o examples/hasse/hasse.native
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_impl.mli
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_impl.mli
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/pomap/ptset.mli
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_impl.mli
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_intf.ml
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap.cma
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap.cmxa
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap.a
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap.cmxs
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_intf.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_impl.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/ptset.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_intf.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_impl.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_intf.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_impl.cmi
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_intf.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/store_impl.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/ptset.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_intf.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/pomap_impl.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_intf.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/display_hasse_impl.cmx
+Installed /home/opam/.opam/4.01.0/lib/pomap/META
+Installing pomap.3.0.4.
