@@ -216,3 +216,53 @@ ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib 
 ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/do_api.cmo -o tests/do_api.byte
 ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_macro.ml > tests/test_macro.ml.depends
 ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_macro.cmo tests/test_macro.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_macro.cmo -o tests/test_macro.byte
+ocamlfind ocamldep -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -modules tests/test_complex.ml > tests/test_complex.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix -syntax camlp4o -I tests -I src -o tests/test_complex.cmo tests/test_complex.ml
+ocamlfind ocamlc -g -linkpkg -package camlp4.extend -package camlp4.lib -package camlp4.quotations.o -package str -package unix src/pa_do.cma tests/test.cmo tests/test_complex.cmo -o tests/test_complex.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/ad_hoc_newton.ml > examples/ad_hoc_newton.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/ad_hoc_newton.cmo examples/ad_hoc_newton.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/ad_hoc_newton.cmo -o examples/ad_hoc_newton.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/comp_diff.ml > examples/comp_diff.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/comp_diff.cmo examples/comp_diff.ml
+ocamlfind ocamlc -g -linkpkg examples/comp_diff.cmo -o examples/comp_diff.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/pi_digits.ml > examples/pi_digits.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/pi_digits.cmo examples/pi_digits.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/pi_digits.cmo -o examples/pi_digits.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/rk4.ml > examples/rk4.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/rk4.cmo examples/rk4.ml
+ocamlfind ocamlc -g -linkpkg examples/rk4.cmo -o examples/rk4.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/newton_basin.ml > examples/newton_basin.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
++ ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin.cmo examples/newton_basin.ml
+File "examples/newton_basin.ml", line 56, characters 10-14:
+Warning 26: unused variable wait.
+ocamlfind ocamlc -g -linkpkg -package graphics examples/newton_basin.cmo -o examples/newton_basin.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/newton_basin_base.ml > examples/newton_basin_base.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin_base.cmo examples/newton_basin_base.ml
++ ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_basin_base.cmo examples/newton_basin_base.ml
+File "examples/newton_basin_base.ml", line 53, characters 10-14:
+Warning 26: unused variable wait.
+ocamlfind ocamlc -g -linkpkg -package graphics examples/newton_basin_base.cmo -o examples/newton_basin_base.byte
+ocamlfind ocamldep -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/newton_cotes.ml > examples/newton_cotes.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package graphics -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples -o examples/newton_cotes.cmo examples/newton_cotes.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/newton_cotes.cmo -o examples/newton_cotes.byte
+ocamlfind ocamldep -package camlp4 -package camlp4.quotations.o -syntax camlp4o -modules examples/add_vec/pa_vec.ml > examples/add_vec/pa_vec.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package camlp4.quotations.o -syntax camlp4o -I src/ -I examples/add_vec -o examples/add_vec/pa_vec.cmo examples/add_vec/pa_vec.ml
+ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/add_vec/pa_vec.cmo -modules examples/add_vec/use.ml > examples/add_vec/use.ml.depends
+ocamlfind ocamldep -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/add_vec/vec.ml > examples/add_vec/vec.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/add_vec -o examples/add_vec/vec.cmo examples/add_vec/vec.ml
+ocamlfind ocamlc -c -g -annot -package camlp4 -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/add_vec/pa_vec.cmo -I examples/add_vec -o examples/add_vec/use.cmo examples/add_vec/use.ml
+ocamlfind ocamlc -g -linkpkg examples/add_vec/vec.cmo examples/add_vec/use.cmo -o examples/add_vec/use.byte
+ocamlfind ocamldep -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/comp_assit_proof/contraction.ml > examples/comp_assit_proof/contraction.ml.depends
+ocamlfind ocamldep -package num -modules examples/comp_assit_proof/Interval.mli > examples/comp_assit_proof/Interval.mli.depends
+ocamlfind ocamlc -c -g -package num -I examples/comp_assit_proof -o examples/comp_assit_proof/Interval.cmi examples/comp_assit_proof/Interval.mli
+ocamlfind ocamlc -c -g -annot -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/comp_assit_proof -o examples/comp_assit_proof/contraction.cmo examples/comp_assit_proof/contraction.ml
+ocamlfind ocamldep -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -modules examples/comp_assit_proof/Interval.ml > examples/comp_assit_proof/Interval.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -I examples/comp_assit_proof -o examples/comp_assit_proof/Interval.cmo examples/comp_assit_proof/Interval.ml
+ocamlfind ocamlc -g -linkpkg -package num examples/comp_assit_proof/Interval.cmo examples/comp_assit_proof/contraction.cmo -o examples/comp_assit_proof/contraction.byte
+ocamlfind ocamldep -package camlp4 -package camlp4.quotations.o -package num -syntax camlp4o -modules examples/first_order_logic/pa_fol.ml > examples/first_order_logic/pa_fol.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package camlp4.quotations.o -package num -syntax camlp4o -I src/ -I src/ -I examples/first_order_logic -o examples/first_order_logic/pa_fol.cmo examples/first_order_logic/pa_fol.ml
+ocamlfind ocamldep -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/first_order_logic/pa_fol.cmo -modules examples/first_order_logic/use.ml > examples/first_order_logic/use.ml.depends
+ocamlfind ocamldep -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/first_order_logic/pa_fol.cmo -modules examples/first_order_logic/fol.ml > examples/first_order_logic/fol.ml.depends
+ocamlfind ocamlc -c -g -annot -package camlp4 -package num -syntax camlp4o -ppopt src/pa_do.cma -ppopt src/pa_infix.cma -ppopt nums.cma -ppopt src/pa_do_nums.cma -ppopt examples/first_order_logic/pa_fol.cmo -I examples/first_order_logic -o examples/first_order_logic/fol.cmo examples/first_order_logic/fol.ml
