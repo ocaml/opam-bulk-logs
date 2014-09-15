@@ -1,49 +1,1 @@
 ++ opam install travis-senv -e centos,centos-7
-+ depext=
-+ echo CentOS 7 depexts:
-+ '[' '' '!=' '' ']'
-+ opam install travis-senv
-CentOS 7 depexts:
-The following actions will be performed:
- - install   cmdliner.0.9.5                        [required by travis-senv]
- - install   travis-senv.1.0.0
-=== 2 to install ===
-
-=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
-[cmdliner.0.9.5] Downloading http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.5.tbz
-[travis-senv.1.0.0] Downloading https://github.com/avsm/travis-senv/archive/v1.0.0.tar.gz
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   164k      0 --:--:-- --:--:-- --:--:--  164k
-200
-100   124    0   124    0     0    181      0 --:--:-- --:--:-- --:--:--   182
-  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0  4471    0     0   3517      0 --:--:--  0:00:01 --:--:-- 35768
-200
-
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-Building cmdliner.0.9.5:
-  ocaml pkg/git.ml
-  ocaml pkg/build.ml native=true native-dynlink=true
-ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
-ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
-ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
-ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
-ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
-ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
-ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
-ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
-Installing cmdliner.0.9.5.
-Building travis-senv.1.0.0:
-  make
-ocamlbuild -use-ocamlfind -pkg cmdliner main.native
-ocamlfind ocamldep -package cmdliner -modules main.ml > main.ml.depends
-ocamlfind ocamldep -package cmdliner -modules base64.mli > base64.mli.depends
-ocamlfind ocamlc -c -package cmdliner -o base64.cmi base64.mli
-ocamlfind ocamlc -c -package cmdliner -o main.cmo main.ml
-ocamlfind ocamldep -package cmdliner -modules base64.ml > base64.ml.depends
-ocamlfind ocamlopt -c -package cmdliner -o base64.cmx base64.ml
-ocamlfind ocamlopt -c -package cmdliner -o main.cmx main.ml
-ocamlfind ocamlopt -linkpkg -package cmdliner base64.cmx main.cmx -o main.native
-Installing travis-senv.1.0.0.
