@@ -1,1 +1,31 @@
 ++ opam install vg -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
+CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install vg
+The following actions will be performed:
+ - install   gg.0.9.0                              [required by vg]
+ - install   vg.0.8.1
+=== 2 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[gg.0.9.0] Downloading http://erratique.ch/software/gg/releases/gg-0.9.0.tbz
+[vg.0.8.1] Downloading http://erratique.ch/software/vg/releases/vg-0.8.1.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  148k  100  148k    0     0   459k      0 --:--:-- --:--:-- --:--:--  460k
+200
+100  450k  100  450k    0     0  1164k      0 --:--:-- --:--:-- --:--:-- 1163k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building gg.0.9.0:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -package bigarray -modules src/gg.ml > src/gg.ml.depends
+ocamlfind ocamldep -package bigarray -modules src/gg.mli > src/gg.mli.depends
+ocamlfind ocamlc -c -annot -bin-annot -package bigarray -I src -I test -o src/gg.cmi src/gg.mli
+ocamlfind ocamlopt -c -annot -bin-annot -package bigarray -I src -I test -o src/gg.cmx src/gg.ml
