@@ -1553,4 +1553,117 @@ checking how to run the C preprocessor... gcc -E
 checking for grep that handles long lines and -e... /bin/grep
 checking for egrep... /bin/grep -E
 checking for ANSI C header files... yes
-checking for sys/types.h... 
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking for OCaml library alsa... not found
+checking for OCaml library ao... not found
+checking for OCaml library pulseaudio... not found
+checking for OCaml library gstreamer... not found
+checking for OCaml library mad... found
+checking for OCaml library ogg... not found
+checking for OCaml library sdl... not found
+checking for OCaml library theora... not found
+checking sys/soundcard.h usability... yes
+checking sys/soundcard.h presence... yes
+checking for sys/soundcard.h... yes
+checking libavcodec/avcodec.h usability... no
+checking libavcodec/avcodec.h presence... no
+checking for libavcodec/avcodec.h... no
+checking linux/videodev.h usability... no
+checking linux/videodev.h presence... no
+checking for linux/videodev.h... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating external/Makefile
+config.status: creating external/Makefile.defs
+config.status: creating src/META
+config.status: creating config.h
+
+
+Supported external libraries:
+  - Alsa      : no
+  - AO        : no
+  - FFmpeg    : no
+  - Gstreamer : no
+  - Mad       : yes
+  - ogg       : no
+  - OSS       : yes
+  - Pulseaudio: no
+  - SDL       : no
+  - Theora    : no
+  - V4L       : no
+
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep synth.mli > ._bcdi/synth.di
+ocamldep MIDI.mli > ._bcdi/MIDI.di
+ocamldep video.mli > ._bcdi/video.di
+ocamldep image.mli > ._bcdi/image.di
+ocamldep audio.mli > ._bcdi/audio.di
+ocamldep ringbuffer.mli > ._bcdi/ringbuffer.di
+ocamldep synth.ml > ._d/synth.d
+ocamldep MIDI.ml > ._d/MIDI.d
+ocamldep video.ml > ._d/video.d
+ocamldep image.ml > ._d/image.d
+ocamldep audio.ml > ._d/audio.d
+ocamldep IO.ml > ._d/IO.d
+ocamldep ringbuffer.ml > ._d/ringbuffer.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I.. -I/home/opam/.opam/4.01.0/lib/mad  -o audio_c.o " audio_c.c
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include -I.. -g -Wall -O3 \
+				-DPIC   \
+				  -I.. -I/home/opam/.opam/4.01.0/lib/mad  -o image_c.o " image_c.c
+image_c.c: In function 'caml_rgb_color_to_alpha':
+image_c.c:1319:10: warning: variable 'd' set but not used [-Wunused-but-set-variable]
+   double d;
+          ^
+image_c.c:1318:22: warning: variable 'aa' set but not used [-Wunused-but-set-variable]
+   double rr, gg, bb, aa;
+                      ^
+ar rcs libmm_stubs.a  audio_c.o image_c.o
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad IO.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad image.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad image.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad video.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad video.ml
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad MIDI.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad MIDI.ml
+File "MIDI.ml", line 153, characters 51-52:
+Warning 3: deprecated feature: operator (&); you should use (&&) instead
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad synth.mli
+ocamlc.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad synth.ml
+ocamlmklib    -I .. -I /home/opam/.opam/4.01.0/lib/mad     \
+				-o mm_stubs  audio_c.o image_c.o   \
+				
+ocamlc.opt -a -dllib dllmm_stubs.so    -I .. -I /home/opam/.opam/4.01.0/lib/mad -linkall        -cclib -lmm_stubs    -o mm.cma ringbuffer.cmo IO.cmo audio.cmo image.cmo video.cmo MIDI.cmo synth.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+ocamldep -native synth.mli > ._ncdi/synth.di
+ocamldep -native MIDI.mli > ._ncdi/MIDI.di
+ocamldep -native video.mli > ._ncdi/video.di
+ocamldep -native image.mli > ._ncdi/image.di
+ocamldep -native audio.mli > ._ncdi/audio.di
+ocamldep -native ringbuffer.mli > ._ncdi/ringbuffer.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mm.0.2.1/src'
+make[2]: `libmm_stubs.a' is up to date.
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad ringbuffer.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad IO.ml
+ocamlopt.opt -c -dtypes -I .. -I /home/opam/.opam/4.01.0/lib/mad audio.ml
