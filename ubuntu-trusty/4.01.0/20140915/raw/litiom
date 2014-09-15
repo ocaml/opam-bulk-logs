@@ -7978,3 +7978,39 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -package eliom.server -package threads -thread -I src -o src/litiom_choice.cmo src/litiom_choice.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/litiom_type.cmo src/litiom_choice.cmo -o src/litiom.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package eliom.server -package threads -thread -I src -o src/litiom_type.cmx src/litiom_type.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -package eliom.server -package threads -thread -I src -o src/litiom_choice.cmx src/litiom_choice.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/litiom_type.cmx src/litiom_choice.cmx -o src/litiom.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/litiom.cmxa src/litiom_type.cmx src/litiom_choice.cmx -o src/litiom.cmxs
+ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/litiom.cmxa src/litiom_type.cmx src/litiom_choice.cmx -o src/litiom.cmxs
+ocaml setup.ml -doc 
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldoc -dump src/litiom_type.odoc -package eliom.server -package threads -I +threads -I src src/litiom_type.mli
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamldoc -dump src/litiom_type.odoc -package eliom.server -package threads -I +threads -I src src/litiom_type.mli
+ocamlfind: [WARNING] Package `threads' signals error: Missing -thread or -vmthread switch
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldoc -dump src/litiom_choice.odoc -package eliom.server -package threads -I +threads -I src src/litiom_choice.mli
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamldoc -dump src/litiom_choice.odoc -package eliom.server -package threads -I +threads -I src src/litiom_choice.mli
+ocamlfind: [WARNING] Package `threads' signals error: Missing -thread or -vmthread switch
+Warning: Module or module type Litiom_type.S not found
+Warning: Module or module type Litiom_type.STRINGABLE not found
+Warning: Element Litiom_type not found
+Warning: Element Litiom_type.STRINGABLE not found
+Warning: Element Litiom_type.STRINGABLE not found
+Warning: Element Litiom_type.S not found
+Warning: Element Litiom_type.S not found
+Warning: Element Litiom_type not found
+rm -rf src/litiom.docdir
+mkdir -p src/litiom.docdir
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldoc -load src/litiom_type.odoc -load src/litiom_choice.odoc -html -d src/litiom.docdir
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_type.mli
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_choice.mli
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom.cma
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom.cmxa
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom.a
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom.cmxs
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_choice.cmi
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_type.cmi
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_choice.cmx
+Installed /home/opam/.opam/4.01.0/lib/litiom/litiom_type.cmx
+Installed /home/opam/.opam/4.01.0/lib/litiom/META
+Installing litiom.3.0.
