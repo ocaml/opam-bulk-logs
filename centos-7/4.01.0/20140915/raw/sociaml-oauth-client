@@ -6752,3 +6752,95 @@ ocaml setup.ml -build
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package core -package cryptokit -package re2 -modules src/util.ml > src/util.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package core -package cryptokit -package re2 -modules src/s.ml > src/s.ml.depends
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/util.cmo src/util.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/s.cmo src/s.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -pack -g src/s.cmo src/util.cmo -o src/oauth_client.cmo
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/oauth_client.cmo -o src/oauth_client.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -for-pack Oauth_client -I src -o src/s.cmx src/s.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -for-pack Oauth_client -I src -o src/util.cmx src/util.ml
+touch src/oauth_client.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I src src/s.cmx src/util.cmx -o src/oauth_client.cmx  ; then  rm -f src/oauth_client.mli  ; else  rm -f src/oauth_client.mli  ; exit 1; fi
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/oauth_client.cmx -o src/oauth_client.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/oauth_client.cmxa src/oauth_client.cmx -o src/oauth_client.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package core -package cryptokit -package re2 -modules src/oauth_client_posix.mli > src/oauth_client_posix.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/oauth_client_posix.cmi src/oauth_client_posix.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package core -package cryptokit -package re2 -modules src/oauth_client_posix.ml > src/oauth_client_posix.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/oauth_client_posix.cmo src/oauth_client_posix.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/oauth_client_posix.cmo -o src/oauth_client_posix.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/oauth_client_posix.cmx src/oauth_client_posix.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/oauth_client_posix.cmx -o src/oauth_client_posix.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/oauth_client_posix.cmxa src/oauth_client_posix.cmx -o src/oauth_client_posix.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -modules src/v1.0a/client.mli > src/v1.0a/client.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -I src/v1.0a -I src -o src/v1.0a/client.cmi src/v1.0a/client.mli
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -I src/v1.0a -I src -o src/v1.0a/client.cmi src/v1.0a/client.mli
+File "src/v1.0a/client.mli", line 59, characters 21-38:
+Error: Unbound module type Cohttp_lwt.Client
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/oauth_client.cma src/oauth_client.cmxa src/oauth_client.a src/oauth_client.cmxs src/oauth_client_posix.cma src/oauth_client_posix.cmxa src/oauth_client_posix.a src/oauth_client_posix.cmxs src/v1.0a/oauth_client_v1_0a.cma src/v1.0a/oauth_client_v1_0a.cmxa src/v1.0a/oauth_client_v1_0a.a src/v1.0a/oauth_client_v1_0a.cmxs -tag debug' terminated with error code 10")
+make: *** [build] Error 1
+Removing sociaml-oauth-client.0.4.1.
+[ERROR] The compilation of sociaml-oauth-client.0.4.1 failed.
+  make uninstall
+  ocamlfind remove sociaml-oauth-client
+ocaml setup.ml -uninstall 
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/sociaml-oauth-client
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   type_conv.109.47.00
+ - install   ocamlmod.0.0.7
+ - install   ocaml-data-notation.0.0.11
+ - install   variantslib.109.15.00
+ - install   pipebang.109.28.00
+ - install   res.4.0.5
+ - install   herelib.109.35.00
+ - install   ssl.0.4.7
+ - install   camlp4.4.01.0
+ - install   ounit.2.0.0
+ - install   pa_ounit.109.36.00
+ - install   fieldslib.109.20.00
+ - install   cryptokit.1.9
+ - install   oasis.0.4.4
+ - install   custom_printf.109.27.00
+ - install   sexplib.109.47.00
+ - install   core_kernel.109.47.00
+ - install   bin_prot.109.47.00
+ - install   lwt.2.4.5
+ - install   ocamlify.0.0.1
+ - install   core.109.47.00
+ - install   re2.109.45.02
+ - install   re.1.2.2
+ - install   cohttp.0.9.6
+ - install   uri.1.3.12
+ - install   comparelib.109.27.00
+The following failed
+ - install   sociaml-oauth-client.0.4.1
+
+#============= ERROR while installing sociaml-oauth-client.0.4.1 ==============#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make build
+# path                 /home/opam/.opam/4.01.0/build/sociaml-oauth-client.0.4.1
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/sociaml-oauth-client.0.4.1/sociaml-oauth-client-15244-d37749.env
+# stdout-file          /home/opam/.opam/4.01.0/build/sociaml-oauth-client.0.4.1/sociaml-oauth-client-15244-d37749.out
+# stderr-file          /home/opam/.opam/4.01.0/build/sociaml-oauth-client.0.4.1/sociaml-oauth-client-15244-d37749.err
+### stdout ###
+# ...[truncated]
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/oauth_client_posix.cmo -o src/oauth_client_posix.cma
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -I src -package cohttp -package core -package cryptokit -package re2 -I src -o src/oauth_client_posix.cmx src/oauth_client_posix.ml
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/oauth_client_posix.cmx -o src/oauth_client_posix.cmxa
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/oauth_client_posix.cmxa src/oauth_client_posix.cmx -o src/oauth_client_posix.cmxs
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -modules src/v1.0a/client.mli > src/v1.0a/client.mli.depends
+# /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -I src/v1.0a -I src -o src/v1.0a/client.cmi src/v1.0a/client.mli
+# + /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -thread -I src -package cohttp -package cohttp.lwt -package core -package lwt -syntax camlp4o -package lwt.syntax -package re2 -package uri -I src/v1.0a -I src -o src/v1.0a/client.cmi src/v1.0a/client.mli
+# File "src/v1.0a/client.mli", line 59, characters 21-38:
+# Error: Unbound module type Cohttp_lwt.Client
+# Command exited with code 2.
+### stderr ###
+# E: Failure("Command ''/home/opam/.opam/4.01.0/bin/ocamlbuild' src/oauth_client.cma src/oauth_client.cmxa src/oauth_client.a src/oauth_client.cmxs src/oauth_client_posix.cma src/oauth_client_posix.cmxa src/oauth_client_posix.a src/oauth_client_posix.cmxs src/v1.0a/oauth_client_v1_0a.cma src/v1.0a/oauth_client_v1_0a.cmxa src/v1.0a/oauth_client_v1_0a.a src/v1.0a/oauth_client_v1_0a.cmxs -tag debug' te...[truncated]
+# make: *** [build] Error 1
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140815100617.export"
+'opam install sociaml-oauth-client' failed.
