@@ -253,4 +253,78 @@ checking for stdlib.h... yes
 checking for string.h... yes
 checking for memory.h... yes
 checking for strings.h... yes
-checking for inttypes.h... 
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking for ocaml-ogg... ok
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/META
+config.status: creating examples/Makefile.opus2wav
+config.status: creating config.h
+make -C src
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+ocamldep.opt -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.mli > ._bcdi/ogg_demuxer_opus_decoder.di
+ocamldep.opt -I /home/opam/.opam/4.01.0/lib/ogg opus.mli > ._bcdi/opus.di
+ocamldep.opt -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.ml > ._d/ogg_demuxer_opus_decoder.d
+ocamldep.opt -I /home/opam/.opam/4.01.0/lib/ogg opus.ml > ._d/opus.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -Wall -g -O2 -I/home/opam/.opam/4.01.0/include -I/usr/include/opus   -I.. \
+				-DPIC -fPIC -I/home/opam/.opam/4.01.0/include -I/usr/include/opus    \
+				  -I/home/opam/.opam/4.01.0/lib/ogg  -o opus_stubs.o " opus_stubs.c
+ar rcs libopus_stubs.a  opus_stubs.o
+ocamlc.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg opus.mli
+ocamlc.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg opus.ml
+ocamlc.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.mli
+ocamlc.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.ml
+ocamlmklib  -I /home/opam/.opam/4.01.0/lib/ogg    -L/home/opam/.opam/4.01.0/lib   \
+				-o opus_stubs  opus_stubs.o -lopus  \
+				
+ocamlc.opt -a -cclib -lopus_stubs -cclib -lopus   -dllib dllopus_stubs.so  -I /home/opam/.opam/4.01.0/lib/ogg     -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib    -o opus.cma opus.cmo ogg_demuxer_opus_decoder.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+ocamldep.opt -native -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.mli > ._ncdi/ogg_demuxer_opus_decoder.di
+ocamldep.opt -native -I /home/opam/.opam/4.01.0/lib/ogg opus.mli > ._ncdi/opus.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: `libopus_stubs.a' is up to date.
+ocamlopt.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg opus.ml
+ocamlopt.opt -c -dtypes -I /home/opam/.opam/4.01.0/lib/ogg ogg_demuxer_opus_decoder.ml
+ocamlopt.opt -a -cclib -lopus_stubs -cclib -lopus     -I /home/opam/.opam/4.01.0/lib/ogg     -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib   -o opus.cmxa opus.cmx ogg_demuxer_opus_decoder.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: `libopus_stubs.a' is up to date.
+make[2]: `opus.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+make[2]: `libopus_stubs.a' is up to date.
+make[2]: `opus.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  opus META ogg_demuxer_opus_decoder.mli opus.mli ogg_demuxer_opus_decoder.cmi opus.cmi opus.cma opus.cmxa ogg_demuxer_opus_decoder.cmx opus.cmx libopus_stubs.a opus.a dllopus_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.a
+Installed /home/opam/.opam/4.01.0/lib/opus/libopus_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.cmx
+Installed /home/opam/.opam/4.01.0/lib/opus/ogg_demuxer_opus_decoder.cmx
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.cmxa
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.cma
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.cmi
+Installed /home/opam/.opam/4.01.0/lib/opus/ogg_demuxer_opus_decoder.cmi
+Installed /home/opam/.opam/4.01.0/lib/opus/opus.mli
+Installed /home/opam/.opam/4.01.0/lib/opus/ogg_demuxer_opus_decoder.mli
+Installed /home/opam/.opam/4.01.0/lib/opus/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllopus_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllopus_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/opus.0.1.0/src'
+Installing opus.0.1.0.
