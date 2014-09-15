@@ -3049,3 +3049,57 @@ ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules p
 ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules gui.ml > gui.ml.depends
 ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules action.mli > action.mli.depends
 ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules idt.mli > idt.mli.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax.mli > syntax.mli.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o idt.cmi idt.mli
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax.cmi syntax.mli
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules log.ml > log.ml.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_io.ml > syntax_io.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o action.cmi action.mli
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o log.cmo log.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_fmt.ml > syntax_fmt.ml.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules doc.mli > doc.mli.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules traversal.ml > traversal.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o doc.cmi doc.mli
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o traversal.cmo traversal.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q syntax_lex.mll
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_lex.ml > syntax_lex.ml.depends
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' syntax_prs.mly > syntax_prs.mly.depends
+menhir --ocamlc 'ocamlfind ocamlc -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2' --explain --strict --infer syntax_prs.mly
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_prs.mli > syntax_prs.mli.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax_prs.cmi syntax_prs.mli
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax_fmt.cmo syntax_fmt.ml
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax_lex.cmo syntax_lex.ml
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o version.cmo version.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_tex.ml > syntax_tex.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax_io.cmo syntax_io.ml
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o syntax_tex.cmo syntax_tex.ml
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o gui.cmo gui.ml
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o profound.cmo profound.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules action.ml > action.ml.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules rules.ml > rules.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o rules.cmo rules.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules idt.ml > idt.ml.depends
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o log.cmx log.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax.ml > syntax.ml.depends
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules cx.ml > cx.ml.depends
+ocamlfind ocamlc -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -package unix -package batteries -package lablgtk2 -o cx.cmo cx.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o idt.cmx idt.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o cx.cmx cx.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax.cmx syntax.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o traversal.cmx traversal.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules doc.ml > doc.ml.depends
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o doc.cmx doc.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o rules.cmx rules.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax_fmt.cmx syntax_fmt.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o action.cmx action.ml
+ocamlfind ocamldep -package unix -package batteries -package lablgtk2 -modules syntax_prs.ml > syntax_prs.ml.depends
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax_prs.cmx syntax_prs.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax_lex.cmx syntax_lex.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o version.cmx version.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax_io.cmx syntax_io.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o syntax_tex.cmx syntax_tex.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o gui.cmx gui.ml
+ocamlfind ocamlopt -c -annot -g -w @3@5@6@8..12@14@20@26@28@29 -nodynlink -package unix -package batteries -package lablgtk2 -o profound.cmx profound.ml
+ocamlfind ocamlopt -linkpkg -package unix -package batteries -package lablgtk2 cx.cmx doc.cmx idt.cmx log.cmx syntax.cmx traversal.cmx rules.cmx syntax_fmt.cmx action.cmx syntax_prs.cmx syntax_lex.cmx version.cmx syntax_io.cmx syntax_tex.cmx gui.cmx profound.cmx -o profound.native
+Installing profound.0.4.2.
