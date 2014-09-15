@@ -4,3 +4,64 @@
 + '[' '' '!=' '' ']'
 + opam install hardcaml
 CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by hardcaml]
+ - install   menhir.20130912                       [required by js_of_ocaml]
+ - install   lwt.2.4.5                             [required by hardcaml]
+ - install   js_of_ocaml.2.4.1                     [required by hardcaml]
+ - install   hardcaml.1.0.0
+=== 5 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[hardcaml.1.0.0] Downloading https://github.com/ujamjar/hardcaml/archive/v1.0.tar.gz
+[js_of_ocaml.2.4.1] Downloading https://github.com/ocsigen/js_of_ocaml/archive/2.4.1.tar.gz
+[lwt.2.4.5] Downloading https://github.com/ocsigen/lwt/archive/2.4.5.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100   126    0   126    0     0     71      0 --:--:--  0:00:01 --:--:--    71
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100   122    0   122    0     0     64      0 --:--:--  0:00:01 --:--:--    64
+100   118    0   118    0     0     61      0 --:--:--  0:00:01 --:--:--    61
+  0     0    0   860    0     0    349      0 --:--:--  0:00:02 --:--:--   349  0     0    0   865    0     0    348      0 --:--:--  0:00:02 --:--:--   348  0  291k    0   863    0     0    346      0  0:14:23  0:00:02  0:14:21   346  0     0    0  161k    0     0  55516      0 --:--:--  0:00:02 --:--:--  325k
+200
+[menhir.20130912] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20130911.tar.gz
+100  291k  100  291k    0     0  96928      0  0:00:03  0:00:03 --:--:--  495k
+200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 48  534k   48  257k    0     0   775k      0 --:--:-- --:--:-- --:--:--  774k  0     0    0 1033k    0     0   299k      0 --:--:--  0:00:03 --:--:-- 1039k  0     0    0 1213k    0     0   349k      0 --:--:--  0:00:03 --:--:-- 1194k
+200
+100  534k  100  534k    0     0  1248k      0 --:--:-- --:--:-- --:--:-- 1249k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/menhir/menhir.20130912/files/menhir.install to ~/.opam/4.01.0/build/menhir.20130912/
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+  echo "let ocamlfind = true" >> src/installation.ml ; \
+else \
+  echo "let ocamlfind = false" >> src/installation.ml ; \
+fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
