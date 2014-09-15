@@ -3349,3 +3349,18 @@ ocamlfind ocamlc -c -package xen-evtchn -package xen-gnt -package io-page -packa
 ocamlfind ocamldep -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt -modules xen/console.ml > xen/console.ml.depends
 ocamlfind ocamlc -c -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt -I xen -o xen/console.cmo xen/console.ml
 ocamlfind ocamlc -a -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt xen/console.cmo -o xen/mirage-console.cma
+ocamlfind ocamlopt -c -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt -I xen -o xen/console.cmx xen/console.ml
+ocamlfind ocamlopt -a -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt xen/console.cmx -o xen/mirage-console.cmxa
+ocamlfind ocamlopt -shared -linkall -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt xen/mirage-console.cmxa -o xen/mirage-console.cmxs
+OS=xen ./build true
+ocamlfind ocamlopt -shared -linkall -package xen-evtchn -package xen-gnt -package io-page -package mirage-types -package mirage-xen -package lwt xen/mirage-console.cmxa -o xen/mirage-console.cmxs
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/mirage-console-xen
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/mirage-console.cmxs
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/mirage-console.cmxa
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/console.cmx
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/mirage-console.a
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/mirage-console.cma
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/console.cmi
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/console.cmo
+Installed /home/opam/.opam/4.01.0/lib/mirage-console-xen/META
+Installing mirage-console-xen.1.0.2.
