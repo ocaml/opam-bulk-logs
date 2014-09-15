@@ -1,0 +1,106 @@
+++ opam install sqlgg -e centos,centos-7
++ depext=
+CentOS 7 depexts:
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install sqlgg
+The following actions will be performed:
+ - install   ounit.2.0.0                           [required by sqlgg]
+ - install   camlp4.4.01.0                         [required by extlib, deriving]
+ - install   menhir.20130912                       [required by sqlgg]
+ - install   optcomp.1.6                           [required by deriving]
+ - install   extlib.1.6.1                          [required by sqlgg]
+ - install   deriving.0.6.2                        [required by sqlgg]
+ - install   sqlgg.0.2.5
+=== 7 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[deriving.0.6.2] Downloading http://ocsigen.org/download/deriving-0.6.2.tar.gz
+[extlib.1.6.1] Downloading http://ocaml-extlib.googlecode.com/files/extlib-1.6.1.tar.gz
+[menhir.20130912] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20130911.tar.gz
+   % % Total    % R Total    % Received % Xferd  Average Speed   Tieme    Time     Ticme  Current
+              ei                ved    Dload  Uploa% Xferd  Averagd   Total   Spent e Speed   Time     Left  % Tota  Speed
+  Time     Time   0     0    Current
+        0     0    0                 l    % Received % Xferd  Average Speed   Ti    0      0      0me    Time               Dload --:--:--Time  Curr --:--:--  Upload   Total  --:--:--ent
+                0  Spent    Left                       D Speed
+  0 load  Uploa    0    0     0 d   Total     0     0      Spent    Left  Speed
+ 0      0 --:--:  0     -- --:--:-- --:0    0     --:--     00    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  104k  100  104k    0     0   462k      0 --:--:-- --:--:-- --:--:--  464k
+200
+[optcomp.1.6] Downloading https://github.com/diml/optcomp/archive/1.6.tar.gz
+100  534k  100  534k    0     0  1462k      0 --:--:-- --:--:-- --:--:-- 1464k
+200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[ounit.2.0.0] Downloading http://forge.ocamlcore.org/frs/download.php/1258/ounit-2.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 44 72780   44 32282    0     0  56024      0  0:00:01 --:--:--  0:00:01 56045  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 72780  100 72780    0     0   106k      0 --:--:-- --:--:-- --:--:--  106k
+200
+[sqlgg.0.2.5] Downloading http://ygrek.org.ua/p/release/sqlgg/sqlgg-0.2.5.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  101k  100  101k    0     0   345k      0 --:--:-- --:--:-- --:--:--  344k
+200
+100   117    0   117    0     0    170      0 --:--:-- --:--:-- --:--:--   170
+ 77 44773   77 34520    0     0  45044      0 --:--:-- --:--:-- --:--:-- 45006200
+100 44773  100 44773    0     0  58359      0 --:--:-- --:--:-- --:--:-- 58298
+  1 56370    1   862    0     0    707      0  0:01:19  0:00:01  0:01:18   707100 56370  100 56370    0     0  40246      0  0:00:01  0:00:01 --:--:--  299k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/menhir/menhir.20130912/files/menhir.install to ~/.opam/4.01.0/build/menhir.20130912/
+Building menhir.20130912:
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+  echo "let ocamlfind = true" >> src/installation.ml ; \
+else \
+  echo "let ocamlfind = false" >> src/installation.ml ; \
+fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/menhir.20130912/src'
+ocamlbuild -classic-display -use-ocamlfind -j 0 menhirLib.cmo menhirLib.cmx
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -modules infiniteArray.mli > infiniteArray.mli.depends
+ocamlfind ocamlc -c -o infiniteArray.cmi infiniteArray.mli
+ocamlfind ocamldep -modules infiniteArray.ml > infiniteArray.ml.depends
+ocamlfind ocamldep -modules packedIntArray.mli > packedIntArray.mli.depends
+ocamlfind ocamlc -c -o packedIntArray.cmi packedIntArray.mli
+ocamlfind ocamldep -modules packedIntArray.ml > packedIntArray.ml.depends
+ocamlfind ocamldep -modules rowDisplacement.mli > rowDisplacement.mli.depends
+ocamlfind ocamlc -c -o rowDisplacement.cmi rowDisplacement.mli
+ocamlfind ocamldep -modules rowDisplacement.ml > rowDisplacement.ml.depends
+ocamlfind ocamldep -modules engineTypes.ml > engineTypes.ml.depends
+ocamlfind ocamldep -modules engine.mli > engine.mli.depends
+ocamlfind ocamlc -c -g -o engineTypes.cmo engineTypes.ml
+ocamlfind ocamlc -c -o engine.cmi engine.mli
+ocamlfind ocamldep -modules engine.ml > engine.ml.depends
+ocamlfind ocamldep -modules tableFormat.ml > tableFormat.ml.depends
+ocamlfind ocamldep -modules tableInterpreter.mli > tableInterpreter.mli.depends
+ocamlfind ocamlc -c -g -o tableFormat.cmo tableFormat.ml
+ocamlfind ocamlc -c -o tableInterpreter.cmi tableInterpreter.mli
+ocamlfind ocamldep -modules tableInterpreter.ml > tableInterpreter.ml.depends
+ocamlfind ocamldep -modules convert.mli > convert.mli.depends
+ocamlfind ocamlc -c -o convert.cmi convert.mli
+ocamlfind ocamldep -modules convert.ml > convert.ml.depends
+ocamlfind ocamlc -c -g -o infiniteArray.cmo infiniteArray.ml
+ocamlfind ocamlc -c -g -o packedIntArray.cmo packedIntArray.ml
+ocamlfind ocamlc -c -g -o rowDisplacement.cmo rowDisplacement.ml
+ocamlfind ocamlc -c -g -o engine.cmo engine.ml
+ocamlfind ocamlc -c -g -o tableInterpreter.cmo tableInterpreter.ml
+ocamlfind ocamlc -c -g -o convert.cmo convert.ml
+ocamlfind ocamlc -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o rowDisplacement.cmx rowDisplacement.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableFormat.cmx tableFormat.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o tableInterpreter.cmx tableInterpreter.ml
+ocamlfind ocamlopt -c -g -inline 1000 -for-pack MenhirLib -o convert.cmx convert.ml
+touch menhirLib.mli  ; if  ocamlfind ocamlopt -pack -g infiniteArray.cmx packedIntArray.cmx rowDisplacement.cmx engineTypes.cmx engine.cmx tableFormat.cmx tableInterpreter.cmx convert.cmx -o menhirLib.cmx  ; then  rm -f menhirLib.mli  ; else  rm -f menhirLib.mli  ; exit 1; fi
+# Parallel statistics: { count(total): 2(33), max: 6, min: 2, average(total): 4.000(1.182) }
+Checking that Objective Caml is recent enough...
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
