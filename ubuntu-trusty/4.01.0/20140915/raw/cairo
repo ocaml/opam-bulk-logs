@@ -1507,3 +1507,25 @@ ml_pango_cairo.c:25:1: warning: 'pango_cairo_font_map_create_context' is depreca
 ocamlmklib -o pango_cairo -oc mlpangocairo ml_pango_cairo.o -lpangocairo-1.0 -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0  
 ocamlopt.opt -c  cairo.ml
 ocamlopt.opt -c  cairo_bigarray.ml
+ocamlopt.opt -c  cairo_png.ml
+ocamlopt.opt -c  cairo_pdf.ml
+ocamlopt.opt -c  cairo_ps.ml
+ocamlopt.opt -c  cairo_svg.ml
+ocamlopt.opt -c  cairo_ft.ml
+ocamlmklib -o cairo -oc mlcairo cairo.cmx cairo_bigarray.cmx cairo_png.cmx cairo_pdf.cmx cairo_ps.cmx cairo_svg.cmx cairo_ft.cmx -lcairo -lfreetype
+ocamlopt.opt -c -I /home/opam/.opam/4.01.0/lib/lablgtk2 cairo_lablgtk.ml
+ocamlmklib -o cairo_lablgtk -oc mlcairo_lablgtk cairo_lablgtk.cmx
+ocamlopt.opt -c -I /home/opam/.opam/4.01.0/lib/lablgtk2 pango_cairo.ml
+ocamlmklib -o pango_cairo -oc mlpangocairo pango_cairo.cmx 
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+mkdir -p /home/opam/.opam/4.01.0/lib/cairo /home/opam/.opam/4.01.0/lib/stublibs
+install -m 644 *.mli *.cmi *.cma lib*.a /home/opam/.opam/4.01.0/lib/cairo
+install -m644 *.cmxa *.a *.cmx /home/opam/.opam/4.01.0/lib/cairo
+install -m 755 dll*.so /home/opam/.opam/4.01.0/lib/cairo
+if test -w /home/opam/.opam/4.01.0/lib/stublibs ; then \
+          for lib in dll*.so ; do \
+            ln -s /home/opam/.opam/4.01.0/lib/cairo/$lib /home/opam/.opam/4.01.0/lib/stublibs ; done ; fi
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/cairo.1.2.0/src'
+Installing cairo.1.2.0.
