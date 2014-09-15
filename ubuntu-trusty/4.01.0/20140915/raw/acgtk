@@ -182,3 +182,11 @@ ocamllex dypgen_lexer.mll
 195 states, 1556 transitions, table size 7394 bytes
 2280 additional bytes used for bindings
 ocamlc -I ../dyplib -c dypgen_lexer.ml
+ocamllex insert_linenum.mll
+42 states, 273 transitions, table size 1344 bytes
+ocamlc -I ../dyplib -c insert_linenum.ml
+ocamlc -I ../dyplib -c dypgen.ml
+ocamlc -I ../dyplib -o dypgen dyp.cma argument.cmo extract_type.cmo dypgen_parser.cmo dypgen_lexer.cmo insert_linenum.cmo dypgen.cmo
+ocamlopt -I ../dyplib -c argument.ml
+ocamlopt -I ../dyplib -c extract_type.ml
+ocamlopt -I ../dyplib -c dypgen_parser.ml
