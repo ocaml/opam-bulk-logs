@@ -49,3 +49,39 @@ ocamlfind ocamlopt -c -g -I lib -o lib/bencode_types.cmx lib/bencode_types.ml
 ocamlfind ocamlopt -c -g -I lib -o lib/bencode_parse.cmx lib/bencode_parse.ml
 ocamlfind ocamlopt -c -g -I lib -o lib/bencode_lex.cmx lib/bencode_lex.ml
 ocamlfind ocamlopt -c -g -I lib -o lib/bencode.cmx lib/bencode.ml
+ocamlfind ocamlopt -c -g -I lib -o lib/bencode_streaming.cmx lib/bencode_streaming.ml
+ocamlfind ocamlopt -a lib/bencode_types.cmx lib/bencode_parse.cmx lib/bencode_lex.cmx lib/bencode.cmx lib/bencode_streaming.cmx -o bencode.cmxa
+ocamlfind ocamldoc -dump lib/bencode.odoc -I lib lib/bencode.mli
+rm -rf bencode.docdir
+mkdir -p bencode.docdir
+ocamlfind ocamldoc -load lib/bencode.odoc -html -d bencode.docdir
+ocamlbuild -use-ocamlfind bencode.cma bencode.cmxa bencode.a bencode.docdir/index.html
+ocamlfind install bencode META _build/bencode.cma _build/bencode.cmxa _build/bencode.a _build/lib/*.cmi _build/lib/*.cmo _build/lib/*.o _build/lib/*.mli _build/lib/*.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_types.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_streaming.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_parse.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_lex.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.cmx
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_streaming.mli
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_parse.mli
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.mli
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_types.o
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_streaming.o
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_parse.o
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_lex.o
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.o
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_types.cmo
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_streaming.cmo
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_parse.cmo
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_lex.cmo
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.cmo
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_types.cmi
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_streaming.cmi
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_parse.cmi
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode_lex.cmi
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.cmi
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.a
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bencode/bencode.cma
+Installed /home/opam/.opam/4.01.0/lib/bencode/META
+Installing bencode.0.2.
