@@ -1,1 +1,80 @@
 ++ opam install piqilib -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install piqilib
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ulex, optcomp]
+ - install   xmlm.1.2.0                            [required by piqilib]
+ - install   easy-format.1.0.2                     [required by piqilib]
+ - install   ulex.1.1                              [required by piqilib]
+ - install   optcomp.1.6                           [required by piqilib]
+ - install   piqilib.0.6.8
+=== 6 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[easy-format.1.0.2] Downloading http://mjambon.com/releases/easy-format/easy-format-1.0.2.tar.gz
+[optcomp.1.6] Downloading https://github.com/diml/optcomp/archive/1.6.tar.gz
+[piqilib.0.6.8] Downloading https://github.com/alavrik/piqi/archive/v0.6.8.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   120    0   120    0     0    221      0 --:--:-- --:--:-- --:--:--   221
+100 13679  100 13679    0     0  25418      0 --:--:-- --:--:-- --:--:-- 25378100 13679  100 13679    0     0  25411      0 --:--:-- --:--:-- --:--:-- 25378
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[ulex.1.1] Downloading http://ftp.de.debian.org/debian/pool/main/u/ulex/ulex_1.1.orig.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   117    0   117    0     0    172      0 --:--:-- --:--:-- --:--:--   172
+100 20347  100 20347    0     0  81564      0 --:--:-- --:--:-- --:--:-- 81714
+200
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 38181  100 38181    0     0   162k      0 --:--:-- --:--:-- --:--:--  162k
+200
+100 56370  100 56370    0     0  38827      0  0:00:01  0:00:01 --:--:-- 38827
+200
+ 26  347k   26 96043    0     0  63398      0  0:00:05  0:00:01  0:00:04 63398100  347k  100  347k    0     0   191k      0  0:00:01  0:00:01 --:--:--  840k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+	if test -f bytecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+	fi; \
+	if test -f nativecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+	fi; \
+	ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
