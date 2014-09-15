@@ -267,3 +267,15 @@ ln -sf ../src/builtin/omake_builtin_test.ml omake_builtin_test.ml
 ln -sf ../src/builtin/omake_builtin_test.mli omake_builtin_test.mli
 ln -sf ../src/main/cvs_realclean.ml cvs_realclean.ml
 ln -sf ../src/main/omake_main.ml omake_main.ml
+ln -sf ../src/main/omake_main.mli omake_main.mli
+ln -sf ../src/main/omake_shell.ml omake_shell.ml
+ln -sf ../src/main/omake_shell.mli omake_shell.mli
+ocamllex omake_ast_lex.mll
+143 states, 3100 transitions, table size 13258 bytes
+ocamlc -g -c omake_gen_parse.ml
+ocamlc -g -custom -o omake_gen_parse  unix.cma   omake_gen_parse.cmo
+./omake_gen_parse -o omake_ast_parse.mly omake_ast_parse.input
+ocamlyacc omake_ast_parse.mly
+ocamlyacc omake_exp_parse.mly
+ocamlyacc omake_shell_parse.mly
+ocamldep  *.ml *.mli > Makefile.dep
