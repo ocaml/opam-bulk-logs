@@ -1888,3 +1888,39 @@ ocamlfind ocamldep -package unix -package threads -package sqlite3 -package lwt.
 ocamlfind ocamldep -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -modules sqlexpr_sqlite.mli > sqlexpr_sqlite.mli.depends
 ocamlfind ocamlc -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -thread -o sqlexpr_sqlite.cmi sqlexpr_sqlite.mli
 ocamlfind ocamldep -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -modules sqlexpr_sqlite.ml > sqlexpr_sqlite.ml.depends
+ocamlfind ocamldep -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -modules sqlexpr_sqlite_lwt.mli > sqlexpr_sqlite_lwt.mli.depends
+ocamlfind ocamlc -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -thread -o sqlexpr_sqlite_lwt.cmi sqlexpr_sqlite_lwt.mli
+ocamlfind ocamldep -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -modules sqlexpr_sqlite_lwt.ml > sqlexpr_sqlite_lwt.ml.depends
+ocamlfind ocamlc -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_concurrency.cmo sqlexpr_concurrency.ml
+ocamlfind ocamlc -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_sqlite.cmo sqlexpr_sqlite.ml
+ocamlfind ocamlc -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_sqlite_lwt.cmo sqlexpr_sqlite_lwt.ml
+ocamlfind ocamlc -a sqlexpr_concurrency.cmo sqlexpr_sqlite.cmo sqlexpr_sqlite_lwt.cmo -o sqlexpr.cma
+ocamlfind ocamlopt -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_concurrency.cmx sqlexpr_concurrency.ml
+ocamlfind ocamlopt -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_sqlite.cmx sqlexpr_sqlite.ml
+ocamlfind ocamlopt -c -g -package unix -package threads -package sqlite3 -package lwt.unix -package lwt.syntax -package lwt -package estring -package csv -package camlp4.quotations.r -package camlp4.lib -package batteries -syntax camlp4o -thread -o sqlexpr_sqlite_lwt.cmx sqlexpr_sqlite_lwt.ml
+ocamlfind ocamlopt -a sqlexpr_concurrency.cmx sqlexpr_sqlite.cmx sqlexpr_sqlite_lwt.cmx -o sqlexpr.cmxa
+ocamlfind ocamlopt -shared -linkall sqlexpr.cmxa -o sqlexpr.cmxs
+I: Installing findlib library 'sqlexpr'
+I: Running command '/home/opam/.opam/4.01.0/bin/ocamlfind install sqlexpr ./META _build/pa_sql.cmx _build/pa_sql.cmi _build/sqlexpr_syntax.a _build/sqlexpr_syntax.cmxa _build/sqlexpr_syntax.cmxs _build/sqlexpr_syntax.cma ./pa_sql.ml _build/sqlexpr_sqlite_lwt.cmx _build/sqlexpr_sqlite.cmx _build/sqlexpr_concurrency.cmx _build/sqlexpr_sqlite_lwt.cmi _build/sqlexpr_sqlite.cmi _build/sqlexpr_concurrency.cmi _build/sqlexpr.a _build/sqlexpr.cmxa _build/sqlexpr.cmxs _build/sqlexpr.cma ./sqlexpr_sqlite_lwt.mli ./sqlexpr_sqlite.mli ./sqlexpr_concurrency.mli'
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_concurrency.mli
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite.mli
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite_lwt.mli
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr.cma
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr.a
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_concurrency.cmi
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite.cmi
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite_lwt.cmi
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_concurrency.cmx
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite.cmx
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_sqlite_lwt.cmx
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/pa_sql.ml
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_syntax.cma
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_syntax.cmxs
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_syntax.cmxa
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/sqlexpr_syntax.a
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/pa_sql.cmi
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/pa_sql.cmx
+Installed /home/opam/.opam/4.01.0/lib/sqlexpr/META
+Installing ocaml-sqlexpr.0.5.5.
