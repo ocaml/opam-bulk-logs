@@ -7367,3 +7367,18 @@ if test -x zenon.bin; then \
 coqc -q zenon.v
 coqc -q zenon_coqbool.v
 coqc -q zenon_equiv.v
+coqc -q zenon_induct.v
+coqc -q zenon_focal.v
+mkdir -p "/home/opam/.opam/4.01.0/bin"
+cp zenon "/home/opam/.opam/4.01.0/bin"/"zenon-0.7.1"
+(cd "/home/opam/.opam/4.01.0/bin" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+mkdir -p "/home/opam/.opam/4.01.0/lib"/"zenon-0.7.1"
+(cd "/home/opam/.opam/4.01.0/lib" && \
+         rm -rf zenon && ln -s "zenon-0.7.1" zenon)
+cp zenon.v zenon_coqbool.v zenon_equiv.v zenon_induct.v zenon_focal.v "/home/opam/.opam/4.01.0/lib"/"zenon-0.7.1"/
+for i in zenon.vo zenon_coqbool.vo zenon_equiv.vo zenon_induct.vo zenon_focal.vo; \
+	  do [ ! -f $i ] || cp $i "/home/opam/.opam/4.01.0/lib/"zenon-0.7.1""/; \
+	done
+Installing zenon.0.7.1.
+2014/09/16 14:49:22 Error: Cannot destroy container a5b7451637bdc2c5a88ec15aa53703412879eeddae608a031691e4f0a54564f5: Driver aufs failed to remove root filesystem a5b7451637bdc2c5a88ec15aa53703412879eeddae608a031691e4f0a54564f5: rename /var/lib/docker/aufs/diff/a5b7451637bdc2c5a88ec15aa53703412879eeddae608a031691e4f0a54564f5 /var/lib/docker/aufs/diff/a5b7451637bdc2c5a88ec15aa53703412879eeddae608a031691e4f0a54564f5-removing: device or resource busy
