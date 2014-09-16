@@ -87,3 +87,62 @@ pkg_bigarray: ........................................ /home/opam/.opam/4.01.0/l
 pkg_graphics: ........................................ /home/opam/.opam/4.01.0/lib/ocaml
 ocamldoc: ............................................ /home/opam/.opam/4.01.0/bin/ocamldoc
 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh.mli > src/mesh.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh.cmi src/mesh.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh.ml > src/mesh.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/meshC.ml > src/meshC.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_common.ml > src/mesh_common.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_utils.ml > src/mesh_utils.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_utils.cmo src/mesh_utils.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_common.cmo src/mesh_common.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/meshF.ml > src/meshF.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshC.cmo src/meshC.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshC.cmo src/meshC.ml
+File "src/meshC.ml", line 1038, characters 6-7:
+Warning 26: unused variable v.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshF.cmo src/meshF.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshF.cmo src/meshF.ml
+File "src/meshF.ml", line 1038, characters 6-7:
+Warning 26: unused variable v.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/easymesh.mli > src/easymesh.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymesh.cmi src/easymesh.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/easymesh.ml > src/easymesh.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/easymeshC.ml > src/easymeshC.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/easymeshF.ml > src/easymeshF.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshC.cmo src/easymeshC.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshF.cmo src/easymeshF.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh.cmo src/mesh.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymesh.cmo src/easymesh.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/mesh_utils.cmo src/mesh_common.cmo src/meshC.cmo src/meshF.cmo src/mesh.cmo src/easymeshC.cmo src/easymeshF.cmo src/easymesh.cmo -o src/mesh.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_utils.cmx src/mesh_utils.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_common.cmx src/mesh_common.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshC.cmx src/meshC.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshC.cmx src/meshC.ml
+File "src/meshC.ml", line 1038, characters 6-7:
+Warning 26: unused variable v.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshF.cmx src/meshF.ml
++ /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/meshF.cmx src/meshF.ml
+File "src/meshF.ml", line 1038, characters 6-7:
+Warning 26: unused variable v.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh.cmx src/mesh.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshC.cmx src/easymeshC.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymeshF.cmx src/easymeshF.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/easymesh.cmx src/easymesh.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/mesh_utils.cmx src/mesh_common.cmx src/meshC.cmx src/meshF.cmx src/mesh.cmx src/easymeshC.cmx src/easymeshF.cmx src/easymesh.cmx -o src/mesh.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/mesh.cmxa src/mesh_utils.cmx src/mesh_common.cmx src/meshC.cmx src/meshF.cmx src/mesh.cmx src/easymeshC.cmx src/easymeshF.cmx src/easymesh.cmx -o src/mesh.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_display.mli > src/mesh_display.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmi src/mesh_display.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_display.ml > src/mesh_display.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_displayC.ml > src/mesh_displayC.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package bigarray -package graphics -modules src/mesh_displayF.ml > src/mesh_displayF.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayC.cmo src/mesh_displayC.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayF.cmo src/mesh_displayF.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmo src/mesh_display.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/mesh_displayC.cmo src/mesh_displayF.cmo src/mesh_display.cmo -o src/mesh_display.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayC.cmx src/mesh_displayC.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_displayF.cmx src/mesh_displayF.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -annot -I src -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -package bigarray -package graphics -I src -o src/mesh_display.cmx src/mesh_display.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/mesh_display.cmxa src/mesh_displayC.cmx src/mesh_displayF.cmx src/mesh_display.cmx -o src/mesh_display.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -ccopt -DTRILIBRARY -ccopt -DEXTERNAL_TEST -c src/triangle_stubs.c
