@@ -4715,3 +4715,28 @@ ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package core -p
 ocamlfind ocamldep -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -modules lib/safe_async.mli > lib/safe_async.mli.depends
 ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -I lib -o lib/safe_async.cmi lib/safe_async.mli
 ocamlfind ocamldep -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -modules lib/safe_async.ml > lib/safe_async.ml.depends
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -I lib -o lib/safe.cmo lib/safe.ml
+ocamlfind ocamlc -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -I lib -o lib/safe_async.cmo lib/safe_async.ml
+ocamlfind ocamlc -pack -g lib/raw.cmo lib/safe.cmo lib/safe_async.cmo -o lib/krb5.cmo
+ocamlfind ocamlc -a -dllib -lkrb5_stubs -cclib -lkrb5_stubs -cclib -lkrb5 lib/krb5.cmo -o lib/krb5.cma
+ocamlfind ocamlopt -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -for-pack Krb5 -I lib -o lib/raw.cmx lib/raw.ml
+ocamlfind ocamlopt -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -for-pack Krb5 -I lib -o lib/safe.cmx lib/safe.ml
+ocamlfind ocamlopt -c -g -package threads -package sexplib.syntax -package core -package async -syntax camlp4o -thread -for-pack Krb5 -I lib -o lib/safe_async.cmx lib/safe_async.ml
+touch lib/krb5.mli  ; if  ocamlfind ocamlopt -pack -g -I lib lib/raw.cmx lib/safe.cmx lib/safe_async.cmx -o lib/krb5.cmx  ; then  rm -f lib/krb5.mli  ; else  rm -f lib/krb5.mli  ; exit 1; fi
+ocamlfind ocamlopt -a -cclib -lkrb5_stubs -cclib -lkrb5 lib/krb5.cmx -o lib/krb5.cmxa
+ocamlfind ocamlopt -shared -I lib lib/krb5.cmx -o lib/krb5.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/krb5/raw.ml
+Installed /home/opam/.opam/4.01.0/lib/krb5/safe.mli
+Installed /home/opam/.opam/4.01.0/lib/krb5/safe_async.mli
+Installed /home/opam/.opam/4.01.0/lib/krb5/libkrb5_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/krb5/krb5.cmi
+Installed /home/opam/.opam/4.01.0/lib/krb5/krb5.cma
+Installed /home/opam/.opam/4.01.0/lib/krb5/krb5.cmxa
+Installed /home/opam/.opam/4.01.0/lib/krb5/krb5.a
+Installed /home/opam/.opam/4.01.0/lib/krb5/krb5.cmxs
+Installed /home/opam/.opam/4.01.0/lib/krb5/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllkrb5_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllkrb5_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing krb5.109.38.alpha1.
