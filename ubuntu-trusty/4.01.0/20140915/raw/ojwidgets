@@ -483,3 +483,17 @@ ocamlfind ocamldep -modules settings.mli > settings.mli.depends
 ocamlfind ocamlc -c -o settings.cmi settings.mli
 ocamlfind ocamldep -modules installation.ml > installation.ml.depends
 ocamlfind ocamldep -modules installation.mli > installation.mli.depends
+ocamlfind ocamlc -c -o installation.cmi installation.mli
+ocamlfind ocamldep -modules stringSet.ml > stringSet.ml.depends
+ocamlfind ocamldep -modules stringSet.mli > stringSet.mli.depends
+ocamlfind ocamlc -c -o stringSet.cmi stringSet.mli
+ocamlfind ocamldep -modules version.ml > version.ml.depends
+ocamlfind ocamlc -c -g -o version.cmo version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o installation.cmx installation.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o stringSet.cmx stringSet.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o version.cmx version.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o lineCount.cmx lineCount.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o settings.cmx settings.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o keyword.cmx keyword.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o positions.cmx positions.ml
+ocamlfind ocamlopt -c -g -inline 1000 -o printer.cmx printer.ml
