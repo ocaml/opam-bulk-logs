@@ -1552,3 +1552,83 @@ touch .config
 OMAKEFLAGS= OMAKEPATH=lib ./omake-boot --dotomake .omake --force-dotomake -j2 main
 *** omake: reading OMakefiles
 *** omake: finished reading OMakefiles (0.49 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (4.89 sec, 0/234 scans, 0/505 rules, 1/1762 digests)
+OMAKEFLAGS= OMAKEPATH=lib src/main/omake --dotomake .omake --force-dotomake -j2 all
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.12 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (0.76 sec, 0/235 scans, 0/534 rules, 0/1821 digests)
+OMAKEFLAGS= OMAKEPATH=lib src/main/omake --dotomake .omake --force-dotomake -j2 install
+*** omake: reading OMakefiles
+*** omake: finished reading OMakefiles (0.10 sec)
+*** omake: warning: stdout is not a tty, disabling the progress bar
+   (use --progress to override).
+*** omake: done (0.89 sec, 0/235 scans, 2/536 rules, 0/1821 digests)
+Installing omake.0.9.8.6-0.rc1.
+Building lablgl.1.05:
+  cp Makefile.config.ex Makefile.config
+  mkdir -p /home/opam/.opam/4.01.0/bin
+  make glut
+  make glutopt
+  make install -C src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+  make install -C LablGlut/src BINDIR=/home/opam/.opam/4.01.0/bin INSTALLDIR=/home/opam/.opam/4.01.0/lib/lablgl DLLDIR=/home/opam/.opam/4.01.0/lib/stublibs
+cd src && make all LIBDIR="`ocamlc -where`"
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.1.05/src'
+ocamlc -pp camlp4o var2def.ml -o var2def
+ocamlc -pp camlp4o var2switch.ml -o var2switch
+make lablgl.cma
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lablgl.1.05/src'
+ocamlrun ../src/var2def < gl_tags.var > gl_tags.h
+ocamlrun ../src/var2switch -table GL_ < gl_tags.var > gl_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_gl.c
+ml_gl.c: In function 'ml_glGetString':
+ml_gl.c:225:1: warning: pointer targets in passing argument 1 of 'lablgl_copy_string_check' differ in signedness [-Wpointer-sign]
+ ML_1_ (glGetString, GLenum_val, copy_string_check)
+ ^
+In file included from ml_gl.c:24:0:
+ml_gl.h:9:27: note: expected 'const char *' but argument is of type 'const GLubyte *'
+ #define copy_string_check lablgl_copy_string_check
+                           ^
+ml_gl.c:40:7: note: in expansion of macro 'copy_string_check'
+ value copy_string_check (const char *str)
+       ^
+ml_gl.c: In function 'ml_glGenTextures':
+ml_gl.c:674:1: warning: pointer targets in passing argument 2 of 'glGenTextures' differ in signedness [-Wpointer-sign]
+ ML_2 (glGenTextures, Int_val, Int_raw)
+ ^
+In file included from ml_gl.c:10:0:
+/usr/include/GL/gl.h:1311:23: note: expected 'GLuint *' but argument is of type 'int *'
+ GLAPI void GLAPIENTRY glGenTextures( GLsizei n, GLuint *textures );
+                       ^
+ocamlrun ../src/var2def < glu_tags.var > glu_tags.h
+ocamlrun ../src/var2switch GLU_ < glu_tags.var > glu_tags.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glu.c
+ml_glu.c: In function 'ml_gluGetString':
+ml_glu.c:96:1: warning: pointer targets in passing argument 1 of 'lablgl_copy_string_check' differ in signedness [-Wpointer-sign]
+ ML_1_ (gluGetString, GLUenum_val, copy_string_check)
+ ^
+In file included from ml_glu.c:19:0:
+ml_gl.h:9:27: note: expected 'const char *' but argument is of type 'const GLubyte *'
+ #define copy_string_check lablgl_copy_string_check
+                           ^
+ml_gl.h:10:7: note: in expansion of macro 'copy_string_check'
+ value copy_string_check (const char *str);
+       ^
+ocamlrun ../src/var2def < raw_tags.var > raw_tags.h
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_raw.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glarray.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_glutess.c
+ocamlc -c -w s -ccopt "-c -O  -I/usr/X11R6/include" ml_shader.c
+ocamlc -c -w s -I +labltk raw.mli
+ocamlc -c -w s -I +labltk raw.ml
+File "raw.ml", line 24, characters 13-15:
+Warning 3: deprecated feature: operator (or); you should use (||) instead
+ocamlc -c -w s -I +labltk gl.mli
+ocamlc -c -w s -I +labltk gl.ml
+ocamlc -c -w s -I +labltk glLight.mli
+ocamlc -c -w s -I +labltk glLight.ml
+ocamlc -c -w s -I +labltk glList.mli
+ocamlc -c -w s -I +labltk glList.ml
