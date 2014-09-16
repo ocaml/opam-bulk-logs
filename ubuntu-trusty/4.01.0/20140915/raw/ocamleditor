@@ -1521,3 +1521,214 @@ Bytecode Library icons/icons.cma
   ~jobs ........... : 0
   ~verbose ........ : 2
 
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I common icons/icons.ml
+ocamlfind ocamlc -package lablgtk2 -a -g -o icons/icons.cma -I common icons/icons.cmo 
+=== icons ===
+ocaml tools/mkicons.ml
+cat ../header > icons/icons.ml
+
+Native Library icons/icons.cmxa
+  ~package ........ : lablgtk2
+  ~search_path .... : common
+  ~cflags ......... : -g
+  ~lflags ......... : -g
+  ~toplevel_modules : icons/icons.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I common icons/icons.ml
+ocamlfind ocamlopt -package lablgtk2 -a -g -o icons/icons.cmxa -I common icons/icons.cmx 
+=== oebuildlib ===
+
+Bytecode Library oebuildlib.cma
+  ~thread
+  ~search_path .... : common oebuild
+  ~cflags ......... : -w y
+  ~toplevel_modules : oebuild/oebuild.ml,oebuild/oebuild_dep_ext.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dag.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_table.mli
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_util.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_table.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep_dag.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_parallel.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep_ext.ml
+ocamlc.opt -c -w y -thread -I common -I oebuild oebuild/oebuild.ml
+ocamlc.opt -a -thread -o oebuildlib.cma -I common -I oebuild oebuild/oebuild_dag.cmo oebuild/oebuild_util.cmo oebuild/oebuild_table.cmo oebuild/oebuild_dep.cmo oebuild/oebuild_dep_dag.cmo oebuild/oebuild_parallel.cmo oebuild/oebuild_dep_ext.cmo oebuild/oebuild.cmo 
+=== oebuildlib ===
+
+Native Library oebuildlib.cmxa
+  ~thread
+  ~search_path .... : common oebuild
+  ~cflags ......... : -w y
+  ~toplevel_modules : oebuild/oebuild.ml,oebuild/oebuild_dep_ext.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dag.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_table.mli
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_util.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_table.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep_dag.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_parallel.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild_dep_ext.ml
+ocamlopt.opt -c -w y -thread -I common -I oebuild oebuild/oebuild.ml
+ocamlopt.opt -a -thread -o oebuildlib.cmxa -I common -I oebuild oebuild/oebuild_dag.cmx oebuild/oebuild_util.cmx oebuild/oebuild_table.cmx oebuild/oebuild_dep.cmx oebuild/oebuild_dep_dag.cmx oebuild/oebuild_parallel.cmx oebuild/oebuild_dep_ext.cmx oebuild/oebuild.cmx 
+=== oebuild ===
+
+Bytecode Executable oebuild/oebuild
+  ~thread
+  ~package ........ : str,unix
+  ~search_path .... : common oebuild
+  ~libs ........... : common
+  ~cflags ......... : -w y
+  ~toplevel_modules : oebuild/oebuild_tool.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlc.opt -thread -c -w y -thread -I common -I oebuild oebuild/oebuild_tool.ml
+ocamlfind ocamlc -package str,unix -thread -linkpkg -thread -o oebuild/oebuild -I common -I oebuild common.cma oebuild/oebuild_dag.cmo oebuild/oebuild_util.cmo oebuild/oebuild_table.cmo oebuild/oebuild_dep.cmo oebuild/oebuild_dep_dag.cmo oebuild/oebuild_parallel.cmo oebuild/oebuild.cmo oebuild/oebuild_tool.cmo 
+=== oebuild ===
+
+Native Executable oebuild/oebuild.opt
+  ~thread
+  ~package ........ : str,unix
+  ~search_path .... : common oebuild
+  ~libs ........... : common
+  ~cflags ......... : -w y
+  ~toplevel_modules : oebuild/oebuild_tool.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlopt.opt -thread -c -w y -thread -I common -I oebuild oebuild/oebuild_tool.ml
+ocamlfind ocamlopt -package str,unix -thread -linkpkg -thread -o oebuild/oebuild.opt -I common -I oebuild common.cmxa oebuild/oebuild_dag.cmx oebuild/oebuild_util.cmx oebuild/oebuild_table.cmx oebuild/oebuild_dep.cmx oebuild/oebuild_dep_dag.cmx oebuild/oebuild_parallel.cmx oebuild/oebuild.cmx oebuild/oebuild_tool.cmx 
+=== oeproc ===
+Skipped: IS_WIN32 failed
+
+=== gmisclib ===
+
+Bytecode Library gmisclib.cma
+  ~package ........ : lablgtk2
+  ~search_path .... : gmisclib
+  ~cflags ......... : -g
+  ~lflags ......... : -g
+  ~toplevel_modules : gmisclib/gmisclib.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/hyperlink.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/gmisclib_util.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/button_menu.mli
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/undo.mli
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/entry_combo_search.mli
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/undo.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/button_menu.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/menu_tool_button.mli
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/window.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/menu_tool_button.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/entry_combo_search.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/gmisclib.ml
+ocamlfind ocamlc -package lablgtk2 -a -g -o gmisclib.cma -I gmisclib gmisclib/hyperlink.cmo gmisclib/gmisclib_util.cmo gmisclib/window.cmo gmisclib/undo.cmo gmisclib/button_menu.cmo gmisclib/menu_tool_button.cmo gmisclib/entry_combo_search.cmo gmisclib/gmisclib.cmo 
+=== gmisclib ===
+
+Native Library gmisclib.cmxa
+  ~package ........ : lablgtk2
+  ~search_path .... : gmisclib
+  ~cflags ......... : -g
+  ~lflags ......... : -g
+  ~toplevel_modules : gmisclib/gmisclib.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/hyperlink.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/gmisclib_util.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/button_menu.mli
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/undo.mli
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/entry_combo_search.mli
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/undo.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/button_menu.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/menu_tool_button.mli
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/window.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/entry_combo_search.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/menu_tool_button.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -g -I gmisclib gmisclib/gmisclib.ml
+ocamlfind ocamlopt -package lablgtk2 -a -g -o gmisclib.cmxa -I gmisclib gmisclib/hyperlink.cmx gmisclib/gmisclib_util.cmx gmisclib/window.cmx gmisclib/undo.cmx gmisclib/button_menu.cmx gmisclib/menu_tool_button.cmx gmisclib/entry_combo_search.cmx gmisclib/gmisclib.cmx 
+=== otherwidgets ===
+
+Bytecode Library otherwidgets.cma
+  ~package ........ : lablgtk2
+  ~search_path .... : icons common otherwidgets gmisclib
+  ~libs ........... : gmisclib
+  ~cflags ......... : -w sy -g
+  ~lflags ......... : -w sy -g
+  ~toplevel_modules : otherwidgets/otherwidgets.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/tree.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/otherwidgets_config.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/check_for_updates.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/checklist.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/key_assist.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/activity.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_rename.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_goto.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_file_new.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_save_as.ml
+ocamlc.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/otherwidgets.ml
+ocamlfind ocamlc -package lablgtk2 -a -w sy -g -o otherwidgets.cma -I icons -I common -I otherwidgets -I gmisclib otherwidgets/tree.cmo otherwidgets/otherwidgets_config.cmo otherwidgets/dialog.cmo otherwidgets/check_for_updates.cmo otherwidgets/checklist.cmo otherwidgets/dialog_rename.cmo otherwidgets/key_assist.cmo otherwidgets/activity.cmo otherwidgets/dialog_goto.cmo otherwidgets/dialog_file_new.cmo otherwidgets/dialog_save_as.cmo otherwidgets/otherwidgets.cmo 
+=== otherwidgets ===
+
+Native Library otherwidgets.cmxa
+  ~package ........ : lablgtk2
+  ~search_path .... : icons common otherwidgets gmisclib
+  ~libs ........... : gmisclib
+  ~cflags ......... : -w sy -g
+  ~lflags ......... : -w sy -g
+  ~toplevel_modules : otherwidgets/otherwidgets.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/tree.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/otherwidgets_config.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/check_for_updates.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/checklist.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/key_assist.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/activity.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_rename.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_goto.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_file_new.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/dialog_save_as.ml
+ocamlopt.opt -I /home/opam/.opam/4.01.0/lib/lablgtk2 -c -w sy -g -I icons -I common -I otherwidgets -I gmisclib otherwidgets/otherwidgets.ml
+ocamlfind ocamlopt -package lablgtk2 -a -w sy -g -o otherwidgets.cmxa -I icons -I common -I otherwidgets -I gmisclib otherwidgets/tree.cmx otherwidgets/otherwidgets_config.cmx otherwidgets/dialog.cmx otherwidgets/check_for_updates.cmx otherwidgets/checklist.cmx otherwidgets/dialog_rename.cmx otherwidgets/key_assist.cmx otherwidgets/activity.cmx otherwidgets/dialog_goto.cmx otherwidgets/dialog_file_new.cmx otherwidgets/dialog_save_as.cmx otherwidgets/otherwidgets.cmx 
+=== prepare-build ===
+ocaml tools/prepare_build.ml
+gtkThreadOriginal.ml -> gtkThread2.ml
+mkdir ../plugins
+ocamllex err_lexer.mll
+65 states, 415 transitions, table size 2050 bytes
+1654 additional bytes used for bindings
+ocamlyacc err_parser.mly
+ocaml -I common str.cma unix.cma common.cma generate_oebuild_script.ml
+Testing oebuild_script.ml...
+  ocaml oebuild_script.ml
+
+=== ocamleditor-lib ===
+
+Native Library ocamleditor_lib.cmxa
+  ~thread
+  ~package ........ : compiler-libs.common,dynlink,lablgtk2,str,unix,xml-light
+  ~search_path .... : +ocamldoc gmisclib common icons otherwidgets oebuild 
+  ~inline ......... : 50
+  ~cflags ......... : -w syxm -g
+  ~lflags ......... : -w syxm -g
+  ~toplevel_modules : ocamleditor_lib.ml
+  ~jobs ........... : 0
+  ~verbose ........ : 2
+
