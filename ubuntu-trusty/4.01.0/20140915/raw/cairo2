@@ -339,3 +339,71 @@ ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples
 ocamlfind ocamldep -package graphics -package bigarray -modules examples/graphics_demo.ml > examples/graphics_demo.ml.depends
 ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmo examples/graphics_demo.ml
 ocamlfind ocamlopt -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/graphics_demo.cmx examples/graphics_demo.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package graphics -package bigarray src/cairo2.cmxa examples/graphics_demo.cmx -o examples/graphics_demo.native
+ocamlfind ocamldep -package bigarray -modules examples/word_cloud/run.ml > examples/word_cloud/run.ml.depends
+ocamlfind ocamldep -package bigarray -modules examples/word_cloud/cloud.mli > examples/word_cloud/cloud.mli.depends
+ocamlfind ocamlc -c -g -I src -package bigarray -I examples/word_cloud -I src -o examples/word_cloud/cloud.cmi examples/word_cloud/cloud.mli
+ocamlfind ocamlc -c -g -annot -I src -package bigarray -I examples/word_cloud -I src -o examples/word_cloud/run.cmo examples/word_cloud/run.ml
+ocamlfind ocamldep -package bigarray -modules examples/word_cloud/cloud.ml > examples/word_cloud/cloud.ml.depends
+ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I examples/word_cloud -I src -o examples/word_cloud/cloud.cmx examples/word_cloud/cloud.ml
+ocamlfind ocamlopt -c -g -annot -I src -package bigarray -I examples/word_cloud -I src -o examples/word_cloud/run.cmx examples/word_cloud/run.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/word_cloud/cloud.cmx examples/word_cloud/run.cmx -o examples/word_cloud/run.native
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/recording.ml > examples/recording.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/recording.cmo examples/recording.ml
+ocamlfind ocamlopt -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/recording.cmx examples/recording.ml
+ocamlfind ocamlopt -g -I src -linkpkg -package bigarray src/cairo2.cmxa examples/recording.cmx -o examples/recording.native
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/stroke.ml > examples/stroke.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/stroke.cmo examples/stroke.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/stroke.cmo -o examples/stroke.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/fill.ml > examples/fill.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/fill.cmo examples/fill.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/fill.cmo -o examples/fill.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/showtext.ml > examples/showtext.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/showtext.cmo examples/showtext.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/showtext.cmo -o examples/showtext.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/paint.ml > examples/paint.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/paint.cmo examples/paint.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/paint.cmo -o examples/paint.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/mask.ml > examples/mask.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/mask.cmo examples/mask.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/mask.cmo -o examples/mask.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/setsourcergba.ml > examples/setsourcergba.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/setsourcergba.cmo examples/setsourcergba.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/setsourcergba.cmo -o examples/setsourcergba.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/setsourcegradient.ml > examples/setsourcegradient.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/setsourcegradient.cmo examples/setsourcegradient.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/setsourcegradient.cmo -o examples/setsourcegradient.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/path_close.ml > examples/path_close.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/path_close.cmo examples/path_close.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/path_close.cmo -o examples/path_close.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/textextents.ml > examples/textextents.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/textextents.cmo examples/textextents.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/textextents.cmo -o examples/textextents.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/diagram.ml > examples/diagram.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/diagram.cmo examples/diagram.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/diagram.cmo -o examples/diagram.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/draw.ml > examples/draw.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/draw.cmo examples/draw.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/draw.cmo -o examples/draw.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/tips_ellipse.ml > examples/tips_ellipse.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/tips_ellipse.cmo examples/tips_ellipse.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/tips_ellipse.cmo -o examples/tips_ellipse.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/tips_letter.ml > examples/tips_letter.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/tips_letter.cmo examples/tips_letter.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/tips_letter.cmo -o examples/tips_letter.byte
+ocamlfind ocamldep -package graphics -package bigarray -modules examples/tips_font.ml > examples/tips_font.ml.depends
+ocamlfind ocamlc -c -g -annot -I src -I src -package graphics -package bigarray -I examples -I src -o examples/tips_font.cmo examples/tips_font.ml
+ocamlfind ocamlc -g -I src -linkpkg -package bigarray src/cairo2.cma examples/tips_font.cmo -o examples/tips_font.byte
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo.mli
+Installed /home/opam/.opam/4.01.0/lib/cairo2/libcairo2_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo2.cma
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo2.cmxa
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo2.a
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo2.cmxs
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo.cmi
+Installed /home/opam/.opam/4.01.0/lib/cairo2/cairo.cmx
+Installed /home/opam/.opam/4.01.0/lib/cairo2/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcairo2_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllcairo2_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing cairo2.0.4.6.
