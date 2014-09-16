@@ -1962,3 +1962,5 @@ OCAMLN=ocaml CAMLP5N=camlp5 EXE= ./compile.sh -e "Grammar.Entry.obj Pcaml.interf
 ocamlc -c tmp.mli
 ocamlrun ../meta/camlp5r -nolib -I ../meta pa_macro.cmo pa_extend.cmo q_MLast.cmo -meta_action tmp.ml -o tmp.ppo
 ocamlc -I ../lib -I ../main -c -impl tmp.ppo
+rm tmp.ppo
+ocamlrun ../main/camlp5 ./compile.cmo ./tmp.cmo ../etc/pr_r.cmo ../etc/pr_rp.cmo  -sep nn -impl - < /dev/null
