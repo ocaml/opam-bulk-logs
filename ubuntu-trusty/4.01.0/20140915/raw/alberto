@@ -369,3 +369,22 @@ pkg_camlp4: .......................................... /home/opam/.opam/4.01.0/l
 pkg_num: ............................................. /home/opam/.opam/4.01.0/lib/num
 
 ocaml setup.ml -build 
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package num -package ocplib-endian -modules src/alberto.mli > src/alberto.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -w @a -package camlp4 -package num -package ocplib-endian -I src -o src/alberto.cmi src/alberto.mli
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -package camlp4 -package num -package ocplib-endian -syntax camlp4o -modules src/alberto.ml > src/alberto.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -w @a -package camlp4 -package num -package ocplib-endian -syntax camlp4o -I src -o src/alberto.cmo src/alberto.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a -w @a src/alberto.cmo -o src/alberto.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -w @a -package camlp4 -package num -package ocplib-endian -syntax camlp4o -I src -o src/alberto.cmx src/alberto.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a -w @a src/alberto.cmx -o src/alberto.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/alberto.cmxa src/alberto.cmx -o src/alberto.cmxs
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.mli
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.cma
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.cmxa
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.a
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.cmxs
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.cmi
+Installed /home/opam/.opam/4.01.0/lib/alberto/alberto.cmx
+Installed /home/opam/.opam/4.01.0/lib/alberto/META
+Installing alberto.0.2.
