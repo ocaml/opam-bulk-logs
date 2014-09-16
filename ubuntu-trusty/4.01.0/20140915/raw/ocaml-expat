@@ -44,3 +44,26 @@ gcc -MM *.c > depend
 Makefile:100: depend: No such file or directory
 ocamldep *.mli *.ml >> depend
 ocamlc -c -ccopt "-DFULL_UNROLL -O2 -I/usr/local/include" expat_stubs.c
+ocamlmklib  -oc mlexpat expat_stubs.o \
+	-L/usr/local/lib -lexpat
+ocamlc -c  expat.mli
+ocamlc -c  expat.ml
+ocamlmklib  -o expat expat.cmo -oc mlexpat \
+	-L/usr/local/lib -lexpat
+ocamlopt -c  expat.ml
+ocamlmklib  -o expat expat.cmx -oc mlexpat \
+	-L/usr/local/lib -lexpat
+{ test ! -f expat.cmxa || extra="expat.cmxa expat.a"; }; \
+	ocamlfind install expat META expat.cmi expat.mli expat.cma \
+	dllmlexpat.so libmlexpat.a $extra
+Installed /home/opam/.opam/4.01.0/lib/expat/expat.a
+Installed /home/opam/.opam/4.01.0/lib/expat/expat.cmxa
+Installed /home/opam/.opam/4.01.0/lib/expat/libmlexpat.a
+Installed /home/opam/.opam/4.01.0/lib/expat/expat.cma
+Installed /home/opam/.opam/4.01.0/lib/expat/expat.mli
+Installed /home/opam/.opam/4.01.0/lib/expat/expat.cmi
+Installed /home/opam/.opam/4.01.0/lib/expat/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmlexpat.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllmlexpat.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing ocaml-expat.0.9.1.
