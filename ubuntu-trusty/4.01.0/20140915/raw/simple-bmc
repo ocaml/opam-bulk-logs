@@ -924,3 +924,27 @@ ocamlfind ocamldep -package batteries -modules src/type.ml > src/type.ml.depends
 ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/type.cmo src/type.ml
 ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/smt2_cmd.cmo src/smt2_cmd.ml
 ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/smt2.cmo src/smt2.ml
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/drh_infix_lexer.mll
+ocamlfind ocamldep -package batteries -modules src/drh_infix_lexer.ml > src/drh_infix_lexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc src/drh_infix_parser.mly
++ /home/opam/.opam/4.01.0/bin/ocamlyacc src/drh_infix_parser.mly
+109 shift/reduce conflicts.
+ocamlfind ocamldep -package batteries -modules src/drh_infix_parser.mli > src/drh_infix_parser.mli.depends
+ocamlfind ocamldep -package batteries -modules src/error.ml > src/error.ml.depends
+ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/drh_infix_parser.cmi src/drh_infix_parser.mli
+ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/error.cmo src/error.ml
+ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/bmc.cmi src/bmc.mli
+ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/drh_infix_lexer.cmo src/drh_infix_lexer.ml
+ocamlfind ocamlc -c -g -passopt -annot -package batteries -I src -o src/main.cmo src/main.ml
+ocamlfind ocamldep -package batteries -modules src/bmc.ml > src/bmc.ml.depends
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/type.cmx src/type.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/smt2_cmd.cmx src/smt2_cmd.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/smt2.cmx src/smt2.ml
+ocamlfind ocamldep -package batteries -modules src/drh_infix_parser.ml > src/drh_infix_parser.ml.depends
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/drh_infix_parser.cmx src/drh_infix_parser.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/error.cmx src/error.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/bmc.cmx src/bmc.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/drh_infix_lexer.cmx src/drh_infix_lexer.ml
+ocamlfind ocamlopt -c -g -package batteries -I src -o src/main.cmx src/main.ml
+ocamlfind ocamlopt -g -linkpkg -package batteries src/type.cmx src/smt2_cmd.cmx src/smt2.cmx src/bmc.cmx src/drh_infix_parser.cmx src/error.cmx src/drh_infix_lexer.cmx src/main.cmx -o src/main.native
+Installing simple-bmc.0.0.1.
