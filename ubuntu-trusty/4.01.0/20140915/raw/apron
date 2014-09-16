@@ -234,3 +234,21 @@ Building apron.0.9.10:
   make install
 sed  -e '1 aHAS_MPFR=1\n' Makefile.config >mlgmpidl/Makefile.config
 cp -f Makefile.config apron/Makefile.config 
+(cd mlgmpidl; make depend all install)
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/apron.0.9.10/mlgmpidl'
+mkdir -p tmp
+for i in mpz mpq mpf mpfr gmp_random; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -prepro cpp -I /home/opam/.opam/4.01.0/build/apron.0.9.10/mlgmpidl tmp/${i}.idl; \
+		sed  -f sedscript_c tmp/${i}_stubs.c >${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module mpz
+tmp/mpz.idl:17:13: warning: missing terminating " character [enabled by default]
+ quote(MLMLI,"
+             ^
+tmp/mpz.idl:21:1: warning: missing terminating " character [enabled by default]
+ ")
+ ^
