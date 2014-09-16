@@ -813,3 +813,37 @@ module texpr0
 module tcons0
 module manager
 module abstract0
+module var
+module environment
+module linexpr1
+module lincons1
+module generator1
+module texpr1
+module tcons1
+module abstract1
+module policy
+module disjunction
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/apron.0.9.10/apron/mlapronidl'
+(cd newpolka; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/apron.0.9.10/apron/newpolka'
+ln -s -f ../mlapronidl/manager.idl manager.idl
+mkdir -p tmp
+for i in polka; do \
+		echo "module $i"; \
+		cp ${i}.idl tmp/${i}.idl; \
+		camlidl -no-include -nocpp tmp/${i}.idl; \
+		cp tmp/${i}_stubs.c ${i}_caml.c; \
+		sed  -f sedscript_caml tmp/${i}.ml >${i}.ml; \
+		sed  -f sedscript_caml tmp/${i}.mli >${i}.mli; \
+	done
+module polka
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/apron.0.9.10/apron/newpolka'
+(cd box; make rebuild)
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/apron.0.9.10/apron/box'
+ln -s -f ../mlapronidl/scalar.idl scalar.idl
+ln -s -f ../mlapronidl/interval.idl interval.idl
+ln -s -f ../mlapronidl/coeff.idl coeff.idl
+ln -s -f ../mlapronidl/dim.idl dim.idl
+ln -s -f ../mlapronidl/linexpr0.idl linexpr0.idl
+ln -s -f ../mlapronidl/lincons0.idl lincons0.idl
+ln -s -f ../mlapronidl/generator0.idl generator0.idl
