@@ -234,3 +234,18 @@ Compile tests executable and library and run them: ... false
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -I src -o src/mpp_init.cmo src/mpp_init.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -I src -o src/mpp_core.cmo src/mpp_core.ml
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -I src -o src/mpp_load.cmo src/mpp_load.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a src/mpp_charset.cmo src/mpp_charstream.cmo src/mpp_out.cmo src/mpp_stringmap.cmo src/mpp_actions.cmo src/mpp_init.cmo src/mpp_core.cmo src/mpp_load.cmo -o src/mpp.cma
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_charset.cmx src/mpp_charset.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_charstream.cmx src/mpp_charstream.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_out.cmx src/mpp_out.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_stringmap.cmx src/mpp_stringmap.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_actions.cmx src/mpp_actions.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_init.cmx src/mpp_init.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_core.cmx src/mpp_core.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_load.cmx src/mpp_load.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a src/mpp_charset.cmx src/mpp_charstream.cmx src/mpp_out.cmx src/mpp_stringmap.cmx src/mpp_actions.cmx src/mpp_init.cmx src/mpp_core.cmx src/mpp_load.cmx -o src/mpp.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared src/mpp.cmxa src/mpp_charset.cmx src/mpp_charstream.cmx src/mpp_out.cmx src/mpp_stringmap.cmx src/mpp_actions.cmx src/mpp_init.cmx src/mpp_core.cmx src/mpp_load.cmx -o src/mpp.cmxs
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamldep -modules src/mpp_main.ml > src/mpp_main.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -c -g -I src -I src -o src/mpp_main.cmo src/mpp_main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -I src -I src -o src/mpp_main.cmx src/mpp_main.ml
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -g -linkpkg src/mpp.cmxa src/mpp_main.cmx -o src/mpp_main.native
