@@ -920,3 +920,12 @@ pkg_camlp4_extend: ................................... /home/opam/.opam/4.01.0/l
 
 ocaml setup.ml -build 
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4r -modules src/pa_comprehension.ml > src/pa_comprehension.ml.depends
+ocamlfind ocamlc -c -g -package camlp4.quotations -package camlp4.lib -package camlp4.extend -syntax camlp4r -I src -o src/pa_comprehension.cmo src/pa_comprehension.ml
+ocamlfind ocamlc -a src/pa_comprehension.cmo -o src/pa_comprehension.cma
+ocaml setup.ml -install 
+Installed /home/opam/.opam/4.01.0/lib/pa_comprehension/pa_comprehension.ml
+Installed /home/opam/.opam/4.01.0/lib/pa_comprehension/pa_comprehension.cma
+Installed /home/opam/.opam/4.01.0/lib/pa_comprehension/pa_comprehension.cmi
+Installed /home/opam/.opam/4.01.0/lib/pa_comprehension/META
+Installing pa_comprehension.0.4.
