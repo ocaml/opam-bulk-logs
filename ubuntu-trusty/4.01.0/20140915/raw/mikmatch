@@ -1,0 +1,65 @@
+++ opam install mikmatch -e ubuntu
++ depext=
++ echo Ubuntu depexts:
+Ubuntu depexts:
++ '[' '' '!=' '' ']'
+++ opam install mikmatch -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install mikmatch
+Ubuntu srcexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by mikmatch]
+ - install   tophide.1.0.2                         [required by mikmatch]
+ - install   mikmatch.1.0.7
+=== 3 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/mikmatch.1.0.7+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/tophide.1.0.2+opam.tar.gz
+sending incremental file list
+mikmatch.1.0.7+opam.tar.gz
+sending incremental file list
+tophide.1.0.2+opam.tar.gz
+
+sent 63,264 bytes  received 35 bytes  126,598.00 bytes/sec
+total size is 63,125  speedup is 1.00
+
+sent 3,560 bytes  received 35 bytes  7,190.00 bytes/sec
+total size is 3,426  speedup is 0.95
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building tophide.1.0.2:
+  make
+  make install
+cat META.in > META
+echo 'version = "1.0.1"' >> META
+ocamlc -I +compiler-libs -c tophide.ml
+ocamlfind install tophide META tophide.cmi tophide.cmo
+Installed /home/opam/.opam/4.01.0/lib/tophide/tophide.cmo
+Installed /home/opam/.opam/4.01.0/lib/tophide/tophide.cmi
+Installed /home/opam/.opam/4.01.0/lib/tophide/META
+Installing tophide.1.0.2.
+Applying mikmatch.patch.
+patching file str/META.template
+Building mikmatch.1.0.7:
+  make str
+  make install-str
+cd common && make
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/mikmatch.1.0.7/common'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mikmatch.1.0.7/common'
+making ._d/select_lib.d from select_lib.ml
+making ._d/regexp_ast.d from regexp_ast.ml
+making ._d/constants.d from constants.ml
+making ._d/charset.d from charset.ml
+making ._d/messages.d from messages.ml
+making ._d/global_def.d from global_def.ml
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/mikmatch.1.0.7/common'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/mikmatch.1.0.7/common'
+ocamlc -c -dtypes -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 global_def.mli
+ocamlc -c -pp "camlp4orf " -dtypes -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 global_def.ml
+ocamlc -c -dtypes -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 messages.ml
+ocamlc -c -dtypes -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 charset.ml
+ocamlc -c -pp "camlp4orf " -dtypes -I /home/opam/.opam/4.01.0/lib/ocaml/camlp4 constants.ml
