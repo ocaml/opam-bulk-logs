@@ -3428,3 +3428,83 @@ g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o ParseTree2.o
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o ParseTree3.o -c ParseTree3.cpp
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o Parser.o -c Parser.cpp
 g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o XmlEncode.o -c XmlEncode.cpp
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahtexcore'
+make lib -C src/unicodeconverter
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+g++ -Wall -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o UnicodeConverter.o -c UnicodeConverter.cpp
+UnicodeConverter.cpp: In member function 'std::wstring UnicodeConverter::ConvertIn(const string&)':
+UnicodeConverter.cpp:147:11: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     ) == -1)
+           ^
+UnicodeConverter.cpp: In member function 'std::string UnicodeConverter::ConvertOut(const wstring&)':
+UnicodeConverter.cpp:199:11: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     ) == -1)
+           ^
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+make lib -C src/messages
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+g++ -Wall -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -o Messages.o -c Messages.cpp
+Messages.cpp: In function 'std::wstring GetErrorMessage(const blahtex::Exception&)':
+Messages.cpp:296:48: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (n >= 0 && n < e.GetArgs().size())
+                                                ^
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+make lib -C src/mathml2dtd
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -o mathml2dtd.cmi -c mathml2dtd.mli
+ocamlfind ocamlc -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmo -c mathml2dtd.ml
+ocamlfind ocamlc -o mathml2dtd.cma -a mathml2dtd.cmo
+ocamlfind ocamlopt -package xstrp4,pxp-engine,pxp-ulex-utf8 -syntax camlp4o -o mathml2dtd.cmx -c mathml2dtd.ml
+ocamlfind ocamlopt -o mathml2dtd.cmxa -a mathml2dtd.cmx
+ocamlopt -shared -linkall -I . -o mathml2dtd.cmxs mathml2dtd.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+make lib -C src/blahcaml
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahcaml'
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmi -c blahcaml.mli
+g++ -O2 -fno-defer-pop -D_FILE_OFFSET_BITS=64 -D_REENTRANT -fPIC -I /home/opam/.opam/4.01.0/lib/ocaml -I ../blahtexcore -I ../unicodeconverter -I ../messages -o blahtex_stubs.o -c blahtex_stubs.cpp
+ocamlfind ocamlc -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmo -c blahcaml.ml
+ocamlfind ocamlopt -package pxp-engine,pxp-ulex-utf8 -I ../mathml2dtd -o blahcaml.cmx -c blahcaml.ml
+ocamlmklib -verbose -lstdc++ -o blahcaml -oc blahcaml ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o blahcaml.cmo blahcaml.cmx
++ gcc -shared -o ./dllblahcaml.so ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o    -lstdc++
++ ar rc ./libblahcaml.a  ../blahtexcore/InputSymbolTranslation.o ../blahtexcore/Interface.o ../blahtexcore/LayoutTree.o ../blahtexcore/MacroProcessor.o ../blahtexcore/Manager.o ../blahtexcore/MathmlNode.o ../blahtexcore/ParseTree1.o ../blahtexcore/ParseTree2.o ../blahtexcore/ParseTree3.o ../blahtexcore/Parser.o ../blahtexcore/XmlEncode.o ../unicodeconverter/UnicodeConverter.o ../messages/Messages.o blahtex_stubs.o; ranlib ./libblahcaml.a
++ /home/opam/.opam/4.01.0/bin/ocamlc -a  -o blahcaml.cma  blahcaml.cmo -dllib -lblahcaml -cclib -lblahcaml   -cclib -lstdc++ 
++ /home/opam/.opam/4.01.0/bin/ocamlopt -a -o blahcaml.cmxa  blahcaml.cmx -cclib -lblahcaml   -cclib -lstdc++ 
+ocamlopt -shared -linkall -I `pwd` -o blahcaml.cmxs blahcaml.cmxa
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahcaml'
+make lib -C src/blahtexcore
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahtexcore'
+make[1]: Nothing to be done for `lib'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahtexcore'
+make lib -C src/unicodeconverter
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+make[1]: Nothing to be done for `lib'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/unicodeconverter'
+make lib -C src/messages
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+make[1]: Nothing to be done for `lib'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/messages'
+make lib -C src/mathml2dtd
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+make[1]: Nothing to be done for `lib'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/mathml2dtd'
+make lib -C src/blahcaml
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahcaml'
+make[1]: Nothing to be done for `lib'.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/blahcaml.2.1/src/blahcaml'
+ocamlfind install blahcaml META  src/mathml2dtd/mathml2dtd.cmi  src/mathml2dtd/mathml2dtd.cma  src/mathml2dtd/mathml2dtd.cmxa  src/mathml2dtd/mathml2dtd.cmxs  src/mathml2dtd/mathml2dtd.a  src/blahcaml/blahcaml.cmi  src/blahcaml/blahcaml.cma  src/blahcaml/blahcaml.cmxa  src/blahcaml/blahcaml.cmxs  src/blahcaml/blahcaml.a  src/blahcaml/libblahcaml.a  src/blahcaml/dllblahcaml.so
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/libblahcaml.a
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/blahcaml.a
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/blahcaml.cmxs
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/blahcaml.cmxa
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/blahcaml.cma
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/blahcaml.cmi
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/mathml2dtd.a
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/mathml2dtd.cmxs
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/mathml2dtd.cmxa
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/mathml2dtd.cma
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/mathml2dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/blahcaml/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllblahcaml.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllblahcaml.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing blahcaml.2.1.
