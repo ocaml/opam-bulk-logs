@@ -5,10 +5,10 @@
 Ubuntu depexts:
 ++ opam install combine -e source,linux
 + srcext=
+Ubuntu srcexts:
 + echo Ubuntu srcexts:
 + '[' '' '!=' '' ']'
 + opam install combine
-Ubuntu srcexts:
 The following actions will be performed:
  - install   menhir.20140422                       [required by combine]
  - install   combine.0.55
@@ -19,8 +19,8 @@ The following actions will be performed:
 [default] Synchronizing with /home/opam/opam-repository/archives/menhir.20140422+opam.tar.gz
 sending incremental file list
 sending incremental file list
-combine.0.55+opam.tar.gz
 menhir.20140422+opam.tar.gz
+combine.0.55+opam.tar.gz
 
 sent 116,140 bytes  received 35 bytes  232,350.00 bytes/sec
 total size is 115,987  speedup is 1.00
@@ -704,14 +704,14 @@ File "lexer.mll", line 60, characters 4-26:
 Warning 3: deprecated: String.set
 File "lexer.mll", line 68, characters 18-29:
 Warning 3: deprecated: String.copy
-+ /home/opam/.opam/4.02.0/bin/ocamlopt.opt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
-File "parameterizedGrammar.ml", line 340, characters 26-38:
-Warning 3: deprecated: Array.create
 + /home/opam/.opam/4.02.0/bin/ocamlopt.opt -c -g -inline 1000 -o partialGrammar.cmx partialGrammar.ml
 File "partialGrammar.ml", line 259, characters 10-21:
 Warning 3: deprecated: String.copy
 File "partialGrammar.ml", line 262, characters 6-18:
 Warning 3: deprecated: String.set
++ /home/opam/.opam/4.02.0/bin/ocamlopt.opt -c -g -inline 1000 -o parameterizedGrammar.cmx parameterizedGrammar.ml
+File "parameterizedGrammar.ml", line 340, characters 26-38:
+Warning 3: deprecated: Array.create
 /home/opam/.opam/4.02.0/bin/ocamldep.opt -modules tokenType.ml > tokenType.ml.depends
 /home/opam/.opam/4.02.0/bin/ocamldep.opt -modules tokenType.mli > tokenType.mli.depends
 /home/opam/.opam/4.02.0/bin/ocamlc.opt -c -o tokenType.cmi tokenType.mli
@@ -1033,8 +1033,8 @@ checking for ocamlweb... true
 checking platform... configure: creating ./config.status
 config.status: creating Makefile
 config.status: WARNING:  'Makefile.in' seems to ignore the --datarootdir setting
-Makefile:306: .depend: No such file or directory
-menhir  -v parser.mly
+Makefile:306: .depend: No such file or directorymenhir  -v parser.mly
+
 Note: the nonterminal symbol option (from parser.mly) is renamed parser_option.
 Warning: you are using the standard library and/or the %inline keyword. We
 recommend switching on --infer in order to avoid obscure type error messages.
@@ -1065,44 +1065,3 @@ ocamlopt.opt -c -g -annot  -for-pack Combine backtracking.ml
 ocamlc.opt -c -g  ast.mli
 ocamlc.opt -c -g  parser.mli
 ocamlopt.opt -c -g -annot  -for-pack Combine parser.ml
-ocamlopt.opt -c -g -annot  -for-pack Combine lexer.ml
-ocamlc.opt -c -g  interp.mli
-ocamlopt.opt -c -g -annot  -for-pack Combine interp.ml
-ocamlopt.opt  -pack -o combine.cmx matrix.cmx dlx.cmx zdd.cmx emc.cmx d4.cmx tiling.cmx backtracking.cmx ast.cmi parser.cmx lexer.cmx interp.cmx
-ocamlopt.opt  -a -o combine.cmxa combine.cmx
-ocamlc.opt -c -g  matrix.ml
-ocamlc.opt -c -g  dlx.ml
-ocamlc.opt -c -g  zdd.ml
-File "zdd.ml", line 84, characters 14-26:
-Warning 3: deprecated: Array.create
-ocamlc.opt -c -g  emc.ml
-ocamlc.opt -c -g  d4.ml
-ocamlc.opt -c -g  tiling.ml
-ocamlc.opt -c -g  backtracking.ml
-ocamlc.opt -c -g  parser.ml
-ocamlc.opt -c -g  lexer.ml
-ocamlc.opt -c -g  interp.ml
-ocamlc.opt  -pack -g -o combine.cmo matrix.cmo dlx.cmo zdd.cmo emc.cmo d4.cmo tiling.cmo backtracking.cmo ast.cmi parser.cmo lexer.cmo interp.cmo
-ocamlopt.opt -c -g -annot  main.ml
-ocamlopt.opt -g -annot  -o combine.opt nums.cmxa unix.cmxa combine.cmxa main.cmx
-ocamlopt.opt -c -g -annot  sudoku.ml
-ocamlopt.opt -o sudoku.opt -g -annot  str.cmxa combine.cmxa sudoku.cmx
-ocamlopt.opt -c -g -annot  queens.ml
-ocamlopt.opt -o queens.opt unix.cmxa -g -annot  combine.cmxa queens.cmx
-ocamlc.opt  -a -g -o combine.cma combine.cmo
-ocamlc.opt -c -g  test.ml
-ocamlc.opt -o test.byte -g  nums.cma unix.cma combine.cma test.cmo
-ocamlc.opt -c -g  main.ml
-ocamlc.opt -g  -o combine.byte nums.cma unix.cma combine.cma main.cmo
-./test.byte
-for f in examples/*.cmb; do ./combine.byte --parse-only $f ; done
-mkdir -p /home/opam/.opam/4.02.0/bin
-mkdir -p /home/opam/.opam/4.02.0/lib/combine
-# mkdir -p /home/opam/.opam/4.02.0/share/man/man1
-# cp -f combine.1 /home/opam/.opam/4.02.0/share/man/man1
-cp -f combine.a combine.cmxa /home/opam/.opam/4.02.0/lib/combine
-cp -f combine.cmi combine.cma /home/opam/.opam/4.02.0/lib/combine
-cp -f META /home/opam/.opam/4.02.0/lib/combine
-# cp -f matrix.mli dlx.mli zdd.mli emc.mli d4.mli tiling.mli backtracking.mli ast.cmi parser.mli lexer.mli interp.mli /home/opam/.opam/4.02.0/lib/combine
-cp -f combine.opt /home/opam/.opam/4.02.0/bin/combine
-Installing combine.0.55.
