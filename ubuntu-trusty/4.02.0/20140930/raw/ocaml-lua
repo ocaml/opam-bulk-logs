@@ -170,3 +170,17 @@ ocamlfind ocamlc -c -g -dtypes -ccopt '-O3 -Wall -Isrc/ -I/usr/include/lua5.1' -
 ocamlfind ocamlc -a -dllib -llua_stubs -cclib -llua_stubs -cclib -llua5.1 src/lua_api_lib.cmo src/lua_aux_lib.cmo src/lua_api.cmo -o src/lua.cma
 ocamlfind ocamlopt -c -g -dtypes -ccopt '-O3 -Wall -Isrc/ -I/usr/include/lua5.1' -package unix -package threads -thread -I src -o src/lua_api_lib.cmx src/lua_api_lib.ml
 ocamlfind ocamlopt -c -g -dtypes -ccopt '-O3 -Wall -Isrc/ -I/usr/include/lua5.1' -package unix -package threads -thread -I src -o src/lua_aux_lib.cmx src/lua_aux_lib.ml
+ocamlfind ocamlopt -c -g -dtypes -ccopt '-O3 -Wall -Isrc/ -I/usr/include/lua5.1' -package unix -package threads -thread -I src -o src/lua_api.cmx src/lua_api.ml
+ocamlfind ocamlopt -a -cclib -llua_stubs -cclib -llua5.1 src/lua_api_lib.cmx src/lua_aux_lib.cmx src/lua_api.cmx -o src/lua.cmxa
+ocamlfind ocamlopt -shared -linkall -I src src/lua.cmxa -o src/lua.cmxs
+ocaml setup.ml -build 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+ocamlfind ocamlopt -shared -linkall -I src src/lua.cmxa -o src/lua.cmxs
+ocaml setup.ml -doc 
+File "setup.ml", line 213, characters 8-26:
+Warning 3: deprecated: String.set
+File "setup.ml", line 1793, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
