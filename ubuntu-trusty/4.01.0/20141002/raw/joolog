@@ -1900,3 +1900,23 @@ ocamlfind ocamlc -package bytes -package findlib,cmdliner -c vlq64.mli
 ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c vlq64.ml
 ocamlfind ocamlc -package bytes -package findlib,cmdliner -c source_map.mli
 ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c source_map.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_output.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_output.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_simpl.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_simpl.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_token.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_token.ml
+menhir --infer --external-tokens Js_token --explain js_parser.mly
+Warning: 12 states have shift/reduce conflicts.
+Warning: 47 shift/reduce conflicts were arbitrarily resolved.
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_parser.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_parser.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_lexer.mli
+ocamllex js_lexer.mll
+111 states, 948 transitions, table size 4458 bytes
+1750 additional bytes used for bindings
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_lexer.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c parse_js.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c parse_js.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c primitive.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c primitive.ml
