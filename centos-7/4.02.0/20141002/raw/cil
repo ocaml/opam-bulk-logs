@@ -823,3 +823,105 @@ config.status: creating lib/App/Cilly/CilConfig.pm
 config.status: creating doc/index.html
 config.status: creating doc/header.html
 config.status: creating src/machdep-ml.c
+config.status: creating config.h
+config.status: config.h is unchanged
+
+CIL configuration:
+  (optional) cl.exe found:    HAS_MSVC           no
+  gcc to use                  CC                 gcc
+  default compiler            DEFAULT_COMPILER   _GNUCC
+  CIL version                 CIL_VERSION        1.7.3
+  CIL features                CIL_FEATURES       
+  Extra source directories    EXTRASRCDIRS       
+cp lib/App/Cilly.pm.in lib/App/Cilly.pm
+sed -e "s|CIL_VERSION|1.7.3|" lib/App/Cilly.pm > lib/App/Cilly.pm.tmp; \
+mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+if gcc -D_GNUCC -m32 src/machdep-ml.c -o _build/machdep-ml32.exe ;then \
+  sed -e "s|nogcc32model|` _build/machdep-ml32.exe --env`|" lib/App/Cilly.pm > lib/App/Cilly.pm.tmp; \
+  mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+fi
+In file included from /usr/include/features.h:399:0,
+                 from /usr/include/stdio.h:27,
+                 from src/machdep-ml.c:40:
+/usr/include/gnu/stubs.h:7:27: fatal error: gnu/stubs-32.h: No such file or directory
+ # include <gnu/stubs-32.h>
+                           ^
+compilation terminated.
+if gcc -D_GNUCC -m64 src/machdep-ml.c -o _build/machdep-ml64.exe ;then \
+  sed -e "s|nogcc64model|` _build/machdep-ml64.exe --env`|" lib/App/Cilly.pm > lib/App/Cilly.pm.tmp; \
+  mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+fi
+src/machdep-ml.c: In function 'main':
+src/machdep-ml.c:106:21: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_short = (int)(&((struct shortstruct*)0)->s);
+                     ^
+src/machdep-ml.c:115:19: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_int = (int)(&((struct intstruct*)0)->i);
+                   ^
+src/machdep-ml.c:124:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_bool = (int)(&((struct boolstruct*)0)->b);
+                    ^
+src/machdep-ml.c:133:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_long = (int)(&((struct longstruct*)0)->l);
+                    ^
+src/machdep-ml.c:142:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_longlong = (int)(&((struct longlong*)0)->ll);
+                        ^
+src/machdep-ml.c:151:19: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_ptr = (int)(&((struct ptrstruct*)0)->p);
+                   ^
+src/machdep-ml.c:160:20: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_enum = (int)(&((struct enumstruct*)0)->e);
+                    ^
+src/machdep-ml.c:169:21: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_float = (int)(&((struct floatstruct*)0)->f);
+                     ^
+src/machdep-ml.c:178:22: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_double = (int)(&((struct s1*)0)->d);
+                      ^
+src/machdep-ml.c:187:26: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     alignof_longdouble = (int)(&((struct s1*)0)->ld);
+                          ^
+Generating CIL_MACHINE machine dependency information string (for CIL)
+cd lib; perl Makefile.PL
+Can't locate ExtUtils/MakeMaker.pm in @INC (@INC contains: /home/opam/.opam/4.02.0/lib/perl5 /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at Makefile.PL line 4.
+BEGIN failed--compilation aborted at Makefile.PL line 4.
+make: *** [lib/Makefile] Error 2
+
+
+#====================== ERROR while installing cil.1.7.3 ======================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0/build/cil.1.7.3
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/cil.1.7.3/cil-32-5f1023.env
+# stdout-file          /home/opam/.opam/4.02.0/build/cil.1.7.3/cil-32-5f1023.out
+# stderr-file          /home/opam/.opam/4.02.0/build/cil.1.7.3/cil-32-5f1023.err
+### stdout ###
+# ...[truncated]
+# mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+# if gcc -D_GNUCC -m32 src/machdep-ml.c -o _build/machdep-ml32.exe ;then \
+#   sed -e "s|nogcc32model|` _build/machdep-ml32.exe --env`|" lib/App/Cilly.pm > lib/App/Cilly.pm.tmp; \
+#   mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+# fi
+# if gcc -D_GNUCC -m64 src/machdep-ml.c -o _build/machdep-ml64.exe ;then \
+#   sed -e "s|nogcc64model|` _build/machdep-ml64.exe --env`|" lib/App/Cilly.pm > lib/App/Cilly.pm.tmp; \
+#   mv lib/App/Cilly.pm.tmp lib/App/Cilly.pm; \
+# fi
+# cd lib; perl Makefile.PL
+### stderr ###
+# ...[truncated]
+# src/machdep-ml.c:178:22: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+#      alignof_double = (int)(&((struct s1*)0)->d);
+#                       ^
+# src/machdep-ml.c:187:26: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+#      alignof_longdouble = (int)(&((struct s1*)0)->ld);
+#                           ^
+# Generating CIL_MACHINE machine dependency information string (for CIL)
+# Can't locate ExtUtils/MakeMaker.pm in @INC (@INC contains: /home/opam/.opam/4.02.0/lib/perl5 /usr/local/lib64/perl5 /usr/local/share/perl5 /usr/lib64/perl5/vendor_perl /usr/share/perl5/vendor_perl /usr/lib64/perl5 /usr/share/perl5 .) at Makefile.PL line 4.
+# BEGIN failed--compilation aborted at Makefile.PL line 4.
+# make: *** [lib/Makefile] Error 2
+
+'opam install cil' failed.
