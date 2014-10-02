@@ -1011,3 +1011,58 @@ Installed /home/opam/.opam/4.02.0/lib/menhirLib/menhirLib.cmo
 Installed /home/opam/.opam/4.02.0/lib/menhirLib/menhirLib.cmi
 Installed /home/opam/.opam/4.02.0/lib/menhirLib/META
 Installing menhir.20140422.
+Building spdiff.0.1:
+  make depend
+  make opt
+echo "let foo_ctl () = failwith \"there is no foo_ctl formula\"" \
+	  > test.ml
+ocamldep  *.mli *.ml > .depend
+set -e; for i in localcocci/commons localcocci/globals localcocci/menhirlib localcocci/parsing_cocci localcocci/parsing_c; do make -C $i depend; done
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/commons'
+ocamldep -I ocamlextra -I ocollection  *.mli *.ml  > .depend
+for i in ocamlextra ocollection; do ocamldep -I ocamlextra -I ocollection  $i/*.ml $i/*.mli >> .depend; done
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/commons'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/globals'
+ocamldep  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/globals'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/menhirlib'
+ocamldep  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/menhirlib'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/parsing_cocci'
+ocamllex lexer_cocci.mll
+181 states, 1670 transitions, table size 7766 bytes
+2130 additional bytes used for bindings
+ocamllex lexer_script.mll
+5 states, 259 transitions, table size 1066 bytes
+menhir --table parser_cocci_menhir.mly
+Warning: you are using the standard library and/or the %inline keyword. We
+recommend switching on --infer in order to avoid obscure type error messages.
+ocamldep -I ../commons -I ../commons/ocamlextra -I ../globals -I ../menhirlib *.mli *.ml > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/parsing_cocci'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/parsing_c'
+ocamllex  lexer_c.mll
+381 states, 13030 transitions, table size 54406 bytes
+3353 additional bytes used for bindings
+ocamlyacc -v parser_c.mly
+ocamldep -I ../commons -I ../commons/ocamlextra -I ../commons/ocollection -I ../globals -I  ../parsing_cocci  *.mli *.ml    > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/parsing_c'
+set -e; for i in localcocci/commons localcocci/globals localcocci/menhirlib localcocci/parsing_cocci localcocci/parsing_c; do make -C $i all.opt; done 
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/spdiff.0.1/localcocci/commons'
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/dumper.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/dumper.ml
+File "ocamlextra/dumper.ml", line 81, characters 16-25:
+Warning 3: deprecated: Obj.final_tag
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/ANSITerminal.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/ANSITerminal.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c ocamlextra/setb.mli
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/setb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/mapb.ml
+ocamlopt  -I ocamlextra -I ocollection   -c ocamlextra/setPt.ml
+ocamlc -g -dtypes -I ocamlextra -I ocollection   -c common.mli
+ocamlopt  -I ocamlextra -I ocollection   -c common.ml
+File "common.ml", line 361, characters 16-25:
+Warning 3: deprecated: Obj.final_tag
+File "common.ml", line 3113, characters 12-25:
+Warning 3: deprecated: String.create
+File "common.ml", line 5226, characters 14-26:
+Warning 3: deprecated: Array.create
