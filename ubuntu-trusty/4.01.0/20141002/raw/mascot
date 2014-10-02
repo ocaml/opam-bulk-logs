@@ -509,3 +509,25 @@ Warning 31: files /home/opam/.opam/4.01.0/lib/ocaml/camlp4/camlp4fulllib.cma(Cam
 File "/home/opam/.opam/4.01.0/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4)", line 1:
 Warning 31: files /home/opam/.opam/4.01.0/lib/ocaml/camlp4/camlp4fulllib.cma(Camlp4) and /home/opam/.opam/4.01.0/lib/ocaml/camlp4/camlp4lib.cma(Camlp4) both define a module named Camlp4
 /home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -I +camlp4 -I +compiler-libs -I +camlp4/Camlp4Parsers -I +ocamldoc -for-pack MascotLibrary -I src/driver -I src -I src/common -I src/parsers -I src/outputs -I src/checks -o src/driver/mascot.cmx src/driver/mascot.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt dynlink.cmxa unix.cmxa str.cmxa -I +camlp4 camlp4lib.cmxa -I +compiler-libs ocamlcommon.cmxa -I +camlp4/Camlp4Parsers camlp4fulllib.cmxa -I +ocamldoc odoc_info.cmxa mascotLibrary.cmx src/driver/mascot.cmx -o src/driver/mascot.native
+if [ -x "/home/opam/.opam/4.01.0/bin/ocamlfind" ]; then \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind query mascot && /home/opam/.opam/4.01.0/bin/ocamlfind remove mascot || true; \
+	  /home/opam/.opam/4.01.0/bin/ocamlfind install mascot META -optional `pwd`/_build/mascotLibrary.cm* `pwd`/_build/mascotLibrary.a `pwd`/_build/mascotLibrary.o `pwd`/_build/src/driver/mascot.byte `pwd`/_build/src/driver/mascot.native; \
+	else \
+	  mkdir -p /home/opam/.opam/4.01.0/lib/ocaml/mascot; \
+	  for ext in cmi cmo cmx cmj a o; do \
+	    test -f `pwd`/_build/mascotLibrary.$ext && cp `pwd`/_build/mascotLibrary.$ext /home/opam/.opam/4.01.0/lib/ocaml/mascot || true; \
+	  done; \
+	  for ext in byte native; do \
+	    test -f `pwd`/_build/src/driver/mascot.$ext && cp `pwd`/_build/src/driver/mascot.$ext /home/opam/.opam/4.01.0/bin || true; \
+	  done \
+	fi
+ocamlfind: Package `mascot' not found
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascot.native
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascot.byte
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascotLibrary.o
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascotLibrary.cmx
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascotLibrary.cmo
+Installed /home/opam/.opam/4.01.0/lib/mascot/mascotLibrary.cmi
+Installed /home/opam/.opam/4.01.0/lib/mascot/META
+Installing mascot.1.0.
