@@ -3422,3 +3422,73 @@ ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netst
 ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldap_mutex.cmx src/ldap_mutex.ml
 ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldap_error.cmx src/ldap_error.ml
 ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldap_funserver.cmx src/ldap_funserver.ml
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldap_txooclient.cmx src/ldap_txooclient.ml
+ocamlfind ocamlopt -a src/ldap_types.cmx src/ldap_filterparser.cmx src/ldap_filterlexer.cmx src/ldap_filter.cmx src/lber.cmx src/ldap_protocol.cmx src/ldap_dnparser.cmx src/ldap_dnlexer.cmx src/ldap_dn.cmx src/ldap_error.cmx src/ldap_urllexer.cmx src/ldap_url.cmx src/ldap_funclient.cmx src/ldap_funserver.cmx src/ldap_schemalexer.cmx src/ldap_schemaparser.cmx src/ulist.cmx src/ldap_ooclient.cmx src/ldap_mutex.cmx src/ldap_txooclient.cmx -o src/ldap.cmxa
+ocamlfind ocamlopt -shared -linkall src/ldap.cmxa -o src/ldap.cmxs
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_oo.mli > src/ldif_oo.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_oo.cmi src/ldif_oo.mli
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_oo.cmi src/ldif_oo.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_oo.ml > src/ldif_oo.ml.depends
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_parser.ml > src/ldif_parser.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_parser.cmo src/ldif_parser.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_parser.cmo src/ldif_parser.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+File "src/ldif_parser.ml", line 154, characters 6-13:
+Warning 26: unused variable options.
+File "src/ldif_parser.ml", line 157, characters 6-11:
+Warning 26: unused variable colon.
+File "src/ldif_parser.ml", line 184, characters 14-17:
+Warning 26: unused variable sep.
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_changerec_oo.mli > src/ldif_changerec_oo.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_oo.cmi src/ldif_changerec_oo.mli
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_oo.cmi src/ldif_changerec_oo.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_changerec_oo.ml > src/ldif_changerec_oo.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamllex.opt -q src/ldif_changerec_lexer.mll
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_changerec_lexer.ml > src/ldif_changerec_lexer.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlyacc src/ldif_changerec_parser.mly
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_changerec_parser.mli > src/ldif_changerec_parser.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_parser.cmi src/ldif_changerec_parser.mli
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_parser.cmi src/ldif_changerec_parser.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_lexer.cmo src/ldif_changerec_lexer.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_lexer.cmo src/ldif_changerec_lexer.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldif_changerec_parser.ml > src/ldif_changerec_parser.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_oo.cmo src/ldif_oo.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_oo.cmo src/ldif_oo.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_oo.cmo src/ldif_changerec_oo.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_oo.cmo src/ldif_changerec_oo.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_parser.cmo src/ldif_changerec_parser.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_parser.cmo src/ldif_changerec_parser.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamlc -a src/ldif_parser.cmo src/ldif_oo.cmo src/ldif_changerec_parser.cmo src/ldif_changerec_lexer.cmo src/ldif_changerec_oo.cmo -o src/ldif.cma
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_parser.cmx src/ldif_parser.ml
++ ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_parser.cmx src/ldif_parser.ml
+File "src/ldif_parser.ml", line 154, characters 6-13:
+Warning 26: unused variable options.
+File "src/ldif_parser.ml", line 157, characters 6-11:
+Warning 26: unused variable colon.
+File "src/ldif_parser.ml", line 184, characters 14-17:
+Warning 26: unused variable sep.
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_parser.cmx src/ldif_changerec_parser.ml
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_oo.cmx src/ldif_oo.ml
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_lexer.cmx src/ldif_changerec_lexer.ml
+ocamlfind ocamlopt -c -g -I src -I src -package ssl -package pcre -package netstring -I src -o src/ldif_changerec_oo.cmx src/ldif_changerec_oo.ml
+ocamlfind ocamlopt -a src/ldif_parser.cmx src/ldif_oo.cmx src/ldif_changerec_parser.cmx src/ldif_changerec_lexer.cmx src/ldif_changerec_oo.cmx -o src/ldif.cmxa
+ocamlfind ocamlopt -shared -linkall src/ldif.cmxa -o src/ldif.cmxs
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldap_toplevel.mli > src/ldap_toplevel.mli.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldap_toplevel.cmi src/ldap_toplevel.mli
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldap_toplevel.cmi src/ldap_toplevel.mli
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamldep -package ssl -package pcre -package netstring -modules src/ldap_toplevel.ml > src/ldap_toplevel.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldap_toplevel.cmo src/ldap_toplevel.ml
++ ocamlfind ocamlc -c -g -I src -I src -I +compiler-libs -package ssl -package pcre -package netstring -I src -o src/ldap_toplevel.cmo src/ldap_toplevel.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.01.0/lib/ocaml
+ocamlfind ocamlc -a -I +compiler-libs src/ldap_toplevel.cmo -o src/toplevel.cma
++ ocamlfind ocamlc -a -I +compiler-libs src/ldap_toplevel.cmo -o src/toplevel.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.01.0/lib/ocaml, /home/opam/.opam/4.01.0/lib/ocaml/compiler-libs
+ocaml setup.ml -install 
