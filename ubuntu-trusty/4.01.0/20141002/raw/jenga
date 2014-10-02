@@ -5294,3 +5294,49 @@ g++ -o obj/re2/regexp.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.   
 g++ -o obj/re2/set.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.    -DNDEBUG re2/set.cc
 g++ -o obj/re2/simplify.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.    -DNDEBUG re2/simplify.cc
 g++ -o obj/re2/tostring.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.    -DNDEBUG re2/tostring.cc
+g++ -o obj/re2/unicode_casefold.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.    -DNDEBUG re2/unicode_casefold.cc
+g++ -o obj/re2/unicode_groups.o  -Wall -O3 -g -pthread -fPIC -Wno-sign-compare -c -I.    -DNDEBUG re2/unicode_groups.cc
+ar rv obj/libre2.a obj/util/arena.o obj/util/hash.o obj/util/rune.o obj/util/stringpiece.o obj/util/stringprintf.o obj/util/strutil.o obj/util/valgrind.o obj/re2/bitstate.o obj/re2/compile.o obj/re2/dfa.o obj/re2/filtered_re2.o obj/re2/mimics_pcre.o obj/re2/nfa.o obj/re2/onepass.o obj/re2/parse.o obj/re2/perl_groups.o obj/re2/prefilter.o obj/re2/prefilter_tree.o obj/re2/prog.o obj/re2/re2.o obj/re2/regexp.o obj/re2/set.o obj/re2/simplify.o obj/re2/tostring.o obj/re2/unicode_casefold.o obj/re2/unicode_groups.o 
+ar: creating obj/libre2.a
+a - obj/util/arena.o
+a - obj/util/hash.o
+a - obj/util/rune.o
+a - obj/util/stringpiece.o
+a - obj/util/stringprintf.o
+a - obj/util/strutil.o
+a - obj/util/valgrind.o
+a - obj/re2/bitstate.o
+a - obj/re2/compile.o
+a - obj/re2/dfa.o
+a - obj/re2/filtered_re2.o
+a - obj/re2/mimics_pcre.o
+a - obj/re2/nfa.o
+a - obj/re2/onepass.o
+a - obj/re2/parse.o
+a - obj/re2/perl_groups.o
+a - obj/re2/prefilter.o
+a - obj/re2/prefilter_tree.o
+a - obj/re2/prog.o
+a - obj/re2/re2.o
+a - obj/re2/regexp.o
+a - obj/re2/set.o
+a - obj/re2/simplify.o
+a - obj/re2/tostring.o
+a - obj/re2/unicode_casefold.o
+a - obj/re2/unicode_groups.o
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/re2.111.08.00/_build/lib/libre2'
+ocamlmklib -oc re2_stubs stubs.o libre2/obj/libre2.a -lstdc++
+rm libre2_stubs.a # ocamlmklib just includes libre2/obj/libre2.a inside the stubs archive
+cp libre2/obj/libre2.a libre2_stubs.a && ar r libre2_stubs.a stubs.o
+ocamlmklib -oc re2_stubs stubs.o libre2/obj/libre2.a -lstdc++
+rm libre2_stubs.a # ocamlmklib just includes libre2/obj/libre2.a inside the stubs archive
+cp libre2/obj/libre2.a libre2_stubs.a && ar r libre2_stubs.a stubs.o
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/re2.111.08.00/_build/lib'
+W: Cannot find source file matching module 're2' in library re2
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+gcc -E -P -x c lib/options.mlp -o lib/options.ml
+ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -modules lib/options.ml > lib/options.ml.depends
+ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -modules lib/re2_internal.mli > lib/re2_internal.mli.depends
+ocamlfind ocamldep -syntax camlp4o -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -modules lib/re2_internal_intf.ml > lib/re2_internal_intf.ml.depends
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/options.cmo lib/options.ml
+ocamlfind ocamlc -c -g -syntax camlp4o -thread -package threads -package comparelib.syntax -package sexplib.syntax -package sexplib -package bin_prot.syntax -package bin_prot -package pa_test.syntax -package pa_ounit.syntax -package pa_ounit -package core -I lib -o lib/re2_internal_intf.cmo lib/re2_internal_intf.ml
