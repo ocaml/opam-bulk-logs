@@ -708,3 +708,162 @@ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/arcfour.c
 mv arcfour.o src/arcfour.o
 ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-arcfour.c
 mv stubs-arcfour.o src/stubs-arcfour.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/blowfish.c
+mv blowfish.o src/blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-blowfish.c
+mv stubs-blowfish.o src/stubs-blowfish.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/d3des.c
+mv d3des.o src/d3des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-des.c
+mv stubs-des.o src/stubs-des.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/rijndael-alg-fst.c
+mv rijndael-alg-fst.o src/rijndael-alg-fst.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/ripemd160.c
+mv ripemd160.o src/ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-ripemd160.c
+mv stubs-ripemd160.o src/stubs-ripemd160.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha1.c
+mv sha1.o src/sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha1.c
+mv stubs-sha1.o src/stubs-sha1.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/sha256.c
+mv sha256.o src/sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-sha256.c
+mv stubs-sha256.o src/stubs-sha256.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-aes.c
+mv stubs-aes.o src/stubs-aes.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-md5.c
+mv stubs-md5.o src/stubs-md5.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-misc.c
+mv stubs-misc.o src/stubs-misc.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+mv stubs-rng.o src/stubs-rng.o
+ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
++ ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+src/stubs-zlib.c:19:18: fatal error: zlib.h: No such file or directory
+ #include <zlib.h>
+                  ^
+compilation terminated.
+Command exited with code 2.
+E: Failure("Command ''/home/opam/.opam/4.02.0/bin/ocamlbuild' src/libcryptokit_stubs.a src/dllcryptokit_stubs.so src/cryptokit.cma src/cryptokit.cmxa src/cryptokit.a src/cryptokit.cmxs -tag debug -classic-display' terminated with error code 10")
+make: *** [build] Error 1
+Removing cryptokit.1.9.
+[ERROR] The compilation of cryptokit.1.9 failed.
+  ocamlfind remove cryptokit
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/cryptokit
+Copying ~/.opam/repo/default/packages/ocamlgraph/ocamlgraph.1.8.2/files/ocamlgraph.install to ~/.opam/4.02.0/build/ocamlgraph.1.8.2/
+Building ocamlgraph.1.8.2:
+  ./configure
+  make
+  make install-findlib
+checking for ocamlc... ocamlc
+ocaml version is 4.02.0
+ocaml library path is /home/opam/.opam/4.02.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamldep... ocamldep
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for ocamldoc... ocamldoc
+checking for ocamldoc.opt... ocamldoc.opt
+checking for ocamlweb... true
+checking for ocamlfind... ocamlfind
+checking for /home/opam/.opam/4.02.0/lib/ocaml/lablgtk2/lablgtk.cmxa... no
+checking Win32 platform... no
+configure: WARNING: lablgnomecanvas not found: the graph editor and view_graph will not be compiled
+configure: creating ./config.status
+config.status: creating Makefile
+sed -e s/VERSION/1.8.2/ -e s/CMA/graph.cma/ -e s/CMXA/graph.cmxa/ \
+	META.in > META
+rm -f src/version.ml
+echo "let version = \""1.8.2"\"" > src/version.ml
+echo "let date = \""`date`"\"" >> src/version.ml
+rm -f .depend
+ocamldep -slash -I src -I lib -I editor -I view_graph -I dgraph\
+	lib/*.ml lib/*.mli \
+	src/*.ml src/*.mli \
+	editor/*.mli editor/*.ml \
+	view_graph/*.mli view_graph/*.ml \
+	dgraph/*.mli dgraph/*.ml > .depend
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/sig_pack.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/dot_ast.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/unionfind.ml
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/heap.ml
+File "lib/heap.ml", line 54, characters 13-25:
+Warning 3: deprecated: Array.create
+File "lib/heap.ml", line 61, characters 16-28:
+Warning 3: deprecated: Array.create
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.mli
+ocamlc.opt -c -I src -I lib -g -dtypes lib/bitv.ml
+File "lib/bitv.ml", line 51, characters 15-27:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 68, characters 25-37:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 71, characters 12-24:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 113, characters 11-13:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 118, characters 11-13:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 205, characters 13-15:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 205, characters 25-27:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 206, characters 13-15:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 206, characters 25-27:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 214, characters 13-15:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 214, characters 24-26:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 289, characters 13-15:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 289, characters 24-26:
+Warning 3: deprecated: Pervasives.or
+File "lib/bitv.ml", line 368, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 380, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 392, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 401, characters 10-22:
+Warning 3: deprecated: Array.create
+File "lib/bitv.ml", line 464, characters 27-39:
+Warning 3: deprecated: String.set
+File "lib/bitv.ml", line 289, characters 24-26:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 289, characters 13-15:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 214, characters 24-26:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 214, characters 13-15:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 206, characters 25-27:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 206, characters 13-15:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 205, characters 25-27:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 205, characters 13-15:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 118, characters 11-13:
+Warning 3: deprecated: operator (or); you should use (||) instead
+File "lib/bitv.ml", line 113, characters 11-13:
+Warning 3: deprecated: operator (or); you should use (||) instead
+ocamlc.opt -c -I src -I lib -g -dtypes src/version.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/util.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/blocks.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/persistent.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/persistent.ml
+ocamlc.opt -c -I src -I lib -g -dtypes src/imperative.mli
+ocamlc.opt -c -I src -I lib -g -dtypes src/imperative.ml
