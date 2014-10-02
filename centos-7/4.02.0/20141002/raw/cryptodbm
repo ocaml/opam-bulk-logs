@@ -736,3 +736,119 @@ ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/MacOSPa
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/UnixPath.cmx src/UnixPath.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/Win32Path.cmx src/Win32Path.ml
 ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FilePath.cmx src/FilePath.ml
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtil.cmx src/FileUtil.ml
++ ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtil.cmx src/FileUtil.ml
+File "src/FileUtil.ml", line 625, characters 16-34:
+Warning 3: deprecated: Lazy.lazy_from_val
+ocamlfind ocamlopt -a src/FileStringExt.cmx src/CommonPath.cmx src/FilePath_type.cmx src/ExtensionPath.cmx src/MacOSPath.cmx src/UnixPath.cmx src/Win32Path.cmx src/FilePath.cmx src/FileUtil.cmx -o src/fileutils.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils.cmxa -o src/fileutils.cmxs
+ocamlfind ocamldep -package unix -package str -modules src/FileUtilStr.ml > src/FileUtilStr.ml.depends
+ocamlfind ocamlc -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmo src/FileUtilStr.ml
+ocamlfind ocamlc -a src/FileUtilStr.cmo -o src/fileutils-str.cma
+ocamlfind ocamlopt -c -g -I src -package unix -package str -I src -o src/FileUtilStr.cmx src/FileUtilStr.ml
+ocamlfind ocamlopt -a src/FileUtilStr.cmx -o src/fileutils-str.cmxa
+ocamlfind ocamlopt -shared -linkall src/fileutils-str.cmxa -o src/fileutils-str.cmxs
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/BenchFind.ml > test/BenchFind.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/BenchFind.cmo test/BenchFind.ml
+ocamlfind ocamlc -g -linkpkg -package unix src/fileutils.cma test/BenchFind.cmo -o test/BenchFind.byte
+ocamlfind ocamldep -package unix -package str -package oUnit -modules test/test.ml > test/test.ml.depends
+ocamlfind ocamlc -c -g -I src -I src -package unix -package str -package oUnit -I test -I src -o test/test.cmo test/test.ml
+ocamlfind ocamlc -g -linkpkg -package unix -package str -package oUnit src/fileutils.cma src/fileutils-str.cma test/test.cmo -o test/test.byte
+ocaml setup.ml -install 
+File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+Warning 3: deprecated: String.set
+File "/home/gildor/programmation/oasis/src/oasis/OASISLibrary.ml", line 400, characters 6-24:
+Warning 3: deprecated: Lazy.lazy_from_fun
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtil.ml
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FilePath.mli
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils.cma
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils.cmxs
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils.cmxa
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils.a
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtil.cmi
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FilePath.cmi
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtil.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FilePath.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/CommonPath.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/ExtensionPath.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FilePath_type.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileStringExt.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/MacOSPath.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/UnixPath.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/Win32Path.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtilStr.ml
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils-str.cma
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils-str.cmxs
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils-str.cmxa
+Installed /home/opam/.opam/4.02.0/lib/fileutils/fileutils-str.a
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtilStr.cmi
+Installed /home/opam/.opam/4.02.0/lib/fileutils/FileUtilStr.cmx
+Installed /home/opam/.opam/4.02.0/lib/fileutils/META
+Installing fileutils.0.4.4.
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   exenum.0.6
+ - install   fileutils.0.4.4
+ - install   ounit.2.0.0
+The following failed
+ - install   cryptokit.1.9
+ - install   dbm.1.0
+Due to the errors, the following have been cancelled
+ - install   cryptodbm.0.8
+
+#==================== ERROR while installing cryptokit.1.9 ====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0/build/cryptokit.1.9
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/cryptokit.1.9/cryptokit-110-d2c37b.env
+# stdout-file          /home/opam/.opam/4.02.0/build/cryptokit.1.9/cryptokit-110-d2c37b.out
+# stderr-file          /home/opam/.opam/4.02.0/build/cryptokit.1.9/cryptokit-110-d2c37b.err
+### stdout ###
+# ...[truncated]
+# mv stubs-misc.o src/stubs-misc.o
+# ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-rng.c
+# mv stubs-rng.o src/stubs-rng.o
+# ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+# + ocamlfind ocamlc -ccopt -O -ccopt -DHAVE_ZLIB -c src/stubs-zlib.c
+# src/stubs-zlib.c:19:18: fatal error: zlib.h: No such file or directory
+#  #include <zlib.h>
+#                   ^
+# compilation terminated.
+# Command exited with code 2.
+### stderr ###
+# ...[truncated]
+# File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+# Warning 3: deprecated: String.set
+# File "/home/gildor/programmation/oasis/src/oasis/OASISFindlib.ml", line 256, characters 6-24:
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# File "/home/gildor/programmation/oasis/src/oasis/OASISString.ml", line 118, characters 8-26:
+# Warning 3: deprecated: String.set
+# File "/home/gildor/programmation/oasis/src/oasis/OASISFindlib.ml", line 256, characters 6-24:
+# Warning 3: deprecated: Lazy.lazy_from_fun
+# E: Failure("Command ''/home/opam/.opam/4.02.0/bin/ocamlbuild' src/libcryptokit_stubs.a src/dllcryptokit_stubs.so src/cryptokit.cma src/cryptokit.cmxa src/cryptokit.a src/cryptokit.cmxs -tag debug -classic-display' terminated with error code 10")
+# make: *** [build] Error 1
+
+
+#======================= ERROR while installing dbm.1.0 =======================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              ./configure
+# path                 /home/opam/.opam/4.02.0/build/dbm.1.0
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/dbm.1.0/dbm-273-60459a.env
+# stdout-file          /home/opam/.opam/4.02.0/build/dbm.1.0/dbm-273-60459a.out
+# stderr-file          /home/opam/.opam/4.02.0/build/dbm.1.0/dbm-273-60459a.err
+### stdout ###
+# Configuring for OCaml version 4.02.0
+# 
+# NDBM not found, the "camldbm" library cannot be built.
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140902075452.export"
+'opam install cryptodbm' failed.
