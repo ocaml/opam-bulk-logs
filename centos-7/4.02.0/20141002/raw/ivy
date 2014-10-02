@@ -1,0 +1,85 @@
+++ opam install ivy -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install ivy
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   ivy.1.2.2
+=== 1 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[ivy.1.2.2] Downloading http://www.eei.cena.fr/products/ivy/download/packages/ivy-ocaml_1.2-2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  8825   10   934    0     0   4254      0  0:00:02 --:--:--  0:00:02  4245100  8825  100  8825    0     0  40107      0 --:--:-- --:--:-- --:--:-- 40113
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building ivy.1.2.2:
+  make
+  make install COMPAT_SYMLINK_CREATE=no
+ocamldep  *.mli *.ml > .depend
+ocamlc  -c ivy.mli
+ocamlc   -c ivy.ml
+File "ivy.ml", line 58, characters 10-23:
+Warning 3: deprecated: String.create
+File "ivy.ml", line 61, characters 4-34:
+Warning 3: deprecated: String.set
+File "ivy.ml", line 62, characters 4-39:
+Warning 3: deprecated: String.set
+File "ivy.ml", line 68, characters 10-23:
+Warning 3: deprecated: String.create
+File "ivy.ml", line 70, characters 4-69:
+Warning 3: deprecated: String.set
+ocamlc  -c ivyLoop.mli
+ocamlc   -c ivyLoop.ml
+cc -Wall -c -fPIC -I /opt/local/include/  -I `ocamlc -where` `pkg-config --cflags glib-2.0` civy.c
+Package glib-2.0 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `glib-2.0.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'glib-2.0' found
+civy.c:5:21: fatal error: Ivy/ivy.h: No such file or directory
+ #include <Ivy/ivy.h>
+                     ^
+compilation terminated.
+make: *** [civy.o] Error 1
+Removing ivy.1.2.2.
+[ERROR] The compilation of ivy.1.2.2 failed.
+  ocamlfind remove ivy
+  ocamlfind remove glibivy
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/ivy
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/glibivy
+
+
+#====================== ERROR while installing ivy.1.2.2 ======================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0/build/ivy.1.2.2
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/ivy.1.2.2/ivy-30-5f1023.env
+# stdout-file          /home/opam/.opam/4.02.0/build/ivy.1.2.2/ivy-30-5f1023.out
+# stderr-file          /home/opam/.opam/4.02.0/build/ivy.1.2.2/ivy-30-5f1023.err
+### stdout ###
+# ocamldep  *.mli *.ml > .depend
+# ocamlc  -c ivy.mli
+# ocamlc   -c ivy.ml
+# ocamlc  -c ivyLoop.mli
+# ocamlc   -c ivyLoop.ml
+# cc -Wall -c -fPIC -I /opt/local/include/  -I `ocamlc -where` `pkg-config --cflags glib-2.0` civy.c
+### stderr ###
+# ...[truncated]
+# Warning 3: deprecated: String.set
+# Package glib-2.0 was not found in the pkg-config search path.
+# Perhaps you should add the directory containing `glib-2.0.pc'
+# to the PKG_CONFIG_PATH environment variable
+# No package 'glib-2.0' found
+# civy.c:5:21: fatal error: Ivy/ivy.h: No such file or directory
+#  #include <Ivy/ivy.h>
+#                      ^
+# compilation terminated.
+# make: *** [civy.o] Error 1
+
+'opam install ivy' failed.
