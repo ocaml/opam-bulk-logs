@@ -4124,3 +4124,75 @@ ocamlfind ocamlc -pack pa_lib/p4_helpers.cmo pa_lib/p4_type.cmo pa_lib/p4_value.
 ocamlfind ocamlc -a -package type_conv -package camlp4.quotations -package camlp4 lib/dyntype.cmo pa_lib/pa_dyntype.cmo -o pa_lib/pa_dyntype.cma
 ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_helpers.cmx pa_lib/p4_helpers.ml
 ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_type.cmx pa_lib/p4_type.ml
+ocamlfind ocamlopt -c -annot -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/p4_value.cmx pa_lib/p4_value.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_type.cmx pa_lib/pa_type.ml
+ocamlfind ocamlopt -c -annot -package type_conv -package camlp4.quotations -package camlp4 -syntax camlp4o -for-pack Pa_dyntype -I pa_lib -I lib_test -I lib -o pa_lib/pa_value.cmx pa_lib/pa_value.ml
+touch pa_lib/pa_dyntype.mli  ; if  ocamlfind ocamlopt -pack -I pa_lib pa_lib/p4_helpers.cmx pa_lib/p4_type.cmx pa_lib/p4_value.cmx pa_lib/pa_type.cmx pa_lib/pa_value.cmx -o pa_lib/pa_dyntype.cmx  ; then  rm -f pa_lib/pa_dyntype.mli  ; else  rm -f pa_lib/pa_dyntype.mli  ; exit 1; fi
+ocamlfind ocamlopt -shared -package type_conv -package camlp4.quotations -package camlp4 pa_lib/pa_dyntype.cmx -o pa_lib/pa_dyntype.cmxs
+ocamlfind remove dyntype || true
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.02.0/lib/dyntype
+ocamlfind install dyntype META -optional _build/pa_lib/pa_dyntype.cmi _build/lib/dyntype.cmi _build/pa_lib/pa_dyntype.cma _build/lib/dyntype.cma _build/pa_lib/pa_dyntype.cmxa _build/lib/dyntype.cmxa _build/pa_lib/pa_dyntype.a _build/lib/dyntype.a
+Installed /home/opam/.opam/4.02.0/lib/dyntype/dyntype.a
+Installed /home/opam/.opam/4.02.0/lib/dyntype/dyntype.cmxa
+Installed /home/opam/.opam/4.02.0/lib/dyntype/dyntype.cma
+Installed /home/opam/.opam/4.02.0/lib/dyntype/pa_dyntype.cma
+Installed /home/opam/.opam/4.02.0/lib/dyntype/dyntype.cmi
+Installed /home/opam/.opam/4.02.0/lib/dyntype/pa_dyntype.cmi
+Installed /home/opam/.opam/4.02.0/lib/dyntype/META
+Installing dyntype.0.9.0.
+Building js_of_ocaml.2.5:
+  make build
+  make install-lib BINDIR=/home/opam/.opam/4.02.0/bin
+make -C compiler all lib
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/js_of_ocaml.2.5/compiler'
+echo "let s = \"2.5\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c compiler_version.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c compiler_version.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c util.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c util.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c pretty_print.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c pretty_print.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c option.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c option.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c reserved.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c reserved.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c varPrinter.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c varPrinter.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c dgraph.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c dgraph.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c code.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c code.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c parse_info.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c parse_info.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c javascript.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c javascript.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c vlq64.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c vlq64.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c source_map.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c source_map.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_output.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c js_output.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_simpl.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c js_simpl.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_token.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c js_token.ml
+menhir --infer --external-tokens Js_token --explain js_parser.mly
+Warning: 12 states have shift/reduce conflicts.
+Warning: 47 shift/reduce conflicts were arbitrarily resolved.
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_parser.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c js_parser.ml
+ocamllex js_lexer.mll
+111 states, 948 transitions, table size 4458 bytes
+1750 additional bytes used for bindings
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_lexer.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c js_lexer.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c parse_js.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c parse_js.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c primitive.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c primitive.ml
+menhir --infer --explain annot_parser.mly
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c annot_parser.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c annot_parser.ml
+ocamllex annot_lexer.mll
