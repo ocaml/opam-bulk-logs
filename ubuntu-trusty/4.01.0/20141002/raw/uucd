@@ -51,3 +51,12 @@ Installing xmlm.1.2.0.
 Building uucd.2.0.0:
   ocaml pkg/git.ml
   ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -package xmlm -modules src/uucd.ml > src/uucd.ml.depends
+ocamlfind ocamldep -package xmlm -modules src/uucd.mli > src/uucd.mli.depends
+ocamlfind ocamlc -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmi src/uucd.mli
+ocamlfind ocamlopt -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmx src/uucd.ml
+ocamlfind ocamlopt -a src/uucd.cmx -o src/uucd.cmxa
+ocamlfind ocamlc -c -bin-annot -package xmlm -I src -I test -o src/uucd.cmo src/uucd.ml
+ocamlfind ocamlc -a src/uucd.cmo -o src/uucd.cma
+ocamlfind ocamlopt -shared src/uucd.cmx -o src/uucd.cmxs
+Installing uucd.2.0.0.
