@@ -2600,3 +2600,58 @@ ocamlfind ocamlc -safe-string -package findlib,cmdliner -c generate.mli
 ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c generate.ml
 ocamlfind ocamlc -safe-string -package findlib,cmdliner -c driver.mli
 ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c driver.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c pseudoFs.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c pseudoFs.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c commonArg.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c commonArg.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c compileArg.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c compileArg.ml
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c compile.ml
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -linkpkg -g -o compile.opt compiler_version.cmx util.cmx pretty_print.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx primitive.cmx annot_parser.cmx annot_lexer.cmx instr.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx parse_bytecode.cmx generate.cmx driver.cmx pseudoFs.cmx commonArg.cmx compileArg.cmx compile.cmx
+mv -f compile.opt js_of_ocaml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c minifyArg.mli
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c minifyArg.ml
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -for-pack Compiler -g -c minify.ml
+ocamlfind ocamlopt -safe-string -package findlib,cmdliner -linkpkg -g -o minify.opt compiler_version.cmx util.cmx pretty_print.cmx option.cmx reserved.cmx varPrinter.cmx dgraph.cmx code.cmx javascript.cmx vlq64.cmx source_map.cmx js_output.cmx js_simpl.cmx parse_info.cmx js_token.cmx js_parser.cmx js_lexer.cmx parse_js.cmx primitive.cmx annot_parser.cmx annot_lexer.cmx instr.cmx subst.cmx pure_fun.cmx deadcode.cmx flow.cmx specialize.cmx specialize_js.cmx eval.cmx inline.cmx tailcall.cmx freevars.cmx phisimpl.cmx js_traverse.cmx js_assign.cmx js_tailcall.cmx linker.cmx parse_bytecode.cmx generate.cmx driver.cmx pseudoFs.cmx commonArg.cmx minifyArg.cmx minify.cmx
+mv -f minify.opt jsoo_minify
+mkdir -p man
+./jsoo_minify --help=groff >man/jsoo_minify.1
+mkdir -p man
+./js_of_ocaml --help=groff >man/js_of_ocaml.1
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c compiler_version.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c util.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c pretty_print.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c option.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c reserved.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c varPrinter.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c dgraph.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c code.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c javascript.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c vlq64.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c source_map.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_output.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_simpl.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c parse_info.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_token.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_parser.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_lexer.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c parse_js.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c primitive.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c annot_parser.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c annot_lexer.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c instr.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c subst.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c pure_fun.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c deadcode.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c flow.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c specialize.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c specialize_js.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c eval.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c inline.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c tailcall.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c freevars.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c phisimpl.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_traverse.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_assign.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c js_tailcall.ml
+ocamlfind ocamlc -safe-string -package findlib,cmdliner -c linker.ml
