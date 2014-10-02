@@ -4319,3 +4319,56 @@ ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g 
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g file.ml
 ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c dom_events.mli
 ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g dom_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c firebug.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g firebug.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c lwt_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g lwt_js.ml
+sed -e "s|%%VERSION%%|`sed -e 1q ../VERSION`|" sys_js.mlp >sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c sys_js.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g sys_js.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c regexp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g regexp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c cSS.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g cSS.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c url.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g url.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c form.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g form.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c xmlHttpRequest.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g xmlHttpRequest.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c lwt_js_events.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g lwt_js_events.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c json.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g json.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c jsonp.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g jsonp.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c webGL.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g webGL.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c webSockets.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g webSockets.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c keycode.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g keycode.ml
+ocamlfind ocamlc -package lwt -I deriving_json -safe-string -c eventSource.mli
+ocamlfind ocamlc -pp "camlp4o syntax/pa_js.cmo" -safe-string -package lwt -c -g eventSource.ml
+(echo "#include <stdlib.h>"; \
+ echo "#include <stdio.h>"; \
+ echo "#define D(f) void f () { fprintf(stderr, \"Unimplemented Javascript primitive %s!\\\\n\", #f); exit(1); }"; \
+ (sed -n -e 's/.*external.*"\([^"%]*\)".*/D(\1)/p' js.ml dom.ml typed_array.ml dom_html.ml dom_svg.ml file.ml dom_events.ml firebug.ml lwt_js.ml sys_js.ml regexp.ml cSS.ml url.ml form.ml xmlHttpRequest.ml lwt_js_events.ml json.ml jsonp.ml webGL.ml webSockets.ml keycode.ml eventSource.ml | \
+  sort | uniq)) \
+        > stubs.c
+ocamlfind ocamlc -package lwt -c stubs.c
+ocamlmklib -o js_of_ocaml js.cmo dom.cmo typed_array.cmo dom_html.cmo dom_svg.cmo file.cmo dom_events.cmo firebug.cmo lwt_js.cmo sys_js.cmo regexp.cmo cSS.cmo url.cmo form.cmo xmlHttpRequest.cmo lwt_js_events.cmo json.cmo jsonp.cmo webGL.cmo webSockets.cmo keycode.cmo eventSource.cmo stubs.o
+ocamlfind ocamlc -safe-string -package lwt,lwt.log -I . -I log log/lwt_log_js.mli -o log/lwt_log_js.cmi
+ocamlfind ocamlc -syntax camlp4o -safe-string -package lwt,lwt.syntax,lwt.log -ppopt syntax/pa_js.cmo -I log -c log/lwt_log_js.ml -o log/lwt_log_js.cmo
+ocamlfind ocamlc -a -o log/logger.cma log/lwt_log_js.cmo
+ocamlfind ocamlopt -safe-string -package camlp4.extend,camlp4.quotations -syntax camlp4o -c syntax/pa_js.ml
+ocamlfind ocamlopt -shared -linkall -o syntax/pa_js.cmxs syntax/pa_js.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/js_of_ocaml.2.5/lib'
+make -C ocamlbuild
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/js_of_ocaml.2.5/ocamlbuild'
+ocamlbuild -use-ocamlfind -package bytes ocamlbuild_js_of_ocaml.cma ocamlbuild_js_of_ocaml.cmxa ocamlbuild_js_of_ocaml.a ocamlbuild_js_of_ocaml.cmxs
+ocamlfind ocamldep -package ocamlbuild -package str -package bytes -modules ocamlbuild_js_of_ocaml.mli > ocamlbuild_js_of_ocaml.mli.depends
+ocamlfind ocamlc -c -safe-string -package ocamlbuild -package str -package bytes -o ocamlbuild_js_of_ocaml.cmi ocamlbuild_js_of_ocaml.mli
+ocamlfind ocamldep -package ocamlbuild -package str -package bytes -modules ocamlbuild_js_of_ocaml.ml > ocamlbuild_js_of_ocaml.ml.depends
+ocamlfind ocamlc -c -safe-string -package ocamlbuild -package str -package bytes -o ocamlbuild_js_of_ocaml.cmo ocamlbuild_js_of_ocaml.ml
+ocamlfind ocamlc -a -package ocamlbuild -package str -package bytes ocamlbuild_js_of_ocaml.cmo -o ocamlbuild_js_of_ocaml.cma
