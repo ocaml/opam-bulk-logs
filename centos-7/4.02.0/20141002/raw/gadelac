@@ -1,0 +1,53 @@
+++ opam install gadelac -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install gadelac
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   menhir.20140422                       [required by gadelac]
+ - install   gadelac.0.6.1
+=== 2 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[gadelac.0.6.1] Downloading https://bitbucket.org/Abdallah/gadelac/get/v0.6.1.tar.gz
+[menhir.20140422] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20140422.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  536k  100  536k    0     0  1288k      0 --:--:-- --:--:-- --:--:-- 1289k
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  100k  100  100k    0     0  94119      0  0:00:01  0:00:01 --:--:-- 94163
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Copying ~/.opam/repo/default/packages/menhir/menhir.20140422/files/menhir.install to ~/.opam/4.02.0/build/menhir.20140422/
+Building menhir.20140422:
+  make PREFIX=/home/opam/.opam/4.02.0 docdir=/home/opam/.opam/4.02.0/doc/menhir libdir=/home/opam/.opam/4.02.0/lib/menhir mandir=/home/opam/.opam/4.02.0/man/man1
+  make install PREFIX=/home/opam/.opam/4.02.0 docdir=/home/opam/.opam/4.02.0/doc/menhir libdir=/home/opam/.opam/4.02.0/lib/menhir mandir=/home/opam/.opam/4.02.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.02.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+  echo "let ocamlfind = true" >> src/installation.ml ; \
+else \
+  echo "let ocamlfind = false" >> src/installation.ml ; \
+fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/menhir.20140422/src'
+ocamlbuild -classic-display -j 0 menhirLib.cmo menhirLib.cmx
+/home/opam/.opam/4.02.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+File "_tags", line 10, characters 27-40:
+Warning: the tag "use_ocamlyacc" is not used in any flag declaration, so it will have no effect; it may be a typo. Otherwise use `mark_tag_used` in your myocamlbuild.ml to disable this warning.
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules infiniteArray.mli > infiniteArray.mli.depends
+/home/opam/.opam/4.02.0/bin/ocamlc.opt -c -o infiniteArray.cmi infiniteArray.mli
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules infiniteArray.ml > infiniteArray.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules packedIntArray.mli > packedIntArray.mli.depends
+/home/opam/.opam/4.02.0/bin/ocamlc.opt -c -o packedIntArray.cmi packedIntArray.mli
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules packedIntArray.ml > packedIntArray.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules rowDisplacement.mli > rowDisplacement.mli.depends
+/home/opam/.opam/4.02.0/bin/ocamlc.opt -c -o rowDisplacement.cmi rowDisplacement.mli
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules rowDisplacement.ml > rowDisplacement.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules engineTypes.ml > engineTypes.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamldep.opt -modules engine.mli > engine.mli.depends
+/home/opam/.opam/4.02.0/bin/ocamlc.opt -c -g -o engineTypes.cmo engineTypes.ml
