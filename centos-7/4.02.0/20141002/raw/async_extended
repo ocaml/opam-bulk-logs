@@ -7689,3 +7689,78 @@ pkg_threads: ......................................... /home/opam/.opam/4.02.0/l
 ./setup.exe -build 
 W: Cannot find source file matching module 'async' in library async
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamldep -package threads -package async_unix -package async_kernel -package async_extra -modules lib/std.ml > lib/std.ml.depends
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -I lib -o lib/std.cmo lib/std.ml
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  /home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+/home/opam/.opam/4.02.0/bin/ocamlfind ocamlopt -shared lib/async.cmxa lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.02.0/lib/async/std.ml
+Installed /home/opam/.opam/4.02.0/lib/async/async.cmi
+Installed /home/opam/.opam/4.02.0/lib/async/async.cma
+Installed /home/opam/.opam/4.02.0/lib/async/async.cmxa
+Installed /home/opam/.opam/4.02.0/lib/async/async.a
+Installed /home/opam/.opam/4.02.0/lib/async/async.cmxs
+Installed /home/opam/.opam/4.02.0/lib/async/async.cmx
+Installed /home/opam/.opam/4.02.0/lib/async/META
+Installing async.111.25.00.
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   core_kernel.111.28.00
+ - install   sexplib.111.25.00
+ - install   async.111.25.00
+ - install   pa_test.111.08.00
+ - install   enumerate.111.08.00
+ - install   custom_printf.111.25.00
+ - install   ounit.2.0.0
+ - install   async_kernel.111.28.00
+ - install   camlp4.4.02.0+1
+ - install   comparelib.109.60.00
+ - install   pa_ounit.111.28.00
+ - install   core_extended.111.28.00
+ - install   core.111.28.00
+ - install   re2.111.08.00
+ - install   variantslib.109.15.03
+ - install   pipebang.110.01.00
+ - install   typerep.111.17.00
+ - install   async_unix.111.28.00
+ - install   type_conv.111.13.00
+ - install   herelib.109.35.02
+ - install   async_extra.111.28.00
+ - install   pa_bench.111.28.00
+ - install   fieldslib.109.20.03
+ - install   textutils.111.28.00
+ - install   bin_prot.111.03.00
+The following failed
+ - install   camlzip.1.05
+Due to the errors, the following have been cancelled
+ - install   async_extended.111.28.00
+
+#==================== ERROR while installing camlzip.1.05 =====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make all
+# path                 /home/opam/.opam/4.02.0/build/camlzip.1.05
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/camlzip.1.05/camlzip-2055-6aa130.env
+# stdout-file          /home/opam/.opam/4.02.0/build/camlzip.1.05/camlzip-2055-6aa130.out
+# stderr-file          /home/opam/.opam/4.02.0/build/camlzip.1.05/camlzip-2055-6aa130.err
+### stdout ###
+# ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+### stderr ###
+# zlibstubs.c:18:18: fatal error: zlib.h: No such file or directory
+#  #include <zlib.h>
+#                   ^
+# compilation terminated.
+# make: *** [zlibstubs.o] Error 2
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140902053337.export"
+'opam install async_extended' failed.
