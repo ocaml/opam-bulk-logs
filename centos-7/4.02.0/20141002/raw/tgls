@@ -354,3 +354,5 @@ ocamlfind ocamldep -package ctypes -modules src/tgl3.ml > src/tgl3.ml.depends
 ocamlfind ocamldep -package ctypes -modules src/tgl3.mli > src/tgl3.mli.depends
 ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmi src/tgl3.mli
 ocamlfind ocamlopt -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmx src/tgl3.ml
+ocamlfind ocamlopt -a -thread -ccopt -Wl,-no-as-needed -package ctypes.foreign -package ctypes src/tgl3.cmx -o src/tgl3.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -thread -package ctypes -I src -I test -o src/tgl3.cmo src/tgl3.ml
