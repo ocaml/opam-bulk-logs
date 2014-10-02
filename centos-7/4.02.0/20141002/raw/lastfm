@@ -1,0 +1,185 @@
+++ opam install lastfm -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install lastfm
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   xmlm.1.2.0                            [required by xmlplaylist]
+ - install   conf-libpcre.1                        [required by pcre-ocaml]
+ - install   xmlplaylist.0.1.3                     [required by lastfm]
+ - install   pcre-ocaml.7.1.1                      [required by lastfm]
+ - install   lastfm.0.3.0
+=== 5 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[lastfm.0.3.0] Downloading http://downloads.sourceforge.net/project/savonet/ocaml-lastfm/0.3.0/ocaml-lastfm-0.3.0.tar.gz
+[pcre-ocaml.7.1.1] Downloading https://github.com/mmottl/pcre-ocaml/releases/download/v7.1.1/pcre-ocaml-7.1.1.tar.gz
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 38181  100 38181    0     0   163k      0 --:--:-- --:--:-- --:--:--  163k
+200
+[xmlplaylist.0.1.3] Downloading http://downloads.sourceforge.net/project/savonet/ocaml-xmlplaylist/0.1.3/ocaml-xmlplaylist-0.1.3.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   400    0   400    0     0    604      0 --:--:-- --:--:-- --:--:--   605
+ 50 77765   50 39096    0     0  51343      0  0:00:01 --:--:--  0:00:01 51343100 77765  100 77765    0     0  99275      0 --:--:-- --:--:-- --:--:-- 1798k
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+100 64731  100 64731    0     0  89269      0 --:--:-- --:--:-- --:--:-- 89269
+ 20 86796   20 17431    0     0   9899      0  0:00:08  0:00:01  0:00:07 18367100 86796  100 86796    0     0  43898      0  0:00:01  0:00:01 --:--:-- 74567
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building conf-libpcre.1:
+  pkg-config libpcre
+Removing conf-libpcre.1.
+[ERROR] The compilation of conf-libpcre.1 failed.
+  Nothing to do.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.02.0/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Building xmlplaylist.0.1.3:
+  ./configure --prefix /home/opam/.opam/4.02.0
+  make
+  make install
+configuring ocaml-xmlplaylist 0.1.3
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for ocamlc... ocamlc
+OCaml version is 4.02.0
+checking if ocaml compiler supports first-class modules... yes
+OCaml library path is /home/opam/.opam/4.02.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlidl... no
+checking for ocamllex... ocamllex
+checking for ocamllex.opt... ocamllex.opt
+checking for ocamlyacc... ocamlyacc
+checking for camlp4... no
+checking for camlp4boot... no
+checking for camlp4o... no
+checking for camlp4of... no
+checking for camlp4oof... no
+checking for camlp4orf... no
+checking for camlp4prof... no
+checking for camlp4r... no
+checking for camlp4rf... no
+checking for ocamlfind... ocamlfind
+checking for caml/threads.h... no
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for xmlm... ok
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/META
+config.status: creating src/Makefile
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+making ._bcdi/xmlplaylist.di from xmlplaylist.mli
+making ._d/xmlplaylist.d from xmlplaylist.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+ocamlc.opt -c -I /home/opam/.opam/4.02.0/lib/xmlm xmlplaylist.mli
+ocamlc.opt -c -I /home/opam/.opam/4.02.0/lib/xmlm xmlplaylist.ml
+ocamlc.opt -a    -I /home/opam/.opam/4.02.0/lib/xmlm          \
+			  -o xmlplaylist.cma  xmlplaylist.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+making ._ncdi/xmlplaylist.di from xmlplaylist.mli
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+ocamlopt.opt -c -I /home/opam/.opam/4.02.0/lib/xmlm xmlplaylist.ml
+ocamlopt.opt -a     -I /home/opam/.opam/4.02.0/lib/xmlm           \
+			 -o xmlplaylist.cmxa xmlplaylist.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: `xmlplaylist.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+make[2]: `xmlplaylist.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+
+Installing library with ocamlfind
+ocamlfind install  xmlplaylist META xmlplaylist.mli xmlplaylist.cmi xmlplaylist.cma xmlplaylist.cmxa xmlplaylist.cmx xmlplaylist.a
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.a
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.cmx
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.cmxa
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.cma
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.cmi
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/xmlplaylist.mli
+Installed /home/opam/.opam/4.02.0/lib/xmlplaylist/META
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/xmlplaylist.0.1.3/src'
+Installing xmlplaylist.0.1.3.
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   xmlplaylist.0.1.3
+ - install   xmlm.1.2.0
+The following failed
+ - install   conf-libpcre.1
+Due to the errors, the following have been cancelled
+ - install   lastfm.0.3.0
+ - install   pcre-ocaml.7.1.1
+
+#=================== ERROR while installing conf-libpcre.1 ====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              pkg-config libpcre
+# path                 /home/opam/.opam/4.02.0/build/conf-libpcre.1
+# compiler             4.02.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.02.0/build/conf-libpcre.1/conf-libpcre-82-7afd23.env
+# stdout-file          /home/opam/.opam/4.02.0/build/conf-libpcre.1/conf-libpcre-82-7afd23.out
+# stderr-file          /home/opam/.opam/4.02.0/build/conf-libpcre.1/conf-libpcre-82-7afd23.err
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140902043302.export"
+'opam install lastfm' failed.
