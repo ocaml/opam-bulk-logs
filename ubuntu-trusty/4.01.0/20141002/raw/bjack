@@ -119,3 +119,72 @@ make[2]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
 ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include     -Wall -DCAML_NAME_SPACE \
 				-DPIC -fPIC -I/home/opam/.opam/4.01.0/include      \
 				    -o jack_stubs.o " jack_stubs.c 
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -g -O2 -I/home/opam/.opam/4.01.0/include     -Wall -DCAML_NAME_SPACE \
+				-DPIC -fPIC -I/home/opam/.opam/4.01.0/include      \
+				    -o jack_wrapper.o " jack_wrapper.c 
+jack_wrapper.c: In function 'JACK_Open':
+jack_wrapper.c:1172:5: warning: 'jack_port_get_total_latency' is deprecated (declared at /usr/include/jack/jack.h:1050) [-Wdeprecated-declarations]
+     periods = jack_port_get_total_latency(drv->client,
+     ^
+jack_wrapper.c:1180:5: warning: 'jack_port_get_total_latency' is deprecated (declared at /usr/include/jack/jack.h:1050) [-Wdeprecated-declarations]
+     periods = jack_port_get_total_latency(drv->client,
+     ^
+jack_wrapper.c: In function 'JACK_GetPosition':
+jack_wrapper.c:1697:9: warning: variable 'type_str' set but not used [-Wunused-but-set-variable]
+   char *type_str = "UNKNOWN type";
+         ^
+jack_wrapper.c: In function 'JACK_GetJackOutputLatency':
+jack_wrapper.c:1924:5: warning: 'jack_port_get_total_latency' is deprecated (declared at /usr/include/jack/jack.h:1050) [-Wdeprecated-declarations]
+     return_val = jack_port_get_total_latency(drv->client, drv->output_port[0]);
+     ^
+jack_wrapper.c: In function 'JACK_GetJackInputLatency':
+jack_wrapper.c:1938:5: warning: 'jack_port_get_total_latency' is deprecated (declared at /usr/include/jack/jack.h:1050) [-Wdeprecated-declarations]
+     return_val = jack_port_get_total_latency(drv->client, drv->input_port[0]);
+     ^
+ar rcs libbjack_stubs.a  jack_stubs.o jack_wrapper.o
+ocamlc.opt -c -thread bjack.mli
+ocamlc.opt -c -thread bjack.ml
+ocamlmklib      -L/home/opam/.opam/4.01.0/lib    \
+				-o bjack_stubs  jack_stubs.o jack_wrapper.o -ljack -lpthread -lsamplerate \
+				
+ocamlc.opt -a -dllib dllbjack_stubs.so       -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib     \
+				-cclib -lbjack_stubs -cclib -ljack -cclib -lpthread -cclib -lsamplerate  -o bjack.cma  bjack.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+making ._ncdi/bjack.di from bjack.mli
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: `libbjack_stubs.a' is up to date.
+ocamlopt.opt -c -thread bjack.ml
+ocamlopt.opt -a        -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib    -cclib -lbjack_stubs -cclib -ljack -cclib -lpthread -cclib -lsamplerate  \
+				 -o bjack.cmxa bjack.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: `libbjack_stubs.a' is up to date.
+make[2]: `bjack.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+make[2]: `libbjack_stubs.a' is up to date.
+make[2]: `bjack.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+
+Installing library with ocamlfind
+ocamlfind install  bjack META bjack.mli bjack.cmi bjack.cma bjack.cmxa bjack.cmx bjack.a libbjack_stubs.a dllbjack_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/bjack/libbjack_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.a
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.cmx
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.cmxa
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.cma
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.cmi
+Installed /home/opam/.opam/4.01.0/lib/bjack/bjack.mli
+Installed /home/opam/.opam/4.01.0/lib/bjack/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbjack_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllbjack_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/bjack.0.1.4/src'
+Installing bjack.0.1.4.
