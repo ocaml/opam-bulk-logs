@@ -700,3 +700,48 @@ ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uu
 File "imap/imapUtils.ml", line 45, characters 24-36:
 Warning 3: deprecated: String.set
 ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapParser.cmx imap/imapParser.ml
+ocamlfind ocamldep -package uint -package cryptokit -package uutf -modules imap/imapCore.ml > imap/imapCore.ml.depends
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapControl.cmx imap/imapControl.ml
+ocamlfind ocamldep -package uint -package cryptokit -package uutf -modules imap/imapPrint.ml > imap/imapPrint.ml.depends
+ocamlfind ocamldep -package uint -package cryptokit -package uutf -modules imap/imapPrint.mli > imap/imapPrint.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapPrint.cmi imap/imapPrint.mli
+ocamlfind ocamldep -package uint -package cryptokit -package uutf -modules imap/imapSend.ml > imap/imapSend.ml.depends
+ocamlfind ocamldep -package uint -package cryptokit -package uutf -modules imap/imapSend.mli > imap/imapSend.mli.depends
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapSend.cmi imap/imapSend.mli
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapAuth.cmx imap/imapAuth.ml
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapCore.cmx imap/imapCore.ml
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapPrint.cmx imap/imapPrint.ml
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapSend.cmx imap/imapSend.ml
+ocamlfind ocamlopt -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapCommands.cmx imap/imapCommands.ml
+ocamlfind ocamlopt -a -package uint -package cryptokit -package uutf imap/imapAuth.cmx imap/imapSet.cmx imap/imapUtils.cmx imap/imapParser.cmx imap/imapControl.cmx imap/imapCore.cmx imap/imapPrint.cmx imap/imapSend.cmx imap/imapCommands.cmx -o imap/imap.cmxa
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapCommands.cmo imap/imapCommands.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapControl.cmo imap/imapControl.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapAuth.cmo imap/imapAuth.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapParser.cmo imap/imapParser.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapPrint.cmo imap/imapPrint.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapSet.cmo imap/imapSet.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapUtils.cmo imap/imapUtils.ml
++ ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapUtils.cmo imap/imapUtils.ml
+File "imap/imapUtils.ml", line 45, characters 24-36:
+Warning 3: deprecated: String.set
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapSend.cmo imap/imapSend.ml
+ocamlfind ocamlc -c -g -bin-annot -package uint -package cryptokit -package uutf -I imap -o imap/imapCore.cmo imap/imapCore.ml
+ocamlfind ocamlc -a -package uint -package cryptokit -package uutf imap/imapAuth.cmo imap/imapSet.cmo imap/imapUtils.cmo imap/imapParser.cmo imap/imapControl.cmo imap/imapCore.cmo imap/imapPrint.cmo imap/imapSend.cmo imap/imapCommands.cmo -o imap/imap.cma
+ocamlfind ocamlopt -shared -linkall -package uint -package cryptokit -package uutf imap/imap.cmxa -o imap/imap.cmxs
+ocamlfind ocamldep -package compiler-libs -package uint -package cryptokit -package uutf -modules top/imapLwtInstallPrinters.ml > top/imapLwtInstallPrinters.ml.depends
+ocamlfind ocamlc -c -g -bin-annot -package compiler-libs -package uint -package cryptokit -package uutf -I top -I imap -o top/imapLwtInstallPrinters.cmo top/imapLwtInstallPrinters.ml
++ ocamlfind ocamlc -c -g -bin-annot -package compiler-libs -package uint -package cryptokit -package uutf -I top -I imap -o top/imapLwtInstallPrinters.cmo top/imapLwtInstallPrinters.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml, /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -c -g -bin-annot -package compiler-libs -package uint -package cryptokit -package uutf -I top -I imap -o top/imapLwtInstallPrinters.cmx top/imapLwtInstallPrinters.ml
++ ocamlfind ocamlopt -c -g -bin-annot -package compiler-libs -package uint -package cryptokit -package uutf -I top -I imap -o top/imapLwtInstallPrinters.cmx top/imapLwtInstallPrinters.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml, /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -a -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmx -o top/imapLwtInstallPrinters.cmxa
++ ocamlfind ocamlopt -a -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmx -o top/imapLwtInstallPrinters.cmxa
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml, /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs
+ocamlfind ocamlc -a -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmo -o top/imapLwtInstallPrinters.cma
++ ocamlfind ocamlc -a -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmo -o top/imapLwtInstallPrinters.cma
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml, /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs
+ocamlfind ocamlopt -shared -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmx -o top/imapLwtInstallPrinters.cmxs
++ ocamlfind ocamlopt -shared -package compiler-libs -package uint -package cryptokit -package uutf top/imapLwtInstallPrinters.cmx -o top/imapLwtInstallPrinters.cmxs
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml, /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs
+Installing imap.0.20.0.
