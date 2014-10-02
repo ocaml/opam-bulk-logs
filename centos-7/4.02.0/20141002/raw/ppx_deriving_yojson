@@ -587,3 +587,16 @@ Installed /home/opam/.opam/4.02.0/lib/yojson/META
 Installing yojson.1.1.8.
 Building ppx_deriving_yojson.1.0:
   ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.02.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+ocamlfind ocamldep -package ppx_deriving.api -modules src/ppx_deriving_yojson.ml > src/ppx_deriving_yojson.ml.depends
+ocamlfind ocamlc -c -bin-annot -safe-string -package ppx_deriving.api -w @5@8@10@11@12@14@23@24@26@29@40 -I src -o src/ppx_deriving_yojson.cmo src/ppx_deriving_yojson.ml
++ ocamlfind ocamlc -c -bin-annot -safe-string -package ppx_deriving.api -w @5@8@10@11@12@14@23@24@26@29@40 -I src -o src/ppx_deriving_yojson.cmo src/ppx_deriving_yojson.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0/lib/ocaml
+ocamlfind ocamlopt -c -bin-annot -safe-string -package ppx_deriving.api -w @5@8@10@11@12@14@23@24@26@29@40 -I src -o src/ppx_deriving_yojson.cmx src/ppx_deriving_yojson.ml
++ ocamlfind ocamlopt -c -bin-annot -safe-string -package ppx_deriving.api -w @5@8@10@11@12@14@23@24@26@29@40 -I src -o src/ppx_deriving_yojson.cmx src/ppx_deriving_yojson.ml
+findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/opam/.opam/4.02.0/lib/ocaml/compiler-libs, /home/opam/.opam/4.02.0/lib/ocaml
+ocamlfind ocamlopt -a src/ppx_deriving_yojson.cmx -o src/ppx_deriving_yojson.cmxa
+ocamlfind ocamlc -a src/ppx_deriving_yojson.cmo -o src/ppx_deriving_yojson.cma
+ocamlfind ocamlopt -shared src/ppx_deriving_yojson.cmx -o src/ppx_deriving_yojson.cmxs
+# No parallelism done
+Installing ppx_deriving_yojson.1.0.
