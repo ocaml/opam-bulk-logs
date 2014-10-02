@@ -100,3 +100,41 @@ touch bytecode
 ocamlc -c easy_format.mli
 ocamlopt -c -dtypes easy_format.ml
 ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+		if test -f bytecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+		fi; \
+		if test -f nativecode; then \
+		  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+		fi; \
+		ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.02.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.02.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building ppx_tools.0.99.1:
+  make all
+  make install
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.mli
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlc -a -o ppx_tools.cma ast_convenience.cmo ast_mapper_class.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c genlifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o genlifter ocamlcommon.cma ppx_tools.cma genlifter.cmo
+./genlifter -I +compiler-libs Parsetree.expression > ast_lifter.ml || rm -rf ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_lifter.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c dumpast.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o dumpast ocamlcommon.cma ocamlbytecomp.cma ast_lifter.cmo dumpast.cmo
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ppx_metaquot.ml
+ocamlc -w +A-4-17-44-45 -I +compiler-libs -safe-string -o ppx_metaquot ocamlcommon.cma ppx_tools.cma ast_lifter.cmo ppx_metaquot.cmo
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_convenience.ml
+ocamlopt -w +A-4-17-44-45 -I +compiler-libs -safe-string -c ast_mapper_class.ml
+ocamlopt -a -o ppx_tools.cmxa ast_convenience.cmx ast_mapper_class.cmx
+ocamlopt -shared -o ppx_tools.cmxs -linkall ppx_tools.cmxa
