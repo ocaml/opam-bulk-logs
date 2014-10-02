@@ -5757,3 +5757,17 @@ ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
 ocamlfind ocamlc -thread -I +camlp4 -package core -c form.mli
 ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
 	form.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core -c engine.mli
+ocamlfind ocamlopt -thread -I +camlp4 -for-pack Editable -package core  -c \
+	engine.ml
+ocamlfind ocamlopt -pack -o editable.cmx entry.cmx form.cmx engine.cmx
+ocamlfind ocamlopt -for-pack Editable -package core -a -thread -I +camlp4 -o editable.cmxa editable.cmx
+make[3]: Leaving directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/editable'
+make -C editable byte-code
+make[3]: Entering directory `/home/opam/.opam/4.01.0/build/opass.1.0.1/lib/editable'
+ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
+	entry.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
+	form.ml
+ocamlfind ocamlc -thread -I +camlp4 -package core  -c \
+	engine.ml
