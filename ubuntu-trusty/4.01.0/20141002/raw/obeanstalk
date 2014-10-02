@@ -5476,3 +5476,36 @@ ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /ho
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -pack -g lib/std.cmo -o lib/async.cmo
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlc -a lib/async.cmo -o lib/async.cma
 /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -c -g -thread -package threads -package async_unix -package async_kernel -package async_extra -for-pack Async -I lib -o lib/std.cmx lib/std.ml
+touch lib/async.mli  ; if  /home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -pack -g -I lib lib/std.cmx -o lib/async.cmx  ; then  rm -f lib/async.mli  ; else  rm -f lib/async.mli  ; exit 1; fi
+removing 'touch' inserted by broken ocamlbuild rule for packed modules.
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -a lib/async.cmx -o lib/async.cmxa
+/home/opam/.opam/4.01.0/bin/ocamlfind ocamlopt -shared lib/async.cmxa lib/async.cmx -o lib/async.cmxs
+./setup.exe -install 
+Installed /home/opam/.opam/4.01.0/lib/async/std.ml
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmi
+Installed /home/opam/.opam/4.01.0/lib/async/async.cma
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmxa
+Installed /home/opam/.opam/4.01.0/lib/async/async.a
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmxs
+Installed /home/opam/.opam/4.01.0/lib/async/async.cmx
+Installed /home/opam/.opam/4.01.0/lib/async/META
+Installing async.111.25.00.
+Building obeanstalk.0.1:
+  make opam-install
+make clean
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/obeanstalk.0.1'
+ocamlbuild -use-ocamlfind -package threads -lflags -thread -clean
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/obeanstalk.0.1'
+make build
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/obeanstalk.0.1'
+ocamlbuild -use-ocamlfind -package threads -lflags -thread beanstalk.cma beanstalk.cmxa beanstalk.cmi beanstalk.a beanstalk.mli
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk.mli > lib/beanstalk.mli.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk.cmi lib/beanstalk.mli
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk.ml > lib/beanstalk.ml.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk_cmd.mli > lib/beanstalk_cmd.mli.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk_exc.ml > lib/beanstalk_exc.ml.depends
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/beanstalk_raw.mli > lib/beanstalk_raw.mli.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_cmd.cmi lib/beanstalk_cmd.mli
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_exc.cmo lib/beanstalk_exc.ml
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_raw.cmi lib/beanstalk_raw.mli
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk.cmo lib/beanstalk.ml
