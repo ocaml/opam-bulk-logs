@@ -3116,3 +3116,57 @@ ocamllex viewer/dot_lexer.mll
 45 states, 444 transitions, table size 2046 bytes
 ls *.ml *.mli viewer/*.ml viewer/*.mli | \
         xargs ocamlfind ocamldep -package js_of_ocaml,js_of_ocaml.syntax -syntax camlp4o -I viewer > .depend
+ocamlfind ocamlc -package unix,str,bigarray,cudf -g -I viewer -c ptset.mli
+ocamlfind ocamlopt  -package unix,str,bigarray,cudf -g -I viewer -c ptset.ml
+File "ptset.ml", line 1:
+Error: The implementation ptset.ml does not match the interface ptset.cmi:
+       ...
+       In module Big:
+       The value `of_list' is required but not provided
+make: *** [ptset.cmx] Error 2
+Removing coinst.1.9.1.
+[ERROR] The compilation of coinst.1.9.1 failed.
+  rm -f /home/opam/.opam/4.02.0/bin/coinst rm -f /home/opam/.opam/4.02.0/bin/coinst-upgrades rm -f /home/opam/.opam/4.02.0/bin/comigrate
+
+#==================== ERROR while installing coinst.1.9.1 =====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.02.0/build/coinst.1.9.1
+# compiler             4.02.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.02.0/build/coinst.1.9.1/coinst-5769-865888.env
+# stdout-file          /home/opam/.opam/4.02.0/build/coinst.1.9.1/coinst-5769-865888.out
+# stderr-file          /home/opam/.opam/4.02.0/build/coinst.1.9.1/coinst-5769-865888.err
+### stdout ###
+# ocamlyacc viewer/dot_parser.mly
+# ocamllex viewer/dot_lexer.mll
+# 45 states, 444 transitions, table size 2046 bytes
+# ls *.ml *.mli viewer/*.ml viewer/*.mli | \
+#         xargs ocamlfind ocamldep -package js_of_ocaml,js_of_ocaml.syntax -syntax camlp4o -I viewer > .depend
+# ocamlfind ocamlc -package unix,str,bigarray,cudf -g -I viewer -c ptset.mli
+# ocamlfind ocamlopt  -package unix,str,bigarray,cudf -g -I viewer -c ptset.ml
+### stderr ###
+# File "ptset.ml", line 1:
+# Error: The implementation ptset.ml does not match the interface ptset.cmi:
+#        ...
+#        In module Big:
+#        The value `of_list' is required but not provided
+# make: *** [ptset.cmx] Error 2
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   js_of_ocaml.2.5
+ - install   cudf.0.7
+ - install   lwt.2.4.5
+ - install   menhir.20140422
+ - install   cmdliner.0.9.5
+ - install   extlib.1.6.1
+ - install   camlp4.4.02.0+1
+The following failed
+ - install   coinst.1.9.1
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.02.0/backup/state-20140902074447.export"
+'opam install coinst' failed.
