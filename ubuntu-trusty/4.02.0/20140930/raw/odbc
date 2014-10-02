@@ -140,4 +140,122 @@ unixODBC headers found
 checking for SQLAllocEnv in -lodbc... yes
 unixODBC support
 ======== configure DB2 ========
-checking sqlcli1.h usability... 
+checking sqlcli1.h usability... no
+checking sqlcli1.h presence... no
+checking for sqlcli1.h... no
+DB2 headers not found
+No DB2 support
+======== configure OPENINGRES ========
+checking for sqlext.h... (cached) yes
+OPENINGRES headers found
+checking for SQLAllocEnv in -lodbc... (cached) yes
+OPENINGRES support
+======== configure ORACLE through DataDirect "Connect for ODBC" driver ========
+checking sqlcli_.h usability... no
+checking sqlcli_.h presence... no
+checking for sqlcli_.h... no
+ORACLECFO headers not found
+No Oracle through DataDirect "Connect for ODBC" driver support
+checking for ocamlfind... ocamlfind
+checking for OCaml findlib package lablgtk2... not found
+configure: WARNING: Biniki will not be compiled.
+configure: creating ./config.status
+config.status: creating META
+config.status: creating Makefile.master
+config.status: creating opam/opam
+Makefile:144: .depend: No such file or directory
+rm -f .depend
+ocamldep  ocamlodbc.ml ocamlodbc_lowlevel.ml odbc.ml ocamlodbc.mli odbc.mli > .depend
+for d in unixodbc openingres; do \
+	  make BASE=$d library; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+ocamlc.opt -verbose -pp 'grep -v DEBUG'  -c odbc.mli
++ grep -v DEBUG 'odbc.mli' > /tmp/ocamlppbb082f
+ocamlc.opt -verbose -pp 'grep -v DEBUG'  -c odbc.ml
++ grep -v DEBUG 'odbc.ml' > /tmp/ocamlpp0427ad
+ocamlc.opt -verbose -a -o odbc.cma odbc.cmo
+ocamlopt.opt -pp 'grep -v DEBUG'  -c odbc.ml
+ocamlopt.opt -a -o odbc.cmxa odbc.cmx
+======== Compiling 'unixodbc' ========
+make BASE=unixodbc ocamlmklib
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+LC_ALL=C sed -e 's/ocamlodbc_/ocamlodbc_unixodbc_/' ocaml_odbc_c.c > odbc_unixodbc_c.c
+gcc -c -fPIC -pthread -g -O2 -D unixODBC   -I /home/opam/.opam/4.02.0/lib/ocaml -D unixODBC   odbc_unixodbc_c.c
+odbc_unixodbc_c.c: In function 'displayError':
+odbc_unixodbc_c.c:1182:5: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'SQLINTEGER' [-Wformat=]
+     fprintf( stdout, "native error code      : %ld\n", iSqlCode );
+     ^
+LC_ALL=C sed -e 's/ocamlodbc_/ocamlodbc_unixodbc_/' ocamlodbc_lowlevel.ml > odbc_unixodbc_lowlevel.ml
+cp -f ocamlodbc.mli odbc_unixodbc.mli
+LC_ALL=C sed -e 's/Ocamlodbc_lowlevel/Odbc_unixodbc_lowlevel/' ocamlodbc.ml > odbc_unixodbc.ml
+ocamlmklib -o odbc_unixodbc -oc odbc_unixodbc_stubs \
+	    -lodbc odbc_unixodbc_c.o odbc_unixodbc_lowlevel.ml odbc_unixodbc.mli odbc_unixodbc.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+rm -f .depend
+ocamldep  ocamlodbc.ml ocamlodbc_lowlevel.ml odbc.ml odbc_unixodbc.ml odbc_unixodbc_lowlevel.ml ocamlodbc.mli odbc.mli odbc_unixodbc.mli > .depend
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+======== Compiling 'openingres' ========
+make BASE=openingres ocamlmklib
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+LC_ALL=C sed -e 's/ocamlodbc_/ocamlodbc_openingres_/' ocaml_odbc_c.c > odbc_openingres_c.c
+gcc -c -fPIC -pthread -g -O2 -D INTERSOLV   -I /home/opam/.opam/4.02.0/lib/ocaml -D INTERSOLV   odbc_openingres_c.c
+odbc_openingres_c.c: In function 'displayError':
+odbc_openingres_c.c:1182:5: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'SQLINTEGER' [-Wformat=]
+     fprintf( stdout, "native error code      : %ld\n", iSqlCode );
+     ^
+LC_ALL=C sed -e 's/ocamlodbc_/ocamlodbc_openingres_/' ocamlodbc_lowlevel.ml > odbc_openingres_lowlevel.ml
+cp -f ocamlodbc.mli odbc_openingres.mli
+LC_ALL=C sed -e 's/Ocamlodbc_lowlevel/Odbc_openingres_lowlevel/' ocamlodbc.ml > odbc_openingres.ml
+ocamlmklib -o odbc_openingres -oc odbc_openingres_stubs \
+	    -lodbc odbc_openingres_c.o odbc_openingres_lowlevel.ml odbc_openingres.mli odbc_openingres.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+rm -f .depend
+ocamldep  ocamlodbc.ml ocamlodbc_lowlevel.ml odbc.ml odbc_openingres.ml odbc_openingres_lowlevel.ml odbc_unixodbc.ml odbc_unixodbc_lowlevel.ml ocamlodbc.mli odbc.mli odbc_openingres.mli odbc_unixodbc.mli > .depend
+for d in unixodbc openingres; do \
+	  make BASE=$d library; \
+	done
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+======== Compiling 'unixodbc' ========
+make BASE=unixodbc ocamlmklib
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+ocamlmklib -o odbc_unixodbc -oc odbc_unixodbc_stubs \
+	    -lodbc odbc_unixodbc_c.o odbc_unixodbc_lowlevel.ml odbc_unixodbc.mli odbc_unixodbc.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+======== Compiling 'openingres' ========
+make BASE=openingres ocamlmklib
+make[2]: Entering directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+ocamlmklib -o odbc_openingres -oc odbc_openingres_stubs \
+	    -lodbc odbc_openingres_c.o odbc_openingres_lowlevel.ml odbc_openingres.mli odbc_openingres.ml
+make[2]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+make[1]: Leaving directory `/home/opam/.opam/4.02.0/build/odbc.3.0'
+ocamlfind install odbc META odbc.cma odbc.cmx odbc.cmxa \
+	  odbc_openingres.cmi odbc_openingres_lowlevel.cmi odbc_unixodbc.cmi odbc_unixodbc_lowlevel.cmi odbc_openingres.cma odbc_unixodbc.cma odbc_openingres.cmxa odbc_unixodbc.cmxa odbc_openingres.cmx odbc_openingres_lowlevel.cmx odbc_unixodbc.cmx odbc_unixodbc_lowlevel.cmx dllodbc_openingres_stubs.so dllodbc_unixodbc_stubs.so
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc_lowlevel.cmx
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc.cmx
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres_lowlevel.cmx
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres.cmx
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc.cmxa
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres.cmxa
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc.cma
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres.cma
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc_lowlevel.cmi
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_unixodbc.cmi
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres_lowlevel.cmi
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc_openingres.cmi
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc.cmxa
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc.cmx
+Installed /home/opam/.opam/4.02.0/lib/odbc/odbc.cma
+Installed /home/opam/.opam/4.02.0/lib/odbc/META
+Installed /home/opam/.opam/4.02.0/lib/stublibs/dllodbc_unixodbc_stubs.so
+Installed /home/opam/.opam/4.02.0/lib/stublibs/dllodbc_unixodbc_stubs.so.owner
+Installed /home/opam/.opam/4.02.0/lib/stublibs/dllodbc_openingres_stubs.so
+Installed /home/opam/.opam/4.02.0/lib/stublibs/dllodbc_openingres_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.02.0/lib/stublibs is not mentioned in ld.conf
+Installing odbc.3.0.
