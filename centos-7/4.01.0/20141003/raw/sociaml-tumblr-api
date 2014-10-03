@@ -3595,3 +3595,71 @@ ocamlfind ocamldep -package uri.services -package uri -package re -package lwt.u
 ocamlfind ocamldep -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lwt/cohttp_lwt_make.ml > lwt/cohttp_lwt_make.ml.depends
 ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmi lwt/cohttp_lwt_body.mli
 ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_make.cmo lwt/cohttp_lwt_make.ml
+ocamlfind ocamldep -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lwt/cohttp_lwt_net.ml > lwt/cohttp_lwt_net.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt.cmo lwt/cohttp_lwt.ml
+ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_net.cmo lwt/cohttp_lwt_net.ml
+ocamlfind ocamldep -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lwt/cohttp_lwt_body.ml > lwt/cohttp_lwt_body.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_unix.cmo lwt/cohttp_lwt_unix.ml
+ocamlfind ocamlc -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt_body.ml
+ocamlfind ocamlc -a -package lwt.syntax lwt/cohttp_lwt_body.cmo lwt/cohttp_lwt_make.cmo lwt/cohttp_lwt.cmo lwt/cohttp_lwt_net.cmo lwt/cohttp_lwt_unix.cmo -o lwt/cohttp_lwt_unix.cma
+ocamlfind ocamlopt -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt_body.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_make.cmx lwt/cohttp_lwt_make.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt.cmx lwt/cohttp_lwt.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_net.cmx lwt/cohttp_lwt_net.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -I lwt -I cohttp -o lwt/cohttp_lwt_unix.cmx lwt/cohttp_lwt_unix.ml
+ocamlfind ocamlopt -a -package lwt.syntax lwt/cohttp_lwt_body.cmx lwt/cohttp_lwt_make.cmx lwt/cohttp_lwt.cmx lwt/cohttp_lwt_net.cmx lwt/cohttp_lwt_unix.cmx -o lwt/cohttp_lwt_unix.cmxa
+ocamlfind ocamlopt -shared -package lwt.syntax lwt/cohttp_lwt_unix.cmx -o lwt/cohttp_lwt_unix.cmxs
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lib_test/test_parser.ml > lib_test/test_parser.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_parser.cmo lib_test/test_parser.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_parser.cmx lib_test/test_parser.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lwt/cohttp_lwt_unix.cmxa lib_test/test_parser.cmx -o lib_test/test_parser.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -modules lib_test/test_accept.ml > lib_test/test_accept.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_accept.cmo lib_test/test_accept.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_accept.cmx lib_test/test_accept.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package oUnit cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lib_test/test_accept.cmx -o lib_test/test_accept.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -modules lib_test/test_header.ml > lib_test/test_header.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_header.cmo lib_test/test_header.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_header.cmx lib_test/test_header.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package oUnit cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lib_test/test_header.cmx -o lib_test/test_header.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lib_test/test_net_lwt.ml > lib_test/test_net_lwt.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt.cmo lib_test/test_net_lwt.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt.cmx lib_test/test_net_lwt.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lwt/cohttp_lwt_unix.cmxa lib_test/test_net_lwt.cmx -o lib_test/test_net_lwt.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -modules lib_test/test_net_lwt_google.ml > lib_test/test_net_lwt_google.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_google.cmo lib_test/test_net_lwt_google.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_google.cmx lib_test/test_net_lwt_google.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lwt/cohttp_lwt_unix.cmxa lib_test/test_net_lwt_google.cmx -o lib_test/test_net_lwt_google.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lib_test/test_net_lwt_server.ml > lib_test/test_net_lwt_server.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_server.cmo lib_test/test_net_lwt_server.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_server.cmx lib_test/test_net_lwt_server.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lwt/cohttp_lwt_unix.cmxa lib_test/test_net_lwt_server.cmx -o lib_test/test_net_lwt_server.native
+ocamlfind ocamldep -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -modules lib_test/test_net_lwt_client_and_server.ml > lib_test/test_net_lwt_client_and_server.ml.depends
+ocamlfind ocamlc -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_client_and_server.cmo lib_test/test_net_lwt_client_and_server.ml
+ocamlfind ocamlopt -c -g -annot -I cohttp -I lwt -I lwt -I async -package uri.services -package uri -package threads -package re -package oUnit -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt -syntax camlp4o -thread -I lib_test -I async -I cohttp -I lwt -o lib_test/test_net_lwt_client_and_server.cmx lib_test/test_net_lwt_client_and_server.ml
+ocamlfind ocamlopt -g -linkpkg -package uri.services -package uri -package re -package lwt.unix -package lwt.syntax -package lwt.ssl -package lwt cohttp/cohttp.cmxa cohttp/accept_types.cmx cohttp/cohttp.cmx lwt/cohttp_lwt_unix.cmxa lib_test/test_net_lwt_client_and_server.cmx -o lib_test/test_net_lwt_client_and_server.native
+./setup.bin -test
+...............
+Ran: 15 tests in: 0.00 seconds.
+OK
+....
+Ran: 4 tests in: 0.00 seconds.
+OK
+.....
+Ran: 5 tests in: 0.00 seconds.
+OK
+.......
+Ran: 7 tests in: 0.00 seconds.
+OK
+.
+Ran: 1 tests in: 0.00 seconds.
+OK
+.
+Ran: 1 tests in: 0.00 seconds.
+OK
+.
+Ran: 1 tests in: 0.00 seconds.
+OK
+..........
+Ran: 10 tests in: 0.01 seconds.
+OK
+./setup.bin -doc
