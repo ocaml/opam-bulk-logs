@@ -343,3 +343,45 @@ Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxs
 Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cmxa
 Installed /home/opam/.opam/4.01.0/lib/ctypes/ctypes-top.cma
 Installing ctypes.0.3.3.
+Building sodium.0.2.1:
+  make
+  make PREFIX=/home/opam/.opam/4.01.0 install
+mkdir -p $(dirname _build/lib/dllsodium.so)
+cc -shared -lsodium -o _build/lib/dllsodium.so
+/usr/bin/ld: cannot find -lsodium
+collect2: error: ld returned 1 exit status
+make: *** [_build/lib/dllsodium.so] Error 1
+[ERROR] The compilation of sodium.0.2.1 failed.
+Removing sodium.0.2.1.
+  ocamlfind remove sodium
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/sodium
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   base-bytes.legacy
+ - install   ctypes.0.3.3
+The following failed
+ - install   sodium.0.2.1
+
+#==================== ERROR while installing sodium.0.2.1 =====================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.01.0/build/sodium.0.2.1
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/sodium.0.2.1/sodium-814-1872ec.env
+# stdout-file          /home/opam/.opam/4.01.0/build/sodium.0.2.1/sodium-814-1872ec.out
+# stderr-file          /home/opam/.opam/4.01.0/build/sodium.0.2.1/sodium-814-1872ec.err
+### stdout ###
+# mkdir -p $(dirname _build/lib/dllsodium.so)
+# cc -shared -lsodium -o _build/lib/dllsodium.so
+### stderr ###
+# /usr/bin/ld: cannot find -lsodium
+# collect2: error: ld returned 1 exit status
+# make: *** [_build/lib/dllsodium.so] Error 1
+
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140903215445.export"
+'opam install sodium' failed.
