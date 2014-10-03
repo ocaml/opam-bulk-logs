@@ -91,3 +91,21 @@ echo 'archive(native)="postgres.cmxa"' >> META
 ocamlc -c postgres.mli
 ocamlc -c postgres.ml
 ocamlopt -c postgres.ml
+ocamlc -c -I /usr/include/postgresql libpq_stub.c
+rm -f libpostgres.a
+ocamlmklib -lpq -verbose -o postgres postgres.cmo postgres.cmx libpq_stub.o
++ gcc -shared -o ./dllpostgres.so libpq_stub.o    -lpq
++ ar rc ./libpostgres.a  libpq_stub.o; ranlib ./libpostgres.a
++ /home/opam/.opam/4.01.0/bin/ocamlc -a  -o postgres.cma  postgres.cmo -dllib -lpostgres -cclib -lpostgres   -cclib -lpq 
++ /home/opam/.opam/4.01.0/bin/ocamlopt -a -o postgres.cmxa  postgres.cmx -cclib -lpostgres   -cclib -lpq 
+ocamlfind install postgres *.cmi *.cma *.cmxa *.a *.so META
+Installed /home/opam/.opam/4.01.0/lib/postgres/postgres.a
+Installed /home/opam/.opam/4.01.0/lib/postgres/libpostgres.a
+Installed /home/opam/.opam/4.01.0/lib/postgres/postgres.cmxa
+Installed /home/opam/.opam/4.01.0/lib/postgres/postgres.cma
+Installed /home/opam/.opam/4.01.0/lib/postgres/postgres.cmi
+Installed /home/opam/.opam/4.01.0/lib/postgres/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpostgres.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllpostgres.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing postgres.20040120.
