@@ -94,4 +94,88 @@ checking for err.h... yes
 checking for clock_gettime in -lrt... yes
 checking for clock_gettime... yes
 checking sys/sysinfo.h usability... yes
-checking sys/sysinfo.h presence... 
+checking sys/sysinfo.h presence... yes
+checking for sys/sysinfo.h... yes
+checking for sysinfo... yes
+checking for struct sysinfo... yes
+checking for struct sysinfo.totalram... yes
+checking for struct sysinfo.mem_unit... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for posix_memalign... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/crypto/crypto_aesctr.o scrypt-1.1.6/lib/crypto/crypto_aesctr.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/crypto/crypto_scrypt-nosse.o scrypt-1.1.6/lib/crypto/crypto_scrypt-nosse.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/scryptenc/scryptenc.o scrypt-1.1.6/lib/scryptenc/scryptenc.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/scryptenc/scryptenc_cpuperf.o scrypt-1.1.6/lib/scryptenc/scryptenc_cpuperf.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/util/memlimit.o scrypt-1.1.6/lib/util/memlimit.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/crypto/sha256.o scrypt-1.1.6/lib/crypto/sha256.c
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util   -c -o scrypt-1.1.6/lib/util/warn.o scrypt-1.1.6/lib/util/warn.c
+ar rcs libscrypt.a scrypt-1.1.6/lib/crypto/crypto_aesctr.o scrypt-1.1.6/lib/crypto/crypto_scrypt-nosse.o scrypt-1.1.6/lib/scryptenc/scryptenc.o scrypt-1.1.6/lib/scryptenc/scryptenc_cpuperf.o scrypt-1.1.6/lib/util/memlimit.o scrypt-1.1.6/lib/crypto/sha256.o scrypt-1.1.6/lib/util/warn.o
+ranlib libscrypt.a
+cc -g -O2 -fPIC -lcrypto -DHAVE_CONFIG_H -Iscrypt-1.1.6 -Iscrypt-1.1.6/lib/crypto -Iscrypt-1.1.6/lib/scryptenc -Iscrypt-1.1.6/lib/util -shared -o libscrypt.so scrypt-1.1.6/lib/crypto/crypto_aesctr.o scrypt-1.1.6/lib/crypto/crypto_scrypt-nosse.o scrypt-1.1.6/lib/scryptenc/scryptenc.o scrypt-1.1.6/lib/scryptenc/scryptenc_cpuperf.o scrypt-1.1.6/lib/util/memlimit.o scrypt-1.1.6/lib/crypto/sha256.o scrypt-1.1.6/lib/util/warn.o
+cp scrypt-1.1.6/lib/scryptenc/scryptenc.h scrypt.h
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/scrypt.0.2.1/libscrypt'
+# Comple just the stubs into an object file.
+#
+# The stubs expect to find "scrypt.h" on include path.
+ocamlfind ocamlopt -o scrypt_stubs scrypt_stubs.c -ccopt -fPIC -ccopt -Ilibscrypt
+# Compile scrypt.mli (the interface) to a cmi (compiled module interface).
+# Compile scrypt.ml to bytecode (cmo).
+#
+# The order of files matters here.
+# Since there is a module interface defined (mli), the compiler expects to find a compiled version of it (cmi) before compiling the ml file.
+ocamlfind ocamlc -c scrypt.mli scrypt.ml
+# Compile scrypt.ml to scrypt.o (native code) and scrypt.cmx (extra information for optimizing and linking the native code.)
+ocamlfind ocamlopt -c scrypt.ml
+# Take:
+#	* C object files, scrypt_stubs.o and all object files extracted from libscrypt/libscrypt.a.
+#	* Bytecode object file scrypt.cmo
+#	* Native object file scrypt.cmx + scrypt.o, we supply just the .cmx, but it points to the .o, and it is included in resulting scrypt.a.
+#
+# Link it all to produce the following files:
+#       libscrypt.a, contains scrypt_stubs.o and libscrypt/*.o:
+#		Most of the C portion of our library.
+#		libscrypt.a MUST be installed, see cmxa.
+#
+#	scrypt.a, contains scrypt.o:
+#		Native version of scrypt.ml, does NOT include the stubs.
+#		XXX: I'm not sure why this has to be a separate archive and isn't combined with libscrypt.a.
+#		     What happens when you have more files? Do you then have to install a bunch of .a files with your library?
+#		scrypt.a MUST be installed, see cmxa.
+#
+#	scrypt.cma, contains scrypt.cmo:
+#		Bytecode version of library.
+#		scrypt.cma MUST be installed.
+#		scrypt.cmo is NOT installed since it is fully comtained in scrypt.cma.
+#
+#	scrypt.cmxa, contains scrypt.cmx and combines it (without containing) with  scrypt.a, and libscrypt.a:
+#		These files comprise the native version of the library.
+#		scrypt.cmxa, scrypt.a, and libscrypt.a MUST be installed and linked together.
+#			The -cclib options accomplish this task transparently, since they
+#			are memoized in scrypt.cmxa and are automatically applied whenever a client links to the library.
+#		scrypt.cmx is NOT installed since it is fully contained in scrypt.cmxa.
+#
+#	-lcrypto is OpenSSL (scrypt dependency) and must be present on on the system, it will also link the resulting dllscrypt.so with libcrypto.so.
+ocamlfind ocamlmklib -v -o scrypt scrypt.cmo scrypt.cmx scrypt_stubs.o libscrypt/*.o -lcrypto -cclib -lscrypt -cclib -lcrypto
++ gcc -shared -o ./dllscrypt.so scrypt_stubs.o libscrypt/crypto_aesctr.o libscrypt/crypto_scrypt-nosse.o libscrypt/memlimit.o libscrypt/scryptenc.o libscrypt/scryptenc_cpuperf.o libscrypt/sha256.o libscrypt/warn.o    -lcrypto
++ ar rc ./libscrypt.a  scrypt_stubs.o libscrypt/crypto_aesctr.o libscrypt/crypto_scrypt-nosse.o libscrypt/memlimit.o libscrypt/scryptenc.o libscrypt/scryptenc_cpuperf.o libscrypt/sha256.o libscrypt/warn.o; ranlib ./libscrypt.a
++ ocamlc.opt -a  -o scrypt.cma  scrypt.cmo -dllib -lscrypt -cclib -lscrypt   -cclib -lcrypto -cclib -lscrypt -cclib -lcrypto
++ ocamlopt.opt -a -o scrypt.cmxa  scrypt.cmx -cclib -lscrypt   -cclib -lcrypto -cclib -lscrypt -cclib -lcrypto
+ocamlfind install scrypt META *.cmi *.cmxa *.cma *.a *.so
+Installed /home/opam/.opam/4.01.0/lib/scrypt/scrypt.a
+Installed /home/opam/.opam/4.01.0/lib/scrypt/libscrypt.a
+Installed /home/opam/.opam/4.01.0/lib/scrypt/scrypt.cma
+Installed /home/opam/.opam/4.01.0/lib/scrypt/scrypt.cmxa
+Installed /home/opam/.opam/4.01.0/lib/scrypt/scrypt.cmi
+Installed /home/opam/.opam/4.01.0/lib/scrypt/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllscrypt.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dllscrypt.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+Installing scrypt.0.2.1.
