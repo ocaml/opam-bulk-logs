@@ -61,4 +61,18 @@ The following actions will be performed:
 200
  0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 25157  100 25157    0     0  39554      0 --:--:-- --:--:-- --:--:-- 39555
 200
- 10 24.7M   10 2539k    0     0  2436k      0  0:00:10  0:00:01  0:00:09 2437k 26 24.7M   26 6616k    0     0  3239k      0  0:00:07  0:00:02  0:00:05 3238k 44 24.7M   44 10.9M    0     0  3677k      0  0:00:06  0:00:03  0:00:03 3677k
+ 10 24.7M   10 2539k    0     0  2436k      0  0:00:10  0:00:01  0:00:09 2437k 26 24.7M   26 6616k    0     0  3239k      0  0:00:07  0:00:02  0:00:05 3238k 44 24.7M   44 10.9M    0     0  3677k      0  0:00:06  0:00:03  0:00:03 3677k 68 24.7M   68 17.0M    0     0  4311k      0  0:00:05  0:00:04  0:00:01 4311k 97 24.7M   97 24.0M    0     0  4872k      0  0:00:05  0:00:05 --:--:-- 5021k100 24.7M  100 24.7M    0     0  4928k      0  0:00:05  0:00:05 --:--:-- 5562k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/cppo/cppo.0.9.4/files/cppo.install to ~/.opam/4.01.0/build/cppo.0.9.4/
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
