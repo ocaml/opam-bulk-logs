@@ -62,4 +62,43 @@ The following actions will be performed:
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0   127    0     0    190      0 --:--:-- --:--:-- --:--:--   190
+ 97 25157   97 24477    0     0  38613      0 --:--:-- --:--:-- --:--:-- 38607100 25157  100 25157    0     0  39668      0 --:--:-- --:--:-- --:--:-- 39617
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   122    0   122    0     0    188      0 --:--:-- --:--:-- --:--:--   188
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0 30761    0     0  23733      0 --:--:--  0:00:01 --:--:-- 64488
+200
+  0     0    0  107k    0     0  71679      0 --:--:--  0:00:01 --:--:-- 71679
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Copying ~/.opam/repo/default/packages/camlzip/camlzip.1.05/files/fix-install.patch to ~/.opam/4.01.0/build/camlzip.1.05/
+Applying fix-install.patch.
+patching file META
+patching file Makefile
+Building camlzip.1.05:
+  make all
+  make allopt
+  make install-findlib
+ocamlc -g -c -ccopt -g -ccopt -I/usr/local/include zlibstubs.c
+zlibstubs.c:18:18: fatal error: zlib.h: No such file or directory
+ #include <zlib.h>
+                  ^
+compilation terminated.
+make: *** [zlibstubs.o] Error 2
+Removing camlzip.1.05.
+[ERROR] The compilation of camlzip.1.05 failed.
+  ocamlfind remove zip
+  ocamlfind remove camlzip
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/zip
+ocamlfind: [WARNING] No such directory: /home/opam/.opam/4.01.0/lib/camlzip
+Copying ~/.opam/repo/default/packages/cppo/cppo.0.9.4/files/cppo.install to ~/.opam/4.01.0/build/cppo.0.9.4/
+Building cppo.0.9.4:
+  make
+  make install-lib
+echo 'let cppo_version = "0.9.4"' > cppo_version.ml
+ocamlyacc cppo_parser.mly
+ocamllex cppo_lexer.mll
+354 states, 13186 transitions, table size 54868 bytes
+3462 additional bytes used for bindings
+ocamlopt -o cppo -dtypes unix.cmxa cppo_version.ml cppo_types.ml cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_command.ml cppo_eval.ml cppo_main.ml
