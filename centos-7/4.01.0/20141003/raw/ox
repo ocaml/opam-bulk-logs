@@ -2993,3 +2993,7 @@ ocamlfind ocamlopt -a lib/custom_printf_dummy.cmx -o lib/custom_printf.cmxa
 ocamlfind ocamlopt -shared -linkall lib/custom_printf.cmxa -o lib/custom_printf.cmxs
 ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -modules syntax/pa_custom_printf.mli > syntax/pa_custom_printf.mli.depends
 ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_custom_printf.cmi syntax/pa_custom_printf.mli
+ocamlfind ocamldep -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -modules syntax/pa_custom_printf.ml > syntax/pa_custom_printf.ml.depends
+ocamlfind ocamlc -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_custom_printf.cmo syntax/pa_custom_printf.ml
+ocamlfind ocamlc -a syntax/pa_custom_printf.cmo -o syntax/pa_custom_printf.cma
+ocamlfind ocamlopt -c -g -package type_conv -package camlp4.quotations -package camlp4.lib -syntax camlp4o -I syntax -o syntax/pa_custom_printf.cmx syntax/pa_custom_printf.ml
