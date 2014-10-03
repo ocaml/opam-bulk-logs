@@ -2068,3 +2068,21 @@ Installed /home/opam/.opam/4.01.0/lib/deriving/deriving_num.cmxs
 Installed /home/opam/.opam/4.01.0/lib/deriving/deriving_num.cmi
 Installed /home/opam/.opam/4.01.0/lib/deriving/deriving_num.cmx
 Installed /home/opam/.opam/4.01.0/lib/deriving/META
+Installing deriving.0.7.
+Building js_of_ocaml.2.3:
+  make build
+  make install-lib BINDIR=/home/opam/.opam/4.01.0/bin
+make -C compiler
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.3/compiler'
+echo "let s = \"2.3\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+ocamlfind ocamlc -package findlib -c compiler_version.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c compiler_version.ml
+ocamlfind ocamlc -package findlib -c pretty_print.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c pretty_print.ml
+ocamlfind ocamlc -package findlib -c util.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c util.ml
+ocamlfind ocamlc -package findlib -c option.mli
+ocamlfind ocamlopt -package findlib -for-pack Compiler -g -c option.ml
+ocamlfind ocamlc -package findlib -c reserved.mli
