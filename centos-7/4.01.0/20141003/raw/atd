@@ -4,3 +4,54 @@
 + '[' '' '!=' '' ']'
 + opam install atd
 CentOS 7 depexts:
+The following actions will be performed:
+ - install   easy-format.1.0.2                     [required by atd]
+ - install   menhir.20140422                       [required by atd]
+ - install   atd.1.1.2
+=== 3 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[atd.1.1.2] Downloading http://mjambon.com/releases/atd/atd-1.1.2.tar.gz
+[easy-format.1.0.2] Downloading http://mjambon.com/releases/easy-format/easy-format-1.0.2.tar.gz
+[menhir.20140422] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20140422.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  536k  100  536k    0     0  1642k      0 --:--:-- --:--:-- --:--:-- 1644k
+200
+100 13679  100 13679    0     0  25422      0 --:--:-- --:--:-- --:--:-- 25472
+200
+ 59 41082   59 24477    0     0  38526      0  0:00:01 --:--:--  0:00:01 38485100 41082  100 41082    0     0  64451      0 --:--:-- --:--:-- --:--:-- 64391
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+	if test -f bytecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+	fi; \
+	if test -f nativecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+	fi; \
+	ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
