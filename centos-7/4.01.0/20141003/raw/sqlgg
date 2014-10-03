@@ -1,1 +1,62 @@
 ++ opam install sqlgg -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install sqlgg
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   ounit.2.0.0                           [required by sqlgg]
+ - install   camlp4.4.01.0                         [required by extlib, deriving]
+ - install   menhir.20140422                       [required by sqlgg]
+ - install   optcomp.1.6                           [required by deriving]
+ - install   extlib.1.6.1                          [required by sqlgg]
+ - install   deriving.0.7                          [required by sqlgg]
+ - install   sqlgg.0.2.5
+=== 7 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[deriving.0.7] Downloading http://ocsigen.org/download/deriving-0.7.tar.gz
+[menhir.20140422] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20140422.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[extlib.1.6.1] Downloading http://ocaml-extlib.googlecode.com/files/extlib-1.6.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  110k  100  110k    0     0   495k      0 --:--:-- --:--:-- --:--:--  497k
+200
+100 72780  100 72780    0     0   318k      0 --:--:-- --:--:-- --:--:--  320k
+200
+[optcomp.1.6] Downloading https://github.com/diml/optcomp/archive/1.6.tar.gz
+100  536k  100  536k    0     0  1481k      0 --:--:-- --:--:-- --:--:-- 1485k
+200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[ounit.2.0.0] Downloading http://forge.ocamlcore.org/frs/download.php/1258/ounit-2.0.0.tar.gz
+[sqlgg.0.2.5] Downloading http://ygrek.org.ua/p/release/sqlgg/sqlgg-0.2.5.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  101k  100  101k    0     0   291k      0 --:--:-- --:--:-- --:--:--  292k
+200
+100   117    0   117    0     0    168      0 --:--:-- --:--:-- --:--:--   169
+100 44773  100 44773    0     0  58013      0 --:--:-- --:--:-- --:--:-- 58071
+200
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 56370  100 56370    0     0  39146      0  0:00:01  0:00:01 --:--:--  182k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/menhir/menhir.20140422/files/menhir.install to ~/.opam/4.01.0/build/menhir.20140422/
+Building menhir.20140422:
+  make PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+  echo "let ocamlfind = true" >> src/installation.ml ; \
+else \
+  echo "let ocamlfind = false" >> src/installation.ml ; \
+fi
