@@ -1852,3 +1852,9 @@ ocamlmklib -o curl curl.cmo -oc curl-helper -lcurl
 ocamlfind c -package lwt -c -g curl_lwt.mli -o curl_lwt.cmi
 ocamlfind c -package lwt.unix -c -g curl_lwt.ml -o curl_lwt.cmo
 ocamlopt.opt -c -g curl.ml -o curl.cmx
+ocamlmklib -o curl curl.cmx -oc curl-helper -lcurl  
+ocamlfind opt -package lwt.unix -c -g curl_lwt.ml -o curl_lwt.cmx
+(cd examples; make)
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/ocurl.0.7.2/examples'
+ocamlc.opt -thread -c -g -I .. ocurl.ml -o ocurl.cmo
+ocamlc.opt -thread -custom -g -I .. -ccopt -L.. curl.cma unix.cma threads.cma ocurl.cmo -o ocurl
