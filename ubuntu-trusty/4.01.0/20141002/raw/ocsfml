@@ -386,3 +386,28 @@ Scanning dependencies of target ocsfml
 ocamlfind ocamlopt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa -linkpkg myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
 /usr/bin/c++ -O3 '-fvisibility=hidden' -fPIC -I/home/opam/.opam/4.01.0/build/ocsfml.2.0/camlpp '-std=c++0x' -fpermissive -c -I/usr/include -I/usr/include -I/home/opam/.opam/4.01.0/lib/ocaml -I../OcsfmlSystem/ocsfml_system_stub OcsfmlSystem/ocsfml_system_stub/Sleep.cpp -oOcsfmlSystem/ocsfml_system_stub/Sleep.o
 /usr/bin/c++ -O3 '-fvisibility=hidden' -fPIC -I/home/opam/.opam/4.01.0/build/ocsfml.2.0/camlpp '-std=c++0x' -fpermissive -c -I/usr/include -I/usr/include -I/home/opam/.opam/4.01.0/lib/ocaml -I../OcsfmlSystem/ocsfml_system_stub OcsfmlSystem/ocsfml_system_stub/Clock.cpp -oOcsfmlSystem/ocsfml_system_stub/Clock.o
+/usr/bin/c++ -shared OcsfmlSystem/ocsfml_system_stub/Sleep.o OcsfmlSystem/ocsfml_system_stub/Clock.o /usr/lib/x86_64-linux-gnu/libsfml-system.so -o OcsfmlSystem/dllocsfmlsystem.so
+ocamlfind ocamldep -modules OcsfmlSystem/ocsfmlSystem.mli > OcsfmlSystem/ocsfmlSystem.mli.depends
+ocamlfind ocamlc -c -I OcsfmlSystem -I OcsfmlWindow -I Test -I OcsfmlNetwork -I OcsfmlGraphics -I OcsfmlAudio -I camlpp/ExternalCpp -o OcsfmlSystem/ocsfmlSystem.cmi OcsfmlSystem/ocsfmlSystem.mli
+ocamlfind ocamldep -modules OcsfmlSystem/ocsfmlSystem.ml > OcsfmlSystem/ocsfmlSystem.ml.depends
+ocamlfind ocamldep -modules OcsfmlSystem/vector.ml > OcsfmlSystem/vector.ml.depends
+ocamlfind ocamlc -c -I OcsfmlSystem -I OcsfmlWindow -I Test -I OcsfmlNetwork -I OcsfmlGraphics -I OcsfmlAudio -I camlpp/ExternalCpp -o OcsfmlSystem/ocsfmlSystem.cmo OcsfmlSystem/ocsfmlSystem.ml
+ocamlfind ocamlc -c -I OcsfmlSystem -I OcsfmlWindow -I Test -I OcsfmlNetwork -I OcsfmlGraphics -I OcsfmlAudio -I camlpp/ExternalCpp -o OcsfmlSystem/vector.cmo OcsfmlSystem/vector.ml
+ocamlfind ocamlc -a -verbose -dllib -locsfmlsystem -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmo OcsfmlSystem/vector.cmo -o OcsfmlSystem/ocsfmlsystem.cma
++ ocamlfind ocamlc -a -verbose -dllib -locsfmlsystem -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmo OcsfmlSystem/vector.cmo -o OcsfmlSystem/ocsfmlsystem.cma
+Effective set of compiler predicates: autolink,byte
++ ocamlc.opt -a -verbose -dllib -locsfmlsystem -o OcsfmlSystem/ocsfmlsystem.cma -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmo OcsfmlSystem/vector.cmo
+ar -q OcsfmlSystem/libocsfmlsystem.a OcsfmlSystem/ocsfml_system_stub/Sleep.o OcsfmlSystem/ocsfml_system_stub/Clock.o
++ ar -q OcsfmlSystem/libocsfmlsystem.a OcsfmlSystem/ocsfml_system_stub/Sleep.o OcsfmlSystem/ocsfml_system_stub/Clock.o
+ar: creating OcsfmlSystem/libocsfmlsystem.a
+ocamlfind ocamlopt -c -I OcsfmlSystem -I OcsfmlWindow -I Test -I OcsfmlNetwork -I OcsfmlGraphics -I OcsfmlAudio -I camlpp/ExternalCpp -o OcsfmlSystem/ocsfmlSystem.cmx OcsfmlSystem/ocsfmlSystem.ml
+ocamlfind ocamlopt -c -I OcsfmlSystem -I OcsfmlWindow -I Test -I OcsfmlNetwork -I OcsfmlGraphics -I OcsfmlAudio -I camlpp/ExternalCpp -o OcsfmlSystem/vector.cmx OcsfmlSystem/vector.ml
+ocamlfind ocamlopt -a -verbose -cclib -locsfmlsystem -cclib /usr/lib/x86_64-linux-gnu/libsfml-system.so -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmx OcsfmlSystem/vector.cmx -o OcsfmlSystem/ocsfmlsystem.cmxa
++ ocamlfind ocamlopt -a -verbose -cclib -locsfmlsystem -cclib /usr/lib/x86_64-linux-gnu/libsfml-system.so -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmx OcsfmlSystem/vector.cmx -o OcsfmlSystem/ocsfmlsystem.cmxa
+Effective set of compiler predicates: autolink,native
++ ocamlopt.opt -a -verbose -o OcsfmlSystem/ocsfmlsystem.cmxa -cclib -locsfmlsystem -cclib /usr/lib/x86_64-linux-gnu/libsfml-system.so -cclib -lstdc++ OcsfmlSystem/ocsfmlSystem.cmx OcsfmlSystem/vector.cmx
++ ar rc 'OcsfmlSystem/ocsfmlsystem.a' 'OcsfmlSystem/ocsfmlSystem.o' 'OcsfmlSystem/vector.o'
++ ranlib 'OcsfmlSystem/ocsfmlsystem.a'
+/usr/bin/c++ -O3 '-fvisibility=hidden' -fPIC -I/home/opam/.opam/4.01.0/build/ocsfml.2.0/camlpp '-std=c++0x' -fpermissive -c -I/usr/include -I/usr/include -I/home/opam/.opam/4.01.0/lib/ocaml -I../OcsfmlSystem/ocsfml_system_stub -I../OcsfmlWindow/ocsfml_window_stub OcsfmlWindow/ocsfml_window_stub/Context.cpp -oOcsfmlWindow/ocsfml_window_stub/Context.o
+/usr/bin/c++ -O3 '-fvisibility=hidden' -fPIC -I/home/opam/.opam/4.01.0/build/ocsfml.2.0/camlpp '-std=c++0x' -fpermissive -c -I/usr/include -I/usr/include -I/home/opam/.opam/4.01.0/lib/ocaml -I../OcsfmlSystem/ocsfml_system_stub -I../OcsfmlWindow/ocsfml_window_stub OcsfmlWindow/ocsfml_window_stub/Joystick.cpp -oOcsfmlWindow/ocsfml_window_stub/Joystick.o
+/usr/bin/c++ -O3 '-fvisibility=hidden' -fPIC -I/home/opam/.opam/4.01.0/build/ocsfml.2.0/camlpp '-std=c++0x' -fpermissive -c -I/usr/include -I/usr/include -I/home/opam/.opam/4.01.0/lib/ocaml -I../OcsfmlSystem/ocsfml_system_stub -I../OcsfmlWindow/ocsfml_window_stub OcsfmlWindow/ocsfml_window_stub/Keyboard.cpp -oOcsfmlWindow/ocsfml_window_stub/Keyboard.o
