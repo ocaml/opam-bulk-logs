@@ -1871,3 +1871,48 @@ Installing type_conv.111.13.00.
 Building js_of_ocaml.2.5:
   make build
   make install-lib BINDIR=/home/opam/.opam/4.01.0/bin
+make -C compiler all lib
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.2.5/compiler'
+echo "let s = \"2.5\"" > compiler_version.ml.tmp
+echo "let git_version = \"\"" >> compiler_version.ml.tmp
+if cmp -s compiler_version.ml.tmp compiler_version.ml; then rm compiler_version.ml.tmp; else mv compiler_version.ml.tmp compiler_version.ml; fi
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c compiler_version.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c compiler_version.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c util.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c util.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c pretty_print.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c pretty_print.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c option.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c option.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c reserved.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c reserved.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c varPrinter.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c varPrinter.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c dgraph.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c dgraph.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c code.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c code.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c parse_info.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c parse_info.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c javascript.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c javascript.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c vlq64.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c vlq64.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c source_map.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c source_map.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_output.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_output.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_simpl.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_simpl.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_token.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_token.ml
+menhir --infer --external-tokens Js_token --explain js_parser.mly
+Warning: 12 states have shift/reduce conflicts.
+Warning: 47 shift/reduce conflicts were arbitrarily resolved.
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_parser.mli
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_parser.ml
+ocamlfind ocamlc -package bytes -package findlib,cmdliner -c js_lexer.mli
+ocamllex js_lexer.mll
+111 states, 948 transitions, table size 4458 bytes
+1750 additional bytes used for bindings
+ocamlfind ocamlopt -package bytes -package findlib,cmdliner -for-pack Compiler -g -c js_lexer.ml
