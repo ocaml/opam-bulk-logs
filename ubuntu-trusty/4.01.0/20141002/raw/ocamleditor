@@ -497,3 +497,133 @@ Processing triggers for ureadahead (0.100.0-16) ...
 Setting up libice6:amd64 (2:1.0.8-2) ...
 Setting up libsm6:amd64 (2:1.2.1-2) ...
 Setting up libice-dev:amd64 (2:1.0.8-2) ...
+Setting up libsm-dev:amd64 (2:1.2.1-2) ...
+Setting up libcairo2-dev (1.13.0~20140204-0ubuntu1) ...
+Setting up libpango1.0-dev (1.36.3-1ubuntu1) ...
+Setting up libgtk2.0-dev (2.24.23-0ubuntu1.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.1) ...
+++ opam install ocamleditor -e source,linux
++ srcext=
++ echo Ubuntu srcexts:
+Ubuntu srcexts:
++ '[' '' '!=' '' ']'
++ opam install ocamleditor
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgtk]
+ - install   xml-light.2.4                         [required by ocamleditor]
+ - install   lablgtk.2.18.2                        [required by ocamleditor]
+ - install   ocamleditor.1.13.1
+=== 4 to install ===
+
+=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[default] Synchronizing with /home/opam/opam-repository/archives/lablgtk.2.18.2+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/ocamleditor.1.13.1+opam.tar.gz
+[default] Synchronizing with /home/opam/opam-repository/archives/xml-light.2.4+opam.tar.gz
+sending incremental file list
+sending incremental file list
+lablgtk.2.18.2+opam.tar.gz
+ocamleditor.1.13.1+opam.tar.gz
+sending incremental file list
+xml-light.2.4+opam.tar.gz
+
+sent 826,736 bytes  received 35 bytes  1,653,542.00 bytes/sec
+total size is 826,405  speedup is 1.00
+
+sent 577,159 bytes  received 35 bytes  1,154,388.00 bytes/sec
+total size is 576,888  speedup is 1.00
+
+sent 17,048 bytes  received 35 bytes  34,166.00 bytes/sec
+total size is 16,914  speedup is 0.99
+
+=-=- Installing packages =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building xml-light.2.4:
+  make install_ocamlfind
+ocamlyacc xml_parser.mly
+ocamlc  xml.mli
+ocamlc  dtd.mli
+ocamlc  xml_parser.mli
+ocamlc  -c xml_parser.ml
+ocamllex xml_lexer.mll
+248 states, 1238 transitions, table size 6440 bytes
+ocamlc  xml_lexer.mli
+ocamlc  -c xml_lexer.ml
+ocamlc  -c dtd.ml
+ocamlc  xmlParser.mli
+ocamlc  -c xmlParser.ml
+ocamlc  -c xml.ml
+ocamlc -o xml-light.cma -a  xml_parser.cmo xml_lexer.cmo dtd.cmo xmlParser.cmo xml.cmo
+ocamlc xml-light.cma test.ml -o test.exe
+mkdir doc
+ocamldoc -sort -html -d doc xml.mli dtd.mli xmlParser.mli
+ocamlopt  -c xml_parser.ml
+ocamlopt  -c xml_lexer.ml
+ocamlopt  -c dtd.ml
+ocamlopt  -c xmlParser.ml
+ocamlopt  -c xml.ml
+ocamlopt -o xml-light.cmxa -a  xml_parser.cmx xml_lexer.cmx dtd.cmx xmlParser.cmx xml.cmx
+ocamlopt -shared -linkall -I . -o xml-light.cmxs xml-light.cmxa
+ocamlopt xml-light.cmxa test.ml -o test_opt.exe
+cp META.in META
+sed -itmp "s|@VERSION@|2.4|g" META
+rm -rf METAtmp
+ocamlfind install xml-light META xml-light.a xml-light.cma xml-light.cmxa xml-light.cmxs xml.cmx dtd.cmx xmlParser.cmx xml.mli xmlParser.mli dtd.mli xml.cmi xmlParser.cmi dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmi
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.mli
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xmlParser.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/dtd.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml.cmx
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cmxa
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.cma
+Installed /home/opam/.opam/4.01.0/lib/xml-light/xml-light.a
+Installed /home/opam/.opam/4.01.0/lib/xml-light/META
+Installing xml-light.2.4.
+Applying lablgldir.patch.
+patching file configure
+Hunk #1 succeeded at 4140 (offset 74 lines).
+Building lablgtk.2.18.2:
+  ./configure --prefix /home/opam/.opam/4.01.0 LABLGLDIR=/home/opam/.opam/4.01.0/lib/lablgl
+  make world
+  make install
+checking for ocamlc... ocamlc
+ocaml version is 4.01.0
+ocaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+Default install dirs are : /home/opam/.opam/4.01.0/lib/ocaml/lablgtk2 and /home/opam/.opam/4.01.0/lib/ocaml/stublibs
+Compile with ocamlc -I +lablgtk2
+checking for ocamlopt... ocamlopt
+checking ocamlopt version... ok
+checking for ocamlc.opt... ocamlc.opt
+checking ocamlc.opt version... ok
+checking for ocamlopt.opt... ocamlopt.opt
+checking ocamlc.opt version... ok
+checking for ocamlrun... ocamlrun
+checking for ocamldep... ocamldep
+checking for ocamldoc... ocamldoc
+checking for ocamllex... ocamllex
+checking for ocamlyacc... ocamlyacc
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for camlp4o... camlp4o
+checking for ocamlfind... ocamlfind
+ocamlfind library path is /home/opam/.opam/4.01.0/lib
+ocamlfind ldconf path is /home/opam/.opam/4.01.0/lib/ocaml/ld.conf
+checking for ocaml threads... use system threads
+checking for ocaml dll support... yes
+checking for ranlib... ranlib
+OCaml uses gcc to compile C files
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking platform... Unix
+checking native dynlink... 
