@@ -36,3 +36,33 @@ ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
 ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
 ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
 ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+Building xtmpl.0.9:
+  make all
+  make install
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.mli
+ocamlc.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -c `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.ml
+ocamlopt.opt -g  -shared -o xtmpl.cmxs `ocamlfind query -i-format xmlm` -annot -rectypes xtmpl.cmx
+ocamlfind install xtmpl META LICENSE \
+		xtmpl.cmi xtmpl.mli xtmpl.cmo xtmpl.cmx xtmpl.cmxs xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.o
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmxs
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmx
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmo
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.mli
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/xtmpl.cmi
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/LICENSE
+Installed /home/opam/.opam/4.01.0/lib/xtmpl/META
+Installing xtmpl.0.9.
