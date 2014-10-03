@@ -4,3 +4,59 @@ CentOS 7 depexts:
 + echo CentOS 7 depexts:
 + '[' '' '!=' '' ']'
 + opam install ocaml-top
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ocp-build, lablgtk]
+ - install   conf-gtksourceview.2                  [required by ocaml-top]
+ - install   cmdliner.0.9.5                        [required by ocp-index, ocp-indent]
+ - install   ocp-build.1.99.8-beta                 [required by ocaml-top]
+ - install   lablgtk.2.18.2                        [required by ocaml-top]
+ - install   ocp-indent.1.4.2                      [required by ocaml-top]
+ - install   ocp-index.1.0.1                       [required by ocaml-top]
+ - install   ocaml-top.1.1.2
+=== 8 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[cmdliner.0.9.5] Downloading http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.5.tbz
+[lablgtk.2.18.2] Downloading https://forge.ocamlcore.org/frs/download.php/1456/lablgtk-2.18.2.tar.gz
+[ocaml-top.1.1.2] Downloading https://github.com/OCamlPro/ocaml-top/archive/1.1.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   205k      0 --:--:-- --:--:-- --:--:--  205k
+200
+[ocp-build.1.99.8-beta] Downloading https://github.com/OCamlPro/ocp-build/tarball/ocp-build.1.99.8-beta
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  769k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+100  769k  100  769k    0     0   862k      0 --:--:-- --:--:-- --:--:--  862k
+100   125    0   125    0     0    133      0 --:--:-- --:--:-- --:--:--   132
+[ocp-indent.1.4.2] Downloading https://github.com/OCamlPro/ocp-indent/archive/1.4.2b.tar.gz
+100   148    0   148    0     0    223      0 --:--:-- --:--:-- --:--:--   222
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0   862    0     0    548      0 --:--:--  0:00:01 --:--:--   548  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0   826    0     0    624      0 --:--:--  0:00:01 --:--:--   624100   127    0   127    0     0    193      0 --:--:-- --:--:-- --:--:--   193
+  0     0    0  558k    0     0   239k      0 --:--:--  0:00:02 --:--:--  731k
+200
+  0     0    0  172k    0     0  84100      0 --:--:--  0:00:02 --:--:--  220k[ocp-index.1.0.1] Downloading https://github.com/OCamlPro/ocp-index/archive/1.0.1.tar.gz
+  0     0    0 50770    0     0  35605      0 --:--:--  0:00:01 --:--:-- 35605  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0  136k    0     0  79534      0 --:--:--  0:00:01 --:--:--  266k
+200
+100   125    0   125    0     0    180      0 --:--:-- --:--:-- --:--:--   180
+  0     0    0  529k    0     0   170k      0 --:--:--  0:00:03 --:--:--  296k  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0 85184    0     0  57072      0 --:--:--  0:00:01 --:--:--  218k
+200
+  0     0    0  871k    0     0   237k      0 --:--:--  0:00:03 --:--:--  370k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
