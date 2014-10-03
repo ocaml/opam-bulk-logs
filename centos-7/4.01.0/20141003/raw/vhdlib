@@ -35,4 +35,64 @@ Running transaction test
 Transaction test succeeded
 Running transaction
   Installing : libuuid-devel-2.23.2-16.el7.x86_64                           1/1 
-  Verifying  : libuuid-devel-2.23.2-16.el7.x86_64                           1/1
+  Verifying  : libuuid-devel-2.23.2-16.el7.x86_64                           1/1 
+
+Installed:
+  libuuid-devel.x86_64 0:2.23.2-16.el7                                          
+
+Complete!
++ opam install vhdlib
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by type_conv]
+ - install   xmlm.1.2.0                            [required by rpc]
+ - install   type_conv.108.00.02                   [required by rpc]
+ - install   rpc.1.2.0                             [required by vhdlib]
+ - install   vhdlib.0.9.1
+=== 5 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[type_conv.108.00.02] Downloading https://ocaml.janestreet.com/ocaml-core/108.00.02/individual/type_conv-108.00.02.tar.gz
+[rpc.1.2.0] Downloading https://github.com/mirage/ocaml-rpc/archive/1.2.0.tar.gz
+[vhdlib.0.9.1] Downloading https://github.com/xapi-project/libvhd/archive/libvhd-0.9.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total    Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0Spent    Le     0ft  Spe    0   ed
+  0      0     0     0 0    0         0  0    0       0   0     --:--:  0      -- --:-0 --:-:-- --:----:-:--    - --:--:- 0- --:--:--     0100   123    0   123    0     0    182      0 --:--:-- --:--:-- --:--:--   182
+100   133    0   133    0     0    187      0 --:--:-- --:--:-- --:--:--   187
+100 52344  100 52344    0     0  59052      0 --:--:-- --:--:-- --:--:-- 59079
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0200
+100 38181  100 38181    0     0   163k      0 --:--:-- --:--:-- --:--:--  164k
+  0     0    0 26609    0     0  19476      0 --:--:--  0:00:01 --:--:--  115k
+200
+  0     0    0 44077    0     0  30998      0 --:--:--  0:00:01 --:--:-- 78991
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.01.0/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Installing xmlm.1.2.0.
