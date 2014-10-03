@@ -1,1 +1,72 @@
 ++ opam install higlo -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install higlo
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ulex]
+ - install   xmlm.1.2.0                            [required by xtmpl]
+ - install   ulex.1.1                              [required by higlo]
+ - install   xtmpl.0.9                             [required by higlo]
+ - install   higlo.0.3
+=== 5 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[higlo.0.3] Downloading http://zoggy.github.com/higlo/higlo-0.3.tar.gz
+[ulex.1.1] Downloading http://ftp.de.debian.org/debian/pool/main/u/ulex/ulex_1.1.orig.tar.gz
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 38181  100 38181 200
+   0     0   158k      0 100 20347  100 20347    0     0  81475      0 --:--:-- --:--:-- --:--:-- 81714
+--:--:-- --:--:-- --:--:--  159k
+200
+100   178  100   178    0     0    660      0 --:--:-- --:--:-- --:--:--   659100   178  100   178    0     0    659      0 --:--:-- --:--:-- --:--:--   659
+[xtmpl.0.9] Downloading http://zoggy.github.com/xtmpl/xtmpl-0.9.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 10909  100 10909    0     0  19380      0 --:--:-- --:--:-- --:--:-- 19380
+200
+100   178  100   178    0     0    658      0 --:--:-- --:--:-- --:--:--   661
+100 14176  100 14176    0     0  26083      0 --:--:-- --:--:-- --:--:-- 26083
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xhtml.cmx test/xhtml.ml
+ocamlfind ocamlopt -c -annot -bin-annot -I test -I src -o test/xmltrip.cmx test/xmltrip.ml
+ocamlfind ocamlopt -linkpkg src/xmlm.cmx test/xhtml.cmx test/xmltrip.cmx -o test/xmltrip.native
+Installing xmlm.1.2.0.
+[WARNING] opam-version is an unknown field in /home/opam/.opam/4.01.0/build/xmlm.1.2.0/xmlm.install: is your OPAM up-to-date ?
+Building ulex.1.1:
+  make
+  make all.opt
+  make install
+ocamlbuild -byte-plugin pa_ulex.cma ulexing.cma
+/home/opam/.opam/4.01.0/bin/ocamlc.opt unix.cma -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cma myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmo -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -pp camlp4orf -modules pa_ulex.ml > pa_ulex.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules cset.ml > cset.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules ulex.mli > ulex.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o cset.cmo cset.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o ulex.cmi ulex.mli
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -I +camlp4 -pp camlp4orf -o pa_ulex.cmo pa_ulex.ml
