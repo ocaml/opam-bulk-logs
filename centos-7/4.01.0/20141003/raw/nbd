@@ -25,3 +25,51 @@ The following actions will be performed:
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   200k      0 --:--:-- --:--:-- --:--:--  200k
 200
+[nbd.1.0.2] Downloading https://github.com/xapi-project/nbd/archive/v1.0.2/nbd-1.0.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   118    0   118    0     0    182      0 --:--:-- --:--:-- --:--:--   182
+100   141    0   141    0     0    205      0 --:--:-- --:--:-- --:--:--   205
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   124    0   124    0     0    187      0 --:--:-- --:--:-- --:--:--   187
+  0     0    0 57439    0     0  41884      0 --:--:--  0:00:01 --:--:--  105k
+200
+[obuild.0.1.1] Downloading https://github.com/ocaml-obuild/obuild/archive/obuild-v0.1.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  291k  100  291k    0     0   176k      0  0:00:01  0:00:01 --:--:--  344k
+200
+  0     0    0 31008    0     0  21947      0 --:--:--  0:00:01 --:--:-- 21947  0     0    0 63726    0     0  42329      0 --:--:--  0:00:01 --:--:--  347k
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   134    0   134    0     0    205      0 --:--:-- --:--:-- --:--:--   205
+ 20 72491   20 14553    0     0  11496      0  0:00:06  0:00:01  0:00:05 11496100 72491  100 72491    0     0  50175      0  0:00:01  0:00:01 --:--:--  317k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Copying ~/.opam/repo/default/packages/obuild/obuild.0.1.1/files/obuild.install to ~/.opam/4.01.0/build/obuild.0.1.1/
+Building obuild.0.1.1:
+  ./bootstrap
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING types
+COMPILING gconf
+COMPILING filetype
+COMPILING dag
+COMPILING libname
+COMPILING pp
+COMPILING expr
+COMPILING utils
