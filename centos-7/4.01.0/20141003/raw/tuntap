@@ -1,0 +1,67 @@
+++ opam install tuntap -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install tuntap
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   ounit.2.0.0                           [required by tuntap]
+ - install   camlp4.4.01.0                         [required by lwt]
+ - install   cmdliner.0.9.5                        [required by tuntap]
+ - install   type_conv.111.13.00                   [required by sexplib]
+ - install   lwt.2.4.5                             [required by tuntap]
+ - install   sexplib.111.25.00                     [required by ipaddr]
+ - install   ipaddr.2.5.0                          [required by tuntap]
+ - install   tuntap.1.0.0
+=== 8 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[cmdliner.0.9.5] Downloading http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.5.tbz
+[ipaddr.2.5.0] Downloading https://github.com/mirage/ocaml-ipaddr/archive/2.5.0.tar.gz
+[lwt.2.4.5] Downloading https://github.com/ocsigen/lwt/archive/2.4.5.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   200k      0 --:--:-- --:--:-- --:--:--  200k
+200
+[ounit.2.0.0] Downloading http://forge.ocamlcore.org/frs/download.php/1258/ounit-2.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   126    0   126    0     0    188      0 --:--:-- --:--:-- --:--:--   188
+100   118    0   118    0     0    178      0 --:--:-- --:--:-- --:--:--   178
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  1  101k    1  1201    0     0   3038      0  0:00:34 --:--:--  0:00:34  3040100  101k  100  101k    0     0   224k      0 --:--:-- --:--:-- --:--:--  224k
+200
+[sexplib.111.25.00] Downloading https://ocaml.janestreet.com/ocaml-core/111.25.00/individual/sexplib-111.25.00.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+100 62338  100 62338    0     0  41485      0  0:00:01  0:00:01 --:--:-- 91538
+100  291k  100  291k    0     0   174k      0  0:00:01  0:00:01 --:--:--  339k
+200
+[tuntap.1.0.0] Downloading https://github.com/mirage/ocaml-tuntap/archive/v1.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[type_conv.111.13.00] Downloading https://ocaml.janestreet.com/ocaml-core/111.13.00/individual/type_conv-111.13.00.tar.gz
+  0  131k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  131k  100  131k    0     0   120k      0  0:00:01  0:00:01 --:--:--  121k
+200
+100   127    0   127    0     0    196      0 --:--:-- --:--:-- --:--:--   196
+100 61554  100 61554    0     0  69995      0 --:--:-- --:--:-- --:--:-- 70187
+200
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0 51058    0     0  38700      0 --:--:--  0:00:01 --:--:--  183k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
