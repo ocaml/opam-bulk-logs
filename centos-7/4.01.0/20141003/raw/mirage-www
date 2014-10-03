@@ -556,3 +556,54 @@ HEAD is now at c4bdc0d Merge pull request #227 from avsm/master
 100  116k  100  116k    0     0   173k      0 --:--:-- --:--:-- --:--:--  819k
 200
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0   127    0     0    183      0 --:--:-- --:--:-- --:--:--   183
+[tuntap.1.0.0] Downloading https://github.com/mirage/ocaml-tuntap/archive/v1.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 63087  100 63087    0     0  43891      0  0:00:01  0:00:01 --:--:-- 43891
+200
+ 14 99130   14 14555    0     0  11201      0  0:00:08  0:00:01  0:00:07 11201[type_conv.111.13.00] Downloading https://ocaml.janestreet.com/ocaml-core/111.13.00/individual/type_conv-111.13.00.tar.gz
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0   127    0     0    195      0 --:--:-- --:--:-- --:--:--   195
+100 99130  100 99130    0     0  63552      0  0:00:01  0:00:01 --:--:--  317k
+200
+[ulex.1.1] Downloading http://ftp.de.debian.org/debian/pool/main/u/ulex/ulex_1.1.orig.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 20347  100 20347    0     0  81728      0 --:--:-- --:--:-- --:--:-- 82044
+200
+[uri.1.4.0] Downloading https://github.com/mirage/ocaml-uri/archive/v1.4.0.tar.gz
+  0     0    0 51058    0     0  36827      0 --:--:--  0:00:01 --:--:-- 36827
+200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 61554  100 61554    0     0  70080      0 --:--:-- --:--:-- --:--:-- 70107
+200
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 38181  100 38181    0     0   161k      0 --:--:-- --:--:-- --:--:--  162k
+200
+100   124    0   124    0     0    178      0 --:--:-- --:--:-- --:--:--   178
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100  243k  100  243k    0     0   143k      0  0:00:01  0:00:01 --:--:--  411k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Copying ~/.opam/repo/default/packages/omd/omd.0.9.7/files/omd.install to ~/.opam/4.01.0/build/omd.0.9.7/
+Building omd.0.9.7:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
