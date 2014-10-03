@@ -4,3 +4,92 @@
 + '[' '' '!=' '' ']'
 + opam install ojquery
 CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by js_of_ocaml]
+ - install   menhir.20140422                       [required by js_of_ocaml]
+ - install   react.1.2.0                           [required by ojquery]
+ - install   lwt.2.4.5                             [required by ojquery]
+ - install   js_of_ocaml.2.3                       [required by ojquery]
+ - install   ojquery.0.1
+=== 6 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[js_of_ocaml.2.3] Downloading https://github.com/ocsigen/js_of_ocaml/archive/2.3.tar.gz
+[lwt.2.4.5] Downloading https://github.com/ocsigen/lwt/archive/2.4.5.tar.gz
+[menhir.20140422] Downloading http://cristal.inria.fr/~fpottier/menhir/menhir-20140422.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                   Left  Speed
+  0                Dload  Upload   Total     0   Spent      0     Left  Speed
+  0    0    0      0     0    0     0    0    0        0      0 --:--:-  0     - --:--: 0 --:--:-- --:---- --:--:-:-- ---     0:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  536k  100  536k    0     0  1611k      0 --:--:-- --:--:-- --:--:-- 1610k
+200
+[ojquery.0.1] Downloading https://github.com/ocsigen/ojquery/archive/0.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   124    0   124    0     0    194      0 --:--:-- --:--:-- --:--:--   194
+100   118    0   118    0     0    169      0 --:--:-- --:--:-- --:--:--   169
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100   120    0   120    0     0    177      0 --:--:-- --:--:-- --:--:--   176
+100  291k  100  291k    0     0   154k      0  0:00:01  0:00:01 --:--:--  383k
+200
+  0     0    0 64335    0     0  43574      0 --:--:--  0:00:01 --:--:-- 43574
+200
+[react.1.2.0] Downloading http://erratique.ch/software/react/releases/react-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0  797k    0     0   392k      0 --:--:--  0:00:02 --:--:--  811k  0     0    0 1180k    0     0   553k      0 --:--:--  0:00:02 --:--:-- 1092k
+200
+100 64665  100 64665    0     0   274k      0 --:--:-- --:--:-- --:--:--  275k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Copying ~/.opam/repo/default/packages/menhir/menhir.20140422/files/menhir.install to ~/.opam/4.01.0/build/menhir.20140422/
+Building menhir.20140422:
+  make PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+  make install PREFIX=/home/opam/.opam/4.01.0 docdir=/home/opam/.opam/4.01.0/doc/menhir libdir=/home/opam/.opam/4.01.0/lib/menhir mandir=/home/opam/.opam/4.01.0/man/man1
+rm -f src/installation.ml
+echo "let libdir = \"/home/opam/.opam/4.01.0/lib/menhir\"" > src/installation.ml
+if ocamlfind ocamlc -v >/dev/null 2>&1 ; then \
+  echo "let ocamlfind = true" >> src/installation.ml ; \
+else \
+  echo "let ocamlfind = false" >> src/installation.ml ; \
+fi
+make -C src library bootstrap
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/menhir.20140422/src'
+ocamlbuild -classic-display -j 0 menhirLib.cmo menhirLib.cmx
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt unix.cmxa -I /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuildlib.cmxa myocamlbuild.ml /home/opam/.opam/4.01.0/lib/ocaml/ocamlbuild/ocamlbuild.cmx -o myocamlbuild
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules infiniteArray.mli > infiniteArray.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o infiniteArray.cmi infiniteArray.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules infiniteArray.ml > infiniteArray.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules packedIntArray.mli > packedIntArray.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o packedIntArray.cmi packedIntArray.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules packedIntArray.ml > packedIntArray.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules rowDisplacement.mli > rowDisplacement.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o rowDisplacement.cmi rowDisplacement.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules rowDisplacement.ml > rowDisplacement.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules engineTypes.ml > engineTypes.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules engine.mli > engine.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o engineTypes.cmo engineTypes.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o engine.cmi engine.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules engine.ml > engine.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tableFormat.ml > tableFormat.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tableInterpreter.mli > tableInterpreter.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o tableFormat.cmo tableFormat.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o tableInterpreter.cmi tableInterpreter.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules tableInterpreter.ml > tableInterpreter.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules convert.mli > convert.mli.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -o convert.cmi convert.mli
+/home/opam/.opam/4.01.0/bin/ocamldep.opt -modules convert.ml > convert.ml.depends
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o infiniteArray.cmo infiniteArray.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o packedIntArray.cmo packedIntArray.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o rowDisplacement.cmo rowDisplacement.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o engine.cmo engine.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o tableInterpreter.cmo tableInterpreter.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -c -g -o convert.cmo convert.ml
+/home/opam/.opam/4.01.0/bin/ocamlc.opt -pack -g infiniteArray.cmo packedIntArray.cmo rowDisplacement.cmo engineTypes.cmo engine.cmo tableFormat.cmo tableInterpreter.cmo convert.cmo -o menhirLib.cmo
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -g -inline 1000 -for-pack MenhirLib -o infiniteArray.cmx infiniteArray.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -g -inline 1000 -for-pack MenhirLib -o engineTypes.cmx engineTypes.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -g -inline 1000 -for-pack MenhirLib -o packedIntArray.cmx packedIntArray.ml
+/home/opam/.opam/4.01.0/bin/ocamlopt.opt -c -g -inline 1000 -for-pack MenhirLib -o engine.cmx engine.ml
