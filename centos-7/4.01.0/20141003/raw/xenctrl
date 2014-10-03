@@ -12,3 +12,56 @@ Loading mirror speeds from cached hostfile
 No package xen-devel available.
 Error: Nothing to do
 + opam install xenctrl
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lwt]
+ - install   cmdliner.0.9.5                        [required by xenctrl]
+ - install   lwt.2.4.5                             [required by xenctrl]
+ - install   xenctrl.0.9.26
+=== 4 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[cmdliner.0.9.5] Downloading http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.5.tbz
+[lwt.2.4.5] Downloading https://github.com/ocsigen/lwt/archive/2.4.5.tar.gz
+[xenctrl.0.9.26] Downloading https://github.com/xapi-project/ocaml-xen-lowlevel-libs/archive/0.9.26.tar.gz
+    %%  TToottaall       % %  RReecceeiivveedd  % % XfXeferrd d  A vAeverragaeg eS Sppeeeed d    T Tiimeme        TiTmime e         TTimieme    CCuurrrreennt
+t
+                                        Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0                          Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   197k      0 --:--:-- --:--:-- --:--:--  197k
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   118    0   118    0     0    180      0 --:--:-- --:--:-- --:--:--   180
+100   144    0   144    0     0    212      0 --:--:-- --:--:-- --:--:--   212
+ 51  291k   51  150k    0     0  96894      0  0:00:03  0:00:01  0:00:02 96894 70  134k   70 96453    0     0  59583      0  0:00:02  0:00:01  0:00:01 59583100  134k  100  134k    0     0  84767      0  0:00:01  0:00:01 --:--:--  9.8M
+200
+100  291k  100  291k    0     0   173k      0  0:00:01  0:00:01 --:--:-- 1520k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building lwt.2.4.5:
+  ./configure --disable-libev --disable-react --disable-ssl --enable-unix --enable-extra --enable-preemptive --disable-glib
+  make build
+  make install
+not checking for pkg-config
+not checking for libev
+testing for pthread: ........................... available
+not checking for glib
+testing for eventfd: ........................... available
+testing for fd passing: ........................ available
+testing for sched_getcpu: ...................... available
+testing for affinity getting/setting: .......... available
+testing for credentials getting (Linux):
