@@ -55,3 +55,64 @@ ocamlopt -c lexer.ml
 ocamlc -c parser_directive.mli
 ocamlopt -c parser_directive.ml
 ocamlopt -c directive.ml
+ocamlopt -c main.ml
+ocamlopt \
+				  \
+				             unix.cmxa   -o camlmix \
+				version.cmx lexer.cmx parser_directive.cmx directive.cmx main.cmx
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/camlmix.1.3.0'
+install -m 0755 camlmix /home/opam/.opam/4.01.0/bin/
+Installing camlmix.1.3.0.
+Building caml2html.1.4.3:
+  mkdir -p /home/opam/.opam/4.01.0/bin
+  make
+  make lib
+  make install PREFIX=/home/opam/.opam/4.01.0
+ocamlc -w A -c hashtbl2.mli
+ocamlopt -dtypes -c hashtbl2.ml
+camlmix -clean version.ml.mlx -o version.ml
+ocamlopt -dtypes -c version.ml
+ocamlc -w A -c annot.mli
+ocamlopt -dtypes -c annot.ml
+ocamlopt -dtypes -c tag.ml
+ocamlc -w A -c plugin.mli
+ocamlopt -dtypes -c plugin.ml
+ocamllex input.mll
+98 states, 2531 transitions, table size 10712 bytes
+2799 additional bytes used for bindings
+ocamlc -w A -c input.mli
+ocamlopt -dtypes -c input.ml
+ocamlc -w A -c output.mli
+ocamlopt -dtypes -c output.ml
+ocamlc -w A -c output_latex.mli
+ocamlopt -dtypes -c output_latex.ml
+ocamlopt -dtypes -c main.ml
+ocamlopt -o caml2html str.cmxa unix.cmxa  hashtbl2.cmx  version.cmx  annot.cmx  tag.cmx  plugin.cmx  input.cmx  output.cmx  output_latex.cmx  main.cmx
+rm -f caml2html_test.mli
+ocamlc -i caml2html_test.ml > caml2html_test.mli
+File "caml2html_test.ml", line 35, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+ocamlc -c caml2html_test.mli
+File "caml2html_test.mli", line 3, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+ocamlc -c -dtypes caml2html_test.ml
+File "caml2html_test.ml", line 35, characters 7-14:
+Warning 3: deprecated feature: ISO-Latin1 characters in identifiers
+./caml2html -o caml2html_test.html \
+		caml2html_test.mli caml2html_test.ml caml2html_test2.ml \
+		-ln -ie7 \
+		-ext date:date \
+		-ext cat:cat \
+		-ext "rot13:tr '[a-z]' '[n-za-m]'"
+./caml2html -o caml2html_self_test.html \
+		tag.ml annot.mli annot.ml plugin.mli plugin.ml \
+		input.mli input.mll output.mli output.ml \
+		output_latex.mli output_latex.ml \
+		main.ml \
+		-ln
+./caml2html -latex -o caml2html_self_test.tex \
+		tag.ml annot.mli annot.ml plugin.mli plugin.ml \
+		input.mli input.mll output.mli output.ml \
+		output_latex.mli output_latex.ml \
+		main.ml \
+		-ln
