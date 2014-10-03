@@ -26,4 +26,72 @@ The following actions will be performed:
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  101k  100  101k    0     0   326k      0 --:--:-- --:--:-- --:--:--  327k
+200
+[piqi.0.6.5] Downloading https://github.com/alavrik/piqi/archive/v0.6.5.tar.gz
+ 84 13679   84 11445    0     0  25734      0 --:--:-- --:--:-- --:--:-- 25719  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 13679  100 13679    0     0  25267  200
+    0 --:--:-- --:--:-- --:--:-- 25284
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   118    0   118    0     0    176      0 --:--:-- --:--:-- --:--:--   176
+[riak.1.0.0] Downloading https://github.com/metadave/riak-ocaml-client/archive/riak-1.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   120    0   120    0     0    184      0 --:--:-- --:--:-- --:--:--   184
+  0     0 1 9    29 10k      19   50717 4      0   0     0   3 9 7003           0  0 0 : 00 :0 7   0 :000:0 1  0:0-0:06 39703-:--:-- --:--:-- --:--:--     0100   138    0   138    0     0    196      0 --:--:-- --:--:-- --:--:--   196
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100  291k  100  291k    0     0   164k      0  0:00:01  0:00:01 --:--:--  699k
+200
+[riak-pb.1.0.0] Downloading https://github.com/metadave/riak-ocaml-pb/archive/riak-pb-1.0.0.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0 54768    0     0  38803      0 --:--:--  0:00:01 --:--:-- 38803
+200
+  0     0    0  347k    0     0   198k      0 --:--:--  0:00:01 --:--:--  503k
+200
+[ulex.1.1] Downloading http://ftp.de.debian.org/debian/pool/main/u/ulex/ulex_1.1.orig.tar.gz
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   137    0   137    0     0    207      0 --:--:-- --:--:-- --:--:--   207
+100 20347  100 20347    0     0  80454      0 --:--:-- --:--:-- --:--:-- 80742
+200
+100 38181  100 38181    0     0   158k      0 --:--:-- --:--:-- --:--:--  158k
+200
+  0     0    0 35100    0     0  24479      0 --:--:--  0:00:01 --:--:-- 24479  0     0    0 45035    0     0  31393      0 --:--:--  0:00:01 --:--:-- 9702k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building easy-format.1.0.2:
+  make
+  make install
+ocamlc -c easy_format.mli
+ocamlc -c -dtypes easy_format.ml
+touch bytecode
+ocamlc -c easy_format.mli
+ocamlopt -c -dtypes easy_format.ml
+ocamlopt -I . -shared -linkall -o easy_format.cmxs easy_format.cmx
+touch nativecode
+echo "version = \"1.0.2\"" > META; cat META.tpl >> META
+INSTALL_FILES="META easy_format.cmi easy_format.mli"; \
+	if test -f bytecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmo"; \
+	fi; \
+	if test -f nativecode; then \
+	  INSTALL_FILES="$INSTALL_FILES easy_format.cmx easy_format.o easy_format.cmxs"; \
+	fi; \
+	ocamlfind install easy-format $INSTALL_FILES
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmxs
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.o
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmx
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmo
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.mli
+Installed /home/opam/.opam/4.01.0/lib/easy-format/easy_format.cmi
+Installed /home/opam/.opam/4.01.0/lib/easy-format/META
+Installing easy-format.1.0.2.
+Building ounit.2.0.0:
+  make build
+  make install
+ocaml setup.ml -configure 
