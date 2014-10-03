@@ -1664,3 +1664,15 @@ ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../
 ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c scene.ml
 ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_common.mli
 ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_common.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c viewer_js.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -linkpkg -o jsviewer.byte js_of_ocaml.cma scene.cmo viewer_common.cmo viewer_js.cmo
+../../compiler/js_of_ocaml -noruntime ../../runtime/runtime.js jsviewer.byte 
+Missing primitives:
+  caml_ml_output_char
+  caml_sys_exit
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.1.4.0/examples/graph_viewer'
+make -C hyperbolic/
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/js_of_ocaml.1.4.0/examples/hyperbolic'
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -c hypertree.ml
+ocamlfind ocamlc -package lwt -pp "camlp4o ../../lib/syntax/pa_js.cmo" -I ../../lib -g -linkpkg -o hypertree.byte js_of_ocaml.cma hypertree.cmo
+../../compiler/js_of_ocaml -noruntime ../../runtime/runtime.js hypertree.byte -pretty
