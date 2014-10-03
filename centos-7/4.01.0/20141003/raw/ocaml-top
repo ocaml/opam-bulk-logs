@@ -1,0 +1,204 @@
+++ opam install ocaml-top -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install ocaml-top
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by ocp-build, lablgtk]
+ - install   conf-gtksourceview.2                  [required by ocaml-top]
+ - install   cmdliner.0.9.5                        [required by ocp-index, ocp-indent]
+ - install   ocp-build.1.99.8-beta                 [required by ocaml-top]
+ - install   lablgtk.2.18.2                        [required by ocaml-top]
+ - install   ocp-indent.1.4.2                      [required by ocaml-top]
+ - install   ocp-index.1.0.1                       [required by ocaml-top]
+ - install   ocaml-top.1.1.2
+=== 8 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[cmdliner.0.9.5] Downloading http://erratique.ch/software/cmdliner/releases/cmdliner-0.9.5.tbz
+[lablgtk.2.18.2] Downloading https://forge.ocamlcore.org/frs/download.php/1456/lablgtk-2.18.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[ocaml-top.1.1.2] Downloading https://github.com/OCamlPro/ocaml-top/archive/1.1.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 47938  100 47938    0     0   205k      0 --:--:-- --:--:-- --:--:--  206k
+200
+[ocp-build.1.99.8-beta] Downloading https://github.com/OCamlPro/ocp-build/tarball/ocp-build.1.99.8-beta
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   125    0   125    0     0    187      0 --:--:-- --:--:-- --:--:--   187
+  0  769k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   148    0   148    0     0    225      0 --:--:-- --:--:-- --:--:--   225
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100  769k  100  769k    0     0   610k      0  0:00:01  0:00:01 --:--:--  610k
+200
+[ocp-indent.1.4.2] Downloading https://github.com/OCamlPro/ocp-indent/archive/1.4.2b.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0  216k    0     0   112k      0 --:--:--  0:00:01 --:--:--  267k  0     0    0 96502    0     0  58021      0 --:--:--  0:00:01 --:--:-- 58021  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   127    0   127    0     0    192      0 --:--:-- --:--:-- --:--:--   192
+  0     0    0  558k    0     0   219k      0 --:--:--  0:00:02 --:--:--  391k
+200
+[ocp-index.1.0.1] Downloading https://github.com/OCamlPro/ocp-index/archive/1.0.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0 57030    0     0  38700      0 --:--:--  0:00:01 --:--:-- 38700  0     0    0  674k    0     0   258k      0 --:--:--  0:00:02 --:--:--  613k  0     0    0  136k    0     0  89086      0 --:--:--  0:00:01 --:--:--  892k
+200
+  0     0    0  871k    0     0   312k      0 --:--:--  0:00:02 --:--:--  688k
+200
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   125    0   125    0     0    186      0 --:--:-- --:--:-- --:--:--   186
+  0     0    0 14562    0     0  11320      0 --:--:--  0:00:01 --:--:-- 11320  0     0    0 85184    0     0  58464      0 --:--:--  0:00:01 --:--:--  405k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building conf-gtksourceview.2:
+  pkg-config gtksourceview-2.0
+Removing conf-gtksourceview.2.
+[ERROR] The compilation of conf-gtksourceview.2 failed.
+  Nothing to do.
+Building ocp-build.1.99.8-beta:
+  ./configure --prefix /home/opam/.opam/4.01.0
+  make
+  make install
+checking for ocamlc... ocamlc
+OCaml version is 4.01.0
+OCaml library path is /home/opam/.opam/4.01.0/lib/ocaml
+checking for ocamlopt... ocamlopt
+checking for ocamlc.opt... ocamlc.opt
+checking for ocamlopt.opt... ocamlopt.opt
+checking for ocaml... ocaml
+checking for ocamldep... ocamldep
+checking for ocamlmktop... ocamlmktop
+checking for ocamlmklib... ocamlmklib
+checking for ocamldoc... ocamldoc
+checking for ocamlbuild... ocamlbuild
+checking for camlp4... camlp4
+checking for camlp4boot... camlp4boot
+checking for camlp4o... camlp4o
+checking for camlp4of... camlp4of
+checking for camlp4oof... camlp4oof
+checking for camlp4orf... camlp4orf
+checking for camlp4prof... camlp4prof
+checking for camlp4r... camlp4r
+checking for camlp4rf... camlp4rf
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /usr/bin/sed
+checking Major version... 4
+checking Minor version... 01
+checking Point version... 0
+checking for gawk... gawk
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating ../src/ocp-build-bundle.ocp
+config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+
+Executables will be installed in /home/opam/.opam/4.01.0/bin
+Libraries will be installed in /home/opam/.opam/4.01.0/lib/ocaml/typerex
+Data files will be installed in /home/opam/.opam/4.01.0/share/typerex
+Manual pages will be installed in /home/opam/.opam/4.01.0/share/man
+Creating root directory _obuild/
+make -C boot
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/boot'
+awk '{ print "external "$1": unit -> unit = \"" $1 "\"" }' primitives > primitives.ml
+./make-ocpbuild-run.sh
+ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix
+cat ocp-build.run ocp-build.boot > ocp-build
+chmod +x ocp-build
+./ocp-build -help >/dev/null 2>&1
+make[1]: *** [ocp-build] Error 2
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/boot'
+make: *** [boot/ocp-build] Error 2
+[ERROR] The compilation of ocp-build.1.99.8-beta failed.
+Removing ocp-build.1.99.8-beta.
+  rm -f /home/opam/.opam/4.01.0/bin/ocp-build
+  rm -f /home/opam/.opam/4.01.0/bin/ocp-build.byte
+  rm -f /home/opam/.opam/4.01.0/lib/META.ocp-build-bundle
+  rm -rf /home/opam/.opam/4.01.0/lib/ocaml/typerex/ocp-build-bundle
+  rm -f /home/opam/.opam/4.01.0/lib/META.ocp-build-win32
+  rm -rf /home/opam/.opam/4.01.0/lib/ocaml/typerex/ocp-build-win32
+  rm -f /home/opam/.opam/4.01.0/lib/META.ocp-build-misc
+  rm -rf /home/opam/.opam/4.01.0/lib/ocaml/typerex/ocp-build-misc
+  rm -f /home/opam/.opam/4.01.0/lib/META.ocp-build
+  rm -rf /home/opam/.opam/4.01.0/lib/ocaml/typerex/ocp-build
+
+#================ ERROR while installing conf-gtksourceview.2 =================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              pkg-config gtksourceview-2.0
+# path                 /home/opam/.opam/4.01.0/build/conf-gtksourceview.2
+# compiler             4.01.0
+# exit-code            1
+# env-file             /home/opam/.opam/4.01.0/build/conf-gtksourceview.2/conf-gtksourceview-235-1872ec.env
+# stdout-file          /home/opam/.opam/4.01.0/build/conf-gtksourceview.2/conf-gtksourceview-235-1872ec.out
+# stderr-file          /home/opam/.opam/4.01.0/build/conf-gtksourceview.2/conf-gtksourceview-235-1872ec.err
+
+
+#================ ERROR while installing ocp-build.1.99.8-beta ================#
+# opam-version         1.2.0~beta4
+# os                   linux
+# command              make
+# path                 /home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta
+# compiler             4.01.0
+# exit-code            2
+# env-file             /home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/ocp-build-240-ad8886.env
+# stdout-file          /home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/ocp-build-240-ad8886.out
+# stderr-file          /home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/ocp-build-240-ad8886.err
+### stdout ###
+# ...[truncated]
+# Creating root directory _obuild/
+# make -C boot
+# make[1]: Entering directory `/home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/boot'
+# awk '{ print "external "$1": unit -> unit = \"" $1 "\"" }' primitives > primitives.ml
+# ./make-ocpbuild-run.sh
+# ocamlc -o ocp-build.run -custom -make-runtime win32_c.c primitives.ml unix.cma -cclib -lunix
+# cat ocp-build.run ocp-build.boot > ocp-build
+# chmod +x ocp-build
+# ./ocp-build -help >/dev/null 2>&1
+# make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/ocp-build.1.99.8-beta/boot'
+### stderr ###
+# config.status: WARNING:  '../src/ocp-build-bundle.ocp.in' seems to ignore the --datarootdir setting
+# make[1]: *** [ocp-build] Error 2
+# make: *** [boot/ocp-build] Error 2
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Error report =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+These actions have been completed successfully
+ - install   cmdliner.0.9.5
+ - install   camlp4.4.01.0
+The following failed
+ - install   conf-gtksourceview.2
+ - install   ocp-build.1.99.8-beta
+Due to the errors, the following have been cancelled
+ - install   lablgtk.2.18.2
+ - install   ocaml-top.1.1.2
+ - install   ocp-indent.1.4.2
+ - install   ocp-index.1.0.1
+
+=-=-=-=-=-=-=-=-=-=-= conf-gtksourceview.2 troobleshooting =-=-=-=-=-=-=-=-=-=-=
+This package requires gtksourceview 2.0 development packages installed on your system
+
+The former state can be restored with opam switch import "/home/opam/.opam/4.01.0/backup/state-20140903200411.export"
+'opam install ocaml-top' failed.
