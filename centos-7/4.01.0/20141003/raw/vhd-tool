@@ -258,3 +258,55 @@ The following actions will be performed:
 200
   0     0    0 78561    0     0  53549      0 --:--:--  0:00:01 --:--:--  632k
 200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Copying ~/.opam/repo/default/packages/obuild/obuild.0.1.1/files/obuild.install to ~/.opam/4.01.0/build/obuild.0.1.1/
+Building obuild.0.1.1:
+  ./bootstrap
+COMPILING fugue
+COMPILING filepath
+COMPILING filesystem
+BUILDING library obuild_ext.cmxa
+COMPILING types
+COMPILING gconf
+COMPILING filetype
+COMPILING dag
+COMPILING libname
+COMPILING pp
+COMPILING expr
+COMPILING utils
+COMPILING modname
+COMPILING taskdep
+COMPILING helper
+COMPILING dagutils
+COMPILING process
+COMPILING findlibConf
+COMPILING scheduler
+COMPILING prog
+COMPILING dependencies
+COMPILING generators
+COMPILING hier
+COMPILING meta
+COMPILING target
+COMPILING dist
+COMPILING project
+COMPILING analyze
+COMPILING configure
+COMPILING prepare
+COMPILING buildprogs
+COMPILING build
+COMPILING exception
+BUILDING library obuild.cmxa
