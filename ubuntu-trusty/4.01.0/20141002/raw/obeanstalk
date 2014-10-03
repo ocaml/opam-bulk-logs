@@ -5522,3 +5522,9 @@ ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,asyn
 ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_cmd.cmx lib/beanstalk_cmd.ml
 ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/yaml.cmx lib/yaml.ml
 ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk_raw.cmx lib/beanstalk_raw.ml
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/beanstalk.cmx lib/beanstalk.ml
+ocamlfind ocamlopt -a -thread -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads lib/beanstalk_exc.cmx lib/beanstalk_cmd.cmx lib/yaml.cmx lib/beanstalk_raw.cmx lib/beanstalk.cmx -o lib/beanstalk.cmxa
+ocamlbuild -use-ocamlfind -package threads -lflags -thread lib/obean.native lib_test/test_pure.native lib_test/test_obs.native examples/job_create.native examples/deadline_soon.native
+ocamlfind ocamldep -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -modules lib/obean.ml > lib/obean.ml.depends
+ocamlfind ocamlc -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/obean.cmo lib/obean.ml
+ocamlfind ocamlopt -c -g -thread -package core,sexplib,sexplib.syntax,async,async_unix -syntax camlp4o -package threads -I lib -I lib_test -o lib/obean.cmx lib/obean.ml
