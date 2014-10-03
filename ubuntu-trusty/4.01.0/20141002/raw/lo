@@ -101,4 +101,66 @@ checking for strings.h... yes
 checking for inttypes.h... yes
 checking for stdint.h... yes
 checking for unistd.h... yes
-checking lo/lo.h usability... 
+checking lo/lo.h usability... yes
+checking lo/lo.h presence... yes
+checking for lo/lo.h... yes
+checking for lo_address_new... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/META
+config.status: creating src/Makefile
+make -C src all
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+ocamldep LO.mli > ._bcdi/LO.di
+ocamldep LO.ml > ._d/LO.d
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+ocamlc.opt -c -cc "gcc" -ccopt "-fPIC -I/home/opam/.opam/4.01.0/include -Wall -DCAML_NAME_SPACE \
+				-DPIC -I/home/opam/.opam/4.01.0/include  \
+				    -o LO_stubs.o " LO_stubs.c
+ar rcs liblo_stubs.a  LO_stubs.o
+ocamlc.opt -c LO.mli
+ocamlc.opt -c LO.ml
+ocamlmklib      -L/home/opam/.opam/4.01.0/lib   \
+				-o lo_stubs  LO_stubs.o -llo  \
+				
+ocamlc.opt -a -dllib dlllo_stubs.so       -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib    -cclib -llo_stubs -cclib -llo   -o lo.cma LO.cmo
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+ocamldep -native LO.mli > ._ncdi/LO.di
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: `liblo_stubs.a' is up to date.
+ocamlopt.opt -c LO.ml
+ocamlopt.opt -a        -ccopt -L/home/opam/.opam/4.01.0/lib  -ccopt -L/home/opam/.opam/4.01.0/lib   -cclib -llo_stubs -cclib -llo   -o lo.cmxa LO.cmx
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make -C src install
+make[1]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: `liblo_stubs.a' is up to date.
+make[2]: `lo.cma' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: Entering directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+make[2]: `liblo_stubs.a' is up to date.
+make[2]: `lo.cmxa' is up to date.
+make[2]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+
+Installing library with ocamlfind
+ocamlfind install  lo META LO.mli LO.cmi lo.cma lo.cmxa LO.cmx liblo_stubs.a lo.a dlllo_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/lo/lo.a
+Installed /home/opam/.opam/4.01.0/lib/lo/liblo_stubs.a
+Installed /home/opam/.opam/4.01.0/lib/lo/LO.cmx
+Installed /home/opam/.opam/4.01.0/lib/lo/lo.cmxa
+Installed /home/opam/.opam/4.01.0/lib/lo/lo.cma
+Installed /home/opam/.opam/4.01.0/lib/lo/LO.cmi
+Installed /home/opam/.opam/4.01.0/lib/lo/LO.mli
+Installed /home/opam/.opam/4.01.0/lib/lo/META
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllo_stubs.so
+Installed /home/opam/.opam/4.01.0/lib/stublibs/dlllo_stubs.so.owner
+ocamlfind: [WARNING] You have installed DLLs but the directory /home/opam/.opam/4.01.0/lib/stublibs is not mentioned in ld.conf
+
+Installation successful.
+make[1]: Leaving directory `/home/opam/.opam/4.01.0/build/lo.0.1.0/src'
+Installing lo.0.1.0.
