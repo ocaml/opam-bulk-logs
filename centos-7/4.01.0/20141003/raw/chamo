@@ -1,1 +1,85 @@
 ++ opam install chamo -e centos,centos-7
++ depext=
++ echo CentOS 7 depexts:
++ '[' '' '!=' '' ']'
++ opam install chamo
+CentOS 7 depexts:
+The following actions will be performed:
+ - install   camlp4.4.01.0                         [required by lablgtk, config-file]
+ - install   conf-glade.2                          [required by chamo]
+ - install   xmlm.1.2.0                            [required by lablgtk-extras]
+ - install   conf-gtksourceview.2                  [required by lablgtk-extras, lablgtk]
+ - install   conf-libpcre.1                        [required by pcre-ocaml]
+ - install   config-file.1.2                       [required by chamo]
+ - install   lablgtk.2.18.2                        [required by chamo]
+ - install   pcre-ocaml.7.1.1                      [required by chamo]
+ - install   lablgtk-extras.1.4                    [required by chamo]
+ - install   chamo.2.02
+=== 10 to install ===
+
+=-=-=-=-=-=-=-=-=-=-=-=- Synchronizing package archives -=-=-=-=-=-=-=-=-=-=-=-=
+[chamo.2.02] Downloading http://zoggy.github.com/chamo/chamo-2.02.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[config-file.1.2] Downloading https://forge.ocamlcore.org/frs/download.php/1387/config-file-1.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[lablgtk.2.18.2] Downloading https://forge.ocamlcore.org/frs/download.php/1456/lablgtk-2.18.2.tar.gz
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   178  100   178    0     0    638      0 --:--:-- --:--:-- --:--:--   640
+100  153k  100  153k    0     0   259k      0 --:--:-- --:--:-- --:--:--  259k
+200
+100 50207  100 50207    0     0  84158      0 --:--:-- --:--:-- --:--:-- 84239
+200
+[lablgtk-extras.1.4] Downloading https://forge.ocamlcore.org/frs/download.php/1282/lablgtkextras-1.4.tar.gz
+100  769k  100  769k    0     0  1142k      0 --:--:-- --:--:-- --:--:-- 1142k
+200
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0[pcre-ocaml.7.1.1] Downloading https://github.com/mmottl/pcre-ocaml/releases/download/v7.1.1/pcre-ocaml-7.1.1.tar.gz
+[xmlm.1.2.0] Downloading http://erratique.ch/software/xmlm/releases/xmlm-1.2.0.tbz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0200
+100 38181  100 38181    0     0   164k      0 --:--:-- --:--:-- --:--:--  164k
+100  107k  100  107k    0     0   173k      0 --:--:-- --:--:-- --:--:--  173k
+200
+100   402    0   402    0     0    586      0 --:--:-- --:--:-- --:--:--   587
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 86796  100 86796    0     0  49399      0  0:00:01  0:00:01 --:--:--  133k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Installing camlp4.4.01.0.
+Building conf-glade.2:
+  pkg-config libglade-2.0
+Removing conf-glade.2.
+[ERROR] The compilation of conf-glade.2 failed.
+  Nothing to do.
+Building conf-gtksourceview.2:
+  pkg-config gtksourceview-2.0
+Removing conf-gtksourceview.2.
+[ERROR] The compilation of conf-gtksourceview.2 failed.
+  Nothing to do.
+Building conf-libpcre.1:
+  pkg-config libpcre
+[ERROR] The compilation of conf-libpcre.1 failed.
+Removing conf-libpcre.1.
+  Nothing to do.
+Building xmlm.1.2.0:
+  ./pkg/pkg-git
+  ./pkg/build true
+ocamlfind ocamldep -modules src/xmlm.mli > src/xmlm.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/xmlm.cmi src/xmlm.mli
+ocamlfind ocamldep -modules src/xmlm.ml > src/xmlm.ml.depends
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/xmlm.cmx src/xmlm.ml
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/xmlm.cmo src/xmlm.ml
+ocamlfind ocamlc -a src/xmlm.cmo -o src/xmlm.cma
+ocamlfind ocamlopt -a src/xmlm.cmx -o src/xmlm.cmxa
+ocamlfind ocamlopt -shared src/xmlm.cmx -o src/xmlm.cmxs
+ocamlfind ocamldep -modules test/xmltrip.ml > test/xmltrip.ml.depends
+ocamlfind ocamldep -modules test/xhtml.ml > test/xhtml.ml.depends
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xhtml.cmo test/xhtml.ml
+ocamlfind ocamlc -c -annot -bin-annot -I test -I src -o test/xmltrip.cmo test/xmltrip.ml
