@@ -33,3 +33,31 @@ The following actions will be performed:
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   130    0   130    0     0    196      0 --:--:-- --:--:-- --:--:--   196
   0     0    0 89947    0     0  63422      0 --:--:--  0:00:01 --:--:-- 63422
 200
+100  136k  100  136k    0     0  87942      0  0:00:01  0:00:01 --:--:-- 87942
+200
+ 16 89639   16 14550    0     0  11512      0  0:00:07  0:00:01  0:00:06 11512[typerex.1.99.6-beta] Downloading https://github.com/OCamlPro/typerex/archive/typerex.1.99.6-beta.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 89639  100 89639    0     0  62352      0  0:00:01  0:00:01 --:--:--  423k
+200
+100   137    0   137    0     0    213      0 --:--:-- --:--:-- --:--:--   214
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0 29 1186k   29  347k    0     0   183k      0  0:00:06  0:00:01  0:00:05  413k100 1186k  100 1186k    0     0   421k      0  0:00:02  0:00:02 --:--:--  673k
+200
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Installing packages -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+Building cmdliner.0.9.5:
+  ocaml pkg/git.ml
+  ocaml pkg/build.ml native=true native-dynlink=true
+ocamlfind ocamldep -modules src/cmdliner.ml > src/cmdliner.ml.depends
+ocamlfind ocamldep -modules src/cmdliner.mli > src/cmdliner.mli.depends
+ocamlfind ocamlc -c -I src -I test -o src/cmdliner.cmi src/cmdliner.mli
+ocamlfind ocamlopt -c -annot -bin-annot -I src -I test -o src/cmdliner.cmx src/cmdliner.ml
+ocamlfind ocamlopt -a src/cmdliner.cmx -o src/cmdliner.cmxa
+ocamlfind ocamlc -c -annot -bin-annot -I src -I test -o src/cmdliner.cmo src/cmdliner.ml
+ocamlfind ocamlc -a src/cmdliner.cmo -o src/cmdliner.cma
+ocamlfind ocamlopt -shared src/cmdliner.cmx -o src/cmdliner.cmxs
+Installing cmdliner.0.9.5.
+Building re.1.2.2:
+  ocaml setup.ml -configure --prefix /home/opam/.opam/4.01.0
+  ocaml setup.ml -build
+  ocaml setup.ml -install
